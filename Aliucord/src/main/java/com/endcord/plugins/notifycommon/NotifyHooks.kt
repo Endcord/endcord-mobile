@@ -177,13 +177,16 @@ internal object NotifyHooks {
                         return@after
                     }
                 }
+                var replaced = false
                 for (listener in listeners) {
                     try {
                         listener.onPopup(message, channel)
+                        if (listener.replacesPopup(message)) replaced = true
                     } catch (e: Throwable) {
                         logger.error("A popup listener failed", e)
                     }
                 }
+                if (replaced) param.result = false
             },
         )
     }
@@ -288,8 +291,11 @@ internal object NotifyHooks {
         /** Return false to keep Discord from showing its popup for [message]. */
         fun allowPopup(message: ApiMessage, channel: Channel): Boolean = true
 
-        /** Discord is about to show its popup for [message]. */
+        /** Discord is about to notify about [message] (no plugin hid it), though a plugin may replace the popup. */
         fun onPopup(message: ApiMessage, channel: Channel) {}
+
+        /** Return true when this plugin shows its own notification for [message] instead of Discord's popup. */
+        fun replacesPopup(message: ApiMessage): Boolean = false
     }
 
     // ---- registration ----

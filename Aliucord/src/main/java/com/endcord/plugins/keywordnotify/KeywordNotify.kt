@@ -105,6 +105,8 @@ internal class KeywordNotify : EndcordPlugin(
 
     override fun stop(context: Context) {
         NotifyHooks.unregisterAll(name)
+        Utils.mainThread.removeCallbacks(saveRunnable)
+        saveLog()
         super.stop(context)
     }
 
@@ -180,8 +182,12 @@ internal class KeywordNotify : EndcordPlugin(
             log.sortByDescending { it.id }
         }
         trim()
-        saveLog()
+        // Loading a chat can match many messages at once: save once things settle
+        Utils.mainThread.removeCallbacks(saveRunnable)
+        Utils.mainThread.postDelayed(saveRunnable, 2_000L)
     }
+
+    private val saveRunnable = Runnable { saveLog() }
 
     private fun trim() {
         val keep = int("amountToKeep").coerceIn(1, 500)

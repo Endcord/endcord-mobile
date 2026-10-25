@@ -5,7 +5,6 @@
 
 package com.endcord.plugins.notifycommon
 
-import com.discord.api.channel.Channel
 import com.discord.api.message.Message as ApiMessage
 
 /**
@@ -35,8 +34,7 @@ internal class OwnPopups(
             }
         }
         NotifyHooks.popups(owner, listener = object : NotifyHooks.PopupListener {
-            override fun allowPopup(message: ApiMessage, channel: Channel): Boolean =
-                synchronized(pending) { message.o() !in pending }
+            override fun replacesPopup(message: ApiMessage): Boolean = synchronized(pending) { message.o() in pending }
         })
         NotifyHooks.messages(owner) { message ->
             val mine = synchronized(pending) { pending.remove(message.o()) }
