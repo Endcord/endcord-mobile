@@ -6,6 +6,14 @@
 package com.endcord.plugins.registry
 
 import com.aliucord.entities.EndcordPlugin
+import com.endcord.plugins.bypasspinprompt.BypassPinPrompt
+import com.endcord.plugins.doubleclickedit.DoubleClickEdit
+import com.endcord.plugins.messageclickactions.MessageClickActions
+import com.endcord.plugins.translate.Translate
 
 internal fun batch08(): List<EndcordPlugin> = listOf(
+    BypassPinPrompt(),
+    DoubleClickEdit(),
+    MessageClickActions(),
+    Translate(),
 )
