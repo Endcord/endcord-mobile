@@ -74,7 +74,7 @@ internal object CoreUpdater {
             val data = fetchBuildData()
             lastCheck = System.currentTimeMillis()
 
-            if (data.coreVersion <= SemVer.parse(BuildConfig.VERSION)) {
+            if (data.coreVersion <= SemVer.parse(BuildConfig.ENDCORD_VERSION)) {
                 logger.debug("No updates found!")
                 return
             }
@@ -124,7 +124,7 @@ internal object CoreUpdater {
         lastCheck = System.currentTimeMillis()
         return CoreStatus(
             latest = data.coreVersion,
-            current = SemVer.parse(BuildConfig.VERSION),
+            current = SemVer.parse(BuildConfig.ENDCORD_VERSION),
             compatible = isCompatible(data),
             changelog = data.changelog,
         )
@@ -194,7 +194,7 @@ internal object CoreUpdater {
      */
     @JvmStatic
     fun announceCompletedUpdate() {
-        val current = BuildConfig.VERSION
+        val current = BuildConfig.ENDCORD_VERSION
         val last = Main.settings.getString(LAST_VERSION_KEY, null)
         if (last == current) return
         Main.settings.setString(LAST_VERSION_KEY, current)

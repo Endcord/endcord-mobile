@@ -86,7 +86,7 @@ ${if (disabled.isEmpty()) "None" else "> ${formatPlugins(disabled)}"}
             var str = """
 **Debug Info:**
 > **Discord**: ${Constants.DISCORD_VERSION}
-> **Endcord**: ${BuildConfig.VERSION} ${if (BuildConfig.RELEASE) "" else "(Custom)"} $managerBuildInfo
+> **Endcord**: ${BuildConfig.ENDCORD_VERSION} (API ${BuildConfig.VERSION}) ${if (BuildConfig.RELEASE) "" else "(Custom)"} $managerBuildInfo
 > **Plugins**: ${PluginManager.getPluginsInfo()}
 > **Android**: ${Build.VERSION.RELEASE} (SDK v${Build.VERSION.SDK_INT}) - ${getArchitecture()} - ${Build.PRODUCT}
 > **Rooted**: ${getIsRooted() ?: "Unknown"}

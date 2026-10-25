@@ -38,7 +38,7 @@ internal class BadgesAPI(private val settings: SettingsAPI) {
     private fun fetchBadges(): BadgesInfo? {
         return try {
             Http.Request("https://aliucord.com/files/badges/data.json")
-                .setHeader("User-Agent", "Endcord/${BuildConfig.VERSION}")
+                .setHeader("User-Agent", "Endcord/${BuildConfig.ENDCORD_VERSION}")
                 .execute()
                 .json(BadgesInfo::class.java)
         } catch (e: Exception) {

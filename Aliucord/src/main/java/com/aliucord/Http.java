@@ -252,7 +252,7 @@ public class Http {
     /** Request Builder */
     public static class Request implements Closeable {
         private static final String USER_AGENT =
-            String.format("Endcord/%s (%s)", BuildConfig.VERSION, Constants.ENDCORD_GITHUB_REPO);
+            String.format("Endcord/%s (%s)", BuildConfig.ENDCORD_VERSION, Constants.ENDCORD_GITHUB_REPO);
 
         /** The connection of this Request */
         public final HttpURLConnection conn;

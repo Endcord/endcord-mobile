@@ -226,7 +226,7 @@ public class CommandsAPI {
                             Constants.DISCORD_VERSION,
                             Build.VERSION.RELEASE,
                             Build.VERSION.SDK_INT,
-                            BuildConfig.VERSION,
+                            BuildConfig.ENDCORD_VERSION,
                             BuildConfig.RELEASE ? "" : "(Custom)",
                             argString.length() != 0 ? argString : "-"
                         );

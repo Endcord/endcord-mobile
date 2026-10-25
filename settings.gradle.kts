@@ -26,4 +26,4 @@ include(":Injector")
 include(":patches")
 include(":kotlin-stdlib")
 
-rootProject.name = "Aliucord"
+rootProject.name = "Endcord"

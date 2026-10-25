@@ -101,7 +101,7 @@ internal class CoreFeatures : CorePlugin(Manifest("CoreFeatures")) {
 
             @Suppress("KotlinConstantConditions")
             versionView.text = buildString {
-                append(versionView.text.toString() + " | Endcord " + BuildConfig.VERSION)
+                append(versionView.text.toString() + " | Endcord " + BuildConfig.ENDCORD_VERSION)
                 if (!BuildConfig.RELEASE) append(" (" + I18n.t("Custom") + ")")
                 if (Utils.isDebuggable) append(" [DEBUGGABLE]")
             }
