@@ -78,7 +78,7 @@ internal class OutgoingMessage(
  * One shared hook on the chat input's send path so the composer plugins don't each patch it.
  *
  * Only messages the user typed and sent (or edited) from the chat input go through the hooks:
- * slash commands, the output of Aliucord commands and Discord's built-in commands (/shrug, /me, ...) are
+ * slash commands, the output of Endcord commands and Discord's built-in commands (/shrug, /me, ...) are
  * sent untouched, so command text is never rewritten. Edits only reach hooks registered with `onEdit`,
  * like on Endcord PC where edits have their own listener.
  */
@@ -141,7 +141,7 @@ internal object OutgoingMessages {
         val patcher = PatcherAPI(logger)
 
         // The chat input's send listener: a null command means the user sent what they typed.
-        // Built-in commands (Discord's and Aliucord's) pass their ApplicationCommandData here.
+        // Built-in commands (Discord's and Endcord's) pass their ApplicationCommandData here.
         patcher.before<`WidgetChatInput$configureSendListeners$2`>(
             "invoke",
             List::class.java,

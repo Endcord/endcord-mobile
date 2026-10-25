@@ -4,7 +4,7 @@
  
      move-result-object p1
  
-+    # Aliucord: if deserialized "theme" property is not one of THEME_DARK | THEME_LIGHT | THEME_PURE_EVIL, then default to THEME_DARK
++    # Endcord: if deserialized "theme" property is not one of THEME_DARK | THEME_LIGHT | THEME_PURE_EVIL, then default to THEME_DARK
 +    # Discord v126.21 cannot handle the "new" Desktop themes and causes a persistent activity restart loop
 +    sget-object v0, Lcom/discord/models/domain/ModelUserSettings;->THEME_DARK:Ljava/lang/String;
 +    invoke-virtual {v0, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z

@@ -20,3 +20,6 @@ local.properties
 
 # Locally built APKs
 /dist/
+
+# Personal release checklist
+/YAPILACAKLAR.md
