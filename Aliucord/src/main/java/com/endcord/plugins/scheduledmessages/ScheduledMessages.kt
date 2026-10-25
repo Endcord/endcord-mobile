@@ -142,6 +142,7 @@ internal class ScheduledMessages : ComposerPlugin(
                 }
             }
             .setNegativeButton(android.R.string.cancel) { _, _ -> restore(content) }
+            .setOnCancelListener { restore(content) }
             .show()
     }
 
@@ -159,9 +160,13 @@ internal class ScheduledMessages : ComposerPlugin(
                 } else {
                     add(channelId, content, time)
                 }
-            }, now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), DateFormat.is24HourFormat(context)).show()
+            }, now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), DateFormat.is24HourFormat(context)).apply {
+                // Cancel and back both cancel the dialog
+                setOnCancelListener { restore(content) }
+            }.show()
         }, now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH))
         picker.datePicker.minDate = now.timeInMillis - 1000
+        picker.setOnCancelListener { restore(content) }
         picker.show()
     }
 
