@@ -15,6 +15,7 @@ import com.discord.api.activity.ActivityType
 import com.discord.api.presence.ClientStatus
 import com.discord.stores.StoreGatewayConnection
 import com.discord.stores.StoreStream
+import java.util.regex.Pattern
 
 /**
  * The one place Endcord changes the presence the app sends.
@@ -128,12 +129,30 @@ internal object PresenceHub {
         ) { param ->
             try {
                 @Suppress("UNCHECKED_CAST")
-                param.args[2] = merge(param.args[2] as List<Activity>?)
+                val activities = merge(param.args[2] as List<Activity>?)
+                param.args[2] = activities
+                // Discord echoes your session's activities back and the app may resend them when they differ only
+                // by the server's timestamps. Dropping an identical resend right away keeps that from looping.
+                val key = param.args[0].toString() + "|" +
+                    activities.joinToString("\n") { CREATED_AT.matcher(it.toString()).replaceAll("") }
+                val now = SystemClock.elapsedRealtime()
+                synchronized(PresenceHub) {
+                    if (key == lastSentKey && now - lastSentAt < DUPLICATE_WINDOW_MS) {
+                        param.result = true
+                        return@before
+                    }
+                    lastSentKey = key
+                    lastSentAt = now
+                }
             } catch (e: Throwable) {
                 logger.error("Failed to merge the outgoing presence", e)
             }
         }
     }
+
+    private var lastSentKey: String? = null
+    private var lastSentAt = 0L
+    private val CREATED_AT = Pattern.compile("createdAt=-?\\d+")
 
     /**
      * Resends the local presence so the hook above runs. Coalesced and spaced out so plugins can never hit the
@@ -168,4 +187,5 @@ internal object PresenceHub {
     private const val MAX_SIGNATURES = 200
     private const val DEBOUNCE_MS = 1_000L
     private const val MIN_INTERVAL_MS = 5_000L
+    private const val DUPLICATE_WINDOW_MS = 3_000L
 }
