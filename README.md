@@ -74,7 +74,7 @@ This is the desktop-like mode: nothing is reinstalled, the Play Store Discord ru
 
 ## Troubleshooting
 
-- Shake the phone (or long-press with two fingers) for the recovery menu: reload, recovery mode (plugins and themes
+- Shake the phone, or hold two fingers on the screen for 3 seconds right after Endcord opens, for the recovery menu: reload, recovery mode (plugins and themes
   off), delete the downloaded Endcord, reset the loader settings.
 - A plugin that fails to start turns itself off and says so; turn it back on after updating.
 - Endcord → General → **Safe Mode** reloads without plugins and themes.
@@ -131,7 +131,7 @@ translations, with mobile-specific wording in `src/core/i18n/overrides.json`. CI
 The [Emulator test workflow](.github/workflows/emulator.yml) runs on every push to a `ci/**` branch: it installs
 Endcord Installer on an Android emulator, installs Endcord both by downloading Discord and from a pre-installed
 Discord (tapping through the installer like a user), launches Endcord and runs the bundle's self-test (built with
-`--test`) inside Discord. Screenshots, logs and the self-test report are pushed to the `ci-results` branch.
+`--test`) inside Discord. Screenshots, logs and the self-test report are pushed to the `test-results/<branch>` branch.
 
 ### Releasing
 

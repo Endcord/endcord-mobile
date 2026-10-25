@@ -31,6 +31,7 @@ object Strings {
             "recovery_booted_title" to "Started in recovery mode",
             "recovery_booted_message" to "Endcord crashed several times in a row, so it started in recovery mode with plugins and themes turned off.",
             "recovery_exit" to "Leave recovery mode",
+            "recovery_hold" to "Keep holding for the recovery options…",
         ),
         "tr" to mapOf(
             "update_downloaded_title" to "Endcord güncellemesi indirildi",
@@ -55,6 +56,7 @@ object Strings {
             "recovery_booted_title" to "Kurtarma modunda açıldı",
             "recovery_booted_message" to "Endcord art arda birkaç kez çöktüğü için eklentiler ve temalar kapalı olarak kurtarma modunda açıldı.",
             "recovery_exit" to "Kurtarma modundan çık",
+            "recovery_hold" to "Kurtarma seçenekleri için basılı tutmaya devam edin…",
         ),
         "ru" to mapOf(
             "update_downloaded_title" to "Обновление Endcord загружено",
@@ -79,6 +81,7 @@ object Strings {
             "recovery_booted_title" to "Запущен режим восстановления",
             "recovery_booted_message" to "Endcord несколько раз подряд завершился сбоем, поэтому он запущен в режиме восстановления с отключёнными плагинами и темами.",
             "recovery_exit" to "Выйти из режима восстановления",
+            "recovery_hold" to "Продолжайте удерживать для параметров восстановления…",
         ),
         "es" to mapOf(
             "update_downloaded_title" to "Actualización de Endcord descargada",
@@ -103,6 +106,7 @@ object Strings {
             "recovery_booted_title" to "Iniciado en modo de recuperación",
             "recovery_booted_message" to "Endcord falló varias veces seguidas, así que se inició en modo de recuperación con los plugins y temas desactivados.",
             "recovery_exit" to "Salir del modo de recuperación",
+            "recovery_hold" to "Sigue manteniendo pulsado para ver las opciones de recuperación…",
         ),
         "fr" to mapOf(
             "update_downloaded_title" to "Mise à jour d'Endcord téléchargée",
@@ -127,6 +131,7 @@ object Strings {
             "recovery_booted_title" to "Démarré en mode récupération",
             "recovery_booted_message" to "Endcord a planté plusieurs fois de suite, il a donc démarré en mode récupération avec les plugins et les thèmes désactivés.",
             "recovery_exit" to "Quitter le mode récupération",
+            "recovery_hold" to "Maintenez appuyé pour les options de récupération…",
         ),
     )
 

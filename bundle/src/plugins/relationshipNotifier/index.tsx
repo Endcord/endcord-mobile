@@ -95,7 +95,8 @@ const plugin = definePlugin({
                 if (store.groups && name) notify(t("You were removed from the group {group}.", { group: name }));
             }),
             // Each connection, once Discord has the account's data: report what changed while offline, then save
-            subscribe("CONNECTION_OPEN", () => setTimeout(checkOffline, 3000)),
+            // Discord can still be receiving servers right after connecting, so this waits for them to settle
+            subscribe("CONNECTION_OPEN", () => setTimeout(checkOffline, 15000)),
             subscribe("RELATIONSHIP_ADD", () => setTimeout(save, 1000)),
             subscribe("GUILD_CREATE", () => setTimeout(save, 1000)),
             subscribe("CHANNEL_CREATE", () => setTimeout(save, 1000)),
@@ -158,6 +159,8 @@ function save() {
 function checkOffline() {
     const now = current();
     if (!now) return;
+    // Not trusted, and not saved, until Discord has the account's servers
+    if (!Object.keys(now.guilds).length && Object.keys(snapshot.guilds ?? {}).length > 1) return;
     const { store } = plugin;
     const old = snapshot;
     // A snapshot of another account, or none yet, has nothing to compare
@@ -166,10 +169,14 @@ function checkOffline() {
         if (store.groups) for (const [id, name] of Object.entries(old.groups ?? {})) {
             if (!(id in now.groups)) notify(t("You are no longer in the group {group}.", { group: name }));
         }
-        if (store.servers) for (const [id, name] of Object.entries(old.guilds ?? {})) {
+        // An empty or mostly missing server list means Discord hasn't finished loading, not that you were removed
+        const oldCount = Object.keys(old.guilds ?? {}).length;
+        const nowCount = Object.keys(now.guilds).length;
+        if (store.servers && nowCount > 0 && nowCount >= oldCount / 2) for (const [id, name] of Object.entries(old.guilds ?? {})) {
             if (!(id in now.guilds) && !unavailable?.isUnavailable?.(id)) notify(t("You are no longer in the server {server}.", { server: name }));
         }
-        if (store.friends) for (const id of old.friends ?? []) {
+        // Likewise for friends: an empty list right after connecting isn't trusted
+        if (store.friends && now.friends.length > 0) for (const id of old.friends ?? []) {
             if (!now.friends.includes(id)) notify(t("You are no longer friends with {user}.", { user: userName(id) }));
         }
         if (store.friendRequestCancels) for (const id of old.requests ?? []) {

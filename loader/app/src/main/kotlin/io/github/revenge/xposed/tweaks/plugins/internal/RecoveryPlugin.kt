@@ -129,6 +129,7 @@ fun PluginScope.addBridgeMethods() {
 
 fun recoveryHook() {
     var holdRunnable: Runnable? = null
+    var hintRunnable: Runnable? = null
     val handler = Handler(Looper.getMainLooper())
 
     withAppActivity {
@@ -150,21 +151,16 @@ fun recoveryHook() {
                     when (event.actionMasked) {
                         // 3s hold timer when 2nd finger touches screen
                         MotionEvent.ACTION_POINTER_DOWN -> {
-                            handler.postDelayed({
-                                Toast.makeText(
-                                    activity,
-                                    "Keep holding to trigger Recovery Options...",
-                                    Toast.LENGTH_SHORT
-                                )
-                                    .show()
-                            }, 1500)
+                            hintRunnable = Runnable {
+                                Toast.makeText(activity, Strings["recovery_hold"], Toast.LENGTH_SHORT).show()
+                            }.also { handler.postDelayed(it, 1500) }
 
-                            holdRunnable = { showRecoveryAlert(activity) }
-                            handler.postDelayed(holdRunnable, 3000)
+                            holdRunnable = Runnable { showRecoveryAlert(activity) }.also { handler.postDelayed(it, 3000) }
                         }
 
                         // Lifted finger early
                         MotionEvent.ACTION_POINTER_UP, MotionEvent.ACTION_CANCEL -> {
+                            hintRunnable?.let { handler.removeCallbacks(it) }
                             holdRunnable?.let { handler.removeCallbacks(it) }
                         }
                     }

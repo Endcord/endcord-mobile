@@ -1,7 +1,7 @@
 name: Emulator test
 
 # Installs Endcord through the installer on an Android emulator, like a user would, and runs the bundle's self-test
-# inside the latest Discord. Results (screenshots, logs, the self-test report) are published to the ci-results branch.
+# inside the latest Discord. Results (screenshots, logs, the self-test report) are published to test-results/<branch>.
 on:
   push:
     branches: ["ci/**"]
@@ -89,9 +89,10 @@ jobs:
         run: |
           mkdir -p results
           cd results
-          git init -q -b ci-results
+          git init -q -b results
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -qm "Emulator run ${{ github.run_id }} on ${{ github.sha }}"
-          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" ci-results
+          # One results branch per tested branch, so parallel runs don't overwrite each other
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/test-results/${{ github.ref_name }}"
