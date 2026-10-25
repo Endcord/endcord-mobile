@@ -323,10 +323,6 @@ private class Injector(private val appCtx: Application) {
                 Logger.d("Endcord settings file missing, skipping custom core check...")
                 return false
             }
-            if (!externalCustomCoreFile.exists()) {
-                Logger.d("Endcord custom core missing, skipping custom core check...")
-                return false
-            }
 
             JSONObject(externalSettingsFile.readText())
         } catch (e: Exception) {
@@ -335,7 +331,13 @@ private class Injector(private val appCtx: Application) {
             return false
         }
 
+        // The language picked in Endcord's settings, for the injector's own messages
         Strings.preferredLanguage = settings.optString(LANGUAGE_KEY, "").takeIf { it.isNotEmpty() }
+
+        if (!externalCustomCoreFile.exists()) {
+            Logger.d("Endcord custom core missing, skipping custom core check...")
+            return false
+        }
         return settings.optBoolean(ALIUCORD_FROM_STORAGE_KEY, false)
     }
 

@@ -36,8 +36,11 @@ android {
     defaultConfig {
         minSdk = 24
         targetSdk = 36
-        versionCode = 1_00_00
-        versionName = "1.0.0"
+        // CI passes the release version (for example 1.2.3) in INSTALLER_VERSION
+        val installerVersion = System.getenv("INSTALLER_VERSION")?.removePrefix("v")?.takeIf { it.isNotBlank() } ?: "1.0.0"
+        val (major, minor, patch) = installerVersion.split('.').map { it.toInt() } + listOf(0, 0)
+        versionCode = major * 10_000 + minor * 100 + patch
+        versionName = installerVersion
 
         vectorDrawables {
             useSupportLibrary = true
@@ -145,6 +148,8 @@ android {
 
     androidResources {
         generateLocaleConfig = true
+        // Endcord's five languages; libraries ship many more that the app itself isn't translated to
+        localeFilters += listOf("en", "tr", "ru", "es", "fr")
     }
 
     lint {

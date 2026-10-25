@@ -19,11 +19,13 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.aliucord.entities.CorePlugin;
+import com.aliucord.entities.EndcordPlugin;
 import com.aliucord.entities.Plugin;
 import com.aliucord.i18n.I18n;
 import com.aliucord.patcher.Hook;
 import com.aliucord.patcher.Patcher;
 import com.aliucord.settings.AliucordPageKt;
+import com.aliucord.settings.BackupRestore;
 import com.aliucord.updater.*;
 import com.aliucord.utils.ReflectUtils;
 import com.discord.app.AppActivity;
@@ -87,6 +89,10 @@ public final class Main {
         Patcher.addPatch(AppActivity.class, "onCreate", new Class<?>[]{ Bundle.class }, new Hook(param -> {
             Utils.appActivity = (AppActivity) param.thisObject;
         }));
+        // Every settings page is its own activity, so the one created last isn't always the one in front
+        Patcher.addPatch(AppActivity.class, "onResume", new Class<?>[0], new Hook(param -> {
+            Utils.appActivity = (AppActivity) param.thisObject;
+        }));
 
         Patcher.addPatch(WidgetChatList.class.getDeclaredConstructor(), new Hook(param -> {
             Utils.widgetChatList = (WidgetChatList) param.thisObject;
@@ -95,6 +101,7 @@ public final class Main {
 
     private static void preInitWithPermissions(AppCompatActivity activity) {
         createDirectories();
+        BackupRestore.applyPendingRestore();
         settings = new SettingsUtilsJSON("Endcord");
         PluginManager.loadCorePlugins(activity);
         loadAllPlugins(activity);
@@ -162,6 +169,27 @@ public final class Main {
 
                     if (badPlugin != null) {
                         break;
+                    }
+                }
+                // Built-in plugins live in the core's classloader, find them by class name instead
+                if (badPlugin == null) {
+                    outer:
+                    for (StackTraceElement ele : throwable.getStackTrace()) {
+                        String className = ele.getClassName();
+                        if (!className.startsWith("com.endcord.plugins.")) continue;
+                        for (Plugin plugin : PluginManager.plugins.values()) {
+                            if (!(plugin instanceof EndcordPlugin)) continue;
+                            String pluginClass = plugin.getClass().getName();
+                            String pluginPackage = plugin.getClass().getPackage() != null ? plugin.getClass().getPackage().getName() + "." : pluginClass;
+                            if (className.equals(pluginClass) || className.startsWith(pluginClass + "$") || className.startsWith(pluginPackage)) {
+                                badPlugin = plugin.getName();
+                                if (Main.settings.getBool(AliucordPageKt.AUTO_DISABLE_ON_CRASH_KEY, true)) {
+                                    disabledPlugin = true;
+                                    Main.settings.setBool(PluginManager.getPluginPrefKey(badPlugin), false);
+                                }
+                                break outer;
+                            }
+                        }
                     }
                 }
                 File folder = new File(Constants.CRASHLOGS_PATH);

@@ -10,7 +10,8 @@ import com.aliucord.entities.EndcordPlugin
 import com.aliucord.wrappers.ChannelWrapper.Companion.guildId
 import com.aliucord.wrappers.ChannelWrapper.Companion.recipientIds
 import com.discord.stores.StoreStream
-import com.endcord.plugins.commandscommon.OutgoingMessages
+import com.endcord.plugins.api.OutgoingMessages
+import com.endcord.plugins.api.SendHooks
 import com.endcord.plugins.commandscommon.Patterns
 import java.util.regex.Pattern
 
@@ -25,14 +26,14 @@ internal class AtSomeone : EndcordPlugin(
     private val someone = Pattern.compile("(?<![\\w@])@someone(?!\\w)")
 
     override fun start(context: Context) {
-        OutgoingMessages.register(name) { text ->
+        SendHooks.register(name, onEdit = true, priority = OutgoingMessages.Priority.EXPAND) { text ->
             if (!text.contains("@someone")) text
             else Patterns.replace(someone, text) { match -> randomUser()?.let { "<@$it>" } ?: match.group() }
         }
     }
 
     override fun stop(context: Context) {
-        OutgoingMessages.unregisterAll(name)
+        SendHooks.unregisterAll(name)
         super.stop(context)
     }
 

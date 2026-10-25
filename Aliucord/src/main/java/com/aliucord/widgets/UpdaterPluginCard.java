@@ -105,8 +105,10 @@ public class UpdaterPluginCard extends MaterialCardView {
             updateBtn.setEnabled(false);
             Utils.threadPool.execute(() -> {
                 try {
-                    PluginUpdater.updatePlugin(update);
-                    PluginManager.logger.infoToast(I18n.format("Successfully updated {plugin}", "plugin", update.getPluginName()));
+                    if (PluginUpdater.updatePlugin(update))
+                        PluginManager.logger.infoToast(I18n.format("Successfully updated {plugin}", "plugin", update.getPluginName()));
+                    else
+                        PluginManager.logger.errorToast(I18n.format("Something went wrong while updating {plugin}", "plugin", update.getPluginName()), null);
                 } catch (Throwable t) {
                     PluginManager.logger.errorToast(I18n.format("Something went wrong while updating {plugin}", "plugin", update.getPluginName()), t);
                 } finally {

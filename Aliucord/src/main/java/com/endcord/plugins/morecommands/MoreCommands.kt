@@ -21,7 +21,8 @@ import com.aliucord.i18n.tr
 import com.endcord.plugins.commandscommon.BotMessages
 import com.endcord.plugins.commandscommon.Net
 import com.endcord.plugins.commandscommon.Options
-import com.endcord.plugins.commandscommon.OutgoingMessages
+import com.endcord.plugins.api.OutgoingMessages
+import com.endcord.plugins.api.SendHooks
 import java.text.DateFormat
 import java.text.Normalizer
 import java.util.Date
@@ -59,13 +60,13 @@ internal class MoreCommands : EndcordPlugin(
         registerRandomCommands()
         registerTextCommands()
         registerKaomoji()
-        OutgoingMessages.register(name) { text ->
+        SendHooks.register(name, onEdit = true, priority = OutgoingMessages.Priority.STYLE + 30) { text ->
             if (bool("uwuEveryMessage") && text.isNotBlank()) TextFx.uwuify(text) else text
         }
     }
 
     override fun stop(context: Context) {
-        OutgoingMessages.unregisterAll(name)
+        SendHooks.unregisterAll(name)
         synchronized(pending) {
             for (r in pending) Utils.mainThread.removeCallbacks(r)
             pending.clear()

@@ -8,9 +8,11 @@ package com.aliucord.entities
 import android.content.Context
 import com.aliucord.i18n.I18n
 import com.aliucord.settings.EndcordPluginSettingsPage
+import com.endcord.plugins.api.ChannelSheetActions
 import com.endcord.plugins.api.ChatHooks
 import com.endcord.plugins.api.MessageActions
-import com.endcord.plugins.api.SendHooks
+import com.endcord.plugins.api.OutgoingMessages
+import com.endcord.plugins.api.UserSheetActions
 
 /**
  * Base class of the plugins that ship built into Endcord, ported from Endcord PC.
@@ -56,6 +58,12 @@ internal abstract class EndcordPlugin(
 
     override fun requiresRestart(): Boolean = restartRequired
 
+    /**
+     * Called on the main thread after the user changed the setting [key] on the generated settings page, for
+     * plugins that need to re-apply something (for example refresh the chat). Text fields report once typing pauses.
+     */
+    open fun onSettingChanged(key: String) {}
+
     override fun load(context: Context) {
         if (settingsSchema.isNotEmpty() && settingsTab == null) {
             settingsTab = SettingsTab(EndcordPluginSettingsPage::class.java).withArgs(name)
@@ -67,7 +75,9 @@ internal abstract class EndcordPlugin(
         commands.unregisterAll()
         MessageActions.unregisterAll(name)
         ChatHooks.unregisterAll(name)
-        SendHooks.unregisterAll(name)
+        OutgoingMessages.unregisterAll(name)
+        UserSheetActions.unregisterAll(name)
+        ChannelSheetActions.unregisterAll(name)
     }
 
     private fun schemaEntry(key: String): PluginSetting? = settingsSchema.firstOrNull { it.key == key }

@@ -62,7 +62,8 @@ Declare settings in `settingsSchema` and a settings page is generated automatica
 `Switch`, `Text` (use `multiline = true` for lists), `Number` (with `min`/`max`), `Choice`, `Action`.
 Read values with `bool(key)`, `string(key)`, `int(key)`, `choice(key)` and `list(key)` (comma or newline
 separated text). Values are read on every call, so read them where you need them instead of caching them in
-`start()`, and changes apply immediately.
+`start()`, and changes apply immediately. Override `onSettingChanged(key)` if a change has to be re-applied
+(for example to refresh the chat); text fields report once the user stops typing.
 
 ### Text and translations
 
@@ -94,9 +95,19 @@ enabled decorator, so plugins never overwrite each other's author names, timesta
 transform the raw content before Discord parses it, decorate the rendered text, format the author name, the
 timestamp and reply previews, and run after a row is configured. `api/Spans.kt` has span helpers.
 
-To rewrite a message before it is sent (or edited), use `SendHooks.register(owner, onEdit) { text -> ... }`.
+Everything the user sends from the chat input goes through one ordered pipeline, `api.OutgoingMessages`. Hooks run
+by `OutgoingMessages.Priority` (actions such as `s/a/b`, then replacements, expansions, sanitizing, styling,
+appending, encryption and finally delivery). A hook can change `message.content`, `cancel()` the send or run code
+`afterSend`. Slash commands and command output never go through it, and edits only reach hooks registered with
+`onEdit = true`. For a plain text rewrite, `SendHooks.register(owner, onEdit, priority) { text -> ... }` is
+enough. Never patch the send path yourself, or the order breaks (for example styling after encryption).
 
 `EndcordPlugin.stop()` unregisters decorators, send hooks and message actions automatically.
+
+### User and channel sheet entries
+
+`api.UserSheetActions` adds entries to the user profile sheet and `api.ChannelSheetActions` to the channel/DM
+long-press sheet, the same way `MessageActions` works for messages.
 
 ### Message long-press entries
 

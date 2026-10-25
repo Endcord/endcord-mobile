@@ -199,10 +199,12 @@ object Utils {
                 start = text.indexOf(path)
                 if (start >= 0) setSpan(StyleSpan(Typeface.BOLD_ITALIC), start, start + path.length, SPAN_EXCLUSIVE_EXCLUSIVE)
             }
-            ConfirmDialog()
+            val dialog = ConfirmDialog()
+            dialog
                 .setTitle(I18n.t("Open Folder"))
                 .setDescription(ssb)
                 .setOnOkListener {
+                    dialog.dismiss()
                     try {
                         Intent(Intent.ACTION_VIEW)
                             .setDataAndType(uri, DocumentsContract.Document.MIME_TYPE_DIR)
@@ -281,9 +283,10 @@ object Utils {
      * @return ID of the resource, or 0 if not found.
      */
     @JvmStatic
-    fun getResId(name: String, type: String) = resIdCache.computeIfAbsent(name) { k ->
+    fun getResId(name: String, type: String) = resIdCache.computeIfAbsent("$type/$name") {
+        // Cached per type: the same name can exist as, for example, both an id and a layout
         appContext.resources.getIdentifier(
-            k,
+            name,
             type,
             "com.discord"
         )

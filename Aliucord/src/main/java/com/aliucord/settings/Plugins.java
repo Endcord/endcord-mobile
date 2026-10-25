@@ -557,11 +557,14 @@ public class Plugins extends SettingsPage {
         try {
             startActivity(intent);
         } catch (ActivityNotFoundException e) {
-            new ConfirmDialog()
+            var dialog = new ConfirmDialog()
                 .setTitle(I18n.t("Not Found"))
-                .setDescription(I18n.t("Endcord Installer is not installed on this device.") + "\n\n" + I18n.t("Tap OK to download it."))
-                .setOnOkListener(widget -> Utils.launchUrl(Constants.ENDCORD_INSTALLER_RELEASES))
-                .show(getParentFragmentManager(), "No Installer");
+                .setDescription(I18n.t("Endcord Installer is not installed on this device.") + "\n\n" + I18n.t("Tap OK to download it."));
+            dialog.setOnOkListener(widget -> {
+                dialog.dismiss();
+                Utils.launchUrl(Constants.ENDCORD_INSTALLER_RELEASES);
+            });
+            dialog.show(getParentFragmentManager(), "No Installer");
         }
     }
 }

@@ -51,7 +51,8 @@ internal class UrlHighlighter : EndcordPlugin(
         if (raw == rulesSource) return rules
         val parsed = ArrayList<Rule>()
         for (line in raw.split('\n')) {
-            val parts = line.trim().split(Regex("\\s+"))
+            // java.util.regex: Discord's copy of kotlin.text.Regex has no split() at runtime
+            val parts = WHITESPACE.split(line.trim()).toList()
             val glob = parts.getOrNull(0)?.trim().orEmpty()
             if (glob.isEmpty()) continue
             val color = parts.getOrNull(1)?.let { parseColor(it) } ?: DEFAULT_COLOR
@@ -117,6 +118,7 @@ internal class UrlHighlighter : EndcordPlugin(
 
     private companion object {
         val DEFAULT_COLOR = Color.parseColor("#eb7396")
+        val WHITESPACE: Pattern = Pattern.compile("\\s+")
 
         /** Discord's own URL rule. */
         val URL: Pattern = Pattern.compile("https?://[^\\s<]+[^<.,:;\"')\\]\\s]")
