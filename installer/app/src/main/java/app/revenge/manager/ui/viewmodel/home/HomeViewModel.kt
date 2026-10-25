@@ -115,11 +115,11 @@ class HomeViewModel(
 
     private fun checkForUpdate() {
         screenModelScope.launch {
-            // Installer releases are tagged installer-v<version> by the Release Installer workflow
-            release = repo.getLatestRelease(BuildConfig.REPO).dataOrNull?.takeIf { it.tagName.startsWith("installer-v") }
+            // The repository also releases the classic client, so only tags of the Release Installer workflow count
+            release = repo.getReleases(BuildConfig.REPO).dataOrNull?.firstOrNull { it.tagName.startsWith(RELEASE_TAG_PREFIX) }
             release?.let {
                 updateDownloadUrl = it.assets.firstOrNull { asset -> asset.name.endsWith(".apk") }?.browserDownloadUrl
-                showUpdateDialog = it.tagName.removePrefix("installer-v") != BuildConfig.VERSION_NAME
+                showUpdateDialog = it.tagName.removePrefix(RELEASE_TAG_PREFIX) != BuildConfig.VERSION_NAME
             }
             // The loader comes from the builds branch; a new build invalidates the cached module
             repo.getBuildInfo(BuildConfig.REPO).ifSuccessful {
@@ -167,4 +167,7 @@ class HomeViewModel(
         }
     }
 
+    private companion object {
+        const val RELEASE_TAG_PREFIX = "next-installer-v"
+    }
 }

@@ -13,7 +13,7 @@ ekleyen kurucu). Hangi upstream commit'lerinden alındığı `UPSTREAM.md` için
   ready!" günlükleri). Installer Endcord'un renk paleti ve simgesini kullanıyor.
 - **Paket adları:** installer `com.endcord.installer.next`, yamalı Discord `com.endcord.next` (eski istemci
   `com.endcord` ile yan yana durur), modül `com.endcord.xposed`.
-- **Güncelleme yolu:** loader bundle'ı `rootpoii/endcord-android` deposunun `builds` dalındaki
+- **Güncelleme yolu:** loader bundle'ı `rootpoii/endcord-mobile` deposunun `builds-next` dalındaki
   `endcord.min.js`'den çekiyor (ETag önbelleği ile her açılışta), installer modülü aynı daldaki
   `endcord-xposed.apk`'den indiriyor ve `data.json` değişince önbelleğini yeniliyor; Discord güncellemesi
   kontrolü varsayılan 15 dakika. `.github/workflows/build.yml` her `main` push'unda bu dosyaları üretip
@@ -58,8 +58,8 @@ Google'ın Play CDN düğümüne ulaşılamıyor; ayrıntı aşağıda):
 
 ## Sonraki adımlar
 
-1. GitHub'da `rootpoii/endcord-android` deposunu aç, bu klasörü gönder, Actions'a yazma izni ver; ilk `Build`
-   çalışınca `builds` dalı oluşur ve installer/loader gerçek adreslerden çalışır.
+1. Bu proje `rootpoii/endcord-mobile` deposunun `next` dalında yaşar; her push'ta `Build` iş akışı `builds-next`
+   dalını üretir ve installer/loader gerçek adreslerden çalışır.
 2. Kurulumu gerçek bir telefonda (ve başka ağda emülatörde) uçtan uca dene; bundle'ın yüklendiğini
    `adb logcat | grep -i endcord` ile gör ("Endcord is ready!").
 3. İmza anahtarları oluşturup secret'ları ekle; ilk installer sürümünü `Release Installer` ile yayınla.

@@ -47,6 +47,6 @@ jobs:
           cp app/build/outputs/apk/release/*.apk "$RUNNER_TEMP/endcord-installer-v${{ inputs.version }}.apk"
       - uses: softprops/action-gh-release@v2
         with:
-          tag_name: installer-v${{ inputs.version }}
-          name: Endcord Installer ${{ inputs.version }}
+          tag_name: next-installer-v${{ inputs.version }}
+          name: Endcord Installer (new Discord) ${{ inputs.version }}
           files: ${{ runner.temp }}/endcord-installer-v${{ inputs.version }}.apk

@@ -20,7 +20,7 @@ android {
 
         // The published bundle. Pass -Pendcord.bundleUrl=http://10.0.2.2:4040/endcord.min.js to test a local build.
         val bundleUrl = providers.gradleProperty("endcord.bundleUrl")
-            .orElse("https://raw.githubusercontent.com/rootpoii/endcord-android/builds/endcord.min.js")
+            .orElse("https://raw.githubusercontent.com/rootpoii/endcord-mobile/builds-next/endcord.min.js")
             .get()
         buildConfigField("String", "BUNDLE_URL", "\"$bundleUrl\"")
     }

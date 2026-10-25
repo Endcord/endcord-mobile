@@ -2,7 +2,7 @@
     <h1>Endcord for Android</h1>
     <p>Endcord on the <em>current</em> Discord Android app: plugins, themes and fonts, with an installer in five languages.</p>
 
-[Endcord PC](https://github.com/rootpoii/endcord) · [Endcord for the classic Discord app](https://github.com/rootpoii/endcord-mobile) · [Discord](https://discord.gg/endcord)
+[Endcord PC](https://github.com/rootpoii/endcord) · [Endcord for the classic Discord app](https://github.com/rootpoii/endcord-mobile) (the `main` branch of this repository) · [Discord](https://discord.gg/endcord)
 
 </div>
 
@@ -10,7 +10,8 @@
 > This project is a **fork of [Revenge](https://github.com/revenge-mod)** (bundle, Xposed loader and manager), which
 > itself continues Bunny and Vendetta. Endcord adds its own branding, five languages, an update channel on this
 > repository's `builds` branch and, over time, the plugins of Endcord PC. See [UPSTREAM.md](UPSTREAM.md) for the
-> exact upstream commits. It is not affiliated with Discord Inc. or the Revenge team.
+> exact upstream commits. It lives on the `next` branch of the `endcord-mobile` repository, next to the classic-app
+> Endcord on `main`; the two are separate apps and separate code. It is not affiliated with Discord Inc. or the Revenge team.
 
 ## What is in this repository
 
@@ -20,7 +21,7 @@
 | `loader/` | The Xposed module that loads the bundle into Discord. Works both embedded by the installer (no root) and as a regular LSPosed module (root). | revenge-xposed (GPL-3) |
 | `installer/` | Endcord Installer: downloads the latest Discord, embeds the loader with LSPatch, re-signs and installs it as a separate app. | revenge-manager (OSL-3) |
 
-Builds are published by the [Build workflow](.github/workflows/build.yml) to the `builds` branch:
+Builds are published by the [Build workflow](.github/workflows/build.yml) to the `builds-next` branch:
 `endcord.min.js` (bundle), `endcord-xposed.apk` (loader) and `data.json` (what was built). The loader fetches the
 bundle from there on every start (with ETag caching), and the installer checks that branch every 15 minutes.
 
@@ -32,7 +33,7 @@ Android only lets an app be modified by whoever signed it, so Discord from the P
 place. Endcord Installer therefore downloads Discord itself and installs the patched copy **as a separate app
 called Endcord**. Your normal Discord stays untouched; you can keep both.
 
-1. Download the latest `endcord-installer-*.apk` from the [releases](../../releases/latest) and install it.
+1. Download the latest `next-installer-v*` release's APK from the [releases](../../releases) and install it.
 2. Open **Endcord Installer**, choose your language if it didn't pick the right one, and tap **Install**.
    It downloads Discord (stable channel by default), adds Endcord and installs it.
 3. Open **Endcord** and sign in to Discord.
@@ -42,7 +43,7 @@ called Endcord**. Your normal Discord stays untouched; you can keep both.
 This is the "desktop-like" mode: nothing is reinstalled, the Play Store Discord runs Endcord.
 
 1. Install [LSPosed](https://github.com/JingMatrix/LSPosed) (or another Xposed framework).
-2. Download `endcord-xposed.apk` from the [`builds` branch](../../tree/builds) and install it.
+2. Download `endcord-xposed.apk` from the [`builds-next` branch](../../tree/builds-next) and install it.
 3. In LSPosed, enable the **Endcord Xposed** module for **Discord** (`com.discord`).
 4. Force-stop Discord and open it again.
 
@@ -76,7 +77,7 @@ classic-app Endcord uses `com.endcord`, so both can be installed at once), the l
 
 ### Releasing
 
-- Every push to `main` rebuilds the bundle and the loader and publishes them to the `builds` branch. Add the
+- Every push to `next` rebuilds the bundle and the loader and publishes them to the `builds-next` branch. Add the
   `LOADER_KEYSTORE` (base64), `LOADER_KEYSTORE_PASSWORD`, `LOADER_KEY_ALIAS` and `LOADER_KEY_PASSWORD` secrets so
   the loader is release-signed; without them the debug-signed module is published.
 - Installer releases: run **Release Installer** by hand with a version number. It needs `INSTALLER_KEYSTORE`

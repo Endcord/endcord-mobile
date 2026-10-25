@@ -23,14 +23,14 @@ android {
 
         buildConfigField("String", "MOD_NAME", "\"Endcord\"")
         buildConfigField("String", "MANAGER_NAME", "\"EndcordInstaller\"")
-        buildConfigField("String", "REPO", "\"rootpoii/endcord-android\"")
-        buildConfigField("String", "ORG_LINK", "\"https://github.com/rootpoii/endcord-android\"")
+        buildConfigField("String", "REPO", "\"rootpoii/endcord-mobile\"")
+        buildConfigField("String", "ORG_LINK", "\"https://github.com/rootpoii/endcord-mobile/tree/next\"")
         buildConfigField("String", "INVITE_LINK", "\"https://discord.gg/endcord\"")
         buildConfigField("String", "MODDED_APP_PACKAGE_NAME", "\"com.endcord.next\"")
         // Where the Build workflow publishes the loader. Pass -Pendcord.loaderUrl=http://10.0.2.2:4040/endcord-xposed.apk
         // to install a loader you serve yourself while developing.
         val loaderUrl = providers.gradleProperty("endcord.loaderUrl")
-            .orElse("https://raw.githubusercontent.com/rootpoii/endcord-android/builds/endcord-xposed.apk")
+            .orElse("https://raw.githubusercontent.com/rootpoii/endcord-mobile/builds-next/endcord-xposed.apk")
             .get()
         buildConfigField("String", "LOADER_URL", "\"$loaderUrl\"")
         // A tracker mirror to try before the public ones, e.g. -Pendcord.mirrorUrl=http://10.0.2.2:4040 for a copy of

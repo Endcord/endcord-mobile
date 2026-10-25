@@ -2,7 +2,7 @@ name: Build
 
 on:
   push:
-    branches: [main]
+    branches: [next]
   pull_request:
   workflow_dispatch:
 
@@ -90,9 +90,9 @@ jobs:
           path: installer/app/build/outputs/apk/debug/*.apk
 
   deploy:
-    name: Publish to the builds branch
+    name: Publish to the builds-next branch
     needs: [bundle, loader]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/next'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -123,10 +123,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin builds || true
-          git checkout -B builds origin/builds 2>/dev/null || git checkout --orphan builds
+          git fetch origin builds-next || true
+          git checkout -B builds-next origin/builds-next 2>/dev/null || git checkout --orphan builds-next
           git rm -rf --quiet . 2>/dev/null || true
           cp out/* .
           git add -A
           git commit -m "Build ${{ github.sha }}" || echo "Nothing changed"
-          git push origin builds
+          git push origin builds-next

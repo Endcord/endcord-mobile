@@ -22,16 +22,24 @@ class RestService(
         }
     }
 
+    /** The newest releases of [repo]; the repository also hosts the classic client, so callers filter by tag. */
+    suspend fun getReleases(repo: String) = withContext(Dispatchers.IO) {
+        httpService.request<List<Release>> {
+            url("https://api.github.com/repos/$repo/releases")
+            parameter("per_page", 20)
+        }
+    }
+
     suspend fun getLatestDiscordVersions() = withContext(Dispatchers.IO) {
         httpService.request<Index> {
             url("${BuildConfig.DEV_MIRROR_URL.ifEmpty { prefs.mirror.baseUrl }}/tracker/index")
         }
     }
 
-    /** The published build on the `builds` branch of [repo]. The query parameter defeats GitHub's cache. */
+    /** The published build on the `builds-next` branch of [repo]. The query parameter defeats GitHub's cache. */
     suspend fun getBuildInfo(repo: String) = withContext(Dispatchers.IO) {
         httpService.request<BuildInfo> {
-            url("https://raw.githubusercontent.com/$repo/builds/data.json")
+            url("https://raw.githubusercontent.com/$repo/builds-next/data.json")
             parameter("t", System.currentTimeMillis() / 60_000)
         }
     }

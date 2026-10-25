@@ -18,6 +18,8 @@ class RestRepository(
         )
     }
 
+    suspend fun getReleases(repo: String) = service.getReleases(repo)
+
     suspend fun getBuildInfo(repo: String) = service.getBuildInfo(repo)
 
     suspend fun getCommits(repo: String, page: Int = 1) = service.getCommits(repo, page)
