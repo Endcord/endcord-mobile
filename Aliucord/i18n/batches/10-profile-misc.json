@@ -1,0 +1,302 @@
+{
+  "AntiNickname: failed to reset nickname ({error})": {
+    "tr": "AntiNickname: takma ad sıfırlanamadı ({error})",
+    "ru": "AntiNickname: не удалось сбросить ник ({error})",
+    "es": "AntiNickname: no se pudo restablecer el apodo ({error})",
+    "fr": "AntiNickname : impossible de réinitialiser le surnom ({error})"
+  },
+  "AntiNickname: nickname \"{nick}\" removed": {
+    "tr": "AntiNickname: \"{nick}\" takma adı kaldırıldı",
+    "ru": "AntiNickname: ник «{nick}» снят",
+    "es": "AntiNickname: se quitó el apodo \"{nick}\"",
+    "fr": "AntiNickname : surnom « {nick} » retiré"
+  },
+  "AntiNickname: you aren't allowed to change your nickname in {server}": {
+    "tr": "AntiNickname: {server} sunucusunda takma adını değiştirme iznin yok",
+    "ru": "AntiNickname: на сервере {server} вам нельзя менять свой ник",
+    "es": "AntiNickname: no tienes permiso para cambiar tu apodo en {server}",
+    "fr": "AntiNickname : vous n'avez pas le droit de changer votre surnom sur {server}"
+  },
+  "AntiNickname: your nickname in {server} keeps being changed, so it is no longer reset there until you restart the app": {
+    "tr": "AntiNickname: {server} sunucusunda takma adın sürekli değiştiriliyor, uygulamayı yeniden başlatana kadar orada artık sıfırlanmayacak",
+    "ru": "AntiNickname: ваш ник на сервере {server} постоянно меняют, поэтому до перезапуска приложения он там больше не сбрасывается",
+    "es": "AntiNickname: tu apodo en {server} se cambia una y otra vez, así que ya no se restablecerá ahí hasta que reinicies la app",
+    "fr": "AntiNickname : votre surnom sur {server} est sans cesse modifié, il n'y sera donc plus réinitialisé avant le redémarrage de l'appli"
+  },
+  "Automatically resets any nickname forcefully assigned to you in a server, where you are allowed to change your own nickname.": {
+    "tr": "Bir sunucuda sana zorla verilen takma adı, kendi takma adını değiştirebildiğin yerlerde otomatik olarak sıfırlar.",
+    "ru": "Автоматически сбрасывает ник, принудительно выданный вам на сервере, если там вы можете менять свой ник сами.",
+    "es": "Restablece automáticamente cualquier apodo que te pongan a la fuerza en un servidor donde puedas cambiar tu propio apodo.",
+    "fr": "Réinitialise automatiquement tout surnom qu'on vous impose sur un serveur où vous pouvez changer votre propre surnom."
+  },
+  "Build the invisible text for your own colors, then paste it anywhere in your bio": {
+    "tr": "Kendi renklerin için görünmez metni oluştur, sonra biyografinde herhangi bir yere yapıştır",
+    "ru": "Создайте невидимый текст со своими цветами и вставьте его в любое место био",
+    "es": "Crea el texto invisible con tus colores y pégalo en cualquier parte de tu biografía",
+    "fr": "Générez le texte invisible de vos couleurs, puis collez-le n'importe où dans votre bio"
+  },
+  "Change HypeSquad house": {
+    "tr": "HypeSquad evini değiştir",
+    "ru": "Сменить дом HypeSquad",
+    "es": "Cambiar de casa de HypeSquad",
+    "fr": "Changer de maison HypeSquad"
+  },
+  "Change folder icon": {
+    "tr": "Klasör simgesini değiştir",
+    "ru": "Сменить значок папки",
+    "es": "Cambiar icono de carpeta",
+    "fr": "Changer l'icône d'un dossier"
+  },
+  "Change the size of the folder icon": {
+    "tr": "Klasör simgesinin boyutunu değiştir",
+    "ru": "Изменить размер значка папки",
+    "es": "Cambiar el tamaño del icono de la carpeta",
+    "fr": "Modifier la taille de l'icône du dossier"
+  },
+  "Copy 3y3": {
+    "tr": "3y3'ü Kopyala",
+    "ru": "Скопировать 3y3",
+    "es": "Copiar 3y3",
+    "fr": "Copier le 3y3"
+  },
+  "Couldn't change your HypeSquad house: {error}": {
+    "tr": "HypeSquad evin değiştirilemedi: {error}",
+    "ru": "Не удалось сменить дом HypeSquad: {error}",
+    "es": "No se pudo cambiar tu casa de HypeSquad: {error}",
+    "fr": "Impossible de changer votre maison HypeSquad : {error}"
+  },
+  "Couldn't load the folder icon": {
+    "tr": "Klasör simgesi yüklenemedi",
+    "ru": "Не удалось загрузить значок папки",
+    "es": "No se pudo cargar el icono de la carpeta",
+    "fr": "Impossible de charger l'icône du dossier"
+  },
+  "Couldn't open your profile": {
+    "tr": "Profilin açılamadı",
+    "ru": "Не удалось открыть профиль",
+    "es": "No se pudo abrir tu perfil",
+    "fr": "Impossible d'ouvrir votre profil"
+  },
+  "Default color source if both are present": {
+    "tr": "İkisi de varsa varsayılan renk kaynağı",
+    "ru": "Источник цвета по умолчанию, если есть оба",
+    "es": "Origen del color si hay ambos",
+    "fr": "Source de couleur par défaut si les deux existent"
+  },
+  "Enter a link starting with https://": {
+    "tr": "https:// ile başlayan bir bağlantı gir",
+    "ru": "Введите ссылку, начинающуюся с https://",
+    "es": "Escribe un enlace que empiece por https://",
+    "fr": "Saisissez un lien commençant par https://"
+  },
+  "Enter two colors, for example #5865f2, #eb459e": {
+    "tr": "İki renk gir, örneğin #5865f2, #eb459e",
+    "ru": "Введите два цвета, например #5865f2, #eb459e",
+    "es": "Escribe dos colores, por ejemplo #5865f2, #eb459e",
+    "fr": "Saisissez deux couleurs, par exemple #5865f2, #eb459e"
+  },
+  "Enter your primary and accent colors as hex codes, for example #5865f2, #eb459e.": {
+    "tr": "Ana ve vurgu renklerini hex kodu olarak gir, örneğin #5865f2, #eb459e.",
+    "ru": "Введите основной и акцентный цвета в виде hex-кодов, например #5865f2, #eb459e.",
+    "es": "Escribe tus colores principal y de acento como códigos hex, por ejemplo #5865f2, #eb459e.",
+    "fr": "Saisissez vos couleurs principale et d'accent en codes hex, par exemple #5865f2, #eb459e."
+  },
+  "Fake colors": {
+    "tr": "Sahte renkler",
+    "ru": "Фейковые цвета",
+    "es": "Colores falsos",
+    "fr": "Fausses couleurs"
+  },
+  "Folder icon removed": {
+    "tr": "Klasör simgesi kaldırıldı",
+    "ru": "Значок папки убран",
+    "es": "Icono de carpeta quitado",
+    "fr": "Icône du dossier retirée"
+  },
+  "House Balance": {
+    "tr": "Balance evi",
+    "ru": "Дом Balance",
+    "es": "Casa Balance",
+    "fr": "Maison Balance"
+  },
+  "House Bravery": {
+    "tr": "Bravery evi",
+    "ru": "Дом Bravery",
+    "es": "Casa Bravery",
+    "fr": "Maison Bravery"
+  },
+  "House Brilliance": {
+    "tr": "Brilliance evi",
+    "ru": "Дом Brilliance",
+    "es": "Casa Brilliance",
+    "fr": "Maison Brilliance"
+  },
+  "How far you can zoom in when cropping an image. The app's own limit is 10.": {
+    "tr": "Bir resmi kırparken ne kadar yakınlaştırabileceğin. Uygulamanın kendi sınırı 10.",
+    "ru": "Насколько можно приближать при обрезке изображения. Собственный предел приложения — 10.",
+    "es": "Cuánto puedes acercar al recortar una imagen. El límite propio de la app es 10.",
+    "fr": "Jusqu'où vous pouvez zoomer en recadrant une image. La limite de l'appli est de 10."
+  },
+  "HypeSquad badge removed": {
+    "tr": "HypeSquad rozeti kaldırıldı",
+    "ru": "Значок HypeSquad убран",
+    "es": "Insignia de HypeSquad quitada",
+    "fr": "Badge HypeSquad retiré"
+  },
+  "HypeSquad house set to {house}": {
+    "tr": "HypeSquad evi {house} olarak ayarlandı",
+    "ru": "Дом HypeSquad изменён: {house}",
+    "es": "Casa de HypeSquad cambiada a {house}",
+    "fr": "Maison HypeSquad définie sur {house}"
+  },
+  "In percent of the folder": {
+    "tr": "Klasörün yüzdesi olarak",
+    "ru": "В процентах от размера папки",
+    "es": "En porcentaje de la carpeta",
+    "fr": "En pourcentage du dossier"
+  },
+  "Invalid house. Use 0 (remove), 1 (Bravery), 2 (Brilliance) or 3 (Balance).": {
+    "tr": "Geçersiz ev. 0 (kaldır), 1 (Bravery), 2 (Brilliance) ya da 3 (Balance) kullan.",
+    "ru": "Неверный дом. Используйте 0 (убрать), 1 (Bravery), 2 (Brilliance) или 3 (Balance).",
+    "es": "Casa no válida. Usa 0 (quitar), 1 (Bravery), 2 (Brilliance) o 3 (Balance).",
+    "fr": "Maison invalide. Utilisez 0 (retirer), 1 (Bravery), 2 (Brilliance) ou 3 (Balance)."
+  },
+  "Limits Global Mention to people you have a direct message with": {
+    "tr": "Genel Etiketi yalnızca DM'leştiğin kişilerle sınırlar",
+    "ru": "Глобальные упоминания только для тех, с кем у вас есть ЛС",
+    "es": "Limita la mención global a las personas con las que tienes un mensaje directo",
+    "fr": "Limite la mention globale aux personnes avec qui vous avez un MP"
+  },
+  "Long-press the You tab to view your profile in the current server from the status sheet": {
+    "tr": "Durum menüsünden bu sunucudaki profilini görmek için Sen sekmesine basılı tut",
+    "ru": "Удерживайте вкладку «Вы», чтобы открыть свой профиль на текущем сервере из меню статуса",
+    "es": "Mantén pulsada la pestaña Tú para ver tu perfil en el servidor actual desde el menú de estado",
+    "fr": "Appuyez longuement sur l'onglet Vous pour voir votre profil sur le serveur actuel depuis le menu de statut"
+  },
+  "Mention users from any server, not just the current one": {
+    "tr": "Sadece bu sunucudan değil, her sunucudan kullanıcılardan bahset",
+    "ru": "Упоминать пользователей с любого сервера, не только текущего",
+    "es": "Mencionar usuarios de cualquier servidor, no solo del actual",
+    "fr": "Mentionner des utilisateurs de n'importe quel serveur"
+  },
+  "Nitro colors": {
+    "tr": "Nitro renkleri",
+    "ru": "Цвета Nitro",
+    "es": "Colores de Nitro",
+    "fr": "Couleurs Nitro"
+  },
+  "Only show users you've had DMs with": {
+    "tr": "Sadece DM'leştiğin kullanıcıları göster",
+    "ru": "Только пользователи, с которыми были ЛС",
+    "es": "Mostrar solo usuarios con los que hablaste por privado",
+    "fr": "Seulement les utilisateurs avec qui vous avez eu des MP"
+  },
+  "Paste a link to a PNG, JPG or GIF image. Save it empty to go back to the server icons.": {
+    "tr": "PNG, JPG ya da GIF bir resmin bağlantısını yapıştır. Sunucu simgelerine dönmek için boş kaydet.",
+    "ru": "Вставьте ссылку на изображение PNG, JPG или GIF. Сохраните пустым, чтобы вернуть значки серверов.",
+    "es": "Pega el enlace de una imagen PNG, JPG o GIF. Guárdalo vacío para volver a los iconos de los servidores.",
+    "fr": "Collez le lien d'une image PNG, JPG ou GIF. Enregistrez vide pour revenir aux icônes des serveurs."
+  },
+  "Pick a folder, then paste a link to an image": {
+    "tr": "Bir klasör seç, sonra bir resim bağlantısı yapıştır",
+    "ru": "Выберите папку и вставьте ссылку на изображение",
+    "es": "Elige una carpeta y pega el enlace de una imagen",
+    "fr": "Choisissez un dossier, puis collez le lien d'une image"
+  },
+  "Pick a house for your badge, or remove it. You can also use /hypesquad.": {
+    "tr": "Rozetin için bir ev seç ya da rozeti kaldır. /hypesquad komutunu da kullanabilirsin.",
+    "ru": "Выберите дом для значка или уберите его. Также можно использовать /hypesquad.",
+    "es": "Elige una casa para tu insignia o quítala. También puedes usar /hypesquad.",
+    "fr": "Choisissez une maison pour votre badge, ou retirez-le. Vous pouvez aussi utiliser /hypesquad."
+  },
+  "Remove Badge": {
+    "tr": "Rozeti kaldır",
+    "ru": "Убрать значок",
+    "es": "Quitar insignia",
+    "fr": "Retirer le badge"
+  },
+  "Server IDs, one per line. Nicknames you are given there are kept, for example ones you set yourself from another device.": {
+    "tr": "Her satıra bir sunucu kimliği. Buralarda sana verilen takma adlar korunur, örneğin başka bir cihazdan kendin ayarladıkların.",
+    "ru": "ID серверов, по одному на строку. Ники, выданные вам там, сохраняются, например те, что вы поставили сами с другого устройства.",
+    "es": "ID de servidores, uno por línea. Ahí se mantienen los apodos que te pongan, por ejemplo los que pongas tú desde otro dispositivo.",
+    "fr": "ID de serveurs, un par ligne. Les surnoms qu'on vous y donne sont conservés, par exemple ceux que vous définissez vous-même depuis un autre appareil."
+  },
+  "Servers to leave alone": {
+    "tr": "Dokunulmayacak sunucular",
+    "ru": "Серверы-исключения",
+    "es": "Servidores que ignorar",
+    "fr": "Serveurs à ignorer"
+  },
+  "Set a new icon": {
+    "tr": "Yeni bir simge ayarla",
+    "ru": "Новый значок",
+    "es": "Poner un icono nuevo",
+    "fr": "Définir une nouvelle icône"
+  },
+  "Show a notification when a forced nickname is removed": {
+    "tr": "Zorla verilen takma ad kaldırılınca bildirim göster",
+    "ru": "Уведомлять, когда принудительный ник снят",
+    "es": "Avisar cuando se quite un apodo forzado",
+    "fr": "Notifier quand un surnom forcé est retiré"
+  },
+  "Shows profile colors hidden in bios with invisible 3y3 encoding as the profile banner color": {
+    "tr": "Biyografilerde görünmez 3y3 kodlamasıyla gizlenen profil renklerini profil afişi rengi olarak gösterir",
+    "ru": "Показывает цвета профиля, спрятанные в био невидимой кодировкой 3y3, как цвет баннера профиля",
+    "es": "Muestra los colores de perfil ocultos en biografías con la codificación invisible 3y3 como color del banner del perfil",
+    "fr": "Affiche les couleurs de profil cachées dans les bios avec l'encodage invisible 3y3 comme couleur de bannière du profil"
+  },
+  "Then paste the invisible text anywhere in your bio. Other people need a compatible plugin to see the colors.": {
+    "tr": "Sonra görünmez metni biyografinde herhangi bir yere yapıştır. Diğer kişilerin renkleri görmesi için uyumlu bir eklentiye ihtiyacı var.",
+    "ru": "Затем вставьте невидимый текст в любое место био. Чтобы видеть цвета, другим нужен совместимый плагин.",
+    "es": "Después pega el texto invisible en cualquier parte de tu biografía. Los demás necesitan un plugin compatible para ver los colores.",
+    "fr": "Collez ensuite le texte invisible n'importe où dans votre bio. Les autres ont besoin d'un plugin compatible pour voir les couleurs."
+  },
+  "Unnamed folder": {
+    "tr": "Adsız klasör",
+    "ru": "Папка без названия",
+    "es": "Carpeta sin nombre",
+    "fr": "Dossier sans nom"
+  },
+  "Use a solid background on the background of the image": {
+    "tr": "Resmin arkasında düz arka plan kullan",
+    "ru": "Сплошной фон под изображением",
+    "es": "Usar un fondo sólido detrás de la imagen",
+    "fr": "Fond uni derrière l'image"
+  },
+  "Using Global Mention can cause performance issues and show an absurd amount of users in the autocomplete.": {
+    "tr": "Genel Etiket kullanmak performans sorunlarına yol açabilir ve otomatik tamamlamada aşırı sayıda kullanıcı gösterebilir.",
+    "ru": "Глобальные упоминания могут вызывать подтормаживания и показывать огромное число пользователей в подсказках.",
+    "es": "Usar la mención global puede causar problemas de rendimiento y mostrar muchísimos usuarios en el autocompletado.",
+    "fr": "La mention globale peut causer des ralentissements et afficher un nombre absurde d'utilisateurs dans l'autocomplétion."
+  },
+  "View profile": {
+    "tr": "Profili görüntüle",
+    "ru": "Открыть профиль",
+    "es": "Ver perfil",
+    "fr": "Voir le profil"
+  },
+  "View server profile": {
+    "tr": "Sunucu profilini görüntüle",
+    "ru": "Профиль на сервере",
+    "es": "Ver perfil del servidor",
+    "fr": "Voir le profil du serveur"
+  },
+  "You don't have any server folders": {
+    "tr": "Hiç sunucu klasörün yok",
+    "ru": "У вас нет папок серверов",
+    "es": "No tienes carpetas de servidores",
+    "fr": "Vous n'avez aucun dossier de serveurs"
+  },
+  "Your HypeSquad house is already being changed.": {
+    "tr": "HypeSquad evin zaten değiştiriliyor.",
+    "ru": "Дом HypeSquad уже меняется.",
+    "es": "Ya se está cambiando tu casa de HypeSquad.",
+    "fr": "Votre maison HypeSquad est déjà en train d'être changée."
+  },
+  "Zoom multiplier": {
+    "tr": "Yakınlaştırma çarpanı",
+    "ru": "Множитель зума",
+    "es": "Multiplicador de zoom",
+    "fr": "Multiplicateur de zoom"
+  }
+}
