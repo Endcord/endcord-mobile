@@ -26,7 +26,7 @@ import de.robv.android.xposed.XC_MethodHook
  */
 internal class TypingTweaks : EndcordPlugin(
     name = "TypingTweaks",
-    description = "Show avatars and role colours in the typing indicator",
+    description = "Show role colours in the typing indicator",
     authors = arrayOf("ewlle", "kraethis"),
 ) {
     override val tags = listOf("appearance", "customisation")

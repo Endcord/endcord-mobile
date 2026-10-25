@@ -71,6 +71,9 @@ internal object RemoteImages {
     // Any id declared by the app works as a view tag key
     private val tagKey: Int by lazy { Utils.getResId("chat_list_adapter_item_text_header", "id") }
 
+    /** Whether [url] could not be loaded this session. */
+    fun failed(url: String): Boolean = url in failed
+
     /** Shows [url] in [view] once loaded, unless the view was given another image in the meantime. */
     fun into(view: ImageView, url: String) {
         view.setTag(tagKey, url)

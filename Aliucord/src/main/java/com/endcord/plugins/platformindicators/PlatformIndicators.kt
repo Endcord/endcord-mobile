@@ -33,7 +33,6 @@ internal class PlatformIndicators : EndcordPlugin(
     authors = arrayOf("ewlle", "kraethis"),
 ) {
     override val tags = listOf("appearance")
-    override val restartRequired = false
 
     override val settingsSchema = listOf(
         PluginSetting.Switch("messages", "Show indicators inside messages", default = true),

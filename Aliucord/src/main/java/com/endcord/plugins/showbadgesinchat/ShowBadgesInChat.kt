@@ -44,7 +44,7 @@ internal class ShowBadgesInChat : EndcordPlugin(
             val view = Header.timestamp(holder) ?: return
             val builder = SpannableStringBuilder()
 
-            if (bool("showEndcordContributor") && author.id in CONTRIBUTORS) {
+            if (bool("showEndcordContributor") && author.id in CONTRIBUTORS && !RemoteImages.failed(CONTRIBUTOR_BADGE)) {
                 val size = Icons.sizeFor(view, 1.25f)
                 builder.append(Icons.span(RemoteImages.drawable(CONTRIBUTOR_BADGE, size, view), (view.textSize * 0.08f).toInt()))
             }

@@ -31,7 +31,7 @@ import java.util.TimeZone
 
 internal class Timezones : EndcordPlugin(
     name = "Timezones",
-    description = "Shows the local time of users in profiles and message headers",
+    description = "Shows the local time of users in message headers",
     authors = arrayOf("ewlle", "kraethis"),
 ) {
     override val tags = listOf("appearance", "chat", "utility")
@@ -142,6 +142,7 @@ internal class Timezones : EndcordPlugin(
 
     private val decorator = object : ChatDecorator(name, priority = 70) {
         override fun timestampSuffix(holder: WidgetChatListAdapterItemMessage, entry: MessageEntry, view: TextView): CharSequence? {
+            ChatRefresh.track(holder)
             if (!bool("showMessageHeaderTime")) return null
             val message = entry.message
             var userId = message.author?.id ?: return null

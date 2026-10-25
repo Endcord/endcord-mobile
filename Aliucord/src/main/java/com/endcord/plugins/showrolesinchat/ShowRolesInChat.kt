@@ -28,7 +28,7 @@ import com.lytefast.flexinput.R
 
 internal class ShowRolesInChat : EndcordPlugin(
     name = "ShowRolesInChat",
-    description = "Shows a user's highest role next to their name in chat messages. Hide/show specific roles in their context menu (right-click).",
+    description = "Shows a user's highest role next to their name in chat messages. Hide/show specific roles by long-pressing a message.",
     authors = arrayOf("ewlle", "kraethis"),
 ) {
     override val tags = listOf("appearance", "chat", "roles", "servers")
