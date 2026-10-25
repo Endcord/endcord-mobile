@@ -147,7 +147,10 @@ object PluginManager {
         val plugin = plugins[name] ?: return
         logger.info("Unloading plugin: $name")
 
-        require(plugin !is CorePlugin) { "Cannot unload coreplugin $name" }
+        if (plugin is CorePlugin) {
+            logger.warn("Not unloading coreplugin $name")
+            return
+        }
 
         try {
             plugin.unload(appContext)
@@ -246,9 +249,10 @@ object PluginManager {
     fun remountPlugin(name: String) {
         require(name in plugins) { "No such plugin: $name" }
         require(isPluginEnabled(name)) { "Plugin not enabled: $name" }
+        val fileName = plugins[name]?.__filename ?: name
         stopPlugin(name)
         unloadPlugin(name)
-        loadPlugin(appContext, File(Constants.PLUGINS_PATH, "$name.zip"))
+        loadPlugin(appContext, File(Constants.PLUGINS_PATH, "$fileName.zip"))
         startPlugin(name)
     }
 

@@ -29,6 +29,24 @@ internal object BackupRestore {
     /** Where backups are written and looked for. */
     val backupsDir = File(Constants.BASE_PATH, "backups")
 
+    private val pendingDir get() = File(File(Constants.SETTINGS_PATH).parentFile, ".restore")
+
+    /** Moves a restored backup into place. Called at startup before any settings file is read. */
+    @JvmStatic
+    fun applyPendingRestore() {
+        val staging = pendingDir
+        val files = staging.listFiles { f -> f.isFile && f.name.endsWith(".json") } ?: return
+        try {
+            val settingsDir = File(Constants.SETTINGS_PATH)
+            for (file in files) file.copyTo(File(settingsDir, file.name), overwrite = true)
+            logger.info("Restored ${files.size} settings files from a backup")
+        } catch (e: Throwable) {
+            logger.error("Failed to apply a restored backup", e)
+        } finally {
+            staging.deleteRecursively()
+        }
+    }
+
     /** Saves all settings to a new backup zip, off the main thread. */
     fun export() = Utils.threadPool.execute {
         try {
@@ -87,7 +105,7 @@ internal object BackupRestore {
             if (!settingsDir.exists()) settingsDir.mkdirs()
 
             // Extract to a temporary folder first, so a broken backup never leaves half-restored settings
-            val staging = File(settingsDir.parentFile, ".restore")
+            val staging = pendingDir
             staging.deleteRecursively()
             staging.mkdirs()
             var count = 0
@@ -106,12 +124,10 @@ internal object BackupRestore {
                 Utils.showToast(I18n.t("This backup doesn't contain any settings."), showLonger = true)
                 return@execute
             }
-            for (file in staging.listFiles().orEmpty()) file.copyTo(File(settingsDir, file.name), overwrite = true)
-            staging.deleteRecursively()
-
+            // Applied by applyPendingRestore() on the next start, before any settings are loaded, so settings
+            // still held in memory by this process can't overwrite them
             Utils.showToast(I18n.t("Settings imported successfully!"))
-            // Restart right away: settings held in memory would otherwise overwrite the restored files
-            Utils.mainThread.postDelayed({ Utils.restartAliucord(Utils.appActivity) }, 1200)
+            Utils.mainThread.postDelayed({ Utils.restartAliucord(Utils.appActivity) }, 800)
         } catch (e: Throwable) {
             logger.errorToast(I18n.t("Failed to restore the backup"), e)
         }

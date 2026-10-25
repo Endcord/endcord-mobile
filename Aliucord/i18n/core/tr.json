@@ -617,6 +617,7 @@
   "Simple Replacements": "Basit Değiştirmeler",
   "Simple find and replace rules. For example, find 'brb' and replace it with 'be right back'": "Basit bul-değiştir kuralları. Örneğin 'brb'yi bulup 'hemen döneceğim' ile değiştir",
   "Some plugins failed to load. Check the plugins page for more info.": "Bazı eklentiler yüklenemedi. Daha fazla bilgi için Eklentiler sayfasına bakın.",
+  "Something went wrong": "Bir sorun oluştu",
   "Something went wrong while updating {plugin}": "{plugin} güncellenirken bir sorun oluştu",
   "Sorry, couldn't fetch a cat picture right now 😿": "Üzgünüm, şu anda kedi resmi getirilemedi 😿",
   "Sorry, couldn't fetch a dog picture right now 🐶": "Üzgünüm, şu anda köpek resmi getirilemedi 🐶",

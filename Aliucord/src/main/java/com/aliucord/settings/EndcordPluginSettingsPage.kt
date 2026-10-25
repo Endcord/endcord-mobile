@@ -153,7 +153,13 @@ class EndcordPluginSettingsPage(private val pluginName: String) : SettingsPage()
                     if (description != null) addLabel(null, description)
                     Button(ctx).run {
                         text = label
-                        setOnClickListener { entry.onClick(it.context) }
+                        setOnClickListener {
+                            try {
+                                entry.onClick(it.context)
+                            } catch (e: Throwable) {
+                                plugin.logger.errorToast(I18n.t("Something went wrong"), e)
+                            }
+                        }
                         addView(this)
                     }
                 }

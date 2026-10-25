@@ -38,7 +38,8 @@ internal class PluginFile(val plugin: String) : File("${Constants.PLUGINS_PATH}/
                 // Post to main thread here for consistency.
                 // Otherwise, plugins that create Handler instances or similar will error
                 Utils.mainThread.post {
-                    if (isReinstall) {
+                    // A built-in of the same name is replaced by loadPlugin itself
+                    if (isReinstall && PluginManager.plugins[plugin] !is CorePlugin) {
                         PluginManager.stopPlugin(plugin)
                         PluginManager.unloadPlugin(plugin)
                     }
@@ -71,8 +72,10 @@ internal class PluginFile(val plugin: String) : File("${Constants.PLUGINS_PATH}/
         Utils.showToast(I18n.t(if (success) "Successfully uninstalled {plugin}" else "Failed to uninstall {plugin}", "plugin" to plugin))
         if (success) {
             val p = PluginManager.plugins[plugin]
-            PluginManager.stopPlugin(plugin)
-            PluginManager.unloadPlugin(plugin)
+            if (p !is CorePlugin) {
+                PluginManager.stopPlugin(plugin)
+                PluginManager.unloadPlugin(plugin)
+            }
 
             if (p?.requiresRestart() == true)
                 Utils.promptRestart()

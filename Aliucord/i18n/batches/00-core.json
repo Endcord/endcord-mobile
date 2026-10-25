@@ -766,5 +766,11 @@
     "ru": "Открыть папку Endcord",
     "es": "Abrir carpeta de Endcord",
     "fr": "Ouvrir le dossier Endcord"
+  },
+  "Something went wrong": {
+    "tr": "Bir sorun oluştu",
+    "ru": "Что-то пошло не так",
+    "es": "Algo salió mal",
+    "fr": "Un problème est survenu"
   }
 }

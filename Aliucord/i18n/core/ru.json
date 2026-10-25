@@ -617,6 +617,7 @@
   "Simple Replacements": "Простые замены",
   "Simple find and replace rules. For example, find 'brb' and replace it with 'be right back'": "Простые правила «найти и заменить». Например, найти «brb» и заменить на «скоро вернусь»",
   "Some plugins failed to load. Check the plugins page for more info.": "Некоторые плагины не загрузились. Подробности на странице плагинов.",
+  "Something went wrong": "Что-то пошло не так",
   "Something went wrong while updating {plugin}": "При обновлении {plugin} что-то пошло не так",
   "Sorry, couldn't fetch a cat picture right now 😿": "Извините, сейчас не удалось загрузить фото кошки 😿",
   "Sorry, couldn't fetch a dog picture right now 🐶": "Извините, сейчас не удалось загрузить фото собаки 🐶",

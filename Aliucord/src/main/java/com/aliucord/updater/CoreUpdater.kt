@@ -44,8 +44,11 @@ internal object CoreUpdater {
     @Volatile
     private var downloadedVersion: SemVer? = null
 
+    private val updating = java.util.concurrent.atomic.AtomicBoolean(false)
+
+    /** Set when the user asked to update while a background download was already running. */
     @Volatile
-    private var updating = false
+    private var restartAfterDownload = false
 
     /** Time of the last completed check, in [System.currentTimeMillis]. */
     @Volatile
@@ -68,7 +71,7 @@ internal object CoreUpdater {
     @JvmStatic
     @JvmOverloads
     fun checkForUpdates(silent: Boolean = false) {
-        if (isUpdaterDisabled() || isCustomCoreLoaded() || updating) return
+        if (isUpdaterDisabled() || isCustomCoreLoaded() || updating.get()) return
 
         try {
             logger.debug("Checking for Endcord updates...")
@@ -159,9 +162,12 @@ internal object CoreUpdater {
      * The download goes to a temporary file first so an interrupted download never leaves a broken core behind.
      */
     private fun downloadUpdate(version: SemVer, restartWhenDone: Boolean) {
-        if (updating) return
-        updating = true
         if (restartWhenDone) Utils.showToast(I18n.t("Updating Endcord..."))
+        if (!updating.compareAndSet(false, true)) {
+            // A background download is running, let it restart when done
+            if (restartWhenDone) restartAfterDownload = true
+            return
+        }
 
         Utils.threadPool.execute {
             try {
@@ -185,7 +191,8 @@ internal object CoreUpdater {
                 downloadedVersion = version
                 logger.debug("Finished downloading core $version")
 
-                if (restartWhenDone) {
+                if (restartWhenDone || restartAfterDownload) {
+                    restartAfterDownload = false
                     Utils.mainThread.post { Utils.restartAliucord(Utils.appActivity) }
                 } else {
                     NotificationsAPI.display(
@@ -198,10 +205,11 @@ internal object CoreUpdater {
                 }
             } catch (e: Exception) {
                 // Background downloads retry on the next check, only tell the user about ones they asked for
-                if (restartWhenDone) logger.errorToast(I18n.t("Failed to update Endcord!"), e)
+                if (restartWhenDone || restartAfterDownload) logger.errorToast(I18n.t("Failed to update Endcord!"), e)
                 else logger.warn("Background core download failed: ${e.message}")
+                restartAfterDownload = false
             } finally {
-                updating = false
+                updating.set(false)
             }
         }
     }
@@ -235,15 +243,23 @@ internal object CoreUpdater {
             .setClassName(INSTALLER_PACKAGE, "$INSTALLER_PACKAGE.MainActivity")
             .putExtra("aliucord.packageName", Utils.appContext.packageName)
 
+        val activity = Utils.appActivity
         try {
-            Utils.appActivity.startActivity(intent)
+            activity.startActivity(intent)
         } catch (_: ActivityNotFoundException) {
-            ConfirmDialog()
+            if (activity.isFinishing || activity.isDestroyed) {
+                Utils.launchUrl(Constants.ENDCORD_INSTALLER_RELEASES)
+                return
+            }
+            val dialog = ConfirmDialog()
                 .setTitle(I18n.t("Updater"))
                 .setDescription(I18n.t("Endcord Installer is not installed on this device.") + "\n" +
                     I18n.t("Open the latest GitHub release to download it?"))
-                .setOnOkListener { Utils.launchUrl(Constants.ENDCORD_INSTALLER_RELEASES) }
-                .show(Utils.appActivity.supportFragmentManager, "No Installer")
+            dialog.setOnOkListener {
+                dialog.dismiss()
+                Utils.launchUrl(Constants.ENDCORD_INSTALLER_RELEASES)
+            }
+            dialog.show(activity.supportFragmentManager, "No Installer")
         }
     }
 

@@ -617,6 +617,7 @@
   "Simple Replacements": "Remplacements simples",
   "Simple find and replace rules. For example, find 'brb' and replace it with 'be right back'": "Règles simples de rechercher-remplacer. Par exemple, trouver « brb » et le remplacer par « je reviens »",
   "Some plugins failed to load. Check the plugins page for more info.": "Certains plugins n'ont pas pu être chargés. Consultez la page des plugins pour en savoir plus.",
+  "Something went wrong": "Un problème est survenu",
   "Something went wrong while updating {plugin}": "Un problème est survenu lors de la mise à jour de {plugin}",
   "Sorry, couldn't fetch a cat picture right now 😿": "Désolé, impossible de récupérer une photo de chat pour l'instant 😿",
   "Sorry, couldn't fetch a dog picture right now 🐶": "Désolé, impossible de récupérer une photo de chien pour l'instant 🐶",
