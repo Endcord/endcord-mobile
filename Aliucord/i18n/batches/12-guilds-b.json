@@ -1,0 +1,314 @@
+{
+  "Include current channel": {
+    "tr": "Mevcut kanalı dahil et",
+    "ru": "Включать текущий канал",
+    "es": "Incluir el canal actual",
+    "fr": "Inclure le salon actuel"
+  },
+  "Whether to show the typing indicator for the currently selected channel": {
+    "tr": "Seçili kanal için yazıyor göstergesi gösterilsin mi",
+    "ru": "Индикатор набора для открытого канала",
+    "es": "Mostrar el indicador de escritura del canal actual",
+    "fr": "Indicateur de saisie pour le salon actuel"
+  },
+  "Include muted channels": {
+    "tr": "Sessize alınmış kanalları dahil et",
+    "ru": "Включать заглушённые каналы",
+    "es": "Incluir canales silenciados",
+    "fr": "Inclure les salons en sourdine"
+  },
+  "Whether to show the typing indicator for muted channels.": {
+    "tr": "Susturulan kanallar için yazıyor göstergesi gösterilsin mi.",
+    "ru": "Индикатор набора для заглушённых каналов.",
+    "es": "Mostrar el indicador de escritura en canales silenciados.",
+    "fr": "Indicateur de saisie pour les salons en sourdine."
+  },
+  "Include blocked users": {
+    "tr": "Engellenen kullanıcıları dahil et",
+    "ru": "Включать заблокированных пользователей",
+    "es": "Incluir usuarios bloqueados",
+    "fr": "Inclure les utilisateurs bloqués"
+  },
+  "Whether to show the typing indicator for blocked users.": {
+    "tr": "Engellenenler için yazıyor göstergesi gösterilsin mi.",
+    "ru": "Индикатор набора для заблокированных.",
+    "es": "Mostrar el indicador de escritura de bloqueados.",
+    "fr": "Indicateur de saisie pour les bloqués."
+  },
+  "Include direct messages": {
+    "tr": "Doğrudan mesajları dahil et",
+    "ru": "Включать личные сообщения",
+    "es": "Incluir mensajes directos",
+    "fr": "Inclure les messages privés"
+  },
+  "Also show the typing indicator in your direct messages list": {
+    "tr": "Yazıyor göstergesini doğrudan mesaj listende de göster",
+    "ru": "Также показывать индикатор набора в списке личных сообщений",
+    "es": "Mostrar también el indicador de escritura en tu lista de mensajes directos",
+    "fr": "Afficher aussi l'indicateur de saisie dans ta liste de messages privés"
+  },
+  "{names} is typing…": {
+    "tr": "{names} yazıyor…",
+    "ru": "{names} печатает…",
+    "es": "{names} está escribiendo…",
+    "fr": "{names} est en train d'écrire…"
+  },
+  "{names} are typing…": {
+    "tr": "{names} yazıyor…",
+    "ru": "{names} печатают…",
+    "es": "{names} están escribiendo…",
+    "fr": "{names} sont en train d'écrire…"
+  },
+  "{count} typing": {
+    "tr": "{count} kişi yazıyor",
+    "ru": "печатают: {count}",
+    "es": "{count} escribiendo",
+    "fr": "{count} en train d'écrire"
+  },
+  "Hide incoming friend requests count": {
+    "tr": "Gelen arkadaşlık isteği sayısını gizle",
+    "ru": "Скрыть счётчик входящих заявок",
+    "es": "Ocultar el contador de solicitudes recibidas",
+    "fr": "Masquer le compteur des demandes reçues"
+  },
+  "Invite Duration": {
+    "tr": "Davet süresi",
+    "ru": "Срок приглашения",
+    "es": "Duración de la invitación",
+    "fr": "Durée de l'invitation"
+  },
+  "30 minutes": {
+    "tr": "30 dakika",
+    "ru": "30 минут",
+    "es": "30 minutos",
+    "fr": "30 minutes"
+  },
+  "1 hour": {
+    "tr": "1 saat",
+    "ru": "1 час",
+    "es": "1 hora",
+    "fr": "1 heure"
+  },
+  "6 hours": {
+    "tr": "6 saat",
+    "ru": "6 часов",
+    "es": "6 horas",
+    "fr": "6 heures"
+  },
+  "12 hours": {
+    "tr": "12 saat",
+    "ru": "12 часов",
+    "es": "12 horas",
+    "fr": "12 heures"
+  },
+  "1 day": {
+    "tr": "1 gün",
+    "ru": "1 день",
+    "es": "1 día",
+    "fr": "1 jour"
+  },
+  "7 days": {
+    "tr": "7 gün",
+    "ru": "7 дней",
+    "es": "7 días",
+    "fr": "7 jours"
+  },
+  "Forever": {
+    "tr": "Süresiz",
+    "ru": "Навсегда",
+    "es": "Para siempre",
+    "fr": "Pour toujours"
+  },
+  "Invite Use Count": {
+    "tr": "Davet kullanım sayısı",
+    "ru": "Число использований приглашения",
+    "es": "Usos de la invitación",
+    "fr": "Nombre d'utilisations de l'invitation"
+  },
+  "Infinite": {
+    "tr": "Sonsuz",
+    "ru": "Бесконечно",
+    "es": "Infinito",
+    "fr": "Infini"
+  },
+  "Temporary Membership": {
+    "tr": "Geçici üyelik",
+    "ru": "Временное членство",
+    "es": "Membresía temporal",
+    "fr": "Adhésion temporaire"
+  },
+  "You sent an invite to join {guild}": {
+    "tr": "{guild} sunucusuna katılmak için bir davet gönderdin",
+    "ru": "Вы отправили приглашение на сервер {guild}",
+    "es": "Enviaste una invitación para unirse a {guild}",
+    "fr": "Tu as envoyé une invitation à rejoindre {guild}"
+  },
+  "{user} invited you to {guild}": {
+    "tr": "{user} seni {guild} sunucusuna davet etti",
+    "ru": "{user} приглашает вас на сервер {guild}",
+    "es": "{user} te invitó a {guild}",
+    "fr": "{user} t'a invité à rejoindre {guild}"
+  },
+  "This invite will not expire": {
+    "tr": "Bu davetin süresi dolmayacak",
+    "ru": "Срок действия этого приглашения не истечёт",
+    "es": "Esta invitación no caducará",
+    "fr": "Cette invitation n'expirera pas"
+  },
+  "This invite will expire {time}": {
+    "tr": "Bu davetin süresi {time} dolacak",
+    "ru": "Срок действия этого приглашения истечёт {time}",
+    "es": "Esta invitación caducará {time}",
+    "fr": "Cette invitation expirera {time}"
+  },
+  "This server can't be previewed": {
+    "tr": "Bu sunucu önizlenemiyor",
+    "ru": "Этот сервер нельзя просмотреть заранее",
+    "es": "No se puede previsualizar este servidor",
+    "fr": "Ce serveur ne peut pas être prévisualisé"
+  },
+  "Pause Invites": {
+    "tr": "Davetleri duraklat",
+    "ru": "Приостановить приглашения",
+    "es": "Pausar invitaciones",
+    "fr": "Suspendre les invitations"
+  },
+  "Couldn't load the server's invite settings: {error}": {
+    "tr": "Sunucunun davet ayarları yüklenemedi: {error}",
+    "ru": "Не удалось загрузить настройки приглашений сервера: {error}",
+    "es": "No se pudo cargar la configuración de invitaciones del servidor: {error}",
+    "fr": "Impossible de charger les paramètres d'invitation du serveur : {error}"
+  },
+  "Invites are paused": {
+    "tr": "Davetler duraklatıldı",
+    "ru": "Приглашения приостановлены",
+    "es": "Las invitaciones están pausadas",
+    "fr": "Les invitations sont suspendues"
+  },
+  "Nobody can join {server} with an invite right now. Resume invites?": {
+    "tr": "Şu anda kimse {server} sunucusuna davetle katılamaz. Davetler devam ettirilsin mi?",
+    "ru": "Сейчас никто не может присоединиться к {server} по приглашению. Возобновить приглашения?",
+    "es": "Ahora mismo nadie puede unirse a {server} con una invitación. ¿Reanudar las invitaciones?",
+    "fr": "Personne ne peut rejoindre {server} avec une invitation pour le moment. Réactiver les invitations ?"
+  },
+  "Resume Invites": {
+    "tr": "Davetleri devam ettir",
+    "ru": "Возобновить приглашения",
+    "es": "Reanudar invitaciones",
+    "fr": "Réactiver les invitations"
+  },
+  "Pause invites to {server} indefinitely? Nobody will be able to join with an invite until you resume them here.": {
+    "tr": "{server} sunucusunun davetleri süresiz olarak duraklatılsın mı? Buradan devam ettirene kadar kimse davetle katılamayacak.",
+    "ru": "Приостановить приглашения на {server} бессрочно? Никто не сможет присоединиться по приглашению, пока вы не возобновите их здесь.",
+    "es": "¿Pausar las invitaciones a {server} indefinidamente? Nadie podrá unirse con una invitación hasta que las reanudes aquí.",
+    "fr": "Suspendre les invitations vers {server} indéfiniment ? Personne ne pourra rejoindre avec une invitation tant que tu ne les auras pas réactivées ici."
+  },
+  "Pause Indefinitely.": {
+    "tr": "Süresiz Durdur.",
+    "ru": "Приостановить бессрочно.",
+    "es": "Pausar indefinidamente.",
+    "fr": "Mettre en pause indéfiniment."
+  },
+  "Invites paused": {
+    "tr": "Davetler duraklatıldı",
+    "ru": "Приглашения приостановлены",
+    "es": "Invitaciones pausadas",
+    "fr": "Invitations suspendues"
+  },
+  "Invites resumed": {
+    "tr": "Davetler devam ettirildi",
+    "ru": "Приглашения возобновлены",
+    "es": "Invitaciones reanudadas",
+    "fr": "Invitations réactivées"
+  },
+  "Couldn't change the server's invites: {error}": {
+    "tr": "Sunucunun davetleri değiştirilemedi: {error}",
+    "ru": "Не удалось изменить приглашения сервера: {error}",
+    "es": "No se pudieron cambiar las invitaciones del servidor: {error}",
+    "fr": "Impossible de modifier les invitations du serveur : {error}"
+  },
+  "Wallpaper opacity": {
+    "tr": "Duvar kağıdı opaklığı",
+    "ru": "Непрозрачность обоев",
+    "es": "Opacidad del fondo",
+    "fr": "Opacité du fond d'écran"
+  },
+  "0 is invisible, 100 is fully visible": {
+    "tr": "0 görünmez, 100 tamamen görünür",
+    "ru": "0 — невидимо, 100 — полностью видно",
+    "es": "0 es invisible, 100 es totalmente visible",
+    "fr": "0 est invisible, 100 est entièrement visible"
+  },
+  "Default wallpaper": {
+    "tr": "Varsayılan duvar kağıdı",
+    "ru": "Обои по умолчанию",
+    "es": "Fondo predeterminado",
+    "fr": "Fond d'écran par défaut"
+  },
+  "Default wallpaper URL (for channels without a custom one). Empty = none.": {
+    "tr": "Varsayılan duvar kağıdı bağlantısı (özel olmayan kanallar için). Boş = yok.",
+    "ru": "Ссылка на обои по умолчанию (для каналов без своих). Пусто — нет.",
+    "es": "URL del fondo por defecto (canales sin uno propio). Vacío = ninguno.",
+    "fr": "URL du fond par défaut (salons sans fond perso). Vide = aucun."
+  },
+  "Remove all wallpapers": {
+    "tr": "Tüm duvar kağıtlarını kaldır",
+    "ru": "Удалить все обои",
+    "es": "Quitar todos los fondos",
+    "fr": "Supprimer tous les fonds d'écran"
+  },
+  "Remove the wallpaper of every channel": {
+    "tr": "Her kanalın duvar kağıdını kaldır",
+    "ru": "Удалить обои всех каналов",
+    "es": "Quitar el fondo de todos los canales",
+    "fr": "Supprimer le fond d'écran de chaque salon"
+  },
+  "Wallpapers removed": {
+    "tr": "Duvar kağıtları kaldırıldı",
+    "ru": "Обои удалены",
+    "es": "Fondos quitados",
+    "fr": "Fonds d'écran supprimés"
+  },
+  "Set Wallpaper": {
+    "tr": "Duvar kağıdı ayarla",
+    "ru": "Установить обои",
+    "es": "Establecer fondo",
+    "fr": "Définir un fond d'écran"
+  },
+  "Remove Wallpaper": {
+    "tr": "Duvar kağıdını kaldır",
+    "ru": "Удалить обои",
+    "es": "Quitar fondo",
+    "fr": "Supprimer le fond d'écran"
+  },
+  "Wallpaper deleted": {
+    "tr": "Duvar kâğıdı silindi",
+    "ru": "Обои удалены",
+    "es": "Fondo eliminado",
+    "fr": "Fond d'écran supprimé"
+  },
+  "Wallpaper": {
+    "tr": "Duvar Kağıdı",
+    "ru": "Обои",
+    "es": "Fondo de pantalla",
+    "fr": "Fond d'écran"
+  },
+  "Enter the URL of an image:": {
+    "tr": "Bir görselin URL'sini gir:",
+    "ru": "Введите URL изображения:",
+    "es": "Introduce la URL de una imagen:",
+    "fr": "Saisis l'URL d'une image :"
+  },
+  "Enter a link starting with https://": {
+    "tr": "https:// ile başlayan bir bağlantı gir",
+    "ru": "Введите ссылку, начинающуюся с https://",
+    "es": "Introduce un enlace que empiece por https://",
+    "fr": "Saisis un lien commençant par https://"
+  },
+  "Couldn't load the wallpaper": {
+    "tr": "Duvar kağıdı yüklenemedi",
+    "ru": "Не удалось загрузить обои",
+    "es": "No se pudo cargar el fondo",
+    "fr": "Impossible de charger le fond d'écran"
+  }
+}

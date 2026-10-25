@@ -1,0 +1,35 @@
+# Batch 12: servers and channels (part 2)
+
+Typing indicators, invites, search and a few server list and channel tweaks. These plugins reuse batch 11's shared
+hooks in `com.endcord.plugins.guildscommon` (`ChannelListHooks` for channel and DM rows, `GuildMenuActions` for the
+server long-press menu) and add a few of their own in `com.endcord.plugins.guildsbcommon`:
+
+* **`TypingState`** is one subscription to Discord's typing store (`StoreUserTyping`) for every channel at once. It
+  leaves out your own typing and drops users 10 seconds after their last typing event, like the app does. HomeTyping,
+  ShowTypingUsers and TypingIndicator all read it, and none of them patch the store or the gateway. SilentTyping
+  (which hides your own typing) and TypingTweaks (which styles the "is typing" bar) work on other code paths and
+  don't conflict with these.
+* **`ThreadRowHooks`** decorates thread rows of the channel list, which `ChannelListHooks` doesn't cover.
+* **`TypingDotsDrawable`** draws small animated typing dots after a channel name. NoTypingAnimation stops them.
+
+| Plugin | Status | Notes |
+| --- | --- | --- |
+| InviteDefaults | Ported | The invite sheet starts with your chosen duration, use count and temporary membership. The legacy app resets invite settings to its own defaults whenever you open a server, so that reset uses your defaults instead. The sheets only offer 1, 10 and 100 uses, so 5, 25 and 50 are added as on PC. Changes made in the sheet last until you open another server, like Discord's own. |
+| PauseInvitesForever | Partial | The legacy app has no "pause invites" option at all, and its server model drops the `INVITES_DISABLED` feature. "Pause Invites" in the server long-press menu (shown if you have Manage Server) loads the server's features and then offers to pause invites indefinitely, with the same request PC sends, or to resume them if they're already paused. PC adds the link to Discord's pause-invites sheet instead, which doesn't exist on the legacy app. |
+| BetterInvites | Partial | In invite embeds the header names the sender ("Alice invited you to Server", or "You sent an invite to join Server"), and tapping it opens their profile. A second line says when the invite expires. The legacy invite model drops `expires_at`, so it's fetched once per invite code in the background and cached. Tapping the server name of a discoverable server you aren't in opens a preview (lurking), as on PC. The header shows no avatar, and the expiry is plain text instead of PC's tooltip. |
+| OverrideForumDefaults | Not applicable | The legacy forum browser has a single list layout and one fixed sort order, and its channel model doesn't have Discord's default layout and sort order fields, so there is no default to override. |
+| ChannelWallpaper | Partial | "Set Wallpaper" / "Remove Wallpaper" in the channel and DM long-press sheet. You enter an image URL and the image is drawn centre-cropped behind the chat at the configured opacity (0 to 100, default 30). Also has a default wallpaper URL for channels without one, and "Remove all wallpapers". Images are downloaded in the background and kept in memory. Not ported: videos and animated GIFs (only the first frame shows), blur, uploading a file (PC uploads to Imgur), and syncing wallpapers with friends through hidden DM messages or a VPS. |
+| StopAutoUnread | Not applicable | The legacy app never raises a channel's notification setting to "All Messages" on its own. It has no `maybeAutoUpgradeChannel` logic. |
+| KeepCurrentChannel | Not applicable | The legacy app already saves the channel you had open in each server and reopens it after a restart, and it has no account switching. |
+| HomeTyping | Ported | While someone is typing in one of your DMs or group chats, the home button above the server list shows Discord's own typing dots instead of the Discord logo. It updates in place as typing starts and stops. |
+| ShowTypingUsers | Partial | While others are typing in the open channel, a small "2 typing" badge appears after the channel name in the chat header. Long-press the header to see who ("Alice, Bob are typing…"), since mobile has no hover tooltip. Names use server nicknames, then display names. A very long channel name can push the badge out of view. |
+| TypingIndicator | Partial | Animated typing dots after the name of every text channel, thread and DM someone is typing in, updated in place without rebuilding the list. Same settings as PC: current channel (on), muted channels (off) and blocked users (off), plus "Include direct messages" (on). PC's avatar mode and the names tooltip aren't ported, so only the dots show. |
+| NoTypingAnimation | Ported | Discord's typing dots (the "is typing" bar above the chat input and HomeTyping's dots) no longer start their looping animation and are drawn still. TypingIndicator's dots stop too. |
+| NoPendingCount | Partial | Hides the incoming friend request count on the Friends tab of the bottom bar ("Hide incoming friend requests count", on by default). The legacy app has no message requests or Nitro offer counts, so those two settings are gone. The badge changes the next time the bar updates. |
+| 1FA | Ported | The warning that asks moderators to enable two-factor authentication is a row at the top of the channel list on Android. It's removed from the list. |
+| AdvancedPermissions | Not applicable | The legacy app has no simplified permissions card: channel permissions always open the role and member list, which is the advanced view. |
+| SharePerms | Skipped | It runs moderation commands (ban, kick, timeout, roles, voice moves) automatically when other users send messages with a prefix. That turns your account into a bot (self-bot) acting on other people's messages, which breaks Discord's Terms of Service and can get your account banned. |
+| FullSearchContext | Partial | In search results, the legacy app jumps to the message on both tap and long-press. Long-press now opens the full message sheet like in chat (reply, react, copy, pin, edit, delete and every plugin's message actions). Tap still jumps. The sheet normally only finds messages loaded in chat, so it's given the message from the search results. PC's extra "Copy Author ID" entry isn't added. |
+| SearchFix | Not applicable | The legacy app loads more search results with `max_id` (messages older than the last result) instead of an offset, so Discord's 5000-offset limit behind "We dropped the magnifying glass!" doesn't apply. |
+| FrequentQuickSwitcher | Partial | When you type in the quick switcher (the search button above the channel list), results are filtered to the channels Discord's own frecency tracker counts as your most used, most used first, at most 20, like PC. Unlike PC, if none of your frequent channels match, Discord's normal results stay so the search isn't empty, and `@` user and `*` server searches aren't changed. DMs match by the name the switcher shows. The empty switcher already lists your recent and frequent channels. |
+| BetterForwards | Not applicable | The legacy app has no message forwarding, so there is no forward dialog to improve. |
