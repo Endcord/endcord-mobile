@@ -11,7 +11,7 @@ import com.aliucord.i18n.I18n
 import com.discord.stores.StoreStream
 import com.endcord.plugins.composercommon.ComposerPlugin
 import com.endcord.plugins.composercommon.ComposerUtils
-import com.endcord.plugins.composercommon.OutgoingMessages
+import com.endcord.plugins.api.OutgoingMessages
 import java.util.regex.Pattern
 
 /**

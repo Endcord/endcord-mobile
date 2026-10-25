@@ -15,7 +15,7 @@ import com.discord.stores.StoreStream
 import com.discord.widgets.chat.MessageManager
 import com.endcord.plugins.composercommon.ComposerPlugin
 import com.endcord.plugins.composercommon.ComposerUtils
-import com.endcord.plugins.composercommon.OutgoingMessages
+import com.endcord.plugins.api.OutgoingMessages
 
 internal class SplitLargeMessages : ComposerPlugin(
     name = "SplitLargeMessages",

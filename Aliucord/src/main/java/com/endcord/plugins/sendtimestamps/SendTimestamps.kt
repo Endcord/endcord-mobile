@@ -15,7 +15,7 @@ import com.aliucord.entities.PluginSetting
 import com.aliucord.i18n.I18n
 import com.endcord.plugins.composercommon.ChatInput
 import com.endcord.plugins.composercommon.ComposerPlugin
-import com.endcord.plugins.composercommon.OutgoingMessages
+import com.endcord.plugins.api.OutgoingMessages
 import java.util.Calendar
 import java.util.Date
 import java.util.regex.Pattern

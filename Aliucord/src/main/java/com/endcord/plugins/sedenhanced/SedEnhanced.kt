@@ -14,8 +14,8 @@ import com.discord.stores.StoreStream
 import com.discord.widgets.chat.MessageManager
 import com.endcord.plugins.composercommon.ComposerPlugin
 import com.endcord.plugins.composercommon.ComposerUtils
-import com.endcord.plugins.composercommon.OutgoingMessage
-import com.endcord.plugins.composercommon.OutgoingMessages
+import com.endcord.plugins.api.OutgoingMessage
+import com.endcord.plugins.api.OutgoingMessages
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 

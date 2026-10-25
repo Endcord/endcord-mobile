@@ -24,7 +24,7 @@ import com.discord.stores.StoreStream
 import com.endcord.plugins.composercommon.ChatInputs
 import com.endcord.plugins.composercommon.ComposerPlugin
 import com.endcord.plugins.composercommon.ComposerUtils
-import com.endcord.plugins.composercommon.OutgoingMessages
+import com.endcord.plugins.api.OutgoingMessages
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.Calendar

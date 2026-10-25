@@ -10,7 +10,7 @@ import com.aliucord.i18n.I18n
 import com.aliucord.settings.EndcordPluginSettingsPage
 import com.endcord.plugins.api.ChatHooks
 import com.endcord.plugins.api.MessageActions
-import com.endcord.plugins.api.SendHooks
+import com.endcord.plugins.api.OutgoingMessages
 
 /**
  * Base class of the plugins that ship built into Endcord, ported from Endcord PC.
@@ -73,7 +73,7 @@ internal abstract class EndcordPlugin(
         commands.unregisterAll()
         MessageActions.unregisterAll(name)
         ChatHooks.unregisterAll(name)
-        SendHooks.unregisterAll(name)
+        OutgoingMessages.unregisterAll(name)
     }
 
     private fun schemaEntry(key: String): PluginSetting? = settingsSchema.firstOrNull { it.key == key }

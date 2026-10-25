@@ -3,7 +3,7 @@
  * Licensed under the Open Software License version 3.0
  */
 
-package com.endcord.plugins.composercommon
+package com.endcord.plugins.api
 
 import android.content.Context
 import com.aliucord.Logger

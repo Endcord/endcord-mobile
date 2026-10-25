@@ -7,6 +7,8 @@ package com.endcord.plugins.composercommon
 
 import android.content.Context
 import com.aliucord.entities.EndcordPlugin
+import com.endcord.plugins.api.OutgoingMessage
+import com.endcord.plugins.api.OutgoingMessages
 
 /**
  * Base of the plugins that act on the message the user is about to send. Removes the plugin's

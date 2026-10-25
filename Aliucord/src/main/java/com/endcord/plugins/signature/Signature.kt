@@ -12,7 +12,7 @@ import com.aliucord.entities.PluginSetting
 import com.aliucord.i18n.I18n
 import com.discord.api.commands.ApplicationCommandType
 import com.endcord.plugins.composercommon.ComposerPlugin
-import com.endcord.plugins.composercommon.OutgoingMessages
+import com.endcord.plugins.api.OutgoingMessages
 
 internal class Signature : ComposerPlugin(
     name = "Signature",

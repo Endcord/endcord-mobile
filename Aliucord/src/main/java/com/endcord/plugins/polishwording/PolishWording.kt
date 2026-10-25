@@ -8,7 +8,7 @@ package com.endcord.plugins.polishwording
 import android.content.Context
 import com.aliucord.entities.PluginSetting
 import com.endcord.plugins.composercommon.ComposerPlugin
-import com.endcord.plugins.composercommon.OutgoingMessages
+import com.endcord.plugins.api.OutgoingMessages
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 

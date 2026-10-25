@@ -9,7 +9,7 @@ import android.content.Context
 import com.aliucord.entities.PluginSetting
 import com.endcord.plugins.composercommon.ComposerPlugin
 import com.endcord.plugins.composercommon.ComposerUtils
-import com.endcord.plugins.composercommon.OutgoingMessages
+import com.endcord.plugins.api.OutgoingMessages
 
 internal class MessageBurst : ComposerPlugin(
     name = "MessageBurst",

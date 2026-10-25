@@ -11,6 +11,7 @@ import com.discord.widgets.chat.list.entries.MessageEntry
 import com.endcord.plugins.api.ChatDecorator
 import com.endcord.plugins.api.ChatHooks
 import com.endcord.plugins.messagesbcommon.CodeBlocks
+import com.endcord.plugins.api.OutgoingMessages
 import com.endcord.plugins.api.SendHooks
 import java.util.regex.Pattern
 
@@ -66,7 +67,7 @@ internal class Unindent : EndcordPlugin(
 
     override fun start(context: Context) {
         ChatHooks.register(decorator)
-        SendHooks.register(name, onEdit = true, transform = ::unindentMessage)
+        SendHooks.register(name, onEdit = true, priority = OutgoingMessages.Priority.SANITIZE, transform = ::unindentMessage)
     }
 
     override fun stop(context: Context) {

@@ -15,8 +15,8 @@ import com.discord.widgets.chat.MessageManager
 import com.endcord.plugins.composercommon.ChatInputs
 import com.endcord.plugins.composercommon.ComposerPlugin
 import com.endcord.plugins.composercommon.ComposerUtils
-import com.endcord.plugins.composercommon.OutgoingMessage
-import com.endcord.plugins.composercommon.OutgoingMessages
+import com.endcord.plugins.api.OutgoingMessage
+import com.endcord.plugins.api.OutgoingMessages
 
 /**
  * The legacy app predates `@silent` and can't add message flags to what it sends, so silent messages are sent

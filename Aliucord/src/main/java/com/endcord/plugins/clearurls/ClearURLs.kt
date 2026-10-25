@@ -9,7 +9,7 @@ import android.content.Context
 import com.aliucord.Http
 import com.aliucord.Utils
 import com.endcord.plugins.composercommon.ComposerPlugin
-import com.endcord.plugins.composercommon.OutgoingMessages
+import com.endcord.plugins.api.OutgoingMessages
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File

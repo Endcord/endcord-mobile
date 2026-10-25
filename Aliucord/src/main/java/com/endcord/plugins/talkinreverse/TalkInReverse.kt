@@ -9,7 +9,7 @@ import android.content.Context
 import com.aliucord.Utils
 import com.aliucord.i18n.I18n
 import com.endcord.plugins.composercommon.ComposerPlugin
-import com.endcord.plugins.composercommon.OutgoingMessages
+import com.endcord.plugins.api.OutgoingMessages
 
 internal class TalkInReverse : ComposerPlugin(
     name = "TalkInReverse",

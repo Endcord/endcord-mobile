@@ -16,7 +16,7 @@ import com.aliucord.entities.PluginSetting
 import com.aliucord.i18n.I18n
 import com.aliucord.utils.DimenUtils
 import com.endcord.plugins.composercommon.ComposerPlugin
-import com.endcord.plugins.composercommon.OutgoingMessages
+import com.endcord.plugins.api.OutgoingMessages
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 

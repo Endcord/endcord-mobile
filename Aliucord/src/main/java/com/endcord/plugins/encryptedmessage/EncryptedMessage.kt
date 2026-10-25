@@ -13,7 +13,7 @@ import com.aliucord.entities.PluginSetting
 import com.aliucord.i18n.I18n
 import com.endcord.plugins.api.MessageActions
 import com.endcord.plugins.composercommon.ComposerPlugin
-import com.endcord.plugins.composercommon.OutgoingMessages
+import com.endcord.plugins.api.OutgoingMessages
 import com.lytefast.flexinput.R
 import java.nio.ByteBuffer
 import java.nio.charset.CodingErrorAction

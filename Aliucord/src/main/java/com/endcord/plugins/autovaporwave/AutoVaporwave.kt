@@ -7,7 +7,7 @@ package com.endcord.plugins.autovaporwave
 
 import android.content.Context
 import com.endcord.plugins.composercommon.ComposerPlugin
-import com.endcord.plugins.composercommon.OutgoingMessages
+import com.endcord.plugins.api.OutgoingMessages
 
 internal class AutoVaporwave : ComposerPlugin(
     name = "AutoVaporwave",
