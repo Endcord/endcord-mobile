@@ -9,6 +9,7 @@ import android.content.Context
 import com.aliucord.api.CommandsAPI
 import com.aliucord.api.CommandsAPI.CommandResult
 import com.aliucord.entities.EndcordPlugin
+import java.util.regex.Pattern
 
 internal class ClapText : EndcordPlugin(
     name = "ClapText",
@@ -17,11 +18,11 @@ internal class ClapText : EndcordPlugin(
 ) {
     override val tags = listOf("fun", "commands")
 
-    private val whitespace = Regex("\\s+")
+    private val whitespace = Pattern.compile("\\s+")
 
     override fun start(context: Context) {
         commands.registerCommand("clap", "Put 👏 claps 👏 between 👏 words", CommandsAPI.requiredMessageOption) { ctx ->
-            val words = ctx.getRequiredString("message").split(whitespace).filter { it.isNotEmpty() }
+            val words = whitespace.split(ctx.getRequiredString("message")).filter { it.isNotEmpty() }
             CommandResult(words.joinToString(" 👏 "), null, true)
         }
     }

@@ -11,6 +11,7 @@ import com.aliucord.api.CommandsAPI.CommandResult
 import com.aliucord.entities.EndcordPlugin
 import com.aliucord.i18n.tr
 import java.math.BigDecimal
+import java.util.regex.Pattern
 import kotlin.math.abs
 
 internal class Calculator : EndcordPlugin(
@@ -21,7 +22,7 @@ internal class Calculator : EndcordPlugin(
     override val tags = listOf("utility", "commands")
 
     // Same whitelist as Endcord PC. Spelled out instead of \d and \s, which match non-ASCII characters on Android.
-    private val allowed = Regex("^[0-9 \\t\\n\\r+\\-*/().%]+$")
+    private val allowed = Pattern.compile("^[0-9 \\t\\n\\r+\\-*/().%]+$")
 
     override fun start(context: Context) {
         commands.registerCommand(
@@ -30,7 +31,7 @@ internal class Calculator : EndcordPlugin(
             CommandsAPI.requiredMessageOption,
         ) { ctx ->
             val expr = ctx.getRequiredString("message")
-            if (!allowed.matches(expr)) {
+            if (!allowed.matcher(expr).matches()) {
                 return@registerCommand CommandResult(tr("Only numbers and + - * / % ( ) are allowed."), null, false)
             }
             val result = try {

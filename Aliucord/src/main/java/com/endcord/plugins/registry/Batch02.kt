@@ -6,28 +6,48 @@
 package com.endcord.plugins.registry
 
 import com.aliucord.entities.EndcordPlugin
+import com.endcord.plugins.atsomeone.AtSomeone
 import com.endcord.plugins.avatargrabber.AvatarGrabber
 import com.endcord.plugins.boldtext.BoldText
 import com.endcord.plugins.calculator.Calculator
 import com.endcord.plugins.claptext.ClapText
+import com.endcord.plugins.customcommands.CustomCommands
+import com.endcord.plugins.decodebase64.DecodeBase64
+import com.endcord.plugins.friendinvites.FriendInvites
 import com.endcord.plugins.googlethat.GoogleThat
+import com.endcord.plugins.inrole.InRole
 import com.endcord.plugins.leettext.LeetText
+import com.endcord.plugins.morecommands.MoreCommands
+import com.endcord.plugins.petpet.Petpet
+import com.endcord.plugins.remindme.RemindMe
 import com.endcord.plugins.shipcalc.ShipCalc
 import com.endcord.plugins.spaceout.SpaceOut
+import com.endcord.plugins.spotifysharecommands.SpotifyShareCommands
 import com.endcord.plugins.starify.Starify
+import com.endcord.plugins.unitconverter.UnitConverter
 import com.endcord.plugins.vibecheck.VibeCheck
 import com.endcord.plugins.wikilookup.WikiLookup
 
 internal fun batch02(): List<EndcordPlugin> = listOf(
+    AtSomeone(),
     AvatarGrabber(),
     BoldText(),
     Calculator(),
     ClapText(),
+    CustomCommands(),
+    DecodeBase64(),
+    FriendInvites(),
     GoogleThat(),
+    InRole(),
     LeetText(),
+    MoreCommands(),
+    Petpet(),
+    RemindMe(),
     ShipCalc(),
     SpaceOut(),
+    SpotifyShareCommands(),
     Starify(),
+    UnitConverter(),
     VibeCheck(),
     WikiLookup(),
 )

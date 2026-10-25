@@ -5,13 +5,15 @@
 
 package com.endcord.plugins.morecommands
 
+import com.endcord.plugins.commandscommon.Patterns
+import java.util.regex.Pattern
 import kotlin.random.Random
 
 /** The text transformations behind /uwuify, /mock, /freaky and /morse, matching Endcord PC's output. */
 internal object TextFx {
-    private val tokens = Regex("\\S+|\\s+")
-    private val nBeforeVowel = Regex("n(?=[aeo])")
-    private val lOrR = Regex("[lr]")
+    private val tokens = Pattern.compile("\\S+|\\s+")
+    private val nBeforeVowel = Pattern.compile("n(?=[aeo])")
+    private val lOrR = Pattern.compile("[lr]")
 
     private val endings = arrayOf(
         "rawr x3", "OwO", "UwU", "o.O", "-.-", ">w<", "(⑅˘꒳˘)", "(ꈍᴗꈍ)", "(˘ω˘)", "(U ᵕ U❁)", "σωσ", "òωó",
@@ -28,17 +30,16 @@ internal object TextFx {
         "what" to "nani",
         "meow" to "nya",
         "hello" to "hewwo",
-    ).map { (from, to) -> Regex("\\b$from\\b", RegexOption.IGNORE_CASE) to to }
+    ).map { (from, to) -> Pattern.compile("\\b$from\\b", Pattern.CASE_INSENSITIVE) to to }
 
     fun uwuify(message: String): String {
         val sb = StringBuilder(message.length + 16)
-        for (match in tokens.findAll(message)) {
-            val word = match.value
+        for (word in Patterns.findAll(tokens, message)) {
             if (isOneCharacterString(word) || word.startsWith("https://")) {
                 sb.append(word)
                 continue
             }
-            sb.append(replaceWords(word) ?: word.replace(nBeforeVowel, "ny").replace(lOrR, "w"))
+            sb.append(replaceWords(word) ?: lOrR.matcher(nBeforeVowel.matcher(word).replaceAll("ny")).replaceAll("w"))
         }
         if (sb.isEmpty()) return ""
         return sb.append(' ').append(endings.random()).toString()
@@ -50,9 +51,10 @@ internal object TextFx {
     private fun replaceWords(word: String): String? {
         var result = word
         var replaced = false
-        for ((regex, to) in replacements) {
-            if (regex.containsMatchIn(result)) {
-                result = regex.replace(result, to)
+        for ((pattern, to) in replacements) {
+            val matcher = pattern.matcher(result)
+            if (matcher.find()) {
+                result = matcher.replaceAll(to)
                 replaced = true
             }
         }
@@ -91,9 +93,9 @@ internal object TextFx {
         ' ' to "/",
     )
     private val fromMorseMap = morse.entries.associate { (k, v) -> v to k }
-    private val morseOnly = Regex("^[.\\-/ ]+$")
+    private val morseOnly = Pattern.compile("^[.\\-/ ]+$")
 
-    fun isMorse(text: String) = morseOnly.matches(text)
+    fun isMorse(text: String) = morseOnly.matcher(text).matches()
 
     fun toMorse(text: String) = text.uppercase().map { morse[it] ?: "" }.joinToString(" ")
 
