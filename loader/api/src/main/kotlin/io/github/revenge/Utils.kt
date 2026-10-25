@@ -47,7 +47,7 @@ class Logger(@PublishedApi internal val namespace: String?) {
     fun e(msg: String, t: Throwable? = null) = Log.e(TAG, fmt(msg), t)
 
     companion object {
-        const val TAG = "RevengeXposed"
+        const val TAG = "EndcordXposed"
     }
 }
 

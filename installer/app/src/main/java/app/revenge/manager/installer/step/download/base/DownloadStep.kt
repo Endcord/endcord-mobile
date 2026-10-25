@@ -5,6 +5,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import app.revenge.manager.BuildConfig
 import app.revenge.manager.R
 import app.revenge.manager.domain.manager.DownloadManager
 import app.revenge.manager.domain.manager.DownloadResult
@@ -131,13 +132,20 @@ abstract class DownloadStep : Step() {
 
         runner.logger.i("$fileName was not properly cached, downloading now")
 
+        val devMirror = BuildConfig.DEV_MIRROR_URL.takeIf { it.isNotEmpty() }
         var downloadUrl = if (downloadMirrorUrlPath != null) {
-            preferenceManager.mirror.baseUrl + downloadMirrorUrlPath
+            (devMirror ?: preferenceManager.mirror.baseUrl) + downloadMirrorUrlPath
         } else {
             downloadFullUrl
         }
 
         var successfulDownload = download(downloadUrl!!, destination, runner)
+
+        // A development mirror that doesn't have the file falls through to the public mirrors
+        if (!successfulDownload && devMirror != null && downloadMirrorUrlPath != null) {
+            downloadUrl = preferenceManager.mirror.baseUrl + downloadMirrorUrlPath
+            successfulDownload = download(downloadUrl, destination, runner)
+        }
 
         // If the current mirror fails, try other mirrors
         if (!successfulDownload && downloadMirrorUrlPath != null) {

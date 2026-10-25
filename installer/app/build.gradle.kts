@@ -33,6 +33,9 @@ android {
             .orElse("https://raw.githubusercontent.com/rootpoii/endcord-android/builds/endcord-xposed.apk")
             .get()
         buildConfigField("String", "LOADER_URL", "\"$loaderUrl\"")
+        // A tracker mirror to try before the public ones, e.g. -Pendcord.mirrorUrl=http://10.0.2.2:4040 for a copy of
+        // the Discord APKs served from the developer's machine. Empty in normal builds.
+        buildConfigField("String", "DEV_MIRROR_URL", "\"${providers.gradleProperty("endcord.mirrorUrl").orElse("").get()}\"")
         buildConfigField("int", "MODDED_APP_ICON", "0xFF10182A") // Endcord night blue
         buildConfigField("int", "MODDED_APP_ICON_ALPHA", "0xFF3D74E0") // cobalt (beta)
         buildConfigField("int", "MODDED_APP_ICON_OTHER", "0xFF9CCBFF") // ice (alpha)

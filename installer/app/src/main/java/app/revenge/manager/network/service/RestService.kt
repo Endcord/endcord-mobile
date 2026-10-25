@@ -1,5 +1,6 @@
 package app.revenge.manager.network.service
 
+import app.revenge.manager.BuildConfig
 import app.revenge.manager.domain.manager.PreferenceManager
 import app.revenge.manager.network.dto.BuildInfo
 import app.revenge.manager.network.dto.Commit
@@ -23,7 +24,7 @@ class RestService(
 
     suspend fun getLatestDiscordVersions() = withContext(Dispatchers.IO) {
         httpService.request<Index> {
-            url("${prefs.mirror.baseUrl}/tracker/index")
+            url("${BuildConfig.DEV_MIRROR_URL.ifEmpty { prefs.mirror.baseUrl }}/tracker/index")
         }
     }
 
