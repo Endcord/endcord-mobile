@@ -16,6 +16,7 @@ import com.aliucord.entities.PluginSetting
 import com.aliucord.i18n.I18n
 import com.aliucord.patcher.after
 import com.aliucord.utils.DimenUtils.dp
+import com.discord.stores.StoreStream
 import com.discord.utilities.icon.IconUtils
 import com.endcord.plugins.api.UserSheetActions
 import com.endcord.plugins.commandscommon.Net
@@ -99,8 +100,12 @@ internal class UserPFP : EndcordPlugin(
         ) { param ->
             try {
                 if (!bool("overrideServerAvatars")) return@after
-                val url = customAvatar(param.args[2] as Long, param.args[4] as Boolean) ?: return@after
-                param.result = url
+                val userId = param.args[2] as Long
+                val animated = param.args[4] as Boolean
+                // Like Endcord PC: the custom avatar, or else the user's own avatar instead of the server one
+                param.result = customAvatar(userId, animated)
+                    ?: StoreStream.getUsers().users[userId]?.let { IconUtils.getForUser(it, animated, param.args[3] as Int?) }
+                    ?: return@after
             } catch (e: Throwable) {
                 this@UserPFP.logger.error("Failed to swap a server avatar", e)
             }

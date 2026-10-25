@@ -7,6 +7,7 @@ package com.endcord.plugins.messagelogger
 
 import android.content.Context
 import android.content.res.ColorStateList
+import android.graphics.drawable.ColorDrawable
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
 import android.graphics.Paint
@@ -360,8 +361,9 @@ internal class MessageLogger : EndcordPlugin(
                 val view = itemView
 
                 if (deleted && choice("deleteStyle") == "overlay") {
-                    // Same tint as Endcord PC: red at 15%
-                    view.setBackgroundColor(0x26F04747)
+                    // Same tint as Endcord PC: red at 15%. A new drawable, because setBackgroundColor would recolour
+                    // the holder's own blocked-message background in place and keep it red for later rows.
+                    view.background = ColorDrawable(0x26F04747)
                 }
 
                 val grey = deleted && (entry is AttachmentEntry || entry is EmbedEntry || entry is StickerEntry)

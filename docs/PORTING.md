@@ -59,7 +59,7 @@ Then add `SilentTyping()` to your batch file in `registry/`.
 ### Settings
 
 Declare settings in `settingsSchema` and a settings page is generated automatically. Available entries:
-`Switch`, `Text` (use `multiline = true` for lists), `Number` (with `min`/`max`), `Choice`, `Action`.
+`Switch`, `Text` (use `multiline = true` for lists, `secret = true` for API keys: those are kept in the app's private storage instead of /sdcard and left out of backups), `Number` (with `min`/`max`), `Choice`, `Action`.
 Read values with `bool(key)`, `string(key)`, `int(key)`, `choice(key)` and `list(key)` (comma or newline
 separated text). Values are read on every call, so read them where you need them instead of caching them in
 `start()`, and changes apply immediately. Override `onSettingChanged(key)` if a change has to be re-applied
@@ -173,6 +173,21 @@ that doesn't exist fails at runtime, not at compile time.
   (`Field`/`Method` in `lazy` or companion vals), never allocate heavy objects per bind, and bail out early.
 * Hooks must never take the chat down: catch exceptions in anything that runs while rendering and log them
   with `logger.error(...)`.
+
+Lessons from the pre-release review:
+
+* Several Discord API calls in a row go through `translatecommon.Rest.call`, which waits out 429s; a plain
+  `Http.Request` fails on the first rate limit and leaves half-done work (placeholders, lost messages).
+* A dialog shown after a network request uses `commandscommon.Dialogs` (or checks `isFinishing || isDestroyed`
+  itself): the activity is recreated on rotation and theme changes, and `show()` on the old one crashes.
+* Discord's model fields are often null where the Kotlin type says otherwise (`Channel.name` in DMs is one; the
+  `ChannelWrapper.name` wrapper returns `""` for it). Treat raw getters as nullable.
+* Discord's models are data classes: two different rows can be `equals`. Tell your own objects apart by
+  identity or an id, never by putting Discord objects in a `HashSet`.
+* A `WeakHashMap` whose value references its key (views → fragment, listeners capturing a view model) never
+  drops the entry. Remove entries in the matching lifecycle hook (`onDestroyView`) or hold the value weakly.
+* Anything polled (presence, now playing) must compare what it would send with what it sent last, minus
+  timestamps, so nothing is resent when nothing changed.
 
 ## Quality bar
 

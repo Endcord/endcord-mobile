@@ -120,6 +120,8 @@ internal class Translate : EndcordPlugin(
     private var rateLimitedUntil = 0L
 
     override fun start(context: Context) {
+        // shutdownNow in stop drops queued tasks without running their cleanup, so start from a clean slate
+        clearCache()
         executor = Executors.newFixedThreadPool(2)
 
         MessageActions.register(name, "Translate", R.e.ic_locale_24dp, visible = { ctx ->
@@ -180,6 +182,7 @@ internal class Translate : EndcordPlugin(
         synchronized(cache) { cache.clear() }
         shown.clear()
         hidden.clear()
+        pending.clear()
     }
 
     private fun cached(id: Long): Translation? = synchronized(cache) { cache[id] }

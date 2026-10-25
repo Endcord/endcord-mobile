@@ -51,7 +51,9 @@ internal object PresenceHub {
             if (activities.isEmpty()) {
                 if (provided.remove(owner) == null) return
             } else {
-                if (provided[owner] == activities) return
+                // Activities.create stamps createdAt with the current time and Activity.equals compares it, so a
+                // poll that rebuilds the same activity would otherwise resend the presence every time.
+                if (provided[owner]?.map(::stripCreatedAt) == activities.map(::stripCreatedAt)) return
                 provided[owner] = ArrayList(activities)
                 for (activity in activities) remember(Activities.signature(activity))
             }
@@ -133,8 +135,7 @@ internal object PresenceHub {
                 param.args[2] = activities
                 // Discord echoes your session's activities back and the app may resend them when they differ only
                 // by the server's timestamps. Dropping an identical resend right away keeps that from looping.
-                val key = param.args[0].toString() + "|" +
-                    activities.joinToString("\n") { CREATED_AT.matcher(it.toString()).replaceAll("") }
+                val key = param.args[0].toString() + "|" + activities.joinToString("\n", transform = ::stripCreatedAt)
                 val now = SystemClock.elapsedRealtime()
                 synchronized(PresenceHub) {
                     if (key == lastSentKey && now - lastSentAt < DUPLICATE_WINDOW_MS) {
@@ -153,6 +154,8 @@ internal object PresenceHub {
     private var lastSentKey: String? = null
     private var lastSentAt = 0L
     private val CREATED_AT = Pattern.compile("createdAt=-?\\d+")
+
+    private fun stripCreatedAt(activity: Activity): String = CREATED_AT.matcher(activity.toString()).replaceAll("")
 
     /**
      * Resends the local presence so the hook above runs. Coalesced and spaced out so plugins can never hit the

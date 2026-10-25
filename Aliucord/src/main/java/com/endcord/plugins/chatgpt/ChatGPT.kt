@@ -32,6 +32,7 @@ internal class ChatGPT : EndcordPlugin(
             "apiKey",
             "Your OpenAI API key (obtained from https://platform.openai.com/api-keys)",
             placeholder = "sk-proj-...",
+            secret = true,
         ),
         PluginSetting.Choice(
             key = "model",

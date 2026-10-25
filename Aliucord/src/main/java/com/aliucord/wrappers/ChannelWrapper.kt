@@ -174,9 +174,11 @@ class ChannelWrapper(private val channel: Channel) {
         val Channel.messageCount: Int?
             get() = o()
 
+        /** The channel's name, or an empty string for DMs and unnamed group DMs (the raw field is null there). */
         @JvmStatic
+        @Suppress("USELESS_ELVIS")
         val Channel.name: String
-            get() = p()
+            get() = p() ?: ""
 
         @JvmStatic
         val Channel.nicks: List<ChannelRecipientNick>

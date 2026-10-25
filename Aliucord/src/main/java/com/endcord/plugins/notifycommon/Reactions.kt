@@ -8,7 +8,9 @@ package com.endcord.plugins.notifycommon
 import com.aliucord.Http
 import com.aliucord.Logger
 import java.net.URLEncoder
+import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
+import java.util.concurrent.atomic.AtomicInteger
 import java.util.regex.Pattern
 
 /**
@@ -27,8 +29,25 @@ internal object Reactions {
         return if (matcher.matches()) "${matcher.group(1)}:${matcher.group(2)}" else trimmed
     }
 
-    fun add(channelId: Long, messageId: Long, emoji: String, onDone: ((Boolean) -> Unit)? = null) {
+    /** owner -> generation; [cancel] bumps it so the owner's queued reactions are skipped. */
+    private val generations = ConcurrentHashMap<String, Int>()
+    private val pendingCounts = ConcurrentHashMap<String, AtomicInteger>()
+
+    /** How many reactions of [owner] are waiting in the queue. */
+    fun pending(owner: String): Int = pendingCounts[owner]?.get() ?: 0
+
+    /** Drops every reaction of [owner] that hasn't been sent yet, for when a plugin is turned off. */
+    fun cancel(owner: String) {
+        synchronized(generations) { generations[owner] = (generations[owner] ?: 0) + 1 }
+    }
+
+    fun add(channelId: Long, messageId: Long, emoji: String, owner: String? = null, onDone: ((Boolean) -> Unit)? = null) {
+        val generation = owner?.let { generations[it] ?: 0 }
+        val counter = owner?.let { pendingCounts.getOrPut(it) { AtomicInteger() } }
+        counter?.incrementAndGet()
         queue.execute {
+            counter?.decrementAndGet()
+            if (owner != null && (generations[owner] ?: 0) != generation) return@execute
             val ok = try {
                 val encoded = URLEncoder.encode(emojiKey(emoji), "UTF-8").replace("+", "%20")
                 Http.Request.newDiscordRNRequest("/channels/$channelId/messages/$messageId/reactions/$encoded/@me", "PUT")

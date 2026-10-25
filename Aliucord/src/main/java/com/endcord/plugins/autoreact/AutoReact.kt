@@ -46,13 +46,15 @@ internal class AutoReact : EndcordPlugin(
             if (content.isNullOrEmpty() || !Msg.isFresh(message)) return@messages
             if (bool("onlyOwnMessages") && !Msg.isOwn(message)) return@messages
             if (bool("ignoreBots") && Msg.isBot(message)) return@messages
+            // In busy servers messages can come faster than reactions may be sent: skip instead of reacting late
+            if (Reactions.pending(name) >= MAX_BACKLOG) return@messages
 
             val lower = content.lowercase(Locale.ROOT)
             var added = 0
             for (rule in currentRules()) {
                 val found = if (rule.caseSensitive) content.contains(rule.keyword) else lower.contains(rule.keyword.lowercase(Locale.ROOT))
                 if (!found) continue
-                Reactions.add(message.g(), message.o(), rule.emoji)
+                Reactions.add(message.g(), message.o(), rule.emoji, owner = name)
                 // Discord allows 20 different reactions per message
                 if (++added >= 20) break
             }
@@ -61,6 +63,7 @@ internal class AutoReact : EndcordPlugin(
 
     override fun stop(context: Context) {
         NotifyHooks.unregisterAll(name)
+        Reactions.cancel(name)
         super.stop(context)
     }
 
@@ -96,5 +99,10 @@ internal class AutoReact : EndcordPlugin(
         rules = parsed
         rulesSource = source
         return rules
+    }
+
+    private companion object {
+        /** Reactions waiting to be sent, about 15 seconds' worth at the queue's pace. */
+        const val MAX_BACKLOG = 40
     }
 }

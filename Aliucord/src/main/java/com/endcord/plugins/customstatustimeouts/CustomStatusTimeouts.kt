@@ -24,6 +24,7 @@ import com.discord.widgets.user.WidgetUserSetCustomStatusViewModel.FormState.Exp
 import com.google.android.material.radiobutton.MaterialRadioButton
 import java.lang.reflect.Method
 import java.util.Calendar
+import java.lang.ref.WeakReference
 import java.util.WeakHashMap
 
 /**
@@ -59,7 +60,13 @@ internal class CustomStatusTimeouts : EndcordPlugin(
         }
     }
 
-    private val screens = WeakHashMap<WidgetUserSetCustomStatusViewModel, Screen>()
+    /**
+     * The extra radios of each open screen. The value is weak because the screen's views lead back to the view
+     * model (the key) and would keep the entry, and the whole screen, alive forever; the radios hold it instead.
+     */
+    private val screens = WeakHashMap<WidgetUserSetCustomStatusViewModel, WeakReference<Screen>>()
+
+    private fun screenOf(vm: Any?): Screen? = screens[vm]?.get()
 
     /** Set while the plugin itself calls setExpiration, so that call doesn't count as the user picking a built-in. */
     private var settingOwnExpiration = false
@@ -83,7 +90,7 @@ internal class CustomStatusTimeouts : EndcordPlugin(
         // The app re-checks the radio of the form's expiration on every update; keep the extra one checked instead
         patcher.after<WidgetUserSetCustomStatus>("updateView", WidgetUserSetCustomStatusViewModel.ViewState::class.java) {
             try {
-                screens[getViewModel.invoke(this) as WidgetUserSetCustomStatusViewModel]?.showSelection()
+                screenOf(getViewModel.invoke(this))?.showSelection()
             } catch (e: Throwable) {
                 logger.error("Failed to show the selected timeout", e)
             }
@@ -92,7 +99,7 @@ internal class CustomStatusTimeouts : EndcordPlugin(
         // The user picked one of the app's own durations
         patcher.before<WidgetUserSetCustomStatusViewModel>("setExpiration", Expiration::class.java) {
             if (settingOwnExpiration) return@before
-            screens[this]?.let {
+            screenOf(this)?.let {
                 it.selected = null
                 it.showSelection()
             }
@@ -100,7 +107,7 @@ internal class CustomStatusTimeouts : EndcordPlugin(
 
         // Saving: replace the expiry of the placeholder duration with the picked one
         patcher.before<WidgetUserSetCustomStatusViewModel>("getExpirationUTCDateString", Expiration::class.java) { param ->
-            val selected = screens[this]?.selected ?: return@before
+            val selected = screenOf(this)?.selected ?: return@before
             param.result = TimeUtils.`toUTCDateTime$default`(System.currentTimeMillis() + selected, null, 2, null)
         }
     }
@@ -153,7 +160,8 @@ internal class CustomStatusTimeouts : EndcordPlugin(
             }
         }
         val screen = Screen(builtIns, extras, durations)
-        screens[vm] = screen
+        screens[vm] = WeakReference(screen)
+        extras.forEach { it.tag = screen }
 
         // Sort everything by duration, Forever first or last. Only when the group holds nothing but the radios.
         val all = ArrayList<RadioButton>(builtIns).apply { addAll(extras) }
@@ -177,7 +185,7 @@ internal class CustomStatusTimeouts : EndcordPlugin(
     }
 
     private fun pick(vm: WidgetUserSetCustomStatusViewModel, duration: Long) {
-        val screen = screens[vm] ?: return
+        val screen = screenOf(vm) ?: return
         screen.selected = duration
         // Any duration other than Never makes the screen compute an expiry, which is then replaced
         settingOwnExpiration = true

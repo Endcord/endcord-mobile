@@ -19,6 +19,7 @@ import android.widget.TextView
 import com.aliucord.entities.EndcordPlugin
 import com.aliucord.entities.PluginSetting
 import com.aliucord.patcher.after
+import com.aliucord.patcher.before
 import com.aliucord.utils.DimenUtils
 import com.discord.utilities.color.ColorCompat
 import com.endcord.plugins.composercommon.ChatInputs
@@ -45,18 +46,28 @@ internal class CharacterCounter : EndcordPlugin(
 
     private class Counter(val view: TextView, val watcher: TextWatcher)
 
+    /** The counter of every open chat input; removed in onDestroyView, the counter's views lead back to the key. */
     private val counters = WeakHashMap<FlexInputFragment, Counter>()
+    @Volatile private var running = false
 
     override fun start(context: Context) {
+        running = true
         patcher.after<FlexInputFragment>("onViewCreated", View::class.java, Bundle::class.java) {
             // Posted so the input is attached to its container by then
             val fragment = this
             view?.post {
                 try {
-                    if (fragment.view != null) attach(fragment)
+                    if (running && fragment.view != null) attach(fragment)
                 } catch (e: Throwable) {
                     logger.error("Failed to add the character counter", e)
                 }
+            }
+        }
+        patcher.before<FlexInputFragment>("onDestroyView") {
+            try {
+                detach(this)
+            } catch (e: Throwable) {
+                logger.error("Failed to remove the character counter", e)
             }
         }
         // Chat inputs that are already open
@@ -70,27 +81,24 @@ internal class CharacterCounter : EndcordPlugin(
     }
 
     override fun stop(context: Context) {
-        for ((fragment, counter) in counters) {
-            try {
-                fragment.l().removeTextChangedListener(counter.watcher)
-            } catch (e: Throwable) {
-                // the view is already gone
-            }
-            (counter.view.parent as? ViewGroup)?.removeView(counter.view)
-        }
+        running = false
+        for (fragment in counters.keys.toList()) detach(fragment)
         counters.clear()
         super.stop(context)
     }
 
-    private fun attach(fragment: FlexInputFragment) {
-        counters.remove(fragment)?.let { old ->
-            (old.view.parent as? ViewGroup)?.removeView(old.view)
-            try {
-                fragment.l().removeTextChangedListener(old.watcher)
-            } catch (e: Throwable) {
-                // the old view is gone
-            }
+    private fun detach(fragment: FlexInputFragment) {
+        val counter = counters.remove(fragment) ?: return
+        (counter.view.parent as? ViewGroup)?.removeView(counter.view)
+        try {
+            fragment.l().removeTextChangedListener(counter.watcher)
+        } catch (e: Throwable) {
+            // the view is already gone
         }
+    }
+
+    private fun attach(fragment: FlexInputFragment) {
+        detach(fragment)
         val root = fragment.view ?: return
         val input = fragment.l()
 

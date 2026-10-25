@@ -55,19 +55,26 @@ internal class DmReadReceipt : EndcordPlugin(
             if (channel.type != DM) return null
             val recipient = channel.recipientIds.firstOrNull() ?: return null
 
-            ChatRefresh.track(holder)
-            val last = lastMessage(message.channelId)
-            watch(message.channelId, recipient, last?.id ?: 0L)
-
             val text = when {
                 isTyping(message.channelId, recipient) -> I18n.t("Seen · typing...")
-                last != null && last.author?.id == recipient && last.id > message.id -> I18n.t("Seen ✓")
+                lastFrom(message.channelId, recipient) > message.id -> I18n.t("Seen ✓")
                 else -> return null
             }
             return SpannableString("  $text").apply {
                 setSpan(RelativeSizeSpan(0.85f), 0, length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                 setSpan(ForegroundColorSpan(mutedColor(view.context)), 0, length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
+        }
+
+        // Every row of the DM, theirs included: a new message from them (even a file without a typing event)
+        // must redraw your rows so they turn "Seen"
+        override fun afterConfigure(holder: WidgetChatListAdapterItemMessage, entry: MessageEntry) {
+            val channelId = entry.message.channelId
+            val channel = StoreStream.getChannels().getChannel(channelId) ?: return
+            if (channel.type != DM) return
+            val recipient = channel.recipientIds.firstOrNull() ?: return
+            ChatRefresh.track(holder)
+            watch(channelId, recipient, lastMessage(channelId)?.id ?: 0L)
         }
     }
 
@@ -137,6 +144,18 @@ internal class DmReadReceipt : EndcordPlugin(
             }
             found
         }
+    }
+
+    /** The id of the newest sent message of [userId] in a channel, or 0. */
+    private fun lastFrom(channelId: Long, userId: Long): Long {
+        val holder = holderField[StoreStream.getMessages()] as StoreMessagesHolder? ?: return 0L
+        synchronized(holder) {
+            val messages = holder.getMessagesForChannel(channelId) ?: return 0L
+            for (message in messages.descendingMap().values) {
+                if (!message.isLocal && message.id > 0 && message.author?.id == userId) return message.id
+            }
+        }
+        return 0L
     }
 
     private fun isTyping(channelId: Long, userId: Long): Boolean {

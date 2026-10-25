@@ -78,6 +78,9 @@ internal class ClientSideBlock : EndcordPlugin(
         super.stop(context)
     }
 
+    // Hide or show the messages already on screen right away, not only after reopening the channel
+    override fun onSettingChanged(key: String) = ChatListFilter.refresh()
+
     private fun hiddenIds(): Set<Long> {
         val raw = string("usersToBlock")
         cachedIds?.let { if (it.first == raw) return it.second }

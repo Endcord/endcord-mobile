@@ -6,6 +6,7 @@
 package com.endcord.plugins.lastonline
 
 import android.content.Context
+import android.os.SystemClock
 import android.view.View
 import com.aliucord.Utils
 import com.aliucord.entities.EndcordPlugin
@@ -17,6 +18,8 @@ import com.aliucord.wrappers.ChannelWrapper.Companion.type
 import com.discord.api.presence.ClientStatus
 import com.discord.api.presence.ClientStatuses
 import com.discord.databinding.WidgetChannelsListItemChannelPrivateBinding
+import com.discord.stores.StoreChannels
+import com.discord.stores.StoreStream
 import com.discord.stores.StoreUserPresence
 import com.discord.utilities.view.extensions.ViewExtensions
 import com.discord.widgets.channels.list.WidgetChannelsListAdapter
@@ -47,6 +50,25 @@ internal class LastOnline : EndcordPlugin(
     private val lastOffline = ConcurrentHashMap<Long, Long>()
     private val saveScheduled = AtomicBoolean(false)
 
+    /**
+     * Recipients of your 1:1 DMs, the only users the indicator is shown for. The store reports the presence of
+     * every server member it sees, so tracking all of them would grow without end and save constantly.
+     */
+    @Volatile private var dmUsers: Set<Long> = emptySet()
+    @Volatile private var dmUsersAt = 0L
+
+    private fun isDmUser(userId: Long): Boolean {
+        val now = SystemClock.elapsedRealtime()
+        if (dmUsersAt == 0L || now - dmUsersAt > if (dmUsers.isEmpty()) 5_000L else 60_000L) {
+            dmUsersAt = now
+            dmUsers = StoreStream.getChannels().getChannelsForGuild(StoreChannels.PRIVATE_CHANNELS_ID)?.values
+                ?.filter { it.type == Members.TYPE_DM }
+                ?.mapNotNullTo(HashSet()) { it.recipientIds.firstOrNull() }
+                ?: emptySet()
+        }
+        return userId in dmUsers
+    }
+
     private fun load() {
         lastOffline.clear()
         if (!bool("persistAcrossRestarts")) return
@@ -65,7 +87,7 @@ internal class LastOnline : EndcordPlugin(
         }
     }
 
-    /** Saves at most every few seconds, off the main thread, like Endcord PC's batched writes. */
+    /** Saves at most every 30 seconds, off the main thread, like Endcord PC's batched writes. */
     private fun scheduleSave() {
         if (!bool("persistAcrossRestarts") || !saveScheduled.compareAndSet(false, true)) return
         Utils.mainThread.postDelayed({
@@ -87,6 +109,7 @@ internal class LastOnline : EndcordPlugin(
 
     /** Port of handlePresenceUpdate. A first sighting while offline records nothing: the time is unknown. */
     private fun onPresence(userId: Long, status: ClientStatus?) {
+        if (!isDmUser(userId)) return
         val offline = status == null || status == ClientStatus.OFFLINE || status == ClientStatus.INVISIBLE
         val previous = lastOffline[userId]
         if (!offline) {
@@ -156,12 +179,14 @@ internal class LastOnline : EndcordPlugin(
     override fun stop(context: Context) {
         super.stop(context)
         lastOffline.clear()
+        dmUsers = emptySet()
+        dmUsersAt = 0L
     }
 
     private companion object {
         const val ONLINE = -1L
         const val SAVED_KEY = "lastOffline"
         const val MAX_DISPLAY_AGE = 604_800_000L // 7 days
-        const val SAVE_DELAY_MS = 2_000L
+        const val SAVE_DELAY_MS = 30_000L
     }
 }

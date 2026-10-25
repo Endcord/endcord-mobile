@@ -16,8 +16,6 @@ import com.endcord.plugins.guildscommon.GuildMenuActions
 import com.endcord.plugins.guildscommon.GuildsPlugin
 import com.lytefast.flexinput.R
 import java.lang.reflect.Field
-import java.util.Collections
-import java.util.WeakHashMap
 
 internal class ServerPinner : GuildsPlugin(
     name = "ServerPinner",
@@ -32,8 +30,12 @@ internal class ServerPinner : GuildsPlugin(
         },
     )
 
-    /** The rows showing pinned copies; they can't be dragged so Discord never saves them into your folders. */
-    private val copies: MutableSet<GuildListItem> = Collections.synchronizedSet(Collections.newSetFromMap(WeakHashMap()))
+    /**
+     * Whether [item] is a pinned copy; copies can't be dragged so Discord never saves them into your folders.
+     * GuildItem is a data class whose equals ignores the row id, so copies are told apart by their negative row id
+     * (a real server row uses the server's id), never by equality: the original would match its own copy.
+     */
+    private fun isCopy(item: GuildListItem) = item is GuildListItem.GuildItem && itemId.getLong(item) < 0
 
     override fun load(context: Context) {
         super.load(context)
@@ -52,23 +54,22 @@ internal class ServerPinner : GuildsPlugin(
 
             override fun items(items: MutableList<GuildListItem>) {
                 val pins = ids(KEY)
-                if (pins.isEmpty() || items.any { it in copies }) return
+                if (pins.isEmpty() || items.any(::isCopy)) return
                 var last = -1
                 for (pin in pins) {
                     val index = items.indexOfFirst {
-                        it is GuildListItem.GuildItem && it.guild.id == pin && it.folderId == null && it !in copies
+                        it is GuildListItem.GuildItem && it.guild.id == pin && it.folderId == null && !isCopy(it)
                     }
                     if (index < 0) continue
                     val item = items[index]
                     // the copy is its own object: give it its own row id so it doesn't clash with the original
                     itemId.setLong(item, -pin)
-                    copies += item
                     if (index > last) last = index
                 }
                 if (last >= 0) items.add(last + 1, divider)
             }
 
-            override fun isLocked(item: GuildListItem) = item in copies || item === divider
+            override fun isLocked(item: GuildListItem) = isCopy(item) || item === divider
 
             override fun beforeSave(entries: MutableList<StoreGuildsSorted.Entry>, saved: List<StoreGuildsSorted.Entry>) {
                 // drop the pinned copies: the first of two entries for the same server
@@ -105,7 +106,6 @@ internal class ServerPinner : GuildsPlugin(
 
     override fun stop(context: Context) {
         super.stop(context)
-        copies.clear()
         GuildListHooks.refresh()
     }
 

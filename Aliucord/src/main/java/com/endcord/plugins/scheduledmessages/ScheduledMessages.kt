@@ -12,7 +12,6 @@ import android.content.Context
 import android.text.InputType
 import android.text.format.DateFormat
 import android.widget.EditText
-import com.aliucord.Http
 import com.aliucord.Utils
 import com.aliucord.entities.PluginSetting
 import com.aliucord.i18n.I18n
@@ -25,6 +24,8 @@ import com.endcord.plugins.composercommon.ChatInputs
 import com.endcord.plugins.composercommon.ComposerPlugin
 import com.endcord.plugins.composercommon.ComposerUtils
 import com.endcord.plugins.api.OutgoingMessages
+import com.endcord.plugins.commandscommon.Net
+import com.endcord.plugins.translatecommon.Rest
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.Calendar
@@ -54,7 +55,12 @@ internal class ScheduledMessages : ComposerPlugin(
         PluginSetting.Action("view", "View Scheduled Messages") { openList(it) },
     )
 
-    private class Scheduled(val id: String, val channelId: Long, val content: String, val time: Long, val createdAt: Long)
+    private class Scheduled(val id: String, val channelId: Long, val content: String, val time: Long, val createdAt: Long) {
+        /** Failed sends because of the network, not saved: a message is dropped after [MAX_ATTEMPTS]. */
+        var attempts = 0
+    }
+
+    private enum class SendResult { SENT, FAILED, RETRY }
 
     private val queue = ArrayList<Scheduled>()
     private var scheduleMode = false
@@ -206,27 +212,49 @@ internal class ScheduledMessages : ComposerPlugin(
         save()
         sending = true
         Utils.threadPool.execute {
-            for (message in due) {
-                val ok = post(message)
-                Utils.mainThread.post {
-                    if (bool("showNotifications")) {
-                        Utils.showToast(
-                            if (ok) I18n.t("Scheduled message sent to {channel}", "channel" to channelName(message.channelId))
-                            else I18n.t("Failed to send scheduled message"),
-                        )
+            try {
+                for ((i, message) in due.withIndex()) {
+                    // Everything that came due while the app was frozen fires at once: space it out so
+                    // Discord's per-channel limit isn't hit (Rest also waits out a 429 if it is)
+                    if (i > 0) Thread.sleep(SEND_SPACING_MS)
+                    var result = post(message)
+                    if (result == SendResult.RETRY && ++message.attempts >= MAX_ATTEMPTS) result = SendResult.FAILED
+                    Utils.mainThread.post {
+                        if (result == SendResult.RETRY) {
+                            // Network trouble: keep it and try again on the next check
+                            queue += message
+                            queue.sortBy { it.time }
+                            save()
+                        } else if (bool("showNotifications")) {
+                            Utils.showToast(
+                                if (result == SendResult.SENT) I18n.t("Scheduled message sent to {channel}", "channel" to channelName(message.channelId))
+                                else I18n.t("Failed to send scheduled message"),
+                            )
+                        }
                     }
                 }
+            } catch (e: Throwable) {
+                logger.error("Failed to send scheduled messages", e)
+            } finally {
+                Utils.mainThread.post { sending = false }
             }
-            Utils.mainThread.post { sending = false }
         }
     }
 
-    private fun post(message: Scheduled): Boolean = try {
-        val body = mapOf("content" to message.content, "nonce" to Utils.generateRNNonce().toString())
-        Http.Request.newDiscordRNRequest("/channels/${message.channelId}/messages", "POST").executeWithJson(body).use { it.ok() }
-    } catch (e: Throwable) {
+    private fun post(message: Scheduled): SendResult = try {
+        val body = JSONObject()
+            .put("content", message.content)
+            .put("nonce", Utils.generateRNNonce().toString())
+            .toString()
+        Rest.call("/channels/${message.channelId}/messages", "POST", body)
+        SendResult.SENT
+    } catch (e: Net.HttpError) {
         logger.error("Failed to send a scheduled message", e)
-        false
+        // A server error may pass; a refusal (no permission, channel gone, still rate limited) won't
+        if (e.status >= 500) SendResult.RETRY else SendResult.FAILED
+    } catch (e: Throwable) {
+        logger.error("Failed to send a scheduled message, will retry", e)
+        SendResult.RETRY
     }
 
     private fun channelName(channelId: Long): String {
@@ -273,8 +301,16 @@ internal class ScheduledMessages : ComposerPlugin(
                 queue.removeAll { it.id == entry.id }
                 save()
                 Utils.threadPool.execute {
-                    val ok = post(entry)
-                    if (!ok) Utils.mainThread.post { Utils.showToast(I18n.t("Failed to send scheduled message")) }
+                    val result = post(entry)
+                    if (result != SendResult.SENT) Utils.mainThread.post {
+                        // Network trouble: keep it, it goes out with the next check
+                        if (result == SendResult.RETRY) {
+                            queue += entry
+                            queue.sortBy { it.time }
+                            save()
+                        }
+                        Utils.showToast(I18n.t("Failed to send scheduled message"))
+                    }
                 }
             }
             .setNeutralButton(I18n.t("Remove")) { _, _ ->
@@ -326,5 +362,7 @@ internal class ScheduledMessages : ComposerPlugin(
     private companion object {
         const val QUEUE_KEY = "queue"
         const val START_DELAY_MS = 15_000L
+        const val SEND_SPACING_MS = 1_200L
+        const val MAX_ATTEMPTS = 10
     }
 }

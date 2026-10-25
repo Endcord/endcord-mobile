@@ -8,6 +8,7 @@ package com.aliucord.entities
 import android.content.Context
 import com.aliucord.i18n.I18n
 import com.aliucord.settings.EndcordPluginSettingsPage
+import com.aliucord.settings.SecretSettings
 import com.endcord.plugins.api.ChannelSheetActions
 import com.endcord.plugins.api.ChatHooks
 import com.endcord.plugins.api.MessageActions
@@ -87,8 +88,11 @@ internal abstract class EndcordPlugin(
         settings.getBool(key, (schemaEntry(key) as? PluginSetting.Switch)?.default ?: false)
 
     /** Reads a text setting, defaulting to its [PluginSetting.Text.default]. */
-    protected fun string(key: String): String =
-        settings.getString(key, (schemaEntry(key) as? PluginSetting.Text)?.default ?: "") ?: ""
+    protected fun string(key: String): String {
+        val entry = schemaEntry(key) as? PluginSetting.Text
+        if (entry?.secret == true) return SecretSettings.get(name, key, settings, entry.default)
+        return settings.getString(key, entry?.default ?: "") ?: ""
+    }
 
     /** Reads a number setting, defaulting to its [PluginSetting.Number.default]. */
     protected fun int(key: String): Int =
@@ -133,6 +137,8 @@ sealed class PluginSetting(
         @JvmField val default: String = "",
         @JvmField val placeholder: String? = null,
         @JvmField val multiline: Boolean = false,
+        /** An API key or similar: kept in the app's private storage, out of backups, and typed hidden. */
+        @JvmField val secret: Boolean = false,
     ) : PluginSetting(key, label, description)
 
     /** A whole number, clamped to [min]..[max]. */

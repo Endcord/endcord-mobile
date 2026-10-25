@@ -55,18 +55,23 @@ internal object AppAssets {
 
     private fun resolveUrl(appId: Long, url: String): String? {
         val cacheKey = "$appId|$url"
-        synchronized(external) { external[cacheKey] }?.let { return it }
-        val body = JSONObject().put("urls", JSONArray().put(url)).toString()
-        val res = Http.Request.newDiscordRNRequest("/applications/$appId/external-assets", "POST")
-            .setHeader("Content-Type", "application/json")
-            .executeWithBody(body)
-        res.assertOk()
-        val list = JSONArray(res.text())
-        val path = list.optJSONObject(0)?.optString("external_asset_path").orEmpty()
-        if (path.isEmpty()) return null
-        val value = "mp:$path"
+        synchronized(external) { external[cacheKey] }?.let { return it.ifEmpty { null } }
+        // A failure is remembered too ("" = known miss), so a poll doesn't post the same link again every time
+        val value = try {
+            val body = JSONObject().put("urls", JSONArray().put(url)).toString()
+            val res = Http.Request.newDiscordRNRequest("/applications/$appId/external-assets", "POST")
+                .setHeader("Content-Type", "application/json")
+                .executeWithBody(body)
+            res.assertOk()
+            val list = JSONArray(res.text())
+            val path = list.optJSONObject(0)?.optString("external_asset_path").orEmpty()
+            if (path.isEmpty()) "" else "mp:$path"
+        } catch (e: Throwable) {
+            logger.error("Failed to resolve $url", e)
+            ""
+        }
         synchronized(external) { external[cacheKey] = value }
-        return value
+        return value.ifEmpty { null }
     }
 
     private fun resolveName(appId: Long, name: String): String? {

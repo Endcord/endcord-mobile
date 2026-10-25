@@ -98,16 +98,24 @@ class EndcordPluginSettingsPage(private val pluginName: String) : SettingsPage()
 
                 is PluginSetting.Text -> {
                     addLabel(label, description)
-                    val input = TextInput(ctx, entry.placeholder?.let { I18n.t(it) } ?: label, settings.getString(entry.key, entry.default))
+                    val value = if (entry.secret) SecretSettings.get(plugin.name, entry.key, settings, entry.default)
+                    else settings.getString(entry.key, entry.default)
+                    val input = TextInput(ctx, entry.placeholder?.let { I18n.t(it) } ?: label, value)
                     input.editText.run {
-                        if (entry.multiline) {
+                        if (entry.secret) {
+                            inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                            maxLines = 1
+                        } else if (entry.multiline) {
                             inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_MULTI_LINE
                             maxLines = 8
                         } else {
                             maxLines = 1
                         }
                         addTextChangedListener(afterChange { text ->
-                            debounce(plugin, entry.key) { settings.setString(entry.key, text) }
+                            debounce(plugin, entry.key) {
+                                if (entry.secret) SecretSettings.set(plugin.name, entry.key, text)
+                                else settings.setString(entry.key, text)
+                            }
                         })
                     }
                     addView(input)

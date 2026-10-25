@@ -7,6 +7,7 @@ package com.endcord.plugins.viewicons
 
 import android.content.Context
 import android.view.View
+import com.aliucord.PluginManager
 import com.aliucord.entities.EndcordPlugin
 import com.aliucord.entities.PluginSetting
 import com.aliucord.i18n.tr
@@ -19,6 +20,7 @@ import com.discord.widgets.user.profile.UserProfileHeaderViewModel
 import com.endcord.plugins.commandscommon.Dialogs
 import com.endcord.plugins.translatecommon.Downloads
 import com.endcord.plugins.translatecommon.Media
+import com.endcord.plugins.usrbg.USRBG
 import java.lang.reflect.Method
 
 /**
@@ -127,7 +129,10 @@ internal class ViewIcons : EndcordPlugin(
         }
         val banner = state.banner
         if (banner != memberBanner) {
-            Media.bannerUrl(user.id, banner, format(), size())?.let { banners += Image("Banner", it, "banner_$name") }
+            // With USRBG on, the hash is its marker and the image lives on USRBG's server, not Discord's CDN
+            val url = if (banner == USRBG.MARKER) (PluginManager.plugins["USRBG"] as? USRBG)?.imageUrl(user.id)
+            else Media.bannerUrl(user.id, banner, format(), size())
+            url?.let { banners += Image("Banner", it, "banner_$name") }
         }
         if (banners.isEmpty()) {
             binding.c.setOnClickListener(null)

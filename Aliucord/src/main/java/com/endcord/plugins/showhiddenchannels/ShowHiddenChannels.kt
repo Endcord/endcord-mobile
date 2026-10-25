@@ -58,6 +58,8 @@ internal class ShowHiddenChannels : GuildsPlugin(
     }
 
     override fun start(context: Context) {
+        ChannelListHooks.unregisterAll(resetOwner)
+
         // Inside Discord's channel list builder (and only there) pretend every channel can be viewed, so hidden
         // channels are laid out like the others: positions, categories and collapsing stay Discord's own.
         patcher.patch(
@@ -114,7 +116,23 @@ internal class ShowHiddenChannels : GuildsPlugin(
 
     override fun stop(context: Context) {
         super.stop(context)
+        // Discord never resets a row's alpha, so recycled rows would stay dimmed until a restart
+        ChannelListHooks.unregisterAll(resetOwner)
+        ChannelListHooks.registerDecorator(resetOwner, resetDimming)
         ChannelListHooks.refresh()
+    }
+
+    private val resetOwner get() = "$name:reset"
+
+    /** Undoes the "muted" dimming on rows bound after the plugin was turned off. */
+    private val resetDimming = object : ChannelListHooks.RowDecorator {
+        override fun text(item: ChannelListItemTextChannel, binding: WidgetChannelsListItemChannelBinding) {
+            if (binding.a.alpha == HIDDEN_ALPHA) binding.a.alpha = 1f
+        }
+
+        override fun voice(item: ChannelListItemVoiceChannel, binding: WidgetChannelsListItemChannelVoiceBinding) {
+            if (binding.a.alpha == HIDDEN_ALPHA) binding.a.alpha = 1f
+        }
     }
 
     private fun decorate(row: android.view.View, icon: android.widget.ImageView, hidden: Boolean) {

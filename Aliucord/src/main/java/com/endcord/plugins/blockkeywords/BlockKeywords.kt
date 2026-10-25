@@ -55,6 +55,9 @@ internal class BlockKeywords : EndcordPlugin(
         super.stop(context)
     }
 
+    // Hide or show the messages already on screen right away, not only after reopening the channel
+    override fun onSettingChanged(key: String) = ChatListFilter.refresh()
+
     private fun patterns(): List<Pattern> {
         val words = string("blockedWords")
         val regex = bool("useRegex")

@@ -77,7 +77,8 @@ internal class USRBG : EndcordPlugin(
         database = null
     }
 
-    private fun imageUrl(userId: Long): String? {
+    /** The USRBG banner of [userId], or null when they have none or the database isn't loaded. */
+    fun imageUrl(userId: Long): String? {
         val db = database ?: return null
         val etag = db.users[userId] ?: return null
         return "${db.endpoint}/${db.bucket}/${db.prefix}$userId?$etag"
@@ -100,8 +101,10 @@ internal class USRBG : EndcordPlugin(
         }
     }
 
-    private companion object {
-        const val API_URL = "https://usrbg.is-hardly.online/users"
+    companion object {
+        private const val API_URL = "https://usrbg.is-hardly.online/users"
+
+        /** What the profile's banner hash is replaced with when the USRBG banner is shown (see [imageUrl]). */
         const val MARKER = "endcord_usrbg"
     }
 }

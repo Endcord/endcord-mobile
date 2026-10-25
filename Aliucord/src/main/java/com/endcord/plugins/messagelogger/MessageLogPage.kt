@@ -65,7 +65,8 @@ internal class MessageLogPage : SettingsPage() {
         tab("Ghost Pinged", MessageLog.Kind.GHOST_PING)
         layout.addView(tabs)
 
-        val entries = MessageLog.snapshot().filter { filter == null || it.kind == filter }
+        // Every entry is a view on the main thread, so only the newest ones are shown
+        val entries = MessageLog.snapshot().filter { filter == null || it.kind == filter }.take(MAX_SHOWN)
         if (entries.isEmpty()) {
             TextView(ctx, null, 0, R.i.UiKit_Settings_Item_SubText).apply {
                 text = tr("Nothing logged yet")
@@ -133,6 +134,10 @@ internal class MessageLogPage : SettingsPage() {
                 true
             }
         }
+    }
+
+    private companion object {
+        const val MAX_SHOWN = 300
     }
 }
 

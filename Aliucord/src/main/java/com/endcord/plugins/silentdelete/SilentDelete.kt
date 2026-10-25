@@ -6,7 +6,6 @@
 package com.endcord.plugins.silentdelete
 
 import android.content.Context
-import com.aliucord.Http
 import com.aliucord.Utils
 import com.aliucord.api.CommandsAPI
 import com.aliucord.entities.EndcordPlugin
@@ -15,6 +14,7 @@ import com.aliucord.i18n.tr
 import com.discord.api.commands.ApplicationCommandType
 import com.discord.stores.StoreStream
 import com.endcord.plugins.api.MessageActions
+import com.endcord.plugins.translatecommon.Rest
 import com.lytefast.flexinput.R
 import org.json.JSONArray
 import org.json.JSONObject
@@ -120,24 +120,25 @@ internal class SilentDelete : EndcordPlugin(
         super.stop(context)
     }
 
-    /** Endcord PC's sequence: send a placeholder carrying the original's id as nonce, delete it, then delete the original. */
+    /**
+     * Endcord PC's sequence: send a placeholder carrying the original's id as nonce, delete it, then delete the
+     * original. Every call goes through [Rest], which waits out rate limits, so a purge never leaves placeholders.
+     */
     private fun silentDelete(channelId: Long, messageId: Long, deleteOriginal: Boolean = bool("deleteOriginal")): Boolean = try {
-        val body = mapOf(
-            "content" to string("replacementText").ifEmpty { "** **" },
-            "flags" to if (bool("suppressNotifications")) SUPPRESS_NOTIFICATIONS else 0,
-            "nonce" to messageId.toString(),
-            "tts" to false,
-        )
-        val sent = Http.Request.newDiscordRNRequest("/channels/$channelId/messages", "POST").executeWithJson(body)
-        sent.assertOk()
-        val placeholderId = JSONObject(sent.text()).getString("id")
+        val body = JSONObject()
+            .put("content", string("replacementText").ifEmpty { "** **" })
+            .put("flags", if (bool("suppressNotifications")) SUPPRESS_NOTIFICATIONS else 0)
+            .put("nonce", messageId.toString())
+            .put("tts", false)
+            .toString()
+        val placeholderId = JSONObject(Rest.call("/channels/$channelId/messages", "POST", body)).getString("id")
 
         Thread.sleep(int("deleteDelay").toLong())
-        Http.Request.newDiscordRNRequest("/channels/$channelId/messages/$placeholderId", "DELETE").execute().assertOk()
+        Rest.call("/channels/$channelId/messages/$placeholderId", "DELETE")
 
         if (deleteOriginal) {
             Thread.sleep(100)
-            Http.Request.newDiscordRNRequest("/channels/$channelId/messages/$messageId", "DELETE").execute().assertOk()
+            Rest.call("/channels/$channelId/messages/$messageId", "DELETE")
         }
         true
     } catch (e: Throwable) {
@@ -153,7 +154,7 @@ internal class SilentDelete : EndcordPlugin(
         try {
             while (ids.size < count && purging) {
                 val route = "/channels/$channelId/messages?limit=100" + (before?.let { "&before=$it" } ?: "")
-                val page = JSONArray(Http.Request.newDiscordRNRequest(route, "GET").execute().apply { assertOk() }.text())
+                val page = JSONArray(Rest.call(route))
                 if (page.length() == 0) break
                 for (i in 0 until page.length()) {
                     val message = page.getJSONObject(i)
