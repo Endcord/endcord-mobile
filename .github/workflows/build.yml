@@ -96,24 +96,26 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+      # Downloaded outside the checkout: builds-next tracks files with the same names, and untracked copies of them in
+      # the working tree make git refuse to switch branches
       - uses: actions/download-artifact@v4
         with:
           name: bundle
-          path: out
+          path: ${{ runner.temp }}/out
       - uses: actions/download-artifact@v4
         with:
           name: loader
-          path: out
+          path: ${{ runner.temp }}/out
       - uses: actions/download-artifact@v4
         with:
           name: installer
-          path: installer-out
+          path: ${{ runner.temp }}/installer
       - name: Add the installer
         # Debug-signed until the INSTALLER_KEYSTORE secrets exist; releases come from the Release Installer workflow
-        run: cp installer-out/*.apk out/endcord-installer.apk
+        run: cp "$RUNNER_TEMP"/installer/*.apk "$RUNNER_TEMP"/out/endcord-installer.apk
       - name: Write build info
         run: |
-          cat > out/data.json <<EOF
+          cat > "$RUNNER_TEMP"/out/data.json <<EOF
           {
             "bundle": "endcord.min.js",
             "loader": "endcord-xposed.apk",
@@ -124,16 +126,17 @@ jobs:
             "builtAt": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
           }
           EOF
-          cat out/data.json
+          cat "$RUNNER_TEMP"/out/data.json
       - name: Push
+        # builds-next only serves the latest files, so every build replaces it with a single commit. Keeping old builds
+        # in its history would grow the repository by the size of the APKs on every push.
         run: |
           git config http.postBuffer 524288000
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin builds-next || true
-          git checkout -B builds-next origin/builds-next 2>/dev/null || git checkout --orphan builds-next
-          git rm -rf --quiet . 2>/dev/null || true
-          cp out/* .
+          git checkout --orphan builds-next
+          git rm -rf --quiet .
+          cp "$RUNNER_TEMP"/out/* .
           git add -A
-          git commit -m "Build ${{ github.sha }}" || echo "Nothing changed"
-          git push origin builds-next
+          git commit -m "Build ${{ github.sha }}"
+          git push --force origin builds-next

@@ -13,13 +13,13 @@ async function initializeRevenge() {
         await require("@metro/internals/caches").initMetroCache();
         await require(".").default();
     } catch (e) {
-        const { ClientInfoManager } = require("@lib/api/native/modules");
+        const { NativeClientInfoModule } = require("@lib/api/native/modules");
         const stack = e instanceof Error ? e.stack : undefined;
 
         console.log(stack ?? e?.toString?.() ?? e);
         alert([
             "Failed to load Endcord!\n",
-            `Build Number: ${ClientInfoManager.getConstants().Build}`,
+            `Build Number: ${NativeClientInfoModule?.getConstants?.().Build}`,
             `Endcord: ${version}`,
             stack || e?.toString?.(),
         ].join("\n"));

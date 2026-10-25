@@ -52,6 +52,7 @@ export default async () => {
     // Update the fonts
     updateFonts();
 
-    // We good :)
+    if (__ENDCORD_TEST__) require("@core/debug/testHarness").initTestHarness();
+
     logger.log("Endcord is ready!");
 };

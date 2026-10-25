@@ -1,0 +1,97 @@
+name: Emulator test
+
+# Installs Endcord through the installer on an Android emulator, like a user would, and runs the bundle's self-test
+# inside the latest Discord. Results (screenshots, logs, the self-test report) are published to the ci-results branch.
+on:
+  push:
+    branches: ["ci/**"]
+  workflow_dispatch:
+
+concurrency:
+  group: emulator-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  emulator:
+    name: Emulator (Android 14)
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Build the bundle with the self-test
+        working-directory: bundle
+        run: |
+          bun install --frozen-lockfile
+          bun run build --build-minify --test
+          mkdir -p ../serve && cp dist/endcord.min.js ../serve/
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 25
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Build the loader
+        working-directory: loader
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon :app:assembleDebug -Pendcord.bundleUrl=http://10.0.2.2:4040/endcord.min.js
+          cp app/build/outputs/apk/debug/app-debug.apk ../serve/endcord-xposed.apk
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - name: Build the installer
+        working-directory: installer
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon :app:assembleDebug -Pendcord.loaderUrl=http://10.0.2.2:4040/endcord-xposed.apk
+          cp app/build/outputs/apk/debug/*.apk ../installer.apk
+
+      - name: Download the latest stable Discord (for the "already installed" scenario)
+        run: |
+          version=$(curl -sf https://tracker.vendetta.rocks/tracker/index | python3 -c 'import json,sys; print(json.load(sys.stdin)["latest"]["stable"])')
+          echo "Discord $version"
+          mkdir -p discord
+          for split in base config.x86_64 config.en config.xxhdpi; do
+            curl -sfL -o "discord/$split.apk" "https://tracker.vendetta.rocks/tracker/download/$version/$split"
+          done
+          ls -la discord
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Run on the emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          ram-size: 4096M
+          disk-size: 8G
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: true
+          script: bash .github/scripts/emulator-test.sh
+
+      - name: Publish the results
+        if: always()
+        run: |
+          mkdir -p results
+          cd results
+          git init -q -b ci-results
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -qm "Emulator run ${{ github.run_id }} on ${{ github.sha }}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" ci-results
