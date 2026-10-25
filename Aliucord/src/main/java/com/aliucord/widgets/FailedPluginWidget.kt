@@ -1,5 +1,5 @@
 /*
- * This file is part of Aliucord, an Android Discord client mod.
+ * This file is part of Endcord, an Android Discord client mod based on Aliucord.
  * Copyright (c) 2021 Juby210 & Vendicated
  * Licensed under the Open Software License version 3.0
  */
@@ -72,7 +72,7 @@ class FailedPluginWidget(ctx: Context, private val file: File, private val reaso
                 setImageDrawable(ContextCompat.getDrawable(ctx, R.e.ic_delete_24dp)!!.mutate().apply {
                     setTint(ColorCompat.getThemedColor(ctx, R.b.colorInteractiveNormal))
                 })
-                contentDescription = "Delete"
+                contentDescription = com.aliucord.i18n.I18n.t("Delete")
 
                 setOnClickListener {
                     file.delete()

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 
 import com.aliucord.Utils;
+import com.aliucord.i18n.I18n;
 import com.discord.app.AppDialog;
 import com.discord.databinding.LeaveGuildDialogBinding;
 import com.discord.views.LoadingButton;
@@ -51,8 +52,8 @@ public class ConfirmDialog extends AppDialog {
         okButton.setBackgroundColor(ContextCompat.getColor(view.getContext(), btnColor));
 
         getCancelButton().setOnClickListener(onCancelListener != null ? onCancelListener : e -> dismiss());
-        getHeader().setText(title != null ? title : "Confirm");
-        getBody().setText(description != null ? description : "Are you sure?");
+        getHeader().setText(title != null ? title : I18n.t("Confirm"));
+        getBody().setText(description != null ? description : I18n.t("Are you sure?"));
         getBody().setMovementMethod(LinkMovementMethod.getInstance());
     }
 

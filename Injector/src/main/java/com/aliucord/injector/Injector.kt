@@ -1,5 +1,5 @@
 /*
- * This file is part of Aliucord, an Android Discord client mod.
+ * This file is part of Endcord, an Android Discord client mod based on Aliucord.
  * Copyright (c) 2022 Juby210 & Vendicated
  * Licensed under the Open Software License version 3.0
  */
@@ -29,6 +29,11 @@ import kotlin.system.exitProcess
  */
 private const val ALIUCORD_FROM_STORAGE_KEY = "AC_from_storage"
 
+/**
+ * External settings key holding the language picked in Endcord's settings.
+ */
+private const val LANGUAGE_KEY = "EC_language"
+
 private val applicationInitialized = AtomicBoolean(false)
 private val activityInitialized = AtomicBoolean(false)
 
@@ -40,7 +45,7 @@ internal fun init(appCtx: Application) {
     if (applicationInitialized.getAndSet(true)) return
 
     Logger.init()
-    Logger.d("Started Aliucord Injector!")
+    Logger.d("Started Endcord Injector!")
 
     try {
         if (!XposedBridge.disableHiddenApiRestrictions()) {
@@ -58,43 +63,47 @@ internal fun init(appCtx: Application) {
     try {
         Injector(appCtx).onApplicationCreate()
     } catch (t: Throwable) {
-        Logger.errorToast(appCtx, "Failed to run Aliucord Injector", t)
+        Logger.errorToast(appCtx, Strings[Strings.Key.STARTUP_FAILED], t)
     }
 }
 
 private class Injector(private val appCtx: Application) {
     /**
-     * Aliucord's base directory in external storage that's accessible to the user, storing settings and plugins.
+     * Endcord's base directory in external storage that's accessible to the user, storing settings and plugins.
      */
-    private val externalBaseDir = Environment.getExternalStorageDirectory().resolve("Aliucord")
+    private val externalBaseDir = Environment.getExternalStorageDirectory().resolve("Endcord")
 
     /**
-     * Aliucord's main core settings file. This is used to determine whether a custom core is enabled.
+     * Endcord's main core settings file. This is used to determine whether a custom core is enabled.
      */
-    private val externalSettingsFile = externalBaseDir.resolve("settings/Aliucord.json")
+    private val externalSettingsFile = externalBaseDir.resolve("settings/Endcord.json")
 
     /**
      * A custom core that was built and deployed to this device, accessible to the user.
      */
-    private val externalCustomCoreFile = externalBaseDir.resolve("Aliucord.zip")
+    private val externalCustomCoreFile = externalBaseDir.resolve("Endcord.zip")
 
     /**
-     * An official Aliucord core build downloaded by Injector.
+     * An official Endcord core build downloaded by Injector.
      * This is inaccessible to users and is stored in internal cache.
      */
-    private val internalCoreFile = appCtx.codeCacheDir.resolve("Aliucord.zip")
+    private val internalCoreFile = appCtx.codeCacheDir.resolve("Endcord.zip")
 
     /**
-     * A copy of [externalCustomCoreFile], to prevent corruption while Aliucord is already running.
+     * A copy of [externalCustomCoreFile], to prevent corruption while Endcord is already running.
      * This is inaccessible to users and stored in internal cache.
      */
-    private val internalCustomCoreFile = appCtx.codeCacheDir.resolve("Aliucord.custom.zip")
+    private val internalCustomCoreFile = appCtx.codeCacheDir.resolve("Endcord.custom.zip")
 
     /**
-     * This is invoked when [App.onCreate] is called, triggering a possible early initialization of the Aliucord core
+     * This is invoked when [App.onCreate] is called, triggering a possible early initialization of the Endcord core
      * if permissions have been granted and the core has already been downloaded during a prior launch.
      */
     fun onApplicationCreate() {
+        // Clean up the core of Aliucord based builds that predate the rename
+        appCtx.codeCacheDir.resolve("Aliucord.zip").delete()
+        appCtx.codeCacheDir.resolve("Aliucord.custom.zip").delete()
+
         if (!isPermissionsGranted()) {
             restoreCoreFlow()
             return
@@ -107,7 +116,7 @@ private class Injector(private val appCtx: Application) {
         if (!useCustomCore) {
             internalCustomCoreFile.delete()
         } else {
-            Logger.d("Using custom Aliucord core!")
+            Logger.d("Using custom Endcord core!")
         }
 
         // Copy core bundle from external storage to internal cache to prevent deletion while running
@@ -122,7 +131,7 @@ private class Injector(private val appCtx: Application) {
 
         // Load the core
         val loadTarget = if (useCustomCore) internalCustomCoreFile else internalCoreFile
-        Logger.d("Adding Aliucord core ${loadTarget.absolutePath} the classpath...")
+        Logger.d("Adding Endcord core ${loadTarget.absolutePath} to the classpath...")
         addDexToClasspath(
             dexFile = loadTarget,
             classLoader = appCtx.classLoader,
@@ -130,9 +139,9 @@ private class Injector(private val appCtx: Application) {
 
         // Start the loaded core
         try {
-            startAliucord()
+            startEndcord()
         } catch (t: Throwable) {
-            Logger.errorToast(appCtx, "Failed to start Aliucord!", t)
+            Logger.errorToast(appCtx, Strings[Strings.Key.CORE_START_FAILED], t)
 
             try {
                 // Delete cached files so it is redownloaded the next time
@@ -143,15 +152,15 @@ private class Injector(private val appCtx: Application) {
             }
 
             if (useCustomCore && disableCustomCore()) {
-                Logger.errorToast(appCtx, "Disabled loading custom core!")
+                Logger.errorToast(appCtx, Strings[Strings.Key.CUSTOM_CORE_DISABLED])
             }
         }
     }
 
     /**
-     * The "restoration" flow of Aliucord that waits for the user to launch an activity,
+     * The "restoration" flow of Endcord that waits for the user to launch an activity,
      * grant permissions, and then download the core and forcefully restart the process
-     * to allow for early initialization of the Aliucord core.
+     * to allow for early initialization of the Endcord core.
      */
     fun restoreCoreFlow() {
         hookActivityOnCreate { activity, unhook ->
@@ -167,7 +176,7 @@ private class Injector(private val appCtx: Application) {
                 if (!isUsingCustomCore() && !installCore())
                     return@Thread
 
-                restartAliucord()
+                restartEndcord()
             }.start()
         }
     }
@@ -181,7 +190,7 @@ private class Injector(private val appCtx: Application) {
         val future = CompletableFuture<Boolean>()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            val userMsg = "Aliucord requires the 'All files access' permission to use its folder in Internal Storage!"
+            val userMsg = Strings[Strings.Key.NEEDS_ALL_FILES_ACCESS]
             appCtx.showToast(userMsg)
 
             activity.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -196,7 +205,7 @@ private class Injector(private val appCtx: Application) {
                     .setData(Uri.parse("package:${activity.packageName}"))
             )
         } else {
-            val userMsg = "Aliucord requires storage permissions to use its folder in Internal Storage!"
+            val userMsg = Strings[Strings.Key.NEEDS_STORAGE]
             appCtx.showToast(userMsg)
 
             activity.registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
@@ -225,54 +234,53 @@ private class Injector(private val appCtx: Application) {
             if (data.discordVersion > com.discord.BuildConfig.VERSION_CODE ||
                 KotlinVersion.CURRENT < data.kotlinVersionParsed
             ) {
-                // TODO: launch aliucord manager reinstall
-                Logger.errorToast(appCtx, "Your base Discord is outdated. Please reinstall using Aliucord Manager.")
+                Logger.errorToast(appCtx, Strings[Strings.Key.BASE_OUTDATED])
                 false
             } else {
                 downloadLatestCore(outputFile = internalCoreFile)
                 true
             }
         } catch (e: Throwable) {
-            Logger.errorToast(appCtx, "Failed to download latest Aliucord core!", e)
+            Logger.errorToast(appCtx, Strings[Strings.Key.DOWNLOAD_FAILED], e)
             false
         }
     }
 
-    // -------- Starting Aliucord -------- //
+    // -------- Starting Endcord -------- //
     /**
-     * Finds the correct Aliucord core entrypoint and runs it.
+     * Finds the correct Endcord core entrypoint and runs it.
      */
-    private fun startAliucord() {
-        Logger.d("Obtaining Aliucord core entrypoints...")
+    private fun startEndcord() {
+        Logger.d("Obtaining Endcord core entrypoints...")
 
         try {
             val c = Class.forName("com.aliucord.Main")
             val onApplicationInit = c.getDeclaredMethod("onApplicationInit", Application::class.java)
 
-            Logger.d("Starting early Aliucord core...")
+            Logger.d("Starting early Endcord core...")
             onApplicationInit.invoke(null, appCtx)
-            Logger.d("Finished early starting Aliucord")
+            Logger.d("Finished early starting Endcord")
         } catch (_: NoSuchMethodException) {
-            startLegacyAliucord()
+            startLegacyEndcord()
         }
     }
 
     /**
-     * Finds the old Aliucord core entrypoints and runs it.
-     * Old Aliucord core did not support early init, so we wait for Activity creation.
+     * Finds the legacy core entrypoints and runs them.
+     * The legacy core did not support early init, so we wait for Activity creation.
      */
-    private fun startLegacyAliucord() {
-        Logger.d("Obtaining Aliucord core legacy entrypoints...")
+    private fun startLegacyEndcord() {
+        Logger.d("Obtaining Endcord core legacy entrypoints...")
         val c = Class.forName("com.aliucord.Main")
         val preInit = c.getDeclaredMethod("preInit", AppActivity::class.java)
         val init = c.getDeclaredMethod("init", AppActivity::class.java)
 
         hookActivityOnCreate { activity, unhook ->
             unhook.unhook()
-            Logger.d("Starting Aliucord core...")
+            Logger.d("Starting Endcord core...")
             preInit.invoke(null, activity)
             init.invoke(null, activity)
-            Logger.d("Finished starting Aliucord")
+            Logger.d("Finished starting Endcord")
         }
     }
 
@@ -290,48 +298,49 @@ private class Injector(private val appCtx: Application) {
     }
 
     /**
-     * Forcefully restarts the Aliucord app process.
+     * Forcefully restarts the Endcord app process.
      */
-    private fun restartAliucord(): Nothing {
-        Logger.i("Force restarting Aliucord...")
+    private fun restartEndcord(): Nothing {
+        Logger.i("Force restarting Endcord...")
         try {
             val intent = appCtx.packageManager.getLaunchIntentForPackage(appCtx.packageName)
                 .let { Intent.makeRestartActivityTask(it?.component) }
 
             appCtx.startActivity(intent)
         } catch (e: Exception) {
-            Logger.e("Failed to restart Aliucord!", e)
+            Logger.e("Failed to restart Endcord!", e)
         } finally {
             exitProcess(0)
         }
     }
 
     /**
-     * Checks whether using an external custom Aliucord core is possible and enabled.
+     * Checks whether using an external custom Endcord core is possible and enabled.
      */
     private fun isUsingCustomCore(): Boolean {
         val settings = try {
             if (!externalSettingsFile.exists()) {
-                Logger.d("Aliucord settings file missing, skipping custom core check...")
+                Logger.d("Endcord settings file missing, skipping custom core check...")
                 return false
             }
             if (!externalCustomCoreFile.exists()) {
-                Logger.d("Aliucord custom core missing, skipping custom core check...")
+                Logger.d("Endcord custom core missing, skipping custom core check...")
                 return false
             }
 
             JSONObject(externalSettingsFile.readText())
         } catch (e: Exception) {
             // This may include permission errors
-            Logger.d("Failed to read external Aliucord settings, skipping custom core check...", e)
+            Logger.d("Failed to read external Endcord settings, skipping custom core check...", e)
             return false
         }
 
+        Strings.preferredLanguage = settings.optString(LANGUAGE_KEY, "").takeIf { it.isNotEmpty() }
         return settings.optBoolean(ALIUCORD_FROM_STORAGE_KEY, false)
     }
 
     /**
-     * Tries to disable the setting that enables using a custom external Aliucord core, if possible.
+     * Tries to disable the setting that enables using a custom external Endcord core, if possible.
      * If permissions were not granted to read/write to the external settings, then this fails silently.
      */
     private fun disableCustomCore(): Boolean {
@@ -376,7 +385,7 @@ private class Injector(private val appCtx: Application) {
                 },
             )
         } catch (e: Exception) {
-            Logger.errorToast(appCtx, "Failed to initialize Aliuhook!", e)
+            Logger.errorToast(appCtx, Strings[Strings.Key.STARTUP_FAILED], e)
             throw e
         }
     }

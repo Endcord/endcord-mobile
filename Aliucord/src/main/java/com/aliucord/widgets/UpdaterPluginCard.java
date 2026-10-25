@@ -1,5 +1,5 @@
 /*
- * This file is part of Aliucord, an Android Discord client mod.
+ * This file is part of Endcord, an Android Discord client mod based on Aliucord.
  * Copyright (c) 2021 Juby210 & Vendicated
  * Licensed under the Open Software License version 3.0
  */
@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat;
 
 import com.aliucord.PluginManager;
 import com.aliucord.Utils;
+import com.aliucord.i18n.I18n;
 import com.aliucord.updater.PluginUpdater;
 import com.aliucord.utils.ChangelogUtils;
 import com.aliucord.utils.DimenUtils;
@@ -105,9 +106,9 @@ public class UpdaterPluginCard extends MaterialCardView {
             Utils.threadPool.execute(() -> {
                 try {
                     PluginUpdater.updatePlugin(update);
-                    PluginManager.logger.infoToast("Successfully updated " + update.getPluginName());
+                    PluginManager.logger.infoToast(I18n.format("Successfully updated {plugin}", "plugin", update.getPluginName()));
                 } catch (Throwable t) {
-                    PluginManager.logger.errorToast("Sorry, something went wrong while updating " + update.getPluginName(), t);
+                    PluginManager.logger.errorToast(I18n.format("Something went wrong while updating {plugin}", "plugin", update.getPluginName()), t);
                 } finally {
                     Utils.mainThread.post(forceUpdate);
                 }

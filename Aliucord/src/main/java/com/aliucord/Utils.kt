@@ -1,5 +1,5 @@
 /*
- * This file is part of Aliucord, an Android Discord client mod.
+ * This file is part of Endcord, an Android Discord client mod based on Aliucord.
  * Copyright (c) 2021 Juby210 & Vendicated
  * Licensed under the Open Software License version 3.0
  */
@@ -30,6 +30,7 @@ import androidx.fragment.app.Fragment
 import b.a.d.j
 import com.aliucord.fragments.AppFragmentProxy
 import com.aliucord.fragments.ConfirmDialog
+import com.aliucord.i18n.I18n
 import com.aliucord.utils.DimenUtils.dp
 import com.aliucord.utils.ReflectUtils
 import com.discord.api.commands.ApplicationCommandType
@@ -108,17 +109,21 @@ object Utils {
      */
     @JvmStatic
     fun launchUrl(url: Uri) {
-        appActivity.startActivity(Intent(Intent.ACTION_VIEW).setData(url))
+        try {
+            appActivity.startActivity(Intent(Intent.ACTION_VIEW).setData(url))
+        } catch (_: ActivityNotFoundException) {
+            showToast(I18n.t("No app found that can open this link."))
+        }
     }
 
     /**
-     * Prompt to join the Aliucord support server
+     * Prompt to join the Endcord support server
      *
      * @param ctx Context
      */
     @JvmStatic
     fun joinSupportServer(ctx: Context) {
-        WidgetGuildInvite.Companion!!.launch(ctx, StoreInviteSettings.InviteCode(Constants.ALIUCORD_SUPPORT, "", null))
+        WidgetGuildInvite.Companion!!.launch(ctx, StoreInviteSettings.InviteCode(Constants.ENDCORD_SUPPORT, "", null))
     }
 
     /**
@@ -178,46 +183,37 @@ object Utils {
         // TODO: Do we need to add query permission to AndroidManifest? I tried on Android 11 and it resolved MiXplorer correctly
         @SuppressLint("QueryPermissionsNeeded")
         if (intent.resolveActivityInfo(appActivity.packageManager, 0) == null) {
-            val text =
-                """
-You don't have a file explorer installed that can handle this action.
+            val text = I18n.t("You don't have a file explorer installed that can handle this action.") + "\n\n" +
+                I18n.t("Open {path} with your file manager, or install a file manager such as MiXplorer.", "path" to path)
 
-Consider installing the MiXplorer file manager, or navigate to $path manually using your file explorer.
-"""
-
+            // Only decorate what is actually in the (translated) text
             val ssb = SpannableStringBuilder(text).apply {
-                val mixText = "the MiXplorer file manager"
+                val mixText = "MiXplorer"
                 var start = text.indexOf(mixText)
-                var end = start + mixText.length
-                setSpan(object : ClickableSpan() {
+                if (start >= 0) setSpan(object : ClickableSpan() {
                     override fun onClick(widget: View) {
                         launchUrl("https://forum.xda-developers.com/t/app-2-2-mixplorer-v6-x-released-fully-featured-file-manager.1523691/")
                     }
-                }, start, end, SPAN_EXCLUSIVE_EXCLUSIVE)
+                }, start, start + mixText.length, SPAN_EXCLUSIVE_EXCLUSIVE)
 
                 start = text.indexOf(path)
-                end = start + path.length
-                setSpan(StyleSpan(Typeface.BOLD_ITALIC), start, end, SPAN_EXCLUSIVE_EXCLUSIVE)
-
-                val explorerText = "your file explorer"
-                start = text.indexOf(explorerText)
-                end = start + explorerText.length
-                setSpan(object : ClickableSpan() {
-                    override fun onClick(widget: View) {
-                        Intent(Intent.ACTION_VIEW)
-                            .setDataAndType(uri, DocumentsContract.Document.MIME_TYPE_DIR)
-                            .let {
-                                appActivity.startActivity(Intent.createChooser(it, "Open folder"))
-                            }
-                    }
-                }, start, end, SPAN_EXCLUSIVE_EXCLUSIVE)
+                if (start >= 0) setSpan(StyleSpan(Typeface.BOLD_ITALIC), start, start + path.length, SPAN_EXCLUSIVE_EXCLUSIVE)
             }
             ConfirmDialog()
-                .setTitle(":(")
+                .setTitle(I18n.t("Open Folder"))
                 .setDescription(ssb)
+                .setOnOkListener {
+                    try {
+                        Intent(Intent.ACTION_VIEW)
+                            .setDataAndType(uri, DocumentsContract.Document.MIME_TYPE_DIR)
+                            .let { appActivity.startActivity(Intent.createChooser(it, I18n.t("Open Folder"))) }
+                    } catch (_: ActivityNotFoundException) {
+                        showToast(I18n.t("No app found that can open this folder."))
+                    }
+                }
                 .show(appActivity.supportFragmentManager, "Open Folder")
         } else {
-            appActivity.startActivity(Intent.createChooser(intent, "Open folder"))
+            appActivity.startActivity(Intent.createChooser(intent, I18n.t("Open Folder")))
         }
     }
 
@@ -532,7 +528,7 @@ Consider installing the MiXplorer file manager, or navigate to $path manually us
     }
 
     /**
-     * Forcefully restarts the Aliucord app.
+     * Forcefully restarts the Endcord app.
      */
     @JvmStatic
     fun restartAliucord(context: Context) {
@@ -544,7 +540,7 @@ Consider installing the MiXplorer file manager, or navigate to $path manually us
     }
 
     /**
-     * Prompts the user to restart Aliucord
+     * Prompts the user to restart Endcord
      *
      * @param msg Message
      * @param position position, see [Gravity]
@@ -553,7 +549,7 @@ Consider installing the MiXplorer file manager, or navigate to $path manually us
     @JvmStatic
     @JvmOverloads
     fun promptRestart(
-        msg: String = "A restart is required. Restart now?",
+        msg: String = I18n.t("A restart is required. Restart now?"),
         position: Int = Gravity.BOTTOM,
     ) {
         val resources = appContext.resources
@@ -573,7 +569,7 @@ Consider installing the MiXplorer file manager, or navigate to $path manually us
             gravity = position
         }
 
-        bar.setAction("Restart") { restartAliucord(it.context) }
+        bar.setAction(I18n.t("Restart")) { restartAliucord(it.context) }
         bar.show()
     }
 

@@ -1,5 +1,5 @@
 /*
- * This file is part of Aliucord, an Android Discord client mod.
+ * This file is part of Endcord, an Android Discord client mod based on Aliucord.
  * Copyright (c) 2021 Juby210 & Vendicated
  * Licensed under the Open Software License version 3.0
  */
@@ -20,7 +20,7 @@ class FailedPluginsPage : SettingsPage() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
 
-        setActionBarTitle("Plugin Errors")
+        setActionBarTitle(com.aliucord.i18n.I18n.t("Plugin Errors"))
 
         PluginManager.failedToLoad.forEach { (file, reason) ->
             linearLayout.addView(MaterialCardView(view.context).apply {

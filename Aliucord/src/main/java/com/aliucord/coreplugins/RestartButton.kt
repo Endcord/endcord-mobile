@@ -12,7 +12,7 @@ import com.lytefast.flexinput.R
 
 internal class RestartButton : CorePlugin(Manifest("RestartButton")) {
     init {
-        manifest.description = "Adds a restart button for Aliucord to the settings page"
+        manifest.description = "Adds a restart button for Endcord to the settings page"
     }
 
     override fun start(context: Context) {
@@ -24,7 +24,7 @@ internal class RestartButton : CorePlugin(Manifest("RestartButton")) {
                 .mutate()
                 .apply { setTint(ColorCompat.getThemedColor(activity, R.b.colorInteractiveNormal)) }
 
-            toolbar.menu.add("Restart")
+            toolbar.menu.add(com.aliucord.i18n.I18n.t("Restart"))
                 .setIcon(icon)
                 .setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_ALWAYS)
                 .setOnMenuItemClickListener {

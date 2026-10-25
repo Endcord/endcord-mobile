@@ -55,7 +55,7 @@ public class CommandsAPI {
     public static final long ALIUCORD_APP_ID = generateId();
     public static final String DONT_SEND_RESULT = "{ALIUCORD_COMMAND}";
     private static final Logger logger = new Logger("CommandsAPI");
-    private static final Application aliucordApplication = new Application(ALIUCORD_APP_ID, "Aliucord", null, R.e.ic_slash_command_24dp, 0, null, true);
+    private static final Application aliucordApplication = new Application(ALIUCORD_APP_ID, "Endcord", null, R.e.ic_slash_command_24dp, 0, null, true);
     /** List of all registered commands */
     public static Map<String, RemoteApplicationCommand> commands = new HashMap<>();
     /** Mapping of all registered commands to the plugin that registered them */
@@ -214,9 +214,9 @@ public class CommandsAPI {
                         detailedError = String.format(
                             Locale.ENGLISH,
                             "Oops! Something went wrong while running this command:\n```java\n%s```\n" +
-                                "Please search for this error on the Aliucord server to see if it's a known issue. " +
+                                "Please search for this error on the Endcord server (discord.gg/endcord) to see if it's a known issue. " +
                                 "If it isn't, report it to the plugin %s%s.\n\n" +
-                                "Debug:```\nCommand: %s\nPlugin: %s v%s\nDiscord v%s\nAndroid %s (SDK %d)\nAliucord %s %s```\nArguments:```\n%s```\n",
+                                "Debug:```\nCommand: %s\nPlugin: %s v%s\nDiscord v%s\nAndroid %s (SDK %d)\nEndcord %s %s```\nArguments:```\n%s```\n",
                             t,
                             manifest.authors.length == 1 ? "author" : "authors",
                             manifest.authors.length != 0 ? " (" + TextUtils.join(", ", manifest.authors) + ")" : "",

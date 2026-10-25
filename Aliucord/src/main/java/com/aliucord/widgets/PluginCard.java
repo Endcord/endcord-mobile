@@ -1,5 +1,5 @@
 /*
- * This file is part of Aliucord, an Android Discord client mod.
+ * This file is part of Endcord, an Android Discord client mod based on Aliucord.
  * Copyright (c) 2021 Juby210 & Vendicated
  * Licensed under the Open Software License version 3.0
  */
@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.aliucord.Constants;
+import com.aliucord.i18n.I18n;
 import com.aliucord.utils.DimenUtils;
 import com.aliucord.views.*;
 import com.discord.utilities.color.ColorCompat;
@@ -73,10 +74,10 @@ public class PluginCard extends MaterialCardView {
         buttonLayout.setPadding(p, p2, p, 0);
 
         settingsButton = new Button(ctx);
-        settingsButton.setText("Settings");
+        settingsButton.setText(I18n.t("Settings"));
 
         uninstallButton = new DangerButton(ctx);
-        uninstallButton.setText("Uninstall");
+        uninstallButton.setText(I18n.t("Uninstall"));
 
         repoButton = new ToolbarButton(ctx);
         repoButton.setImageDrawable(ContextCompat.getDrawable(ctx, R.e.ic_account_github_white_24dp));

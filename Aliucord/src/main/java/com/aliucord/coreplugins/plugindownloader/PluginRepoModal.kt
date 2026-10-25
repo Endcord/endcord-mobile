@@ -1,5 +1,5 @@
 /*
- * This file is part of Aliucord, an Android Discord client mod.
+ * This file is part of Endcord, an Android Discord client mod based on Aliucord.
  * Copyright (c) 2021 Juby210 & Vendicated
  * Licensed under the Open Software License version 3.0
  */
@@ -60,7 +60,7 @@ internal class PluginRepoModal(private val author: String, private val repo: Str
             else -> {
                 val outdatedDiscordWarning =
                     TextView(ctx, null, 0, R.i.UiKit_Settings_Item_SubText).apply {
-                        text = "Note: Some buttons are disabled because they require a newer Discord version. Please update Aliucord using the installer first."
+                        text = com.aliucord.i18n.I18n.t("Note: Some buttons are disabled because they require a newer Discord version. Please update Endcord using Endcord Installer first.")
                         visibility = View.GONE
                         addView(this)
                     }

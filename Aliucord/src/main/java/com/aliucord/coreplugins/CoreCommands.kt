@@ -17,7 +17,7 @@ import java.io.File
 
 internal class CoreCommands : CorePlugin(Manifest("CoreCommands")) {
     init {
-        manifest.description = "Adds basic slash commands to Aliucord for debugging purposes"
+        manifest.description = "Adds basic slash commands to Endcord for debugging purposes"
     }
 
     override fun start(context: Context) {
@@ -86,7 +86,7 @@ ${if (disabled.isEmpty()) "None" else "> ${formatPlugins(disabled)}"}
             var str = """
 **Debug Info:**
 > **Discord**: ${Constants.DISCORD_VERSION}
-> **Aliucord**: ${BuildConfig.VERSION} ${if (BuildConfig.RELEASE) "" else "(Custom)"} $managerBuildInfo
+> **Endcord**: ${BuildConfig.VERSION} ${if (BuildConfig.RELEASE) "" else "(Custom)"} $managerBuildInfo
 > **Plugins**: ${PluginManager.getPluginsInfo()}
 > **Android**: ${Build.VERSION.RELEASE} (SDK v${Build.VERSION.SDK_INT}) - ${getArchitecture()} - ${Build.PRODUCT}
 > **Rooted**: ${getIsRooted() ?: "Unknown"}

@@ -81,11 +81,7 @@ internal object CoreUpdater {
             if (silent && (notifiedVersion == data.coreVersion || downloadedVersion == data.coreVersion)) return
             notifiedVersion = data.coreVersion
 
-            if (Constants.DISCORD_VERSION < data.discordVersion
-                || !ManagerBuild.hasKotlin(data.kotlinVersion.toString())
-                || !ManagerBuild.hasInjector(data.injectorVersion.toString())
-                || !ManagerBuild.hasPatches(data.patchesVersion.toString())
-            ) {
+            if (!isCompatible(data)) {
                 NotificationsAPI.display(
                     NotificationData()
                         .setTitle(I18n.t("Endcord update available"))
@@ -109,6 +105,42 @@ internal object CoreUpdater {
             else logger.errorToast(I18n.t("Failed to check updates for Endcord"), e)
         }
     }
+
+    /** What the updater screen shows about the core. */
+    data class CoreStatus(
+        val latest: SemVer,
+        val current: SemVer,
+        /** Whether the latest core can be loaded by this installation, or needs a reinstall with Endcord Installer. */
+        val compatible: Boolean,
+        val changelog: String?,
+    ) {
+        val updateAvailable: Boolean get() = latest > current
+    }
+
+    /** Fetches the state of the latest core for the updater screen. Network call, don't run on the main thread. */
+    @JvmStatic
+    fun fetchCoreStatus(): CoreStatus {
+        val data = fetchBuildData()
+        lastCheck = System.currentTimeMillis()
+        return CoreStatus(
+            latest = data.coreVersion,
+            current = SemVer.parse(BuildConfig.VERSION),
+            compatible = isCompatible(data),
+            changelog = data.changelog,
+        )
+    }
+
+    /** Updates the core to [version] right away and restarts, or opens Endcord Installer if a reinstall is needed. */
+    @JvmStatic
+    fun updateNow(status: CoreStatus) {
+        if (status.compatible) downloadUpdate(status.latest, restartWhenDone = true)
+        else reinstallEndcord()
+    }
+
+    private fun isCompatible(data: BuildData) = Constants.DISCORD_VERSION >= data.discordVersion
+        && ManagerBuild.hasKotlin(data.kotlinVersion.toString())
+        && ManagerBuild.hasInjector(data.injectorVersion.toString())
+        && ManagerBuild.hasPatches(data.patchesVersion.toString())
 
     private fun buildBody(text: String, data: BuildData): CharSequence {
         val changelog = data.changelog?.trim()?.takeIf { it.isNotEmpty() } ?: return text

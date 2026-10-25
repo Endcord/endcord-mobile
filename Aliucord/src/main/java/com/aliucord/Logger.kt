@@ -15,7 +15,7 @@ import com.discord.app.AppLog
  * @param module Name of the module
  */
 @Suppress("unused", "MemberVisibilityCanBePrivate")
-class Logger(var module: String = "Aliucord") {
+class Logger(var module: String = "Endcord") {
     private fun format(msg: String) = "[$module] $msg"
 
     /**

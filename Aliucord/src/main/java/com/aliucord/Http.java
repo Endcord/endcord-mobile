@@ -1,5 +1,5 @@
 /*
- * This file is part of Aliucord, an Android Discord client mod.
+ * This file is part of Endcord, an Android Discord client mod based on Aliucord.
  * Copyright (c) 2023 Juby210 & Vendicated
  * Licensed under the Open Software License version 3.0
  */
@@ -252,7 +252,7 @@ public class Http {
     /** Request Builder */
     public static class Request implements Closeable {
         private static final String USER_AGENT =
-            String.format("Aliucord/%s (https://github.com/Aliucord/Aliucord)", BuildConfig.VERSION);
+            String.format("Endcord/%s (%s)", BuildConfig.VERSION, Constants.ENDCORD_GITHUB_REPO);
 
         /** The connection of this Request */
         public final HttpURLConnection conn;

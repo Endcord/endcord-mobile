@@ -6,22 +6,28 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.util.Locale
 
-private const val DATA_URL = "https://builds.aliucord.com/data.json"
-private const val CORE_URL = "https://builds.aliucord.com/Aliucord.zip"
-private const val USER_AGENT = "Aliucord Injector/${BuildConfig.VERSION} (https://github.com/Aliucord/Aliucord)"
+private const val BUILDS_URL = "https://raw.githubusercontent.com/${BuildConfig.GITHUB_REPO}/builds"
+private const val DATA_URL = "$BUILDS_URL/data.json"
+private const val CORE_URL = "$BUILDS_URL/Endcord.zip"
+private const val USER_AGENT = "Endcord Injector/${BuildConfig.VERSION} (https://github.com/${BuildConfig.GITHUB_REPO})"
 
 /**
- * Downloads the latest Aliucord core to [outputFile].
+ * Downloads the latest Endcord core to [outputFile].
  */
 internal fun downloadLatestCore(outputFile: File) {
     val tmpFile = outputFile.resolveSibling(outputFile.name + ".tmp")
 
-    Logger.d("Downloading latest Aliucord core from $CORE_URL...")
+    Logger.d("Downloading latest Endcord core from $CORE_URL...")
     val startTime = System.currentTimeMillis()
 
     val conn = URL(CORE_URL).openConnection() as HttpURLConnection
     conn.setRequestProperty("User-Agent", USER_AGENT)
     conn.useCaches = false
+    conn.connectTimeout = 15_000
+    conn.readTimeout = 30_000
+    if (conn.responseCode != HttpURLConnection.HTTP_OK) {
+        throw IllegalStateException("Core download failed with HTTP ${conn.responseCode}")
+    }
 
     conn.getInputStream().use { stream ->
         tmpFile.outputStream().use { out ->
@@ -49,8 +55,11 @@ internal fun downloadLatestCore(outputFile: File) {
             }
         }
     }
-    tmpFile.renameTo(outputFile)
-    Logger.d("Downloaded Aliucord core after ${System.currentTimeMillis() - startTime}ms")
+    if (tmpFile.length() == 0L || !tmpFile.renameTo(outputFile)) {
+        tmpFile.delete()
+        throw IllegalStateException("Failed to save the downloaded core")
+    }
+    Logger.d("Downloaded Endcord core after ${System.currentTimeMillis() - startTime}ms")
 }
 
 /**
@@ -80,9 +89,12 @@ internal data class BuildData(
 internal fun fetchBuildData(): BuildData {
     Logger.d("Fetching remote build data...")
 
-    val conn = URL(DATA_URL).openConnection() as HttpURLConnection
+    // raw.githubusercontent.com caches responses for a few minutes, the query string keeps it fresh
+    val conn = URL("$DATA_URL?t=${System.currentTimeMillis() / 60_000}").openConnection() as HttpURLConnection
     conn.setRequestProperty("User-Agent", USER_AGENT)
     conn.useCaches = false
+    conn.connectTimeout = 15_000
+    conn.readTimeout = 15_000
 
     val data = JSONObject(conn.inputStream.bufferedReader().readText())
     return BuildData(

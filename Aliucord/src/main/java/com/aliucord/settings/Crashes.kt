@@ -1,5 +1,5 @@
 /*
- * This file is part of Aliucord, an Android Discord client mod.
+ * This file is part of Endcord, an Android Discord client mod based on Aliucord.
  * Copyright (c) 2021 Juby210 & Vendicated
  * Licensed under the Open Software License version 3.0
  */
@@ -14,9 +14,9 @@ import androidx.core.content.res.ResourcesCompat
 import com.aliucord.Constants
 import com.aliucord.Utils
 import com.aliucord.fragments.SettingsPage
+import com.aliucord.i18n.I18n
 import com.aliucord.utils.DimenUtils
 import com.aliucord.utils.MDUtils
-import com.aliucord.views.DangerButton
 import com.lytefast.flexinput.R
 import java.io.File
 import java.util.*
@@ -27,7 +27,7 @@ private data class CrashLog(val timestamp: String, val stacktrace: String, var t
 class Crashes : SettingsPage() {
     override fun onViewBound(view: View) {
         super.onViewBound(view)
-        setActionBarTitle("Crash Logs")
+        setActionBarTitle(I18n.t("Crash Logs"))
 
         val context = view.context
         val padding = DimenUtils.defaultPadding
@@ -37,15 +37,15 @@ class Crashes : SettingsPage() {
         val files = dir.listFiles()
         val hasCrashes = files != null && files.isNotEmpty()
 
-        addHeaderButton("Open Crashlog Folder", R.e.ic_open_in_new_white_24dp) {
+        addHeaderButton(I18n.t("Open Crashlog Folder"), R.e.ic_open_in_new_white_24dp) {
             if (!dir.exists() && !dir.mkdir()) {
-                Utils.showToast("Failed to create crashlogs directory!", true)
+                Utils.showToast(I18n.t("Failed to create crashlogs directory!"), true)
             } else {
                 Utils.launchFileExplorer(dir)
             }
             true
         }
-        headerBar.menu.add("Clear Crashes")
+        headerBar.menu.add(I18n.t("Clear Crashes"))
             .setIcon(ContextCompat.getDrawable(context, R.e.ic_delete_24dp))
             .setEnabled(hasCrashes)
             .setOnMenuItemClickListener {
@@ -59,23 +59,16 @@ class Crashes : SettingsPage() {
         if (crashes == null || crashes.isEmpty()) {
             TextView(context, null, 0, R.i.UiKit_Settings_Item_Header).run {
                 isAllCaps = false
-                text = "Woah, no crashes :O"
+                text = I18n.t("No crashes so far")
                 typeface = ResourcesCompat.getFont(context, Constants.Fonts.whitney_semibold)
                 gravity = Gravity.CENTER
-
-                linearLayout.addView(this)
-            }
-            DangerButton(context).run {
-                text = "LET'S CHANGE THAT"
                 setPadding(p, p, p, p)
-                setOnClickListener {
-                    throw RuntimeException("You fool...")
-                }
+
                 linearLayout.addView(this)
             }
         } else {
             TextView(context, null, 0, R.i.UiKit_Settings_Item_SubText).run {
-                text = "Hint: Crashlogs are accesible via your file explorer at Aliucord/crashlogs"
+                text = I18n.t("Hint: Crash logs are also in your file manager, in the Endcord/crashlogs folder. Tap a log to copy it.")
                 typeface = ResourcesCompat.getFont(context, Constants.Fonts.whitney_medium)
                 gravity = Gravity.CENTER
                 linearLayout.addView(this)
@@ -93,7 +86,7 @@ class Crashes : SettingsPage() {
                     text = MDUtils.renderCodeBlock(context, SpannableStringBuilder(), null, stacktrace)
                     setOnClickListener {
                         Utils.setClipboard("CrashLog-$timestamp", stacktrace)
-                        Utils.showToast("Copied to clipboard")
+                        Utils.showToast(I18n.t("Copied to clipboard"))
                     }
                     linearLayout.addView(this)
                 }

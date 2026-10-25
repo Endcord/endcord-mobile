@@ -1,5 +1,5 @@
 /*
- * This file is part of Aliucord, an Android Discord client mod.
+ * This file is part of Endcord, an Android Discord client mod based on Aliucord.
  * Copyright (c) 2021 Juby210 & Vendicated
  * Licensed under the Open Software License version 3.0
  */
@@ -15,6 +15,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.aliucord.*
 import com.aliucord.entities.CorePlugin
+import com.aliucord.i18n.I18n
 import com.aliucord.patcher.*
 import com.aliucord.utils.ReflectUtils
 import com.aliucord.utils.ViewUtils.findViewById
@@ -71,9 +72,9 @@ internal class PluginDownloader : CorePlugin(Manifest("PluginDownloader")) {
 
         PluginFile("PluginDownloader").takeIf { it.exists() }?.let {
             if (it.delete())
-                Utils.showToast("PluginDownloader has been merged into Aliucord, so I deleted the plugin for you.", true)
+                Utils.showToast(I18n.t("PluginDownloader is now built into Endcord, so the separate plugin was deleted."), true)
             else
-                Utils.showToast("PluginDownloader has been merged into Aliucord. Please delete the plugin.", true)
+                Utils.showToast(I18n.t("PluginDownloader is now built into Endcord. Please delete the separate plugin."), true)
         }
     }
 
@@ -206,7 +207,7 @@ internal class PluginDownloader : CorePlugin(Manifest("PluginDownloader")) {
 
                     entries += makeContextMenuEntry(
                         ctx = sheet.requireContext(),
-                        text = "View $author's Plugins",
+                        text = I18n.t("View {author}'s Plugins", "author" to author),
                         onClick = {
                             Utils.openPageWithProxy(it.context, PluginRepoModal(author, repo))
                             sheet.dismiss()
@@ -227,12 +228,12 @@ internal class PluginDownloader : CorePlugin(Manifest("PluginDownloader")) {
                 if (!urls.add(url)) continue
 
                 // Don't accidentally install core as a plugin
-                if (name == "Aliucord") continue
+                if (name == "Aliucord" || name == "Endcord") continue
 
                 val plugin = PluginFile(name)
                 entries += makeContextMenuEntry(
                     ctx = sheet.requireContext(),
-                    text = "${if (plugin.isInstalled) "Reinstall" else "Install"} $name",
+                    text = I18n.t(if (plugin.isInstalled) "Reinstall {plugin}" else "Install {plugin}", "plugin" to name),
                     onClick = {
                         plugin.install("https://cdn.jsdelivr.net/gh/$author/$repo@$commit/$name.zip")
                         sheet.dismiss()
@@ -242,14 +243,14 @@ internal class PluginDownloader : CorePlugin(Manifest("PluginDownloader")) {
         }
 
         for (attachment in messageAttachments.orEmpty()) {
-            if (attachment.filename.run { !endsWith(".zip") || equals("Aliucord.zip") }) continue
+            if (attachment.filename.run { !endsWith(".zip") || equals("Aliucord.zip") || equals("Endcord.zip") }) continue
 
             val name = attachment.filename.removeSuffix(".zip")
             val isInstalled = PluginManager.plugins.containsKey(name)
 
             entries += makeContextMenuEntry(
                 ctx = sheet.requireContext(),
-                text = "${if (isInstalled) "Reinstall" else "Install"} $name",
+                text = I18n.t(if (isInstalled) "Reinstall {plugin}" else "Install {plugin}", "plugin" to name),
                 onClick = {
                     PluginFile(name).install(
                         url = attachment.url,

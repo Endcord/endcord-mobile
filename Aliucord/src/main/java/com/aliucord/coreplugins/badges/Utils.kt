@@ -21,7 +21,7 @@ internal fun ImageView.setCacheableImage(url: String) {
         Utils.threadPool.execute {
             try {
                 val image = Http.Request(url)
-                    .setHeader("User-Agent", "Aliucord/${BuildConfig.VERSION}")
+                    .setHeader("User-Agent", "Endcord/${BuildConfig.VERSION}")
                     .execute()
                     .stream()
                     .let(BitmapFactory::decodeStream)

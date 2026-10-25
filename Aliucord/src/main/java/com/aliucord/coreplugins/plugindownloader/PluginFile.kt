@@ -1,5 +1,5 @@
 /*
- * This file is part of Aliucord, an Android Discord client mod.
+ * This file is part of Endcord, an Android Discord client mod based on Aliucord.
  * Copyright (c) 2021 Juby210 & Vendicated
  * Licensed under the Open Software License version 3.0
  */
@@ -8,6 +8,8 @@ package com.aliucord.coreplugins.plugindownloader
 
 import com.aliucord.*
 import com.aliucord.entities.CorePlugin
+import com.aliucord.entities.EndcordPlugin
+import com.aliucord.i18n.I18n
 import java.io.File
 import java.io.IOException
 
@@ -23,9 +25,11 @@ internal class PluginFile(val plugin: String) : File("${Constants.PLUGINS_PATH}/
         Utils.threadPool.execute {
             val safeMode = PluginManager.isSafeModeEnabled()
             val isReinstall = isInstalled
-            if (PluginManager.plugins[plugin] is CorePlugin) {
-                Utils.showToast("External plugins are not able to override built-in coreplugins!")
-                throw IOException("External plugins are not able to override built-in coreplugins")
+            // Built-in Endcord plugins may be replaced by a plugin the user installs, other coreplugins may not
+            val existing = PluginManager.plugins[plugin]
+            if (existing is CorePlugin && existing !is EndcordPlugin) {
+                Utils.showToast(I18n.t("External plugins are not able to override built-in coreplugins!"))
+                return@execute
             }
 
             try {
@@ -45,9 +49,9 @@ internal class PluginFile(val plugin: String) : File("${Constants.PLUGINS_PATH}/
                         else
                             PluginManager.enablePlugin(plugin)
                     }
-                    Utils.showToast("Plugin $plugin successfully ${if (isReinstall) "re" else ""}installed!")
+                    Utils.showToast(I18n.t(if (isReinstall) "Plugin {plugin} successfully reinstalled!" else "Plugin {plugin} successfully installed!", "plugin" to plugin))
                     if (safeMode) {
-                        Utils.showToast("Plugin not loaded due to safe mode!")
+                        Utils.showToast(I18n.t("Plugin not loaded due to safe mode!"))
                     }
                     if (PluginManager.plugins[plugin]?.requiresRestart() == true)
                         Utils.promptRestart()
@@ -56,7 +60,7 @@ internal class PluginFile(val plugin: String) : File("${Constants.PLUGINS_PATH}/
                 }
             } catch (ex: IOException) {
                 Logger("PluginFile").error(ex)
-                Utils.showToast("Failed to download $plugin: ${ex.message}")
+                Utils.showToast(I18n.t("Failed to download {plugin}: {error}", "plugin" to plugin, "error" to ex.message))
                 if (this.exists()) this.delete()
             }
         }
@@ -64,7 +68,7 @@ internal class PluginFile(val plugin: String) : File("${Constants.PLUGINS_PATH}/
 
     fun uninstall(callback: Runnable? = null) {
         val success = this.delete()
-        Utils.showToast("${if (success) "Successfully uninstalled" else "Failed to uninstall"} $plugin")
+        Utils.showToast(I18n.t(if (success) "Successfully uninstalled {plugin}" else "Failed to uninstall {plugin}", "plugin" to plugin))
         if (success) {
             val p = PluginManager.plugins[plugin]
             PluginManager.stopPlugin(plugin)

@@ -5,6 +5,7 @@ import com.aliucord.*
 import com.aliucord.Utils.openPage
 import com.aliucord.api.NotificationsAPI
 import com.aliucord.entities.*
+import com.aliucord.i18n.I18n
 import com.aliucord.screens.UpdaterScreen
 import com.aliucord.settings.AUTO_UPDATE_PLUGINS_KEY
 import com.aliucord.utils.MDUtils
@@ -17,7 +18,7 @@ import java.io.File
  */
 internal object PluginUpdater {
     private val logger = Logger("Updater/Plugins")
-    private const val NOTIFICATION_TITLE = "Plugins Updater"
+    private val NOTIFICATION_TITLE get() = I18n.t("Plugins Updater")
 
     /**
      * Represents an available plugin update.
@@ -122,15 +123,15 @@ internal object PluginUpdater {
             val notification = NotificationData()
                 .setTitle(NOTIFICATION_TITLE)
                 .setBody(MDUtils.render(buildString {
-                    append("Found ${updates.size} available plugin updates: ")
+                    append(I18n.t("Found {count} available plugin updates:", "count" to updates.size)).append(' ')
                     append(updates
                         .take(5)
                         .joinToString(separator = ", ", transform = { "**${it.pluginName}**" }))
 
                     if (updates.size > 5)
-                        append(", and ${updates.size - 5} others.")
+                        append(' ').append(I18n.t("and {count} more", "count" to updates.size - 5))
 
-                    append(". Click to see more.")
+                    append(". ").append(I18n.t("Tap to see more."))
                 }))
                 .setAutoDismissPeriodSecs(30)
                 .setOnClick { openPage(Utils.appActivity, UpdaterScreen::class.java) }
@@ -149,12 +150,12 @@ internal object PluginUpdater {
                 .setTitle(NOTIFICATION_TITLE)
                 .setAutoDismissPeriodSecs(30)
                 .setBody(MDUtils.render(buildString {
-                    append("Failed to update some plugins: ")
+                    append(I18n.t("Failed to update some plugins:")).append(' ')
                     append(failed
                         .take(5)
                         .joinToString(separator = ", ", transform = { "**${it.pluginName}**" }))
                     if (failed.size > 5)
-                        append(", and ${failed.size - 5} others.")
+                        append(' ').append(I18n.t("and {count} more", "count" to failed.size - 5))
                 }))
                 .setOnClick { openPage(Utils.appActivity, UpdaterScreen::class.java) }
         } else {
@@ -163,12 +164,12 @@ internal object PluginUpdater {
                 .setAutoDismissPeriodSecs(10)
                 .setOnClick { /* Do nothing */ }
                 .setBody(MDUtils.render(buildString {
-                    append("Automatically updated plugins: ")
+                    append(I18n.t("Automatically updated plugins:")).append(' ')
                     append(succeeded
                         .take(5)
                         .joinToString(separator = ", ", transform = { "**${it.pluginName}**" }))
                     if (succeeded.size > 5)
-                        append(", and ${succeeded.size - 5} others.")
+                        append(' ').append(I18n.t("and {count} more", "count" to succeeded.size - 5))
                 }))
         }
         NotificationsAPI.display(notification)
@@ -196,18 +197,28 @@ internal object PluginUpdater {
         }
     }
 
-    private fun reloadPlugin(plugin: Plugin) {
-        // FIXME: plugin not reloaded when disabled
-        if (!PluginManager.isPluginEnabled(plugin.name)) return
+    private val restartPrompt = Runnable {
+        Utils.promptRestart(I18n.t("Plugin update requires a restart. Restart now?"))
+    }
 
+    /** Several plugins may update at once, only ask to restart a single time. */
+    private fun promptRestartOnce() {
+        Utils.mainThread.removeCallbacks(restartPrompt)
+        Utils.mainThread.postDelayed(restartPrompt, 500)
+    }
+
+    private fun reloadPlugin(plugin: Plugin) {
         Utils.mainThread.post {
-            PluginManager.remountPlugin(plugin.name)
+            if (PluginManager.isPluginEnabled(plugin.name)) {
+                PluginManager.remountPlugin(plugin.name)
+            } else {
+                // Disabled plugins are loaded but not started, reload them so the new version shows up
+                PluginManager.unloadPlugin(plugin.name)
+                PluginManager.loadPlugin(Utils.appContext, File(Constants.PLUGINS_PATH, "${plugin.__filename}.zip"))
+            }
             val newPlugin = PluginManager.plugins[plugin.name] ?: return@post
 
-            // FIXME: only prompt once when updating all plugins at once
-            if (plugin.requiresRestart() || newPlugin.requiresRestart()) {
-                Utils.promptRestart("Plugin update requires a restart. Restart now?")
-            }
+            if (plugin.requiresRestart() || newPlugin.requiresRestart()) promptRestartOnce()
         }
     }
 }

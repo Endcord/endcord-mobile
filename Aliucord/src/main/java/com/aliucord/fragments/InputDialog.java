@@ -14,6 +14,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.aliucord.Utils;
+import com.aliucord.i18n.I18n;
 import com.discord.app.AppDialog;
 import com.discord.databinding.WidgetKickUserBinding;
 import com.discord.widgets.user.WidgetKickUser$binding$2;
@@ -51,8 +52,8 @@ public class InputDialog extends AppDialog {
         // Hide ugly redundant secondary "REASON FOR KICK" header
         ((LinearLayout) ((ScrollView) ((LinearLayout) view).getChildAt(2)).getChildAt(0)).getChildAt(1).setVisibility(View.GONE);
 
-        getHeader().setText(title != null ? title : "Input");
-        getBody().setText(description != null ? description : "Please enter some text");
+        getHeader().setText(title != null ? title : I18n.t("Input"));
+        getBody().setText(description != null ? description : I18n.t("Please enter some text"));
         getBody().setMovementMethod(LinkMovementMethod.getInstance());
 
         TextInputLayout inputLayout = getInputLayout();

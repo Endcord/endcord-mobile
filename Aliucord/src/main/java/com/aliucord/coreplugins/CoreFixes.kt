@@ -109,7 +109,7 @@ internal class CoreFixes : CorePlugin(Manifest("CoreFixes")) {
     override val isRequired = true
 
     init {
-        manifest.description = "Applies critical patches and fixes to ensure Aliucord functions correctly without errors"
+        manifest.description = "Applies critical patches and fixes to ensure Endcord functions correctly without errors"
     }
 
     override fun start(context: Context) {

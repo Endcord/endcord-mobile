@@ -16,7 +16,7 @@ import com.lytefast.flexinput.R
 
 internal class AccountStanding : CorePlugin(Manifest("AccountStanding")) {
     init {
-        manifest.description = "Adds account standing to Aliucord."
+        manifest.description = "Adds account standing to Endcord."
     }
 
     override fun start(context: Context) {

@@ -438,7 +438,7 @@ internal class GuildProfileSheet : BottomSheet() {
             actionButton.setText(R.h.guild_role_subscription_settings_enable_cta)
             actionButton.alpha = 0.5f
             actionButton.setOnClickListener {
-                Utils.showToast("Server applications are not yet supported in Aliucord. Please join this server using Desktop or official Discord for now.")
+                Utils.showToast(com.aliucord.i18n.I18n.t("Server applications are not supported on mobile yet. Please join this server from Endcord PC or the official Discord app for now."))
             }
             // Guild is not publicly joinable
         } else {
