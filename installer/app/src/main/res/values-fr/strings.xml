@@ -115,6 +115,7 @@
   <string name="navigation_settings">Paramètres</string>
 
   <string name="contributors_lead">Responsable</string>
+  <string name="about_based_on_aliucord">Basé sur Aliucord</string>
   <string name="contributors">Contributeurs</string>
   <string name="contributors_contributions">%s contributions</string>
 

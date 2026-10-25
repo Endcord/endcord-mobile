@@ -115,6 +115,7 @@
   <string name="navigation_settings">Ayarlar</string>
 
   <string name="contributors_lead">Lider</string>
+  <string name="about_based_on_aliucord">Aliucord tabanlı</string>
   <string name="contributors">Katkıda Bulunanlar</string>
   <string name="contributors_contributions">%s katkı</string>
 
