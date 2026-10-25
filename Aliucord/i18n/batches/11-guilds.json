@@ -1,0 +1,476 @@
+{
+  "Allows you to hide servers from the server list by long-pressing them": {
+    "tr": "Sunuculara uzun basarak onları sunucu listesinden gizlemeni sağlar",
+    "ru": "Позволяет скрывать серверы из списка серверов долгим нажатием на них",
+    "es": "Te permite ocultar servidores de la lista de servidores manteniéndolos pulsados",
+    "fr": "Permet de masquer des serveurs de la liste des serveurs en appuyant longuement dessus"
+  },
+  "Allows you to pin private channels to the top of your DM list. To pin/unpin or re-order pins, long-press DMs": {
+    "tr": "Özel kanalları DM listenin en üstüne sabitlemeni sağlar. Sabitlemek, kaldırmak veya sırayı değiştirmek için DM'lere uzun bas",
+    "ru": "Позволяет закреплять личные каналы вверху списка ЛС. Чтобы закрепить, открепить или изменить порядок, нажмите на ЛС и удерживайте",
+    "es": "Te permite fijar canales privados en la parte superior de tu lista de MD. Para fijar, desfijar o reordenar, mantén pulsado un MD",
+    "fr": "Permet d'épingler des salons privés en haut de ta liste de MP. Pour épingler, désépingler ou réordonner, appuie longuement sur un MP"
+  },
+  "Pin servers to the top of your server list from their long-press menu, without changing your folders.": {
+    "tr": "Sunucuları uzun basma menüsünden sunucu listenin en üstüne sabitle, klasörlerin değişmeden kalır.",
+    "ru": "Закрепляйте серверы вверху списка через меню долгого нажатия, не меняя папки.",
+    "es": "Fija servidores en la parte superior de tu lista desde su menú de pulsación larga, sin cambiar tus carpetas.",
+    "fr": "Épingle des serveurs en haut de ta liste depuis leur menu d'appui long, sans modifier tes dossiers."
+  },
+  "Read all server notifications by long-pressing the home button above your servers": {
+    "tr": "Sunucularının üstündeki ana sayfa düğmesine uzun basarak tüm sunucu bildirimlerini okundu yap",
+    "ru": "Отметьте все уведомления серверов прочитанными долгим нажатием на кнопку «Главная» над серверами",
+    "es": "Marca como leídas todas las notificaciones de servidores manteniendo pulsado el botón de inicio sobre tus servidores",
+    "fr": "Marque toutes les notifications des serveurs comme lues en appuyant longuement sur le bouton d'accueil au-dessus de tes serveurs"
+  },
+  "Adds a delete option to the channel long-press menu": {
+    "tr": "Kanalın uzun basma menüsüne bir silme seçeneği ekler",
+    "ru": "Добавляет пункт удаления в меню долгого нажатия на канал",
+    "es": "Añade una opción para eliminar al menú de pulsación larga del canal",
+    "fr": "Ajoute une option de suppression au menu d'appui long des salons"
+  },
+  "Never show hidden channels as unread or with mentions": {
+    "tr": "Gizli kanalları asla okunmamış veya bahsetmeli olarak gösterme",
+    "ru": "Никогда не показывать скрытые каналы как непрочитанные или с упоминаниями",
+    "es": "No mostrar nunca los canales ocultos como no leídos o con menciones",
+    "fr": "Ne jamais afficher les salons masqués comme non lus ou avec des mentions"
+  },
+  "Muted style with the normal icon": {
+    "tr": "Normal simgeyle soluk görünüm",
+    "ru": "Приглушённый стиль с обычным значком",
+    "es": "Estilo atenuado con el icono normal",
+    "fr": "Style atténué avec l'icône normale"
+  },
+  "This channel no longer exists.": {
+    "tr": "Bu kanal artık mevcut değil.",
+    "ru": "Этот канал больше не существует.",
+    "es": "Este canal ya no existe.",
+    "fr": "Ce salon n'existe plus."
+  },
+  "This is a hidden text channel": {
+    "tr": "Bu gizli bir metin kanalı",
+    "ru": "Это скрытый текстовый канал",
+    "es": "Este es un canal de texto oculto",
+    "fr": "Ceci est un salon textuel masqué"
+  },
+  "This is a hidden voice channel": {
+    "tr": "Bu gizli bir ses kanalı",
+    "ru": "Это скрытый голосовой канал",
+    "es": "Este es un canal de voz oculto",
+    "fr": "Ceci est un salon vocal masqué"
+  },
+  "This is a hidden announcement channel": {
+    "tr": "Bu gizli bir duyuru kanalı",
+    "ru": "Это скрытый канал объявлений",
+    "es": "Este es un canal de anuncios oculto",
+    "fr": "Ceci est un salon d'annonces masqué"
+  },
+  "This is a hidden forum channel": {
+    "tr": "Bu gizli bir forum kanalı",
+    "ru": "Это скрытый форум",
+    "es": "Este es un canal de foro oculto",
+    "fr": "Ceci est un salon forum masqué"
+  },
+  "This is a hidden stage channel": {
+    "tr": "Bu gizli bir sahne kanalı",
+    "ru": "Это скрытая трибуна",
+    "es": "Este es un canal de escenario oculto",
+    "fr": "Ceci est un salon de conférence masqué"
+  },
+  "This is a hidden channel": {
+    "tr": "Bu gizli bir kanal",
+    "ru": "Это скрытый канал",
+    "es": "Este es un canal oculto",
+    "fr": "Ceci est un salon masqué"
+  },
+  "You can't see the messages in this channel.": {
+    "tr": "Bu kanaldaki mesajları göremezsin.",
+    "ru": "Вы не можете видеть сообщения в этом канале.",
+    "es": "No puedes ver los mensajes de este canal.",
+    "fr": "Tu ne peux pas voir les messages de ce salon."
+  },
+  "You can't see the posts in this channel.": {
+    "tr": "Bu kanaldaki gönderileri göremezsin.",
+    "ru": "Вы не можете видеть публикации в этом канале.",
+    "es": "No puedes ver las publicaciones de este canal.",
+    "fr": "Tu ne peux pas voir les publications de ce salon."
+  },
+  "You don't have permission to join or see this channel.": {
+    "tr": "Bu kanala katılma veya onu görme iznin yok.",
+    "ru": "У вас нет прав на просмотр этого канала или подключение к нему.",
+    "es": "No tienes permiso para unirte a este canal ni para verlo.",
+    "fr": "Tu n'as pas la permission de rejoindre ou de voir ce salon."
+  },
+  "Guidelines": {
+    "tr": "Kurallar",
+    "ru": "Правила",
+    "es": "Normas",
+    "fr": "Règles"
+  },
+  "Topic": {
+    "tr": "Konu",
+    "ru": "Тема",
+    "es": "Tema",
+    "fr": "Sujet"
+  },
+  "Details": {
+    "tr": "Ayrıntılar",
+    "ru": "Подробности",
+    "es": "Detalles",
+    "fr": "Détails"
+  },
+  "Last message: {time}": {
+    "tr": "Son mesaj: {time}",
+    "ru": "Последнее сообщение: {time}",
+    "es": "Último mensaje: {time}",
+    "fr": "Dernier message : {time}"
+  },
+  "Last post: {time}": {
+    "tr": "Son gönderi: {time}",
+    "ru": "Последняя публикация: {time}",
+    "es": "Última publicación: {time}",
+    "fr": "Dernière publication : {time}"
+  },
+  "Created: {time}": {
+    "tr": "Oluşturulma: {time}",
+    "ru": "Создан: {time}",
+    "es": "Creado: {time}",
+    "fr": "Créé : {time}"
+  },
+  "Slowmode: {duration}": {
+    "tr": "Yavaş mod: {duration}",
+    "ru": "Медленный режим: {duration}",
+    "es": "Modo pausado: {duration}",
+    "fr": "Mode lent : {duration}"
+  },
+  "Bitrate: {bitrate} kbps": {
+    "tr": "Bit hızı: {bitrate} kbps",
+    "ru": "Битрейт: {bitrate} кбит/с",
+    "es": "Tasa de bits: {bitrate} kbps",
+    "fr": "Débit : {bitrate} kbit/s"
+  },
+  "User limit: {count}": {
+    "tr": "Kullanıcı sınırı: {count}",
+    "ru": "Лимит пользователей: {count}",
+    "es": "Límite de usuarios: {count}",
+    "fr": "Limite d'utilisateurs : {count}"
+  },
+  "Region: {region}": {
+    "tr": "Bölge: {region}",
+    "ru": "Регион: {region}",
+    "es": "Región: {region}",
+    "fr": "Région : {region}"
+  },
+  "Automatic": {
+    "tr": "Otomatik",
+    "ru": "Автоматически",
+    "es": "Automática",
+    "fr": "Automatique"
+  },
+  "Age-restricted channel": {
+    "tr": "Yaş sınırlamalı kanal",
+    "ru": "Канал с возрастным ограничением",
+    "es": "Canal con restricción de edad",
+    "fr": "Salon soumis à une limite d'âge"
+  },
+  "Nobody else can see this channel.": {
+    "tr": "Bu kanalı başka kimse göremiyor.",
+    "ru": "Никто больше не видит этот канал.",
+    "es": "Nadie más puede ver este canal.",
+    "fr": "Personne d'autre ne peut voir ce salon."
+  },
+  "Server owner: {user}": {
+    "tr": "Sunucu sahibi: {user}",
+    "ru": "Владелец сервера: {user}",
+    "es": "Propietario del servidor: {user}",
+    "fr": "Propriétaire du serveur : {user}"
+  },
+  "Administrator": {
+    "tr": "Yönetici",
+    "ru": "Администратор",
+    "es": "Administrador",
+    "fr": "Administrateur"
+  },
+  "Hide Server": {
+    "tr": "Sunucuyu Gizle",
+    "ru": "Скрыть сервер",
+    "es": "Ocultar servidor",
+    "fr": "Masquer le serveur"
+  },
+  "Hid {server}. Show it again from the HideServers settings.": {
+    "tr": "{server} gizlendi. HideServers ayarlarından tekrar gösterebilirsin.",
+    "ru": "{server} скрыт. Вернуть его можно в настройках HideServers.",
+    "es": "Se ocultó {server}. Puedes volver a mostrarlo en los ajustes de HideServers.",
+    "fr": "{server} est masqué. Tu peux le réafficher depuis les paramètres de HideServers."
+  },
+  "Choose which hidden servers to show again": {
+    "tr": "Hangi gizli sunucuların tekrar gösterileceğini seç",
+    "ru": "Выберите, какие скрытые серверы снова показать",
+    "es": "Elige qué servidores ocultos volver a mostrar",
+    "fr": "Choisis quels serveurs masqués réafficher"
+  },
+  "All servers are visible again": {
+    "tr": "Tüm sunucular yeniden görünüyor",
+    "ru": "Все серверы снова видны",
+    "es": "Todos los servidores vuelven a estar visibles",
+    "fr": "Tous les serveurs sont de nouveau visibles"
+  },
+  "Unpin all servers": {
+    "tr": "Tüm sunucuların sabitlemesini kaldır",
+    "ru": "Открепить все серверы",
+    "es": "Desfijar todos los servidores",
+    "fr": "Désépingler tous les serveurs"
+  },
+  "Remove every pinned server from the top of the list": {
+    "tr": "Sabitlenmiş tüm sunucuları listenin üstünden kaldır",
+    "ru": "Убрать все закреплённые серверы из верхней части списка",
+    "es": "Quita todos los servidores fijados de la parte superior de la lista",
+    "fr": "Retire tous les serveurs épinglés du haut de la liste"
+  },
+  "Pin DM": {
+    "tr": "DM'yi Sabitle",
+    "ru": "Закрепить ЛС",
+    "es": "Fijar MD",
+    "fr": "Épingler le MP"
+  },
+  "Custom (long-press DMs to reorder)": {
+    "tr": "Özel (sıralamak için DM'lere uzun bas)",
+    "ru": "Свой порядок (нажмите на ЛС и удерживайте, чтобы переставить)",
+    "es": "Personalizado (mantén pulsados los MD para reordenarlos)",
+    "fr": "Personnalisé (appuie longuement sur les MP pour les réordonner)"
+  },
+  "Unpin all DMs": {
+    "tr": "Tüm DM'lerin sabitlemesini kaldır",
+    "ru": "Открепить все ЛС",
+    "es": "Desfijar todos los MD",
+    "fr": "Désépingler tous les MP"
+  },
+  "Remove every pinned direct message": {
+    "tr": "Sabitlenmiş tüm özel mesajları kaldır",
+    "ru": "Убрать все закреплённые личные сообщения",
+    "es": "Quita todos los mensajes directos fijados",
+    "fr": "Retire tous les messages privés épinglés"
+  },
+  "This server is not available.": {
+    "tr": "Bu sunucu kullanılamıyor.",
+    "ru": "Этот сервер недоступен.",
+    "es": "Este servidor no está disponible.",
+    "fr": "Ce serveur n'est pas disponible."
+  },
+  "ID": {
+    "tr": "ID",
+    "ru": "ID",
+    "es": "ID",
+    "fr": "ID"
+  },
+  "Description": {
+    "tr": "Açıklama",
+    "ru": "Описание",
+    "es": "Descripción",
+    "fr": "Description"
+  },
+  "Owner": {
+    "tr": "Sahip",
+    "ru": "Владелец",
+    "es": "Propietario",
+    "fr": "Propriétaire"
+  },
+  "Vanity URL": {
+    "tr": "Özel URL",
+    "ru": "Персональная ссылка",
+    "es": "URL personalizada",
+    "fr": "URL personnalisée"
+  },
+  "Counts": {
+    "tr": "Sayılar",
+    "ru": "Количество",
+    "es": "Recuentos",
+    "fr": "Totaux"
+  },
+  "Emojis": {
+    "tr": "Emojiler",
+    "ru": "Эмодзи",
+    "es": "Emojis",
+    "fr": "Émojis"
+  },
+  "Boosts": {
+    "tr": "Takviyeler",
+    "ru": "Бусты",
+    "es": "Mejoras",
+    "fr": "Boosts"
+  },
+  "{count} (level {level})": {
+    "tr": "{count} ({level}. seviye)",
+    "ru": "{count} (уровень {level})",
+    "es": "{count} (nivel {level})",
+    "fr": "{count} (niveau {level})"
+  },
+  "Safety": {
+    "tr": "Güvenlik",
+    "ru": "Безопасность",
+    "es": "Seguridad",
+    "fr": "Sécurité"
+  },
+  "Verification level": {
+    "tr": "Doğrulama seviyesi",
+    "ru": "Уровень проверки",
+    "es": "Nivel de verificación",
+    "fr": "Niveau de vérification"
+  },
+  "Explicit content filter": {
+    "tr": "Müstehcen içerik filtresi",
+    "ru": "Фильтр откровенного контента",
+    "es": "Filtro de contenido explícito",
+    "fr": "Filtre de contenu explicite"
+  },
+  "Two-factor requirement for moderation": {
+    "tr": "Moderasyon için iki adımlı doğrulama zorunluluğu",
+    "ru": "Обязательная двухфакторная аутентификация для модерации",
+    "es": "Autenticación en dos pasos obligatoria para moderar",
+    "fr": "Authentification à deux facteurs requise pour la modération"
+  },
+  "Age-restricted": {
+    "tr": "Yaş sınırlamalı",
+    "ru": "Возрастное ограничение",
+    "es": "Restricción de edad",
+    "fr": "Limite d'âge"
+  },
+  "On": {
+    "tr": "Açık",
+    "ru": "Вкл.",
+    "es": "Activado",
+    "fr": "Activé"
+  },
+  "Mark every server as read now": {
+    "tr": "Tüm sunucuları şimdi okundu yap",
+    "ru": "Отметить все серверы прочитанными сейчас",
+    "es": "Marca todos los servidores como leídos ahora",
+    "fr": "Marque tous les serveurs comme lus maintenant"
+  },
+  "Marking all servers as read...": {
+    "tr": "Tüm sunucular okundu olarak işaretleniyor...",
+    "ru": "Все серверы отмечаются прочитанными...",
+    "es": "Marcando todos los servidores como leídos...",
+    "fr": "Marquage de tous les serveurs comme lus..."
+  },
+  "Marked {count} servers as read": {
+    "tr": "{count} sunucu okundu olarak işaretlendi",
+    "ru": "Серверов отмечено прочитанными: {count}",
+    "es": "Se marcaron {count} servidores como leídos",
+    "fr": "{count} serveurs marqués comme lus"
+  },
+  "Failed to mark servers as read": {
+    "tr": "Sunucular okundu olarak işaretlenemedi",
+    "ru": "Не удалось отметить серверы прочитанными",
+    "es": "No se pudieron marcar los servidores como leídos",
+    "fr": "Impossible de marquer les serveurs comme lus"
+  },
+  "Applied NewGuildSettings to {server}": {
+    "tr": "NewGuildSettings {server} sunucusuna uygulandı",
+    "ru": "Настройки NewGuildSettings применены к {server}",
+    "es": "Se aplicó NewGuildSettings a {server}",
+    "fr": "NewGuildSettings appliqué à {server}"
+  },
+  "Failed to apply server settings": {
+    "tr": "Sunucu ayarları uygulanamadı",
+    "ru": "Не удалось применить настройки сервера",
+    "es": "No se pudieron aplicar los ajustes del servidor",
+    "fr": "Impossible d'appliquer les paramètres du serveur"
+  },
+  "sent a GIF": {
+    "tr": "bir GIF gönderdi",
+    "ru": "отправил(а) GIF",
+    "es": "envió un GIF",
+    "fr": "a envoyé un GIF"
+  },
+  "voice message": {
+    "tr": "sesli mesaj",
+    "ru": "голосовое сообщение",
+    "es": "mensaje de voz",
+    "fr": "message vocal"
+  },
+  "Sent an attachment": {
+    "tr": "Bir ek gönderdi",
+    "ru": "Отправил(а) вложение",
+    "es": "Envió un archivo adjunto",
+    "fr": "A envoyé une pièce jointe"
+  },
+  "Sent {count} attachments": {
+    "tr": "{count} ek gönderdi",
+    "ru": "Отправил(а) вложений: {count}",
+    "es": "Envió {count} archivos adjuntos",
+    "fr": "A envoyé {count} pièces jointes"
+  },
+  "Sent an embed": {
+    "tr": "Bir gömülü içerik gönderdi",
+    "ru": "Отправил(а) встраиваемый контент",
+    "es": "Envió un contenido incrustado",
+    "fr": "A envoyé un contenu intégré"
+  },
+  "You: {message}": {
+    "tr": "Sen: {message}",
+    "ru": "Вы: {message}",
+    "es": "Tú: {message}",
+    "fr": "Toi : {message}"
+  },
+  "Delete Channel": {
+    "tr": "Kanalı Sil",
+    "ru": "Удалить канал",
+    "es": "Eliminar canal",
+    "fr": "Supprimer le salon"
+  },
+  "Ask before deleting": {
+    "tr": "Silmeden önce sor",
+    "ru": "Спрашивать перед удалением",
+    "es": "Preguntar antes de eliminar",
+    "fr": "Demander avant de supprimer"
+  },
+  "Show a confirmation before the channel is deleted": {
+    "tr": "Kanal silinmeden önce bir onay göster",
+    "ru": "Показывать подтверждение перед удалением канала",
+    "es": "Muestra una confirmación antes de eliminar el canal",
+    "fr": "Affiche une confirmation avant la suppression du salon"
+  },
+  "Delete #{channel}? This can't be undone.": {
+    "tr": "#{channel} silinsin mi? Bu işlem geri alınamaz.",
+    "ru": "Удалить #{channel}? Это действие нельзя отменить.",
+    "es": "¿Eliminar #{channel}? No se puede deshacer.",
+    "fr": "Supprimer #{channel} ? Cette action est irréversible."
+  },
+  "Deleted #{channel}": {
+    "tr": "#{channel} silindi",
+    "ru": "#{channel} удалён",
+    "es": "Se eliminó #{channel}",
+    "fr": "#{channel} a été supprimé"
+  },
+  "Failed to delete #{channel}": {
+    "tr": "#{channel} silinemedi",
+    "ru": "Не удалось удалить #{channel}",
+    "es": "No se pudo eliminar #{channel}",
+    "fr": "Impossible de supprimer #{channel}"
+  },
+  "Forum": {
+    "tr": "Forum",
+    "ru": "Форум",
+    "es": "Foro",
+    "fr": "Forum"
+  },
+  "News": {
+    "tr": "Duyuru",
+    "ru": "Новости",
+    "es": "Anuncios",
+    "fr": "Annonces"
+  },
+  "NSFW": {
+    "tr": "NSFW",
+    "ru": "18+",
+    "es": "NSFW",
+    "fr": "NSFW"
+  },
+  "Locked": {
+    "tr": "Kilitli",
+    "ru": "Закрыт",
+    "es": "Bloqueado",
+    "fr": "Verrouillé"
+  }
+}
