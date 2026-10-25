@@ -55,7 +55,8 @@ internal class ViewIcons : EndcordPlugin(
     )
 
     /** One image that can be viewed: [kind] names it in menus ("Avatar", "Banner", ...). */
-    private class Image(val kind: String, val url: String, val fileName: String)
+    /** [labelKey] picks Endcord PC's menu labels: "View {labelKey}", "Save {labelKey}" and "Copy {labelKey} Link". */
+    private class Image(val kind: String, val url: String, val fileName: String, val labelKey: String = kind)
 
     private val guildSheetBinding: Method by lazy {
         WidgetGuildProfileSheet::class.java.getDeclaredMethod("getBinding").apply { isAccessible = true }
@@ -81,7 +82,7 @@ internal class ViewIcons : EndcordPlugin(
                 val hash = param.args[1] as String? ?: return@after
                 val guildId = param.args[0] as Long
                 val binding = guildSheetBinding.invoke(this) as WidgetGuildProfileSheetBinding
-                attach(binding.i, listOf(Image("Server Icon", cdn("icons/$guildId/$hash", hash), "icon_$guildId")))
+                attach(binding.i, listOf(Image("Server Icon", cdn("icons/$guildId/$hash", hash), "icon_$guildId", "Icon")))
             } catch (e: Throwable) {
                 logger.error("Failed to make the server icon clickable", e)
             }
@@ -93,7 +94,7 @@ internal class ViewIcons : EndcordPlugin(
                 val hash = banner.hash ?: return@after
                 val binding = guildSheetBinding.invoke(this) as WidgetGuildProfileSheetBinding
                 val image = if (banner.type == WidgetGuildProfileSheetViewModel.Banner.Type.SPLASH) {
-                    Image("Server Splash", cdn("splashes/${banner.guildId}/$hash", hash), "splash_${banner.guildId}")
+                    Image("Server Splash", cdn("splashes/${banner.guildId}/$hash", hash), "splash_${banner.guildId}", "Splash")
                 } else {
                     Image("Server Banner", cdn("banners/${banner.guildId}/$hash", hash), "banner_${banner.guildId}")
                 }
@@ -164,10 +165,12 @@ internal class ViewIcons : EndcordPlugin(
         val labels = ArrayList<CharSequence>()
         val actions = ArrayList<() -> Unit>()
         for (image in images) {
-            val kind = tr(image.kind)
-            labels += tr("View {thing}", "thing" to kind); actions += { open(image) }
-            labels += tr("Save {thing}", "thing" to kind); actions += { save(image) }
-            labels += tr("Copy {thing} link", "thing" to kind); actions += { Dialogs.copy(image.url) }
+            labels += tr("View ${image.labelKey}")
+            actions += { open(image) }
+            labels += tr("Save ${image.labelKey}")
+            actions += { save(image) }
+            labels += tr("Copy ${image.labelKey} Link")
+            actions += { Dialogs.copy(image.url) }
         }
         Dialogs.showList(context, tr(images[0].kind), labels) { actions[it]() }
     }

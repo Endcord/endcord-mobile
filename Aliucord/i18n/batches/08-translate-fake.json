@@ -1,0 +1,1430 @@
+{
+  "Afrikaans": {
+    "tr": "Afrikaanca",
+    "ru": "Африкаанс",
+    "es": "Afrikáans",
+    "fr": "Afrikaans"
+  },
+  "Albanian": {
+    "tr": "Arnavutça",
+    "ru": "Албанский",
+    "es": "Albanés",
+    "fr": "Albanais"
+  },
+  "Amharic": {
+    "tr": "Amharca",
+    "ru": "Амхарский",
+    "es": "Amárico",
+    "fr": "Amharique"
+  },
+  "Arabic": {
+    "tr": "Arapça",
+    "ru": "Арабский",
+    "es": "Árabe",
+    "fr": "Arabe"
+  },
+  "Armenian": {
+    "tr": "Ermenice",
+    "ru": "Армянский",
+    "es": "Armenio",
+    "fr": "Arménien"
+  },
+  "Assamese": {
+    "tr": "Assamca",
+    "ru": "Ассамский",
+    "es": "Asamés",
+    "fr": "Assamais"
+  },
+  "Aymara": {
+    "tr": "Aymara",
+    "ru": "Аймара",
+    "es": "Aimara",
+    "fr": "Aymara"
+  },
+  "Azerbaijani": {
+    "tr": "Azerbaycan dili",
+    "ru": "Азербайджанский",
+    "es": "Azerbaiyano",
+    "fr": "Azerbaïdjanais"
+  },
+  "Bambara": {
+    "tr": "Bambara",
+    "ru": "Бамбара",
+    "es": "Bambara",
+    "fr": "Bambara"
+  },
+  "Basque": {
+    "tr": "Baskça",
+    "ru": "Баскский",
+    "es": "Euskera",
+    "fr": "Basque"
+  },
+  "Belarusian": {
+    "tr": "Belarusça",
+    "ru": "Белорусский",
+    "es": "Bielorruso",
+    "fr": "Biélorusse"
+  },
+  "Bengali": {
+    "tr": "Bengalce",
+    "ru": "Бенгальский",
+    "es": "Bengalí",
+    "fr": "Bengali"
+  },
+  "Bhojpuri": {
+    "tr": "Bhojpuri",
+    "ru": "Бходжпури",
+    "es": "Bhoyapurí",
+    "fr": "Bhodjpouri"
+  },
+  "Bosnian": {
+    "tr": "Boşnakça",
+    "ru": "Боснийский",
+    "es": "Bosnio",
+    "fr": "Bosniaque"
+  },
+  "Bulgarian": {
+    "tr": "Bulgarca",
+    "ru": "Болгарский",
+    "es": "Búlgaro",
+    "fr": "Bulgare"
+  },
+  "Catalan": {
+    "tr": "Katalanca",
+    "ru": "Каталанский",
+    "es": "Catalán",
+    "fr": "Catalan"
+  },
+  "Cebuano": {
+    "tr": "Sebuano dili",
+    "ru": "Себуано",
+    "es": "Cebuano",
+    "fr": "Cebuano"
+  },
+  "Chichewa": {
+    "tr": "Nyanja",
+    "ru": "Ньянджа",
+    "es": "Nyanja",
+    "fr": "Chewa"
+  },
+  "Chinese (Simplified)": {
+    "tr": "Çince (Basitleştirilmiş)",
+    "ru": "Китайский (упрощённый)",
+    "es": "Chino (simplificado)",
+    "fr": "Chinois (simplifié)"
+  },
+  "Chinese (Traditional)": {
+    "tr": "Çince (Geleneksel)",
+    "ru": "Китайский (традиционный)",
+    "es": "Chino (tradicional)",
+    "fr": "Chinois (traditionnel)"
+  },
+  "Corsican": {
+    "tr": "Korsikaca",
+    "ru": "Корсиканский",
+    "es": "Corso",
+    "fr": "Corse"
+  },
+  "Croatian": {
+    "tr": "Hırvatça",
+    "ru": "Хорватский",
+    "es": "Croata",
+    "fr": "Croate"
+  },
+  "Czech": {
+    "tr": "Çekçe",
+    "ru": "Чешский",
+    "es": "Checo",
+    "fr": "Tchèque"
+  },
+  "Danish": {
+    "tr": "Danca",
+    "ru": "Датский",
+    "es": "Danés",
+    "fr": "Danois"
+  },
+  "Dhivehi": {
+    "tr": "Divehi dili",
+    "ru": "Мальдивский",
+    "es": "Divehi",
+    "fr": "Maldivien"
+  },
+  "Dogri": {
+    "tr": "Dogri",
+    "ru": "Догри",
+    "es": "Dogri",
+    "fr": "Dogri"
+  },
+  "Dutch": {
+    "tr": "Felemenkçe",
+    "ru": "Нидерландский",
+    "es": "Neerlandés",
+    "fr": "Néerlandais"
+  },
+  "English": {
+    "tr": "İngilizce",
+    "ru": "Английский",
+    "es": "Inglés",
+    "fr": "Anglais"
+  },
+  "Esperanto": {
+    "tr": "Esperanto",
+    "ru": "Эсперанто",
+    "es": "Esperanto",
+    "fr": "Espéranto"
+  },
+  "Estonian": {
+    "tr": "Estonca",
+    "ru": "Эстонский",
+    "es": "Estonio",
+    "fr": "Estonien"
+  },
+  "Ewe": {
+    "tr": "Ewe",
+    "ru": "Эве",
+    "es": "Ewé",
+    "fr": "Éwé"
+  },
+  "Filipino": {
+    "tr": "Filipince",
+    "ru": "Филиппинский",
+    "es": "Filipino",
+    "fr": "Filipino"
+  },
+  "Finnish": {
+    "tr": "Fince",
+    "ru": "Финский",
+    "es": "Finés",
+    "fr": "Finnois"
+  },
+  "French": {
+    "tr": "Fransızca",
+    "ru": "Французский",
+    "es": "Francés",
+    "fr": "Français"
+  },
+  "Frisian": {
+    "tr": "Batı Frizcesi",
+    "ru": "Западнофризский",
+    "es": "Frisón occidental",
+    "fr": "Frison occidental"
+  },
+  "Galician": {
+    "tr": "Galiçyaca",
+    "ru": "Галисийский",
+    "es": "Gallego",
+    "fr": "Galicien"
+  },
+  "Georgian": {
+    "tr": "Gürcüce",
+    "ru": "Грузинский",
+    "es": "Georgiano",
+    "fr": "Géorgien"
+  },
+  "German": {
+    "tr": "Almanca",
+    "ru": "Немецкий",
+    "es": "Alemán",
+    "fr": "Allemand"
+  },
+  "Greek": {
+    "tr": "Yunanca",
+    "ru": "Греческий",
+    "es": "Griego",
+    "fr": "Grec"
+  },
+  "Guarani": {
+    "tr": "Guarani dili",
+    "ru": "Гуарани",
+    "es": "Guaraní",
+    "fr": "Guarani"
+  },
+  "Gujarati": {
+    "tr": "Güceratça",
+    "ru": "Гуджарати",
+    "es": "Guyaratí",
+    "fr": "Goudjarati"
+  },
+  "Haitian Creole": {
+    "tr": "Haiti Kreyolu",
+    "ru": "Гаитянский",
+    "es": "Criollo haitiano",
+    "fr": "Créole haïtien"
+  },
+  "Hausa": {
+    "tr": "Hausa dili",
+    "ru": "Хауса",
+    "es": "Hausa",
+    "fr": "Haoussa"
+  },
+  "Hawaiian": {
+    "tr": "Hawaii dili",
+    "ru": "Гавайский",
+    "es": "Hawaiano",
+    "fr": "Hawaïen"
+  },
+  "Hebrew": {
+    "tr": "İbranice",
+    "ru": "Иврит",
+    "es": "Hebreo",
+    "fr": "Hébreu"
+  },
+  "Hindi": {
+    "tr": "Hintçe",
+    "ru": "Хинди",
+    "es": "Hindi",
+    "fr": "Hindi"
+  },
+  "Hmong": {
+    "tr": "Hmong",
+    "ru": "Хмонг",
+    "es": "Hmong",
+    "fr": "Hmong"
+  },
+  "Hungarian": {
+    "tr": "Macarca",
+    "ru": "Венгерский",
+    "es": "Húngaro",
+    "fr": "Hongrois"
+  },
+  "Icelandic": {
+    "tr": "İzlandaca",
+    "ru": "Исландский",
+    "es": "Islandés",
+    "fr": "Islandais"
+  },
+  "Igbo": {
+    "tr": "İbo dili",
+    "ru": "Игбо",
+    "es": "Igbo",
+    "fr": "Igbo"
+  },
+  "Ilocano": {
+    "tr": "Iloko",
+    "ru": "Илоко",
+    "es": "Ilocano",
+    "fr": "Ilocano"
+  },
+  "Indonesian": {
+    "tr": "Endonezce",
+    "ru": "Индонезийский",
+    "es": "Indonesio",
+    "fr": "Indonésien"
+  },
+  "Irish": {
+    "tr": "İrlandaca",
+    "ru": "Ирландский",
+    "es": "Irlandés",
+    "fr": "Irlandais"
+  },
+  "Italian": {
+    "tr": "İtalyanca",
+    "ru": "Итальянский",
+    "es": "Italiano",
+    "fr": "Italien"
+  },
+  "Japanese": {
+    "tr": "Japonca",
+    "ru": "Японский",
+    "es": "Japonés",
+    "fr": "Japonais"
+  },
+  "Javanese": {
+    "tr": "Cava dili",
+    "ru": "Яванский",
+    "es": "Javanés",
+    "fr": "Javanais"
+  },
+  "Kannada": {
+    "tr": "Kannada dili",
+    "ru": "Каннада",
+    "es": "Canarés",
+    "fr": "Kannada"
+  },
+  "Kazakh": {
+    "tr": "Kazakça",
+    "ru": "Казахский",
+    "es": "Kazajo",
+    "fr": "Kazakh"
+  },
+  "Khmer": {
+    "tr": "Khmer dili",
+    "ru": "Кхмерский",
+    "es": "Jemer",
+    "fr": "Khmer"
+  },
+  "Kinyarwanda": {
+    "tr": "Kinyarwanda",
+    "ru": "Киньяруанда",
+    "es": "Kinyarwanda",
+    "fr": "Kinyarwanda"
+  },
+  "Konkani": {
+    "tr": "Konkani dili",
+    "ru": "Конкани",
+    "es": "Konkaní",
+    "fr": "Konkani"
+  },
+  "Korean": {
+    "tr": "Korece",
+    "ru": "Корейский",
+    "es": "Coreano",
+    "fr": "Coréen"
+  },
+  "Krio": {
+    "tr": "Krio",
+    "ru": "Krio",
+    "es": "Krio",
+    "fr": "Krio"
+  },
+  "Kurdish (Kurmanji)": {
+    "tr": "Kürtçe (Kurmanci)",
+    "ru": "Курдский (курманджи)",
+    "es": "Kurdo (kurmanji)",
+    "fr": "Kurde (kurmandji)"
+  },
+  "Kurdish (Sorani)": {
+    "tr": "Orta Kürtçe",
+    "ru": "Центральнокурдский",
+    "es": "Kurdo sorani",
+    "fr": "Sorani"
+  },
+  "Kyrgyz": {
+    "tr": "Kırgızca",
+    "ru": "Киргизский",
+    "es": "Kirguís",
+    "fr": "Kirghize"
+  },
+  "Lao": {
+    "tr": "Lao dili",
+    "ru": "Лаосский",
+    "es": "Lao",
+    "fr": "Lao"
+  },
+  "Latin": {
+    "tr": "Latince",
+    "ru": "Латинский",
+    "es": "Latín",
+    "fr": "Latin"
+  },
+  "Latvian": {
+    "tr": "Letonca",
+    "ru": "Латышский",
+    "es": "Letón",
+    "fr": "Letton"
+  },
+  "Lingala": {
+    "tr": "Lingala",
+    "ru": "Лингала",
+    "es": "Lingala",
+    "fr": "Lingala"
+  },
+  "Lithuanian": {
+    "tr": "Litvanca",
+    "ru": "Литовский",
+    "es": "Lituano",
+    "fr": "Lituanien"
+  },
+  "Luganda": {
+    "tr": "Ganda",
+    "ru": "Ганда",
+    "es": "Ganda",
+    "fr": "Ganda"
+  },
+  "Luxembourgish": {
+    "tr": "Lüksemburgca",
+    "ru": "Люксембургский",
+    "es": "Luxemburgués",
+    "fr": "Luxembourgeois"
+  },
+  "Macedonian": {
+    "tr": "Makedonca",
+    "ru": "Македонский",
+    "es": "Macedonio",
+    "fr": "Macédonien"
+  },
+  "Maithili": {
+    "tr": "Maithili",
+    "ru": "Майтхили",
+    "es": "Maithili",
+    "fr": "Maïthili"
+  },
+  "Malagasy": {
+    "tr": "Malgaşça",
+    "ru": "Малагасийский",
+    "es": "Malgache",
+    "fr": "Malgache"
+  },
+  "Malay": {
+    "tr": "Malayca",
+    "ru": "Малайский",
+    "es": "Malayo",
+    "fr": "Malais"
+  },
+  "Malayalam": {
+    "tr": "Malayalam dili",
+    "ru": "Малаялам",
+    "es": "Malayálam",
+    "fr": "Malayalam"
+  },
+  "Maltese": {
+    "tr": "Maltaca",
+    "ru": "Мальтийский",
+    "es": "Maltés",
+    "fr": "Maltais"
+  },
+  "Maori": {
+    "tr": "Maori dili",
+    "ru": "Маори",
+    "es": "Maorí",
+    "fr": "Maori"
+  },
+  "Marathi": {
+    "tr": "Marathi dili",
+    "ru": "Маратхи",
+    "es": "Maratí",
+    "fr": "Marathi"
+  },
+  "Meiteilon (Manipuri)": {
+    "tr": "Manipuri dili",
+    "ru": "Манипурский",
+    "es": "Manipurí",
+    "fr": "Manipuri"
+  },
+  "Mizo": {
+    "tr": "Lushai",
+    "ru": "Мизо",
+    "es": "Mizo",
+    "fr": "Lushaï"
+  },
+  "Mongolian": {
+    "tr": "Moğolca",
+    "ru": "Монгольский",
+    "es": "Mongol",
+    "fr": "Mongol"
+  },
+  "Myanmar (Burmese)": {
+    "tr": "Birman dili",
+    "ru": "Бирманский",
+    "es": "Birmano",
+    "fr": "Birman"
+  },
+  "Nepali": {
+    "tr": "Nepalce",
+    "ru": "Непальский",
+    "es": "Nepalí",
+    "fr": "Népalais"
+  },
+  "Norwegian": {
+    "tr": "Norveççe",
+    "ru": "Норвежский",
+    "es": "Noruego",
+    "fr": "Norvégien"
+  },
+  "Odia (Oriya)": {
+    "tr": "Oriya dili",
+    "ru": "Ория",
+    "es": "Oriya",
+    "fr": "Odia"
+  },
+  "Oromo": {
+    "tr": "Oromo dili",
+    "ru": "Оромо",
+    "es": "Oromo",
+    "fr": "Oromo"
+  },
+  "Pashto": {
+    "tr": "Peştuca",
+    "ru": "Пушту",
+    "es": "Pastún",
+    "fr": "Pachto"
+  },
+  "Persian": {
+    "tr": "Farsça",
+    "ru": "Персидский",
+    "es": "Persa",
+    "fr": "Persan"
+  },
+  "Polish": {
+    "tr": "Lehçe",
+    "ru": "Польский",
+    "es": "Polaco",
+    "fr": "Polonais"
+  },
+  "Portuguese": {
+    "tr": "Portekizce",
+    "ru": "Португальский",
+    "es": "Portugués",
+    "fr": "Portugais"
+  },
+  "Punjabi": {
+    "tr": "Pencapça",
+    "ru": "Панджаби",
+    "es": "Punyabí",
+    "fr": "Pendjabi"
+  },
+  "Quechua": {
+    "tr": "Keçuva dili",
+    "ru": "Кечуа",
+    "es": "Quechua",
+    "fr": "Quechua"
+  },
+  "Romanian": {
+    "tr": "Rumence",
+    "ru": "Румынский",
+    "es": "Rumano",
+    "fr": "Roumain"
+  },
+  "Russian": {
+    "tr": "Rusça",
+    "ru": "Русский",
+    "es": "Ruso",
+    "fr": "Russe"
+  },
+  "Samoan": {
+    "tr": "Samoa dili",
+    "ru": "Самоанский",
+    "es": "Samoano",
+    "fr": "Samoan"
+  },
+  "Sanskrit": {
+    "tr": "Sanskrit",
+    "ru": "Санскрит",
+    "es": "Sánscrito",
+    "fr": "Sanskrit"
+  },
+  "Scots Gaelic": {
+    "tr": "İskoç Gaelcesi",
+    "ru": "Гэльский",
+    "es": "Gaélico escocés",
+    "fr": "Gaélique écossais"
+  },
+  "Sepedi": {
+    "tr": "Kuzey Sotho dili",
+    "ru": "Северный сото",
+    "es": "Sotho septentrional",
+    "fr": "Sotho du Nord"
+  },
+  "Serbian": {
+    "tr": "Sırpça",
+    "ru": "Сербский",
+    "es": "Serbio",
+    "fr": "Serbe"
+  },
+  "Sesotho": {
+    "tr": "Güney Sotho dili",
+    "ru": "Южный сото",
+    "es": "Sotho meridional",
+    "fr": "Sotho du Sud"
+  },
+  "Shona": {
+    "tr": "Şona dili",
+    "ru": "Шона",
+    "es": "Shona",
+    "fr": "Shona"
+  },
+  "Sindhi": {
+    "tr": "Sindhi dili",
+    "ru": "Синдхи",
+    "es": "Sindi",
+    "fr": "Sindhi"
+  },
+  "Sinhala": {
+    "tr": "Sinhali dili",
+    "ru": "Сингальский",
+    "es": "Cingalés",
+    "fr": "Cingalais"
+  },
+  "Slovak": {
+    "tr": "Slovakça",
+    "ru": "Словацкий",
+    "es": "Eslovaco",
+    "fr": "Slovaque"
+  },
+  "Slovenian": {
+    "tr": "Slovence",
+    "ru": "Словенский",
+    "es": "Esloveno",
+    "fr": "Slovène"
+  },
+  "Somali": {
+    "tr": "Somalice",
+    "ru": "Сомали",
+    "es": "Somalí",
+    "fr": "Somali"
+  },
+  "Spanish": {
+    "tr": "İspanyolca",
+    "ru": "Испанский",
+    "es": "Español",
+    "fr": "Espagnol"
+  },
+  "Sundanese": {
+    "tr": "Sunda dili",
+    "ru": "Сунданский",
+    "es": "Sundanés",
+    "fr": "Soundanais"
+  },
+  "Swahili": {
+    "tr": "Svahili dili",
+    "ru": "Суахили",
+    "es": "Suajili",
+    "fr": "Swahili"
+  },
+  "Swedish": {
+    "tr": "İsveççe",
+    "ru": "Шведский",
+    "es": "Sueco",
+    "fr": "Suédois"
+  },
+  "Tajik": {
+    "tr": "Tacikçe",
+    "ru": "Таджикский",
+    "es": "Tayiko",
+    "fr": "Tadjik"
+  },
+  "Tamil": {
+    "tr": "Tamilce",
+    "ru": "Тамильский",
+    "es": "Tamil",
+    "fr": "Tamoul"
+  },
+  "Tatar": {
+    "tr": "Tatarca",
+    "ru": "Татарский",
+    "es": "Tártaro",
+    "fr": "Tatar"
+  },
+  "Telugu": {
+    "tr": "Telugu dili",
+    "ru": "Телугу",
+    "es": "Telugu",
+    "fr": "Télougou"
+  },
+  "Thai": {
+    "tr": "Tayca",
+    "ru": "Тайский",
+    "es": "Tailandés",
+    "fr": "Thaï"
+  },
+  "Tigrinya": {
+    "tr": "Tigrinya dili",
+    "ru": "Тигринья",
+    "es": "Tigriña",
+    "fr": "Tigrigna"
+  },
+  "Tsonga": {
+    "tr": "Tsonga",
+    "ru": "Тсонга",
+    "es": "Tsonga",
+    "fr": "Tsonga"
+  },
+  "Turkish": {
+    "tr": "Türkçe",
+    "ru": "Турецкий",
+    "es": "Turco",
+    "fr": "Turc"
+  },
+  "Turkmen": {
+    "tr": "Türkmence",
+    "ru": "Туркменский",
+    "es": "Turcomano",
+    "fr": "Turkmène"
+  },
+  "Twi": {
+    "tr": "Akan",
+    "ru": "Акан",
+    "es": "Akan",
+    "fr": "Akan"
+  },
+  "Ukrainian": {
+    "tr": "Ukraynaca",
+    "ru": "Украинский",
+    "es": "Ucraniano",
+    "fr": "Ukrainien"
+  },
+  "Urdu": {
+    "tr": "Urduca",
+    "ru": "Урду",
+    "es": "Urdu",
+    "fr": "Ourdou"
+  },
+  "Uyghur": {
+    "tr": "Uygurca",
+    "ru": "Уйгурский",
+    "es": "Uigur",
+    "fr": "Ouïghour"
+  },
+  "Uzbek": {
+    "tr": "Özbekçe",
+    "ru": "Узбекский",
+    "es": "Uzbeko",
+    "fr": "Ouzbek"
+  },
+  "Vietnamese": {
+    "tr": "Vietnamca",
+    "ru": "Вьетнамский",
+    "es": "Vietnamita",
+    "fr": "Vietnamien"
+  },
+  "Welsh": {
+    "tr": "Galce",
+    "ru": "Валлийский",
+    "es": "Galés",
+    "fr": "Gallois"
+  },
+  "Xhosa": {
+    "tr": "Zosa dili",
+    "ru": "Коса",
+    "es": "Xhosa",
+    "fr": "Xhosa"
+  },
+  "Yiddish": {
+    "tr": "Yidiş",
+    "ru": "Идиш",
+    "es": "Yidis",
+    "fr": "Yiddish"
+  },
+  "Yoruba": {
+    "tr": "Yorubaca",
+    "ru": "Йоруба",
+    "es": "Yoruba",
+    "fr": "Yoruba"
+  },
+  "Zulu": {
+    "tr": "Zuluca",
+    "ru": "Зулу",
+    "es": "Zulú",
+    "fr": "Zoulou"
+  },
+  "Translate": {
+    "tr": "Çevir",
+    "ru": "Перевести",
+    "es": "Traducir",
+    "fr": "Traduire"
+  },
+  "Choose the image format to use for non animated images. Animated images will always use .gif": {
+    "tr": "Hareketsiz resimler için biçimi seç. Hareketli resimler her zaman .gif olur",
+    "ru": "Формат для неанимированных изображений. Анимированные всегда .gif",
+    "es": "Formato para imágenes no animadas. Las animadas siempre serán .gif",
+    "fr": "Format des images fixes. Les images animées restent en .gif"
+  },
+  "Image Size": {
+    "tr": "Resim boyutu",
+    "ru": "Размер изображения",
+    "es": "Tamaño de imagen",
+    "fr": "Taille de l'image"
+  },
+  "The image size to use": {
+    "tr": "Kullanılacak resim boyutu",
+    "ru": "Размер изображения",
+    "es": "Tamaño de imagen a usar",
+    "fr": "Taille d'image à utiliser"
+  },
+  "Avatar": {
+    "tr": "Avatar",
+    "ru": "Аватар",
+    "es": "Avatar",
+    "fr": "Avatar"
+  },
+  "Server Avatar": {
+    "tr": "Sunucu Avatarı",
+    "ru": "Аватар на сервере",
+    "es": "Avatar del servidor",
+    "fr": "Avatar de serveur"
+  },
+  "Banner": {
+    "tr": "Afiş (Banner)",
+    "ru": "Баннер",
+    "es": "Banner",
+    "fr": "Bannière"
+  },
+  "Server Banner": {
+    "tr": "Sunucu Afişi",
+    "ru": "Баннер сервера",
+    "es": "Banner del servidor",
+    "fr": "Bannière du serveur"
+  },
+  "Server Icon": {
+    "tr": "Sunucu Simgesi",
+    "ru": "Значок сервера",
+    "es": "Icono del servidor",
+    "fr": "Icône du serveur"
+  },
+  "Server Splash": {
+    "tr": "Sunucu Karşılama Görseli",
+    "ru": "Заставка сервера",
+    "es": "Splash del servidor",
+    "fr": "Splash du serveur"
+  },
+  "Export DMs": {
+    "tr": "DM'leri Dışa Aktar",
+    "ru": "Экспорт ЛС",
+    "es": "Exportar privados",
+    "fr": "Exporter les MP"
+  },
+  "Exported on": {
+    "tr": "Dışa aktarma tarihi:",
+    "ru": "Экспортировано",
+    "es": "Exportado el",
+    "fr": "Exporté le"
+  },
+  "Total:": {
+    "tr": "Toplam:",
+    "ru": "Всего:",
+    "es": "Total:",
+    "fr": "Total :"
+  },
+  "messages": {
+    "tr": "mesaj",
+    "ru": "сообщений",
+    "es": "mensajes",
+    "fr": "messages"
+  },
+  "(edited)": {
+    "tr": "(düzenlendi)",
+    "ru": "(изменено)",
+    "es": "(editado)",
+    "fr": "(modifié)"
+  },
+  "[pinned]": {
+    "tr": "[sabitlendi]",
+    "ru": "[закреплено]",
+    "es": "[fijado]",
+    "fr": "[épinglé]"
+  },
+  "View Avatar": {
+    "tr": "Avatarı Görüntüle",
+    "ru": "Посмотреть аватар",
+    "es": "Ver avatar",
+    "fr": "Voir l'avatar"
+  },
+  "Copy Avatar Link": {
+    "tr": "Avatar Bağlantısını Kopyala",
+    "ru": "Скопировать ссылку на аватар",
+    "es": "Copiar enlace del avatar",
+    "fr": "Copier le lien de l'avatar"
+  },
+  "Save Avatar": {
+    "tr": "Avatarı Kaydet",
+    "ru": "Сохранить аватар",
+    "es": "Guardar avatar",
+    "fr": "Enregistrer l'avatar"
+  },
+  "View Server Avatar": {
+    "tr": "Sunucu Avatarını Görüntüle",
+    "ru": "Посмотреть аватар на сервере",
+    "es": "Ver avatar del servidor",
+    "fr": "Voir l'avatar de serveur"
+  },
+  "Copy Server Avatar Link": {
+    "tr": "Sunucu Avatarı Bağlantısını Kopyala",
+    "ru": "Скопировать ссылку на аватар сервера",
+    "es": "Copiar enlace del avatar del servidor",
+    "fr": "Copier le lien de l'avatar de serveur"
+  },
+  "Save Server Avatar": {
+    "tr": "Sunucu Avatarını Kaydet",
+    "ru": "Сохранить аватар сервера",
+    "es": "Guardar avatar del servidor",
+    "fr": "Enregistrer l'avatar de serveur"
+  },
+  "View Banner": {
+    "tr": "Afişi Görüntüle",
+    "ru": "Посмотреть баннер",
+    "es": "Ver banner",
+    "fr": "Voir la bannière"
+  },
+  "Copy Banner Link": {
+    "tr": "Afiş Bağlantısını Kopyala",
+    "ru": "Скопировать ссылку на баннер",
+    "es": "Copiar enlace del banner",
+    "fr": "Copier le lien de la bannière"
+  },
+  "Save Banner": {
+    "tr": "Afişi Kaydet",
+    "ru": "Сохранить баннер",
+    "es": "Guardar banner",
+    "fr": "Enregistrer la bannière"
+  },
+  "View Server Banner": {
+    "tr": "Sunucu Afişini Görüntüle",
+    "ru": "Посмотреть баннер сервера",
+    "es": "Ver banner del servidor",
+    "fr": "Voir la bannière du serveur"
+  },
+  "Copy Server Banner Link": {
+    "tr": "Sunucu Afişi Bağlantısını Kopyala",
+    "ru": "Скопировать ссылку на баннер сервера",
+    "es": "Copiar enlace del banner del servidor",
+    "fr": "Copier le lien de la bannière du serveur"
+  },
+  "Save Server Banner": {
+    "tr": "Sunucu Afişini Kaydet",
+    "ru": "Сохранить баннер сервера",
+    "es": "Guardar banner del servidor",
+    "fr": "Enregistrer la bannière du serveur"
+  },
+  "View Icon": {
+    "tr": "Simgeyi Görüntüle",
+    "ru": "Посмотреть значок",
+    "es": "Ver icono",
+    "fr": "Voir l'icône"
+  },
+  "Copy Icon Link": {
+    "tr": "Simge Bağlantısını Kopyala",
+    "ru": "Скопировать ссылку на значок",
+    "es": "Copiar enlace del icono",
+    "fr": "Copier le lien de l'icône"
+  },
+  "Save Icon": {
+    "tr": "Simgeyi Kaydet",
+    "ru": "Сохранить значок",
+    "es": "Guardar icono",
+    "fr": "Enregistrer l'icône"
+  },
+  "View Splash": {
+    "tr": "Karşılama Görselini Görüntüle",
+    "ru": "Посмотреть заставку",
+    "es": "Ver splash",
+    "fr": "Voir le splash"
+  },
+  "Copy Splash Link": {
+    "tr": "Karşılama Görseli Bağlantısını Kopyala",
+    "ru": "Скопировать ссылку на заставку",
+    "es": "Copiar enlace del splash",
+    "fr": "Copier le lien du splash"
+  },
+  "Save Splash": {
+    "tr": "Karşılama Görselini Kaydet",
+    "ru": "Сохранить заставку",
+    "es": "Guardar splash",
+    "fr": "Enregistrer le splash"
+  },
+  "Translate messages to": {
+    "tr": "Mesajları şu dile çevir",
+    "ru": "Переводить сообщения на",
+    "es": "Traducir mensajes a",
+    "fr": "Traduire les messages en"
+  },
+  "Device language": {
+    "tr": "Cihaz dili",
+    "ru": "Язык устройства",
+    "es": "Idioma del dispositivo",
+    "fr": "Langue de l'appareil"
+  },
+  "Translate incoming messages automatically": {
+    "tr": "Gelen mesajları otomatik çevir",
+    "ru": "Автоматически переводить входящие сообщения",
+    "es": "Traducir automáticamente los mensajes recibidos",
+    "fr": "Traduire automatiquement les messages reçus"
+  },
+  "Messages in another language get their translation shown under them as they appear": {
+    "tr": "Başka dildeki mesajların çevirisi, mesajlar göründükçe altlarında gösterilir",
+    "ru": "Под сообщениями на другом языке сразу появляется их перевод",
+    "es": "Los mensajes en otro idioma muestran su traducción debajo en cuanto aparecen",
+    "fr": "La traduction des messages dans une autre langue s'affiche dessous dès leur apparition"
+  },
+  "Minimum detection confidence": {
+    "tr": "Minimum algılama güveni",
+    "ru": "Минимальная уверенность определения",
+    "es": "Confianza mínima de detección",
+    "fr": "Confiance minimale de détection"
+  },
+  "In percent. Messages whose language Google is less sure about are not translated automatically": {
+    "tr": "Yüzde olarak. Google'ın dilinden daha az emin olduğu mesajlar otomatik çevrilmez",
+    "ru": "В процентах. Сообщения, в языке которых Google уверен меньше, не переводятся автоматически",
+    "es": "En porcentaje. Los mensajes cuyo idioma Google no detecta con esa seguridad no se traducen automáticamente",
+    "fr": "En pourcentage. Les messages dont Google est moins sûr de la langue ne sont pas traduits automatiquement"
+  },
+  "Don't translate your own messages automatically": {
+    "tr": "Kendi mesajlarını otomatik çevirme",
+    "ru": "Не переводить автоматически свои сообщения",
+    "es": "No traducir automáticamente tus propios mensajes",
+    "fr": "Ne pas traduire automatiquement vos propres messages"
+  },
+  "Don't translate bot messages automatically": {
+    "tr": "Bot mesajlarını otomatik çevirme",
+    "ru": "Не переводить автоматически сообщения ботов",
+    "es": "No traducir automáticamente los mensajes de bots",
+    "fr": "Ne pas traduire automatiquement les messages des bots"
+  },
+  "Never translate automatically in": {
+    "tr": "Şuralarda asla otomatik çevirme",
+    "ru": "Никогда не переводить автоматически в",
+    "es": "Nunca traducir automáticamente en",
+    "fr": "Ne jamais traduire automatiquement dans"
+  },
+  "Server, channel or user IDs, separated by commas": {
+    "tr": "Virgülle ayrılmış sunucu, kanal veya kullanıcı kimlikleri",
+    "ru": "ID серверов, каналов или пользователей через запятую",
+    "es": "IDs de servidores, canales o usuarios, separados por comas",
+    "fr": "Identifiants de serveurs, salons ou utilisateurs, séparés par des virgules"
+  },
+  "Translate your messages before sending": {
+    "tr": "Mesajlarını göndermeden önce çevir",
+    "ru": "Переводить свои сообщения перед отправкой",
+    "es": "Traducir tus mensajes antes de enviarlos",
+    "fr": "Traduire vos messages avant l'envoi"
+  },
+  "What you type is translated to the language below before it is sent. If translating fails, nothing is sent": {
+    "tr": "Yazdıkların gönderilmeden önce aşağıdaki dile çevrilir. Çeviri başarısız olursa hiçbir şey gönderilmez",
+    "ru": "Набранный текст переводится на язык ниже перед отправкой. Если перевод не удался, ничего не отправляется",
+    "es": "Lo que escribes se traduce al idioma de abajo antes de enviarse. Si la traducción falla, no se envía nada",
+    "fr": "Ce que vous écrivez est traduit dans la langue ci-dessous avant l'envoi. Si la traduction échoue, rien n'est envoyé"
+  },
+  "Translate your messages to": {
+    "tr": "Mesajlarını şu dile çevir",
+    "ru": "Переводить свои сообщения на",
+    "es": "Traducir tus mensajes a",
+    "fr": "Traduire vos messages en"
+  },
+  "Clear translation cache": {
+    "tr": "Çeviri önbelleğini temizle",
+    "ru": "Очистить кэш переводов",
+    "es": "Borrar la caché de traducciones",
+    "fr": "Vider le cache des traductions"
+  },
+  "Translation cache cleared": {
+    "tr": "Çeviri önbelleği temizlendi",
+    "ru": "Кэш переводов очищен",
+    "es": "Caché de traducciones borrada",
+    "fr": "Cache des traductions vidé"
+  },
+  "Show original": {
+    "tr": "Orijinali göster",
+    "ru": "Показать оригинал",
+    "es": "Mostrar original",
+    "fr": "Afficher l'original"
+  },
+  "Translated from {language}": {
+    "tr": "Kaynak dil: {language}",
+    "ru": "Язык оригинала: {language}",
+    "es": "Idioma original: {language}",
+    "fr": "Langue d'origine : {language}"
+  },
+  "Translating...": {
+    "tr": "Çevriliyor...",
+    "ru": "Перевод...",
+    "es": "Traduciendo...",
+    "fr": "Traduction..."
+  },
+  "This message is already in {language}": {
+    "tr": "Bu mesaj zaten hedef dilde ({language})",
+    "ru": "Это сообщение уже на целевом языке ({language})",
+    "es": "Este mensaje ya está en el idioma de destino ({language})",
+    "fr": "Ce message est déjà dans la langue cible ({language})"
+  },
+  "Couldn't translate this message: {reason}": {
+    "tr": "Bu mesaj çevrilemedi: {reason}",
+    "ru": "Не удалось перевести сообщение: {reason}",
+    "es": "No se pudo traducir este mensaje: {reason}",
+    "fr": "Impossible de traduire ce message : {reason}"
+  },
+  "Still translating your last message": {
+    "tr": "Son mesajın hâlâ çevriliyor",
+    "ru": "Предыдущее сообщение ещё переводится",
+    "es": "Todavía se está traduciendo tu último mensaje",
+    "fr": "Votre dernier message est encore en cours de traduction"
+  },
+  "Couldn't translate your message: {reason}": {
+    "tr": "Mesajın çevrilemedi: {reason}",
+    "ru": "Не удалось перевести ваше сообщение: {reason}",
+    "es": "No se pudo traducir tu mensaje: {reason}",
+    "fr": "Impossible de traduire votre message : {reason}"
+  },
+  "Failed to send your translated message": {
+    "tr": "Çevrilen mesajın gönderilemedi",
+    "ru": "Не удалось отправить переведённое сообщение",
+    "es": "No se pudo enviar tu mensaje traducido",
+    "fr": "Impossible d'envoyer votre message traduit"
+  },
+  "Google Translate is rate limiting you, try again in a minute": {
+    "tr": "Google Çeviri isteklerini sınırlıyor, bir dakika sonra tekrar dene",
+    "ru": "Google Переводчик ограничил запросы, попробуйте через минуту",
+    "es": "Google Traductor está limitando tus solicitudes, inténtalo de nuevo en un minuto",
+    "fr": "Google Traduction limite vos requêtes, réessayez dans une minute"
+  },
+  "Google Translate returned an error (HTTP {status})": {
+    "tr": "Google Çeviri bir hata döndürdü (HTTP {status})",
+    "ru": "Google Переводчик вернул ошибку (HTTP {status})",
+    "es": "Google Traductor devolvió un error (HTTP {status})",
+    "fr": "Google Traduction a renvoyé une erreur (HTTP {status})"
+  },
+  "Couldn't reach Google Translate, check your connection": {
+    "tr": "Google Çeviri'ye ulaşılamadı, bağlantını kontrol et",
+    "ru": "Не удалось связаться с Google Переводчиком, проверьте подключение",
+    "es": "No se pudo conectar con Google Traductor, revisa tu conexión",
+    "fr": "Impossible de joindre Google Traduction, vérifiez votre connexion"
+  },
+  "Translate messages with Google Translate.": {
+    "tr": "Mesajları Google Çeviri ile çevir.",
+    "ru": "Переводите сообщения с помощью Google Переводчика.",
+    "es": "Traduce mensajes con Google Traductor.",
+    "fr": "Traduisez les messages avec Google Traduction."
+  },
+  "Double-tap your own messages to edit them instantly.": {
+    "tr": "Kendi mesajlarını anında düzenlemek için iki kez dokun.",
+    "ru": "Дважды нажмите на своё сообщение, чтобы сразу его изменить.",
+    "es": "Toca dos veces tus propios mensajes para editarlos al instante.",
+    "fr": "Touchez deux fois vos propres messages pour les modifier instantanément."
+  },
+  "Double-tap a message to edit it if it's yours, or to reply to it otherwise.": {
+    "tr": "Bir mesaja iki kez dokunarak seninse düzenle, değilse yanıtla.",
+    "ru": "Дважды нажмите на сообщение, чтобы изменить его, если оно ваше, или ответить на него.",
+    "es": "Toca dos veces un mensaje para editarlo si es tuyo o para responderlo si no.",
+    "fr": "Touchez deux fois un message pour le modifier s'il est à vous, ou pour y répondre sinon."
+  },
+  "Double-tap your own messages to edit them": {
+    "tr": "Kendi mesajlarını düzenlemek için iki kez dokun",
+    "ru": "Двойное нажатие на своё сообщение — изменить",
+    "es": "Toca dos veces tus mensajes para editarlos",
+    "fr": "Touchez deux fois vos messages pour les modifier"
+  },
+  "Double-tap other messages to reply to them": {
+    "tr": "Diğer mesajları yanıtlamak için iki kez dokun",
+    "ru": "Двойное нажатие на чужое сообщение — ответить",
+    "es": "Toca dos veces otros mensajes para responderlos",
+    "fr": "Touchez deux fois les autres messages pour y répondre"
+  },
+  "Show a local fake message posed as any user via /fakemsg. Only you can see it, and it is always labelled as fake.": {
+    "tr": "/fakemsg ile herhangi bir kullanıcı adına yerel sahte bir mesaj göster. Yalnızca sen görebilirsin ve her zaman sahte olarak etiketlenir.",
+    "ru": "Показывает локальное фейковое сообщение от имени любого пользователя через /fakemsg. Его видите только вы, и оно всегда помечено как фейковое.",
+    "es": "Muestra un mensaje falso local como si fuera de cualquier usuario con /fakemsg. Solo tú puedes verlo y siempre está marcado como falso.",
+    "fr": "Affiche un faux message local au nom de n'importe quel utilisateur avec /fakemsg. Vous seul pouvez le voir, et il est toujours marqué comme faux."
+  },
+  "Fake message, only visible to you": {
+    "tr": "Sahte mesaj, yalnızca sen görebilirsin",
+    "ru": "Фейковое сообщение, видно только вам",
+    "es": "Mensaje falso, solo visible para ti",
+    "fr": "Faux message, visible uniquement par vous"
+  },
+  "Locally display a fake message as another user. Only you can see it.": {
+    "tr": "Başka bir kullanıcı adına yerel olarak sahte bir mesaj göster. Yalnızca sen görebilirsin.",
+    "ru": "Локально показать фейковое сообщение от другого пользователя. Его видите только вы.",
+    "es": "Muestra localmente un mensaje falso como otro usuario. Solo tú puedes verlo.",
+    "fr": "Affiche localement un faux message au nom d'un autre utilisateur. Vous seul pouvez le voir."
+  },
+  "The user to pose the message as.": {
+    "tr": "Mesajın adına gösterileceği kullanıcı.",
+    "ru": "Пользователь, от имени которого будет сообщение.",
+    "es": "El usuario como el que aparecerá el mensaje.",
+    "fr": "L'utilisateur au nom duquel le message apparaîtra."
+  },
+  "The message content to display.": {
+    "tr": "Gösterilecek mesaj içeriği.",
+    "ru": "Текст сообщения.",
+    "es": "El contenido del mensaje que se mostrará.",
+    "fr": "Le contenu du message à afficher."
+  },
+  "Couldn't find that user.": {
+    "tr": "Bu kullanıcı bulunamadı.",
+    "ru": "Не удалось найти этого пользователя.",
+    "es": "No se encontró a ese usuario.",
+    "fr": "Impossible de trouver cet utilisateur."
+  },
+  "Tap avatars and banners in user profiles, and the icon and banner of a server, to view them in full size. Long-press them to save or copy the link.": {
+    "tr": "Kullanıcı profillerindeki avatar ve afişlere, sunucunun simgesine ve afişine dokunarak tam boyutta görüntüle. Kaydetmek veya bağlantıyı kopyalamak için basılı tut.",
+    "ru": "Нажмите на аватар или баннер в профиле пользователя, на значок или баннер сервера, чтобы открыть их в полном размере. Удерживайте, чтобы сохранить или скопировать ссылку.",
+    "es": "Toca los avatares y banners de los perfiles, y el icono y el banner de un servidor, para verlos a tamaño completo. Mantenlos pulsados para guardarlos o copiar el enlace.",
+    "fr": "Touchez les avatars et bannières des profils, ainsi que l'icône et la bannière d'un serveur, pour les voir en taille réelle. Restez appuyé pour les enregistrer ou copier le lien."
+  },
+  "Image format": {
+    "tr": "Resim biçimi",
+    "ru": "Формат изображения",
+    "es": "Formato de imagen",
+    "fr": "Format de l'image"
+  },
+  "Couldn't open the image": {
+    "tr": "Resim açılamadı",
+    "ru": "Не удалось открыть изображение",
+    "es": "No se pudo abrir la imagen",
+    "fr": "Impossible d'ouvrir l'image"
+  },
+  "Downloading...": {
+    "tr": "İndiriliyor...",
+    "ru": "Загрузка...",
+    "es": "Descargando...",
+    "fr": "Téléchargement..."
+  },
+  "Saved to {path}": {
+    "tr": "Şuraya kaydedildi: {path}",
+    "ru": "Сохранено в {path}",
+    "es": "Guardado en {path}",
+    "fr": "Enregistré dans {path}"
+  },
+  "Failed to save the image: {reason}": {
+    "tr": "Resim kaydedilemedi: {reason}",
+    "ru": "Не удалось сохранить изображение: {reason}",
+    "es": "No se pudo guardar la imagen: {reason}",
+    "fr": "Impossible d'enregistrer l'image : {reason}"
+  },
+  "Export a DM or group DM with /exportdm, with messages, links to its media, embeds, stickers and reactions, as TXT, JSON, CSV, MD or HTML.": {
+    "tr": "/exportdm ile bir DM'yi veya grup DM'yi mesajlar, medya bağlantıları, gömmeler, çıkartmalar ve tepkilerle birlikte TXT, JSON, CSV, MD veya HTML olarak dışa aktar.",
+    "ru": "Экспортируйте ЛС или групповой чат командой /exportdm: сообщения, ссылки на медиа, встраивания, стикеры и реакции в TXT, JSON, CSV, MD или HTML.",
+    "es": "Exporta un MD o un grupo con /exportdm, con mensajes, enlaces a sus archivos, embeds, stickers y reacciones, en TXT, JSON, CSV, MD o HTML.",
+    "fr": "Exportez un MP ou un groupe avec /exportdm, avec les messages, les liens vers les médias, les intégrations, les autocollants et les réactions, en TXT, JSON, CSV, MD ou HTML."
+  },
+  "Export this DM to a file": {
+    "tr": "Bu DM'yi bir dosyaya aktar",
+    "ru": "Экспортировать эти ЛС в файл",
+    "es": "Exportar este MD a un archivo",
+    "fr": "Exporter ce MP dans un fichier"
+  },
+  "File format (html by default)": {
+    "tr": "Dosya biçimi (varsayılan html)",
+    "ru": "Формат файла (по умолчанию html)",
+    "es": "Formato del archivo (html por defecto)",
+    "fr": "Format du fichier (html par défaut)"
+  },
+  "Only export the newest messages, up to this many": {
+    "tr": "Yalnızca en yeni mesajları, en fazla bu kadarını aktar",
+    "ru": "Экспортировать только столько последних сообщений",
+    "es": "Exportar solo los mensajes más recientes, hasta esta cantidad",
+    "fr": "N'exporter que les messages les plus récents, jusqu'à ce nombre"
+  },
+  "This only works in DMs and group DMs.": {
+    "tr": "Bu yalnızca DM'lerde ve grup DM'lerde çalışır.",
+    "ru": "Это работает только в ЛС и групповых чатах.",
+    "es": "Esto solo funciona en MD y grupos.",
+    "fr": "Cela ne fonctionne que dans les MP et les groupes."
+  },
+  "Exporting... this can take a while for long conversations.": {
+    "tr": "Dışa aktarılıyor... uzun sohbetlerde bu biraz sürebilir.",
+    "ru": "Экспорт... для длинных переписок это может занять время.",
+    "es": "Exportando... puede tardar un poco en conversaciones largas.",
+    "fr": "Exportation... cela peut prendre un moment pour les longues conversations."
+  },
+  "Couldn't fetch the messages: {reason}": {
+    "tr": "Mesajlar alınamadı: {reason}",
+    "ru": "Не удалось загрузить сообщения: {reason}",
+    "es": "No se pudieron obtener los mensajes: {reason}",
+    "fr": "Impossible de récupérer les messages : {reason}"
+  },
+  "There are no messages to export.": {
+    "tr": "Dışa aktarılacak mesaj yok.",
+    "ru": "Нет сообщений для экспорта.",
+    "es": "No hay mensajes para exportar.",
+    "fr": "Il n'y a aucun message à exporter."
+  },
+  "Couldn't save the file: {reason}": {
+    "tr": "Dosya kaydedilemedi: {reason}",
+    "ru": "Не удалось сохранить файл: {reason}",
+    "es": "No se pudo guardar el archivo: {reason}",
+    "fr": "Impossible d'enregistrer le fichier : {reason}"
+  },
+  "Exported {count} messages to {path}": {
+    "tr": "{count} mesaj şuraya aktarıldı: {path}",
+    "ru": "Экспортировано сообщений: {count}, файл: {path}",
+    "es": "Se exportaron {count} mensajes a {path}",
+    "fr": "{count} messages exportés dans {path}"
+  },
+  "Download all emojis or stickers of the current server as a zip with /dumpexpressions.": {
+    "tr": "/dumpexpressions ile bulunduğun sunucunun tüm emojilerini veya çıkartmalarını zip olarak indir.",
+    "ru": "Скачайте все эмодзи или стикеры текущего сервера одним zip-архивом командой /dumpexpressions.",
+    "es": "Descarga todos los emojis o stickers del servidor actual en un zip con /dumpexpressions.",
+    "fr": "Téléchargez tous les emojis ou autocollants du serveur actuel dans un zip avec /dumpexpressions."
+  },
+  "Download this server's emojis or stickers as a zip": {
+    "tr": "Bu sunucunun emojilerini veya çıkartmalarını zip olarak indir",
+    "ru": "Скачать эмодзи или стикеры сервера в zip",
+    "es": "Descargar los emojis o stickers de este servidor en un zip",
+    "fr": "Télécharger les emojis ou autocollants de ce serveur dans un zip"
+  },
+  "What to download": {
+    "tr": "Ne indirilsin",
+    "ru": "Что скачать",
+    "es": "Qué descargar",
+    "fr": "Quoi télécharger"
+  },
+  "This only works in a server.": {
+    "tr": "Bu yalnızca bir sunucuda çalışır.",
+    "ru": "Это работает только на сервере.",
+    "es": "Esto solo funciona en un servidor.",
+    "fr": "Cela ne fonctionne que dans un serveur."
+  },
+  "Couldn't load the list: {reason}": {
+    "tr": "Liste yüklenemedi: {reason}",
+    "ru": "Не удалось загрузить список: {reason}",
+    "es": "No se pudo cargar la lista: {reason}",
+    "fr": "Impossible de charger la liste : {reason}"
+  },
+  "This server has no stickers.": {
+    "tr": "Bu sunucuda çıkartma yok.",
+    "ru": "На этом сервере нет стикеров.",
+    "es": "Este servidor no tiene stickers.",
+    "fr": "Ce serveur n'a aucun autocollant."
+  },
+  "This server has no emojis.": {
+    "tr": "Bu sunucuda emoji yok.",
+    "ru": "На этом сервере нет эмодзи.",
+    "es": "Este servidor no tiene emojis.",
+    "fr": "Ce serveur n'a aucun emoji."
+  },
+  "Downloading {count} files...": {
+    "tr": "{count} dosya indiriliyor...",
+    "ru": "Загрузка файлов: {count}...",
+    "es": "Descargando {count} archivos...",
+    "fr": "Téléchargement de {count} fichiers..."
+  },
+  "Saved {count} files to {path}": {
+    "tr": "{count} dosya şuraya kaydedildi: {path}",
+    "ru": "Сохранено файлов: {count}, архив: {path}",
+    "es": "Se guardaron {count} archivos en {path}",
+    "fr": "{count} fichiers enregistrés dans {path}"
+  },
+  "Couldn't download: {names}": {
+    "tr": "İndirilemedi: {names}",
+    "ru": "Не удалось скачать: {names}",
+    "es": "No se pudo descargar: {names}",
+    "fr": "Impossible de télécharger : {names}"
+  },
+  "Long-press a message to clone its custom emojis or stickers to one of your servers.": {
+    "tr": "Bir mesajı basılı tutarak özel emojilerini veya çıkartmalarını sunucularından birine kopyala.",
+    "ru": "Удерживайте сообщение, чтобы скопировать его эмодзи или стикеры на один из ваших серверов.",
+    "es": "Mantén pulsado un mensaje para clonar sus emojis o stickers personalizados en uno de tus servidores.",
+    "fr": "Restez appuyé sur un message pour cloner ses emojis ou autocollants personnalisés sur l'un de vos serveurs."
+  },
+  "Clone emoji or sticker": {
+    "tr": "Emoji veya çıkartmayı kopyala",
+    "ru": "Скопировать эмодзи или стикер",
+    "es": "Clonar emoji o sticker",
+    "fr": "Cloner l'emoji ou l'autocollant"
+  },
+  "Sticker: {name}": {
+    "tr": "Çıkartma: {name}",
+    "ru": "Стикер: {name}",
+    "es": "Sticker: {name}",
+    "fr": "Autocollant : {name}"
+  },
+  "You can't add emojis or stickers to any of your servers.": {
+    "tr": "Sunucularının hiçbirine emoji veya çıkartma ekleyemezsin.",
+    "ru": "Вы не можете добавлять эмодзи или стикеры ни на один из своих серверов.",
+    "es": "No puedes añadir emojis ni stickers a ninguno de tus servidores.",
+    "fr": "Vous ne pouvez ajouter d'emojis ou d'autocollants à aucun de vos serveurs."
+  },
+  "Clone {name} to": {
+    "tr": "{name} şuraya kopyalansın",
+    "ru": "Скопировать {name} на",
+    "es": "Clonar {name} en",
+    "fr": "Cloner {name} vers"
+  },
+  "Cloning...": {
+    "tr": "Kopyalanıyor...",
+    "ru": "Копирование...",
+    "es": "Clonando...",
+    "fr": "Clonage..."
+  },
+  "Added {name} to {server}": {
+    "tr": "{name}, {server} sunucusuna eklendi",
+    "ru": "{name} добавлен на {server}",
+    "es": "Se añadió {name} a {server}",
+    "fr": "{name} ajouté à {server}"
+  },
+  "Couldn't clone {name}: {reason}": {
+    "tr": "{name} kopyalanamadı: {reason}",
+    "ru": "Не удалось скопировать {name}: {reason}",
+    "es": "No se pudo clonar {name}: {reason}",
+    "fr": "Impossible de cloner {name} : {reason}"
+  }
+}
