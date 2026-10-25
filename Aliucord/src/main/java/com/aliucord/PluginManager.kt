@@ -16,7 +16,9 @@ import com.aliucord.coreplugins.badges.Badges
 import com.aliucord.coreplugins.plugindownloader.PluginDownloader
 import com.aliucord.coreplugins.rn.RNAPI
 import com.aliucord.entities.CorePlugin
+import com.aliucord.entities.EndcordPlugin
 import com.aliucord.entities.Plugin
+import com.aliucord.i18n.I18n
 import com.aliucord.patcher.Patcher
 import com.aliucord.patcher.PreHook
 import com.aliucord.settings.ALIUCORD_SAFE_MODE_KEY
@@ -24,12 +26,13 @@ import com.aliucord.utils.GsonUtils.fromJson
 import com.aliucord.utils.GsonUtils.gson
 import com.aliucord.utils.MapUtils
 import com.aliucord.utils.ReflectUtils
+import com.endcord.plugins.EndcordPlugins
 import dalvik.system.PathClassLoader
 import java.io.File
 import java.io.InputStreamReader
 import kotlin.system.measureTimeMillis
 
-/** Aliucord's Plugin Manager  */
+/** Endcord's Plugin Manager  */
 object PluginManager {
     /** Map containing all loaded plugins  */
     @JvmField
@@ -93,7 +96,14 @@ object PluginManager {
                 return
             }
 
-            if (plugins.containsKey(name)) {
+            val existing = plugins[name]
+            if (existing is EndcordPlugin) {
+                // A plugin the user installed themselves wins over the built-in one of the same name
+                logger.info("Plugin $name replaces the built-in plugin of the same name")
+                if (isPluginEnabled(name)) existing.stop(context)
+                existing.unload(context)
+                plugins.remove(name)
+            } else if (existing != null) {
                 logger.error("Plugin with name $name already exists", null)
                 return
             }
@@ -259,9 +269,10 @@ object PluginManager {
      */
     @JvmStatic
     fun isPluginEnabled(name: String): Boolean {
-        plugins[name].let { p -> if (p is CorePlugin && p.isRequired) return true }
+        val plugin = plugins[name]
+        if (plugin is CorePlugin && plugin.isRequired) return true
 
-        return Main.settings.getBool(getPluginPrefKey(name), true)
+        return Main.settings.getBool(getPluginPrefKey(name), (plugin as? EndcordPlugin)?.enabledByDefault ?: true)
     }
 
     /**
@@ -285,13 +296,23 @@ object PluginManager {
     /** Gets a formatted string with info about installed and enabled plugins */
     @JvmStatic
     fun getPluginsInfo(): String {
-        val visiblePlugins = getVisiblePlugins()
-        val core = visiblePlugins.filter { (_, p) -> p is CorePlugin }
-        val installed = plugins.size
-        val installedCore = core.size
-        val enabled = visiblePlugins.filterKeys { isPluginEnabled(it) }.size
-        val enabledCore = core.filterKeys { isPluginEnabled(it) }.size
-        return "$installed Installed ($installedCore core) | $enabled Enabled ($enabledCore core)"
+        val counts = getPluginCounts()
+        return I18n.t("Total Plugins:") + " " + counts.total + "  |  " + I18n.t("Enabled Plugins:") + " " + counts.enabled
+    }
+
+    /** Plugin totals as shown at the top of the plugins page. Hidden coreplugins are not counted. */
+    data class PluginCounts(val total: Int, val enabled: Int, val builtIn: Int, val external: Int)
+
+    @JvmStatic
+    fun getPluginCounts(): PluginCounts {
+        val visible = getVisiblePlugins()
+        val builtIn = visible.count { (_, p) -> p is CorePlugin }
+        return PluginCounts(
+            total = visible.size,
+            enabled = visible.keys.count { isPluginEnabled(it) },
+            builtIn = builtIn,
+            external = visible.size - builtIn,
+        )
     }
 
     @JvmStatic
@@ -323,7 +344,7 @@ object PluginManager {
             UploadSize(),
         )
 
-        val safeMode = isSafeModeEnabled();
+        val safeMode = isSafeModeEnabled()
         corePlugins.filter { p ->
             !safeMode || p.isRequired
         }.forEach { p ->
@@ -333,6 +354,28 @@ object PluginManager {
                 p.load(context)
             } catch (e: Throwable) {
                 logger.errorToast("Failed to load coreplugin ${p.name}", e)
+            }
+        }
+
+        // Built-in Endcord plugins are optional, so safe mode skips all of them
+        if (safeMode) return
+        val endcordPlugins = try {
+            EndcordPlugins.create()
+        } catch (e: Throwable) {
+            logger.errorToast("Failed to create Endcord plugins", e)
+            return
+        }
+        for (p in endcordPlugins) {
+            if (plugins.containsKey(p.name)) {
+                logger.warn("Skipping built-in plugin ${p.name}: a plugin with the same name is already loaded")
+                continue
+            }
+            try {
+                plugins[p.name] = p
+                p.load(context)
+            } catch (e: Throwable) {
+                plugins.remove(p.name)
+                logger.error("Failed to load built-in plugin ${p.name}", e)
             }
         }
     }
