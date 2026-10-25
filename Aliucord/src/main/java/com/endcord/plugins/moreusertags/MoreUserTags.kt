@@ -50,7 +50,7 @@ internal class MoreUserTags : EndcordPlugin(
         PluginSetting.Switch("show_${it.key}", it.displayName, it.description, default = true)
     } + listOf(
         PluginSetting.Switch("dontShowForBots", "Don't show extra tags for bots (excluding webhooks)"),
-        PluginSetting.Switch("dontShowBotTag", "Only show extra tags for bots / Hide [APP] text"),
+        PluginSetting.Switch("dontShowBotTag", "Show extra tags in place of the BOT tag"),
         PluginSetting.Switch("showWebhookTagFully", "Show Webhook tag in followed channels like announcements"),
     )
 

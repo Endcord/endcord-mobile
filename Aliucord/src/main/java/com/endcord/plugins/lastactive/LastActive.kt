@@ -57,7 +57,7 @@ internal class LastActive : EndcordPlugin(
                 try {
                     StoreStream.getMessagesLoader().jumpToMessage(channelId, messageId)
                 } catch (e: Throwable) {
-                    logger.errorToast("Failed to jump to message. Check console for details.", e)
+                    logger.errorToast(I18n.t("Failed to jump to message. Check console for details."), e)
                 }
             }
         }

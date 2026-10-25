@@ -34,7 +34,7 @@ internal class RoleColorEverywhere : EndcordPlugin(
     override val tags = listOf("roles", "appearance")
 
     override val settingsSchema = listOf(
-        PluginSetting.Switch("chatMentions", "Show role colors in chat mentions (including in the message box)", default = true),
+        PluginSetting.Switch("chatMentions", "Show role colors in chat mentions", default = true),
         PluginSetting.Switch("memberList", "Show role colors in member list role headers", default = true),
         PluginSetting.Switch("colorChatMessages", "Color chat messages based on the author's role color"),
         PluginSetting.Number("messageSaturation", "Intensity of message coloring.", default = 30, min = 0, max = 100),

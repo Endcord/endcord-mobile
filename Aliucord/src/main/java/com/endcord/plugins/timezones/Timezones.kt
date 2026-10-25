@@ -37,7 +37,7 @@ internal class Timezones : EndcordPlugin(
     override val tags = listOf("appearance", "chat", "utility")
 
     override val settingsSchema = listOf(
-        PluginSetting.Switch("showOwnTimezone", "Show your own timezone in profiles and message headers", default = true),
+        PluginSetting.Switch("showOwnTimezone", "Show your own timezone in message headers", default = true),
         PluginSetting.Switch("twentyFourHourFormat", "24h Time", "Show time in 24h format"),
         PluginSetting.Switch("showTimezoneInfo", "Show timezone info next to time", default = true),
         PluginSetting.Switch("showMessageHeaderTime", "Show time in message headers", default = true),
