@@ -26,7 +26,7 @@ import com.discord.stores.StoreStream
 import com.discord.utilities.color.ColorCompat
 import com.lytefast.flexinput.R
 
-/** Lists what MessageLogger logged since Discord was opened, newest first. */
+/** Lists what MessageLogger logged, newest first. */
 internal class MessageLogPage : SettingsPage() {
     private var filter: MessageLog.Kind? = null
 
@@ -129,7 +129,7 @@ internal class MessageLogPage : SettingsPage() {
             setPadding(0, DimenUtils.defaultPadding / 2, 0, DimenUtils.defaultPadding / 2)
             setOnLongClickListener {
                 Utils.setClipboard("Message", if (entry.kind == MessageLog.Kind.EDITED) "${entry.content}\n→ ${entry.newContent}" else entry.content)
-                Utils.showToast(tr("Copied to clipboard"))
+                Utils.showToast(tr("Copied to Clipboard"))
                 true
             }
         }
@@ -164,7 +164,7 @@ internal class EditHistoryPage(private val messageId: Long, private val currentC
                 setPadding(0, DimenUtils.defaultPadding / 2, 0, DimenUtils.defaultPadding / 2)
                 setOnLongClickListener {
                     Utils.setClipboard("Message", content)
-                    Utils.showToast(tr("Copied to clipboard"))
+                    Utils.showToast(tr("Copied to Clipboard"))
                     true
                 }
                 layout.addView(this)

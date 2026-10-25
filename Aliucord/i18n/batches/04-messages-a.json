@@ -1,0 +1,626 @@
+{
+  "Delete Style": {
+    "tr": "Silme stili",
+    "ru": "Стиль удаления",
+    "es": "Estilo de borrado",
+    "fr": "Style de suppression"
+  },
+  "The style of deleted messages": {
+    "tr": "Silinen mesajların stili",
+    "ru": "Стиль удалённых сообщений",
+    "es": "Estilo de los mensajes borrados",
+    "fr": "Style des messages supprimés"
+  },
+  "Red text": {
+    "tr": "Kırmızı metin",
+    "ru": "Красный текст",
+    "es": "Texto rojo",
+    "fr": "Texte rouge"
+  },
+  "Red overlay": {
+    "tr": "Kırmızı kaplama",
+    "ru": "Красный оверлей",
+    "es": "Superposición roja",
+    "fr": "Voile rouge"
+  },
+  "Log Deletes": {
+    "tr": "Silmeleri kaydet",
+    "ru": "Записывать удаления",
+    "es": "Registrar borrados",
+    "fr": "Journaliser les suppressions"
+  },
+  "Whether to log deleted messages": {
+    "tr": "Silinen mesajlar kaydedilsin mi",
+    "ru": "Записывать удалённые сообщения",
+    "es": "Registrar mensajes borrados",
+    "fr": "Journaliser les messages supprimés"
+  },
+  "Log Edits": {
+    "tr": "Düzenlemeleri kaydet",
+    "ru": "Записывать правки",
+    "es": "Registrar ediciones",
+    "fr": "Journaliser les modifications"
+  },
+  "Whether to log edited messages": {
+    "tr": "Düzenlenen mesajlar kaydedilsin mi",
+    "ru": "Записывать изменённые сообщения",
+    "es": "Registrar mensajes editados",
+    "fr": "Journaliser les messages modifiés"
+  },
+  "Inline Edits": {
+    "tr": "Satır içi düzenlemeler",
+    "ru": "Встроенные правки",
+    "es": "Ediciones en línea",
+    "fr": "Modifications en ligne"
+  },
+  "Whether to display edit history as part of message content": {
+    "tr": "Düzenleme geçmişi mesaj içeriğinde gösterilsin mi",
+    "ru": "Показывать историю правок в тексте сообщения",
+    "es": "Mostrar el historial de ediciones en el mensaje",
+    "fr": "Afficher l'historique des modifications dans le message"
+  },
+  "Ignore Bots": {
+    "tr": "Botları yok say",
+    "ru": "Игнорировать ботов",
+    "es": "Ignorar bots",
+    "fr": "Ignorer les bots"
+  },
+  "Whether to ignore messages by bots": {
+    "tr": "Bot mesajları yok sayılsın mı",
+    "ru": "Игнорировать сообщения ботов",
+    "es": "Ignorar mensajes de bots",
+    "fr": "Ignorer les messages de bots"
+  },
+  "Ignore Self": {
+    "tr": "Kendini yok say",
+    "ru": "Игнорировать себя",
+    "es": "Ignorarte a ti",
+    "fr": "S'ignorer soi-même"
+  },
+  "Whether to ignore messages by yourself": {
+    "tr": "Kendi mesajların yok sayılsın mı",
+    "ru": "Игнорировать свои сообщения",
+    "es": "Ignorar tus mensajes",
+    "fr": "Ignorer vos messages"
+  },
+  "Ignore Users": {
+    "tr": "Kullanıcıları yok say",
+    "ru": "Игнорировать пользователей",
+    "es": "Ignorar usuarios",
+    "fr": "Ignorer des utilisateurs"
+  },
+  "Comma-separated list of user IDs to ignore": {
+    "tr": "Yok sayılacak kullanıcı ID'leri (virgülle ayır)",
+    "ru": "ID пользователей для игнорирования (через запятую)",
+    "es": "IDs de usuarios a ignorar (comas)",
+    "fr": "ID d'utilisateurs à ignorer (virgules)"
+  },
+  "Ignore Channels": {
+    "tr": "Kanalları yok say",
+    "ru": "Игнорировать каналы",
+    "es": "Ignorar canales",
+    "fr": "Ignorer des salons"
+  },
+  "Comma-separated list of channel IDs to ignore": {
+    "tr": "Yok sayılacak kanal ID'leri (virgülle ayır)",
+    "ru": "ID каналов для игнорирования (через запятую)",
+    "es": "IDs de canales a ignorar (separados por comas)",
+    "fr": "ID de salons à ignorer (virgules)"
+  },
+  "Ignore Guilds": {
+    "tr": "Sunucuları yok say",
+    "ru": "Игнорировать серверы",
+    "es": "Ignorar servidores",
+    "fr": "Ignorer des serveurs"
+  },
+  "Comma-separated list of guild IDs to ignore": {
+    "tr": "Yok sayılacak sunucu ID'leri (virgülle ayır)",
+    "ru": "ID серверов для игнорирования (через запятую)",
+    "es": "IDs de servidores a ignorar (comas)",
+    "fr": "ID de serveurs à ignorer (virgules)"
+  },
+  "Open Logs": {
+    "tr": "Kayıtları Aç",
+    "ru": "Открыть журналы",
+    "es": "Abrir registros",
+    "fr": "Ouvrir les journaux"
+  },
+  "Clear Logs": {
+    "tr": "Kayıtları Temizle",
+    "ru": "Очистить журналы",
+    "es": "Borrar registros",
+    "fr": "Effacer les journaux"
+  },
+  "Message Edit History": {
+    "tr": "Mesaj Düzenleme Geçmişi",
+    "ru": "История правок сообщения",
+    "es": "Historial de ediciones",
+    "fr": "Historique des modifications"
+  },
+  "Remove Message History": {
+    "tr": "Mesaj Geçmişini Kaldır",
+    "ru": "Удалить историю сообщения",
+    "es": "Quitar historial del mensaje",
+    "fr": "Retirer l'historique du message"
+  },
+  "All": {
+    "tr": "Tümü",
+    "ru": "Все",
+    "es": "Todos",
+    "fr": "Tous"
+  },
+  "Deleted": {
+    "tr": "Silinen",
+    "ru": "Удалённые",
+    "es": "Eliminados",
+    "fr": "Supprimés"
+  },
+  "Edited": {
+    "tr": "Düzenlenen",
+    "ru": "Изменённые",
+    "es": "Editados",
+    "fr": "Modifiés"
+  },
+  "Ghost Pinged": {
+    "tr": "Hayalet Etiket",
+    "ru": "Фантомные упоминания",
+    "es": "Menciones fantasma",
+    "fr": "Mentions fantômes"
+  },
+  "{count} attachments": {
+    "tr": "{count} ek",
+    "ru": "Вложений: {count}",
+    "es": "{count} adjuntos",
+    "fr": "{count} pièces jointes"
+  },
+  "Copied to Clipboard": {
+    "tr": "Panoya kopyalandı",
+    "ru": "Скопировано в буфер обмена",
+    "es": "Copiado al portapapeles",
+    "fr": "Copié dans le presse-papiers"
+  },
+  "Blocked Words": {
+    "tr": "Engellenen kelimeler",
+    "ru": "Запрещённые слова",
+    "es": "Palabras bloqueadas",
+    "fr": "Mots bloqués"
+  },
+  "Comma-separated list of words to block": {
+    "tr": "Engellenecek kelimeler (virgülle ayır)",
+    "ru": "Запрещённые слова через запятую",
+    "es": "Palabras a bloquear, separadas por comas",
+    "fr": "Mots à bloquer, séparés par des virgules"
+  },
+  "Use Regex": {
+    "tr": "Regex kullan",
+    "ru": "Использовать regex",
+    "es": "Usar regex",
+    "fr": "Utiliser une regex"
+  },
+  "Use each value as a regular expression when checking message content (advanced)": {
+    "tr": "Mesaj içeriğini kontrol ederken her değeri regex olarak kullan (gelişmiş)",
+    "ru": "Считать каждое значение регулярным выражением (продвинуто)",
+    "es": "Usar cada valor como expresión regular al revisar mensajes (avanzado)",
+    "fr": "Utiliser chaque valeur comme regex pour vérifier les messages (avancé)"
+  },
+  "Case Sensitive": {
+    "tr": "Büyük/küçük harfe duyarlı",
+    "ru": "С учётом регистра",
+    "es": "Distinguir mayúsculas",
+    "fr": "Sensible à la casse"
+  },
+  "Whether to use a case sensitive search or not": {
+    "tr": "Büyük/küçük harfe duyarlı arama yapılsın mı",
+    "ru": "Учитывать регистр при поиске",
+    "es": "Búsqueda sensible a mayúsculas",
+    "fr": "Recherche sensible à la casse"
+  },
+  "Users To Block": {
+    "tr": "Engellenecek kullanıcılar",
+    "ru": "Пользователи для блокировки",
+    "es": "Usuarios a bloquear",
+    "fr": "Utilisateurs à bloquer"
+  },
+  "User IDs separated by a comma and a space": {
+    "tr": "Virgül ve boşlukla ayrılmış kullanıcı ID'leri",
+    "ru": "ID пользователей через запятую и пробел",
+    "es": "IDs de usuario separadas por coma y espacio",
+    "fr": "ID d'utilisateurs séparés par virgule et espace"
+  },
+  "Hide Blocked Users": {
+    "tr": "Engellenen kullanıcıları gizle",
+    "ru": "Скрыть заблокированных",
+    "es": "Ocultar usuarios bloqueados",
+    "fr": "Masquer les utilisateurs bloqués"
+  },
+  "Should blocked users also be hidden everywhere": {
+    "tr": "Engellenen kullanıcılar her yerde gizlensin mi",
+    "ru": "Скрывать заблокированных везде",
+    "es": "Ocultar también a los bloqueados en todas partes",
+    "fr": "Masquer aussi les bloqués partout"
+  },
+  "Blocked Reply Display": {
+    "tr": "Engellilere yanıt gösterimi",
+    "ru": "Показ ответов заблокированным",
+    "es": "Mostrar respuestas a bloqueados",
+    "fr": "Affichage des réponses aux bloqués"
+  },
+  "What should display instead of the message when someone replies to someone you have hidden": {
+    "tr": "Biri gizlediğin birine yanıt verince mesaj yerine ne görünsün",
+    "ru": "Что показывать вместо сообщения при ответе скрытому пользователю",
+    "es": "Qué mostrar en vez del mensaje cuando alguien responde a alguien oculto",
+    "fr": "Quoi afficher quand quelqu'un répond à une personne masquée"
+  },
+  "Display text saying a hidden message was replied to": {
+    "tr": "Gizli bir mesaja yanıt verildiğini belirten metni göster",
+    "ru": "Показывать текст о том, что ответ дан на скрытое сообщение",
+    "es": "Mostrar un texto indicando que se respondió a un mensaje oculto",
+    "fr": "Afficher un texte indiquant une réponse à un message masqué"
+  },
+  "Literally nothing": {
+    "tr": "Kelimenin tam anlamıyla hiçbir şey",
+    "ru": "Совсем ничего",
+    "es": "Literalmente nada",
+    "fr": "Littéralement rien"
+  },
+  "↓ Replying to blocked message": {
+    "tr": "↓ Engellenmiş bir mesaja yanıt",
+    "ru": "↓ Ответ на заблокированное сообщение",
+    "es": "↓ Respondiendo a un mensaje bloqueado",
+    "fr": "↓ Réponse à un message bloqué"
+  },
+  "Hide": {
+    "tr": "Gizle",
+    "ru": "Скрыть",
+    "es": "Ocultar",
+    "fr": "Masquer"
+  },
+  "Media Hidden": {
+    "tr": "Medya Gizli",
+    "ru": "Медиа скрыто",
+    "es": "Contenido oculto",
+    "fr": "Média masqué"
+  },
+  "Show Message": {
+    "tr": "Mesajı göster",
+    "ru": "Показывать сообщение",
+    "es": "Mostrar mensaje",
+    "fr": "Afficher le message"
+  },
+  "Whether to show a message detailing which id was blocked": {
+    "tr": "Hangi ID'nin engellendiğini anlatan mesaj gösterilsin mi",
+    "ru": "Показывать, какой ID заблокирован",
+    "es": "Mostrar qué ID se bloqueó",
+    "fr": "Indiquer quel ID a été bloqué"
+  },
+  "Blocked Stickers": {
+    "tr": "Engellenen çıkartmalar",
+    "ru": "Заблокированные стикеры",
+    "es": "Stickers bloqueados",
+    "fr": "Autocollants bloqués"
+  },
+  "The list of blocked sticker IDs (don't edit unless you know what you're doing)": {
+    "tr": "Engellenen çıkartma ID'leri listesi (ne yaptığını bilmiyorsan düzenleme)",
+    "ru": "Список ID заблокированных стикеров (не трогайте без нужды)",
+    "es": "Lista de IDs de stickers bloqueados (no la edites si no sabes qué haces)",
+    "fr": "Liste des ID d'autocollants bloqués (ne modifiez pas sans savoir)"
+  },
+  "Flagged Words": {
+    "tr": "İşaretli Kelimeler",
+    "ru": "Отмеченные слова",
+    "es": "Palabras marcadas",
+    "fr": "Mots signalés"
+  },
+  "Replacement Text": {
+    "tr": "Yerine geçecek metin",
+    "ru": "Текст замены",
+    "es": "Texto de reemplazo",
+    "fr": "Texte de remplacement"
+  },
+  "Text to replace the message with before deletion.": {
+    "tr": "Silmeden önce mesajın yerine konacak metin.",
+    "ru": "Текст, которым заменить сообщение перед удалением.",
+    "es": "Texto con el que reemplazar el mensaje antes de borrarlo.",
+    "fr": "Texte remplaçant le message avant suppression."
+  },
+  "Delete Delay": {
+    "tr": "Silme gecikmesi",
+    "ru": "Задержка удаления",
+    "es": "Retraso de borrado",
+    "fr": "Délai de suppression"
+  },
+  "Delay in milliseconds before deleting the replacement message (recommended: 100-500).": {
+    "tr": "Yer tutucu mesaj silinmeden önceki gecikme (ms, önerilen: 100-500).",
+    "ru": "Задержка перед удалением замещающего сообщения в мс (рекомендуется 100–500).",
+    "es": "Espera en ms antes de borrar el mensaje sustituto (recomendado: 100-500).",
+    "fr": "Délai en ms avant de supprimer le message de remplacement (conseillé : 100-500)."
+  },
+  "Suppress Notifications": {
+    "tr": "Bildirimleri bastır",
+    "ru": "Подавлять уведомления",
+    "es": "Silenciar notificaciones",
+    "fr": "Supprimer les notifications"
+  },
+  "Suppress notifications when replacing the message (prevents pinging mentioned users).": {
+    "tr": "Mesajı değiştirirken bildirimleri bastır (bahsedilen kişilere bildirim gitmez).",
+    "ru": "Без уведомлений при замене сообщения (упомянутые не получат пинг).",
+    "es": "Silenciar avisos al reemplazar el mensaje (no notifica a los mencionados).",
+    "fr": "Pas de notification au remplacement du message (pas de ping aux mentionnés)."
+  },
+  "Delete Original": {
+    "tr": "Orijinali sil",
+    "ru": "Удалить оригинал",
+    "es": "Borrar el original",
+    "fr": "Supprimer l'original"
+  },
+  "Delete the original message from server. If disabled, the original message will reappear on client restart.": {
+    "tr": "Orijinal mesajı sunucudan sil. Kapalıysa orijinal mesaj yeniden başlatmada geri gelir.",
+    "ru": "Удалять оригинал с сервера. Если выключено, он вернётся после перезапуска.",
+    "es": "Borrar el mensaje original del servidor. Si no, reaparece al reiniciar.",
+    "fr": "Supprimer le message d'origine du serveur. Sinon il réapparaît au redémarrage."
+  },
+  "Purge Interval": {
+    "tr": "Temizleme aralığı",
+    "ru": "Интервал очистки",
+    "es": "Intervalo de purga",
+    "fr": "Intervalle de purge"
+  },
+  "Delay in milliseconds between each message deletion during /silentpurge (recommended: 500-1000 to avoid rate limits).": {
+    "tr": "/silentpurge sırasında her silme arası gecikme (ms, hız sınırı için önerilen: 500-1000).",
+    "ru": "Задержка между удалениями в /silentpurge в мс (рекомендуется 500–1000 из-за лимитов).",
+    "es": "Espera en ms entre cada borrado en /silentpurge (recomendado: 500-1000 por los límites).",
+    "fr": "Délai en ms entre chaque suppression avec /silentpurge (conseillé : 500-1000)."
+  },
+  "Ghost Ping Alerts": {
+    "tr": "Hayalet etiket uyarıları",
+    "ru": "Оповещения о фантомных упоминаниях",
+    "es": "Avisos de menciones fantasma",
+    "fr": "Alertes de mentions fantômes"
+  },
+  "Show a notice when a message that mentioned you is deleted": {
+    "tr": "Seni etiketleyen bir mesaj silindiğinde bildirim göster",
+    "ru": "Показывать уведомление, когда удаляется сообщение с упоминанием вас",
+    "es": "Muestra un aviso cuando se elimina un mensaje que te mencionaba",
+    "fr": "Affiche une notification quand un message qui vous mentionnait est supprimé"
+  },
+  "Log Size": {
+    "tr": "Kayıt boyutu",
+    "ru": "Размер журнала",
+    "es": "Tamaño del registro",
+    "fr": "Taille du journal"
+  },
+  "How many deleted and edited messages are kept in memory": {
+    "tr": "Bellekte tutulacak silinmiş ve düzenlenmiş mesaj sayısı",
+    "ru": "Сколько удалённых и изменённых сообщений хранится в памяти",
+    "es": "Cuántos mensajes eliminados y editados se guardan en memoria",
+    "fr": "Nombre de messages supprimés et modifiés gardés en mémoire"
+  },
+  "See the deleted and edited messages that were logged": {
+    "tr": "Kaydedilen silinmiş ve düzenlenmiş mesajları gör",
+    "ru": "Посмотреть записанные удалённые и изменённые сообщения",
+    "es": "Consulta los mensajes eliminados y editados que se registraron",
+    "fr": "Consultez les messages supprimés et modifiés qui ont été enregistrés"
+  },
+  "Keep Log After Restart": {
+    "tr": "Kaydı yeniden başlatmadan sonra koru",
+    "ru": "Сохранять журнал после перезапуска",
+    "es": "Conservar el registro tras reiniciar",
+    "fr": "Conserver le journal après un redémarrage"
+  },
+  "Save the message log on this device so it is still there after a restart. Deleted messages don't come back into the chat": {
+    "tr": "Mesaj kaydını bu cihaza kaydet, böylece yeniden başlattıktan sonra da kalsın. Silinmiş mesajlar sohbete geri gelmez",
+    "ru": "Сохранять журнал сообщений на этом устройстве, чтобы он оставался после перезапуска. Удалённые сообщения в чат не возвращаются",
+    "es": "Guarda el registro de mensajes en este dispositivo para que siga ahí tras reiniciar. Los mensajes eliminados no vuelven al chat",
+    "fr": "Enregistre le journal des messages sur cet appareil pour qu'il soit encore là après un redémarrage. Les messages supprimés ne reviennent pas dans le chat"
+  },
+  "Forget the log and remove deleted messages from the chat": {
+    "tr": "Kaydı temizle ve silinmiş mesajları sohbetten kaldır",
+    "ru": "Очистить журнал и убрать удалённые сообщения из чата",
+    "es": "Borra el registro y quita los mensajes eliminados del chat",
+    "fr": "Efface le journal et retire les messages supprimés du chat"
+  },
+  "Message log cleared": {
+    "tr": "Mesaj kaydı temizlendi",
+    "ru": "Журнал сообщений очищен",
+    "es": "Registro de mensajes borrado",
+    "fr": "Journal des messages effacé"
+  },
+  "(deleted)": {
+    "tr": "(silindi)",
+    "ru": "(удалено)",
+    "es": "(eliminado)",
+    "fr": "(supprimé)"
+  },
+  "Ghost ping from {user} in your DMs": {
+    "tr": "{user} kullanıcısından DM'lerinde hayalet etiket",
+    "ru": "Фантомное упоминание от {user} в личных сообщениях",
+    "es": "Mención fantasma de {user} en tus MD",
+    "fr": "Mention fantôme de {user} dans vos MP"
+  },
+  "Ghost ping from {user} in {channel}": {
+    "tr": "{user} kullanıcısından {channel} kanalında hayalet etiket",
+    "ru": "Фантомное упоминание от {user} в {channel}",
+    "es": "Mención fantasma de {user} en {channel}",
+    "fr": "Mention fantôme de {user} dans {channel}"
+  },
+  "Message Log": {
+    "tr": "Mesaj kaydı",
+    "ru": "Журнал сообщений",
+    "es": "Registro de mensajes",
+    "fr": "Journal des messages"
+  },
+  "Nothing logged yet": {
+    "tr": "Henüz kaydedilen bir şey yok",
+    "ru": "Пока ничего не записано",
+    "es": "Aún no se ha registrado nada",
+    "fr": "Rien n'a encore été enregistré"
+  },
+  "Long press an entry to copy it": {
+    "tr": "Kopyalamak için bir kayda basılı tut",
+    "ru": "Нажмите и удерживайте запись, чтобы скопировать её",
+    "es": "Mantén pulsada una entrada para copiarla",
+    "fr": "Appuyez longuement sur une entrée pour la copier"
+  },
+  "Long press a version to copy it": {
+    "tr": "Kopyalamak için bir sürüme basılı tut",
+    "ru": "Нажмите и удерживайте версию, чтобы скопировать её",
+    "es": "Mantén pulsada una versión para copiarla",
+    "fr": "Appuyez longuement sur une version pour la copier"
+  },
+  "Replaced {time}": {
+    "tr": "Değiştirildi: {time}",
+    "ru": "Заменено: {time}",
+    "es": "Reemplazado: {time}",
+    "fr": "Remplacé : {time}"
+  },
+  "Current": {
+    "tr": "Güncel",
+    "ru": "Текущая",
+    "es": "Actual",
+    "fr": "Actuelle"
+  },
+  "Show Hidden Messages": {
+    "tr": "Gizli mesajları göster",
+    "ru": "Показать скрытые сообщения",
+    "es": "Mostrar mensajes ocultos",
+    "fr": "Afficher les messages masqués"
+  },
+  "Bring back every message you hid": {
+    "tr": "Gizlediğin tüm mesajları geri getir",
+    "ru": "Вернуть все скрытые вами сообщения",
+    "es": "Vuelve a mostrar todos los mensajes que ocultaste",
+    "fr": "Réaffiche tous les messages que vous avez masqués"
+  },
+  "Showing {count} hidden messages again": {
+    "tr": "{count} gizli mesaj yeniden gösteriliyor",
+    "ru": "Скрытые сообщения снова показаны: {count}",
+    "es": "Se vuelven a mostrar {count} mensajes ocultos",
+    "fr": "{count} messages masqués sont de nouveau affichés"
+  },
+  "Hide Media": {
+    "tr": "Medyayı gizle",
+    "ru": "Скрыть медиа",
+    "es": "Ocultar multimedia",
+    "fr": "Masquer les médias"
+  },
+  "Show Media": {
+    "tr": "Medyayı göster",
+    "ru": "Показать медиа",
+    "es": "Mostrar multimedia",
+    "fr": "Afficher les médias"
+  },
+  "Block Sticker": {
+    "tr": "Çıkartmayı engelle",
+    "ru": "Заблокировать стикер",
+    "es": "Bloquear sticker",
+    "fr": "Bloquer le sticker"
+  },
+  "Unblock Sticker": {
+    "tr": "Çıkartmanın engelini kaldır",
+    "ru": "Разблокировать стикер",
+    "es": "Desbloquear sticker",
+    "fr": "Débloquer le sticker"
+  },
+  "Blocked sticker": {
+    "tr": "Engellenen çıkartma",
+    "ru": "Заблокированный стикер",
+    "es": "Sticker bloqueado",
+    "fr": "Sticker bloqué"
+  },
+  "Blocked sticker. ID: {id}, name: {name}": {
+    "tr": "Engellenen çıkartma. Kimlik: {id}, ad: {name}",
+    "ru": "Заблокированный стикер. ID: {id}, название: {name}",
+    "es": "Sticker bloqueado. ID: {id}, nombre: {name}",
+    "fr": "Sticker bloqué. ID : {id}, nom : {name}"
+  },
+  "Reveal All Spoilers": {
+    "tr": "Tüm spoiler'ları göster",
+    "ru": "Показать все спойлеры",
+    "es": "Mostrar todos los spoilers",
+    "fr": "Révéler tous les spoilers"
+  },
+  "Messages containing any of these words are covered until tapped. Separate words with commas or new lines": {
+    "tr": "Bu kelimelerden birini içeren mesajlar dokunana kadar gizlenir. Kelimeleri virgül veya yeni satırla ayır",
+    "ru": "Сообщения с любым из этих слов скрыты, пока вы не нажмёте на них. Разделяйте слова запятыми или переносами строк",
+    "es": "Los mensajes que contengan alguna de estas palabras se ocultan hasta que los toques. Separa las palabras con comas o saltos de línea",
+    "fr": "Les messages contenant l'un de ces mots sont masqués jusqu'à ce que vous appuyiez dessus. Séparez les mots par des virgules ou des retours à la ligne"
+  },
+  "Silent Delete": {
+    "tr": "Sessizce sil",
+    "ru": "Тихо удалить",
+    "es": "Eliminar en silencio",
+    "fr": "Supprimer silencieusement"
+  },
+  "Message silently deleted": {
+    "tr": "Mesaj sessizce silindi",
+    "ru": "Сообщение тихо удалено",
+    "es": "Mensaje eliminado en silencio",
+    "fr": "Message supprimé silencieusement"
+  },
+  "Failed to silently delete the message": {
+    "tr": "Mesaj sessizce silinemedi",
+    "ru": "Не удалось тихо удалить сообщение",
+    "es": "No se pudo eliminar el mensaje en silencio",
+    "fr": "Impossible de supprimer silencieusement le message"
+  },
+  "Choose a number from 1 to 100": {
+    "tr": "1 ile 100 arasında bir sayı seç",
+    "ru": "Выберите число от 1 до 100",
+    "es": "Elige un número del 1 al 100",
+    "fr": "Choisissez un nombre entre 1 et 100"
+  },
+  "A purge is already running": {
+    "tr": "Zaten bir temizleme çalışıyor",
+    "ru": "Очистка уже выполняется",
+    "es": "Ya hay una purga en curso",
+    "fr": "Une purge est déjà en cours"
+  },
+  "Successfully silently deleted {count} message(s).": {
+    "tr": "{count} mesaj sessizce silindi.",
+    "ru": "Тихо удалено сообщений: {count}.",
+    "es": "Se eliminaron en silencio {count} mensaje(s).",
+    "fr": "{count} message(s) supprimé(s) silencieusement."
+  },
+  "Deleting your last {count} messages…": {
+    "tr": "Son {count} mesajın siliniyor…",
+    "ru": "Удаляем ваши последние сообщения: {count}…",
+    "es": "Eliminando tus últimos {count} mensajes…",
+    "fr": "Suppression de vos {count} derniers messages…"
+  },
+  "Hides messages containing specific user-defined keywords from the chat.": {
+    "tr": "Belirlediğin anahtar kelimeleri içeren mesajları sohbetten gizler.",
+    "ru": "Скрывает из чата сообщения, содержащие заданные вами ключевые слова.",
+    "es": "Oculta del chat los mensajes que contienen palabras clave definidas por ti.",
+    "fr": "Masque du chat les messages contenant des mots-clés que vous définissez."
+  },
+  "Temporarily hide messages until you restart.": {
+    "tr": "Mesajları yeniden başlatana kadar geçici olarak gizle.",
+    "ru": "Временно скрывает сообщения до перезапуска.",
+    "es": "Oculta mensajes temporalmente hasta que reinicies.",
+    "fr": "Masque temporairement des messages jusqu'au redémarrage."
+  },
+  "Hide attachments and embeds for individual messages from the message long-press menu": {
+    "tr": "Mesajlara uzun basma menüsünden tek tek mesajların eklerini ve yerleştirmelerini gizle",
+    "ru": "Скрывает вложения и встраивания отдельных сообщений через меню долгого нажатия",
+    "es": "Oculta los archivos adjuntos y las inserciones de mensajes concretos desde el menú de pulsación larga",
+    "fr": "Masque les pièces jointes et intégrations de messages précis depuis le menu d'appui long"
+  },
+  "Reveal all spoilers in a message at once from the message long-press menu": {
+    "tr": "Mesajlara uzun basma menüsünden bir mesajdaki tüm spoiler'ları tek seferde göster",
+    "ru": "Показывает все спойлеры сообщения сразу через меню долгого нажатия",
+    "es": "Muestra todos los spoilers de un mensaje a la vez desde el menú de pulsación larga",
+    "fr": "Révèle tous les spoilers d'un message d'un coup depuis le menu d'appui long"
+  },
+  "Cover attachments in NSFW channels until tapped": {
+    "tr": "NSFW kanallarındaki ekleri dokunana kadar gizle",
+    "ru": "Скрывает вложения в NSFW-каналах, пока вы не нажмёте на них",
+    "es": "Oculta los archivos adjuntos en canales NSFW hasta que los toques",
+    "fr": "Masque les pièces jointes des salons NSFW jusqu'à ce que vous appuyiez dessus"
+  },
+  "Messages containing trigger words you choose are hidden behind a spoiler by default. Tapping the spoiler reveals them.": {
+    "tr": "Seçtiğin tetikleyici kelimeleri içeren mesajlar varsayılan olarak spoiler'ın arkasına gizlenir. Spoiler'a dokununca görünürler.",
+    "ru": "Сообщения с выбранными вами словами-триггерами по умолчанию скрыты под спойлером. Нажмите на спойлер, чтобы показать их.",
+    "es": "Los mensajes que contienen las palabras desencadenantes que elijas se ocultan tras un spoiler por defecto. Al tocar el spoiler se muestran.",
+    "fr": "Les messages contenant les mots déclencheurs de votre choix sont masqués derrière un spoiler par défaut. Appuyez sur le spoiler pour les révéler."
+  }
+}

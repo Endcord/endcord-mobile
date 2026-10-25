@@ -79,7 +79,12 @@ internal class MessageLogger : EndcordPlugin(
             min = 50,
             max = 5000,
         ),
-        PluginSetting.Action("openLogs", "Open Logs", "Every deleted and edited message logged since Discord was opened") { ctx ->
+        PluginSetting.Switch(
+            key = "persistLog",
+            label = "Keep Log After Restart",
+            description = "Save the message log on this device so it is still there after a restart. Deleted messages don't come back into the chat",
+        ),
+        PluginSetting.Action("openLogs", "Open Logs", "See the deleted and edited messages that were logged") { ctx ->
             Utils.openPageWithProxy(ctx, MessageLogPage())
         },
         PluginSetting.Action("clearLogs", "Clear Logs", "Forget the log and remove deleted messages from the chat") {
@@ -103,6 +108,8 @@ internal class MessageLogger : EndcordPlugin(
 
     override fun start(context: Context) {
         MessageLog.limit = int("logLimit")
+        MessageLog.persist = bool("persistLog")
+        Utils.threadPool.execute { if (MessageLog.persist) MessageLog.loadSaved() else MessageLog.deleteSaved() }
         patchDeletes()
         patchEdits()
         patchItems()
@@ -177,6 +184,7 @@ internal class MessageLogger : EndcordPlugin(
 
     private fun logEntry(kind: MessageLog.Kind, message: Message, newContent: String?) {
         MessageLog.limit = int("logLimit")
+        MessageLog.persist = bool("persistLog")
         MessageLog.add(
             MessageLog.Entry(
                 kind = kind,

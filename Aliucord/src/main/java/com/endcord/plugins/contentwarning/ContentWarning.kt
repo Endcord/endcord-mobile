@@ -16,7 +16,7 @@ import java.util.Locale
 
 internal class ContentWarning : EndcordPlugin(
     name = "ContentWarning",
-    description = "Allows you to specify certain trigger words that will be hidden behind a spoiler by default. Tapping the spoiler reveals it.",
+    description = "Messages containing trigger words you choose are hidden behind a spoiler by default. Tapping the spoiler reveals them.",
     authors = arrayOf("ewlle", "kraethis"),
 ) {
     override val tags = listOf("appearance", "utility")
