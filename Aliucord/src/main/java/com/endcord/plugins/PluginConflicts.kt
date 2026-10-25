@@ -9,8 +9,8 @@ import com.aliucord.PluginManager
 
 /**
  * Plugins that change the same part of Discord in ways that don't combine: with both on, one of them silently
- * stops working. Turning one on offers to turn the other off. Mirrors Endcord PC's conflict list; pairs whose
- * plugins aren't built into this version are ignored.
+ * stops working. Turning one on offers to turn the other off. Mirrors Endcord PC's conflict list, minus pairs that
+ * work together on mobile (CleanerChannelGroups + ShowHiddenChannels); pairs whose plugins aren't built in are ignored.
  */
 object PluginConflicts {
     private val pairs: List<Pair<String, String>> = listOf(
@@ -21,7 +21,6 @@ object PluginConflicts {
         "BetterActivities" to "ReviewDB",
         "BetterRoleContext" to "RoleColorEverywhere",
         "BetterScreenShare" to "FakeNitro",
-        "CleanerChannelGroups" to "ShowHiddenChannels",
         "ContentWarning" to "PinIcon",
         "CustomUserColors" to "IrcColors",
         "RoleColorEverywhere" to "VoiceFakeDetector",
