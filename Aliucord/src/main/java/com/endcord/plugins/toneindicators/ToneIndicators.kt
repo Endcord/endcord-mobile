@@ -14,10 +14,10 @@ import com.aliucord.entities.PluginSetting
 import com.aliucord.i18n.I18n
 import com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemMessage
 import com.discord.widgets.chat.list.entries.MessageEntry
-import com.endcord.plugins.messagesbcommon.ChatDecorator
-import com.endcord.plugins.messagesbcommon.ChatHooks
-import com.endcord.plugins.messagesbcommon.TapSpan
-import com.endcord.plugins.messagesbcommon.isCodeOrLink
+import com.endcord.plugins.api.ChatDecorator
+import com.endcord.plugins.api.ChatHooks
+import com.endcord.plugins.api.TapSpan
+import com.endcord.plugins.api.isCodeOrLink
 import java.util.Locale
 import java.util.regex.Pattern
 

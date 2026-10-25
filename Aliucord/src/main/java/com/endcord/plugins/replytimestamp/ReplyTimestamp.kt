@@ -14,9 +14,9 @@ import android.widget.TextView
 import com.aliucord.entities.EndcordPlugin
 import com.discord.utilities.time.TimeUtils
 import com.discord.widgets.chat.list.entries.MessageEntry
-import com.endcord.plugins.messagesbcommon.ChatDecorator
-import com.endcord.plugins.messagesbcommon.ChatHooks
-import com.endcord.plugins.messagesbcommon.mutedColor
+import com.endcord.plugins.api.ChatDecorator
+import com.endcord.plugins.api.ChatHooks
+import com.endcord.plugins.api.mutedColor
 import java.util.Calendar
 import java.util.Date
 

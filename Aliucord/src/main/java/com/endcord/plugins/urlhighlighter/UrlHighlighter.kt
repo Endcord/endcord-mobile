@@ -18,8 +18,8 @@ import com.discord.utilities.spans.BlockBackgroundSpan
 import com.discord.utilities.spans.TypefaceSpanCompat
 import com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemMessage
 import com.discord.widgets.chat.list.entries.MessageEntry
-import com.endcord.plugins.messagesbcommon.ChatDecorator
-import com.endcord.plugins.messagesbcommon.ChatHooks
+import com.endcord.plugins.api.ChatDecorator
+import com.endcord.plugins.api.ChatHooks
 import java.util.regex.Pattern
 
 internal class UrlHighlighter : EndcordPlugin(

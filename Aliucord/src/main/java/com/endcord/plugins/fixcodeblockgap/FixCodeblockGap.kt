@@ -8,8 +8,8 @@ package com.endcord.plugins.fixcodeblockgap
 import android.content.Context
 import com.aliucord.entities.EndcordPlugin
 import com.discord.widgets.chat.list.entries.MessageEntry
-import com.endcord.plugins.messagesbcommon.ChatDecorator
-import com.endcord.plugins.messagesbcommon.ChatHooks
+import com.endcord.plugins.api.ChatDecorator
+import com.endcord.plugins.api.ChatHooks
 import com.endcord.plugins.messagesbcommon.CodeBlocks
 
 /**

@@ -19,7 +19,7 @@ import com.discord.databinding.WidgetManageReactionsResultUserBinding
 import com.discord.stores.StoreMessageReactions
 import com.discord.utilities.mg_recycler.MGRecyclerDataPayload
 import com.discord.widgets.chat.managereactions.ManageReactionsResultsAdapter
-import com.endcord.plugins.messagesbcommon.mutedColor
+import com.endcord.plugins.api.mutedColor
 import java.lang.reflect.Field
 import java.text.DateFormat
 import java.util.Date

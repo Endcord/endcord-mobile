@@ -10,8 +10,8 @@ import android.widget.TextView
 import com.aliucord.entities.EndcordPlugin
 import com.aliucord.entities.PluginSetting
 import com.discord.widgets.chat.list.entries.MessageEntry
-import com.endcord.plugins.messagesbcommon.ChatDecorator
-import com.endcord.plugins.messagesbcommon.ChatHooks
+import com.endcord.plugins.api.ChatDecorator
+import com.endcord.plugins.api.ChatHooks
 import com.endcord.plugins.messagesbcommon.MomentFormat
 
 internal class RealtimeTimestamps : EndcordPlugin(

@@ -7,7 +7,7 @@ package com.endcord.plugins.embeddedurls
 
 import android.content.Context
 import com.aliucord.entities.EndcordPlugin
-import com.endcord.plugins.messagesbcommon.SendHooks
+import com.endcord.plugins.api.SendHooks
 import java.util.Locale
 import java.util.regex.Pattern
 

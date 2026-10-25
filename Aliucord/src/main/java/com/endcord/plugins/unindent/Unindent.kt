@@ -8,10 +8,10 @@ package com.endcord.plugins.unindent
 import android.content.Context
 import com.aliucord.entities.EndcordPlugin
 import com.discord.widgets.chat.list.entries.MessageEntry
-import com.endcord.plugins.messagesbcommon.ChatDecorator
-import com.endcord.plugins.messagesbcommon.ChatHooks
+import com.endcord.plugins.api.ChatDecorator
+import com.endcord.plugins.api.ChatHooks
 import com.endcord.plugins.messagesbcommon.CodeBlocks
-import com.endcord.plugins.messagesbcommon.SendHooks
+import com.endcord.plugins.api.SendHooks
 import java.util.regex.Pattern
 
 internal class Unindent : EndcordPlugin(

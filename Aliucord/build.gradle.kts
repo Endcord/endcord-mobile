@@ -104,10 +104,22 @@ abstract class GenerateI18nTask : DefaultTask() {
         }
         out.append("        else -> emptyArray()\n    }\n")
 
+        // Translations of the built-in plugins live in per-batch files shaped { "English": { "tr": "...", ... } }
+        val batchFiles = sourceDir.dir("batches").get().asFile.listFiles { f -> f.name.endsWith(".json") }
+            ?.sortedBy { it.name }.orEmpty()
+        @Suppress("UNCHECKED_CAST")
+        val batches = batchFiles.map { groovy.json.JsonSlurper().parse(it, "UTF-8") as Map<String, Map<String, Any?>> }
+
         for ((_, dir) in kinds) for (lang in languages) {
             val file = sourceDir.file("$dir/$lang.json").get().asFile
             @Suppress("UNCHECKED_CAST")
-            val table = if (file.exists()) groovy.json.JsonSlurper().parse(file, "UTF-8") as Map<String, Any?> else emptyMap()
+            val table = LinkedHashMap<String, Any?>()
+            for (batch in batches) {
+                if (dir != "core") break
+                for ((english, byLang) in batch) byLang[lang]?.let { table.putIfAbsent(english, it) }
+            }
+            // The main tables win over batch files
+            if (file.exists()) table.putAll(groovy.json.JsonSlurper().parse(file, "UTF-8") as Map<String, Any?>)
             val chunks = mutableListOf<StringBuilder>()
             var current = StringBuilder()
             var bytes = 0
