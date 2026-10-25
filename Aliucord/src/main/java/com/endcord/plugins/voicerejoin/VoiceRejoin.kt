@@ -82,14 +82,15 @@ internal class VoiceRejoin : EndcordPlugin(
     }
 
     private fun onVoiceChange(change: VoiceChange) {
-        val mine = Voice.myChannelId()
         if (change.isMe) {
+            // The store keeps only this client's own state, so this is the truth even when the selected channel
+            // hasn't caught up yet (a moderator disconnected you, or the call moved to another device)
             val new = change.newChannelId
-            when {
-                new != null && new == mine -> save(new, force = change.channelChanged)
-                new == null && mine == 0L && change.channelChanged -> save(0L, force = true)
-            }
-        } else if (mine != 0L && change.touches(mine)) {
+            if (new == null) save(0L, force = true) else save(new, force = change.channelChanged)
+            return
+        }
+        val mine = Voice.myChannelId()
+        if (mine != 0L && change.touches(mine)) {
             save(mine, force = false)
         }
     }

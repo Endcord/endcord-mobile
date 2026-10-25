@@ -113,7 +113,11 @@ internal class AntiMoveDeco : EndcordPlugin(
         VoiceEvents.register(name) { change ->
             val target = targetChannelId
             if (target == 0L || !change.isMe || !change.channelChanged) return@register
-            // Your state elsewhere (another device) doesn't count; only what this client lost
+            // You joined on another device: that is you switching yourself, not a move to undo
+            if (change.fromOtherSession) {
+                setProtected(0L, I18n.t("AntiMoveDeco off"))
+                return@register
+            }
             if (change.oldChannelId == target && change.newChannelId != target) rejoin()
         }
     }

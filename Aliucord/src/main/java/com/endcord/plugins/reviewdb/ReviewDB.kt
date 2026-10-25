@@ -56,7 +56,7 @@ internal class ReviewDB : EndcordPlugin(
                 null
             }
             Utils.mainThread.post {
-                if (activity.isFinishing) return@post
+                if (activity.isFinishing || activity.isDestroyed) return@post
                 val title = "${I18n.t("User Reviews")}: $userName"
                 if (result == null) {
                     Dialogs.showText(activity, title, I18n.t("Network error: Failed to connect to ReviewDB."))

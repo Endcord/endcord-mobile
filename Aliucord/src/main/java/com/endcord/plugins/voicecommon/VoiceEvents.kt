@@ -21,7 +21,15 @@ internal class VoiceChange(
     @JvmField val old: VoiceState?,
     /** The user's state after the update, null when they left. */
     @JvmField val new: VoiceState?,
+    /**
+     * The update itself, as the gateway sent it. When you join on another device the store drops your state
+     * here ([new] is null) but this carries the other device's session id.
+     */
+    @JvmField val incoming: VoiceState,
 ) {
+    /** Whether the update comes from another session of the same user, such as your PC joining a call. */
+    val fromOtherSession: Boolean get() = old != null && old.k() != null && incoming.k() != null && old.k() != incoming.k()
+
     val oldChannelId: Long? get() = old?.a()
     val newChannelId: Long? get() = new?.a()
 
@@ -94,7 +102,7 @@ internal object VoiceEvents {
                         val new = lookup(state.c(), state.m())
                         if (old == null && new == null) return
                         if (old != null && old == new) return
-                        dispatch(VoiceChange(state.m(), state.c(), old, new))
+                        dispatch(VoiceChange(state.m(), state.c(), old, new, state))
                     } catch (e: Throwable) {
                         logger.error("Failed to handle a voice state update", e)
                     }

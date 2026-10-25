@@ -7,6 +7,7 @@ package com.endcord.plugins.voicecommon
 
 import com.aliucord.Logger
 import com.aliucord.api.PatcherAPI
+import com.aliucord.patcher.after
 import com.aliucord.patcher.before
 import com.discord.stores.StoreGatewayConnection
 import com.discord.stores.StoreRtcConnection
@@ -32,6 +33,10 @@ internal object FakeVoiceState {
 
     private var patched = false
 
+    /** The last voice state could not be sent (the gateway was reconnecting), so it's sent once it's back. */
+    @Volatile
+    private var unsent = false
+
     private val onVoiceStateUpdated: Method by lazy {
         StoreRtcConnection::class.java.getDeclaredMethod("onVoiceStateUpdated").apply { isAccessible = true }
     }
@@ -54,8 +59,9 @@ internal object FakeVoiceState {
     private fun ensurePatched() {
         if (patched) return
         patched = true
+        val api = PatcherAPI(logger)
         // voiceStateUpdate(guildId, channelId, selfMute, selfDeaf, selfVideo, preferredRegion, shouldIncludePreferredRegion)
-        PatcherAPI(logger).before<StoreGatewayConnection>(
+        api.before<StoreGatewayConnection>(
             "voiceStateUpdate",
             Long::class.javaObjectType,
             Long::class.javaObjectType,
@@ -71,6 +77,26 @@ internal object FakeVoiceState {
                 // Deafened always implies muted, like Discord's own deafen
                 param.args[2] = true
                 param.args[3] = true
+            }
+        }
+        // Without a session the update is dropped (it returns false) and a RESUME doesn't send it again, so others
+        // would keep seeing the fake state after it was turned off during a reconnect
+        api.after<StoreGatewayConnection>(
+            "voiceStateUpdate",
+            Long::class.javaObjectType,
+            Long::class.javaObjectType,
+            Boolean::class.javaPrimitiveType!!,
+            Boolean::class.javaPrimitiveType!!,
+            Boolean::class.javaPrimitiveType!!,
+            String::class.java,
+            Boolean::class.javaPrimitiveType!!,
+        ) { param ->
+            if (param.args[1] != null) unsent = param.result == false
+        }
+        api.after<StoreGatewayConnection>("handleConnectionReady", Boolean::class.javaPrimitiveType!!) { param ->
+            if (param.args[0] == true && unsent) {
+                unsent = false
+                resend()
             }
         }
     }

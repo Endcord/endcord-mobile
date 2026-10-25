@@ -63,6 +63,9 @@ internal class ChannelWallpaper : GuildsBPlugin(
     }
     private val loading = HashSet<String>()
 
+    /** Links that failed to load, so they aren't fetched again on every chat update. Main thread only. */
+    private val failed = HashSet<String>()
+
     private var chat: WeakReference<RecyclerView>? = null
     private var chatChannelId = 0L
 
@@ -92,7 +95,10 @@ internal class ChannelWallpaper : GuildsBPlugin(
         reapply()
     }
 
-    override fun onSettingChanged(key: String) = reapply()
+    override fun onSettingChanged(key: String) {
+        failed.clear()
+        reapply()
+    }
 
     // ---- Storage ----
 
@@ -109,6 +115,7 @@ internal class ChannelWallpaper : GuildsBPlugin(
         wallpapers().optString(channelId.toString()).takeIf { it.isNotBlank() }
 
     private fun save(channelId: Long, url: String?) {
+        failed.clear()
         val all = JSONObject(wallpapers().toString())
         if (url.isNullOrBlank()) all.remove(channelId.toString()) else all.put(channelId.toString(), url.trim())
         settings.setString(KEY, all.toString())
@@ -175,7 +182,7 @@ internal class ChannelWallpaper : GuildsBPlugin(
     }
 
     private fun load(url: String, width: Int, height: Int) {
-        if (!loading.add(url)) return
+        if (url in failed || !loading.add(url)) return
         Utils.threadPool.execute {
             try {
                 val bytes = Http.Request(url).setRequestTimeout(20_000).use { request ->
@@ -187,22 +194,46 @@ internal class ChannelWallpaper : GuildsBPlugin(
                 BitmapFactory.decodeByteArray(bytes, 0, bytes.size, bounds)
                 var sample = 1
                 while (bounds.outWidth / (sample * 2) >= width && bounds.outHeight / (sample * 2) >= height) sample *= 2
-                val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size, BitmapFactory.Options().apply { inSampleSize = sample })
+                val decoded = BitmapFactory.decodeByteArray(bytes, 0, bytes.size, BitmapFactory.Options().apply { inSampleSize = sample })
                     ?: throw IllegalArgumentException("Not an image")
+                val bitmap = cropToScreen(decoded, width, height)
                 Utils.mainThread.post {
                     loading.remove(url)
                     cache.put(url, bitmap)
-                    reapply()
+                    // Still too big for the cache: showing it would mean loading it again on every update
+                    if (cache.get(url) != null) reapply() else failed += url
                 }
             } catch (e: Throwable) {
-                Utils.mainThread.post { loading.remove(url) }
+                Utils.mainThread.post {
+                    loading.remove(url)
+                    failed += url
+                }
                 logger.errorToast(I18n.t("Couldn't load the wallpaper"), e)
             }
         }
     }
 
+    /**
+     * The part of [decoded] that a centre crop shows on a [width]×[height] screen, scaled down to the screen size.
+     * Without this a phone photo stays 30-50 MB in memory, more than the whole cache.
+     */
+    private fun cropToScreen(decoded: Bitmap, width: Int, height: Int): Bitmap {
+        if (width <= 0 || height <= 0) return decoded
+        val scale = maxOf(width.toFloat() / decoded.width, height.toFloat() / decoded.height).coerceAtMost(1f)
+        val cropWidth = minOf(decoded.width, (width / scale).toInt()).coerceAtLeast(1)
+        val cropHeight = minOf(decoded.height, (height / scale).toInt()).coerceAtLeast(1)
+        if (scale == 1f && cropWidth == decoded.width && cropHeight == decoded.height) return decoded
+        val matrix = Matrix().apply { setScale(scale, scale) }
+        val result = Bitmap.createBitmap(
+            decoded, (decoded.width - cropWidth) / 2, (decoded.height - cropHeight) / 2, cropWidth, cropHeight, matrix, true,
+        )
+        if (result !== decoded) decoded.recycle()
+        return result
+    }
+
     override fun stop(context: Context) {
         super.stop(context)
+        failed.clear()
         chat?.get()?.let { clear(it) }
         chat = null
         cache.evictAll()

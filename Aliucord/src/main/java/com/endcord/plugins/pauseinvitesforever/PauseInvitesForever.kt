@@ -63,7 +63,7 @@ internal class PauseInvitesForever : GuildsBPlugin(
     }
 
     private fun ask(activity: FragmentActivity, guildId: Long, guildName: String, features: List<String>, paused: Boolean) {
-        if (activity.isFinishing) return
+        if (activity.isFinishing || activity.isDestroyed) return
         val builder = AlertDialog.Builder(activity)
         if (paused) {
             builder.setTitle(I18n.t("Invites are paused"))
@@ -77,7 +77,12 @@ internal class PauseInvitesForever : GuildsBPlugin(
                 ))
                 .setPositiveButton(I18n.t("Pause Indefinitely.")) { _, _ -> save(guildId, features + INVITES_DISABLED, true) }
         }
-        builder.setNegativeButton(I18n.t("Cancel"), null).show()
+        try {
+            builder.setNegativeButton(I18n.t("Cancel"), null).show()
+        } catch (e: Throwable) {
+            // The activity was recreated while the server was loading
+            logger.error("Failed to show the invite dialog", e)
+        }
     }
 
     private fun save(guildId: Long, features: List<String>, pause: Boolean) {

@@ -69,10 +69,11 @@ internal class VoiceChannelLog : EndcordPlugin(
                 if (change.channelChanged) joinedAt = System.currentTimeMillis()
                 return
             }
-            if (new != null && new == mine) {
+            // This client's own state: true even before the selected channel catches up with a moderator's move
+            if (new != null) {
                 joinedAt = System.currentTimeMillis()
                 log(new, I18n.t("You joined"))
-            } else if (new == null && old != null && mine == 0L) {
+            } else if (old != null) {
                 log(old, I18n.t("You left"))
             }
             return

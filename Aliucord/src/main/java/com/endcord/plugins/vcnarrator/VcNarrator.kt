@@ -136,12 +136,12 @@ internal class VcNarrator : EndcordPlugin(
         val new = change.newChannelId
 
         if (isMe) {
-            // Ignore your other devices: only what this client joins or leaves
-            if (new != null && new != myChannel) return
+            // The store keeps only this client's own state, so this is what this client joined or left, even when
+            // the selected channel hasn't caught up yet (moved or disconnected by a moderator)
             if (change.channelChanged) {
                 when {
                     new != null -> announce(if (old != null) "move" else "join", change.userId, new, true)
-                    old != null && myChannel == 0L -> announce("leave", change.userId, old, true)
+                    old != null -> announce("leave", change.userId, old, true)
                 }
                 return
             }

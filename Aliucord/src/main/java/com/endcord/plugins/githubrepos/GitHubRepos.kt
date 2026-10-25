@@ -69,7 +69,7 @@ internal class GitHubRepos : EndcordPlugin(
                 null
             }
             Utils.mainThread.post {
-                if (activity.isFinishing) return@post
+                if (activity.isFinishing || activity.isDestroyed) return@post
                 val title = I18n.t("GitHub Repositories") + (username?.let { " · $it" } ?: "")
                 when {
                     repos == null -> Dialogs.showText(activity, title, I18n.t("Couldn't load the repositories"))

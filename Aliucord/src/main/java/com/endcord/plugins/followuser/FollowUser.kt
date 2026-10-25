@@ -104,8 +104,12 @@ internal class FollowUser : EndcordPlugin(
         val oldChannel = change.oldChannelId
 
         if (change.isMe) {
-            // Moved by someone else: go back to the followed user
-            if (bool("autoMoveBack") && newChannel != null && oldChannel != null) {
+            // Moved by someone else: go back to the followed user. The store applies this update before it changes
+            // the selected channel, so a move you made yourself already shows the new channel there and one made by
+            // someone else still shows the old one.
+            val movedByOthers = newChannel != null && oldChannel != null && !change.fromOtherSession &&
+                Voice.myChannelId() != newChannel
+            if (bool("autoMoveBack") && movedByOthers && moveBackAllowed()) {
                 val target = Voice.channelOf(userId)
                 if (target != null && target != newChannel) Utils.mainThread.post { triggerFollow(target, quiet = true) }
             }
@@ -155,7 +159,18 @@ internal class FollowUser : EndcordPlugin(
         CallIndicator.unregisterAll(name)
     }
 
+    /** Times of the last automatic move backs, so a bot that keeps moving you can't cause a join loop. */
+    private val moveBacks = ArrayList<Long>()
+
+    private fun moveBackAllowed(): Boolean = synchronized(moveBacks) {
+        val now = System.currentTimeMillis()
+        moveBacks.removeAll { now - it > MOVE_BACK_WINDOW_MS }
+        (moveBacks.size < MAX_MOVE_BACKS).also { if (it) moveBacks += now }
+    }
+
     private companion object {
+        const val MOVE_BACK_WINDOW_MS = 30_000L
+        const val MAX_MOVE_BACKS = 3
         const val FOLLOW_KEY = "followUserId"
     }
 }

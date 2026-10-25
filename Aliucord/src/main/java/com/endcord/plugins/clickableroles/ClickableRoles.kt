@@ -89,7 +89,7 @@ internal class ClickableRoles : EndcordPlugin(
     }
 
     private fun showList(activity: FragmentActivity, guildId: Long, roleName: String, ids: List<Long>) {
-        if (activity.isFinishing) return
+        if (activity.isFinishing || activity.isDestroyed) return
         val title = "@$roleName (${ids.size})"
         if (ids.isEmpty()) {
             Dialogs.showText(activity, title, I18n.t("No members found."))

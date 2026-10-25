@@ -31,6 +31,7 @@ import org.json.JSONObject
 import java.lang.reflect.Field
 import java.util.WeakHashMap
 import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.Executors
 
 /**
  * Invite embeds in chat (`WidgetChatListAdapterItemInvite`):
@@ -143,9 +144,12 @@ internal class BetterInvites : GuildsBPlugin(
         header.text = if (line == null) shown.title else "${shown.title}\n$line"
     }
 
+    /** One invite lookup at a time: a channel full of invites must not fire dozens of API calls at once. */
+    private val lookups by lazy { Executors.newSingleThreadExecutor() }
+
     private fun fetchExpiry(code: String) {
         if (!fetching.add(code)) return
-        Utils.threadPool.execute {
+        lookups.execute {
             try {
                 val json = JSONObject(Net.text(
                     Http.Request.newDiscordRNRequest("/invites/${Net.encodeURIComponent(code)}?with_counts=false&with_expiration=true"),
