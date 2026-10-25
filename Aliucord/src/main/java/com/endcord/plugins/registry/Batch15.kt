@@ -13,6 +13,9 @@ import com.endcord.plugins.fakemute.FakeMute
 import com.endcord.plugins.followuser.FollowUser
 import com.endcord.plugins.nopushtotalk.NoPushToTalk
 import com.endcord.plugins.universalvolume.UniversalVolume
+import com.endcord.plugins.uservoiceshow.UserVoiceShow
+import com.endcord.plugins.voicechannellog.VoiceChannelLog
+import com.endcord.plugins.voicefakedetector.VoiceFakeDetector
 import com.endcord.plugins.vcnarrator.VcNarrator
 import com.endcord.plugins.voicechatutilities.VoiceChatUtilities
 import com.endcord.plugins.voicecount.VoiceCount
@@ -38,4 +41,7 @@ internal fun batch15(): List<EndcordPlugin> = listOf(
     NoPushToTalk(),
     AntiMoveDeco(),
     WebcamStartNotifier(),
+    VoiceChannelLog(),
+    UserVoiceShow(),
+    VoiceFakeDetector(),
 )

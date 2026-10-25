@@ -35,7 +35,7 @@ internal class VcNarrator : EndcordPlugin(
         PluginSetting.Switch("latinOnly", "Strip non latin characters from names before saying them"),
         PluginSetting.Text("joinMessage", "Join Message", PLACEHOLDER_HELP, default = DEFAULT_JOIN),
         PluginSetting.Text("leaveMessage", "Leave Message", PLACEHOLDER_HELP, default = DEFAULT_LEAVE),
-        PluginSetting.Text("moveMessage", "Move Message", PLACEHOLDER_HELP, default = DEFAULT_MOVE),
+        PluginSetting.Text("moveMessage", "Channel Move Message", PLACEHOLDER_HELP, default = DEFAULT_MOVE),
         PluginSetting.Text("muteMessage", "Mute Message (only self for now)", PLACEHOLDER_HELP, default = DEFAULT_MUTE),
         PluginSetting.Text("unmuteMessage", "Unmute Message (only self for now)", PLACEHOLDER_HELP, default = DEFAULT_UNMUTE),
         PluginSetting.Text("deafenMessage", "Deafen Message (only self for now)", PLACEHOLDER_HELP, default = DEFAULT_DEAFEN),

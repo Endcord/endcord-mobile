@@ -1,0 +1,992 @@
+{
+  " and ": {
+    "tr": " ve ",
+    "ru": " и ",
+    "es": " y ",
+    "fr": " et "
+  },
+  " with {count} other members": {
+    "tr": ", {count} diğer üyeyle",
+    "ru": " вместе с другими участниками ({count})",
+    "es": " con {count} miembros más",
+    "fr": " avec {count} autres membres"
+  },
+  " with {members}": {
+    "tr": ", birlikte: {members}",
+    "ru": " вместе с {members}",
+    "es": " con {members}",
+    "fr": " avec {members}"
+  },
+  ", nobody else is in the voice channel": {
+    "tr": ", ses kanalında başka kimse yok",
+    "ru": ", в канале больше никого нет",
+    "es": ", no hay nadie más en el canal de voz",
+    "fr": ", personne d'autre n'est dans le vocal"
+  },
+  "Adds a switch to the call settings sheet to prevent being moved or disconnected from a voice channel.": {
+    "tr": "Arama ayarları sayfasına, ses kanalından taşınmanı veya bağlantının kesilmesini engelleyen bir anahtar ekler.",
+    "ru": "Добавляет в настройки звонка переключатель, который не даёт перемещать или отключать вас из голосового канала.",
+    "es": "Añade un interruptor en los ajustes de la llamada para evitar que te muevan o te desconecten de un canal de voz.",
+    "fr": "Ajoute un interrupteur aux paramètres de l'appel pour empêcher qu'on vous déplace ou vous déconnecte d'un vocal."
+  },
+  "Allows you to set the user volume above the default maximum": {
+    "tr": "Kullanıcı ses düzeyini varsayılan sınırın üstüne çıkarmanı sağlar",
+    "ru": "Позволяет поднять громкость пользователя выше стандартного максимума",
+    "es": "Permite subir el volumen de un usuario por encima del máximo predeterminado",
+    "fr": "Permet de régler le volume d'un utilisateur au-delà du maximum par défaut"
+  },
+  "Also available as a switch in the call settings sheet (gear of the full screen call)": {
+    "tr": "Arama ayarları sayfasında da anahtar olarak var (tam ekran aramadaki dişli simgesi)",
+    "ru": "Также есть переключатель в настройках звонка (шестерёнка в полноэкранном звонке)",
+    "es": "También está como interruptor en los ajustes de la llamada (engranaje de la llamada a pantalla completa)",
+    "fr": "Aussi disponible comme interrupteur dans les paramètres de l'appel (engrenage de l'appel en plein écran)"
+  },
+  "Also leave when the followed user leaves": {
+    "tr": "Takip ettiğin kişi ayrılınca sen de ayrıl",
+    "ru": "Выходить, когда уходит тот, за кем следите",
+    "es": "Salir también cuando se va el usuario seguido",
+    "fr": "Partir aussi quand l'utilisateur suivi part"
+  },
+  "Also show for DM and group calls": {
+    "tr": "DM ve grup aramalarında da göster",
+    "ru": "Показывать и для звонков в ЛС и группах",
+    "es": "Mostrar también en llamadas privadas y de grupo",
+    "fr": "Afficher aussi pour les appels privés et de groupe"
+  },
+  "Amount of API actions to perform before waiting (to avoid rate limits)": {
+    "tr": "Beklemeden önce yapılacak API işlemi sayısı (hız sınırına takılmamak için)",
+    "ru": "Сколько действий API выполнять перед паузой (чтобы избежать лимитов)",
+    "es": "Acciones de API antes de esperar (para evitar límites de velocidad)",
+    "fr": "Nombre d'actions API avant une pause (pour éviter les limites)"
+  },
+  "Another voice action is still running": {
+    "tr": "Başka bir ses işlemi hâlâ sürüyor",
+    "ru": "Другое голосовое действие ещё выполняется",
+    "es": "Otra acción de voz sigue en curso",
+    "fr": "Une autre action vocale est encore en cours"
+  },
+  "AntiMoveDeco off": {
+    "tr": "AntiMoveDeco kapalı",
+    "ru": "AntiMoveDeco выключен",
+    "es": "AntiMoveDeco desactivado",
+    "fr": "AntiMoveDeco désactivé"
+  },
+  "AntiMoveDeco on: protecting {channel}": {
+    "tr": "AntiMoveDeco açık: {channel} korunuyor",
+    "ru": "AntiMoveDeco включён: защищаем {channel}",
+    "es": "AntiMoveDeco activado: protegiendo {channel}",
+    "fr": "AntiMoveDeco activé : {channel} est protégé"
+  },
+  "AntiMoveDeco turned off: could not get back into the channel": {
+    "tr": "AntiMoveDeco kapatıldı: kanala geri girilemedi",
+    "ru": "AntiMoveDeco выключен: не удалось вернуться в канал",
+    "es": "AntiMoveDeco desactivado: no se pudo volver al canal",
+    "fr": "AntiMoveDeco désactivé : impossible de revenir dans le salon"
+  },
+  "Appear muted to others in voice channels while keeping your microphone active. Toggle from the call settings sheet.": {
+    "tr": "Mikrofonun açık kalırken ses kanallarında diğerlerine susturulmuş görün. Arama ayarları sayfasından aç/kapat.",
+    "ru": "Выглядеть для других без микрофона, оставляя его включённым. Переключается в настройках звонка.",
+    "es": "Aparece silenciado ante los demás en los canales de voz mientras tu micrófono sigue activo. Se activa desde los ajustes de la llamada.",
+    "fr": "Paraître muet aux autres dans les vocaux tout en gardant votre micro actif. À activer depuis les paramètres de l'appel."
+  },
+  "Attempt to move you to the channel when is not full anymore": {
+    "tr": "Kanal artık dolu olmadığında seni oraya taşımayı dene",
+    "ru": "Пытаться перенести вас в канал, когда он освободится",
+    "es": "Intentar moverte al canal cuando deje de estar lleno",
+    "fr": "Tenter de vous déplacer dans le salon dès qu'il n'est plus plein"
+  },
+  "Automatically move back to the VC of the followed user when you got moved": {
+    "tr": "Taşındığında takip ettiğin kişinin ses kanalına otomatik dön",
+    "ru": "Возвращаться в канал того, за кем следите, если вас переместили",
+    "es": "Volver al canal del usuario seguido si te mueven",
+    "fr": "Revenir dans le vocal de la personne suivie si on vous déplace"
+  },
+  "Cancel": {
+    "tr": "İptal",
+    "ru": "Отмена",
+    "es": "Cancelar",
+    "fr": "Annuler"
+  },
+  "Channel Move Message": {
+    "tr": "Kanal değiştirme mesajı",
+    "ru": "Сообщение о переходе в другой канал",
+    "es": "Mensaje al cambiar de canal",
+    "fr": "Message de changement de salon"
+  },
+  "Channel is full": {
+    "tr": "Kanal dolu",
+    "ru": "Канал заполнен",
+    "es": "El canal está lleno",
+    "fr": "Le salon est plein"
+  },
+  "Channel not found": {
+    "tr": "Kanal bulunamadı",
+    "ru": "Канал не найден",
+    "es": "No se encontró el canal",
+    "fr": "Salon introuvable"
+  },
+  "Clear logs": {
+    "tr": "Kayıtları temizle",
+    "ru": "Очистить журнал",
+    "es": "Borrar registros",
+    "fr": "Effacer les journaux"
+  },
+  "Comma or space separated list of friends' user IDs you do NOT want to recieve join messages from": {
+    "tr": "Katılma mesajı ALMAK İSTEMEDİĞİN arkadaşların ID'leri (virgül veya boşlukla ayır)",
+    "ru": "ID друзей, о входе которых НЕ сообщать (через запятую или пробел)",
+    "es": "IDs de amigos de los que NO quieres avisos de entrada (separados por coma o espacio)",
+    "fr": "ID d'amis dont vous NE voulez PAS les messages d'arrivée (virgule ou espace)"
+  },
+  "Comma or space separated list of friends' user IDs you want to recieve join messages from": {
+    "tr": "Katılma mesajı almak istediğin arkadaşların ID'leri (virgül veya boşlukla ayır)",
+    "ru": "ID друзей, о входе которых сообщать (через запятую или пробел)",
+    "es": "IDs de amigos de los que quieres avisos de entrada (separados por coma o espacio)",
+    "fr": "ID d'amis dont vous voulez les messages d'arrivée (virgule ou espace)"
+  },
+  "Confirm": {
+    "tr": "Onayla",
+    "ru": "Подтвердить",
+    "es": "Confirmar",
+    "fr": "Confirmer"
+  },
+  "Copy mentions of all users": {
+    "tr": "Tüm kullanıcıların etiketlerini kopyala",
+    "ru": "Скопировать упоминания всех",
+    "es": "Copiar las menciones de todos",
+    "fr": "Copier les mentions de tout le monde"
+  },
+  "DMs and Servers": {
+    "tr": "DM'ler ve sunucular",
+    "ru": "ЛС и серверы",
+    "es": "Privados y servidores",
+    "fr": "MP et serveurs"
+  },
+  "DMs only": {
+    "tr": "Sadece DM'ler",
+    "ru": "Только ЛС",
+    "es": "Solo privados",
+    "fr": "MP seulement"
+  },
+  "Deafen Message (only self for now)": {
+    "tr": "Sağırlaştırma mesajı (şimdilik sadece kendin)",
+    "ru": "Сообщение об отключении звука (пока только для себя)",
+    "es": "Mensaje al ensordecer (por ahora solo tú)",
+    "fr": "Message de sourdine (vous seul pour l'instant)"
+  },
+  "Deafen all": {
+    "tr": "Hepsini sağırlaştır",
+    "ru": "Отключить звук всем",
+    "es": "Ensordecer a todos",
+    "fr": "Mettre tout le monde en sourdine"
+  },
+  "Disconnect all": {
+    "tr": "Hepsinin bağlantısını kes",
+    "ru": "Отключить всех",
+    "es": "Desconectar a todos",
+    "fr": "Déconnecter tout le monde"
+  },
+  "Do not log blocked users.": {
+    "tr": "Engellenen kullanıcıları kaydetme.",
+    "ru": "Не записывать заблокированных.",
+    "es": "No registrar a los bloqueados.",
+    "fr": "Ne pas journaliser les utilisateurs bloqués."
+  },
+  "Do not reconnect if the call has ended or the voice channel is empty or does not exist.": {
+    "tr": "Arama bittiyse ya da ses kanalı boşsa veya yoksa yeniden bağlanma.",
+    "ru": "Не переподключаться, если звонок окончен или канал пуст/не существует.",
+    "es": "No reconectar si la llamada terminó o el canal está vacío o no existe.",
+    "fr": "Ne pas se reconnecter si l'appel est fini ou si le salon est vide ou inexistant."
+  },
+  "Do not send messages about blocked users joining/leaving/moving voice channels": {
+    "tr": "Engellenen kişilerin ses kanalına girip çıkmasıyla ilgili mesaj gönderme",
+    "ru": "Не сообщать о входе/выходе/перемещении заблокированных",
+    "es": "No avisar cuando bloqueados entran, salen o se mueven en voz",
+    "fr": "Ne pas signaler les arrivées/départs des utilisateurs bloqués"
+  },
+  "Don't attempt to rejoin after this many seconds have passed since disconnecting.": {
+    "tr": "Bağlantı koptuktan bu kadar saniye sonra yeniden girmeyi deneme.",
+    "ru": "Не пытаться вернуться, если прошло столько секунд после отключения.",
+    "es": "No intentar volver tras estos segundos desde la desconexión.",
+    "fr": "Ne pas tenter de revenir après ce nombre de secondes."
+  },
+  "Done: {count} users": {
+    "tr": "Tamamlandı: {count} kullanıcı",
+    "ru": "Готово, пользователей: {count}",
+    "es": "Hecho: {count} usuarios",
+    "fr": "Terminé : {count} utilisateurs"
+  },
+  "Fake deafen": {
+    "tr": "Sahte sağırlaştırma",
+    "ru": "Ложное отключение звука",
+    "es": "Ensordecimiento falso",
+    "fr": "Fausse sourdine"
+  },
+  "Fake deafen off": {
+    "tr": "Sahte sağırlaştırma kapalı",
+    "ru": "Ложное отключение звука выключено",
+    "es": "Ensordecimiento falso desactivado",
+    "fr": "Fausse sourdine désactivée"
+  },
+  "Fake deafen on: others see you as deafened, but you still hear everything and your microphone is live": {
+    "tr": "Sahte sağırlaştırma açık: diğerleri seni sağırlaştırılmış görüyor ama sen her şeyi duyuyorsun ve mikrofonun açık",
+    "ru": "Ложное отключение звука включено: другие видят, что у вас отключён звук, но вы всё слышите, а микрофон работает",
+    "es": "Ensordecimiento falso activado: los demás te ven ensordecido, pero lo oyes todo y tu micrófono sigue activo",
+    "fr": "Fausse sourdine activée : les autres vous voient en sourdine, mais vous entendez tout et votre micro reste actif"
+  },
+  "Fake deafened": {
+    "tr": "Sağırlaştırılmış (sahte)",
+    "ru": "Звук отключён (ложно)",
+    "es": "Ensordecido (falso)",
+    "fr": "En sourdine (factice)"
+  },
+  "Fake mute": {
+    "tr": "Sahte susturma",
+    "ru": "Ложное отключение микрофона",
+    "es": "Silencio falso",
+    "fr": "Faux micro coupé"
+  },
+  "Fake mute off": {
+    "tr": "Sahte susturma kapalı",
+    "ru": "Ложное отключение микрофона выключено",
+    "es": "Silencio falso desactivado",
+    "fr": "Faux micro coupé désactivé"
+  },
+  "Fake mute on: others see you as muted, but your microphone is still live": {
+    "tr": "Sahte susturma açık: diğerleri seni susturulmuş görüyor ama mikrofonun hâlâ açık",
+    "ru": "Ложное отключение микрофона включено: другие видят вас с выключенным микрофоном, но он по-прежнему работает",
+    "es": "Silencio falso activado: los demás te ven silenciado, pero tu micrófono sigue activo",
+    "fr": "Faux micro coupé activé : les autres vous voient muet, mais votre micro reste actif"
+  },
+  "Fake muted": {
+    "tr": "Susturulmuş (sahte)",
+    "ru": "Микрофон выключен (ложно)",
+    "es": "Silenciado (falso)",
+    "fr": "Muet (factice)"
+  },
+  "Follow User": {
+    "tr": "Kullanıcıyı Takip Et",
+    "ru": "Следовать за пользователем",
+    "es": "Seguir al usuario",
+    "fr": "Suivre l'utilisateur"
+  },
+  "Followed user into a new voice channel": {
+    "tr": "Kullanıcı yeni bir ses kanalına takip edildi",
+    "ru": "Вы последовали за пользователем в новый голосовой канал",
+    "es": "Seguiste al usuario a un nuevo canal de voz",
+    "fr": "Utilisateur suivi dans un nouveau vocal"
+  },
+  "Followed user is not in a voice channel": {
+    "tr": "Takip edilen kullanıcı ses kanalında değil",
+    "ru": "Пользователь не в голосовом канале",
+    "es": "El usuario seguido no está en un canal de voz",
+    "fr": "L'utilisateur suivi n'est pas en vocal"
+  },
+  "Followed user left, but not following disconnect": {
+    "tr": "Takip edilen kullanıcı ayrıldı, bağlantı kesilmiyor",
+    "ru": "Пользователь вышел, но вы остаётесь",
+    "es": "El usuario seguido salió, pero no te desconectas",
+    "fr": "L'utilisateur suivi est parti, sans déconnexion"
+  },
+  "Followed user left, disconnected": {
+    "tr": "Takip edilen kullanıcı ayrıldı, bağlantı kesildi",
+    "ru": "Пользователь вышел, вы отключены",
+    "es": "El usuario seguido salió, desconectado",
+    "fr": "L'utilisateur suivi est parti, déconnecté"
+  },
+  "Following {name}": {
+    "tr": "{name} takip ediliyor",
+    "ru": "Вы следуете за {name}",
+    "es": "Siguiendo a {name}",
+    "fr": "Vous suivez {name}"
+  },
+  "Hey, someone just left {channel} and there's a spot for you now!": {
+    "tr": "Hey, biri {channel} kanalından ayrıldı, artık sana yer var!",
+    "ru": "Кто-то только что вышел из {channel}, теперь для вас есть место!",
+    "es": "¡Oye, alguien acaba de salir de {channel} y ahora hay un hueco para ti!",
+    "fr": "Hé, quelqu'un vient de quitter {channel}, il y a une place pour vous !"
+  },
+  "Hide the number on empty channels.": {
+    "tr": "Boş kanallarda sayıyı gizle.",
+    "ru": "Скрывать число у пустых каналов.",
+    "es": "Ocultar el número en canales vacíos.",
+    "fr": "Masquer le nombre sur les salons vides."
+  },
+  "How far the volume slider in profiles goes, compared to Discord's 200%": {
+    "tr": "Profillerdeki ses kaydırıcısının Discord'un %200'üne göre ne kadar ileri gideceği",
+    "ru": "Насколько дальше заходит ползунок громкости в профилях по сравнению с 200% в Discord",
+    "es": "Hasta dónde llega el control de volumen de los perfiles, frente al 200 % de Discord",
+    "fr": "Jusqu'où va le curseur de volume des profils, par rapport aux 200 % de Discord"
+  },
+  "In percent": {
+    "tr": "Yüzde olarak",
+    "ru": "В процентах",
+    "es": "En porcentaje",
+    "fr": "En pourcentage"
+  },
+  "In percent, 100 is normal": {
+    "tr": "Yüzde olarak, 100 normaldir",
+    "ru": "В процентах, 100 — обычная громкость",
+    "es": "En porcentaje, 100 es lo normal",
+    "fr": "En pourcentage, 100 est la normale"
+  },
+  "In percent, 100 is normal speed": {
+    "tr": "Yüzde olarak, 100 normal hızdır",
+    "ru": "В процентах, 100 — обычная скорость",
+    "es": "En porcentaje, 100 es la velocidad normal",
+    "fr": "En pourcentage, 100 est la vitesse normale"
+  },
+  "In seconds": {
+    "tr": "Saniye olarak",
+    "ru": "В секундах",
+    "es": "En segundos",
+    "fr": "En secondes"
+  },
+  "Insufficient permissions to enter in the voice channel": {
+    "tr": "Ses kanalına girmek için yetkin yok",
+    "ru": "Недостаточно прав для входа в голосовой канал",
+    "es": "No tienes permisos para entrar al canal de voz",
+    "fr": "Permissions insuffisantes pour rejoindre le vocal"
+  },
+  "Join": {
+    "tr": "Katıl",
+    "ru": "Войти",
+    "es": "Unirse",
+    "fr": "Rejoindre"
+  },
+  "Join Message": {
+    "tr": "Katılma mesajı",
+    "ru": "Сообщение о входе",
+    "es": "Mensaje de entrada",
+    "fr": "Message d'arrivée"
+  },
+  "Join Voice Channel": {
+    "tr": "Ses Kanalına Katıl",
+    "ru": "Войти в голосовой канал",
+    "es": "Unirse al canal de voz",
+    "fr": "Rejoindre le salon vocal"
+  },
+  "Join followed user": {
+    "tr": "Takip edilen kullanıcıya katıl",
+    "ru": "Присоединиться к тому, за кем следите",
+    "es": "Unirse al usuario seguido",
+    "fr": "Rejoindre l'utilisateur suivi"
+  },
+  "Join the channel immediately instead of showing a notice.": {
+    "tr": "Uyarı göstermek yerine kanala hemen katıl.",
+    "ru": "Сразу заходить в канал без уведомления.",
+    "es": "Unirse al canal al instante en vez de mostrar un aviso.",
+    "fr": "Rejoindre le salon immédiatement au lieu d'afficher un avis."
+  },
+  "Joined the queue for {channel}": {
+    "tr": "{channel} için sıraya girildi",
+    "ru": "Вы в очереди в {channel}",
+    "es": "Te uniste a la cola de {channel}",
+    "fr": "Vous êtes dans la file pour {channel}"
+  },
+  "Joined voice channel {channel}": {
+    "tr": "{channel} ses kanalına katıldı",
+    "ru": "Зашёл в голосовой канал {channel}",
+    "es": "Se unió al canal de voz {channel}",
+    "fr": "A rejoint le salon vocal {channel}"
+  },
+  "Joining {channel}": {
+    "tr": "{channel} kanalına katılınıyor",
+    "ru": "Вход в {channel}",
+    "es": "Uniéndote a {channel}",
+    "fr": "Connexion à {channel}"
+  },
+  "Keep waiting": {
+    "tr": "Beklemeye devam et",
+    "ru": "Продолжать ждать",
+    "es": "Seguir esperando",
+    "fr": "Continuer d'attendre"
+  },
+  "Leave Message": {
+    "tr": "Ayrılma mesajı",
+    "ru": "Сообщение о выходе",
+    "es": "Mensaje de salida",
+    "fr": "Message de départ"
+  },
+  "Leave Queue": {
+    "tr": "Sıradan Çık",
+    "ru": "Выйти из очереди",
+    "es": "Salir de la cola",
+    "fr": "Quitter la file"
+  },
+  "Left the queue": {
+    "tr": "Sıradan çıkıldı",
+    "ru": "Вы вышли из очереди",
+    "es": "Saliste de la cola",
+    "fr": "Vous avez quitté la file"
+  },
+  "Log when users are server muted or deafened.": {
+    "tr": "Kullanıcılar sunucuda susturulunca veya sağırlaştırılınca kaydet.",
+    "ru": "Записывать серверный мьют и заглушение.",
+    "es": "Registrar cuando silencian o ensordecen a usuarios en el servidor.",
+    "fr": "Journaliser les muets et sourdines serveur."
+  },
+  "Log when users join, leave, or move between voice channels.": {
+    "tr": "Kullanıcılar ses kanallarına girince, çıkınca veya geçince kaydet.",
+    "ru": "Записывать вход, выход и переходы между голосовыми каналами.",
+    "es": "Registrar cuando usuarios entran, salen o cambian de canal de voz.",
+    "fr": "Journaliser arrivées, départs et changements de vocal."
+  },
+  "Log when users start or stop screensharing.": {
+    "tr": "Kullanıcılar ekran paylaşımını başlatınca veya durdurunca kaydet.",
+    "ru": "Записывать начало и конец демонстрации экрана.",
+    "es": "Registrar cuando empiezan o dejan de compartir pantalla.",
+    "fr": "Journaliser début et fin de partage d'écran."
+  },
+  "Log when users turn their camera on or off.": {
+    "tr": "Kullanıcılar kamerayı açınca veya kapatınca kaydet.",
+    "ru": "Записывать включение и выключение камеры.",
+    "es": "Registrar cuando encienden o apagan la cámara.",
+    "fr": "Journaliser l'activation et l'arrêt de la caméra."
+  },
+  "Logs cleared": {
+    "tr": "Kayıtlar temizlendi",
+    "ru": "Журнал очищен",
+    "es": "Registros borrados",
+    "fr": "Journaux effacés"
+  },
+  "Logs voice channel activity including joins, leaves, mute, camera, screenshare, and more.": {
+    "tr": "Katılma, ayrılma, susturma, kamera, ekran paylaşımı ve daha fazlası dahil ses kanalı etkinliğini kaydeder.",
+    "ru": "Записывает активность в голосовом канале: входы, выходы, отключение микрофона, камеру, демонстрацию экрана и не только.",
+    "es": "Registra la actividad del canal de voz: entradas, salidas, silencios, cámara, pantalla compartida y más.",
+    "fr": "Journalise l'activité du salon vocal : arrivées, départs, micros coupés, caméra, partage d'écran et plus."
+  },
+  "Make sure to be in the same VC when following a user": {
+    "tr": "Bir kullanıcıyı takip ederken aynı ses kanalında olduğundan emin ol",
+    "ru": "Быть в том же голосовом канале при слежении за пользователем",
+    "es": "Asegurarse de estar en el mismo canal de voz al seguir a alguien",
+    "fr": "S'assurer d'être dans le même vocal en suivant quelqu'un"
+  },
+  "Move all": {
+    "tr": "Hepsini taşı",
+    "ru": "Переместить всех",
+    "es": "Mover a todos",
+    "fr": "Déplacer tout le monde"
+  },
+  "Move {count} users from {from} to {to}?": {
+    "tr": "{count} kullanıcı {from} kanalından {to} kanalına taşınsın mı?",
+    "ru": "Переместить пользователей ({count}) из {from} в {to}?",
+    "es": "¿Mover a {count} usuarios de {from} a {to}?",
+    "fr": "Déplacer {count} utilisateurs de {from} vers {to} ?"
+  },
+  "Mute Message (only self for now)": {
+    "tr": "Susturma mesajı (şimdilik sadece kendin)",
+    "ru": "Сообщение о мьюте (пока только своё)",
+    "es": "Mensaje de silencio (por ahora solo propio)",
+    "fr": "Message de sourdine (soi-même pour l'instant)"
+  },
+  "Mute all": {
+    "tr": "Hepsini sustur",
+    "ru": "Заглушить всех",
+    "es": "Silenciar a todos",
+    "fr": "Rendre tout le monde muet"
+  },
+  "Narrator Speed": {
+    "tr": "Anlatıcı hızı",
+    "ru": "Скорость диктора",
+    "es": "Velocidad del narrador",
+    "fr": "Vitesse du narrateur"
+  },
+  "Narrator Volume": {
+    "tr": "Anlatıcı ses düzeyi",
+    "ru": "Громкость диктора",
+    "es": "Volumen del narrador",
+    "fr": "Volume du narrateur"
+  },
+  "No narrator voices found. Install a text to speech engine in your phone's settings": {
+    "tr": "Anlatıcı sesi bulunamadı. Telefonunun ayarlarından bir metin okuma motoru yükle",
+    "ru": "Голоса диктора не найдены. Установите движок синтеза речи в настройках телефона",
+    "es": "No se encontraron voces del narrador. Instala un motor de texto a voz en los ajustes del teléfono",
+    "fr": "Aucune voix de narrateur trouvée. Installez un moteur de synthèse vocale dans les paramètres du téléphone"
+  },
+  "No other voice channel to move to": {
+    "tr": "Taşınacak başka ses kanalı yok",
+    "ru": "Нет другого голосового канала для перемещения",
+    "es": "No hay otro canal de voz al que mover",
+    "fr": "Aucun autre salon vocal où déplacer"
+  },
+  "Nobody else is in this channel": {
+    "tr": "Bu kanalda başka kimse yok",
+    "ru": "В этом канале больше никого нет",
+    "es": "No hay nadie más en este canal",
+    "fr": "Personne d'autre n'est dans ce salon"
+  },
+  "None": {
+    "tr": "Yok",
+    "ru": "Нет",
+    "es": "Ninguno",
+    "fr": "Aucun"
+  },
+  "Nothing logged in this channel yet": {
+    "tr": "Bu kanalda henüz kayıt yok",
+    "ru": "В этом канале пока ничего не записано",
+    "es": "Aún no hay registros en este canal",
+    "fr": "Rien n'est encore journalisé dans ce salon"
+  },
+  "Only apply to DMs.": {
+    "tr": "Sadece DM'lere uygula.",
+    "ru": "Применять только к ЛС.",
+    "es": "Aplicar solo a privados.",
+    "fr": "Appliquer seulement aux MP."
+  },
+  "Only join when you tap \"Join followed user\" below": {
+    "tr": "Sadece aşağıdaki \"Takip edilen kullanıcıya katıl\" seçeneğine dokununca katıl",
+    "ru": "Входить только по нажатию «Присоединиться к тому, за кем следите» ниже",
+    "es": "Unirse solo al pulsar «Unirse al usuario seguido» abajo",
+    "fr": "Ne rejoindre qu'en touchant « Rejoindre l'utilisateur suivi » ci-dessous"
+  },
+  "Only trigger manually": {
+    "tr": "Sadece elle tetikle",
+    "ru": "Срабатывать только вручную",
+    "es": "Activar solo manualmente",
+    "fr": "Déclencher seulement manuellement"
+  },
+  "Others see you as deafened, you still hear everyone": {
+    "tr": "Diğerleri seni sağırlaştırılmış görür, sen herkesi duymaya devam edersin",
+    "ru": "Другие видят, что у вас отключён звук, но вы всех слышите",
+    "es": "Los demás te ven ensordecido, pero sigues oyendo a todos",
+    "fr": "Les autres vous voient en sourdine, vous entendez toujours tout le monde"
+  },
+  "Others see you as muted, your microphone stays live": {
+    "tr": "Diğerleri seni susturulmuş görür, mikrofonun açık kalır",
+    "ru": "Другие видят вас с выключенным микрофоном, но он продолжает работать",
+    "es": "Los demás te ven silenciado, tu micrófono sigue activo",
+    "fr": "Les autres vous voient muet, votre micro reste actif"
+  },
+  "Play Example Sounds": {
+    "tr": "Örnek Sesleri Çal",
+    "ru": "Проиграть примеры",
+    "es": "Reproducir sonidos de ejemplo",
+    "fr": "Jouer des exemples"
+  },
+  "Play a sound when a slot becomes available.": {
+    "tr": "Bir yer boşalınca ses çal.",
+    "ru": "Звук, когда освобождается место.",
+    "es": "Reproducir un sonido cuando quede un hueco libre.",
+    "fr": "Jouer un son quand une place se libère."
+  },
+  "Play notification sound in private voice calls (DMs)": {
+    "tr": "Özel sesli aramalarda (DM) bildirim sesi çal",
+    "ru": "Звук уведомления в личных звонках",
+    "es": "Sonido de notificación en llamadas privadas",
+    "fr": "Son de notification dans les appels privés"
+  },
+  "Play notification sound in server voice channels": {
+    "tr": "Sunucu ses kanallarında bildirim sesi çal",
+    "ru": "Звук уведомления в голосовых каналах сервера",
+    "es": "Sonido de notificación en canales de voz del servidor",
+    "fr": "Son de notification dans les vocaux du serveur"
+  },
+  "Prevent being moved or disconnected": {
+    "tr": "Taşınmayı veya bağlantının kesilmesini engelle",
+    "ru": "Не давать перемещать или отключать меня",
+    "es": "Evitar que me muevan o me desconecten",
+    "fr": "Empêcher d'être déplacé ou déconnecté"
+  },
+  "Protected": {
+    "tr": "Korunuyor",
+    "ru": "Под защитой",
+    "es": "Protegido",
+    "fr": "Protégé"
+  },
+  "Receive notifications in your friends' DMs even if you are in the same voice channel as them": {
+    "tr": "Aynı ses kanalında olsanız bile arkadaşlarının DM'lerinde bildirim al",
+    "ru": "Уведомления в ЛС друзей, даже если вы с ними в одном голосовом",
+    "es": "Recibir avisos en privados de amigos aunque estés en su mismo canal de voz",
+    "fr": "Recevoir les notifications dans les MP d'amis même dans le même vocal"
+  },
+  "Receive notifications in your friends' DMs when they join a voice channel": {
+    "tr": "Arkadaşların ses kanalına girince DM'lerinde bildirim al",
+    "ru": "Уведомления в ЛС друзей при их входе в голосовой",
+    "es": "Recibir avisos en privados de amigos cuando entren a un canal de voz",
+    "fr": "Notifications dans les MP d'amis quand ils rejoignent un vocal"
+  },
+  "Rejoins this channel when someone moves or disconnects you": {
+    "tr": "Biri seni taşırsa veya bağlantını keserse bu kanala geri girer",
+    "ru": "Возвращает в этот канал, если вас переместили или отключили",
+    "es": "Vuelve a este canal si alguien te mueve o te desconecta",
+    "fr": "Revient dans ce salon si quelqu'un vous déplace ou vous déconnecte"
+  },
+  "Say own name": {
+    "tr": "Kendi adını söyle",
+    "ru": "Произносить своё имя",
+    "es": "Decir tu nombre",
+    "fr": "Dire votre nom"
+  },
+  "Servers only": {
+    "tr": "Sadece sunucular",
+    "ru": "Только серверы",
+    "es": "Solo servidores",
+    "fr": "Serveurs seulement"
+  },
+  "Set Delay before rejoining voice channel.": {
+    "tr": "Ses kanalına yeniden katılmadan önceki gecikmeyi ayarla.",
+    "ru": "Задержка перед повторным входом в голосовой.",
+    "es": "Retraso antes de volver al canal de voz.",
+    "fr": "Délai avant de rejoindre le vocal."
+  },
+  "Show a list of other members in the voice channel when receiving a DM notification of your friend joining a voice channel": {
+    "tr": "Arkadaşının ses kanalına girdiği DM bildiriminde kanaldaki diğer üyelerin listesini göster",
+    "ru": "Показывать других участников канала в уведомлении о входе друга в голосовой",
+    "es": "Mostrar los demás miembros del canal en el aviso de que tu amigo entró a voz",
+    "fr": "Afficher les autres membres du vocal dans la notification d'arrivée d'un ami"
+  },
+  "Show a notification when someone is caught": {
+    "tr": "Biri yakalanınca bildirim göster",
+    "ru": "Уведомлять, когда кто-то пойман",
+    "es": "Mostrar un aviso cuando se pille a alguien",
+    "fr": "Afficher une notification quand quelqu'un est pris"
+  },
+  "Show the count of other members in the voice channel when receiving a DM notification of your friend joining a voice channel": {
+    "tr": "Arkadaşının ses kanalına girdiği DM bildiriminde kanaldaki diğer üye sayısını göster",
+    "ru": "Число других участников в уведомлении о входе друга в голосовой",
+    "es": "Mostrar cuántos miembros hay en el aviso de que tu amigo entró a voz",
+    "fr": "Afficher le nombre d'autres membres dans la notification d'arrivée d'un ami"
+  },
+  "Shows a Join Voice Channel entry in the profile of users who are in a voice channel": {
+    "tr": "Ses kanalında olan kullanıcıların profiline Ses Kanalına Katıl seçeneği ekler",
+    "ru": "Добавляет пункт «Войти в голосовой канал» в профиль пользователей, которые сейчас в голосовом канале",
+    "es": "Muestra «Unirse al canal de voz» en el perfil de los usuarios que están en un canal de voz",
+    "fr": "Affiche « Rejoindre le salon vocal » dans le profil des utilisateurs qui sont en vocal"
+  },
+  "Someone": {
+    "tr": "Biri",
+    "ru": "Кто-то",
+    "es": "Alguien",
+    "fr": "Quelqu'un"
+  },
+  "Stop following": {
+    "tr": "Takibi bırak",
+    "ru": "Перестать следовать",
+    "es": "Dejar de seguir",
+    "fr": "Arrêter de suivre"
+  },
+  "Stopped following": {
+    "tr": "Takip bırakıldı",
+    "ru": "Вы больше ни за кем не следуете",
+    "es": "Dejaste de seguir",
+    "fr": "Vous ne suivez plus personne"
+  },
+  "Stopped following {name}": {
+    "tr": "{name} artık takip edilmiyor",
+    "ru": "Вы больше не следуете за {name}",
+    "es": "Dejaste de seguir a {name}",
+    "fr": "Vous ne suivez plus {name}"
+  },
+  "Strip non latin characters from names before saying them": {
+    "tr": "Adları söylemeden önce Latin olmayan karakterleri sil",
+    "ru": "Убирать нелатинские символы из имён перед озвучкой",
+    "es": "Quitar caracteres no latinos de los nombres antes de decirlos",
+    "fr": "Retirer les caractères non latins des noms avant de les dire"
+  },
+  "Tells you when someone in your voice channel fakes their voice state with any client mod: shown as muted or deafened but still talking. Resets when they leave or genuinely unmute.": {
+    "tr": "Ses kanalındaki biri herhangi bir istemci moduyla ses durumunu taklit ederse söyler: susturulmuş veya sağırlaştırılmış görünüp hâlâ konuşuyorsa. Ayrılınca ya da gerçekten susturmayı kaldırınca sıfırlanır.",
+    "ru": "Сообщает, если кто-то в вашем голосовом канале подделывает своё состояние любым клиентским модом: выглядит без микрофона или звука, но продолжает говорить. Сбрасывается, когда он выходит или по-настоящему включает микрофон.",
+    "es": "Te avisa si alguien en tu canal de voz falsea su estado con cualquier mod: aparece silenciado o ensordecido pero sigue hablando. Se reinicia cuando sale o quita el silencio de verdad.",
+    "fr": "Vous prévient quand quelqu'un dans votre vocal falsifie son état avec un mod client : affiché muet ou en sourdine, mais il parle encore. Réinitialisé quand il part ou réactive vraiment son micro."
+  },
+  "The timer format": {
+    "tr": "Zamanlayıcı biçimi",
+    "ru": "Формат таймера",
+    "es": "Formato del temporizador",
+    "fr": "Format du minuteur"
+  },
+  "The volume everyone in your voice channel is set to.": {
+    "tr": "Ses kanalındaki herkesin ses düzeyi.",
+    "ru": "Громкость всех в вашем голосовом канале.",
+    "es": "Volumen de todos en tu canal de voz.",
+    "fr": "Volume de tout le monde dans votre vocal."
+  },
+  "Time to wait between each action (in seconds)": {
+    "tr": "Her işlem arasında beklenecek süre (saniye)",
+    "ru": "Пауза между действиями (секунды)",
+    "es": "Tiempo entre cada acción (segundos)",
+    "fr": "Délai entre chaque action (secondes)"
+  },
+  "Toggle fake deafen": {
+    "tr": "Sahte sağırlaştırmayı aç/kapat",
+    "ru": "Переключить ложное отключение звука",
+    "es": "Activar o desactivar el ensordecimiento falso",
+    "fr": "Activer ou désactiver la fausse sourdine"
+  },
+  "Toggle fake mute": {
+    "tr": "Sahte susturmayı aç/kapat",
+    "ru": "Переключить ложное отключение микрофона",
+    "es": "Activar o desactivar el silencio falso",
+    "fr": "Activer ou désactiver le faux micro coupé"
+  },
+  "Undeafen Message (only self for now)": {
+    "tr": "Sağırlaştırma kaldırma mesajı (şimdilik sadece kendin)",
+    "ru": "Сообщение о включении звука (пока только своё)",
+    "es": "Mensaje al quitar ensordecer (por ahora solo propio)",
+    "fr": "Message de fin de sourdine (soi-même pour l'instant)"
+  },
+  "Undeafen all": {
+    "tr": "Hepsinin sağırlaştırmasını kaldır",
+    "ru": "Вернуть звук всем",
+    "es": "Quitar ensordecido a todos",
+    "fr": "Retirer la sourdine de tous"
+  },
+  "Unfollow User": {
+    "tr": "Kullanıcıyı Takipten Çık",
+    "ru": "Перестать следовать за пользователем",
+    "es": "Dejar de seguir al usuario",
+    "fr": "Ne plus suivre l'utilisateur"
+  },
+  "Unmute Message (only self for now)": {
+    "tr": "Susturma kaldırma mesajı (şimdilik sadece kendin)",
+    "ru": "Сообщение о включении микрофона (пока только своё)",
+    "es": "Mensaje al quitar silencio (por ahora solo propio)",
+    "fr": "Message de fin de muet (soi-même pour l'instant)"
+  },
+  "Unmute all": {
+    "tr": "Hepsinin susturmasını kaldır",
+    "ru": "Включить микрофон всем",
+    "es": "Quitar silencio a todos",
+    "fr": "Réactiver le micro de tous"
+  },
+  "View Voice Channel Logs": {
+    "tr": "Ses Kanalı Kayıtlarını Görüntüle",
+    "ru": "Открыть журнал голосового канала",
+    "es": "Ver registros del canal de voz",
+    "fr": "Voir les journaux du salon vocal"
+  },
+  "Voice Channel Logs": {
+    "tr": "Ses Kanalı Kayıtları",
+    "ru": "Журнал голосового канала",
+    "es": "Registros del canal de voz",
+    "fr": "Journaux du salon vocal"
+  },
+  "Voice Tools": {
+    "tr": "Ses Araçları",
+    "ru": "Голосовые инструменты",
+    "es": "Herramientas de voz",
+    "fr": "Outils vocaux"
+  },
+  "Voice channel {channel} is full. Wait for a slot?": {
+    "tr": "{channel} ses kanalı dolu. Yer açılmasını bekleyelim mi?",
+    "ru": "Голосовой канал {channel} заполнен. Подождать свободного места?",
+    "es": "El canal de voz {channel} está lleno. ¿Esperar a que haya un hueco?",
+    "fr": "Le salon vocal {channel} est plein. Attendre une place ?"
+  },
+  "Volume Multiplier": {
+    "tr": "Ses çarpanı",
+    "ru": "Множитель громкости",
+    "es": "Multiplicador de volumen",
+    "fr": "Multiplicateur de volume"
+  },
+  "Wait": {
+    "tr": "Bekle",
+    "ru": "Ждать",
+    "es": "Esperar",
+    "fr": "Attendre"
+  },
+  "You are already in the same channel": {
+    "tr": "Zaten aynı kanaldasın",
+    "ru": "Вы уже в том же канале",
+    "es": "Ya estás en el mismo canal",
+    "fr": "Vous êtes déjà dans le même salon"
+  },
+  "You are not following anyone": {
+    "tr": "Kimseyi takip etmiyorsun",
+    "ru": "Вы ни за кем не следуете",
+    "es": "No sigues a nadie",
+    "fr": "Vous ne suivez personne"
+  },
+  "You are not waiting for a voice channel": {
+    "tr": "Bir ses kanalı için beklemiyorsun",
+    "ru": "Вы не ждёте места в голосовом канале",
+    "es": "No estás esperando ningún canal de voz",
+    "fr": "Vous n'attendez aucun salon vocal"
+  },
+  "You are waiting for a slot in {channel}.": {
+    "tr": "{channel} kanalında yer açılmasını bekliyorsun.",
+    "ru": "Вы ждёте места в {channel}.",
+    "es": "Estás esperando un hueco en {channel}.",
+    "fr": "Vous attendez une place dans {channel}."
+  },
+  "You joined": {
+    "tr": "Katıldın",
+    "ru": "Вы вошли",
+    "es": "Te uniste",
+    "fr": "Vous êtes arrivé"
+  },
+  "You left": {
+    "tr": "Ayrıldın",
+    "ru": "Вы вышли",
+    "es": "Saliste",
+    "fr": "Vous êtes parti"
+  },
+  "channel": {
+    "tr": "kanal",
+    "ru": "канал",
+    "es": "canal",
+    "fr": "salon"
+  },
+  "faking deafen": {
+    "tr": "sahte sağırlaştırma kullanıyor",
+    "ru": "изображает отключённый звук",
+    "es": "fingiendo estar ensordecido",
+    "fr": "simule la sourdine"
+  },
+  "faking mute": {
+    "tr": "sahte susturma kullanıyor",
+    "ru": "изображает выключенный микрофон",
+    "es": "fingiendo estar silenciado",
+    "fr": "simule le micro coupé"
+  },
+  "faking mute & deafen": {
+    "tr": "sahte susturma ve sağırlaştırma kullanıyor",
+    "ru": "изображает выключенные микрофон и звук",
+    "es": "fingiendo estar silenciado y ensordecido",
+    "fr": "simule le micro coupé et la sourdine"
+  },
+  "general": {
+    "tr": "genel",
+    "ru": "общий",
+    "es": "general",
+    "fr": "général"
+  },
+  "{action}: {count} users in {channel}?": {
+    "tr": "{action}: {channel} kanalındaki {count} kullanıcı?",
+    "ru": "{action}: пользователей в {channel} — {count}?",
+    "es": "{action}: ¿{count} usuarios en {channel}?",
+    "fr": "{action} : {count} utilisateurs dans {channel} ?"
+  },
+  "{failed} of {count} users could not be updated": {
+    "tr": "{count} kullanıcıdan {failed} tanesi güncellenemedi",
+    "ru": "Не удалось обновить {failed} из {count}",
+    "es": "No se pudo actualizar a {failed} de {count} usuarios",
+    "fr": "{failed} utilisateurs sur {count} n'ont pas pu être modifiés"
+  },
+  "{user} is {state} but still talking.": {
+    "tr": "{user} {state} ama hâlâ konuşuyor.",
+    "ru": "{user} {state}, но всё ещё говорит.",
+    "es": "{user} está {state}, pero sigue hablando.",
+    "fr": "{user} {state}, mais parle encore."
+  },
+  "{user} joined": {
+    "tr": "{user} katıldı",
+    "ru": "{user} зашёл",
+    "es": "{user} se unió",
+    "fr": "{user} est arrivé"
+  },
+  "{user} left": {
+    "tr": "{user} ayrıldı",
+    "ru": "{user} вышел",
+    "es": "{user} salió",
+    "fr": "{user} est parti"
+  },
+  "{user} moved in from {channel}": {
+    "tr": "{user} {channel} kanalından geldi",
+    "ru": "{user} перешёл из {channel}",
+    "es": "{user} llegó desde {channel}",
+    "fr": "{user} est arrivé depuis {channel}"
+  },
+  "{user} moved to {channel}": {
+    "tr": "{user} {channel} kanalına geçti",
+    "ru": "{user} перешёл в {channel}",
+    "es": "{user} se movió a {channel}",
+    "fr": "{user} est passé dans {channel}"
+  },
+  "{user} started screensharing": {
+    "tr": "{user} ekran paylaşımını başlattı",
+    "ru": "{user} начал демонстрацию экрана",
+    "es": "{user} empezó a compartir pantalla",
+    "fr": "{user} a commencé un partage d'écran"
+  },
+  "{user} stopped screensharing": {
+    "tr": "{user} ekran paylaşımını durdurdu",
+    "ru": "{user} закончил демонстрацию экрана",
+    "es": "{user} dejó de compartir pantalla",
+    "fr": "{user} a arrêté le partage d'écran"
+  },
+  "{user} turned their camera off": {
+    "tr": "{user} kamerasını kapattı",
+    "ru": "{user} выключил камеру",
+    "es": "{user} apagó su cámara",
+    "fr": "{user} a coupé sa caméra"
+  },
+  "{user} turned their camera on": {
+    "tr": "{user} kamerasını açtı",
+    "ru": "{user} включил камеру",
+    "es": "{user} encendió su cámara",
+    "fr": "{user} a activé sa caméra"
+  },
+  "{user} was server deafened": {
+    "tr": "{user} sunucuda sağırlaştırıldı",
+    "ru": "{user}: звук отключён сервером",
+    "es": "{user} fue ensordecido en el servidor",
+    "fr": "{user} a été mis en sourdine par le serveur"
+  },
+  "{user} was server muted": {
+    "tr": "{user} sunucuda susturuldu",
+    "ru": "{user}: микрофон отключён сервером",
+    "es": "{user} fue silenciado en el servidor",
+    "fr": "{user} a été rendu muet par le serveur"
+  },
+  "{user} was server undeafened": {
+    "tr": "{user} için sunucu sağırlaştırması kaldırıldı",
+    "ru": "{user}: звук включён сервером",
+    "es": "A {user} le quitaron el ensordecimiento del servidor",
+    "fr": "{user} n'est plus en sourdine serveur"
+  },
+  "{user} was server unmuted": {
+    "tr": "{user} için sunucu susturması kaldırıldı",
+    "ru": "{user}: микрофон включён сервером",
+    "es": "A {user} le quitaron el silencio del servidor",
+    "fr": "{user} n'est plus muet par le serveur"
+  },
+  "{{USER}} deafened": {
+    "tr": "{{USER}} sesi kapattı",
+    "ru": "{{USER}} отключил звук",
+    "es": "{{USER}} se ensordeció",
+    "fr": "{{USER}} s'est mis en sourdine"
+  },
+  "{{USER}} joined": {
+    "tr": "{{USER}} katıldı",
+    "ru": "{{USER}} зашёл",
+    "es": "{{USER}} se unió",
+    "fr": "{{USER}} est arrivé"
+  },
+  "{{USER}} left": {
+    "tr": "{{USER}} ayrıldı",
+    "ru": "{{USER}} вышел",
+    "es": "{{USER}} salió",
+    "fr": "{{USER}} est parti"
+  },
+  "{{USER}} moved to {{CHANNEL}}": {
+    "tr": "{{USER}} {{CHANNEL}} kanalına geçti",
+    "ru": "{{USER}} перешёл в {{CHANNEL}}",
+    "es": "{{USER}} se movió a {{CHANNEL}}",
+    "fr": "{{USER}} est passé dans {{CHANNEL}}"
+  },
+  "{{USER}} muted": {
+    "tr": "{{USER}} mikrofonu kapattı",
+    "ru": "{{USER}} выключил микрофон",
+    "es": "{{USER}} se silenció",
+    "fr": "{{USER}} a coupé son micro"
+  },
+  "{{USER}} undeafened": {
+    "tr": "{{USER}} sesi açtı",
+    "ru": "{{USER}} включил звук",
+    "es": "{{USER}} quitó el ensordecimiento",
+    "fr": "{{USER}} a retiré la sourdine"
+  },
+  "{{USER}} unmuted": {
+    "tr": "{{USER}} mikrofonu açtı",
+    "ru": "{{USER}} включил микрофон",
+    "es": "{{USER}} quitó el silencio",
+    "fr": "{{USER}} a réactivé son micro"
+  },
+  "{{USER}}, {{DISPLAY_NAME}}, {{NICKNAME}} and {{CHANNEL}} are replaced with the user's name (nothing if it's yourself), display name, server nickname and the channel's name. Leave empty to say nothing": {
+    "tr": "{{USER}}, {{DISPLAY_NAME}}, {{NICKNAME}} ve {{CHANNEL}} sırasıyla kullanıcının adı (kendinsen boş), görünen adı, sunucu takma adı ve kanalın adıyla değiştirilir. Hiçbir şey söylenmemesi için boş bırak",
+    "ru": "{{USER}}, {{DISPLAY_NAME}}, {{NICKNAME}} и {{CHANNEL}} заменяются на имя пользователя (пусто, если это вы), отображаемое имя, ник на сервере и название канала. Оставьте пустым, чтобы ничего не говорить",
+    "es": "{{USER}}, {{DISPLAY_NAME}}, {{NICKNAME}} y {{CHANNEL}} se sustituyen por el nombre del usuario (nada si eres tú), su nombre visible, su apodo en el servidor y el nombre del canal. Déjalo vacío para no decir nada",
+    "fr": "{{USER}}, {{DISPLAY_NAME}}, {{NICKNAME}} et {{CHANNEL}} sont remplacés par le nom de l'utilisateur (rien si c'est vous), son nom d'affichage, son pseudo sur le serveur et le nom du salon. Laissez vide pour ne rien dire"
+  }
+}

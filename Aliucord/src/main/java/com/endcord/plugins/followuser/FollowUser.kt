@@ -28,7 +28,7 @@ internal class FollowUser : EndcordPlugin(
 
     override val settingsSchema = listOf(
         PluginSetting.Switch("executeOnFollow", "Make sure to be in the same VC when following a user", default = true),
-        PluginSetting.Switch("onlyManualTrigger", "Only trigger on indicator click", "Only join when you tap \"Join followed user\" below"),
+        PluginSetting.Switch("onlyManualTrigger", "Only trigger manually", "Only join when you tap \"Join followed user\" below"),
         PluginSetting.Switch("followLeave", "Also leave when the followed user leaves"),
         PluginSetting.Switch("autoMoveBack", "Automatically move back to the VC of the followed user when you got moved"),
         PluginSetting.Switch("channelFull", "Attempt to move you to the channel when is not full anymore", default = true),
