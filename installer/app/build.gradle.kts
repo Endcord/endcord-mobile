@@ -148,6 +148,8 @@ android {
 
     androidResources {
         generateLocaleConfig = true
+        // Endcord's five languages; libraries ship many more that the app itself isn't translated to
+        localeFilters += listOf("en", "tr", "ru", "es", "fr")
     }
 
     lint {
