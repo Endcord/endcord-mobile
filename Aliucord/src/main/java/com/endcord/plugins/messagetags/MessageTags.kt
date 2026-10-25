@@ -67,8 +67,8 @@ internal class MessageTags : EndcordPlugin(
             }
         }
 
-        commands.registerCommand("tagged", "Open your tagged messages") { ctx ->
-            Common.ui { open(ctx.context) }
+        commands.registerCommand("tagged", "Open your tagged messages") { _ ->
+            Common.ui { open(Utils.appActivity) } // the command context may not be an activity
             CommandResult(null, null, false)
         }
     }

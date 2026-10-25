@@ -72,8 +72,8 @@ internal class Bookmarks : EndcordPlugin(
             store.removeIf { it.messageId == id }
         }
 
-        commands.registerCommand("bookmarks", "Open your bookmarks") { ctx ->
-            Common.ui { open(ctx.context) }
+        commands.registerCommand("bookmarks", "Open your bookmarks") { _ ->
+            Common.ui { open(Utils.appActivity) } // the command context may not be an activity
             CommandResult(null, null, false)
         }
     }

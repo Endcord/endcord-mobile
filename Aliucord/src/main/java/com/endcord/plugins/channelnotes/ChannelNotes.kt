@@ -68,8 +68,8 @@ internal class ChannelNotes : EndcordPlugin(
             edit(ctx.sheet.parentFragmentManager, ctx.channel.id)
         }
 
-        commands.registerCommand("notes", "Open your channel notes") { ctx ->
-            Common.ui { open(ctx.context) }
+        commands.registerCommand("notes", "Open your channel notes") { _ ->
+            Common.ui { open(Utils.appActivity) } // the command context may not be an activity
             CommandResult(null, null, false)
         }
 

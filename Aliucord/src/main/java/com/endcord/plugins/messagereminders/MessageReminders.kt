@@ -58,8 +58,8 @@ internal class MessageReminders : EndcordPlugin(
             }
         }
 
-        commands.registerCommand("reminders", "Open your message reminders") { ctx ->
-            Common.ui { open(ctx.context) }
+        commands.registerCommand("reminders", "Open your message reminders") { _ ->
+            Common.ui { open(Utils.appActivity) } // the command context may not be an activity
             CommandResult(null, null, false)
         }
     }
