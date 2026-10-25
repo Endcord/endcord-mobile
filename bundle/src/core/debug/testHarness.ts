@@ -11,6 +11,7 @@ import { startEndcordPlugin, stopEndcordPlugin } from "@plugins/api";
 import { findByFilePath, findByName, findByProps, findByStoreName } from "@metro";
 import { NativeClientInfoModule as ClientInfoManager } from "@lib/api/native/modules";
 import { version } from "bunny-build-info";
+import { getLanguage, LANGUAGES, t } from "@core/i18n";
 
 function report(kind: string, data: unknown) {
     try {
@@ -54,6 +55,16 @@ const PATHS: string[] = [
     "modules/media_viewer/native/components/openMediaModal.tsx",
     "modules/toast/native/ToastActionCreators.tsx",
     "lib/MessageQueue.tsx",
+    "modules/gateway/GatewaySocket.tsx",
+    "modules/gateway/GatewaySocketSingleton.tsx",
+    "modules/gateway/LocalVoiceStateManager.tsx",
+    "modules/emojis/EmojiConstants.tsx",
+    "modules/emoji_picker/native/components/EmojiPickerList.tsx",
+    "modules/stickers/native/StickerPickerListRow.tsx",
+    "modules/premium/ProductCatalog.tsx",
+    "modules/user_profile/native/UserProfileBanner.tsx",
+    "modules/profile_customization/native/HeaderAvatar.tsx",
+    "modules/guild/native/GuildIcon.tsx",
 ];
 
 const STORES = [
@@ -71,15 +82,29 @@ const PROPS: string[][] = [
     ["openLazy", "hideActionSheet"],
     ["showUserProfile"],
     ["getSocket"],
+    ["canUserUse"],
+    ["countEmoji"],
+    ["openMediaModal"],
+    ["removeRelationship"],
+    ["leaveGuild"],
+    ["closePrivateChannel"],
 ];
 
-const NAMES = ["RowManager", "UserProfileHeader", "UserProfile", "ChatInput"];
+const NAMES = ["RowManager", "ProfileBanner", "HeaderAvatar", "GuildIcon", "UserProfileHeader", "ChatInput"];
 
 async function run() {
     report("env", {
         bundle: version,
         build: ClientInfoManager.getConstants().Build,
         version: ClientInfoManager.getConstants().Version,
+    });
+
+    const locale = findByStoreName("LocaleStore");
+    report("i18n", {
+        language: getLanguage(),
+        locale: locale?.locale,
+        plugins: t("Plugins"),
+        tables: LANGUAGES.map(l => l.code),
     });
 
     for (const path of PATHS) {
@@ -135,6 +160,9 @@ async function run() {
         }
         report("plugin", result);
     }
+
+    const { TextInput } = require("react-native");
+    report("textinput", { type: typeof TextInput, render: typeof TextInput?.render, keys: Object.keys(TextInput ?? {}).slice(0, 20) });
 
     report("done", {});
 }

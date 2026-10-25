@@ -9,7 +9,6 @@ import app.revenge.manager.domain.manager.PreferenceManager
 import app.revenge.manager.installer.step.Step
 import app.revenge.manager.installer.step.StepGroup
 import app.revenge.manager.installer.step.StepRunner
-import app.revenge.manager.installer.step.download.DownloadBaseStep
 import app.revenge.manager.installer.utils.ArscUtil
 import app.revenge.manager.installer.utils.ArscUtil.addColorResource
 import app.revenge.manager.installer.utils.ArscUtil.getMainArscChunk
@@ -35,7 +34,7 @@ class ReplaceIconStep : Step() {
     override val nameRes = R.string.step_change_icon
 
     override suspend fun run(runner: StepRunner) {
-        val baseApk = runner.getCompletedStep<DownloadBaseStep>().workingCopy
+        val baseApk = runner.baseApk()
 
         runner.logger.i("Reading resources.arsc")
         val arsc = ArscUtil.readArsc(baseApk)

@@ -1,7 +1,10 @@
-import { startPlugin } from "@lib/addons/plugins";
+import { Strings, t } from "@core/i18n";
+import { isCorePlugin, refreshPlugin, registeredPlugins, uninstallPlugin } from "@lib/addons/plugins";
 import { findAssetId } from "@lib/api/assets";
 import { hideSheet } from "@lib/ui/sheets";
-import { ActionSheet, Card, ContextMenu, IconButton, Text } from "@metro/common/components";
+import { showToast } from "@lib/ui/toasts";
+import { clipboard } from "@metro/common";
+import { ActionSheet, Card, IconButton, Text } from "@metro/common/components";
 import { ComponentProps } from "react";
 import { ScrollView, View } from "react-native";
 
@@ -21,86 +24,64 @@ function PluginInfoIconButton(props: ComponentProps<typeof IconButton>) {
 export default function PluginInfoActionSheet({ plugin, navigation }: PluginInfoActionSheetProps) {
     plugin.usePluginState();
 
+    const manifest: any = registeredPlugins.get(plugin.id);
+    // Plugins installed from a repository can be updated and removed; built-in ones can't
+    const external = !isCorePlugin(plugin.id) && manifest?.parentRepository;
+    const SettingsComponent = plugin.getPluginSettingsComponent();
+
     return <ActionSheet>
         <ScrollView contentContainerStyle={{ gap: 12, marginBottom: 12 }}>
-            <View style={{ flexDirection: "row", alignItems: "center", gap: 8, paddingVertical: 24, justifyContent: "space-between", width: "100%" }}>
+            <View style={{ paddingVertical: 24 }}>
                 <TitleComponent plugin={plugin} />
-                <ContextMenu
-                    items={[
-                        {
-                            label: "Details",
-                            iconSource: findAssetId("CircleInformationIcon-primary"),
-                            action: () => {
-                            }
-                        },
-                        // {
-                        //     label: true ? "Disable Updates" : "Enable Updates",
-                        //     iconSource: true ? findAssetId("ClockXIcon") : findAssetId("ClockIcon"),
-                        //     action: () => {
-
-                        //     }
-                        // },
-                        {
-                            label: "Clear Data",
-                            iconSource: findAssetId("FileIcon"),
-                            variant: "destructive",
-                            action: () => {
-                            }
-                        },
-                        {
-                            label: "Uninstall",
-                            iconSource: findAssetId("TrashIcon"),
-                            variant: "destructive",
-                            action: () => {
-                            }
-                        }
-                    ]}
-                >
-                    {props => <IconButton
-                        {...props}
-                        icon={findAssetId("MoreHorizontalIcon")}
-                        variant="secondary"
-                        size="sm"
-                    />}
-                </ContextMenu>
             </View>
             <View style={{ flexDirection: "row", justifyContent: "space-around", alignContent: "center" }}>
                 <PluginInfoIconButton
-                    label="Configure"
+                    label={t("Settings")}
                     variant="secondary"
-                    disabled={!plugin.getPluginSettingsComponent()}
+                    disabled={!SettingsComponent}
                     icon={findAssetId("WrenchIcon")}
-                    onPress={() => {
-                        navigation.push("BUNNY_CUSTOM_PAGE", {
-                            title: plugin.name,
-                            render: plugin.getPluginSettingsComponent(),
-                        });
-                    }}
+                    onPress={() => navigation.push("BUNNY_CUSTOM_PAGE", {
+                        title: plugin.name,
+                        render: SettingsComponent,
+                    })}
                 />
-                <PluginInfoIconButton
-                    label="Refetch"
+                {external && <PluginInfoIconButton
+                    label={Strings.REFETCH}
                     variant="secondary"
                     icon={findAssetId("RetryIcon")}
                     onPress={() => {
-                        startPlugin(plugin.id);
+                        refreshPlugin(plugin.id)
+                            .then(() => showToast(Strings.PLUGIN_REFETCH_SUCCESSFUL, findAssetId("toast_image_saved")))
+                            .catch(() => showToast(Strings.PLUGIN_REFETCH_FAILED, findAssetId("Small")));
                     }}
-                />
-                <PluginInfoIconButton
-                    label="Copy URL"
+                />}
+                {external && <PluginInfoIconButton
+                    label={Strings.COPY_URL}
                     variant="secondary"
                     icon={findAssetId("LinkIcon")}
                     onPress={() => {
+                        clipboard.setString(manifest.parentRepository);
+                        showToast.showCopyToClipboard();
                     }}
-                />
+                />}
+                {external && <PluginInfoIconButton
+                    label={Strings.UNINSTALL}
+                    variant="destructive"
+                    icon={findAssetId("TrashIcon")}
+                    onPress={() => {
+                        uninstallPlugin(plugin.id)
+                            .catch(e => showToast(String(e), findAssetId("CircleXIcon-primary")));
+                    }}
+                />}
             </View>
-            <Card>
+            {!!plugin.description && <Card>
                 <Text variant="text-md/semibold" color="text-strong" style={{ marginBottom: 4 }}>
-                    Description
+                    {t("Description")}
                 </Text>
                 <Text variant="text-md/medium">
                     {plugin.description}
                 </Text>
-            </Card>
+            </Card>}
         </ScrollView>
     </ActionSheet>;
 }

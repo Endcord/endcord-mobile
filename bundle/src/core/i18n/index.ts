@@ -1,6 +1,6 @@
 import { settings } from "@lib/api/settings";
-import { FluxDispatcher } from "@metro/common";
-import { findByNameLazy } from "@metro/wrappers";
+import { findByNameLazy, findByStoreName } from "@metro/wrappers";
+import { NativeModules } from "react-native";
 import { PrimitiveType } from "intl-messageformat";
 
 import langDefault from "./default.json";
@@ -27,7 +27,26 @@ const tables: Record<Exclude<EndcordLanguage, "en">, Record<string, string>> = {
 
 type I18nKey = keyof typeof langDefault;
 
-let discordLanguage: EndcordLanguage = "en";
+let localeStore: any = null;
+let lastLookup = 0;
+
+/** Discord's language, which follows the phone's unless the user picked another in Discord's settings */
+function discordLocale(): string | undefined {
+    // Looked up again now and then until Discord has created the store, without searching on every call
+    if (!localeStore && Date.now() - lastLookup > 5000) {
+        lastLookup = Date.now();
+        try {
+            localeStore = findByStoreName("LocaleStore") ?? null;
+        } catch {
+            localeStore = null;
+        }
+    }
+    try {
+        const locale = localeStore?.locale ?? localeStore?.getLocale?.();
+        if (typeof locale === "string" && locale) return locale;
+    } catch { }
+    return NativeModules.I18nManager?.localeIdentifier;
+}
 
 export function normalizeLanguage(locale?: string | null): EndcordLanguage {
     const code = locale?.toLowerCase().trim() ?? "";
@@ -40,7 +59,7 @@ export function normalizeLanguage(locale?: string | null): EndcordLanguage {
 /** The language Endcord is shown in: the one picked in Endcord's settings, or Discord's own */
 export function getLanguage(): EndcordLanguage {
     const picked = settings.language;
-    return picked && picked !== "auto" ? picked : discordLanguage;
+    return picked && picked !== "auto" ? picked : normalizeLanguage(discordLocale());
 }
 
 /**
@@ -71,11 +90,5 @@ export function formatString<T = void>(key: I18nKey, val: Record<string, T>): Fo
 
 /** @internal */
 export function initFetchI18nStrings() {
-    // Discord loads its language before its first screen, and again when the user changes it
-    const cb = ({ locale }: { locale: string; }) => {
-        discordLanguage = normalizeLanguage(locale);
-    };
-
-    FluxDispatcher.subscribe("I18N_LOAD_SUCCESS", cb);
-    return () => FluxDispatcher.unsubscribe("I18N_LOAD_SUCCESS", cb);
+    // Translations ship in the bundle and the language is read when needed, so there is nothing to load
 }

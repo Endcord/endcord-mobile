@@ -64,6 +64,21 @@ export function definePlugin<S extends SettingsSchema>(def: EndcordPluginDefinit
     return Object.assign(def, { store });
 }
 
+/** Calls back with the setting's key whenever one of the store's settings changes, wherever it is changed from */
+export function onSettingChange(store: object, cb: (key: string) => void) {
+    const emitter = (store as any)[Symbol.for("vendetta.storage.emitter")];
+    if (!emitter) return () => { };
+    const listener = (_event: string, data: { path: string[]; }) => {
+        try {
+            cb(data.path[0]);
+        } catch (e) {
+            console.error("[Endcord] setting listener failed", e);
+        }
+    };
+    emitter.on("SET", listener);
+    return () => emitter.off("SET", listener);
+}
+
 const running = new Map<string, Array<() => unknown>>();
 
 /** Fills in settings added after the plugin's storage was first created */

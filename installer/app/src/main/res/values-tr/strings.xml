@@ -175,4 +175,10 @@
     <string name="install_method">Kurulum yöntemi</string>
     <string name="default_installer">PackageManager (önerilen)</string>
     <string name="shizuku_installer">Shizuku</string>
+    <string name="step_copy_installed">Yüklü Discord kopyalanıyor</string>
+    <string name="version_on_phone">Bu telefonda: %1$s</string>
+    <string name="source_installed">Bu telefondaki Discord\'u kullan</string>
+    <string name="source_installed_desc">Discord %1$s, zaten yüklü olan sürüm. Olduğu gibi yüklü kalır.</string>
+    <string name="source_download">Discord\'u indir</string>
+    <string name="source_download_desc">Discord %1$s, en yeni sürüm</string>
 </resources>

@@ -1,1 +1,1472 @@
-{}
+{
+    "A button beside the message box to switch silent typing on and off": {
+        "tr": "Sessiz yazmayı açıp kapatmak için mesaj kutusunun yanında bir düğme",
+        "ru": "Кнопка рядом с полем сообщения для включения и выключения тихого набора",
+        "es": "Un botón junto al cuadro de mensaje para activar y desactivar la escritura silenciosa",
+        "fr": "Un bouton à côté de la zone de message pour activer et désactiver la saisie silencieuse"
+    },
+    "A friend request from {user} has been removed.": {
+        "tr": "{user} kullanıcısından gelen arkadaşlık isteği kaldırıldı.",
+        "ru": "Запрос в друзья от {user} был отменён.",
+        "es": "Se ha retirado la solicitud de amistad de {user}.",
+        "fr": "La demande d'ami de {user} a été retirée."
+    },
+    "A little cat that runs to wherever you touch the screen.": {
+        "tr": "Ekrana nereye dokunursanız oraya koşan küçük bir kedi.",
+        "ru": "Маленький кот, который бежит туда, где вы касаетесь экрана.",
+        "es": "Un gatito que corre hacia donde toques la pantalla.",
+        "fr": "Un petit chat qui court là où vous touchez l'écran."
+    },
+    "A reload is required to see the changes. Do you want to reload now?": {
+        "tr": "Değişiklikleri görmek için yeniden yükleme gerekiyor. Şimdi yeniden yüklensin mi?",
+        "ru": "Чтобы увидеть изменения, нужна перезагрузка. Перезагрузить сейчас?",
+        "es": "Hace falta recargar para ver los cambios. ¿Quieres recargar ahora?",
+        "fr": "Un rechargement est nécessaire pour voir les changements. Recharger maintenant ?"
+    },
+    "About": {
+        "tr": "Hakkında",
+        "ru": "О программе",
+        "es": "Acerca de",
+        "fr": "À propos"
+    },
+    "About me": {
+        "tr": "Hakkımda",
+        "ru": "Обо мне",
+        "es": "Sobre mí",
+        "fr": "À propos de moi"
+    },
+    "Activate Discord Experiments": {
+        "tr": "Discord deneylerini etkinleştir",
+        "ru": "Включить эксперименты Discord",
+        "es": "Activar los experimentos de Discord",
+        "fr": "Activer les expériences de Discord"
+    },
+    "All add-ons will be turned off until you leave safe mode.": {
+        "tr": "Güvenli moddan çıkana kadar tüm eklentiler kapalı olacak.",
+        "ru": "Все дополнения будут отключены, пока вы не выйдете из безопасного режима.",
+        "es": "Todos los complementos estarán desactivados hasta que salgas del modo seguro.",
+        "fr": "Tous les modules seront désactivés jusqu'à ce que vous quittiez le mode sans échec."
+    },
+    "All add-ons will load normally.": {
+        "tr": "Tüm eklentiler normal şekilde yüklenecek.",
+        "ru": "Все дополнения загрузятся как обычно.",
+        "es": "Todos los complementos se cargarán con normalidad.",
+        "fr": "Tous les modules se chargeront normalement."
+    },
+    "Animated images always open as GIF": {
+        "tr": "Hareketli görseller her zaman GIF olarak açılır",
+        "ru": "Анимированные изображения всегда открываются как GIF",
+        "es": "Las imágenes animadas siempre se abren como GIF",
+        "fr": "Les images animées s'ouvrent toujours en GIF"
+    },
+    "Animated stickers made by Discord can't be sent as a link.": {
+        "tr": "Discord'un hareketli çıkartmaları bağlantı olarak gönderilemez.",
+        "ru": "Анимированные стикеры Discord нельзя отправить ссылкой.",
+        "es": "Los stickers animados de Discord no se pueden enviar como enlace.",
+        "fr": "Les autocollants animés de Discord ne peuvent pas être envoyés sous forme de lien."
+    },
+    "Appear deafened while you can still hear": {
+        "tr": "Hâlâ duyarken sağırlaştırılmış görün",
+        "ru": "Выглядеть заглушённым, продолжая слышать",
+        "es": "Aparecer ensordecido mientras sigues oyendo",
+        "fr": "Paraître en sourdine tout en entendant toujours"
+    },
+    "Appear muted or deafened to others in voice channels while your microphone and sound keep working.": {
+        "tr": "Mikrofonunuz ve sesiniz çalışmaya devam ederken ses kanallarında başkalarına susturulmuş veya sağırlaştırılmış görünün.",
+        "ru": "Выглядите в голосовых каналах без микрофона или без звука, хотя микрофон и звук продолжают работать.",
+        "es": "Aparece silenciado o ensordecido para los demás en los canales de voz mientras tu micrófono y el sonido siguen funcionando.",
+        "fr": "Paraissez muet ou en sourdine pour les autres dans les salons vocaux, alors que votre micro et le son fonctionnent toujours."
+    },
+    "Appear muted while your microphone keeps working": {
+        "tr": "Mikrofonunuz çalışmaya devam ederken susturulmuş görünün",
+        "ru": "Выглядеть без микрофона, пока он продолжает работать",
+        "es": "Aparecer silenciado mientras tu micrófono sigue funcionando",
+        "fr": "Paraître muet alors que votre micro fonctionne toujours"
+    },
+    "Applied": {
+        "tr": "Uygulandı",
+        "ru": "Применено",
+        "es": "Aplicado",
+        "fr": "Appliqué"
+    },
+    "Are you sure you wish to clear the data of {name}?": {
+        "tr": "{name} verilerini silmek istediğinize emin misiniz?",
+        "ru": "Вы уверены, что хотите удалить данные {name}?",
+        "es": "¿Seguro que quieres borrar los datos de {name}?",
+        "fr": "Voulez-vous vraiment effacer les données de {name} ?"
+    },
+    "Are you sure you wish to delete {name}?": {
+        "tr": "{name} silinsin mi?",
+        "ru": "Удалить {name}?",
+        "es": "¿Seguro que quieres eliminar {name}?",
+        "fr": "Voulez-vous vraiment supprimer {name} ?"
+    },
+    "Are you sure you wish to delete {name}? This will clear all of the plugin's data.": {
+        "tr": "{name} silinsin mi? Bu, eklentinin tüm verilerini de siler.",
+        "ru": "Удалить {name}? Все данные плагина также будут удалены.",
+        "es": "¿Seguro que quieres eliminar {name}? Se borrarán todos los datos del plugin.",
+        "fr": "Voulez-vous vraiment supprimer {name} ? Toutes les données du plugin seront effacées."
+    },
+    "Ask before sending without embed permission": {
+        "tr": "Bağlantı yerleştirme izni yoksa göndermeden önce sor",
+        "ru": "Спрашивать перед отправкой без права встраивать ссылки",
+        "es": "Preguntar antes de enviar sin permiso para insertar enlaces",
+        "fr": "Demander avant d'envoyer sans la permission d'intégrer des liens"
+    },
+    "Asset Browser": {
+        "tr": "Varlık Tarayıcısı",
+        "ru": "Обзор ресурсов",
+        "es": "Explorador de recursos",
+        "fr": "Explorateur de ressources"
+    },
+    "Auto-connect to DevTools": {
+        "tr": "DevTools'a otomatik bağlan",
+        "ru": "Автоподключение к DevTools",
+        "es": "Conectar automáticamente a DevTools",
+        "fr": "Connexion automatique à DevTools"
+    },
+    "Automatically connect to the DevTools during startup": {
+        "tr": "Açılışta DevTools'a otomatik olarak bağlan",
+        "ru": "Автоматически подключаться к DevTools при запуске",
+        "es": "Conectar automáticamente a DevTools al iniciar",
+        "fr": "Se connecter automatiquement à DevTools au démarrage"
+    },
+    "Avatar image link": {
+        "tr": "Avatar görseli bağlantısı",
+        "ru": "Ссылка на изображение аватара",
+        "es": "Enlace de la imagen del avatar",
+        "fr": "Lien de l'image d'avatar"
+    },
+    "Banner image link": {
+        "tr": "Afiş görseli bağlantısı",
+        "ru": "Ссылка на изображение баннера",
+        "es": "Enlace de la imagen del banner",
+        "fr": "Lien de l'image de bannière"
+    },
+    "Blurple": {
+        "tr": "Discord moru",
+        "ru": "Фирменный синий",
+        "es": "Blurple",
+        "fr": "Blurple"
+    },
+    "Brand": {
+        "tr": "Marka",
+        "ru": "Бренд",
+        "es": "Marca",
+        "fr": "Marque"
+    },
+    "Browse and install themes for Discord on your phone without leaving the app.": {
+        "tr": "Uygulamadan çıkmadan telefonunuzdaki Discord için temalara göz atın ve yükleyin.",
+        "ru": "Просматривайте и устанавливайте темы для Discord на телефоне, не выходя из приложения.",
+        "es": "Explora e instala temas para Discord en tu teléfono sin salir de la aplicación.",
+        "fr": "Parcourez et installez des thèmes pour Discord sur votre téléphone sans quitter l'application."
+    },
+    "Browse plugins": {
+        "tr": "Eklentilere göz at",
+        "ru": "Обзор плагинов",
+        "es": "Explorar plugins",
+        "fr": "Parcourir les plugins"
+    },
+    "Buttons beside the message box to switch fake mute and fake deafen": {
+        "tr": "Sahte susturmayı ve sahte sağırlaştırmayı açıp kapatmak için mesaj kutusunun yanında düğmeler",
+        "ru": "Кнопки рядом с полем сообщения для ложного отключения микрофона и звука",
+        "es": "Botones junto al cuadro de mensaje para activar el falso silencio y el falso ensordecimiento",
+        "fr": "Des boutons à côté de la zone de message pour le faux muet et la fausse sourdine"
+    },
+    "Bytecode": {
+        "tr": "Bayt kodu",
+        "ru": "Байт-код",
+        "es": "Bytecode",
+        "fr": "Bytecode"
+    },
+    "Can't send this sticker": {
+        "tr": "Bu çıkartma gönderilemiyor",
+        "ru": "Не удалось отправить этот стикер",
+        "es": "No se puede enviar este sticker",
+        "fr": "Impossible d'envoyer cet autocollant"
+    },
+    "Cat size": {
+        "tr": "Kedi boyutu",
+        "ru": "Размер кота",
+        "es": "Tamaño del gato",
+        "fr": "Taille du chat"
+    },
+    "Channel or server IDs where nothing is logged, separated by commas": {
+        "tr": "Hiçbir şeyin kaydedilmeyeceği kanal veya sunucu kimlikleri, virgülle ayrılmış",
+        "ru": "ID каналов или серверов, где ничего не записывается, через запятую",
+        "es": "ID de canales o servidores donde no se registra nada, separados por comas",
+        "fr": "ID de salons ou de serveurs où rien n'est enregistré, séparés par des virgules"
+    },
+    "Chat bar button": {
+        "tr": "Sohbet çubuğu düğmesi",
+        "ru": "Кнопка в панели чата",
+        "es": "Botón de la barra de chat",
+        "fr": "Bouton de la barre de discussion"
+    },
+    "Chat bar buttons": {
+        "tr": "Sohbet çubuğu düğmeleri",
+        "ru": "Кнопки в панели чата",
+        "es": "Botones de la barra de chat",
+        "fr": "Boutons de la barre de discussion"
+    },
+    "Clear Data": {
+        "tr": "Verileri Temizle",
+        "ru": "Очистить данные",
+        "es": "Borrar datos",
+        "fr": "Effacer les données"
+    },
+    "Clear JS Bundle": {
+        "tr": "İndirilen Endcord'u Temizle",
+        "ru": "Очистить загруженный Endcord",
+        "es": "Borrar el Endcord descargado",
+        "fr": "Effacer l'Endcord téléchargé"
+    },
+    "Clear logged messages": {
+        "tr": "Kaydedilen mesajları temizle",
+        "ru": "Очистить записанные сообщения",
+        "es": "Borrar los mensajes registrados",
+        "fr": "Effacer les messages enregistrés"
+    },
+    "Cleared data for {name}": {
+        "tr": "{name} verileri temizlendi",
+        "ru": "Данные {name} очищены",
+        "es": "Se borraron los datos de {name}",
+        "fr": "Données de {name} effacées"
+    },
+    "Codename": {
+        "tr": "Kod adı",
+        "ru": "Кодовое имя",
+        "es": "Nombre en clave",
+        "fr": "Nom de code"
+    },
+    "Component": {
+        "tr": "Bileşen",
+        "ru": "Компонент",
+        "es": "Componente",
+        "fr": "Composant"
+    },
+    "Connect to DevTools": {
+        "tr": "DevTools'a bağlan",
+        "ru": "Подключиться к DevTools",
+        "es": "Conectar a DevTools",
+        "fr": "Se connecter à DevTools"
+    },
+    "Connect to React DevTools": {
+        "tr": "React DevTools'a bağlan",
+        "ru": "Подключиться к React DevTools",
+        "es": "Conectar a React DevTools",
+        "fr": "Se connecter à React DevTools"
+    },
+    "Connected to DevTools": {
+        "tr": "DevTools'a bağlanıldı",
+        "ru": "Подключено к DevTools",
+        "es": "Conectado a DevTools",
+        "fr": "Connecté à DevTools"
+    },
+    "Connected to React DevTools": {
+        "tr": "React DevTools'a bağlanıldı",
+        "ru": "Подключено к React DevTools",
+        "es": "Conectado a React DevTools",
+        "fr": "Connecté à React DevTools"
+    },
+    "Copied to clipboard": {
+        "tr": "Panoya kopyalandı",
+        "ru": "Скопировано в буфер обмена",
+        "es": "Copiado al portapapeles",
+        "fr": "Copié dans le presse-papiers"
+    },
+    "Couldn't install the plugin from {url}:": {
+        "tr": "Eklenti {url} adresinden yüklenemedi:",
+        "ru": "Не удалось установить плагин из {url}:",
+        "es": "No se pudo instalar el plugin desde {url}:",
+        "fr": "Impossible d'installer le plugin depuis {url} :"
+    },
+    "Couldn't install the theme: {error}": {
+        "tr": "Tema yüklenemedi: {error}",
+        "ru": "Не удалось установить тему: {error}",
+        "es": "No se pudo instalar el tema: {error}",
+        "fr": "Impossible d'installer le thème : {error}"
+    },
+    "Couldn't load the theme list. Check your connection and try again.": {
+        "tr": "Tema listesi yüklenemedi. Bağlantınızı kontrol edip tekrar deneyin.",
+        "ru": "Не удалось загрузить список тем. Проверьте подключение и попробуйте снова.",
+        "es": "No se pudo cargar la lista de temas. Comprueba tu conexión e inténtalo de nuevo.",
+        "fr": "Impossible de charger la liste des thèmes. Vérifiez votre connexion et réessayez."
+    },
+    "Couldn't open the image; its link was copied": {
+        "tr": "Görsel açılamadı; bağlantısı kopyalandı",
+        "ru": "Не удалось открыть изображение; ссылка скопирована",
+        "es": "No se pudo abrir la imagen; se copió su enlace",
+        "fr": "Impossible d'ouvrir l'image ; son lien a été copié"
+    },
+    "Customize the text cursor and the selection color in text boxes.": {
+        "tr": "Metin kutularındaki imleci ve seçim rengini özelleştirin.",
+        "ru": "Настройте текстовый курсор и цвет выделения в полях ввода.",
+        "es": "Personaliza el cursor de texto y el color de selección en los cuadros de texto.",
+        "fr": "Personnalisez le curseur de texte et la couleur de sélection dans les zones de texte."
+    },
+    "Deletes the downloaded Endcord, so the latest one is downloaded the next time the app starts.": {
+        "tr": "İndirilen Endcord'u siler; uygulama bir sonraki açılışta en yeni sürümü indirir.",
+        "ru": "Удаляет загруженный Endcord, чтобы при следующем запуске загрузилась последняя версия.",
+        "es": "Elimina el Endcord descargado para que la próxima vez que se abra la app se descargue el más reciente.",
+        "fr": "Supprime l'Endcord téléchargé : la dernière version sera téléchargée au prochain démarrage."
+    },
+    "Description": {
+        "tr": "Açıklama",
+        "ru": "Описание",
+        "es": "Descripción",
+        "fr": "Description"
+    },
+    "DevTools URL": {
+        "tr": "DevTools adresi",
+        "ru": "Адрес DevTools",
+        "es": "URL de DevTools",
+        "fr": "URL de DevTools"
+    },
+    "Developer": {
+        "tr": "Geliştirici",
+        "ru": "Разработчик",
+        "es": "Desarrollador",
+        "fr": "Développeur"
+    },
+    "Developer Settings": {
+        "tr": "Geliştirici Ayarları",
+        "ru": "Настройки разработчика",
+        "es": "Ajustes de desarrollador",
+        "fr": "Paramètres développeur"
+    },
+    "Disable Theme": {
+        "tr": "Temayı Kapat",
+        "ru": "Отключить тему",
+        "es": "Desactivar tema",
+        "fr": "Désactiver le thème"
+    },
+    "Disable Updates": {
+        "tr": "Güncellemeleri Kapat",
+        "ru": "Отключить обновления",
+        "es": "Desactivar actualizaciones",
+        "fr": "Désactiver les mises à jour"
+    },
+    "Disabled first": {
+        "tr": "Önce kapalı olanlar",
+        "ru": "Сначала выключенные",
+        "es": "Desactivados primero",
+        "fr": "Désactivés d'abord"
+    },
+    "Disconnect from DevTools": {
+        "tr": "DevTools bağlantısını kes",
+        "ru": "Отключиться от DevTools",
+        "es": "Desconectar de DevTools",
+        "fr": "Se déconnecter de DevTools"
+    },
+    "Disconnect from React DevTools": {
+        "tr": "React DevTools bağlantısını kes",
+        "ru": "Отключиться от React DevTools",
+        "es": "Desconectar de React DevTools",
+        "fr": "Se déconnecter de React DevTools"
+    },
+    "Discord's default": {
+        "tr": "Discord varsayılanı",
+        "ru": "Как в Discord",
+        "es": "Predeterminado de Discord",
+        "fr": "Par défaut de Discord"
+    },
+    "Don't log messages from bots": {
+        "tr": "Botların mesajlarını kaydetme",
+        "ru": "Не записывать сообщения ботов",
+        "es": "No registrar mensajes de bots",
+        "fr": "Ne pas enregistrer les messages des bots"
+    },
+    "Don't log your own messages": {
+        "tr": "Kendi mesajlarınızı kaydetme",
+        "ru": "Не записывать свои сообщения",
+        "es": "No registrar tus propios mensajes",
+        "fr": "Ne pas enregistrer vos propres messages"
+    },
+    "Emoji size": {
+        "tr": "Emoji boyutu",
+        "ru": "Размер эмодзи",
+        "es": "Tamaño de los emojis",
+        "fr": "Taille des emojis"
+    },
+    "Emojis": {
+        "tr": "Emojiler",
+        "ru": "Эмодзи",
+        "es": "Emojis",
+        "fr": "Emojis"
+    },
+    "Enable /eval command": {
+        "tr": "/eval komutunu etkinleştir",
+        "ru": "Включить команду /eval",
+        "es": "Activar el comando /eval",
+        "fr": "Activer la commande /eval"
+    },
+    "Enable Updates": {
+        "tr": "Güncellemeleri Aç",
+        "ru": "Включить обновления",
+        "es": "Activar actualizaciones",
+        "fr": "Activer les mises à jour"
+    },
+    "Enabled first": {
+        "tr": "Önce açık olanlar",
+        "ru": "Сначала включённые",
+        "es": "Activados primero",
+        "fr": "Activés d'abord"
+    },
+    "Endcord URL": {
+        "tr": "Endcord adresi",
+        "ru": "Адрес Endcord",
+        "es": "URL de Endcord",
+        "fr": "URL d'Endcord"
+    },
+    "Endcord is hidden from settings": {
+        "tr": "Endcord ayarlardan gizlendi",
+        "ru": "Endcord скрыт из настроек",
+        "es": "Endcord se ha ocultado de los ajustes",
+        "fr": "Endcord est masqué des paramètres"
+    },
+    "Endcord is shown in settings again": {
+        "tr": "Endcord ayarlarda yeniden gösteriliyor",
+        "ru": "Endcord снова показан в настройках",
+        "es": "Endcord vuelve a mostrarse en los ajustes",
+        "fr": "Endcord s'affiche à nouveau dans les paramètres"
+    },
+    "Enter a number from {min} to {max}": {
+        "tr": "{min} ile {max} arasında bir sayı girin",
+        "ru": "Введите число от {min} до {max}",
+        "es": "Introduce un número entre {min} y {max}",
+        "fr": "Saisissez un nombre entre {min} et {max}"
+    },
+    "Enter the link to install from:": {
+        "tr": "Yüklenecek bağlantıyı girin:",
+        "ru": "Введите ссылку для установки:",
+        "es": "Introduce el enlace desde el que instalar:",
+        "fr": "Saisissez le lien à partir duquel installer :"
+    },
+    "ErrorBoundary Tools": {
+        "tr": "Hata ekranı araçları",
+        "ru": "Инструменты экрана ошибок",
+        "es": "Herramientas de la pantalla de error",
+        "fr": "Outils de l'écran d'erreur"
+    },
+    "Evaluate JavaScript code": {
+        "tr": "JavaScript kodu çalıştır",
+        "ru": "Выполнить код JavaScript",
+        "es": "Ejecutar código JavaScript",
+        "fr": "Exécuter du code JavaScript"
+    },
+    "Extract": {
+        "tr": "Çıkar",
+        "ru": "Извлечь",
+        "es": "Extraer",
+        "fr": "Extraire"
+    },
+    "Extract font from theme": {
+        "tr": "Temadan yazı tipini çıkar",
+        "ru": "Извлечь шрифт из темы",
+        "es": "Extraer la fuente del tema",
+        "fr": "Extraire la police du thème"
+    },
+    "Failed to clear data for {name}": {
+        "tr": "{name} verileri temizlenemedi",
+        "ru": "Не удалось очистить данные {name}",
+        "es": "No se pudieron borrar los datos de {name}",
+        "fr": "Impossible d'effacer les données de {name}"
+    },
+    "Failed to refetch plugin": {
+        "tr": "Eklenti yeniden indirilemedi",
+        "ru": "Не удалось обновить плагин",
+        "es": "No se pudo volver a descargar el plugin",
+        "fr": "Impossible de retélécharger le plugin"
+    },
+    "Failed to refetch theme": {
+        "tr": "Tema yeniden indirilemedi",
+        "ru": "Не удалось обновить тему",
+        "es": "No se pudo volver a descargar el tema",
+        "fr": "Impossible de retélécharger le thème"
+    },
+    "Fake deafen": {
+        "tr": "Sahte sağırlaştırma",
+        "ru": "Ложное отключение звука",
+        "es": "Falso ensordecimiento",
+        "fr": "Fausse sourdine"
+    },
+    "Fake deafen is off": {
+        "tr": "Sahte sağırlaştırma kapalı",
+        "ru": "Ложное отключение звука выключено",
+        "es": "El falso ensordecimiento está desactivado",
+        "fr": "La fausse sourdine est désactivée"
+    },
+    "Fake deafen is on": {
+        "tr": "Sahte sağırlaştırma açık",
+        "ru": "Ложное отключение звука включено",
+        "es": "El falso ensordecimiento está activado",
+        "fr": "La fausse sourdine est activée"
+    },
+    "Fake mute": {
+        "tr": "Sahte susturma",
+        "ru": "Ложное отключение микрофона",
+        "es": "Falso silencio",
+        "fr": "Faux muet"
+    },
+    "Fake mute is off": {
+        "tr": "Sahte susturma kapalı",
+        "ru": "Ложное отключение микрофона выключено",
+        "es": "El falso silencio está desactivado",
+        "fr": "Le faux muet est désactivé"
+    },
+    "Fake mute is on": {
+        "tr": "Sahte susturma açık",
+        "ru": "Ложное отключение микрофона включено",
+        "es": "El falso silencio está activado",
+        "fr": "Le faux muet est activé"
+    },
+    "Fast": {
+        "tr": "Hızlı",
+        "ru": "Быстро",
+        "es": "Rápido",
+        "fr": "Rapide"
+    },
+    "Font Name": {
+        "tr": "Yazı Tipi Adı",
+        "ru": "Название шрифта",
+        "es": "Nombre de la fuente",
+        "fr": "Nom de la police"
+    },
+    "Fonts": {
+        "tr": "Yazı Tipleri",
+        "ru": "Шрифты",
+        "es": "Fuentes",
+        "fr": "Polices"
+    },
+    "Friend request from {user} has been revoked.": {
+        "tr": "{user} kullanıcısının arkadaşlık isteği geri çekildi.",
+        "ru": "{user} отозвал(а) запрос в друзья.",
+        "es": "{user} ha retirado su solicitud de amistad.",
+        "fr": "{user} a retiré sa demande d'ami."
+    },
+    "Friend requests": {
+        "tr": "Arkadaşlık istekleri",
+        "ru": "Запросы в друзья",
+        "es": "Solicitudes de amistad",
+        "fr": "Demandes d'ami"
+    },
+    "Ghost ping alerts": {
+        "tr": "Hayalet etiket uyarıları",
+        "ru": "Оповещения о «призрачных» упоминаниях",
+        "es": "Avisos de menciones fantasma",
+        "fr": "Alertes de mentions fantômes"
+    },
+    "GitHub": {
+        "tr": "GitHub",
+        "ru": "GitHub",
+        "es": "GitHub",
+        "fr": "GitHub"
+    },
+    "Green": {
+        "tr": "Yeşil",
+        "ru": "Зелёный",
+        "es": "Verde",
+        "fr": "Vert"
+    },
+    "Group chats": {
+        "tr": "Grup sohbetleri",
+        "ru": "Групповые чаты",
+        "es": "Chats de grupo",
+        "fr": "Discussions de groupe"
+    },
+    "Hidden behind an invisible character": {
+        "tr": "Görünmez bir karakterin arkasına gizli",
+        "ru": "Скрыта за невидимым символом",
+        "es": "Oculto tras un carácter invisible",
+        "fr": "Masqué derrière un caractère invisible"
+    },
+    "Hidden behind the emoji's name": {
+        "tr": "Emojinin adının arkasına gizli",
+        "ru": "Скрыта за названием эмодзи",
+        "es": "Oculto tras el nombre del emoji",
+        "fr": "Masqué derrière le nom de l'emoji"
+    },
+    "Hide Endcord now": {
+        "tr": "Endcord'u şimdi gizle",
+        "ru": "Скрыть Endcord сейчас",
+        "es": "Ocultar Endcord ahora",
+        "fr": "Masquer Endcord maintenant"
+    },
+    "Hide typing": {
+        "tr": "Yazdığını gizle",
+        "ru": "Скрывать набор текста",
+        "es": "Ocultar que escribes",
+        "fr": "Masquer la saisie"
+    },
+    "Hide when offline": {
+        "tr": "Çevrimdışıyken gizle",
+        "ru": "Скрывать, когда не в сети",
+        "es": "Ocultar si está desconectado",
+        "fr": "Masquer si hors ligne"
+    },
+    "Hides Endcord's entries in Discord's settings, for screenshots and screen sharing. Plugins keep working.": {
+        "tr": "Ekran görüntüleri ve ekran paylaşımı için Endcord'un Discord ayarlarındaki bölümlerini gizler. Eklentiler çalışmaya devam eder.",
+        "ru": "Скрывает разделы Endcord в настройках Discord для скриншотов и демонстрации экрана. Плагины продолжают работать.",
+        "es": "Oculta las entradas de Endcord en los ajustes de Discord, para capturas y pantalla compartida. Los plugins siguen funcionando.",
+        "fr": "Masque les entrées d'Endcord dans les paramètres de Discord, pour les captures et le partage d'écran. Les plugins continuent de fonctionner."
+    },
+    "How the link looks in the message you send": {
+        "tr": "Gönderdiğiniz mesajda bağlantının nasıl görüneceği",
+        "ru": "Как ссылка выглядит в отправленном сообщении",
+        "es": "Cómo se ve el enlace en el mensaje que envías",
+        "fr": "L'apparence du lien dans le message envoyé"
+    },
+    "Ignore yourself": {
+        "tr": "Kendini yok say",
+        "ru": "Игнорировать себя",
+        "es": "Ignorarte a ti mismo",
+        "fr": "Vous ignorer"
+    },
+    "Ignored channels and servers": {
+        "tr": "Yok sayılan kanallar ve sunucular",
+        "ru": "Игнорируемые каналы и серверы",
+        "es": "Canales y servidores ignorados",
+        "fr": "Salons et serveurs ignorés"
+    },
+    "Ignored users": {
+        "tr": "Yok sayılan kullanıcılar",
+        "ru": "Игнорируемые пользователи",
+        "es": "Usuarios ignorados",
+        "fr": "Utilisateurs ignorés"
+    },
+    "Image format": {
+        "tr": "Görsel biçimi",
+        "ru": "Формат изображения",
+        "es": "Formato de imagen",
+        "fr": "Format de l'image"
+    },
+    "Image link copied": {
+        "tr": "Görsel bağlantısı kopyalandı",
+        "ru": "Ссылка на изображение скопирована",
+        "es": "Enlace de la imagen copiado",
+        "fr": "Lien de l'image copié"
+    },
+    "Image size": {
+        "tr": "Görsel boyutu",
+        "ru": "Размер изображения",
+        "es": "Tamaño de imagen",
+        "fr": "Taille de l'image"
+    },
+    "Info": {
+        "tr": "Bilgi",
+        "ru": "Информация",
+        "es": "Información",
+        "fr": "Infos"
+    },
+    "Install React DevTools": {
+        "tr": "React DevTools'u yükle",
+        "ru": "Установить React DevTools",
+        "es": "Instalar React DevTools",
+        "fr": "Installer React DevTools"
+    },
+    "Install a font": {
+        "tr": "Yazı tipi yükle",
+        "ru": "Установить шрифт",
+        "es": "Instalar una fuente",
+        "fr": "Installer une police"
+    },
+    "Install a plugin": {
+        "tr": "Eklenti yükle",
+        "ru": "Установить плагин",
+        "es": "Instalar un plugin",
+        "fr": "Installer un plugin"
+    },
+    "Install a theme": {
+        "tr": "Tema yükle",
+        "ru": "Установить тему",
+        "es": "Instalar un tema",
+        "fr": "Installer un thème"
+    },
+    "Install an add-on": {
+        "tr": "Eklenti veya tema yükle",
+        "ru": "Установить дополнение",
+        "es": "Instalar un complemento",
+        "fr": "Installer un module"
+    },
+    "Install failed": {
+        "tr": "Yükleme başarısız",
+        "ru": "Не удалось установить",
+        "es": "Error al instalar",
+        "fr": "Échec de l'installation"
+    },
+    "Installed plugin": {
+        "tr": "Eklenti yüklendi",
+        "ru": "Плагин установлен",
+        "es": "Plugin instalado",
+        "fr": "Plugin installé"
+    },
+    "Installs the fonts that your current theme uses.": {
+        "tr": "Geçerli temanızın kullandığı yazı tiplerini yükler.",
+        "ru": "Устанавливает шрифты, которые использует текущая тема.",
+        "es": "Instala las fuentes que usa tu tema actual.",
+        "fr": "Installe les polices utilisées par votre thème actuel."
+    },
+    "Keeps deleted messages in the chat and shows earlier versions of edited ones.": {
+        "tr": "Silinen mesajları sohbette tutar ve düzenlenen mesajların önceki hâllerini gösterir.",
+        "ru": "Оставляет удалённые сообщения в чате и показывает прежние версии отредактированных.",
+        "es": "Mantiene los mensajes eliminados en el chat y muestra las versiones anteriores de los editados.",
+        "fr": "Garde les messages supprimés dans la discussion et affiche les versions précédentes des messages modifiés."
+    },
+    "Large": {
+        "tr": "Büyük",
+        "ru": "Большой",
+        "es": "Grande",
+        "fr": "Grand"
+    },
+    "Leave empty to keep your own": {
+        "tr": "Kendinizinkini korumak için boş bırakın",
+        "ru": "Оставьте пустым, чтобы сохранить своё",
+        "es": "Déjalo vacío para mantener el tuyo",
+        "fr": "Laissez vide pour garder le vôtre"
+    },
+    "Left of the message box": {
+        "tr": "Mesaj kutusunun solunda",
+        "ru": "Слева от поля сообщения",
+        "es": "A la izquierda del cuadro de mensaje",
+        "fr": "À gauche de la zone de message"
+    },
+    "Link style": {
+        "tr": "Bağlantı biçimi",
+        "ru": "Вид ссылки",
+        "es": "Estilo del enlace",
+        "fr": "Style du lien"
+    },
+    "Links don't show as images in channels where you can't embed links": {
+        "tr": "Bağlantı yerleştiremediğiniz kanallarda bağlantılar görsel olarak görünmez",
+        "ru": "В каналах, где нельзя встраивать ссылки, ссылки не отображаются как изображения",
+        "es": "Los enlaces no se muestran como imágenes en los canales donde no puedes insertar enlaces",
+        "fr": "Les liens ne s'affichent pas en images dans les salons où vous ne pouvez pas intégrer de liens"
+    },
+    "Links won't show as images here": {
+        "tr": "Bağlantılar burada görsel olarak görünmeyecek",
+        "ru": "Здесь ссылки не будут отображаться как изображения",
+        "es": "Aquí los enlaces no se mostrarán como imágenes",
+        "fr": "Les liens ne s'afficheront pas en images ici"
+    },
+    "Load Endcord from another address, for testing development builds": {
+        "tr": "Geliştirme sürümlerini denemek için Endcord'u başka bir adresten yükle",
+        "ru": "Загружать Endcord с другого адреса, для тестирования сборок",
+        "es": "Cargar Endcord desde otra dirección, para probar versiones de desarrollo",
+        "fr": "Charger Endcord depuis une autre adresse, pour tester des versions de développement"
+    },
+    "Load React DevTools": {
+        "tr": "React DevTools'u yükle",
+        "ru": "Загружать React DevTools",
+        "es": "Cargar React DevTools",
+        "fr": "Charger React DevTools"
+    },
+    "Load from custom URL": {
+        "tr": "Özel adresten yükle",
+        "ru": "Загружать с другого адреса",
+        "es": "Cargar desde una URL personalizada",
+        "fr": "Charger depuis une URL personnalisée"
+    },
+    "Loader": {
+        "tr": "Yükleyici",
+        "ru": "Загрузчик",
+        "es": "Cargador",
+        "fr": "Chargeur"
+    },
+    "Log deleted messages": {
+        "tr": "Silinen mesajları kaydet",
+        "ru": "Записывать удалённые сообщения",
+        "es": "Registrar los mensajes eliminados",
+        "fr": "Enregistrer les messages supprimés"
+    },
+    "Log edited messages": {
+        "tr": "Düzenlenen mesajları kaydet",
+        "ru": "Записывать отредактированные сообщения",
+        "es": "Registrar los mensajes editados",
+        "fr": "Enregistrer les messages modifiés"
+    },
+    "Logged messages cleared": {
+        "tr": "Kaydedilen mesajlar temizlendi",
+        "ru": "Записанные сообщения очищены",
+        "es": "Mensajes registrados borrados",
+        "fr": "Messages enregistrés effacés"
+    },
+    "Machine ID": {
+        "tr": "Cihaz kimliği",
+        "ru": "ID устройства",
+        "es": "ID del dispositivo",
+        "fr": "ID de l'appareil"
+    },
+    "Manufacturer": {
+        "tr": "Üretici",
+        "ru": "Производитель",
+        "es": "Fabricante",
+        "fr": "Fabricant"
+    },
+    "Miscellaneous": {
+        "tr": "Diğer",
+        "ru": "Прочее",
+        "es": "Otros",
+        "fr": "Divers"
+    },
+    "Name (A-Z)": {
+        "tr": "Ad (A-Z)",
+        "ru": "Название (А-Я)",
+        "es": "Nombre (A-Z)",
+        "fr": "Nom (A-Z)"
+    },
+    "Name (Z-A)": {
+        "tr": "Ad (Z-A)",
+        "ru": "Название (Я-А)",
+        "es": "Nombre (Z-A)",
+        "fr": "Nom (Z-A)"
+    },
+    "Next to the time of each message": {
+        "tr": "Her mesajın saatinin yanında",
+        "ru": "Рядом со временем каждого сообщения",
+        "es": "Junto a la hora de cada mensaje",
+        "fr": "À côté de l'heure de chaque message"
+    },
+    "Nothing here yet": {
+        "tr": "Henüz burada bir şey yok",
+        "ru": "Здесь пока ничего нет",
+        "es": "Aún no hay nada aquí",
+        "fr": "Rien ici pour l'instant"
+    },
+    "Notifies you when a friend, group chat, or server removes you.": {
+        "tr": "Bir arkadaşınız, grup sohbeti veya sunucu sizi çıkardığında bildirim gönderir.",
+        "ru": "Уведомляет, когда вас удаляют из друзей, группового чата или с сервера.",
+        "es": "Te avisa cuando un amigo, un chat de grupo o un servidor te elimina.",
+        "fr": "Vous avertit lorsqu'un ami, une discussion de groupe ou un serveur vous retire."
+    },
+    "Offline removals": {
+        "tr": "Çevrimdışıyken çıkarılmalar",
+        "ru": "Удаления, пока вы не в сети",
+        "es": "Eliminaciones sin conexión",
+        "fr": "Retraits hors ligne"
+    },
+    "On or off (default: switch)": {
+        "tr": "Açık veya kapalı (varsayılan: değiştir)",
+        "ru": "Вкл. или выкл. (по умолчанию: переключить)",
+        "es": "Activado o desactivado (por defecto: alternar)",
+        "fr": "Activé ou désactivé (par défaut : basculer)"
+    },
+    "Only you see these changes. Clear them before you edit your real profile, so they don't end up in it.": {
+        "tr": "Bu değişiklikleri yalnızca siz görürsünüz. Gerçek profilinizi düzenlemeden önce bunları temizleyin, yoksa profilinize geçebilirler.",
+        "ru": "Эти изменения видите только вы. Очистите их перед редактированием настоящего профиля, чтобы они туда не попали.",
+        "es": "Solo tú ves estos cambios. Bórralos antes de editar tu perfil real para que no terminen en él.",
+        "fr": "Vous seul voyez ces changements. Effacez-les avant de modifier votre vrai profil, pour qu'ils n'y finissent pas."
+    },
+    "Open in Browser": {
+        "tr": "Tarayıcıda aç",
+        "ru": "Открыть в браузере",
+        "es": "Abrir en el navegador",
+        "fr": "Ouvrir dans le navigateur"
+    },
+    "Operating System": {
+        "tr": "İşletim Sistemi",
+        "ru": "Операционная система",
+        "es": "Sistema operativo",
+        "fr": "Système d'exploitation"
+    },
+    "Others see you as deafened, but you still hear them": {
+        "tr": "Başkaları sizi sağırlaştırılmış görür, ama siz onları duymaya devam edersiniz",
+        "ru": "Другие видят, что у вас отключён звук, но вы их слышите",
+        "es": "Los demás te ven ensordecido, pero tú los sigues oyendo",
+        "fr": "Les autres vous voient en sourdine, mais vous les entendez toujours"
+    },
+    "Others see you as muted, but still hear you": {
+        "tr": "Başkaları sizi susturulmuş görür, ama sizi duymaya devam eder",
+        "ru": "Другие видят, что у вас выключен микрофон, но продолжают вас слышать",
+        "es": "Los demás te ven silenciado, pero te siguen oyendo",
+        "fr": "Les autres vous voient muet, mais vous entendent toujours"
+    },
+    "Paste from clipboard": {
+        "tr": "Panodan yapıştır",
+        "ru": "Вставить из буфера обмена",
+        "es": "Pegar del portapapeles",
+        "fr": "Coller depuis le presse-papiers"
+    },
+    "Pink": {
+        "tr": "Pembe",
+        "ru": "Розовый",
+        "es": "Rosa",
+        "fr": "Rose"
+    },
+    "Plain link": {
+        "tr": "Düz bağlantı",
+        "ru": "Обычная ссылка",
+        "es": "Enlace normal",
+        "fr": "Lien simple"
+    },
+    "Plugin browser": {
+        "tr": "Eklenti tarayıcısı",
+        "ru": "Обзор плагинов",
+        "es": "Explorador de plugins",
+        "fr": "Navigateur de plugins"
+    },
+    "Plugins installed from unproxied sources may run unverified code in this app without your awareness.": {
+        "tr": "Doğrulanmamış kaynaklardan yüklenen eklentiler bu uygulamada haberiniz olmadan denetlenmemiş kod çalıştırabilir.",
+        "ru": "Плагины из непроверенных источников могут незаметно выполнять в приложении непроверенный код.",
+        "es": "Los plugins de fuentes no verificadas pueden ejecutar código sin revisar en esta app sin que lo sepas.",
+        "fr": "Les plugins installés depuis des sources non vérifiées peuvent exécuter du code non contrôlé dans l'application à votre insu."
+    },
+    "Popular first": {
+        "tr": "Önce popüler olanlar",
+        "ru": "Сначала популярные",
+        "es": "Populares primero",
+        "fr": "Populaires d'abord"
+    },
+    "Recent notifications": {
+        "tr": "Son bildirimler",
+        "ru": "Недавние уведомления",
+        "es": "Notificaciones recientes",
+        "fr": "Notifications récentes"
+    },
+    "Red": {
+        "tr": "Kırmızı",
+        "ru": "Красный",
+        "es": "Rojo",
+        "fr": "Rouge"
+    },
+    "Refetch": {
+        "tr": "Yeniden indir",
+        "ru": "Обновить",
+        "es": "Volver a descargar",
+        "fr": "Retélécharger"
+    },
+    "Reload": {
+        "tr": "Yeniden yükle",
+        "ru": "Перезагрузить",
+        "es": "Recargar",
+        "fr": "Recharger"
+    },
+    "Reload Discord": {
+        "tr": "Discord'u yeniden yükle",
+        "ru": "Перезагрузить Discord",
+        "es": "Recargar Discord",
+        "fr": "Recharger Discord"
+    },
+    "Reload Discord without plugins, themes and fonts": {
+        "tr": "Discord'u eklentiler, temalar ve yazı tipleri olmadan yeniden yükle",
+        "ru": "Перезагрузить Discord без плагинов, тем и шрифтов",
+        "es": "Recargar Discord sin plugins, temas ni fuentes",
+        "fr": "Recharger Discord sans plugins, thèmes ni polices"
+    },
+    "Reload app?": {
+        "tr": "Uygulama yeniden yüklensin mi?",
+        "ru": "Перезагрузить приложение?",
+        "es": "¿Recargar la app?",
+        "fr": "Recharger l'application ?"
+    },
+    "Reload in Normal Mode": {
+        "tr": "Normal modda yeniden yükle",
+        "ru": "Перезагрузить в обычном режиме",
+        "es": "Recargar en modo normal",
+        "fr": "Recharger en mode normal"
+    },
+    "Reload in Safe Mode": {
+        "tr": "Güvenli modda yeniden yükle",
+        "ru": "Перезагрузить в безопасном режиме",
+        "es": "Recargar en modo seguro",
+        "fr": "Recharger en mode sans échec"
+    },
+    "Reload now": {
+        "tr": "Şimdi yeniden yükle",
+        "ru": "Перезагрузить сейчас",
+        "es": "Recargar ahora",
+        "fr": "Recharger maintenant"
+    },
+    "Reload the app to fully apply changes": {
+        "tr": "Değişikliklerin tamamen uygulanması için uygulamayı yeniden yükleyin",
+        "ru": "Перезагрузите приложение, чтобы полностью применить изменения",
+        "es": "Recarga la app para aplicar todos los cambios",
+        "fr": "Rechargez l'application pour appliquer entièrement les changements"
+    },
+    "Removals you make yourself are never reported.": {
+        "tr": "Kendi yaptığınız çıkarmalar asla bildirilmez.",
+        "ru": "О ваших собственных удалениях уведомлений не бывает.",
+        "es": "Nunca se avisa de las eliminaciones que haces tú.",
+        "fr": "Les retraits que vous faites vous-même ne sont jamais signalés."
+    },
+    "Reopen Discord's settings after switching for the change to show.": {
+        "tr": "Değişikliğin görünmesi için değiştirdikten sonra Discord ayarlarını yeniden açın.",
+        "ru": "После переключения откройте настройки Discord заново, чтобы увидеть изменение.",
+        "es": "Vuelve a abrir los ajustes de Discord después de cambiarlo para ver el cambio.",
+        "fr": "Rouvrez les paramètres de Discord après le changement pour le voir."
+    },
+    "Restart is required to take effect": {
+        "tr": "Etkili olması için yeniden başlatma gerekiyor",
+        "ru": "Для применения нужен перезапуск",
+        "es": "Hace falta reiniciar para que surta efecto",
+        "fr": "Un redémarrage est nécessaire pour appliquer"
+    },
+    "Right of the message box": {
+        "tr": "Mesaj kutusunun sağında",
+        "ru": "Справа от поля сообщения",
+        "es": "A la derecha del cuadro de mensaje",
+        "fr": "À droite de la zone de message"
+    },
+    "Runs JavaScript from a slash command. Only turn this on if you know exactly what the code does.": {
+        "tr": "Eğik çizgi komutuyla JavaScript çalıştırır. Yalnızca kodun ne yaptığını tam olarak biliyorsanız açın.",
+        "ru": "Выполняет JavaScript из слэш-команды. Включайте, только если точно знаете, что делает код.",
+        "es": "Ejecuta JavaScript desde un comando de barra. Actívalo solo si sabes exactamente lo que hace el código.",
+        "fr": "Exécute du JavaScript depuis une commande slash. N'activez ceci que si vous savez exactement ce que fait le code."
+    },
+    "Safe Mode": {
+        "tr": "Güvenli Mod",
+        "ru": "Безопасный режим",
+        "es": "Modo seguro",
+        "fr": "Mode sans échec"
+    },
+    "Safe mode is on. Turn it off to load your add-ons again": {
+        "tr": "Güvenli mod açık. Eklentilerinizi yeniden yüklemek için kapatın",
+        "ru": "Безопасный режим включён. Выключите его, чтобы снова загрузить дополнения",
+        "es": "El modo seguro está activado. Desactívalo para volver a cargar tus complementos",
+        "fr": "Le mode sans échec est activé. Désactivez-le pour recharger vos modules"
+    },
+    "Same as Discord": {
+        "tr": "Discord ile aynı",
+        "ru": "Как в Discord",
+        "es": "Igual que Discord",
+        "fr": "Comme Discord"
+    },
+    "Selection color": {
+        "tr": "Seçim rengi",
+        "ru": "Цвет выделения",
+        "es": "Color de selección",
+        "fr": "Couleur de sélection"
+    },
+    "Send anyway": {
+        "tr": "Yine de gönder",
+        "ru": "Всё равно отправить",
+        "es": "Enviar de todos modos",
+        "fr": "Envoyer quand même"
+    },
+    "Send debug information": {
+        "tr": "Hata ayıklama bilgilerini gönder",
+        "ru": "Отправить отладочную информацию",
+        "es": "Enviar información de depuración",
+        "fr": "Envoyer les informations de débogage"
+    },
+    "Send emojis you can't use as links": {
+        "tr": "Kullanamadığınız emojileri bağlantı olarak gönder",
+        "ru": "Отправлять недоступные эмодзи ссылками",
+        "es": "Enviar como enlace los emojis que no puedes usar",
+        "fr": "Envoyer en lien les emojis que vous ne pouvez pas utiliser"
+    },
+    "Send list of installed plugins": {
+        "tr": "Yüklü eklentilerin listesini gönder",
+        "ru": "Отправить список установленных плагинов",
+        "es": "Enviar la lista de plugins instalados",
+        "fr": "Envoyer la liste des plugins installés"
+    },
+    "Send stickers you can't use as links": {
+        "tr": "Kullanamadığınız çıkartmaları bağlantı olarak gönder",
+        "ru": "Отправлять недоступные стикеры ссылками",
+        "es": "Enviar como enlace los stickers que no puedes usar",
+        "fr": "Envoyer en lien les autocollants que vous ne pouvez pas utiliser"
+    },
+    "Send the message ephemerally": {
+        "tr": "Mesajı yalnızca size görünür gönder",
+        "ru": "Отправить сообщение, видимое только вам",
+        "es": "Enviar el mensaje solo visible para ti",
+        "fr": "Envoyer le message visible uniquement par vous"
+    },
+    "Show a notice when someone deletes a message that mentioned you": {
+        "tr": "Biri sizi etiketlediği bir mesajı sildiğinde bildirim göster",
+        "ru": "Показывать уведомление, когда кто-то удаляет сообщение с упоминанием вас",
+        "es": "Mostrar un aviso cuando alguien elimine un mensaje que te mencionaba",
+        "fr": "Afficher une alerte quand quelqu'un supprime un message qui vous mentionnait"
+    },
+    "Show nothing for people who are offline or invisible": {
+        "tr": "Çevrimdışı veya görünmez kişiler için hiçbir şey gösterme",
+        "ru": "Ничего не показывать для тех, кто не в сети или невидим",
+        "es": "No mostrar nada para las personas desconectadas o invisibles",
+        "fr": "Ne rien afficher pour les personnes hors ligne ou invisibles"
+    },
+    "Show or hide Endcord's entries in Discord's settings": {
+        "tr": "Endcord'un Discord ayarlarındaki bölümlerini göster veya gizle",
+        "ru": "Показать или скрыть разделы Endcord в настройках Discord",
+        "es": "Mostrar u ocultar las entradas de Endcord en los ajustes de Discord",
+        "fr": "Afficher ou masquer les entrées d'Endcord dans les paramètres de Discord"
+    },
+    "Show typing in DMs": {
+        "tr": "DM'lerde yazdığını göster",
+        "ru": "Показывать набор в личных сообщениях",
+        "es": "Mostrar que escribes en MD",
+        "fr": "Montrer la saisie en MP"
+    },
+    "Show your own devices too": {
+        "tr": "Kendi cihazlarınızı da göster",
+        "ru": "Показывать и ваши устройства",
+        "es": "Mostrar también tus dispositivos",
+        "fr": "Afficher aussi vos appareils"
+    },
+    "Shows which devices people are online on (desktop, web or mobile) next to their messages.": {
+        "tr": "Kişilerin hangi cihazlarda çevrimiçi olduğunu (masaüstü, web veya mobil) mesajlarının yanında gösterir.",
+        "ru": "Показывает рядом с сообщениями, с каких устройств человек в сети (компьютер, веб или телефон).",
+        "es": "Muestra junto a sus mensajes en qué dispositivos está conectada cada persona (escritorio, web o móvil).",
+        "fr": "Affiche à côté des messages les appareils sur lesquels chaque personne est en ligne (ordinateur, web ou mobile)."
+    },
+    "Silent typing disabled!": {
+        "tr": "Sessiz yazma kapatıldı!",
+        "ru": "Тихий набор выключен!",
+        "es": "¡Escritura silenciosa desactivada!",
+        "fr": "Saisie silencieuse désactivée !"
+    },
+    "Silent typing enabled!": {
+        "tr": "Sessiz yazma açıldı!",
+        "ru": "Тихий набор включён!",
+        "es": "¡Escritura silenciosa activada!",
+        "fr": "Saisie silencieuse activée !"
+    },
+    "Slow": {
+        "tr": "Yavaş",
+        "ru": "Медленно",
+        "es": "Lento",
+        "fr": "Lent"
+    },
+    "Something went wrong": {
+        "tr": "Bir şeyler ters gitti",
+        "ru": "Что-то пошло не так",
+        "es": "Algo salió mal",
+        "fr": "Un problème est survenu"
+    },
+    "Soothing pastel theme for the high-spirited!": {
+        "tr": "Neşeli ruhlar için yatıştırıcı pastel bir tema!",
+        "ru": "Успокаивающая пастельная тема для жизнерадостных!",
+        "es": "¡Un tema pastel relajante para los más animados!",
+        "fr": "Un thème pastel apaisant pour les esprits enjoués !"
+    },
+    "Sort by": {
+        "tr": "Sırala",
+        "ru": "Сортировка",
+        "es": "Ordenar por",
+        "fr": "Trier par"
+    },
+    "Stack Trace": {
+        "tr": "Yığın İzi",
+        "ru": "Трассировка стека",
+        "es": "Traza de la pila",
+        "fr": "Trace de la pile"
+    },
+    "Sticker size": {
+        "tr": "Çıkartma boyutu",
+        "ru": "Размер стикеров",
+        "es": "Tamaño de los stickers",
+        "fr": "Taille des autocollants"
+    },
+    "Stickers": {
+        "tr": "Çıkartmalar",
+        "ru": "Стикеры",
+        "es": "Stickers",
+        "fr": "Autocollants"
+    },
+    "Still show that you are typing in direct messages and group DMs": {
+        "tr": "Direkt mesajlarda ve grup sohbetlerinde yazdığınızı yine de göster",
+        "ru": "Всё равно показывать набор в личных сообщениях и группах",
+        "es": "Seguir mostrando que escribes en mensajes directos y grupos",
+        "fr": "Continuer à montrer votre saisie dans les messages privés et les groupes"
+    },
+    "Successfully installed": {
+        "tr": "Başarıyla yüklendi",
+        "ru": "Успешно установлено",
+        "es": "Instalado correctamente",
+        "fr": "Installé avec succès"
+    },
+    "Successfully refetched plugin": {
+        "tr": "Eklenti yeniden indirildi",
+        "ru": "Плагин обновлён",
+        "es": "Plugin descargado de nuevo",
+        "fr": "Plugin retéléchargé"
+    },
+    "Successfully refetched theme": {
+        "tr": "Tema yeniden indirildi",
+        "ru": "Тема обновлена",
+        "es": "Tema descargado de nuevo",
+        "fr": "Thème retéléchargé"
+    },
+    "Tap avatars, banners and server icons to see them full size.": {
+        "tr": "Avatarlara, afişlere ve sunucu simgelerine dokunarak tam boyutta görün.",
+        "ru": "Нажмите на аватар, баннер или значок сервера, чтобы открыть его в полном размере.",
+        "es": "Toca avatares, banners e iconos de servidor para verlos a tamaño completo.",
+        "fr": "Touchez les avatars, bannières et icônes de serveur pour les voir en taille réelle."
+    },
+    "The code to evaluate": {
+        "tr": "Çalıştırılacak kod",
+        "ru": "Код для выполнения",
+        "es": "El código que ejecutar",
+        "fr": "Le code à exécuter"
+    },
+    "Theme applied": {
+        "tr": "Tema uygulandı",
+        "ru": "Тема применена",
+        "es": "Tema aplicado",
+        "fr": "Thème appliqué"
+    },
+    "Theme refetched": {
+        "tr": "Tema yeniden indirildi",
+        "ru": "Тема обновлена",
+        "es": "Tema descargado de nuevo",
+        "fr": "Thème retéléchargé"
+    },
+    "Themes from the community's theme marketplace and Catppuccin. Installed themes also appear in Endcord's Themes page.": {
+        "tr": "Topluluğun tema pazarından ve Catppuccin'den temalar. Yüklenen temalar Endcord'un Temalar sayfasında da görünür.",
+        "ru": "Темы из магазина тем сообщества и Catppuccin. Установленные темы также появляются на странице «Темы» Endcord.",
+        "es": "Temas del mercado de temas de la comunidad y de Catppuccin. Los temas instalados también aparecen en la página Temas de Endcord.",
+        "fr": "Des thèmes du marché de thèmes de la communauté et de Catppuccin. Les thèmes installés apparaissent aussi dans la page Thèmes d'Endcord."
+    },
+    "This link is a **{urlType, select, plugin {Plugin} theme {Theme} other {Add-on}}**, would you like to install it?": {
+        "tr": "Bu bağlantı bir **{urlType, select, plugin {eklenti} theme {tema} other {eklenti}}**. Yüklemek ister misiniz?",
+        "ru": "Это ссылка на **{urlType, select, plugin {плагин} theme {тему} other {дополнение}}**. Установить?",
+        "es": "Este enlace es un **{urlType, select, plugin {plugin} theme {tema} other {complemento}}**. ¿Quieres instalarlo?",
+        "fr": "Ce lien est un **{urlType, select, plugin {plugin} theme {thème} other {module}}**. Voulez-vous l'installer ?"
+    },
+    "This pack overrides the following: {fonts}": {
+        "tr": "Bu paket şunları değiştirir: {fonts}",
+        "ru": "Этот набор заменяет: {fonts}",
+        "es": "Este paquete sustituye lo siguiente: {fonts}",
+        "fr": "Ce pack remplace les éléments suivants : {fonts}"
+    },
+    "This plugin hasn't been checked by the plugin repository's maintainers. Only install it if you trust its author.": {
+        "tr": "Bu eklenti, eklenti deposunun yöneticileri tarafından incelenmedi. Yalnızca yazarına güveniyorsanız yükleyin.",
+        "ru": "Этот плагин не проверен владельцами репозитория плагинов. Устанавливайте его, только если доверяете автору.",
+        "es": "Este plugin no lo han revisado los responsables del repositorio de plugins. Instálalo solo si confías en su autor.",
+        "fr": "Ce plugin n'a pas été vérifié par les responsables du dépôt de plugins. Ne l'installez que si vous faites confiance à son auteur."
+    },
+    "Toggle silent typing": {
+        "tr": "Sessiz yazmayı aç/kapat",
+        "ru": "Переключить тихий набор",
+        "es": "Activar o desactivar la escritura silenciosa",
+        "fr": "Activer ou désactiver la saisie silencieuse"
+    },
+    "Toggle whether you're hiding that you're typing or not.": {
+        "tr": "Yazdığınızı gizlemeyi açar veya kapatır.",
+        "ru": "Включает или выключает скрытие набора текста.",
+        "es": "Activa o desactiva ocultar que estás escribiendo.",
+        "fr": "Active ou désactive le masquage de votre saisie."
+    },
+    "Try again": {
+        "tr": "Tekrar dene",
+        "ru": "Повторить",
+        "es": "Reintentar",
+        "fr": "Réessayer"
+    },
+    "Turn this off to show your typing again without turning the plugin off": {
+        "tr": "Eklentiyi kapatmadan yazdığınızı yeniden göstermek için bunu kapatın",
+        "ru": "Выключите, чтобы снова показывать набор, не отключая плагин",
+        "es": "Desactívalo para volver a mostrar que escribes sin desactivar el plugin",
+        "fr": "Désactivez ceci pour montrer à nouveau votre saisie sans désactiver le plugin"
+    },
+    "Type /hideendcord in any chat to show Endcord's settings again": {
+        "tr": "Endcord ayarlarını yeniden göstermek için herhangi bir sohbette /hideendcord yazın",
+        "ru": "Введите /hideendcord в любом чате, чтобы снова показать настройки Endcord",
+        "es": "Escribe /hideendcord en cualquier chat para volver a mostrar los ajustes de Endcord",
+        "fr": "Tapez /hideendcord dans n'importe quelle discussion pour réafficher les paramètres d'Endcord"
+    },
+    "Uninstall": {
+        "tr": "Kaldır",
+        "ru": "Удалить",
+        "es": "Desinstalar",
+        "fr": "Désinstaller"
+    },
+    "Uninstall {title}": {
+        "tr": "{title} kaldır",
+        "ru": "Удалить {title}",
+        "es": "Desinstalar {title}",
+        "fr": "Désinstaller {title}"
+    },
+    "Unlocks Discord's internal experiments menu. Changing experiments can break the app; use it at your own risk.": {
+        "tr": "Discord'un dahili deneyler menüsünü açar. Deneyleri değiştirmek uygulamayı bozabilir; kullanım riski size aittir.",
+        "ru": "Открывает внутреннее меню экспериментов Discord. Изменение экспериментов может сломать приложение; используйте на свой риск.",
+        "es": "Desbloquea el menú interno de experimentos de Discord. Cambiar experimentos puede romper la app; úsalo bajo tu responsabilidad.",
+        "fr": "Débloque le menu interne des expériences de Discord. Modifier les expériences peut casser l'application ; à vos risques et périls."
+    },
+    "Unproxied plugins": {
+        "tr": "Doğrulanmamış eklentiler",
+        "ru": "Непроверенные плагины",
+        "es": "Plugins no verificados",
+        "fr": "Plugins non vérifiés"
+    },
+    "Unproxied plugins found": {
+        "tr": "Doğrulanmamış eklentiler bulundu",
+        "ru": "Найдены непроверенные плагины",
+        "es": "Se encontraron plugins no verificados",
+        "fr": "Plugins non vérifiés détectés"
+    },
+    "Unverified plugin": {
+        "tr": "Doğrulanmamış eklenti",
+        "ru": "Непроверенный плагин",
+        "es": "Plugin no verificado",
+        "fr": "Plugin non vérifié"
+    },
+    "Use any emoji and sticker without Nitro: the ones you can't use are sent as links.": {
+        "tr": "Nitro olmadan her emojiyi ve çıkartmayı kullanın: kullanamadıklarınız bağlantı olarak gönderilir.",
+        "ru": "Используйте любые эмодзи и стикеры без Nitro: недоступные отправляются ссылками.",
+        "es": "Usa cualquier emoji y sticker sin Nitro: los que no puedes usar se envían como enlaces.",
+        "fr": "Utilisez n'importe quel emoji ou autocollant sans Nitro : ceux que vous ne pouvez pas utiliser sont envoyés en lien."
+    },
+    "User IDs whose messages aren't logged, separated by commas": {
+        "tr": "Mesajları kaydedilmeyecek kullanıcı kimlikleri, virgülle ayrılmış",
+        "ru": "ID пользователей, чьи сообщения не записываются, через запятую",
+        "es": "ID de usuarios cuyos mensajes no se registran, separados por comas",
+        "fr": "ID des utilisateurs dont les messages ne sont pas enregistrés, séparés par des virgules"
+    },
+    "Versions": {
+        "tr": "Sürümler",
+        "ru": "Версии",
+        "es": "Versiones",
+        "fr": "Versions"
+    },
+    "View full size": {
+        "tr": "Tam boyutta görüntüle",
+        "ru": "Открыть в полном размере",
+        "es": "Ver a tamaño completo",
+        "fr": "Voir en taille réelle"
+    },
+    "Whether to hide or not that you're typing (default is toggle)": {
+        "tr": "Yazdığınızın gizlenip gizlenmeyeceği (varsayılan: değiştir)",
+        "ru": "Скрывать ли, что вы печатаете (по умолчанию: переключить)",
+        "es": "Si ocultar o no que estás escribiendo (por defecto: alternar)",
+        "fr": "Masquer ou non votre saisie (par défaut : basculer)"
+    },
+    "Whether to support 'await' in code, must explicitly return for result (default: false)": {
+        "tr": "Kodda 'await' desteklensin mi; sonuç için açıkça return gerekir (varsayılan: hayır)",
+        "ru": "Поддерживать ли 'await' в коде; для результата нужен явный return (по умолчанию: нет)",
+        "es": "Si admitir 'await' en el código; hay que usar return para obtener el resultado (por defecto: no)",
+        "fr": "Prendre en charge 'await' dans le code ; un return explicite est nécessaire pour le résultat (par défaut : non)"
+    },
+    "White": {
+        "tr": "Beyaz",
+        "ru": "Белый",
+        "es": "Blanco",
+        "fr": "Blanc"
+    },
+    "Yellow": {
+        "tr": "Sarı",
+        "ru": "Жёлтый",
+        "es": "Amarillo",
+        "fr": "Jaune"
+    },
+    "You are no longer friends with {user}.": {
+        "tr": "Artık {user} ile arkadaş değilsiniz.",
+        "ru": "Вы больше не друзья с {user}.",
+        "es": "Ya no eres amigo de {user}.",
+        "fr": "Vous n'êtes plus ami avec {user}."
+    },
+    "You are no longer in the group {group}.": {
+        "tr": "Artık {group} grubunda değilsiniz.",
+        "ru": "Вы больше не в группе {group}.",
+        "es": "Ya no estás en el grupo {group}.",
+        "fr": "Vous n'êtes plus dans le groupe {group}."
+    },
+    "You are no longer in the server {server}.": {
+        "tr": "Artık {server} sunucusunda değilsiniz.",
+        "ru": "Вы больше не на сервере {server}.",
+        "es": "Ya no estás en el servidor {server}.",
+        "fr": "Vous n'êtes plus sur le serveur {server}."
+    },
+    "You can't embed links in this channel, so the emoji or sticker will be sent as a plain link. Send it anyway?": {
+        "tr": "Bu kanalda bağlantı yerleştiremiyorsunuz, bu yüzden emoji veya çıkartma düz bağlantı olarak gönderilecek. Yine de gönderilsin mi?",
+        "ru": "В этом канале нельзя встраивать ссылки, поэтому эмодзи или стикер будет отправлен обычной ссылкой. Всё равно отправить?",
+        "es": "No puedes insertar enlaces en este canal, así que el emoji o sticker se enviará como enlace normal. ¿Enviarlo de todos modos?",
+        "fr": "Vous ne pouvez pas intégrer de liens dans ce salon : l'emoji ou l'autocollant sera envoyé sous forme de lien simple. L'envoyer quand même ?"
+    },
+    "You were removed from the group {group}.": {
+        "tr": "{group} grubundan çıkarıldınız.",
+        "ru": "Вас удалили из группы {group}.",
+        "es": "Te han eliminado del grupo {group}.",
+        "fr": "Vous avez été retiré du groupe {group}."
+    },
+    "You were removed from the server {server}.": {
+        "tr": "{server} sunucusundan çıkarıldınız.",
+        "ru": "Вас удалили с сервера {server}.",
+        "es": "Te han expulsado del servidor {server}.",
+        "fr": "Vous avez été retiré du serveur {server}."
+    },
+    "You're in safe mode, so fonts are turned off for now. {enabled, select, true {If a font causes the problem, you can turn it off below.} other {}}": {
+        "tr": "Güvenli moddasınız, bu yüzden yazı tipleri şimdilik kapalı. {enabled, select, true {Soruna bir yazı tipi neden oluyorsa aşağıdan kapatabilirsiniz.} other {}}",
+        "ru": "Вы в безопасном режиме, поэтому шрифты пока отключены. {enabled, select, true {Если проблему вызывает шрифт, его можно отключить ниже.} other {}}",
+        "es": "Estás en modo seguro, así que las fuentes están desactivadas por ahora. {enabled, select, true {Si una fuente causa el problema, puedes desactivarla abajo.} other {}}",
+        "fr": "Vous êtes en mode sans échec, les polices sont donc désactivées pour l'instant. {enabled, select, true {Si une police cause le problème, vous pouvez la désactiver ci-dessous.} other {}}"
+    },
+    "You're in safe mode, so plugins aren't loaded. Turn off any plugin that misbehaves, then leave safe mode from the General page.": {
+        "tr": "Güvenli moddasınız, bu yüzden eklentiler yüklenmedi. Sorun çıkaran eklentileri kapatın, ardından Genel sayfasından güvenli moddan çıkın.",
+        "ru": "Вы в безопасном режиме, поэтому плагины не загружены. Отключите плагин, вызывающий проблемы, затем выйдите из безопасного режима на странице «Общие».",
+        "es": "Estás en modo seguro, así que los plugins no se cargan. Desactiva el plugin que falle y luego sal del modo seguro desde la página General.",
+        "fr": "Vous êtes en mode sans échec, les plugins ne sont donc pas chargés. Désactivez le plugin qui pose problème, puis quittez le mode sans échec depuis la page Général."
+    },
+    "You're in safe mode, so themes are turned off for now. {enabled, select, true {If a theme causes the problem, you can turn it off below.} other {}}": {
+        "tr": "Güvenli moddasınız, bu yüzden temalar şimdilik kapalı. {enabled, select, true {Soruna bir tema neden oluyorsa aşağıdan kapatabilirsiniz.} other {}}",
+        "ru": "Вы в безопасном режиме, поэтому темы пока отключены. {enabled, select, true {Если проблему вызывает тема, её можно отключить ниже.} other {}}",
+        "es": "Estás en modo seguro, así que los temas están desactivados por ahora. {enabled, select, true {Si un tema causa el problema, puedes desactivarlo abajo.} other {}}",
+        "fr": "Vous êtes en mode sans échec, les thèmes sont donc désactivés pour l'instant. {enabled, select, true {Si un thème cause le problème, vous pouvez le désactiver ci-dessous.} other {}}"
+    },
+    "Your own messages": {
+        "tr": "Kendi mesajlarınız",
+        "ru": "Ваши сообщения",
+        "es": "Tus propios mensajes",
+        "fr": "Vos propres messages"
+    },
+    "by {authors}": {
+        "tr": "{authors} tarafından",
+        "ru": "автор: {authors}",
+        "es": "por {authors}",
+        "fr": "par {authors}"
+    },
+    "deleted": {
+        "tr": "silindi",
+        "ru": "удалено",
+        "es": "eliminado",
+        "fr": "supprimé"
+    },
+    "e.g. 123456789012345678": {
+        "tr": "ör. 123456789012345678",
+        "ru": "напр. 123456789012345678",
+        "es": "p. ej. 123456789012345678",
+        "fr": "ex. 123456789012345678"
+    },
+    "e.g. 123456789012345678, 234567890123456789": {
+        "tr": "ör. 123456789012345678, 234567890123456789",
+        "ru": "напр. 123456789012345678, 234567890123456789",
+        "es": "p. ej. 123456789012345678, 234567890123456789",
+        "fr": "ex. 123456789012345678, 234567890123456789"
+    },
+    "edited": {
+        "tr": "düzenlendi",
+        "ru": "изменено",
+        "es": "editado",
+        "fr": "modifié"
+    },
+    "https://": {
+        "tr": "https://",
+        "ru": "https://",
+        "es": "https://",
+        "fr": "https://"
+    },
+    "{name} couldn't start and was turned off": {
+        "tr": "{name} başlatılamadı ve kapatıldı",
+        "ru": "Не удалось запустить {name}, он отключён",
+        "es": "{name} no pudo iniciarse y se ha desactivado",
+        "fr": "{name} n'a pas pu démarrer et a été désactivé"
+    },
+    "{update, select, true {Enabled} other {Disabled}} updates for {name}": {
+        "tr": "{name} için güncellemeler {update, select, true {açıldı} other {kapatıldı}}",
+        "ru": "Обновления для {name} {update, select, true {включены} other {отключены}}",
+        "es": "Actualizaciones de {name} {update, select, true {activadas} other {desactivadas}}",
+        "fr": "Mises à jour de {name} {update, select, true {activées} other {désactivées}}"
+    },
+    "{user} mentioned you and deleted the message": {
+        "tr": "{user} sizi etiketleyip mesajı sildi",
+        "ru": "{user} упомянул(а) вас и удалил(а) сообщение",
+        "es": "{user} te mencionó y eliminó el mensaje",
+        "fr": "{user} vous a mentionné puis a supprimé le message"
+    },
+    "{user} removed you as a friend.": {
+        "tr": "{user} sizi arkadaşlıktan çıkardı.",
+        "ru": "{user} удалил(а) вас из друзей.",
+        "es": "{user} te eliminó de sus amigos.",
+        "fr": "{user} vous a retiré de ses amis."
+    }
+}

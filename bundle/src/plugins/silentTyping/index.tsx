@@ -27,7 +27,7 @@ const plugin = definePlugin({
     settings: {
         isEnabled: {
             type: "boolean",
-            label: tx("Hide that you are typing"),
+            label: tx("Hide typing"),
             description: tx("Turn this off to show your typing again without turning the plugin off"),
             default: true,
         },

@@ -7,11 +7,33 @@ import type { PluginInstanceInternal } from "@lib/addons/plugins/types";
 import { createElement } from "react";
 
 import { EndcordPlugin, startEndcordPlugin, stopEndcordPlugin } from "./api";
+import CustomProfile from "./customProfile";
+import FakeMute from "./fakeMute";
+import FakeNitro from "./fakeNitro";
+import HideEndcord from "./hideEndcord";
+import MessageLogger from "./messageLogger";
+import Oneko from "./oneko";
+import PlatformIndicators from "./platformIndicators";
+import RelationshipNotifier from "./relationshipNotifier";
 import SilentTyping from "./silentTyping";
+import SmoothType from "./smoothType";
+import ThemeLibrary from "./themeLibrary";
+import ViewIcons from "./viewIcons";
 
 /** Endcord's built-in plugins, in the order of Endcord PC's popular list, then by name */
 const plugins: EndcordPlugin<any>[] = [
+    CustomProfile,
+    MessageLogger,
+    HideEndcord,
+    FakeNitro,
+    SmoothType,
+    ViewIcons,
+    ThemeLibrary,
+    Oneko,
+    PlatformIndicators,
+    RelationshipNotifier,
     SilentTyping,
+    FakeMute,
 ];
 
 export function getEndcordPlugins(): EndcordPlugin<any>[] {

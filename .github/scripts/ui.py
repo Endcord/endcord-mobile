@@ -121,7 +121,7 @@ def install_flow(source):
     screenshot(f"installer-{source}-0-home")
     dismiss_dialogs()
     if source == "installed":
-        if not tap_text(r".*(already on this phone|installed Discord).*", 30):
+        if not tap_text(r"Use the Discord on this phone", 30):
             return False
     elif source == "download":
         tap_text(r".*Download Discord.*", 10)

@@ -3,7 +3,6 @@ package app.revenge.manager.installer.util
 import android.content.Context
 import com.android.apksig.ApkSigner
 import app.revenge.manager.BuildConfig
-import app.revenge.manager.utils.Constants
 import org.bouncycastle.asn1.x500.X500Name
 import org.bouncycastle.asn1.x509.SubjectPublicKeyInfo
 import org.bouncycastle.cert.X509v3CertificateBuilder
@@ -33,7 +32,6 @@ object Signer : KoinComponent {
     val keyStore: File by lazy {
         val ks = filesDir.resolve("ks.keystore")
         migrate(cacheDir, filesDir)
-        migrate(Constants.MOD_DIR, filesDir)
         ks.also {
             if (!it.exists()) {
                 it.createNewFile()

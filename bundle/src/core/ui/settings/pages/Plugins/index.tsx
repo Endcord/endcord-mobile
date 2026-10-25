@@ -1,4 +1,4 @@
-import { Strings } from "@core/i18n";
+import { Strings, t } from "@core/i18n";
 import AddonPage from "@core/ui/components/AddonPage";
 import PluginCard from "@core/ui/settings/pages/Plugins/components/PluginCard";
 import { VdPluginManager } from "@core/vendetta/plugins";
@@ -42,16 +42,22 @@ function PluginPage(props: PluginPageProps) {
             ).join() || ""
         ]}
         sortOptions={{
-            "Name (A-Z)": (a, b) => a.name.localeCompare(b.name),
-            "Name (Z-A)": (a, b) => b.name.localeCompare(a.name),
-            "Enabled": (a, b) => Number(b.isEnabled()) - Number(a.isEnabled()),
-            "Disabled": (a, b) => Number(a.isEnabled()) - Number(b.isEnabled())
-
+            [t("Popular first")]: byPopularity,
+            [t("Name (A-Z)")]: (a, b) => a.name.localeCompare(b.name),
+            [t("Name (Z-A)")]: (a, b) => b.name.localeCompare(a.name),
+            [t("Enabled first")]: (a, b) => Number(b.isEnabled()) - Number(a.isEnabled()) || byPopularity(a, b),
+            [t("Disabled first")]: (a, b) => Number(a.isEnabled()) - Number(b.isEnabled()) || byPopularity(a, b)
         }}
         safeModeHint={{ message: Strings.SAFE_MODE_NOTICE_PLUGINS }}
         items={items}
         {...props}
     />;
+}
+
+/** Endcord's popular plugins first, in Endcord PC's order, then Endcord's others, then installed plugins, by name */
+function byPopularity(a: UnifiedPluginModel, b: UnifiedPluginModel) {
+    const rank = (p: UnifiedPluginModel) => p.popular ?? (p.endcord ? 1000 : 2000);
+    return rank(a) - rank(b) || a.name.localeCompare(b.name);
 }
 
 export default function Plugins() {
@@ -64,9 +70,12 @@ export default function Plugins() {
             useObservable([pluginSettings]);
 
             const vdPlugins = Object.values(VdPluginManager.plugins).map(unifyVdPlugin);
-            const bnPlugins = [...registeredPlugins.values()].filter(p => isPluginInstalled(p.id) && !isCorePlugin(p.id)).map(unifyBunnyPlugin);
+            // Core plugins stay hidden, except Endcord's own, which users turn on and off
+            const bnPlugins = [...registeredPlugins.values()]
+                .filter(p => isPluginInstalled(p.id) && (!isCorePlugin(p.id) || p.extras?.endcord))
+                .map(unifyBunnyPlugin);
 
-            return [...vdPlugins, ...bnPlugins];
+            return [...bnPlugins, ...vdPlugins].sort(byPopularity);
         }}
         ListHeaderComponent={() => {
             const unproxiedPlugins = Object.values(VdPluginManager.plugins).filter(p => !p.id.startsWith(VD_PROXY_PREFIX) && !p.id.startsWith(BUNNY_PROXY_PREFIX));
@@ -76,9 +85,9 @@ export default function Plugins() {
                 <Card border="strong">
                     <View style={{ flex: 1, justifyContent: "center", alignItems: "center", flexDirection: "row" }}>
                         <View style={{ gap: 6, flexShrink: 1 }}>
-                            <Text variant="heading-md/bold">Unproxied Plugins Found</Text>
+                            <Text variant="heading-md/bold">{t("Unproxied plugins found")}</Text>
                             <Text variant="text-sm/medium" color="text-muted">
-                                Plugins installed from unproxied sources may run unverified code in this app without your awareness.
+                                {t("Plugins installed from unproxied sources may run unverified code in this app without your awareness.")}
                             </Text>
                         </View>
                         <View style={{ marginLeft: "auto" }}>
@@ -89,7 +98,7 @@ export default function Plugins() {
                                 style={{ marginLeft: 8 }}
                                 onPress={() => {
                                     navigation.push("BUNNY_CUSTOM_PAGE", {
-                                        title: "Unproxied Plugins",
+                                        title: t("Unproxied plugins"),
                                         render: () => {
                                             return <FlashList
                                                 data={unproxiedPlugins}
@@ -111,11 +120,11 @@ export default function Plugins() {
         ListFooterComponent={() => __DEV__ && (
             <View style={{ alignItems: "center", justifyContent: "center", paddingTop: 16, gap: 12 }}><Button
                 size="lg"
-                text="Browse Plugins"
+                text={t("Browse plugins")}
                 icon={findAssetId("CompassIcon")}
                 onPress={() => {
                     navigation.push("BUNNY_CUSTOM_PAGE", {
-                        title: "Plugin Browser",
+                        title: t("Plugin browser"),
                         render: React.lazy(() => import("../PluginBrowser")),
                     });
                 }}
@@ -123,25 +132,25 @@ export default function Plugins() {
             </View>
         )}
         installAction={{
-            label: "Install a plugin",
+            label: Strings.INSTALL_PLUGIN,
             fetchFn: async (url: string) => {
                 if (!url.startsWith(VD_PROXY_PREFIX) && !url.startsWith(BUNNY_PROXY_PREFIX) && !settings.developerSettings) {
                     openAlert("bunny-plugin-unproxied-confirmation", <AlertModal
-                        title="Hold On!"
-                        content="You're trying to install a plugin from an unproxied external source. This means you're trusting the creator to run their code in this app without your knowledge. Are you sure you want to continue?"
+                        title={Strings.MODAL_UNPROXIED_PLUGIN_HEADER}
+                        content={Strings.MODAL_UNPROXIED_PLUGIN_DESC}
                         extraContent={<Card><Text variant="text-md/bold">{url}</Text></Card>}
                         actions={<AlertActions>
-                            <AlertActionButton text="Continue" variant="primary" onPress={() => {
+                            <AlertActionButton text={Strings.CONTINUE} variant="primary" onPress={() => {
                                 VdPluginManager.installPlugin(url)
                                     .then(() => showToast(Strings.TOASTS_INSTALLED_PLUGIN, findAssetId("DownloadIcon")))
                                     .catch(e => openAlert("bunny-plugin-install-failed", <AlertModal
-                                        title="Install Failed"
-                                        content={`Unable to install plugin from '${url}':`}
+                                        title={t("Install failed")}
+                                        content={t("Couldn't install the plugin from {url}:", { url })}
                                         extraContent={<Card><Text variant="text-md/normal">{e instanceof Error ? e.message : String(e)}</Text></Card>}
-                                        actions={<AlertActionButton text="Okay" variant="primary" />}
+                                        actions={<AlertActionButton text={t("OK")} variant="primary" />}
                                     />));
                             }} />
-                            <AlertActionButton text="Cancel" variant="secondary" />
+                            <AlertActionButton text={Strings.CANCEL} variant="secondary" />
                         </AlertActions>}
                     />);
                 } else {

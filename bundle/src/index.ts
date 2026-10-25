@@ -1,5 +1,6 @@
 import patchErrorBoundary from "@core/debug/patches/patchErrorBoundary";
 import initFixes from "@core/fixes";
+import { initOverlayHost } from "@core/overlay";
 import { initFetchI18nStrings } from "@core/i18n";
 import initSettings from "@core/ui/settings";
 import { initVendettaObject } from "@core/vendetta/api";
@@ -17,6 +18,10 @@ import { patchSettings } from "@ui/settings";
 import * as lib from "./lib";
 
 export default async () => {
+    // Before Discord registers its root component, which happens as soon as Endcord has loaded
+    const unpatchOverlay = initOverlayHost();
+    if (unpatchOverlay) lib.unload.push(unpatchOverlay);
+
     // Load everything in parallel
     await Promise.all([
         initThemes(),

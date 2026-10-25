@@ -1,3 +1,4 @@
+import { t } from "@core/i18n";
 import { CardWrapper } from "@core/ui/components/AddonCard";
 import { UnifiedPluginModel } from "@core/ui/settings/pages/Plugins/models";
 import { usePluginCardStyles } from "@core/ui/settings/pages/Plugins/usePluginCardStyles";
@@ -38,12 +39,15 @@ function Title() {
         </Text>
     );
 
-    return <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
+    return <View style={{ flexDirection: "row", alignItems: "center", gap: 6, flexShrink: 1 }}>
         {icon && <Image
             style={styles.smallIcon}
             source={icon}
         />}
         {textNode}
+        {plugin.popular != null && <View style={{ backgroundColor: "#5865F2", borderRadius: 4, paddingHorizontal: 5, paddingVertical: 1 }}>
+            <Text variant="text-xxs/bold" style={{ color: "#FFFFFF" }}>{t("POPULAR")}</Text>
+        </View>}
     </View>;
 }
 
@@ -61,12 +65,14 @@ function Authors() {
     );
 
     const badges = plugin.getBadges();
+    // The names may be highlighted search matches, so they go between the two halves of the sentence
+    const [byBefore, byAfter = ""] = t("by {authors}").split("{authors}");
     const authorText = highlightedNode.length > 0 ? highlightedNode : plugin.authors.map(a => a.name).join(", ");
 
     return (
         <View style={{ flexDirection: "row", flexWrap: "wrap", flexShrink: 1, gap: 4 }}>
             <Text variant="text-sm/semibold" color="text-muted">
-                by {authorText}
+                {byBefore}{authorText}{byAfter}
             </Text>
             {badges.length > 0 && <View style={styles.badgesContainer}>
                 {badges.map((b, i) => <Image

@@ -111,7 +111,8 @@ object RevengeUpdater {
             }
         } catch (e: Throwable) {
             log.e("Failed to download script", e)
-            showErrorDialog(e)
+            // With a downloaded copy Endcord still starts, so a failed update check (offline, say) stays quiet
+            if (userInitiated || !bundle.exists()) showErrorDialog(e)
         } finally {
             _downloadReady.complete(Unit)
         }
@@ -140,10 +141,10 @@ object RevengeUpdater {
     private fun showUpdateDialog() = withAppActivity { activity ->
         activity.runOnUiThread {
             AlertDialog.Builder(activity)
-                .setTitle("Endcord Update Downloaded")
-                .setMessage("A reload is required for changes to take effect.")
-                .setPositiveButton("Reload") { d, _ -> reloadApp(); d.dismiss() }
-                .setNegativeButton("Later") { d, _ -> d.dismiss() }
+                .setTitle(Strings["update_downloaded_title"])
+                .setMessage(Strings["reload_required"])
+                .setPositiveButton(Strings["reload"]) { d, _ -> reloadApp(); d.dismiss() }
+                .setNegativeButton(Strings["later"]) { d, _ -> d.dismiss() }
                 .show()
         }
     }
@@ -151,10 +152,10 @@ object RevengeUpdater {
     private fun showSuccessDialog() = withAppActivity { activity ->
         activity.runOnUiThread {
             AlertDialog.Builder(activity)
-                .setTitle("Endcord Update Successful")
-                .setMessage("A reload is required for changes to take effect.")
-                .setPositiveButton("Reload") { d, _ -> reloadApp(); d.dismiss() }
-                .setNegativeButton("Later") { d, _ -> d.dismiss() }
+                .setTitle(Strings["update_success_title"])
+                .setMessage(Strings["reload_required"])
+                .setPositiveButton(Strings["reload"]) { d, _ -> reloadApp(); d.dismiss() }
+                .setNegativeButton(Strings["later"]) { d, _ -> d.dismiss() }
                 .show()
         }
     }
@@ -162,22 +163,15 @@ object RevengeUpdater {
     private fun showErrorDialog(e: Throwable) = withAppActivity { activity ->
         activity.runOnUiThread {
             AlertDialog.Builder(activity)
-                .setTitle("Endcord Update Failed")
-                .setMessage(
-                    """
-                    Unable to download the latest version of Revenge.
-                    This is usually caused by bad network connection.
-
-                    Error: ${e.message ?: e.stackTraceToString()}
-                    """.trimIndent()
-                )
-                .setNegativeButton("Dismiss") { d, _ -> d.dismiss() }
-                .setPositiveButton("Retry Update") { d, _ ->
+                .setTitle(Strings["update_failed_title"])
+                .setMessage(Strings["update_failed_message"] + "\n\n" + Strings.format("error", e.message ?: e.javaClass.simpleName))
+                .setNegativeButton(Strings["dismiss"]) { d, _ -> d.dismiss() }
+                .setPositiveButton(Strings["retry"]) { d, _ ->
                     downloadScript(userInitiated = true)
-                    Toast.makeText(activity, "Retrying download in background...", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, Strings["retrying"], Toast.LENGTH_SHORT).show()
                     d.dismiss()
                 }
-                .setNeutralButton("Recovery") { d, _ -> showRecoveryAlert(activity); d.dismiss() }
+                .setNeutralButton(Strings["recovery"]) { d, _ -> showRecoveryAlert(activity); d.dismiss() }
                 .show()
         }
     }

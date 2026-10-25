@@ -29,10 +29,11 @@ import java.util.concurrent.atomic.AtomicBoolean
 class InstallerViewModel(
     private val context: Context,
     private val installManager: InstallManager,
-    discordVersion: DiscordVersion
+    discordVersion: DiscordVersion,
+    useInstalled: Boolean
 ) : ScreenModel {
 
-    val runner = StepRunner(discordVersion)
+    val runner = StepRunner(discordVersion, useInstalled)
 
     val groupedSteps: ImmutableMap<StepGroup, List<Step>> = StepGroup.entries
         .associateWith { group ->

@@ -1,3 +1,4 @@
+import { Strings, t } from "@core/i18n";
 import { CardWrapper } from "@core/ui/components/AddonCard";
 import { findAssetId } from "@lib/api/assets";
 import { settings } from "@lib/api/settings";
@@ -52,13 +53,13 @@ function InputAlert(props: { label: string, fetchFn: (url: string) => Promise<vo
 
         props.fetchFn(value)
             .then(() => dismissAlert("AddonInputAlert"))
-            .catch((e: unknown) => e instanceof Error ? setError(e.message) : String(e))
+            .catch((e: unknown) => setError(e instanceof Error ? e.message : String(e)))
             .finally(() => setIsFetching(false));
     }
 
     return <AlertModal
         title={props.label}
-        content="Type in the source URL you want to install from:"
+        content={t("Enter the link to install from:")}
         extraContent={
             <Stack style={{ marginTop: -12 }}>
                 <TextInput
@@ -82,7 +83,7 @@ function InputAlert(props: { label: string, fetchFn: (url: string) => Promise<vo
                     <Button
                         size="sm"
                         variant="tertiary"
-                        text="Import from clipboard"
+                        text={t("Paste from clipboard")}
                         icon={findAssetId("ClipboardListIcon")}
                         onPress={() => clipboard.getString().then((str: string) => setValue(str))}
                     />
@@ -94,14 +95,14 @@ function InputAlert(props: { label: string, fetchFn: (url: string) => Promise<vo
                 {/* Manual button as we don't want alert to immediately dismiss when we tap on it */}
                 <Button
                     loading={isFetching}
-                    text="Install"
+                    text={Strings.INSTALL}
                     variant="primary"
                     disabled={!value || !isValidHttpUrl(value)}
                     onPress={onConfirmWrapper}
                 />
                 <AlertActionButton
                     disabled={isFetching}
-                    text="Cancel"
+                    text={Strings.CANCEL}
                     variant="secondary"
                 />
             </Stack>
@@ -141,7 +142,7 @@ export default function AddonPage<T extends object>({ CardComponent, ...props }:
         if (!props.installAction) return () => { };
         const { label, onPress, fetchFn } = props.installAction;
         if (fetchFn) {
-            openAlert("AddonInputAlert", <InputAlert label={label ?? "Install"} fetchFn={fetchFn} />);
+            openAlert("AddonInputAlert", <InputAlert label={label ?? Strings.INSTALL} fetchFn={fetchFn} />);
         } else {
             onPress?.();
         }
@@ -152,13 +153,13 @@ export default function AddonPage<T extends object>({ CardComponent, ...props }:
             <View style={{ gap: 8, alignItems: "center" }}>
                 <Image source={findAssetId("empty_quick_switcher")!} />
                 <Text variant="text-lg/semibold">
-                    Oops! Nothing to see here… yet!
+                    {t("Nothing here yet")}
                 </Text>
             </View>
             <Button
                 size="lg"
                 icon={findAssetId("DownloadIcon")}
-                text={props.installAction?.label ?? "Install"}
+                text={props.installAction?.label ?? Strings.INSTALL}
                 onPress={onInstallPress}
             />
         </View>;
@@ -181,7 +182,7 @@ export default function AddonPage<T extends object>({ CardComponent, ...props }:
                     onPress={() => showSimpleActionSheet({
                         key: "AddonListSortOptions",
                         header: {
-                            title: "Sort Options",
+                            title: t("Sort by"),
                             onClose: () => hideActionSheet("AddonListSortOptions"),
                         },
                         options: Object.entries(props.sortOptions!).map(([name, fn]) => ({
@@ -205,7 +206,7 @@ export default function AddonPage<T extends object>({ CardComponent, ...props }:
                 ListEmptyComponent={() => <View style={{ gap: 12, padding: 12, alignItems: "center" }}>
                     <Image source={findAssetId("devices_not_found")!} />
                     <Text variant="text-lg/semibold">
-                        Hmmm... could not find that!
+                        {t("No results")}
                     </Text>
                 </View>}
                 contentContainerStyle={{ padding: 8, paddingHorizontal: 12, paddingBottom: 90 }}

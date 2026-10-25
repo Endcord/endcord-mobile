@@ -12,7 +12,7 @@ const { getUser: maybeFetchUser } = lazyDestructure(() => findByProps("getUser",
 export default function TitleComponent({ plugin }: { plugin: UnifiedPluginModel; }) {
     const users: any[] = FluxUtils.useStateFromStoresArray([UserStore], () => {
         plugin.authors?.forEach(a => a.id && maybeFetchUser(a.id));
-        return plugin.authors?.map(a => UserStore.getUser(a.id));
+        return plugin.authors?.map(a => a.id && UserStore.getUser(a.id)).filter(Boolean) ?? [];
     });
 
     const { authors } = plugin;
@@ -21,7 +21,8 @@ export default function TitleComponent({ plugin }: { plugin: UnifiedPluginModel;
     if (authors) {
         for (const author of authors) {
             authorTextNode.push(<Text
-                onPress={() => showUserProfileActionSheet({ userId: author.id })}
+                key={author.name}
+                onPress={author.id ? () => showUserProfileActionSheet({ userId: author.id }) : undefined}
                 variant="text-md/medium"
             >
                 {author.name}
@@ -40,13 +41,13 @@ export default function TitleComponent({ plugin }: { plugin: UnifiedPluginModel;
             </Text>
         </View>
         <View style={{ flexDirection: "row", flexShrink: 1 }}>
-            {authors?.length && <View style={{ flexDirection: "row", gap: 8, alignItems: "center", paddingVertical: 4, paddingHorizontal: 8, backgroundColor: "#00000016", borderRadius: 32 }}>
-                {users.length && <AvatarPile
+            {!!authors?.length && <View style={{ flexDirection: "row", gap: 8, alignItems: "center", paddingVertical: 4, paddingHorizontal: 8, backgroundColor: "#00000016", borderRadius: 32 }}>
+                {users.length > 0 && <AvatarPile
                     size="xxsmall"
                     names={plugin.authors?.map(a => a.name)}
                     totalCount={plugin.authors?.length}
                 >
-                    {users.map(a => <Avatar size="xxsmall" user={a} />)}
+                    {users.map(a => <Avatar key={a.id} size="xxsmall" user={a} />)}
                 </AvatarPile>}
                 <Text variant="text-md/medium">
                     {authorTextNode}

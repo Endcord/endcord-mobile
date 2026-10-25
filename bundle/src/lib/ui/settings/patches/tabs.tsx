@@ -1,7 +1,7 @@
 import { after } from "@lib/api/patcher";
 import { TableRow } from "@metro/common/components";
 import { findByNameLazy, findByPropsLazy } from "@metro/wrappers";
-import { registeredSections } from "@ui/settings";
+import { getVisibleSections, registeredSections } from "@ui/settings";
 import { Strings } from "@core/i18n";
 import { CustomPageRenderer, wrapOnPress } from "./shared";
 import { findInReactTree } from "@lib/utils";
@@ -33,7 +33,7 @@ export function patchTabsUI(unpatches: (() => void | boolean)[]) {
                 ...row.rawTabsConfig
             }
         })))
-        .reduce((a, c) => Object.assign(a, c));
+        .reduce((a, c) => Object.assign(a, c), {});
 
     const origRendererConfig = settingConstants.SETTING_RENDERER_CONFIG;
     let rendererConfigValue = settingConstants.SETTING_RENDERER_CONFIG;
@@ -89,7 +89,7 @@ export function patchTabsUI(unpatches: (() => void | boolean)[]) {
 
                     let index = accountSectionIndex + 1;
                 
-                    Object.keys(registeredSections).forEach(sect => {
+                    getVisibleSections().forEach(sect => {
                         const alreadyExists = sections.some((s: any) => s.label === sect);
                         if (!alreadyExists) {
                             sections.splice(index++, 0, {
@@ -112,7 +112,7 @@ export function patchTabsUI(unpatches: (() => void | boolean)[]) {
         // Credit to @palmdevs - https://discord.com/channels/1196075698301968455/1243605828783571024/1307940348378742816
         let index = -~sections.findIndex((i: any) => i.settings.includes("ACCOUNT")) || 1;
 
-        Object.keys(registeredSections).forEach(sect => {
+        getVisibleSections().forEach(sect => {
             sections.splice(index++, 0, {
                 label: sect,
                 title: sect,

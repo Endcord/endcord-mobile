@@ -7,10 +7,6 @@ import app.revenge.manager.domain.manager.PreferenceManager
 import app.revenge.manager.installer.step.Step
 import app.revenge.manager.installer.step.StepGroup
 import app.revenge.manager.installer.step.StepRunner
-import app.revenge.manager.installer.step.download.DownloadBaseStep
-import app.revenge.manager.installer.step.download.DownloadLangStep
-import app.revenge.manager.installer.step.download.DownloadLibsStep
-import app.revenge.manager.installer.step.download.DownloadResourcesStep
 import app.revenge.manager.installer.util.ManifestPatcher
 import org.koin.core.component.inject
 
@@ -25,12 +21,9 @@ class PatchManifestsStep : Step() {
     override val nameRes = R.string.step_patch_manifests
 
     override suspend fun run(runner: StepRunner) {
-        val baseApk = runner.getCompletedStep<DownloadBaseStep>().workingCopy
-        val libsApk = runner.getCompletedStep<DownloadLibsStep>().workingCopy
-        val langApk = runner.getCompletedStep<DownloadLangStep>().workingCopy
-        val resApk = runner.getCompletedStep<DownloadResourcesStep>().workingCopy
+        val baseApk = runner.baseApk()
 
-        arrayOf(baseApk, libsApk, langApk, resApk).forEach { apk ->
+        runner.discordApks().forEach { apk ->
             runner.logger.i("Reading AndroidManifest.xml from ${apk.name}")
             val manifest = ZipReader(apk)
                 .use { zip -> zip.openEntry("AndroidManifest.xml")?.read() }
@@ -53,7 +46,7 @@ class PatchManifestsStep : Step() {
                 runner.logger.i("Deleting old AndroidManifest.xml in ${apk.name}")
                 zip.deleteEntry(
                     "AndroidManifest.xml",
-                    /* fillVoid = */ apk == libsApk || apk == baseApk
+                    /* fillVoid = */ apk == baseApk || runner.isLibrariesApk(apk)
                 ) // Preserve alignment in libs apk
 
                 runner.logger.i("Adding patched AndroidManifest.xml in ${apk.name}")

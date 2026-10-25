@@ -1,5 +1,7 @@
 package app.revenge.manager.updatechecker.worker
 
+import app.revenge.manager.domain.manager.DiscordSource
+import app.revenge.manager.utils.InstalledDiscord
 import android.content.Context
 import android.content.Intent
 import androidx.work.CoroutineWorker
@@ -25,29 +27,36 @@ class UpdateWorker(
 
     override suspend fun doWork(): Result {
         if (prefs.discordVersion.isNotBlank()) return Result.success()
+
+        // The worker outlives the screens, so the installed Endcord is looked up again each time
+        installManager.getInstalled()
+        val currentVersion = DiscordVersion.fromVersionCode(installManager.current?.versionCode.toString())
+            ?: return Result.success()
+
+        // Built from the Discord on the phone: an update is due when the Play Store updated that Discord
+        val installedDiscord = InstalledDiscord.version(context)
+        if (prefs.discordSource == DiscordSource.INSTALLED && installedDiscord != null) {
+            if (installedDiscord > currentVersion) notifyUpdate(installedDiscord)
+            return Result.success()
+        }
+
         return when (val res = api.getLatestDiscordVersions()) {
             is ApiResponse.Success -> {
-                val currentVersion =
-                    DiscordVersion.fromVersionCode(installManager.current?.versionCode.toString())
-                val latestVersion = res.data[prefs.channel]
-
-                if (latestVersion == null || currentVersion == null) return Result.failure()
-
-                if (latestVersion > currentVersion) {
-                    context.sendBroadcast(
-                        Intent(
-                            context,
-                            UpdateBroadcastReceiver::class.java
-                        ).apply {
-                            putExtra(Intents.Extras.VERSION, latestVersion.toVersionCode())
-                        })
-                }
-
+                val latestVersion = res.data[prefs.channel] ?: return Result.success()
+                if (latestVersion > currentVersion) notifyUpdate(latestVersion)
                 Result.success()
             }
 
-            else -> Result.failure()
+            else -> Result.retry()
         }
+    }
+
+    private fun notifyUpdate(version: DiscordVersion) {
+        context.sendBroadcast(
+            Intent(context, UpdateBroadcastReceiver::class.java).apply {
+                putExtra(Intents.Extras.VERSION, version.toVersionCode())
+            }
+        )
     }
 
 }
