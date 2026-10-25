@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Endcord Installer</string>
+  <string name="app_description">Endcord pour Android, basé sur l\'application Discord classique</string>
+
+  <string name="support_server">Serveur d\'assistance</string>
+  <string name="installer">Installateur</string>
+
+  <string name="action_cancel">Annuler</string>
+  <string name="action_retry">Réessayer</string>
+  <string name="action_continue">Continuer</string>
+  <string name="action_retry_install">Réessayer l\'installation</string>
+  <string name="action_open_error_log">Ouvrir le journal d\'erreurs</string>
+  <string name="action_apply">Appliquer</string>
+  <string name="action_confirm">Confirmer</string>
+  <string name="action_dismiss">Ignorer</string>
+  <string name="action_install">Installer</string>
+  <string name="action_uninstall">Désinstaller</string>
+  <string name="action_add_install">Nouvelle installation</string>
+  <string name="action_update_install">Mettre à jour l\'installation</string>
+  <string name="action_update">Mettre à jour</string>
+  <string name="action_clear">Effacer</string>
+  <string name="action_delete">Supprimer</string>
+  <string name="action_launch">Lancer</string>
+  <string name="action_close">Fermer</string>
+  <string name="action_search">Rechercher</string>
+  <string name="action_copy">Copier</string>
+  <string name="action_collapse">Réduire</string>
+  <string name="action_expand">Développer</string>
+  <string name="action_copied">Copié !</string>
+  <string name="action_cleared_cache">Cache vidé !</string>
+  <string name="action_exit_anyways">Quitter quand même</string>
+  <string name="action_open_info">Infos</string>
+  <string name="action_reset_default">Réinitialiser</string>
+
+  <string name="intent_reinstall_fail">Impossible de lancer la réinstallation automatiquement. Veuillez la lancer manuellement.</string>
+  <string name="intent_import_component_success">%s a bien été importé</string>
+  <string name="intent_import_component_failure">Impossible d\'importer le composant personnalisé !</string>
+
+  <string name="permissions_title">Accorder les autorisations</string>
+  <string name="permissions_subtitle">Endcord Installer a besoin de ces autorisations :</string>
+  <string name="permissions_legend">%s indique les autorisations obligatoires !</string>
+  <string name="permissions_grant">Accorder</string>
+  <string name="permissions_granted">Accordée</string>
+  <string name="permissions_header_options">Options</string>
+  <string name="permissions_header_permissions">Autorisations</string>
+  <string name="permissions_install_title">Installer des applications inconnues</string>
+  <string name="permissions_install_desc">Nécessaire pour installer Endcord depuis cette application.</string>
+  <string name="permissions_storage_title">Stockage externe</string>
+  <string name="permissions_storage_desc">Endcord et son installateur conservent des données partagées, comme les plugins et les paramètres, dans ~/Endcord, ce qui nécessite un accès complet au stockage. Le stockage limité n\'est pas encore pris en charge.</string>
+  <string name="permissions_notifs_title">Notifications</string>
+  <string name="permissions_battery_title">Batterie en arrière-plan</string>
+  <string name="permissions_battery_desc">Évite que l\'installation soit annulée lorsque l\'application est réduite.</string>
+  <string name="permissions_notifs_desc">Sert uniquement à afficher la progression pendant qu\'Endcord Installer est réduit.</string>
+
+  <string name="permissions_root_denied">Impossible d\'obtenir les droits root</string>
+  <string name="permissions_shizuku_denied">Impossible d\'obtenir les autorisations Shizuku</string>
+  <string name="permissions_dhizuku_denied">Impossible d\'obtenir les autorisations Dhizuku</string>
+
+  <string name="installs_no_installs">Aucune installation trouvée !</string>
+  <string name="launch_endcord_fail">Impossible de lancer Endcord</string>
+
+  <string name="settings_header_advanced">Avancé</string>
+  <string name="settings_header_installation">Installation</string>
+  <string name="settings_header_appearance">Apparence</string>
+  <string name="settings_header_info">Infos</string>
+  <string name="setting_language">Langue</string>
+  <string name="setting_language_desc">La langue de cette application</string>
+  <string name="setting_theme">Thème</string>
+  <string name="setting_theme_desc">Le thème de cette application</string>
+  <string name="setting_dynamic_color">Couleurs dynamiques</string>
+  <string name="setting_dynamic_color_desc">Utilise les couleurs de votre fond d\'écran (Material You) au lieu de celles d\'Endcord sur Android 12+</string>
+  <string name="setting_developer_options">Options pour les développeurs</string>
+  <string name="setting_developer_options_desc">Ne l\'activez pas si vous ne savez pas ce que cela fait !</string>
+  <string name="setting_installer">Méthode d\'installation</string>
+  <string name="setting_installer_desc">La façon dont l\'installateur communique avec le programme d\'installation du système.</string>
+  <string name="setting_keep_patched_apks">Conserver les APK patchés</string>
+  <string name="setting_keep_patched_apks_desc">Conserve tous les fichiers et APK patchés après l\'installation pour le débogage. Exporter l\'APK n\'est utile qu\'après une installation réussie.</string>
+  <string name="settings_clear_cache">Vider le cache</string>
+  <string name="settings_export_apk">Exporter l\'APK</string>
+
+  <string name="language_system">Langue du système</string>
+  <string name="language_welcome_title">Bienvenue dans Endcord</string>
+  <string name="language_welcome_desc">Choisissez la langue à utiliser. Vous pourrez la changer plus tard dans les paramètres.</string>
+
+  <string name="installer_pm">Direct</string>
+  <string name="installer_pm_desc">Utilise l\'API PackageInstaller directement depuis l\'application. (Par défaut)</string>
+  <string name="installer_root">Root</string>
+  <string name="installer_intent">Intent</string>
+  <string name="installer_intent_desc">Confie l\'installation au programme d\'installation par défaut du système.</string>
+  <string name="installer_root_desc">Utilise PackageManager directement grâce au root, par exemple Magisk ou KernelSU.</string>
+  <string name="installer_shizuku">Shizuku</string>
+  <string name="installer_shizuku_desc">Utilise l\'API PackageInstaller à distance via Shizuku. ADB, ADB sans fil et root sont pris en charge.</string>
+  <string name="installer_dhizuku">Dhizuku</string>
+  <string name="installer_dhizuku_desc">Utilise l\'API PackageInstaller à distance via Dhizuku avec les droits de propriétaire de l\'appareil.</string>
+
+  <string name="theme_system">Système</string>
+  <string name="theme_dark">Sombre</string>
+  <string name="theme_light">Clair</string>
+  <string name="theme_black">Noir</string>
+
+  <string name="plugins_title">Plugins</string>
+  <string name="plugins_view_changelog">Voir le journal des modifications</string>
+  <string name="plugins_delete_plugin">Désinstaller %s</string>
+  <string name="plugins_delete_plugin_body">Voulez-vous vraiment désinstaller le plugin %s ?</string>
+  <string name="plugins_none_installed">Aucun plugin installé !</string>
+  <string name="plugins_changelog_media">Média du journal des modifications</string>
+  <string name="plugins_error">Un problème est survenu lors du chargement des plugins !</string>
+  <string name="plugins_safe_mode_title">Mode sans échec</string>
+  <string name="plugins_safe_mode_desc">Désactive temporairement tous les plugins au démarrage d\'Endcord</string>
+
+  <string name="navigation_back">Retour</string>
+  <string name="navigation_about">À propos</string>
+  <string name="navigation_logs">Journaux</string>
+  <string name="navigation_settings">Paramètres</string>
+
+  <string name="contributors_lead">Responsable</string>
+  <string name="contributors">Contributeurs</string>
+  <string name="contributors_contributions">%s contributions</string>
+
+  <string name="network_load_fail">Échec du chargement</string>
+  <string name="network_warning_title">Réseau limité</string>
+  <string name="network_warning_body">Vous semblez utiliser des données mobiles ou un réseau limité. L\'installation peut télécharger plusieurs centaines de mégaoctets. Continuer quand même ?</string>
+  <string name="network_warning_disable">Ne plus afficher</string>
+
+  <string name="version_none">Aucune</string>
+  <string name="version_stable">Stable</string>
+  <string name="version_beta">Bêta</string>
+  <string name="version_alpha">Alpha</string>
+  <string name="version_unknown">Inconnue</string>
+  <string name="version_load_fail">Impossible de récupérer la version</string>
+
+  <string name="installer_file_save_success">Enregistré dans %s</string>
+  <string name="installer_file_save_failed">Impossible d\'enregistrer %s</string>
+  <string name="installer_install_success">Endcord a bien été installé</string>
+  <string name="installer_install_aborted">Installation d\'Endcord annulée</string>
+  <string name="installer_uninstall_new">Veuillez désinstaller votre version actuelle d\'Endcord pour continuer !</string>
+  <string name="installer_uninstall_success">Endcord a été désinstallé</string>
+  <string name="installer_uninstall_aborted">Désinstallation annulée</string>
+  <string name="installer_dl_verify_fail">Impossible de vérifier le téléchargement</string>
+  <string name="installer_insufficient_storage">Espace de stockage insuffisant !</string>
+  <string name="installer_banner_minimization">Les optimisations de batterie ne sont pas désactivées : réduire cet écran peut annuler l\'installation !</string>
+  <string name="installer_banner_failure">L\'installation a échoué ! Vous pouvez réessayer ou toucher ce message pour obtenir de l\'aide sur le serveur Endcord.</string>
+  <string name="installer_banner_success">Endcord est installé ! Conservez cet installateur : il est nécessaire pour certaines mises à jour.</string>
+
+  <string name="install_error_unknown">Échec de l\'installateur (raison inconnue)</string>
+  <string name="install_error_unhandled_intent">Aucune application ne peut gérer %s !</string>
+  <string name="install_error_blocked">L\'installation a été bloquée</string>
+  <string name="install_error_invalid">Un ou plusieurs APK sont invalides ou corrompus</string>
+  <string name="install_error_conflict">Conflit avec une application installée, généralement parce que les signatures ne correspondent pas</string>
+  <string name="install_error_storage">Espace insuffisant pour l\'installation</string>
+  <string name="install_error_incompatible">Cette application n\'est pas compatible avec votre appareil</string>
+  <string name="install_error_timeout">Délai de l\'installateur dépassé</string>
+
+  <string name="install_group_prepare">Préparation</string>
+  <string name="install_group_download">Téléchargement des dépendances</string>
+  <string name="install_group_patch">Patch de l\'APK</string>
+  <string name="install_group_install">Installation de l\'APK</string>
+
+  <string name="patch_step_fetch_kt_version">Récupération de la version de Discord requise</string>
+  <string name="patch_step_downgrade_check">Recherche d\'installations plus récentes</string>
+  <string name="patch_step_restore_cache">Restauration depuis le cache</string>
+  <string name="patch_step_dl_kt_apk">Téléchargement de l\'APK de Discord</string>
+  <string name="patch_step_dl_kotlin">Téléchargement de la bibliothèque Kotlin</string>
+  <string name="patch_step_dl_injector">Téléchargement d\'Endcord Injector</string>
+  <string name="patch_step_dl_aliuhook">Téléchargement de la bibliothèque Aliuhook</string>
+  <string name="patch_step_dl_smali">Téléchargement des patchs smali</string>
+  <string name="patch_step_copy_deps">Copie des dépendances</string>
+  <string name="patch_step_patch_manifests">Patch du manifeste de l\'APK</string>
+  <string name="patch_step_patch_certs">Ajout de certificats racines récents</string>
+  <string name="patch_step_patch_icon">Patch de l\'icône de l\'application</string>
+  <string name="patch_step_add_aliuhook">Ajout de la bibliothèque Aliuhook</string>
+  <string name="patch_step_patch_smali">Application des patchs smali</string>
+  <string name="patch_step_reorganize_dex">Ajout des fichiers .dex à l\'APK</string>
+  <string name="patch_step_save_metadata">Enregistrement des métadonnées</string>
+  <string name="patch_step_alignment">Alignement de l\'APK</string>
+  <string name="patch_step_signing">Signature de l\'APK</string>
+  <string name="patch_step_install">Installation de l\'APK</string>
+  <string name="patch_step_cleanup">Nettoyage</string>
+
+  <string name="status_queued">En attente</string>
+  <string name="status_ongoing">En cours</string>
+  <string name="status_skipped">Ignoré</string>
+  <string name="status_success">Réussi</string>
+  <string name="status_failed">Échec</string>
+
+  <string name="installer_abort_title">Vraiment quitter ?</string>
+  <string name="installer_abort_body">Voulez-vous vraiment annuler l\'installation en cours ?</string>
+
+  <string name="updater_title">Mettre à jour vers v%s</string>
+  <string name="updater_body">Une nouvelle version d\'Endcord Installer est disponible et peut être nécessaire pour installer. Voulez-vous mettre à jour ?</string>
+  <string name="updater_open_github">Voir la version sur GitHub</string>
+  <string name="updater_check_fail">Impossible de rechercher les mises à jour !</string>
+  <string name="updater_update_fail">Échec de la mise à jour ! Veuillez télécharger et installer la mise à jour manuellement.</string>
+
+  <string name="downloader_err_unknown">Échec du téléchargement (inconnu)</string>
+  <string name="downloader_err_code">Échec du téléchargement (%s)</string>
+  <string name="downloader_err_timeout">Échec du téléchargement (délai dépassé)</string>
+  <string name="downloader_err_response">Échec du téléchargement (réponse invalide)</string>
+  <string name="downloader_err_file_exists">Échec du téléchargement (le fichier existe déjà)</string>
+  <string name="downloader_err_storage_space">Échec du téléchargement (espace insuffisant)</string>
+
+  <string name="home_network_fail">Impossible de récupérer les données !</string>
+
+  <string name="patchopts_title">Certaines options d\'Endcord ne peuvent être choisies qu\'à l\'installation et ne peuvent plus être modifiées ensuite.</string>
+  <string name="patchopts_pkgname_title">Nom du paquet</string>
+  <string name="patchopts_pkgname_desc">Un identifiant unique pour chaque application. Des noms différents permettent d\'installer Endcord plusieurs fois.</string>
+  <string name="patchopts_pkgname_invalid">Nom de paquet invalide !</string>
+  <string name="patchopts_pkgname_taken">L\'application existante sera remplacée !</string>
+  <string name="patchopts_pkgname_ok">Nom de paquet valide !</string>
+  <string name="patchopts_appname_title">Nom de l\'application</string>
+  <string name="patchopts_appname_desc">Le nom affiché sur votre écran d\'accueil. Changez-le pour les installations supplémentaires afin de les distinguer.</string>
+  <string name="patchopts_debuggable_title">Débogable</string>
+  <string name="patchopts_debuggable_desc">Active l\'indicateur debuggable du manifeste. Ne l\'utilisez que si vous savez ce que vous faites !</string>
+  <string name="patchopts_icon_title">Remplacer l\'icône</string>
+  <string name="patchopts_icon_desc">Utilise l\'icône d\'Endcord (ou une icône personnalisée) au lieu de celle de Discord.</string>
+  <string name="patchopts_custom_injector_title">Injecteur personnalisé</string>
+  <string name="patchopts_custom_injector_desc">Une version personnalisée de l\'injecteur importée dans l\'installateur.</string>
+  <string name="patchopts_custom_patches_title">Patchs personnalisés</string>
+  <string name="patchopts_custom_patches_desc">Un ensemble de patchs smali importé dans l\'installateur.</string>
+  <string name="patchopts_divider_basic">Base</string>
+  <string name="patchopts_divider_advanced">Avancé</string>
+  <string name="patchopts_warning_invalid_iconopts">Les options d\'icône sélectionnées sont invalides !</string>
+
+  <string name="iconopts_screen_title">Remplacement de l\'icône</string>
+  <string name="iconopts_variant_title_old_discord">Ancien Discord</string>
+  <string name="iconopts_variant_desc_old_discord">L\'ancienne couleur blurple et l\'ancien logo de Discord, de 2021 et avant.</string>
+  <string name="iconopts_variant_title_color">Couleur personnalisée</string>
+  <string name="iconopts_variant_title_image">Image personnalisée</string>
+  <string name="iconopts_variant_desc_discord">Conserve l\'icône d\'origine et ajoute seulement l\'icône monochrome manquante.</string>
+  <string name="iconopts_variant_desc_endcord">Le panda pixelisé d\'Endcord sur son fond bleu nuit.</string>
+  <string name="iconopts_variant_desc_color">Choisissez une couleur de fond personnalisée.</string>
+  <string name="iconopts_variant_desc_image">Choisissez une image personnalisée. Elle doit avoir assez de marge pour respecter les règles des icônes adaptatives. Taille maximale : 256 Kio.</string>
+  <string name="iconopts_colorpicker_title">Teinte et saturation</string>
+  <string name="iconopts_colorpicker_desc">Les composantes principales de la couleur HSV.</string>
+  <string name="iconopts_lightness_title">Luminosité</string>
+  <string name="iconopts_lightness_desc">La luminosité de la couleur.</string>
+  <string name="iconopts_hex_title">Couleur hexadécimale</string>
+  <string name="iconopts_hex_desc">Saisissez la valeur hexadécimale RVB de la couleur. La transparence est ignorée !</string>
+  <string name="iconopts_failed_image">Impossible d\'ouvrir l\'image</string>
+  <string name="iconopts_failed_image_too_big">L\'image dépasse la limite de 256 Kio</string>
+  <string name="iconopts_btn_open_selection">Choisir une image</string>
+  <string name="iconopts_btn_open_example_image">Image d\'exemple</string>
+  <string name="iconopts_icon_preview_title">Aperçu de l\'icône</string>
+  <string name="iconopts_icon_preview_desc">L\'apparence de l\'icône sur votre appareil, recadrée et mise à l\'échelle</string>
+  <string name="iconopts_image_preview_title">Aperçu</string>
+  <string name="iconopts_image_preview_desc">L\'image sélectionnée en entier, sans recadrage.</string>
+  <string name="iconopts_image_preview_none">Aucune image sélectionnée</string>
+
+  <string name="componentopts_screen_title">Composant personnalisé (%s)</string>
+  <string name="componentopts_screen_desc">Choisissez une version personnalisée importée dans l\'installateur.</string>
+  <string name="componentopts_selected_none">Dernière</string>
+  <string name="componentopts_deleted">Composant supprimé !</string>
+
+  <string name="log_title">Journal</string>
+  <string name="log_section_install_info">Infos d\'installation</string>
+  <string name="log_section_env_info">Infos sur l\'environnement</string>
+  <string name="log_section_error">Trace de l\'erreur</string>
+  <string name="log_section_log">Journal d\'installation</string>
+  <string name="log_action_export">Exporter le journal</string>
+  <string name="log_action_export_apk">Exporter l\'APK</string>
+  <string name="log_action_share">Partager le journal</string>
+
+  <string name="logs_title">Journaux</string>
+  <string name="logs_none">Aucun journal pour l\'instant !</string>
+  <string name="logs_action_delete_all">Supprimer tous les journaux</string>
+  <string name="logs_status_delete_success">Tous les journaux ont été supprimés</string>
+  <string name="logs_wipe_title">Effacer les journaux</string>
+  <string name="logs_wipe_desc">Voulez-vous vraiment supprimer définitivement tous les journaux ?</string>
+
+  <string name="notif_group_install_title">Installation en cours</string>
+  <string name="notif_group_install_desc">Notifications de progression pendant une installation en arrière-plan</string>
+  <string name="notif_install_ready_title">Endcord est prêt à être installé !</string>
+  <string name="notif_install_ready_desc">Touchez pour installer…</string>
+  <string name="notif_install_fail_title">L\'installation d\'Endcord a échoué</string>
+  <string name="notif_install_fail_desc">Touchez pour en savoir plus…</string>
+
+  <string name="play_protect_warning_title">Play Protect</string>
+  <string name="play_protect_warning_desc">Google Play Protect semble activé. Il peut gêner l\'installation car Endcord utilise sa propre clé de signature. Vous pouvez le désactiver dans les paramètres de Play Protect.\n\nS\'il affiche un avertissement, touchez\n« Plus d\'infos » -> « Installer quand même »</string>
+  <string name="play_protect_warning_ok">Continuer</string>
+  <string name="play_protect_warning_open_gpp">Ouvrir Play Protect</string>
+  <string name="play_protect_warning_disable">Ne plus afficher</string>
+
+  <string name="fun_fact_prefix">Le saviez-vous ? %s</string>
+  <string name="fun_fact_1">Endcord intègre les plugins d\'Endcord PC, tous désactivés jusqu\'à ce que vous les activiez.</string>
+  <string name="fun_fact_2">Endcord parle cinq langues : anglais, turc, russe, espagnol et français.</string>
+  <string name="fun_fact_3">Endcord recherche des mises à jour sur GitHub toutes les 15 minutes et se met à jour en un seul geste.</string>
+  <string name="fun_fact_4">Le panda du logo d\'Endcord dort. Essayez de ne pas le réveiller.</string>
+  <string name="fun_fact_5">Endcord sur votre téléphone utilise les mêmes traductions qu\'Endcord PC.</string>
+  <string name="fun_fact_6">Un problème ? Demandez sur le serveur Discord d\'Endcord : discord.gg/endcord</string>
+  <string name="fun_fact_7">Les plugins incompatibles entre eux sont signalés, vous le saurez avant que l\'un d\'eux ne cesse de fonctionner.</string>
+  <string name="fun_fact_8">Endcord fonctionne sur l\'application Discord classique, avec de vraies vues Android au lieu de React Native.</string>
+  <string name="fun_fact_9">En cas de problème, le mode sans échec désactive tous les plugins d\'un coup.</string>
+  <string name="fun_fact_10">Les journaux de plantage sont enregistrés dans le dossier Endcord/crashlogs.</string>
+  <string name="fun_fact_11">Endcord est basé sur Aliucord, donc la plupart des plugins Aliucord fonctionnent aussi.</string>
+  <string name="fun_fact_12">Vous pouvez installer Endcord plusieurs fois en utilisant un autre nom de paquet.</string>
+</resources>

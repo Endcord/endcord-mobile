@@ -1,0 +1,42 @@
+package com.endcord.installer.patcher.steps.patch
+
+import android.os.Build
+import com.endcord.installer.R
+import com.endcord.installer.patcher.StepRunner
+import com.endcord.installer.patcher.steps.StepGroup
+import com.endcord.installer.patcher.steps.base.IDexProvider
+import com.endcord.installer.patcher.steps.base.Step
+import com.endcord.installer.patcher.steps.download.CopyDependenciesStep
+import com.endcord.installer.patcher.steps.download.DownloadAliuhookStep
+import com.github.diamondminer88.zip.*
+import org.koin.core.component.KoinComponent
+
+/**
+ * Add the Aliuhook library's native libs.
+ * The dex is handled by [ReorganizeDexStep] through the [IDexProvider] implementation of [DownloadAliuhookStep].
+ */
+class AddAliuhookLibsStep : Step(), KoinComponent {
+    override val group = StepGroup.Patch
+    override val localizedName = R.string.patch_step_add_aliuhook
+
+    override suspend fun execute(container: StepRunner) {
+        val currentDeviceArch = Build.SUPPORTED_ABIS.first()
+        val apk = container.getStep<CopyDependenciesStep>().apk
+        val aliuhook = container.getStep<DownloadAliuhookStep>().getStoredFile(container)
+
+        ZipWriter(apk, /* append = */ true).use { patchedApk ->
+            ZipReader(aliuhook).use { aliuhook ->
+                for (libFile in arrayOf("libaliuhook.so", "libc++_shared.so", "liblsplant.so")) {
+                    container.log("Reading aliuhook lib $libFile with arch $currentDeviceArch")
+
+                    val apkLibPath = "lib/$currentDeviceArch/$libFile"
+                    val libBytes = aliuhook.openEntry("jni/$currentDeviceArch/$libFile")?.read()
+                        ?: throw IllegalStateException("Failed to read $libFile from aliuhook aar")
+
+                    container.log("Writing to $apkLibPath in APK unaligned uncompressed")
+                    patchedApk.writeEntry(apkLibPath, libBytes, ZipCompression.NONE)
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Endcord Installer</string>
+  <string name="app_description">Klasik Discord uygulaması üzerine kurulu, Android için Endcord</string>
+
+  <string name="support_server">Destek Sunucusu</string>
+  <string name="installer">Yükleyici</string>
+
+  <string name="action_cancel">İptal</string>
+  <string name="action_retry">Tekrar dene</string>
+  <string name="action_continue">Devam</string>
+  <string name="action_retry_install">Kurulumu tekrar dene</string>
+  <string name="action_open_error_log">Hata kaydını aç</string>
+  <string name="action_apply">Uygula</string>
+  <string name="action_confirm">Onayla</string>
+  <string name="action_dismiss">Kapat</string>
+  <string name="action_install">Kur</string>
+  <string name="action_uninstall">Kaldır</string>
+  <string name="action_add_install">Yeni Kurulum</string>
+  <string name="action_update_install">Kurulumu Güncelle</string>
+  <string name="action_update">Güncelle</string>
+  <string name="action_clear">Temizle</string>
+  <string name="action_delete">Sil</string>
+  <string name="action_launch">Aç</string>
+  <string name="action_close">Kapat</string>
+  <string name="action_search">Ara</string>
+  <string name="action_copy">Kopyala</string>
+  <string name="action_collapse">Daralt</string>
+  <string name="action_expand">Genişlet</string>
+  <string name="action_copied">Kopyalandı!</string>
+  <string name="action_cleared_cache">Önbellek temizlendi!</string>
+  <string name="action_exit_anyways">Yine de çık</string>
+  <string name="action_open_info">Bilgiyi Aç</string>
+  <string name="action_reset_default">Varsayılana sıfırla</string>
+
+  <string name="intent_reinstall_fail">Yeniden kurulum otomatik başlatılamadı. Lütfen elle başlatın.</string>
+  <string name="intent_import_component_success">%s başarıyla içe aktarıldı</string>
+  <string name="intent_import_component_failure">Özel bileşen içe aktarılamadı!</string>
+
+  <string name="permissions_title">İzinleri Ver</string>
+  <string name="permissions_subtitle">Endcord Installer şu izinlere ihtiyaç duyuyor:</string>
+  <string name="permissions_legend">%s zorunlu izinleri gösterir!</string>
+  <string name="permissions_grant">İzin ver</string>
+  <string name="permissions_granted">Verildi</string>
+  <string name="permissions_header_options">Seçenekler</string>
+  <string name="permissions_header_permissions">İzinler</string>
+  <string name="permissions_install_title">Bilinmeyen Kaynaklardan Yükleme</string>
+  <string name="permissions_install_desc">Endcord\'u bu uygulamadan kurmak için gerekli.</string>
+  <string name="permissions_storage_title">Harici Depolama</string>
+  <string name="permissions_storage_desc">Endcord ve yükleyicisi eklentiler ve ayarlar gibi ortak verileri ~/Endcord klasöründe tutar; bunun için tam depolama erişimi gerekir. Kapsamlı depolama henüz desteklenmiyor.</string>
+  <string name="permissions_notifs_title">Bildirimler</string>
+  <string name="permissions_battery_title">Arka Plan Pil Kullanımı</string>
+  <string name="permissions_battery_desc">Uygulama küçültüldüğünde kurulumun iptal edilmemesini sağlar.</string>
+  <string name="permissions_notifs_desc">Yalnızca Endcord Installer küçültülmüşken kurulum ilerlemesini göstermek için kullanılır.</string>
+
+  <string name="permissions_root_denied">Root izinleri alınamadı</string>
+  <string name="permissions_shizuku_denied">Shizuku izinleri alınamadı</string>
+  <string name="permissions_dhizuku_denied">Dhizuku izinleri alınamadı</string>
+
+  <string name="installs_no_installs">Hiç kurulum bulunamadı!</string>
+  <string name="launch_endcord_fail">Endcord açılamadı</string>
+
+  <string name="settings_header_advanced">Gelişmiş</string>
+  <string name="settings_header_installation">Kurulum</string>
+  <string name="settings_header_appearance">Görünüm</string>
+  <string name="settings_header_info">Bilgi</string>
+  <string name="setting_language">Dil</string>
+  <string name="setting_language_desc">Bu uygulamanın dili</string>
+  <string name="setting_theme">Tema</string>
+  <string name="setting_theme_desc">Bu uygulamada kullanılacak tema</string>
+  <string name="setting_dynamic_color">Dinamik renk</string>
+  <string name="setting_dynamic_color_desc">Android 12 ve üzerinde Endcord\'un renkleri yerine duvar kâğıdı renklerinizi (Material You) kullanır</string>
+  <string name="setting_developer_options">Geliştirici seçenekleri</string>
+  <string name="setting_developer_options_desc">Ne işe yaradığını bilmiyorsanız açmayın!</string>
+  <string name="setting_installer">Kurulum Yöntemi</string>
+  <string name="setting_installer_desc">Yükleyicinin sistemin paket yükleyicisiyle nasıl iletişim kuracağı.</string>
+  <string name="setting_keep_patched_apks">Yamalı APK\'ları sakla</string>
+  <string name="setting_keep_patched_apks_desc">Hata ayıklama için kurulumdan sonra tüm yamalı dosyaları ve APK\'ları saklar. APK\'yı dışa aktarmak yalnızca başarılı bir kurulumdan sonra işe yarar.</string>
+  <string name="settings_clear_cache">Önbelleği temizle</string>
+  <string name="settings_export_apk">APK\'yı dışa aktar</string>
+
+  <string name="language_system">Sistem varsayılanı</string>
+  <string name="language_welcome_title">Endcord\'a hoş geldiniz</string>
+  <string name="language_welcome_desc">Kullanmak istediğiniz dili seçin. Daha sonra ayarlardan değiştirebilirsiniz.</string>
+
+  <string name="installer_pm">Doğrudan</string>
+  <string name="installer_pm_desc">PackageInstaller API\'sini doğrudan uygulamadan kullanır. (Varsayılan)</string>
+  <string name="installer_root">Root</string>
+  <string name="installer_intent">Intent</string>
+  <string name="installer_intent_desc">Kurulumu sistemin varsayılan yükleyici uygulamasına devreder.</string>
+  <string name="installer_root_desc">Magisk veya KernelSU gibi root araçlarıyla PackageManager\'ı doğrudan kullanır.</string>
+  <string name="installer_shizuku">Shizuku</string>
+  <string name="installer_shizuku_desc">PackageInstaller API\'sini Shizuku üzerinden uzaktan kullanır. ADB, Kablosuz ADB ve Root arka uçlarının hepsi desteklenir.</string>
+  <string name="installer_dhizuku">Dhizuku</string>
+  <string name="installer_dhizuku_desc">PackageInstaller API\'sini Cihaz Sahibi izinleriyle Dhizuku üzerinden uzaktan kullanır.</string>
+
+  <string name="theme_system">Sistem</string>
+  <string name="theme_dark">Koyu</string>
+  <string name="theme_light">Açık</string>
+  <string name="theme_black">Siyah</string>
+
+  <string name="plugins_title">Eklentiler</string>
+  <string name="plugins_view_changelog">Değişiklik kaydını görüntüle</string>
+  <string name="plugins_delete_plugin">%s eklentisini kaldır</string>
+  <string name="plugins_delete_plugin_body">%s eklentisini kaldırmak istediğinizden emin misiniz?</string>
+  <string name="plugins_none_installed">Yüklü eklenti yok!</string>
+  <string name="plugins_changelog_media">Değişiklik Kaydı Medyası</string>
+  <string name="plugins_error">Eklentiler yüklenirken bir sorun oluştu!</string>
+  <string name="plugins_safe_mode_title">Güvenli mod</string>
+  <string name="plugins_safe_mode_desc">Endcord açılırken tüm eklentileri geçici olarak devre dışı bırakır</string>
+
+  <string name="navigation_back">Geri</string>
+  <string name="navigation_about">Hakkında</string>
+  <string name="navigation_logs">Kayıtlar</string>
+  <string name="navigation_settings">Ayarlar</string>
+
+  <string name="contributors_lead">Lider</string>
+  <string name="contributors">Katkıda Bulunanlar</string>
+  <string name="contributors_contributions">%s katkı</string>
+
+  <string name="network_load_fail">Yüklenemedi</string>
+  <string name="network_warning_title">Ölçülü ağ</string>
+  <string name="network_warning_body">Mobil veri veya ölçülü bir ağ kullanıyor gibi görünüyorsunuz. Kurulum birkaç yüz megabayt indirebilir. Yine de devam edilsin mi?</string>
+  <string name="network_warning_disable">Bunu bir daha gösterme</string>
+
+  <string name="version_none">Yok</string>
+  <string name="version_stable">Kararlı</string>
+  <string name="version_beta">Beta</string>
+  <string name="version_alpha">Alfa</string>
+  <string name="version_unknown">Bilinmiyor</string>
+  <string name="version_load_fail">Sürüm alınamadı</string>
+
+  <string name="installer_file_save_success">%s konumuna kaydedildi</string>
+  <string name="installer_file_save_failed">%s kaydedilemedi</string>
+  <string name="installer_install_success">Endcord başarıyla kuruldu</string>
+  <string name="installer_install_aborted">Endcord kurulumu iptal edildi</string>
+  <string name="installer_uninstall_new">Devam etmek için lütfen mevcut Endcord sürümünüzü kaldırın!</string>
+  <string name="installer_uninstall_success">Endcord kaldırıldı</string>
+  <string name="installer_uninstall_aborted">Kaldırma iptal edildi</string>
+  <string name="installer_dl_verify_fail">İndirme doğrulanamadı</string>
+  <string name="installer_insufficient_storage">Yeterli depolama alanı yok!</string>
+  <string name="installer_banner_minimization">Pil optimizasyonları kapatılmadığı için bu ekranı küçültmek kurulumu iptal edebilir!</string>
+  <string name="installer_banner_failure">Kurulum başarısız oldu! Tekrar deneyebilir veya yardım almak için bu bildirime dokunarak Endcord sunucusunu açabilirsiniz.</string>
+  <string name="installer_banner_success">Endcord kuruldu! Bu yükleyiciyi silmeyin: bazı güncellemeler için gerekli.</string>
+
+  <string name="install_error_unknown">Yükleyici hatası (bilinmeyen neden)</string>
+  <string name="install_error_unhandled_intent">%s işlemini yapabilecek bir uygulama yok!</string>
+  <string name="install_error_blocked">Kurulum engellendi</string>
+  <string name="install_error_invalid">Bir veya daha fazla APK geçersiz ya da bozuk</string>
+  <string name="install_error_conflict">Yüklü bir uygulamayla çakışıyor; genellikle imzalar uyuşmadığı için</string>
+  <string name="install_error_storage">Kurulum için yeterli depolama alanı yok</string>
+  <string name="install_error_incompatible">Bu uygulama cihazınızla uyumlu değil</string>
+  <string name="install_error_timeout">Yükleyici zaman aşımına uğradı</string>
+
+  <string name="install_group_prepare">Hazırlık</string>
+  <string name="install_group_download">Bağımlılıkları indir</string>
+  <string name="install_group_patch">APK\'yı yamala</string>
+  <string name="install_group_install">APK\'yı kur</string>
+
+  <string name="patch_step_fetch_kt_version">Hedef Discord sürümü alınıyor</string>
+  <string name="patch_step_downgrade_check">Daha yeni kurulumlar denetleniyor</string>
+  <string name="patch_step_restore_cache">Önbellekten geri yükleniyor</string>
+  <string name="patch_step_dl_kt_apk">Discord APK\'sı indiriliyor</string>
+  <string name="patch_step_dl_kotlin">Kotlin kütüphanesi indiriliyor</string>
+  <string name="patch_step_dl_injector">Endcord Injector indiriliyor</string>
+  <string name="patch_step_dl_aliuhook">Aliuhook kütüphanesi indiriliyor</string>
+  <string name="patch_step_dl_smali">Smali yamaları indiriliyor</string>
+  <string name="patch_step_copy_deps">Bağımlılıklar kopyalanıyor</string>
+  <string name="patch_step_patch_manifests">APK manifesti yamalanıyor</string>
+  <string name="patch_step_patch_certs">Güncel kök sertifikalar ekleniyor</string>
+  <string name="patch_step_patch_icon">Uygulama simgesi yamalanıyor</string>
+  <string name="patch_step_add_aliuhook">Aliuhook kütüphanesi ekleniyor</string>
+  <string name="patch_step_patch_smali">Smali yamaları uygulanıyor</string>
+  <string name="patch_step_reorganize_dex">.dex dosyaları APK\'ya ekleniyor</string>
+  <string name="patch_step_save_metadata">Meta veriler kaydediliyor</string>
+  <string name="patch_step_alignment">APK hizalanıyor</string>
+  <string name="patch_step_signing">APK imzalanıyor</string>
+  <string name="patch_step_install">APK kuruluyor</string>
+  <string name="patch_step_cleanup">Temizleniyor</string>
+
+  <string name="status_queued">Sırada</string>
+  <string name="status_ongoing">Sürüyor</string>
+  <string name="status_skipped">Atlandı</string>
+  <string name="status_success">Başarılı</string>
+  <string name="status_failed">Başarısız</string>
+
+  <string name="installer_abort_title">Gerçekten çıkılsın mı?</string>
+  <string name="installer_abort_body">Devam eden kurulumu iptal etmek istediğinizden emin misiniz?</string>
+
+  <string name="updater_title">v%s sürümüne güncelle</string>
+  <string name="updater_body">Endcord Installer\'ın yeni bir sürümü çıktı; kurulumun çalışması için gerekebilir. Güncellemek ister misiniz?</string>
+  <string name="updater_open_github">Sürümü GitHub\'da görüntüle</string>
+  <string name="updater_check_fail">Güncellemeler denetlenemedi!</string>
+  <string name="updater_update_fail">Güncellenemedi! Lütfen güncellemeyi elle indirip kurun.</string>
+
+  <string name="downloader_err_unknown">İndirme başarısız (bilinmiyor)</string>
+  <string name="downloader_err_code">İndirme başarısız (%s)</string>
+  <string name="downloader_err_timeout">İndirme başarısız (zaman aşımı)</string>
+  <string name="downloader_err_response">İndirme başarısız (geçersiz yanıt)</string>
+  <string name="downloader_err_file_exists">İndirme başarısız (dosya zaten var)</string>
+  <string name="downloader_err_storage_space">İndirme başarısız (yetersiz alan)</string>
+
+  <string name="home_network_fail">Veriler alınamadı!</string>
+
+  <string name="patchopts_title">Endcord\'un bazı seçenekleri yalnızca kurulum sırasında belirlenebilir ve sonradan değiştirilemez.</string>
+  <string name="patchopts_pkgname_title">Paket Adı</string>
+  <string name="patchopts_pkgname_desc">Her uygulamanın benzersiz kimliği. Farklı paket adları Endcord\'u birden fazla kez kurmanızı sağlar.</string>
+  <string name="patchopts_pkgname_invalid">Geçersiz paket adı!</string>
+  <string name="patchopts_pkgname_taken">Mevcut uygulamanın yerine kurulacak!</string>
+  <string name="patchopts_pkgname_ok">Geçerli paket adı!</string>
+  <string name="patchopts_appname_title">Uygulama Adı</string>
+  <string name="patchopts_appname_desc">Ana ekranınızda görünen ad. Ek kurulumları ayırt edebilmek için değiştirin.</string>
+  <string name="patchopts_debuggable_title">Hata ayıklanabilir</string>
+  <string name="patchopts_debuggable_desc">Manifestteki debuggable bayrağını açar. Yalnızca ne yaptığınızı biliyorsanız kullanın!</string>
+  <string name="patchopts_icon_title">Uygulama simgesini değiştir</string>
+  <string name="patchopts_icon_desc">Discord\'un simgesi yerine Endcord\'un simgesini (veya özel bir simge) kullanır.</string>
+  <string name="patchopts_custom_injector_title">Özel Injector</string>
+  <string name="patchopts_custom_injector_desc">Yükleyiciye aktarılmış özel bir injector derlemesi.</string>
+  <string name="patchopts_custom_patches_title">Özel Yamalar</string>
+  <string name="patchopts_custom_patches_desc">Yükleyiciye aktarılmış özel bir smali yama paketi.</string>
+  <string name="patchopts_divider_basic">Temel</string>
+  <string name="patchopts_divider_advanced">Gelişmiş</string>
+  <string name="patchopts_warning_invalid_iconopts">Seçilen simge seçenekleri geçersiz!</string>
+
+  <string name="iconopts_screen_title">Simge Değiştirme</string>
+  <string name="iconopts_variant_title_old_discord">Eski Discord</string>
+  <string name="iconopts_variant_desc_old_discord">2021 ve öncesine ait eski Discord mor rengi ve logosu.</string>
+  <string name="iconopts_variant_title_color">Özel Renk</string>
+  <string name="iconopts_variant_title_image">Özel Görsel</string>
+  <string name="iconopts_variant_desc_discord">Orijinal simgeyi korur, yalnızca eksik tek renkli simgeyi ekler.</string>
+  <string name="iconopts_variant_desc_endcord">Gece mavisi zemin üzerinde Endcord\'un piksel pandası.</string>
+  <string name="iconopts_variant_desc_color">Özel bir simge arka plan rengi seçin.</string>
+  <string name="iconopts_variant_desc_image">Özel bir görsel seçin. Uyarlanabilir simge ön plan yönergelerine uyacak kadar boşluk içermelidir. En fazla 256KiB olabilir.</string>
+  <string name="iconopts_colorpicker_title">Ton ve Doygunluk</string>
+  <string name="iconopts_colorpicker_desc">Ana HSV renk bileşenleri.</string>
+  <string name="iconopts_lightness_title">Parlaklık</string>
+  <string name="iconopts_lightness_desc">Rengin parlaklığı.</string>
+  <string name="iconopts_hex_title">Hex Renk</string>
+  <string name="iconopts_hex_desc">Rengin RGB hex değerini girin. Saydamlık yok sayılır!</string>
+  <string name="iconopts_failed_image">Görsel açılamadı</string>
+  <string name="iconopts_failed_image_too_big">Görsel 256KiB sınırından büyük</string>
+  <string name="iconopts_btn_open_selection">Görsel Seç</string>
+  <string name="iconopts_btn_open_example_image">Örnek görsel</string>
+  <string name="iconopts_icon_preview_title">Simge Önizlemesi</string>
+  <string name="iconopts_icon_preview_desc">Simgenin cihazınızda nasıl görüneceği, kırpılmış ve ölçeklenmiş hâliyle</string>
+  <string name="iconopts_image_preview_title">Önizleme</string>
+  <string name="iconopts_image_preview_desc">Seçilen görselin kırpılmamış tam hâli.</string>
+  <string name="iconopts_image_preview_none">Görsel seçilmedi</string>
+
+  <string name="componentopts_screen_title">Özel Bileşen (%s)</string>
+  <string name="componentopts_screen_desc">Yükleyiciye aktarılmış özel bir derleme seçin.</string>
+  <string name="componentopts_selected_none">En son</string>
+  <string name="componentopts_deleted">Bileşen silindi!</string>
+
+  <string name="log_title">Kayıt</string>
+  <string name="log_section_install_info">Kurulum Bilgisi</string>
+  <string name="log_section_env_info">Ortam Bilgisi</string>
+  <string name="log_section_error">Hata Ayrıntıları</string>
+  <string name="log_section_log">Kurulum Kaydı</string>
+  <string name="log_action_export">Kaydı dışa aktar</string>
+  <string name="log_action_export_apk">APK\'yı dışa aktar</string>
+  <string name="log_action_share">Kaydı paylaş</string>
+
+  <string name="logs_title">Kayıtlar</string>
+  <string name="logs_none">Henüz kayıt yok!</string>
+  <string name="logs_action_delete_all">Tüm kayıtları sil</string>
+  <string name="logs_status_delete_success">Tüm kayıtlar silindi</string>
+  <string name="logs_wipe_title">Kayıtları Temizle</string>
+  <string name="logs_wipe_desc">Tüm kayıtları kalıcı olarak silmek istediğinizden emin misiniz?</string>
+
+  <string name="notif_group_install_title">Etkin kurulum</string>
+  <string name="notif_group_install_desc">Kurulum arka planda sürerken gönderilen ilerleme bildirimleri</string>
+  <string name="notif_install_ready_title">Endcord kurulmaya hazır!</string>
+  <string name="notif_install_ready_desc">Kurmak için dokunun…</string>
+  <string name="notif_install_fail_title">Endcord kurulamadı</string>
+  <string name="notif_install_fail_desc">Ayrıntılar için dokunun…</string>
+
+  <string name="play_protect_warning_title">Play Protect</string>
+  <string name="play_protect_warning_desc">Google Play Protect açık görünüyor. Endcord kendi imzalama anahtarını kullandığı için kuruluma müdahale edebilir. Play Protect ayarlarından kapatabilirsiniz.\n\nBir uyarı gösterirse\n\"Diğer ayrıntılar\" -> \"Yine de yükle\" seçeneğine dokunun</string>
+  <string name="play_protect_warning_ok">Devam</string>
+  <string name="play_protect_warning_open_gpp">Play Protect\'i aç</string>
+  <string name="play_protect_warning_disable">Bunu bir daha gösterme</string>
+
+  <string name="fun_fact_prefix">Biliyor muydunuz? %s</string>
+  <string name="fun_fact_1">Endcord, Endcord PC\'deki eklentilerle birlikte gelir; siz açana kadar hepsi kapalıdır.</string>
+  <string name="fun_fact_2">Endcord beş dil konuşur: İngilizce, Türkçe, Rusça, İspanyolca ve Fransızca.</string>
+  <string name="fun_fact_3">Endcord her 15 dakikada bir GitHub\'da güncelleme arar ve tek dokunuşla güncellenir.</string>
+  <string name="fun_fact_4">Endcord logosundaki panda uyuyor. Onu uyandırmamaya çalışın.</string>
+  <string name="fun_fact_5">Telefonunuzdaki Endcord, Endcord PC ile aynı çevirileri kullanır.</string>
+  <string name="fun_fact_6">Sorun mu yaşıyorsunuz? Endcord Discord sunucusunda sorun: discord.gg/endcord</string>
+  <string name="fun_fact_7">Birbiriyle çakışan eklentiler işaretlenir; böylece biri çalışmayı bırakmadan önce haberiniz olur.</string>
+  <string name="fun_fact_8">Endcord, React Native yerine gerçek Android görünümleri kullanan klasik Discord uygulaması üzerinde çalışır.</string>
+  <string name="fun_fact_9">Bir şeyler ters giderse güvenli mod tüm eklentileri tek seferde kapatır.</string>
+  <string name="fun_fact_10">Çökme kayıtları Endcord/crashlogs klasörüne kaydedilir.</string>
+  <string name="fun_fact_11">Endcord, Aliucord üzerine kuruludur; bu yüzden çoğu Aliucord eklentisi de çalışır.</string>
+  <string name="fun_fact_12">Farklı bir paket adı kullanarak Endcord\'u birden fazla kez kurabilirsiniz.</string>
+</resources>

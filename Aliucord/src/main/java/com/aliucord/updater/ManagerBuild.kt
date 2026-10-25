@@ -49,8 +49,10 @@ object ManagerBuild {
 
     init {
         try {
-            // Manager adds this to the APK root
-            val stream = this.javaClass.classLoader?.getResourceAsStream("aliucord.json")
+            // Endcord Installer adds this to the APK root (Aliucord Manager named it aliucord.json)
+            val loader = this.javaClass.classLoader
+            val stream = loader?.getResourceAsStream("endcord.json")
+                ?: loader?.getResourceAsStream("aliucord.json")
 
             if (stream != null) {
                 metadata = GsonUtils.gson.fromJson(
