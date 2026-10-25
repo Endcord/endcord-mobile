@@ -15,6 +15,10 @@
 > Endcord for Android is a **fork of [Aliucord](https://github.com/Aliucord/Aliucord)**, the Android Discord client
 > mod. It keeps Aliucord's core and plugin compatibility, and adds Endcord PC's plugins, languages, updater and
 > installer on top. It is not affiliated with the Aliucord team or with Discord.
+>
+> Looking for Endcord on the **current** Discord app? That is a separate client on the
+> [`next` branch](../../tree/next) of this repository (a fork of Revenge), with its own README. This branch is the
+> classic-app client.
 
 ## Features
 
