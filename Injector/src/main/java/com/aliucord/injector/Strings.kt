@@ -12,17 +12,22 @@ import java.util.Locale
  * so it carries its own copies in Endcord's five languages, picked from the system language.
  */
 internal object Strings {
-    enum class Key {
-        STARTUP_FAILED,
-        CORE_START_FAILED,
-        CUSTOM_CORE_DISABLED,
-        NEEDS_ALL_FILES_ACCESS,
-        NEEDS_STORAGE,
-        BASE_OUTDATED,
-        DOWNLOAD_FAILED,
+    /**
+     * Message ids. Plain constants on purpose: a Kotlin enum compiled by the current compiler needs
+     * kotlin.enums.EnumEntriesKt, which the Kotlin 1.5 stdlib on the device doesn't have, and the injector runs
+     * before the core's polyfill for it is loaded.
+     */
+    object Key {
+        const val STARTUP_FAILED = "startupFailed"
+        const val CORE_START_FAILED = "coreStartFailed"
+        const val CUSTOM_CORE_DISABLED = "customCoreDisabled"
+        const val NEEDS_ALL_FILES_ACCESS = "needsAllFilesAccess"
+        const val NEEDS_STORAGE = "needsStorage"
+        const val BASE_OUTDATED = "baseOutdated"
+        const val DOWNLOAD_FAILED = "downloadFailed"
     }
 
-    private val tables: Map<String, Map<Key, String>> = mapOf(
+    private val tables: Map<String, Map<String, String>> = mapOf(
         "en" to mapOf(
             Key.STARTUP_FAILED to "Failed to run the Endcord injector",
             Key.CORE_START_FAILED to "Failed to start Endcord!",
@@ -74,7 +79,7 @@ internal object Strings {
     @Volatile
     var preferredLanguage: String? = null
 
-    operator fun get(key: Key): String {
+    operator fun get(key: String): String {
         val lang = (preferredLanguage ?: Locale.getDefault().language).lowercase(Locale.ROOT)
         val table = tables.entries.firstOrNull { lang.startsWith(it.key) }?.value ?: tables.getValue("en")
         return table[key] ?: tables.getValue("en").getValue(key)
