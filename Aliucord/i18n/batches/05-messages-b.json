@@ -1,0 +1,596 @@
+{
+  "A Little Upset": {
+    "tr": "Biraz üzgünüm",
+    "ru": "Немного расстроен",
+    "es": "Un poco molesto",
+    "fr": "Un peu contrarié"
+  },
+  "Also apply functionality to reply previews": {
+    "tr": "Yanıt önizlemelerine de uygula",
+    "ru": "Применять и к превью ответов",
+    "es": "Aplicar también a las vistas previas de respuestas",
+    "fr": "Appliquer aussi aux aperçus de réponses"
+  },
+  "Alterous": {
+    "tr": "Ne platonik ne romantik",
+    "ru": "Ни платонически, ни романтически",
+    "es": "Ni platónico ni romántico",
+    "fr": "Ni platonique ni romantique"
+  },
+  "Background color": {
+    "tr": "Arka plan rengi",
+    "ru": "Цвет фона",
+    "es": "Color de fondo",
+    "fr": "Couleur de fond"
+  },
+  "Both sides": {
+    "tr": "İki taraf",
+    "ru": "Обе стороны",
+    "es": "Ambos lados",
+    "fr": "Des deux côtés"
+  },
+  "Clickbait": {
+    "tr": "Tık tuzağı",
+    "ru": "Кликбейт",
+    "es": "Clickbait",
+    "fr": "Piège à clics"
+  },
+  "Colored block next to it": {
+    "tr": "Yanında renkli blok",
+    "ru": "Цветной блок рядом",
+    "es": "Bloque de color al lado",
+    "fr": "Bloc coloré à côté"
+  },
+  "Copied magnet link": {
+    "tr": "Magnet bağlantısı kopyalandı",
+    "ru": "Magnet-ссылка скопирована",
+    "es": "Enlace magnet copiado",
+    "fr": "Lien magnet copié"
+  },
+  "Copypasta": {
+    "tr": "Kopyala-yapıştır metin",
+    "ru": "Копипаста",
+    "es": "Copypasta",
+    "fr": "Copypasta"
+  },
+  "Couldn't load the replied message": {
+    "tr": "Yanıtlanan mesaj yüklenemedi",
+    "ru": "Не удалось загрузить исходное сообщение",
+    "es": "No se pudo cargar el mensaje respondido",
+    "fr": "Impossible de charger le message d'origine"
+  },
+  "Cozy mode": {
+    "tr": "Rahat mod",
+    "ru": "Уютный режим",
+    "es": "Modo cómodo",
+    "fr": "Mode confortable"
+  },
+  "Custom tone indicators (format: jk=Joking; srs=Serious)": {
+    "tr": "Özel ton göstergeleri (biçim: jk=Şaka; srs=Ciddi)",
+    "ru": "Свои индикаторы тона (формат: jk=Шутка; srs=Серьёзно)",
+    "es": "Indicadores de tono propios (formato: jk=Broma; srs=En serio)",
+    "fr": "Indicateurs de ton perso (format : jk=Blague ; srs=Sérieux)"
+  },
+  "Detect old Discord Android clients": {
+    "tr": "Eski Discord Android istemcilerini algıla",
+    "ru": "Определять старые клиенты Discord для Android",
+    "es": "Detectar clientes antiguos de Discord para Android",
+    "fr": "Détecter les anciens clients Discord Android"
+  },
+  "Directed At You": {
+    "tr": "Sana yönelik",
+    "ru": "О тебе",
+    "es": "Va dirigido a ti",
+    "fr": "Te vise"
+  },
+  "Don't add indicator to your own messages": {
+    "tr": "Kendi mesajlarına gösterge ekleme",
+    "ru": "Не добавлять пометку к своим сообщениям",
+    "es": "No añadir el indicador a tus mensajes",
+    "fr": "Ne pas ajouter l'indicateur à vos messages"
+  },
+  "Enable 3 char hex-code like #39f": {
+    "tr": "#39f gibi 3 karakterli hex kodları aç",
+    "ru": "Включить 3-символьные hex-коды вроде #39f",
+    "es": "Activar códigos hex de 3 caracteres como #39f",
+    "fr": "Activer les codes hex à 3 caractères comme #39f"
+  },
+  "Exaggeration": {
+    "tr": "Abartı",
+    "ru": "Преувеличение",
+    "es": "Exageración",
+    "fr": "Exagération"
+  },
+  "Failed to change the embeds of this message": {
+    "tr": "Bu mesajın yerleştirmeleri değiştirilemedi",
+    "ru": "Не удалось изменить встраивания сообщения",
+    "es": "No se pudieron cambiar las inserciones de este mensaje",
+    "fr": "Impossible de modifier les intégrations de ce message"
+  },
+  "Fake": {
+    "tr": "Sahte",
+    "ru": "Фейк",
+    "es": "Falso",
+    "fr": "Faux"
+  },
+  "Genuine": {
+    "tr": "İçten",
+    "ru": "Искренне",
+    "es": "Sincero",
+    "fr": "Sincère"
+  },
+  "Genuine Question": {
+    "tr": "İçten bir soru",
+    "ru": "Искренний вопрос",
+    "es": "Pregunta sincera",
+    "fr": "Question sincère"
+  },
+  "Half Joking": {
+    "tr": "Yarı şaka",
+    "ru": "Полушутя",
+    "es": "Medio en broma",
+    "fr": "À moitié pour rire"
+  },
+  "How to display usernames and nicks": {
+    "tr": "Kullanıcı adları ve takma adlar nasıl gösterilsin",
+    "ru": "Как показывать имена и ники",
+    "es": "Cómo mostrar nombres de usuario y apodos",
+    "fr": "Comment afficher pseudos et surnoms"
+  },
+  "How to render colors": {
+    "tr": "Renkler nasıl gösterilsin",
+    "ru": "Как отображать цвета",
+    "es": "Cómo mostrar los colores",
+    "fr": "Comment afficher les couleurs"
+  },
+  "Hyperbole": {
+    "tr": "Mübalağa",
+    "ru": "Гипербола",
+    "es": "Hipérbole",
+    "fr": "Hyperbole"
+  },
+  "Inside Joke": {
+    "tr": "Aramızdaki bir şaka",
+    "ru": "Шутка для своих",
+    "es": "Broma interna",
+    "fr": "Blague entre nous"
+  },
+  "Joking": {
+    "tr": "Şaka",
+    "ru": "Шутка",
+    "es": "Broma",
+    "fr": "Blague"
+  },
+  "Last day": {
+    "tr": "Önceki gün",
+    "ru": "Вчера",
+    "es": "Día anterior",
+    "fr": "Veille"
+  },
+  "Last week": {
+    "tr": "Geçen hafta",
+    "ru": "Прошлая неделя",
+    "es": "Última semana",
+    "fr": "Semaine dernière"
+  },
+  "Left side": {
+    "tr": "Sol taraf",
+    "ru": "Слева",
+    "es": "Lado izquierdo",
+    "fr": "Côté gauche"
+  },
+  "Light-Hearted": {
+    "tr": "Neşeli",
+    "ru": "Беззлобно",
+    "es": "Desenfadado",
+    "fr": "Sur un ton léger"
+  },
+  "Literally": {
+    "tr": "Kelimenin tam anlamıyla",
+    "ru": "Буквально",
+    "es": "Literalmente",
+    "fr": "Littéralement"
+  },
+  "Lyrics": {
+    "tr": "Şarkı sözü",
+    "ru": "Текст песни",
+    "es": "Letra de canción",
+    "fr": "Paroles"
+  },
+  "Make highlighted URLs bold.": {
+    "tr": "Vurgulanan URL'leri kalın yap.",
+    "ru": "Выделять подсвеченные ссылки жирным.",
+    "es": "Poner en negrita las URL resaltadas.",
+    "fr": "Mettre en gras les URL surlignées."
+  },
+  "Metaphorically": {
+    "tr": "Mecazen",
+    "ru": "Метафорически",
+    "es": "Metafóricamente",
+    "fr": "Métaphoriquement"
+  },
+  "Moment.js formatting documentation": {
+    "tr": "Moment.js biçimlendirme belgeleri",
+    "ru": "Документация по форматам Moment.js",
+    "es": "Documentación de formatos de Moment.js",
+    "fr": "Documentation des formats Moment.js"
+  },
+  "Negative Connotation": {
+    "tr": "Olumsuz anlamda",
+    "ru": "Негативный оттенок",
+    "es": "Connotación negativa",
+    "fr": "Connotation négative"
+  },
+  "Neutral Connotation": {
+    "tr": "Nötr anlamda",
+    "ru": "Нейтральный оттенок",
+    "es": "Connotación neutral",
+    "fr": "Connotation neutre"
+  },
+  "Nickname then username": {
+    "tr": "Önce takma ad, sonra kullanıcı adı",
+    "ru": "Сначала ник, потом имя пользователя",
+    "es": "Apodo y luego usuario",
+    "fr": "Surnom puis pseudo"
+  },
+  "No installed app can open magnet links": {
+    "tr": "Magnet bağlantılarını açabilecek yüklü bir uygulama yok",
+    "ru": "Нет приложения, которое может открыть magnet-ссылки",
+    "es": "Ninguna app instalada puede abrir enlaces magnet",
+    "fr": "Aucune appli installée ne peut ouvrir les liens magnet"
+  },
+  "Non-Serious": {
+    "tr": "Ciddi değil",
+    "ru": "Несерьёзно",
+    "es": "No en serio",
+    "fr": "Pas sérieux"
+  },
+  "Non-Sexual Intent": {
+    "tr": "Cinsel ima yok",
+    "ru": "Без сексуального подтекста",
+    "es": "Sin intención sexual",
+    "fr": "Sans intention sexuelle"
+  },
+  "Not A Joke": {
+    "tr": "Şaka değil",
+    "ru": "Это не шутка",
+    "es": "No es una broma",
+    "fr": "Ce n'est pas une blague"
+  },
+  "Not Being Rude": {
+    "tr": "Kabalık etmek istemem",
+    "ru": "Без грубости",
+    "es": "No pretendo ser grosero",
+    "fr": "Sans vouloir être impoli"
+  },
+  "Not Directed At Anybody Here": {
+    "tr": "Buradaki kimseye yönelik değil",
+    "ru": "Ни к кому здесь не обращено",
+    "es": "No va dirigido a nadie de aquí",
+    "fr": "Ne vise personne ici"
+  },
+  "Not Directed At You": {
+    "tr": "Sana yönelik değil",
+    "ru": "Не о тебе",
+    "es": "No va dirigido a ti",
+    "fr": "Ne te vise pas"
+  },
+  "Not Forced": {
+    "tr": "Zorunlu değil",
+    "ru": "Не обязательно",
+    "es": "Sin obligación",
+    "fr": "Sans obligation"
+  },
+  "Not Joking": {
+    "tr": "Şaka yapmıyorum",
+    "ru": "Не шучу",
+    "es": "No estoy bromeando",
+    "fr": "Je ne plaisante pas"
+  },
+  "Not Mad": {
+    "tr": "Kızgın değilim",
+    "ru": "Не злюсь",
+    "es": "No estoy enojado",
+    "fr": "Pas fâché"
+  },
+  "Not Subtweeting": {
+    "tr": "Laf sokmuyorum",
+    "ru": "Это не намёк",
+    "es": "No es una indirecta",
+    "fr": "Pas une pique détournée"
+  },
+  "Number of emojis that are allowed to be jumbo": {
+    "tr": "Büyük gösterilebilecek emoji sayısı",
+    "ru": "Сколько эмодзи могут быть крупными",
+    "es": "Número de emojis que pueden mostrarse grandes",
+    "fr": "Nombre d'emojis pouvant être agrandis"
+  },
+  "Off-Topic": {
+    "tr": "Konu dışı",
+    "ru": "Офтоп",
+    "es": "Fuera de tema",
+    "fr": "Hors sujet"
+  },
+  "Older date": {
+    "tr": "Daha eski tarih",
+    "ru": "Более ранняя дата",
+    "es": "Fecha anterior",
+    "fr": "Date plus ancienne"
+  },
+  "One per line: a pattern, optionally followed by a color, like *.example.com #eb7396": {
+    "tr": "Her satıra bir kalıp, istersen ardından bir renk: *.example.com #eb7396 gibi",
+    "ru": "По одному в строке: шаблон и при желании цвет, например *.example.com #eb7396",
+    "es": "Uno por línea: un patrón y, si quieres, un color, como *.example.com #eb7396",
+    "fr": "Un par ligne : un motif, éventuellement suivi d'une couleur, comme *.example.com #eb7396"
+  },
+  "Platonic": {
+    "tr": "Platonik",
+    "ru": "Платонически",
+    "es": "Platónico",
+    "fr": "Platonique"
+  },
+  "Positive Connotation": {
+    "tr": "Olumlu anlamda",
+    "ru": "Позитивный оттенок",
+    "es": "Connotación positiva",
+    "fr": "Connotation positive"
+  },
+  "Prefix character(s) for tone indicators.": {
+    "tr": "Ton göstergeleri için ön ek karakterleri.",
+    "ru": "Префикс для индикаторов тона.",
+    "es": "Carácter(es) de prefijo para indicadores de tono.",
+    "fr": "Caractère(s) de préfixe des indicateurs de ton."
+  },
+  "Quote": {
+    "tr": "Alıntı",
+    "ru": "Цитата",
+    "es": "Cita",
+    "fr": "Citation"
+  },
+  "Reacted at {time}": {
+    "tr": "Tepki zamanı: {time}",
+    "ru": "Реакция: {time}",
+    "es": "Reaccionó el {time}",
+    "fr": "Réaction le {time}"
+  },
+  "Reference": {
+    "tr": "Gönderme",
+    "ru": "Отсылка",
+    "es": "Referencia",
+    "fr": "Référence"
+  },
+  "Rhetorical Question": {
+    "tr": "Retorik soru",
+    "ru": "Риторический вопрос",
+    "es": "Pregunta retórica",
+    "fr": "Question rhétorique"
+  },
+  "Right side": {
+    "tr": "Sağ taraf",
+    "ru": "Справа",
+    "es": "Lado derecho",
+    "fr": "Côté droit"
+  },
+  "Romantic": {
+    "tr": "Romantik",
+    "ru": "Романтически",
+    "es": "Romántico",
+    "fr": "Romantique"
+  },
+  "Same day": {
+    "tr": "Aynı gün",
+    "ru": "Сегодня",
+    "es": "Mismo día",
+    "fr": "Même jour"
+  },
+  "Sarcastic": {
+    "tr": "Alaycı",
+    "ru": "Сарказм",
+    "es": "Sarcasmo",
+    "fr": "Sarcastique"
+  },
+  "Seconds format displayed on every message timestamp": {
+    "tr": "Her mesaj zamanında gösterilen saniye biçimi",
+    "ru": "Формат секунд в метке времени сообщений",
+    "es": "Formato de segundos en la hora de cada mensaje",
+    "fr": "Format des secondes dans l'horodatage des messages"
+  },
+  "Serious": {
+    "tr": "Ciddi",
+    "ru": "Серьёзно",
+    "es": "En serio",
+    "fr": "Sérieux"
+  },
+  "Sexual Intent": {
+    "tr": "Cinsel imalı",
+    "ru": "С сексуальным подтекстом",
+    "es": "Con intención sexual",
+    "fr": "Intention sexuelle"
+  },
+  "Show milliseconds": {
+    "tr": "Milisaniyeyi göster",
+    "ru": "Показывать миллисекунды",
+    "es": "Mostrar milisegundos",
+    "fr": "Afficher les millisecondes"
+  },
+  "Suppress Embeds": {
+    "tr": "Yerleştirmeleri gizle",
+    "ru": "Скрыть встраивания",
+    "es": "Ocultar inserciones",
+    "fr": "Masquer les intégrations"
+  },
+  "Tap to load": {
+    "tr": "Yüklemek için dokun",
+    "ru": "Нажмите, чтобы загрузить",
+    "es": "Toca para cargar",
+    "fr": "Touchez pour charger"
+  },
+  "Teasing": {
+    "tr": "Takılıyorum",
+    "ru": "Подкол",
+    "es": "Es para picarte",
+    "fr": "Taquinerie"
+  },
+  "Text color": {
+    "tr": "Metin rengi",
+    "ru": "Цвет текста",
+    "es": "Color del texto",
+    "fr": "Couleur du texte"
+  },
+  "Threat": {
+    "tr": "Tehdit",
+    "ru": "Угроза",
+    "es": "Amenaza",
+    "fr": "Menace"
+  },
+  "Threshold in seconds for latency indicator": {
+    "tr": "Gecikme göstergesi için eşik (saniye)",
+    "ru": "Порог индикатора задержки в секундах",
+    "es": "Umbral del indicador de latencia en segundos",
+    "fr": "Seuil de l'indicateur de latence en secondes"
+  },
+  "Time format to use in messages on cozy mode": {
+    "tr": "Rahat modda mesajlarda kullanılacak saat biçimi",
+    "ru": "Формат времени для сообщений в уютном режиме",
+    "es": "Formato de hora de los mensajes en modo cómodo",
+    "fr": "Format de l'heure des messages en mode confortable"
+  },
+  "Today at": {
+    "tr": "Bugün saat",
+    "ru": "Сегодня в",
+    "es": "Hoy a las",
+    "fr": "Aujourd'hui à"
+  },
+  "URL patterns to highlight using glob patterns.": {
+    "tr": "Glob kalıplarıyla vurgulanacak URL kalıpları.",
+    "ru": "Шаблоны URL для подсветки (glob).",
+    "es": "Patrones de URL a resaltar, con sintaxis glob.",
+    "fr": "Motifs d'URL à surligner (syntaxe glob)."
+  },
+  "Unlimited jumbo emojis": {
+    "tr": "Sınırsız büyük emoji",
+    "ru": "Без лимита крупных эмодзи",
+    "es": "Emojis grandes ilimitados",
+    "fr": "Emojis géants illimités"
+  },
+  "Unsuppress Embeds": {
+    "tr": "Yerleştirmeleri göster",
+    "ru": "Показать встраивания",
+    "es": "Mostrar inserciones",
+    "fr": "Afficher les intégrations"
+  },
+  "Use display names in place of usernames": {
+    "tr": "Kullanıcı adları yerine görünen adları kullan",
+    "ru": "Отображаемые имена вместо имён пользователей",
+    "es": "Usar nombres visibles en vez de usuarios",
+    "fr": "Noms d'affichage au lieu des pseudos"
+  },
+  "Username only": {
+    "tr": "Sadece kullanıcı adı",
+    "ru": "Только имя пользователя",
+    "es": "Solo usuario",
+    "fr": "Pseudo uniquement"
+  },
+  "Username then nickname": {
+    "tr": "Önce kullanıcı adı, sonra takma ad",
+    "ru": "Сначала имя пользователя, потом ник",
+    "es": "Usuario y luego apodo",
+    "fr": "Pseudo puis surnom"
+  },
+  "Where to display colored block": {
+    "tr": "Renkli blok nerede gösterilsin",
+    "ru": "Где показывать цветной блок",
+    "es": "Dónde mostrar el bloque de color",
+    "fr": "Où afficher le bloc coloré"
+  },
+  "Yesterday at": {
+    "tr": "Dün saat",
+    "ru": "Вчера в",
+    "es": "Ayer a las",
+    "fr": "Hier à"
+  },
+  "[Today at] HH:mm:ss": {
+    "tr": "[Bugün saat] HH:mm:ss",
+    "ru": "[Сегодня в] HH:mm:ss",
+    "es": "[Hoy a las] HH:mm:ss",
+    "fr": "[Aujourd'hui à] HH:mm:ss"
+  },
+  "[Yesterday at] HH:mm:ss": {
+    "tr": "[Dün saat] HH:mm:ss",
+    "ru": "[Вчера в] HH:mm:ss",
+    "es": "[Ayer a las] HH:mm:ss",
+    "fr": "[Hier à] HH:mm:ss"
+  },
+  "[calendar] enables dynamic date formatting such as \"Today\" or \"Yesterday\". [relative] gives you times such as \"4 hours ago\".": {
+    "tr": "[calendar] \"Bugün\" ya da \"Dün\" gibi dinamik tarih biçimlerini açar. [relative] \"4 saat önce\" gibi zamanlar verir.",
+    "ru": "[calendar] включает динамические даты вроде «Сегодня» или «Вчера». [relative] даёт время вроде «4 часа назад».",
+    "es": "[calendar] activa formatos de fecha dinámicos como \"Hoy\" o \"Ayer\". [relative] muestra tiempos como \"hace 4 horas\".",
+    "fr": "[calendar] active les dates dynamiques comme « Aujourd'hui » ou « Hier ». [relative] affiche des durées comme « il y a 4 heures »."
+  },
+  "[calendar] format for older dates": {
+    "tr": "Daha eski tarihler için [calendar] biçimi",
+    "ru": "Формат [calendar] для более ранних дат",
+    "es": "Formato de [calendar] para fechas anteriores",
+    "fr": "Format [calendar] pour les dates plus anciennes"
+  },
+  "[calendar] format for today": {
+    "tr": "Bugün için [calendar] biçimi",
+    "ru": "Формат [calendar] для сегодняшних",
+    "es": "Formato de [calendar] para hoy",
+    "fr": "Format [calendar] pour aujourd'hui"
+  },
+  "[calendar] format for within the last week": {
+    "tr": "Son bir hafta için [calendar] biçimi",
+    "ru": "Формат [calendar] для последней недели",
+    "es": "Formato de [calendar] para la última semana",
+    "fr": "Format [calendar] pour la dernière semaine"
+  },
+  "[calendar] format for yesterday": {
+    "tr": "Dün için [calendar] biçimi",
+    "ru": "Формат [calendar] для вчерашних",
+    "es": "Formato de [calendar] para ayer",
+    "fr": "Format [calendar] pour hier"
+  },
+  "unknown filename": {
+    "tr": "bilinmeyen dosya adı",
+    "ru": "неизвестное имя файла",
+    "es": "nombre de archivo desconocido",
+    "fr": "nom de fichier inconnu"
+  },
+  "{n}d": {
+    "tr": "{n}g",
+    "ru": "{n} д",
+    "es": "{n} d",
+    "fr": "{n} j"
+  },
+  "{n}h": {
+    "tr": "{n}sa",
+    "ru": "{n} ч",
+    "es": "{n} h",
+    "fr": "{n} h"
+  },
+  "{n}m": {
+    "tr": "{n}dk",
+    "ru": "{n} мин",
+    "es": "{n} min",
+    "fr": "{n} min"
+  },
+  "{n}ms": {
+    "tr": "{n}ms",
+    "ru": "{n} мс",
+    "es": "{n} ms",
+    "fr": "{n} ms"
+  },
+  "{n}s": {
+    "tr": "{n}sn",
+    "ru": "{n} с",
+    "es": "{n} s",
+    "fr": "{n} s"
+  },
+  "{words} words, {characters} characters": {
+    "tr": "{words} kelime, {characters} karakter",
+    "ru": "Слов: {words}, символов: {characters}",
+    "es": "{words} palabras, {characters} caracteres",
+    "fr": "{words} mots, {characters} caractères"
+  }
+}

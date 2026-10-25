@@ -36,7 +36,7 @@ internal class MessageColors : EndcordPlugin(
             label = "How to render colors",
             options = listOf(
                 PluginSetting.Choice.Option(FOREGROUND, "Text color"),
-                PluginSetting.Choice.Option(BLOCK, "Block nearby"),
+                PluginSetting.Choice.Option(BLOCK, "Colored block next to it"),
                 PluginSetting.Choice.Option(BACKGROUND, "Background color"),
             ),
         ),
