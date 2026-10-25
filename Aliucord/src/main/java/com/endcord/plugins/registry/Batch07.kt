@@ -6,6 +6,34 @@
 package com.endcord.plugins.registry
 
 import com.aliucord.entities.EndcordPlugin
+import com.endcord.plugins.copyemojimarkdown.CopyEmojiMarkdown
+import com.endcord.plugins.copyfilecontents.CopyFileContents
+import com.endcord.plugins.copymedialink.CopyMediaLink
+import com.endcord.plugins.copyprofilecolors.CopyProfileColors
+import com.endcord.plugins.copystickerlinks.CopyStickerLinks
+import com.endcord.plugins.copyusermention.CopyUserMention
+import com.endcord.plugins.copyuserurls.CopyUserURLs
+import com.endcord.plugins.downloadallattachments.DownloadAllAttachments
+import com.endcord.plugins.exportmessages.ExportMessages
+import com.endcord.plugins.findreply.FindReply
+import com.endcord.plugins.quickmention.QuickMention
+import com.endcord.plugins.repeatmessages.RepeatMessages
+import com.endcord.plugins.reverseimagesearch.ReverseImageSearch
+import com.endcord.plugins.viewraw.ViewRaw
 
 internal fun batch07(): List<EndcordPlugin> = listOf(
+    CopyEmojiMarkdown(),
+    CopyFileContents(),
+    CopyMediaLink(),
+    CopyProfileColors(),
+    CopyStickerLinks(),
+    CopyUserMention(),
+    CopyUserURLs(),
+    DownloadAllAttachments(),
+    ExportMessages(),
+    FindReply(),
+    QuickMention(),
+    RepeatMessages(),
+    ReverseImageSearch(),
+    ViewRaw(),
 )
