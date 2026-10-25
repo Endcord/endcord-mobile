@@ -1,0 +1,518 @@
+{
+  "24h Time": {
+    "tr": "24 saat biçimi",
+    "ru": "24-часовой формат",
+    "es": "Formato de 24 h",
+    "fr": "Format 24 h"
+  },
+  "Admin": {
+    "tr": "Yönetici",
+    "ru": "Админ",
+    "es": "Admin",
+    "fr": "Admin"
+  },
+  "Apply colors only in direct messages; do not apply colors in servers.": {
+    "tr": "Renkleri sadece DM'lerde uygula; sunucularda uygulama.",
+    "ru": "Применять цвета только в ЛС, не на серверах.",
+    "es": "Aplicar colores solo en privados, no en servidores.",
+    "fr": "Appliquer les couleurs seulement en MP, pas sur les serveurs."
+  },
+  "Apply colors only to users who don't have a predefined color": {
+    "tr": "Renkleri sadece önceden rengi olmayan kişilere uygula",
+    "ru": "Применять цвета только к пользователям без заданного цвета",
+    "es": "Aplicar colores solo a quien no tenga uno definido",
+    "fr": "Appliquer les couleurs seulement aux utilisateurs sans couleur définie"
+  },
+  "Besties": {
+    "tr": "Can Dostlar",
+    "ru": "Лучшие друзья",
+    "es": "Mejores amigos",
+    "fr": "Meilleurs amis"
+  },
+  "Blooming": {
+    "tr": "Çiçek Açan",
+    "ru": "Цветение",
+    "es": "Floreciente",
+    "fr": "En fleur"
+  },
+  "Burning": {
+    "tr": "Alevli",
+    "ru": "Пылающая",
+    "es": "Ardiente",
+    "fr": "Brûlante"
+  },
+  "Can manage messages or kick/ban people": {
+    "tr": "Mesajları yönetebilir veya kişileri atıp yasaklayabilir",
+    "ru": "Может управлять сообщениями или выгонять и банить участников",
+    "es": "Puede gestionar mensajes o expulsar/banear a personas",
+    "fr": "Peut gérer les messages ou expulser/bannir des membres"
+  },
+  "Can manage the server, channels or roles": {
+    "tr": "Sunucuyu, kanalları veya rolleri yönetebilir",
+    "ru": "Может управлять сервером, каналами или ролями",
+    "es": "Puede gestionar el servidor, los canales o los roles",
+    "fr": "Peut gérer le serveur, les salons ou les rôles"
+  },
+  "Can manage voice chats": {
+    "tr": "Sesli sohbetleri yönetebilir",
+    "ru": "Может управлять голосовыми чатами",
+    "es": "Puede gestionar los chats de voz",
+    "fr": "Peut gérer les salons vocaux"
+  },
+  "Can timeout people": {
+    "tr": "Kişilere zaman aşımı uygulayabilir",
+    "ru": "Может отправлять участников в тайм-аут",
+    "es": "Puede aislar temporalmente a personas",
+    "fr": "Peut exclure temporairement des membres"
+  },
+  "Capitalized": {
+    "tr": "Baş harfi büyük",
+    "ru": "С заглавной буквы",
+    "es": "Con mayúscula inicial",
+    "fr": "Avec majuscule"
+  },
+  "Chat Mod": {
+    "tr": "Sohbet Mod",
+    "ru": "Мод чата",
+    "es": "Mod de chat",
+    "fr": "Modo chat"
+  },
+  "Color chat messages based on the author's role color": {
+    "tr": "Sohbet mesajlarını yazanın rol rengine göre renklendir",
+    "ru": "Окрашивать сообщения в цвет роли автора",
+    "es": "Colorear los mensajes según el color de rol del autor",
+    "fr": "Colorer les messages selon la couleur de rôle de l'auteur"
+  },
+  "Couldn't find any recent messages from this user.": {
+    "tr": "Bu kullanıcıdan yakın tarihli mesaj bulunamadı.",
+    "ru": "Недавних сообщений этого пользователя нет.",
+    "es": "No hay mensajes recientes de este usuario.",
+    "fr": "Aucun message récent de cet utilisateur."
+  },
+  "Database URL for timezone storage": {
+    "tr": "Saat dilimlerinin tutulduğu veritabanı adresi",
+    "ru": "Адрес базы данных часовых поясов",
+    "es": "URL de la base de datos de zonas horarias",
+    "fr": "URL de la base des fuseaux horaires"
+  },
+  "Delete Local Timezone": {
+    "tr": "Yerel saat dilimini sil",
+    "ru": "Удалить локальный часовой пояс",
+    "es": "Eliminar zona horaria local",
+    "fr": "Supprimer le fuseau horaire local"
+  },
+  "Don't show extra tags for bots (excluding webhooks)": {
+    "tr": "Botlar için ek etiket gösterme (webhook'lar hariç)",
+    "ru": "Не показывать доп. метки ботам (кроме вебхуков)",
+    "es": "No mostrar etiquetas extra en bots (salvo webhooks)",
+    "fr": "Pas de tags supplémentaires pour les bots (hors webhooks)"
+  },
+  "Enable database for getting user timezones": {
+    "tr": "Kullanıcı saat dilimleri için veritabanını aç",
+    "ru": "Использовать базу для часовых поясов пользователей",
+    "es": "Usar la base de datos para las zonas horarias",
+    "fr": "Utiliser la base pour les fuseaux horaires"
+  },
+  "Enable or disable showing pronouns for yourself": {
+    "tr": "Kendi zamirlerinin gösterilmesini aç veya kapat",
+    "ru": "Показывать ли ваши местоимения",
+    "es": "Mostrar u ocultar tus propios pronombres",
+    "fr": "Afficher ou non vos propres pronoms"
+  },
+  "Failed to find messages. Check console for details.": {
+    "tr": "Mesajlar bulunamadı. Ayrıntılar konsolda.",
+    "ru": "Не удалось найти сообщения. Подробности в консоли.",
+    "es": "No se encontraron mensajes. Mira la consola.",
+    "fr": "Messages introuvables. Voir la console."
+  },
+  "Failed to jump to message. Check console for details.": {
+    "tr": "Mesaja gidilemedi. Ayrıntılar konsolda.",
+    "ru": "Не удалось перейти к сообщению. Подробности в консоли.",
+    "es": "No se pudo ir al mensaje. Mira la consola.",
+    "fr": "Impossible d'aller au message. Voir la console."
+  },
+  "Fighter": {
+    "tr": "Savaşçı",
+    "ru": "Боец",
+    "es": "Luchadora",
+    "fr": "Combattante"
+  },
+  "Has the administrator permission": {
+    "tr": "Yönetici iznine sahip",
+    "ru": "Есть право администратора",
+    "es": "Tiene el permiso de administrador",
+    "fr": "A la permission administrateur"
+  },
+  "Hide Role in Chat": {
+    "tr": "Rolü sohbette gizle",
+    "ru": "Скрыть роль в чате",
+    "es": "Ocultar rol en el chat",
+    "fr": "Masquer le rôle dans le chat"
+  },
+  "How do you even manage this??? (5 Years)": {
+    "tr": "Bunu nasıl başarıyorsunuz??? (5 yıl)",
+    "ru": "Как вам это вообще удаётся??? (5 лет)",
+    "es": "¿¿¿Cómo lo conseguís??? (5 años)",
+    "fr": "Comment faites-vous ??? (5 ans)"
+  },
+  "HypeSquad, Discord Staff, Early Supporter, etc.": {
+    "tr": "HypeSquad, Discord Ekibi, Erken Destekçi vb.",
+    "ru": "HypeSquad, сотрудник Discord, ранний сторонник и т. д.",
+    "es": "HypeSquad, personal de Discord, Early Supporter, etc.",
+    "fr": "HypeSquad, équipe Discord, soutien de la première heure, etc."
+  },
+  "If name colors should be changed within servers": {
+    "tr": "Sunucularda isim renkleri değiştirilsin mi",
+    "ru": "Менять цвета имён на серверах",
+    "es": "Cambiar colores de nombres en servidores",
+    "fr": "Changer les couleurs des noms dans les serveurs"
+  },
+  "In DMs, show the recipient's timezone on your messages": {
+    "tr": "DM'lerde mesajlarında alıcının saat dilimini göster",
+    "ru": "В ЛС показывать часовой пояс собеседника на ваших сообщениях",
+    "es": "En privados, mostrar la zona horaria del destinatario en tus mensajes",
+    "fr": "En MP, afficher le fuseau du destinataire sur vos messages"
+  },
+  "Intensity of message coloring.": {
+    "tr": "Mesaj renklendirme yoğunluğu.",
+    "ru": "Интенсивность окраски сообщений.",
+    "es": "Intensidad del color de los mensajes.",
+    "fr": "Intensité de la coloration des messages."
+  },
+  "Lightness, in %. Change if the colors are too light or too dark": {
+    "tr": "Açıklık, %. Renkler çok açık veya koyuysa değiştir",
+    "ru": "Светлота в %. Измените, если цвета слишком светлые или тёмные",
+    "es": "Luminosidad en %. Cámbiala si los colores son muy claros u oscuros",
+    "fr": "Luminosité en %. À changer si les couleurs sont trop claires ou sombres"
+  },
+  "local": {
+    "tr": "yerel",
+    "ru": "местное",
+    "es": "local",
+    "fr": "local"
+  },
+  "Lowercase": {
+    "tr": "Küçük harf",
+    "ru": "Строчные",
+    "es": "Minúsculas",
+    "fr": "Minuscules"
+  },
+  "Messages sent by webhooks": {
+    "tr": "Webhook'lar tarafından gönderilen mesajlar",
+    "ru": "Сообщения, отправленные вебхуками",
+    "es": "Mensajes enviados por webhooks",
+    "fr": "Messages envoyés par des webhooks"
+  },
+  "Mod": {
+    "tr": "Mod",
+    "ru": "Мод",
+    "es": "Mod",
+    "fr": "Modo"
+  },
+  "Owner": {
+    "tr": "Sahip",
+    "ru": "Владелец",
+    "es": "Propietario",
+    "fr": "Propriétaire"
+  },
+  "Owns the server": {
+    "tr": "Sunucunun sahibi",
+    "ru": "Владеет сервером",
+    "es": "Es el propietario del servidor",
+    "fr": "Possède le serveur"
+  },
+  "Prefer database over local storage for timezones": {
+    "tr": "Saat dilimleri için yerel depolama yerine veritabanını tercih et",
+    "ru": "Предпочитать базу локальному хранилищу для часовых поясов",
+    "es": "Preferir la base de datos al almacenamiento local para zonas horarias",
+    "fr": "Préférer la base de données au stockage local pour les fuseaux"
+  },
+  "Refresh Database Timezones": {
+    "tr": "Veritabanı saat dilimlerini yenile",
+    "ru": "Обновить часовые пояса из базы данных",
+    "es": "Actualizar zonas horarias de la base de datos",
+    "fr": "Actualiser les fuseaux horaires de la base de données"
+  },
+  "Replace role colors in the member list": {
+    "tr": "Üye listesinde rol renklerini değiştir",
+    "ru": "Заменять цвета ролей в списке участников",
+    "es": "Reemplazar colores de rol en la lista de miembros",
+    "fr": "Remplacer les couleurs de rôle dans la liste des membres"
+  },
+  "Royal": {
+    "tr": "Asil",
+    "ru": "Королевская",
+    "es": "Real",
+    "fr": "Royale"
+  },
+  "Save last online times to a local database so they stay accurate across restarts": {
+    "tr": "Son çevrimiçi zamanlarını yerel veritabanına kaydet; yeniden başlatmada doğru kalsın",
+    "ru": "Сохранять время последнего входа в локальную базу для точности после перезапуска",
+    "es": "Guardar las últimas conexiones en una base local para que sigan exactas tras reiniciar",
+    "fr": "Enregistrer les dernières connexions en local pour rester exact après redémarrage"
+  },
+  "Set Color": {
+    "tr": "Rengi Ayarla",
+    "ru": "Задать цвет",
+    "es": "Establecer color",
+    "fr": "Définir la couleur"
+  },
+  "Set Local Timezone": {
+    "tr": "Yerel Saat Dilimini Ayarla",
+    "ru": "Задать местный часовой пояс",
+    "es": "Establecer zona horaria local",
+    "fr": "Définir le fuseau local"
+  },
+  "Show a friend icon on messages from friends.": {
+    "tr": "Arkadaşlardan gelen mesajlarda arkadaş simgesi göster.",
+    "ru": "Значок друга на сообщениях друзей.",
+    "es": "Mostrar un icono de amigo en los mensajes de amigos.",
+    "fr": "Afficher une icône d'ami sur les messages d'amis."
+  },
+  "Show a more useful message when several users are typing": {
+    "tr": "Birkaç kişi yazarken daha işe yarar bir mesaj göster",
+    "ru": "Понятнее показывать, когда печатают несколько человек",
+    "es": "Mostrar un mensaje más útil cuando varios escriben",
+    "fr": "Afficher un message plus utile quand plusieurs personnes écrivent"
+  },
+  "Show Discord profile badges": {
+    "tr": "Discord profil rozetlerini göster",
+    "ru": "Показывать значки профиля Discord",
+    "es": "Mostrar insignias del perfil de Discord",
+    "fr": "Afficher les badges de profil Discord"
+  },
+  "Show Endcord contributor badges": {
+    "tr": "Endcord katkıda bulunan rozetlerini göster",
+    "ru": "Показывать значки участников разработки Endcord",
+    "es": "Mostrar insignias de colaborador de Endcord",
+    "fr": "Afficher les badges de contributeur Endcord"
+  },
+  "Show extra tags in place of the BOT tag": {
+    "tr": "Ek etiketleri BOT etiketinin yerine göster",
+    "ru": "Показывать дополнительные метки вместо метки BOT",
+    "es": "Mostrar etiquetas adicionales en lugar de la etiqueta BOT",
+    "fr": "Afficher les étiquettes supplémentaires à la place de l'étiquette BOT"
+  },
+  "Show indicators in the member list": {
+    "tr": "Göstergeleri üye listesinde göster",
+    "ru": "Показывать индикаторы в списке участников",
+    "es": "Mostrar indicadores en la lista de miembros",
+    "fr": "Afficher les indicateurs dans la liste des membres"
+  },
+  "Show indicators inside messages": {
+    "tr": "Göstergeleri mesajların içinde göster",
+    "ru": "Показывать индикаторы в сообщениях",
+    "es": "Mostrar indicadores dentro de los mensajes",
+    "fr": "Afficher les indicateurs dans les messages"
+  },
+  "Show Local Timezone instead of just local": {
+    "tr": "Sadece 'yerel' yerine yerel saat dilimini göster",
+    "ru": "Показывать часовой пояс вместо «местное»",
+    "es": "Mostrar la zona horaria en vez de solo 'local'",
+    "fr": "Afficher le fuseau au lieu de « local »"
+  },
+  "Show role colors in chat mentions": {
+    "tr": "Sohbet bahsetmelerinde rol renklerini göster",
+    "ru": "Показывать цвета ролей в упоминаниях в чате",
+    "es": "Mostrar colores de rol en las menciones del chat",
+    "fr": "Afficher les couleurs de rôle dans les mentions du chat"
+  },
+  "Show role colors in member list role headers": {
+    "tr": "Üye listesi rol başlıklarında rol renklerini göster",
+    "ru": "Цвета ролей в заголовках списка участников",
+    "es": "Mostrar colores de rol en las cabeceras de la lista de miembros",
+    "fr": "Couleurs de rôle dans les en-têtes de la liste des membres"
+  },
+  "Show role colors in the typing indicator": {
+    "tr": "Yazıyor göstergesinde rol renklerini göster",
+    "ru": "Цвета ролей в индикаторе набора",
+    "es": "Mostrar colores de rol en el indicador de escritura",
+    "fr": "Couleurs de rôle dans l'indicateur de saisie"
+  },
+  "Show role colours in the typing indicator": {
+    "tr": "Yazıyor göstergesinde rol renklerini göster",
+    "ru": "Показывать цвета ролей в индикаторе набора текста",
+    "es": "Mostrar los colores de rol en el indicador de escritura",
+    "fr": "Afficher les couleurs de rôle dans l'indicateur de saisie"
+  },
+  "Show the Nitro badge": {
+    "tr": "Nitro rozetini göster",
+    "ru": "Показывать значок Nitro",
+    "es": "Mostrar la insignia de Nitro",
+    "fr": "Afficher le badge Nitro"
+  },
+  "Show time in 24h format": {
+    "tr": "Saati 24 saat biçiminde göster",
+    "ru": "Время в 24-часовом формате",
+    "es": "Mostrar la hora en formato 24 h",
+    "fr": "Heure au format 24 h"
+  },
+  "Show time in message headers": {
+    "tr": "Mesaj başlıklarında saati göster",
+    "ru": "Время в заголовках сообщений",
+    "es": "Mostrar la hora en la cabecera de los mensajes",
+    "fr": "Heure dans les en-têtes de message"
+  },
+  "Show timezone info next to time": {
+    "tr": "Saatin yanında saat dilimi bilgisini göster",
+    "ru": "Часовой пояс рядом со временем",
+    "es": "Mostrar la zona horaria junto a la hora",
+    "fr": "Fuseau à côté de l'heure"
+  },
+  "Show Webhook tag in followed channels like announcements": {
+    "tr": "Duyuru gibi takip edilen kanallarda Webhook etiketini göster",
+    "ru": "Тег вебхука в отслеживаемых каналах, например объявлениях",
+    "es": "Mostrar la etiqueta de webhook en canales seguidos como anuncios",
+    "fr": "Afficher le tag webhook dans les salons suivis comme les annonces"
+  },
+  "Show your own timezone in message headers": {
+    "tr": "Mesaj başlıklarında kendi saat diliminizi göster",
+    "ru": "Показывать ваш часовой пояс в заголовках сообщений",
+    "es": "Mostrar tu propia zona horaria en los encabezados de los mensajes",
+    "fr": "Afficher votre propre fuseau horaire dans les en-têtes des messages"
+  },
+  "Shows a user's highest role next to their name in chat messages. Hide/show specific roles by long-pressing a message.": {
+    "tr": "Bir kullanıcının en yüksek rolünü sohbet mesajlarında adının yanında gösterir. Belirli rolleri bir mesaja uzun basarak gizleyin veya gösterin.",
+    "ru": "Показывает высшую роль пользователя рядом с его именем в сообщениях чата. Скрывайте и показывайте отдельные роли долгим нажатием на сообщение.",
+    "es": "Muestra el rol más alto de un usuario junto a su nombre en los mensajes del chat. Oculta o muestra roles concretos manteniendo pulsado un mensaje.",
+    "fr": "Affiche le rôle le plus élevé d'un utilisateur à côté de son nom dans les messages. Masquez ou affichez certains rôles en appuyant longuement sur un message."
+  },
+  "Shows the local time of users in message headers": {
+    "tr": "Kullanıcıların yerel saatini mesaj başlıklarında gösterir",
+    "ru": "Показывает местное время пользователей в заголовках сообщений",
+    "es": "Muestra la hora local de los usuarios en los encabezados de los mensajes",
+    "fr": "Affiche l'heure locale des utilisateurs dans les en-têtes des messages"
+  },
+  "Sprout": {
+    "tr": "Filiz",
+    "ru": "Росток",
+    "es": "Brote",
+    "fr": "Pousse"
+  },
+  "Staff": {
+    "tr": "Ekip",
+    "ru": "Персонал",
+    "es": "Staff",
+    "fr": "Staff"
+  },
+  "Star": {
+    "tr": "Yıldız",
+    "ru": "Звезда",
+    "es": "Estrella",
+    "fr": "Étoile"
+  },
+  "The format for pronouns to appear in chat": {
+    "tr": "Sohbette zamirlerin görüneceği biçim",
+    "ru": "Формат местоимений в чате",
+    "es": "Formato de los pronombres en el chat",
+    "fr": "Format des pronoms dans le chat"
+  },
+  "Timezones Failed to refresh!": {
+    "tr": "Saat dilimleri yenilenemedi",
+    "ru": "Не удалось обновить часовые пояса",
+    "es": "No se pudieron actualizar las zonas horarias",
+    "fr": "Échec de l'actualisation des fuseaux"
+  },
+  "Timezones refreshed successfully!": {
+    "tr": "Saat dilimleri yenilendi",
+    "ru": "Часовые пояса обновлены",
+    "es": "Zonas horarias actualizadas",
+    "fr": "Fuseaux horaires actualisés"
+  },
+  "Unhide Roles in Chat": {
+    "tr": "Sohbette Rolleri Göster",
+    "ru": "Показывать роли в чате",
+    "es": "Mostrar roles en el chat",
+    "fr": "Afficher les rôles dans le chat"
+  },
+  "Use the role's color for the icon.": {
+    "tr": "Simge için rolün rengini kullan.",
+    "ru": "Цвет роли для значка.",
+    "es": "Usar el color del rol para el icono.",
+    "fr": "Couleur du rôle pour l'icône."
+  },
+  "User's Last Message": {
+    "tr": "Kullanıcının Son Mesajı",
+    "ru": "Последнее сообщение пользователя",
+    "es": "Último mensaje del usuario",
+    "fr": "Dernier message de l'utilisateur"
+  },
+  "Users with custom colors defined will have their name in the dm list colored": {
+    "tr": "Özel rengi tanımlı kullanıcıların adı DM listesinde renkli görünür",
+    "ru": "Имена пользователей со своим цветом окрашиваются в списке ЛС",
+    "es": "Los usuarios con color propio se verán coloreados en la lista de privados",
+    "fr": "Les utilisateurs avec une couleur perso sont colorés dans la liste des MP"
+  },
+  "VC Mod": {
+    "tr": "Ses Mod",
+    "ru": "Мод ГК",
+    "es": "Mod de voz",
+    "fr": "Modo vocal"
+  },
+  "Webhook": {
+    "tr": "Webhook",
+    "ru": "Вебхук",
+    "es": "Webhook",
+    "fr": "Webhook"
+  },
+  "Whether to show the highest role on bots.": {
+    "tr": "Botlarda en üst rol gösterilsin mi.",
+    "ru": "Показывать высшую роль у ботов.",
+    "es": "Mostrar el rol más alto en bots.",
+    "fr": "Afficher le rôle le plus haut des bots."
+  },
+  "Your friendship has been going on for a WHILE (1 Year)": {
+    "tr": "Arkadaşlığınız UZUN süredir devam ediyor (1 yıl)",
+    "ru": "Ваша дружба длится уже ДОЛГО (1 год)",
+    "es": "Vuestra amistad dura ya MUCHO tiempo (1 año)",
+    "fr": "Votre amitié dure depuis LONGTEMPS (1 an)"
+  },
+  "Your friendship has gone through thick and thin- a whole 2 years!": {
+    "tr": "Arkadaşlığınız iyi günde kötü günde sürdü, tam 2 yıl!",
+    "ru": "Ваша дружба прошла огонь и воду: целых 2 года!",
+    "es": "Vuestra amistad ha superado las duras y las maduras: ¡2 años enteros!",
+    "fr": "Votre amitié a traversé vents et marées : 2 ans entiers !"
+  },
+  "Your friendship has reached terminal velocity (3 Months)": {
+    "tr": "Arkadaşlığınız son hıza ulaştı (3 ay)",
+    "ru": "Ваша дружба набрала полную скорость (3 месяца)",
+    "es": "Vuestra amistad ha alcanzado la velocidad máxima (3 meses)",
+    "fr": "Votre amitié a atteint sa vitesse de croisière (3 mois)"
+  },
+  "Your friendship is getting there! (1 Month)": {
+    "tr": "Arkadaşlığınız gelişiyor! (1 ay)",
+    "ru": "Ваша дружба крепнет! (1 месяц)",
+    "es": "¡Vuestra amistad va por buen camino! (1 mes)",
+    "fr": "Votre amitié prend forme ! (1 mois)"
+  },
+  "Your friendship is just starting": {
+    "tr": "Arkadaşlığınız daha yeni başlıyor",
+    "ru": "Ваша дружба только начинается",
+    "es": "Vuestra amistad acaba de empezar",
+    "fr": "Votre amitié ne fait que commencer"
+  },
+  "Your friendship is strong (6 Months)": {
+    "tr": "Arkadaşlığınız güçlü (6 ay)",
+    "ru": "Ваша дружба крепка (6 месяцев)",
+    "es": "Vuestra amistad es fuerte (6 meses)",
+    "fr": "Votre amitié est solide (6 mois)"
+  },
+  "Your Last Message": {
+    "tr": "Son Mesajın",
+    "ru": "Ваше последнее сообщение",
+    "es": "Tu último mensaje",
+    "fr": "Votre dernier message"
+  },
+  "{names} and {count} others are typing...": {
+    "tr": "{names} ve {count} kişi daha yazıyor...",
+    "ru": "{names} и ещё {count} печатают...",
+    "es": "{names} y {count} más están escribiendo...",
+    "fr": "{names} et {count} autres sont en train d'écrire..."
+  },
+  "{time} ago": {
+    "tr": "{time} önce",
+    "ru": "{time} назад",
+    "es": "hace {time}",
+    "fr": "il y a {time}"
+  }
+}
