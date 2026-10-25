@@ -1,1 +1,1 @@
-# endcord-mobile
+# rahat ol yaptırıcaz tırnaklarını
