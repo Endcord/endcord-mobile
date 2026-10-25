@@ -65,7 +65,7 @@ jobs:
           path: loader/endcord-xposed.apk
 
   installer:
-    name: Installer (debug)
+    name: Installer
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -80,11 +80,12 @@ jobs:
         working-directory: installer
         run: |
           chmod +x gradlew
-          ./gradlew --no-daemon :app:assembleDebug
+          # The release build is shrunk; without the INSTALLER_KEYSTORE secrets it is signed with the debug key
+          ./gradlew --no-daemon :app:assembleRelease
       - uses: actions/upload-artifact@v4
         with:
-          name: installer-debug
-          path: installer/app/build/outputs/apk/debug/*.apk
+          name: installer
+          path: installer/app/build/outputs/apk/release/*.apk
 
   deploy:
     name: Publish to the builds-next branch
@@ -105,18 +106,18 @@ jobs:
           path: out
       - uses: actions/download-artifact@v4
         with:
-          name: installer-debug
+          name: installer
           path: installer-out
       - name: Add the installer
         # Debug-signed until the INSTALLER_KEYSTORE secrets exist; releases come from the Release Installer workflow
-        run: cp installer-out/*.apk out/endcord-installer-debug.apk
+        run: cp installer-out/*.apk out/endcord-installer.apk
       - name: Write build info
         run: |
           cat > out/data.json <<EOF
           {
             "bundle": "endcord.min.js",
             "loader": "endcord-xposed.apk",
-            "installer": "endcord-installer-debug.apk",
+            "installer": "endcord-installer.apk",
             "loaderVersion": "$(sed -nE 's/^\s*versionName = "(.*)"/\1/p' loader/app/build.gradle.kts)",
             "loaderVersionCode": $(sed -nE 's/^\s*versionCode = ([0-9]+)/\1/p' loader/app/build.gradle.kts),
             "commit": "${{ github.sha }}",
@@ -126,6 +127,7 @@ jobs:
           cat out/data.json
       - name: Push
         run: |
+          git config http.postBuffer 524288000
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin builds-next || true
