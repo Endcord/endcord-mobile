@@ -88,7 +88,7 @@ jobs:
 
   deploy:
     name: Publish to the builds-next branch
-    needs: [bundle, loader]
+    needs: [bundle, loader, installer]
     if: github.event_name == 'push' && github.ref == 'refs/heads/next'
     runs-on: ubuntu-latest
     permissions:
@@ -103,12 +103,20 @@ jobs:
         with:
           name: loader
           path: out
+      - uses: actions/download-artifact@v4
+        with:
+          name: installer-debug
+          path: installer-out
+      - name: Add the installer
+        # Debug-signed until the INSTALLER_KEYSTORE secrets exist; releases come from the Release Installer workflow
+        run: cp installer-out/*.apk out/endcord-installer-debug.apk
       - name: Write build info
         run: |
           cat > out/data.json <<EOF
           {
             "bundle": "endcord.min.js",
             "loader": "endcord-xposed.apk",
+            "installer": "endcord-installer-debug.apk",
             "loaderVersion": "$(sed -nE 's/^\s*versionName = "(.*)"/\1/p' loader/app/build.gradle.kts)",
             "loaderVersionCode": $(sed -nE 's/^\s*versionCode = ([0-9]+)/\1/p' loader/app/build.gradle.kts),
             "commit": "${{ github.sha }}",
