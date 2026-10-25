@@ -1,0 +1,920 @@
+{
+  "1 hour": {
+    "tr": "1 saat",
+    "ru": "1 час",
+    "es": "1 hora",
+    "fr": "1 heure"
+  },
+  "1.5 hours": {
+    "tr": "1,5 saat",
+    "ru": "1,5 часа",
+    "es": "1,5 horas",
+    "fr": "1,5 heure"
+  },
+  "2 hours": {
+    "tr": "2 saat",
+    "ru": "2 часа",
+    "es": "2 horas",
+    "fr": "2 heures"
+  },
+  "3 hours": {
+    "tr": "3 saat",
+    "ru": "3 часа",
+    "es": "3 horas",
+    "fr": "3 heures"
+  },
+  "45 minutes": {
+    "tr": "45 dakika",
+    "ru": "45 минут",
+    "es": "45 minutos",
+    "fr": "45 minutes"
+  },
+  "A gentle, private dashboard of how you use Discord: screen time, messages and calm controls. Everything stays on your phone.": {
+    "tr": "Discord'u nasıl kullandığına dair nazik ve gizli bir panel: ekran süresi, mesajlar ve sakin kontroller. Her şey telefonunda kalır.",
+    "ru": "Мягкая и приватная сводка того, как ты пользуешься Discord: экранное время, сообщения и спокойные настройки. Всё остаётся на твоём телефоне.",
+    "es": "Un panel amable y privado de cómo usas Discord: tiempo de pantalla, mensajes y controles tranquilos. Todo se queda en tu teléfono.",
+    "fr": "Un tableau de bord doux et privé de ton usage de Discord : temps d'écran, messages et réglages apaisants. Tout reste sur ton téléphone."
+  },
+  "A little past your {goal} goal — be kind to yourself 🌿": {
+    "tr": "{goal} hedefini biraz geçtin — kendine nazik ol 🌿",
+    "ru": "Чуть больше цели в {goal} — будь к себе добрее 🌿",
+    "es": "Un poco por encima de tu objetivo de {goal}, sé amable contigo 🌿",
+    "fr": "Un peu au-delà de ton objectif de {goal} — sois indulgent avec toi 🌿"
+  },
+  "A little picture of how you spend time here. All of it stays on your phone and is never sent anywhere.": {
+    "tr": "Burada zamanını nasıl geçirdiğine dair küçük bir tablo. Hepsi telefonunda kalır, hiçbir yere gönderilmez.",
+    "ru": "Небольшая картина того, как ты проводишь здесь время. Всё остаётся на твоём телефоне и никуда не отправляется.",
+    "es": "Una pequeña imagen de cómo pasas el tiempo aquí. Todo se queda en tu teléfono y nunca se envía a ningún sitio.",
+    "fr": "Un petit aperçu du temps que tu passes ici. Tout reste sur ton téléphone et n'est jamais envoyé nulle part."
+  },
+  "A soft daily time goal — only a gentle note, never a limit": {
+    "tr": "Yumuşak bir günlük süre hedefi — sadece nazik bir not, asla bir sınır değil",
+    "ru": "Мягкая дневная цель по времени — лишь напоминание, не ограничение",
+    "es": "Una meta diaria suave: solo un aviso amable, nunca un límite",
+    "fr": "Un objectif quotidien doux : un simple rappel, jamais une limite"
+  },
+  "Activity Type": {
+    "tr": "Etkinlik türü",
+    "ru": "Тип активности",
+    "es": "Tipo de actividad",
+    "fr": "Type d'activité"
+  },
+  "Added the CustomRPC application ID to the filter list": {
+    "tr": "CustomRPC uygulama kimliği filtre listesine eklendi",
+    "ru": "ID приложения CustomRPC добавлен в список фильтра",
+    "es": "Se añadió el ID de aplicación de CustomRPC a la lista de filtros",
+    "fr": "L'identifiant d'application de CustomRPC a été ajouté à la liste de filtres"
+  },
+  "Adds configurable timeout presets to the custom status screen.": {
+    "tr": "Özel durum ekranına ayarlanabilir süre ön ayarları ekler.",
+    "ru": "Добавляет настраиваемые варианты длительности на экран своего статуса.",
+    "es": "Añade duraciones configurables a la pantalla de estado personalizado.",
+    "fr": "Ajoute des durées configurables à l'écran du statut personnalisé."
+  },
+  "An image link, or the name of an image uploaded in the Rich Presence tab of your application": {
+    "tr": "Bir görsel bağlantısı ya da uygulamanın Rich Presence sekmesine yüklenen bir görselin adı",
+    "ru": "Ссылка на картинку или название картинки, загруженной во вкладке Rich Presence твоего приложения",
+    "es": "Un enlace de imagen o el nombre de una imagen subida en la pestaña Rich Presence de tu aplicación",
+    "fr": "Un lien d'image, ou le nom d'une image importée dans l'onglet Rich Presence de ton application"
+  },
+  "Android": {
+    "tr": "Android",
+    "ru": "Android",
+    "es": "Android",
+    "fr": "Android"
+  },
+  "API Key": {
+    "tr": "API anahtarı",
+    "ru": "API-ключ",
+    "es": "Clave de API",
+    "fr": "Clé d'API"
+  },
+  "Application ID": {
+    "tr": "Uygulama Kimliği",
+    "ru": "ID приложения",
+    "es": "ID de la aplicación",
+    "fr": "ID de l'application"
+  },
+  "Application Name": {
+    "tr": "Uygulama adı",
+    "ru": "Название приложения",
+    "es": "Nombre de la aplicación",
+    "fr": "Nom de l'application"
+  },
+  "Blacklist": {
+    "tr": "Kara liste",
+    "ru": "Чёрный список",
+    "es": "Lista negra",
+    "fr": "Liste noire"
+  },
+  "Break · 15 min": {
+    "tr": "Mola · 15 dk",
+    "ru": "Перерыв · 15 мин",
+    "es": "Descanso · 15 min",
+    "fr": "Pause · 15 min"
+  },
+  "Break · 30 min": {
+    "tr": "Mola · 30 dk",
+    "ru": "Перерыв · 30 мин",
+    "es": "Descanso · 30 min",
+    "fr": "Pause · 30 min"
+  },
+  "Button1 Text": {
+    "tr": "1. düğme metni",
+    "ru": "Текст кнопки 1",
+    "es": "Texto del botón 1",
+    "fr": "Texte du bouton 1"
+  },
+  "Button1 URL": {
+    "tr": "1. düğme bağlantısı",
+    "ru": "Ссылка кнопки 1",
+    "es": "URL del botón 1",
+    "fr": "Lien du bouton 1"
+  },
+  "Button2 Text": {
+    "tr": "2. düğme metni",
+    "ru": "Текст кнопки 2",
+    "es": "Texto del botón 2",
+    "fr": "Texte du bouton 2"
+  },
+  "Button2 URL": {
+    "tr": "2. düğme bağlantısı",
+    "ru": "Ссылка кнопки 2",
+    "es": "URL del botón 2",
+    "fr": "Lien du bouton 2"
+  },
+  "Cancel": {
+    "tr": "İptal",
+    "ru": "Отмена",
+    "es": "Cancelar",
+    "fr": "Annuler"
+  },
+  "Cancel break": {
+    "tr": "Molayı iptal et",
+    "ru": "Отменить перерыв",
+    "es": "Cancelar descanso",
+    "fr": "Annuler la pause"
+  },
+  "Change the mode of the filter list": {
+    "tr": "Filtre listesinin modunu değiştir",
+    "ru": "Режим списка фильтров",
+    "es": "Cambiar el modo de la lista de filtros",
+    "fr": "Changer le mode de la liste de filtres"
+  },
+  "Close": {
+    "tr": "Kapat",
+    "ru": "Закрыть",
+    "es": "Cerrar",
+    "fr": "Fermer"
+  },
+  "Comma separated list of activity IDs to filter (Useful for filtering specific RPC activities and CustomRPC": {
+    "tr": "Filtrelenecek etkinlik kimliklerinin virgülle ayrılmış listesi (belirli RPC etkinliklerini ve CustomRPC'yi filtrelemek için kullanışlı",
+    "ru": "Список ID активностей через запятую для фильтрации (полезно для отдельных RPC и CustomRPC",
+    "es": "Lista de ID de actividades separados por comas para filtrar (útil para filtrar actividades RPC concretas y CustomRPC",
+    "fr": "Liste d'ID d'activités séparés par des virgules à filtrer (utile pour filtrer certaines activités RPC et CustomRPC"
+  },
+  "Competing": {
+    "tr": "Yarışıyor",
+    "ru": "Соревнуется",
+    "es": "Compitiendo",
+    "fr": "En compétition"
+  },
+  "Custom": {
+    "tr": "Özel",
+    "ru": "Свой",
+    "es": "Personalizado",
+    "fr": "Personnalisé"
+  },
+  "Custom Last.fm API key. Not required but highly recommended to avoid rate limiting with our shared key": {
+    "tr": "Özel Last.fm API anahtarı. Zorunlu değil ama ortak anahtarla hız sınırına takılmamak için şiddetle önerilir",
+    "ru": "Свой ключ API Last.fm. Необязателен, но рекомендуется, чтобы не упираться в лимит общего ключа",
+    "es": "Clave de API de Last.fm propia. No es obligatoria pero sí muy recomendable para evitar límites con la compartida",
+    "fr": "Clé API Last.fm perso. Facultative mais vivement conseillée pour éviter les limites de la clé partagée"
+  },
+  "Custom status text": {
+    "tr": "Özel durum metni",
+    "ru": "Свой текст статуса",
+    "es": "Texto de estado personalizado",
+    "fr": "Texte de statut personnalisé"
+  },
+  "CustomRPC application ID is already added.": {
+    "tr": "CustomRPC uygulama ID'si zaten eklendi.",
+    "ru": "ID приложения CustomRPC уже добавлен.",
+    "es": "El ID de aplicación de CustomRPC ya está añadido.",
+    "fr": "L'ID d'application CustomRPC est déjà ajouté."
+  },
+  "CustomRPC application ID is not set.": {
+    "tr": "CustomRPC uygulama ID'si ayarlanmadı.",
+    "ru": "ID приложения CustomRPC не задан.",
+    "es": "No se ha configurado el ID de aplicación de CustomRPC.",
+    "fr": "L'ID d'application CustomRPC n'est pas défini."
+  },
+  "Delete Preset": {
+    "tr": "Hazır Ayarı Sil",
+    "ru": "Удалить пресет",
+    "es": "Eliminar preset",
+    "fr": "Supprimer le préréglage"
+  },
+  "Deleted the preset": {
+    "tr": "Hazır ayar silindi",
+    "ru": "Пресет удалён",
+    "es": "Preset eliminado",
+    "fr": "Préréglage supprimé"
+  },
+  "Desktop": {
+    "tr": "Masaüstü",
+    "ru": "Компьютер",
+    "es": "Escritorio",
+    "fr": "Bureau"
+  },
+  "Detail (line 1)": {
+    "tr": "Ayrıntı (1. satır)",
+    "ru": "Подробности (строка 1)",
+    "es": "Detalle (línea 1)",
+    "fr": "Détail (ligne 1)"
+  },
+  "Disabling this will display a placeholder. Useful if your music has inappropriate art": {
+    "tr": "Kapatırsan yerine genel bir görsel gösterilir. Müziğinin kapakları uygunsuzsa işe yarar",
+    "ru": "Если выключить, будет показана заглушка. Пригодится, если у твоей музыки неподходящие обложки",
+    "es": "Si lo desactivas, se mostrará una imagen genérica. Útil si tu música tiene portadas inapropiadas",
+    "fr": "Si tu le désactives, une image générique s'affiche. Pratique si ta musique a des pochettes inappropriées"
+  },
+  "Disabling this will display a placeholder. Useful if your Music has inappropriate art": {
+    "tr": "Kapatırsan yerine genel bir görsel gösterilir. Müziğinin kapakları uygunsuzsa işe yarar",
+    "ru": "Если выключить, будет показана заглушка. Пригодится, если у твоей музыки неподходящие обложки",
+    "es": "Si lo desactivas, se mostrará una imagen genérica. Útil si tu música tiene portadas inapropiadas",
+    "fr": "Si tu le désactives, une image générique s'affiche. Pratique si ta musique a des pochettes inappropriées"
+  },
+  "Do Not Disturb for a while, then back to your status": {
+    "tr": "Bir süre Rahatsız Etmeyin, sonra eski durumuna dön",
+    "ru": "Ненадолго включает «Не беспокоить», потом возвращает твой статус",
+    "es": "No molestar durante un rato y luego vuelve tu estado",
+    "fr": "Ne pas déranger pendant un moment, puis retour à ton statut"
+  },
+  "End Timestamp (in milliseconds)": {
+    "tr": "Bitiş zamanı (milisaniye)",
+    "ru": "Время окончания (в миллисекундах)",
+    "es": "Marca de tiempo de fin (en milisegundos)",
+    "fr": "Horodatage de fin (en millisecondes)"
+  },
+  "Enjoy your break. Your status goes back in {minutes} minutes.": {
+    "tr": "Molanın tadını çıkar. Durumun {minutes} dakika sonra geri döner.",
+    "ru": "Хорошего отдыха. Статус вернётся через {minutes} мин.",
+    "es": "Disfruta de tu descanso. Tu estado volverá en {minutes} minutos.",
+    "fr": "Profite de ta pause. Ton statut reviendra dans {minutes} minutes."
+  },
+  "Extra days to add, separated by a comma (e.g. 1, 2)": {
+    "tr": "Eklenecek ek günler, virgülle ayır (ör. 1, 2)",
+    "ru": "Доп. дни через запятую (например 1, 2)",
+    "es": "Días extra, separados por coma (p. ej. 1, 2)",
+    "fr": "Jours en plus, séparés par des virgules (ex. 1, 2)"
+  },
+  "Extra hours to add, separated by a comma (e.g. 2, 4, 6, 12)": {
+    "tr": "Eklenecek ek saatler, virgülle ayır (ör. 2, 4, 6, 12)",
+    "ru": "Доп. часы через запятую (например 2, 4, 6, 12)",
+    "es": "Horas extra, separadas por coma (p. ej. 2, 4, 6, 12)",
+    "fr": "Heures en plus, séparées par des virgules (ex. 2, 4, 6, 12)"
+  },
+  "Extra minutes to add, separated by a comma (e.g. 5, 10, 30)": {
+    "tr": "Eklenecek ek dakikalar, virgülle ayır (ör. 5, 10, 30)",
+    "ru": "Доп. минуты через запятую (например 5, 10, 30)",
+    "es": "Minutos extra, separados por coma (p. ej. 5, 10, 30)",
+    "fr": "Minutes en plus, séparées par des virgules (ex. 5, 10, 30)"
+  },
+  "Extra seconds to add, separated by a comma (e.g. 5, 10, 30)": {
+    "tr": "Eklenecek ek saniyeler, virgülle ayır (ör. 5, 10, 30)",
+    "ru": "Доп. секунды через запятую (например 5, 10, 30)",
+    "es": "Segundos extra, separados por coma (p. ej. 5, 10, 30)",
+    "fr": "Secondes en plus, séparées par des virgules (ex. 5, 10, 30)"
+  },
+  "Failed to set the status": {
+    "tr": "Durum ayarlanamadı",
+    "ru": "Не удалось установить статус",
+    "es": "No se pudo establecer el estado",
+    "fr": "Impossible de définir le statut"
+  },
+  "Filter List": {
+    "tr": "Filtre Listesi",
+    "ru": "Список фильтров",
+    "es": "Lista de filtros",
+    "fr": "Liste de filtres"
+  },
+  "For 1 day": {
+    "tr": "1 gün boyunca",
+    "ru": "На 1 дн.",
+    "es": "Durante 1 día",
+    "fr": "Pendant 1 jour"
+  },
+  "For 1 hour": {
+    "tr": "1 saat boyunca",
+    "ru": "На 1 ч",
+    "es": "Durante 1 hora",
+    "fr": "Pendant 1 heure"
+  },
+  "For 1 minute": {
+    "tr": "1 dakika boyunca",
+    "ru": "На 1 мин.",
+    "es": "Durante 1 minuto",
+    "fr": "Pendant 1 minute"
+  },
+  "For 1 month": {
+    "tr": "1 ay boyunca",
+    "ru": "На 1 мес.",
+    "es": "Durante 1 mes",
+    "fr": "Pendant 1 mois"
+  },
+  "For 1 second": {
+    "tr": "1 saniye boyunca",
+    "ru": "На 1 сек.",
+    "es": "Durante 1 segundo",
+    "fr": "Pendant 1 seconde"
+  },
+  "For 1 week": {
+    "tr": "1 hafta boyunca",
+    "ru": "На 1 нед.",
+    "es": "Durante 1 semana",
+    "fr": "Pendant 1 semaine"
+  },
+  "For {count} days": {
+    "tr": "{count} gün boyunca",
+    "ru": "На {count} дн.",
+    "es": "Durante {count} días",
+    "fr": "Pendant {count} jours"
+  },
+  "For {count} hours": {
+    "tr": "{count} saat boyunca",
+    "ru": "На {count} ч",
+    "es": "Durante {count} horas",
+    "fr": "Pendant {count} heures"
+  },
+  "For {count} minutes": {
+    "tr": "{count} dakika boyunca",
+    "ru": "На {count} мин.",
+    "es": "Durante {count} minutos",
+    "fr": "Pendant {count} minutes"
+  },
+  "For {count} months": {
+    "tr": "{count} ay boyunca",
+    "ru": "На {count} мес.",
+    "es": "Durante {count} meses",
+    "fr": "Pendant {count} mois"
+  },
+  "For {count} seconds": {
+    "tr": "{count} saniye boyunca",
+    "ru": "На {count} сек.",
+    "es": "Durante {count} segundos",
+    "fr": "Pendant {count} secondes"
+  },
+  "For {count} weeks": {
+    "tr": "{count} hafta boyunca",
+    "ru": "На {count} нед.",
+    "es": "Durante {count} semanas",
+    "fr": "Pendant {count} semaines"
+  },
+  "Go to the Discord Developer Portal to create an application and get the application ID. Needed for images.": {
+    "tr": "Bir uygulama oluşturup uygulama kimliğini almak için Discord Geliştirici Portalı'na git. Görseller için gerekir.",
+    "ru": "Создай приложение на портале разработчиков Discord и скопируй его ID. Нужен для картинок.",
+    "es": "Ve al Portal para desarrolladores de Discord para crear una aplicación y obtener su ID. Es necesario para las imágenes.",
+    "fr": "Va sur le portail des développeurs Discord pour créer une application et obtenir son identifiant. Nécessaire pour les images."
+  },
+  "Hide Last.fm presence if spotify is running": {
+    "tr": "Spotify çalışıyorsa Last.fm durumunu gizle",
+    "ru": "Скрывать Last.fm при запущенном Spotify",
+    "es": "Ocultar Last.fm si Spotify está abierto",
+    "fr": "Masquer Last.fm si Spotify tourne"
+  },
+  "Hide Last.fm presence if you have any other presence": {
+    "tr": "Başka bir durum varsa Last.fm durumunu gizle",
+    "ru": "Скрывать Last.fm при другой активности",
+    "es": "Ocultar Last.fm si tienes otra actividad",
+    "fr": "Masquer Last.fm si une autre activité est affichée"
+  },
+  "Hide presence if Spotify is running": {
+    "tr": "Spotify çalışıyorsa durumu gizle",
+    "ru": "Скрывать статус при запущенном Spotify",
+    "es": "Ocultar la presencia si Spotify está abierto",
+    "fr": "Masquer la présence si Spotify tourne"
+  },
+  "Hide presence if you have any other presence": {
+    "tr": "Başka bir durum varsa gizle",
+    "ru": "Скрывать при другой активности",
+    "es": "Ocultar si tienes otra actividad",
+    "fr": "Masquer si une autre activité est affichée"
+  },
+  "Ignore activities from showing up on your status ONLY. Choose which kinds of activities, or which application IDs, are kept off your status.": {
+    "tr": "Etkinliklerin YALNIZCA senin durumunda görünmesini engeller. Hangi etkinlik türlerinin ya da uygulama kimliklerinin durumunda gösterilmeyeceğini seç.",
+    "ru": "Скрывает активности ТОЛЬКО из твоего статуса. Выбери, какие типы активностей или ID приложений не показывать.",
+    "es": "Evita que las actividades aparezcan SOLO en tu estado. Elige qué tipos de actividad o qué ID de aplicación no se muestran.",
+    "fr": "Empêche les activités d'apparaître UNIQUEMENT dans ton statut. Choisis quels types d'activités ou quels identifiants d'application ne sont pas affichés."
+  },
+  "Ignore all competing activities (These are normally special game activities)": {
+    "tr": "Tüm yarışma etkinliklerini yok say (genelde özel oyun etkinlikleridir)",
+    "ru": "Игнорировать все соревнования (обычно особые игровые активности)",
+    "es": "Ignorar todas las actividades de competición (suelen ser de juegos especiales)",
+    "fr": "Ignorer toutes les compétitions (activités de jeu spéciales)"
+  },
+  "Ignore all listening activities (These are usually spotify activities)": {
+    "tr": "Tüm dinleme etkinliklerini yok say (genelde Spotify)",
+    "ru": "Игнорировать всё прослушивание (обычно Spotify)",
+    "es": "Ignorar todas las actividades de escucha (suelen ser de Spotify)",
+    "fr": "Ignorer toutes les écoutes (généralement Spotify)"
+  },
+  "Ignore all playing activities (These are usually game and RPC activities)": {
+    "tr": "Tüm oyun etkinliklerini yok say (genelde oyun ve RPC)",
+    "ru": "Игнорировать все игры (обычно игры и RPC)",
+    "es": "Ignorar todas las actividades de juego (suelen ser juegos y RPC)",
+    "fr": "Ignorer tous les jeux (généralement jeux et RPC)"
+  },
+  "Ignore all streaming activities": {
+    "tr": "Tüm yayın etkinliklerini yok say",
+    "ru": "Игнорировать все трансляции",
+    "es": "Ignorar todas las transmisiones",
+    "fr": "Ignorer tous les streams"
+  },
+  "Ignore all watching activities": {
+    "tr": "Tüm izleme etkinliklerini yok say",
+    "ru": "Игнорировать весь просмотр",
+    "es": "Ignorar todas las actividades de ver",
+    "fr": "Ignorer tous les visionnages"
+  },
+  "Import CustomRPC ID": {
+    "tr": "CustomRPC Kimliğini Aktar",
+    "ru": "Импортировать ID CustomRPC",
+    "es": "Importar ID de CustomRPC",
+    "fr": "Importer l'ID CustomRPC"
+  },
+  "Import the application id of the CustomRPC plugin to the filter list": {
+    "tr": "CustomRPC plugin'inin uygulama kimliğini filtre listesine aktar",
+    "ru": "Импортировать ID приложения CustomRPC в фильтр",
+    "es": "Importa el ID de aplicación de CustomRPC a la lista de filtros",
+    "fr": "Importer l'ID d'application de CustomRPC dans la liste de filtres"
+  },
+  "iOS": {
+    "tr": "iOS",
+    "ru": "iOS",
+    "es": "iOS",
+    "fr": "iOS"
+  },
+  "Keep": {
+    "tr": "Sakla",
+    "ru": "Сохранить",
+    "es": "Conservar",
+    "fr": "Garder"
+  },
+  "Large Image Text": {
+    "tr": "Büyük görsel metni",
+    "ru": "Текст большой картинки",
+    "es": "Texto de la imagen grande",
+    "fr": "Texte de la grande image"
+  },
+  "Large Image URL/Key": {
+    "tr": "Büyük görsel bağlantısı/anahtarı",
+    "ru": "Ссылка или ключ большой картинки",
+    "es": "URL o clave de la imagen grande",
+    "fr": "Lien ou clé de la grande image"
+  },
+  "Last 7 days": {
+    "tr": "Son 7 gün",
+    "ru": "Последние 7 дней",
+    "es": "Últimos 7 días",
+    "fr": "7 derniers jours"
+  },
+  "Last.FM": {
+    "tr": "Last.FM",
+    "ru": "Last.FM",
+    "es": "Last.FM",
+    "fr": "Last.FM"
+  },
+  "Last.fm API key. Not required but highly recommended to avoid rate limiting with our shared key": {
+    "tr": "Last.fm API anahtarı. Zorunlu değil ama ortak anahtarın hız sınırına takılmamak için şiddetle önerilir",
+    "ru": "Ключ API Last.fm. Необязателен, но очень желателен, чтобы общий ключ не упирался в лимиты",
+    "es": "Clave API de Last.fm. No es obligatoria, pero se recomienda para evitar límites con la clave compartida",
+    "fr": "Clé API Last.fm. Facultative mais conseillée pour éviter les limites de la clé partagée"
+  },
+  "Last.fm username": {
+    "tr": "Last.fm kullanıcı adı",
+    "ru": "Имя на Last.fm",
+    "es": "Usuario de Last.fm",
+    "fr": "Nom d'utilisateur Last.fm"
+  },
+  "ListenBrainz": {
+    "tr": "ListenBrainz",
+    "ru": "ListenBrainz",
+    "es": "ListenBrainz",
+    "fr": "ListenBrainz"
+  },
+  "ListenBrainz Compatible (self-hosted)": {
+    "tr": "ListenBrainz uyumlu (kendi sunucun)",
+    "ru": "Совместимый с ListenBrainz (свой сервер)",
+    "es": "Compatible con ListenBrainz (autoalojado)",
+    "fr": "Compatible ListenBrainz (auto-hébergé)"
+  },
+  "Listening": {
+    "tr": "Dinliyor",
+    "ru": "Слушает",
+    "es": "Escuchando",
+    "fr": "Écoute"
+  },
+  "Maximum Party Size": {
+    "tr": "En fazla grup boyutu",
+    "ru": "Максимальный размер группы",
+    "es": "Tamaño máximo del grupo",
+    "fr": "Taille maximale du groupe"
+  },
+  "Messages sent today: {count}": {
+    "tr": "Bugün gönderilen mesajlar: {count}",
+    "ru": "Сообщений отправлено сегодня: {count}",
+    "es": "Mensajes enviados hoy: {count}",
+    "fr": "Messages envoyés aujourd'hui : {count}"
+  },
+  "No goal": {
+    "tr": "Hedef yok",
+    "ru": "Без цели",
+    "es": "Sin objetivo",
+    "fr": "Pas d'objectif"
+  },
+  "No status presets yet. Write a status and tap Keep to save it.": {
+    "tr": "Henüz durum hazır ayarı yok. Bir durum yaz ve kaydetmek için Sakla'ya dokun.",
+    "ru": "Пресетов статуса пока нет. Напиши статус и нажми «Сохранить», чтобы запомнить его.",
+    "es": "Aún no hay presets de estado. Escribe un estado y toca Conservar para guardarlo.",
+    "fr": "Aucun préréglage de statut pour l'instant. Écris un statut et appuie sur Garder pour l'enregistrer."
+  },
+  "None": {
+    "tr": "Yok",
+    "ru": "Нет",
+    "es": "Ninguno",
+    "fr": "Aucun"
+  },
+  "Nudge me after this much continuous time": {
+    "tr": "Bu kadar kesintisiz süreden sonra beni dürt",
+    "ru": "Напомнить через столько непрерывного времени",
+    "es": "Avisarme tras este tiempo seguido",
+    "fr": "Me rappeler après ce temps continu"
+  },
+  "Only for ListenBrainz Compatible (self-hosted)": {
+    "tr": "Yalnızca ListenBrainz uyumlu (kendi sunucun) için",
+    "ru": "Только для совместимого с ListenBrainz (свой сервер)",
+    "es": "Solo para compatible con ListenBrainz (alojado por ti)",
+    "fr": "Seulement pour compatible ListenBrainz (auto-hébergé)"
+  },
+  "Only used with the Custom timestamp mode": {
+    "tr": "Yalnızca özel zaman modunda kullanılır",
+    "ru": "Используется только в режиме «Своё»",
+    "es": "Solo se usa con el modo de marca de tiempo personalizado",
+    "fr": "Utilisé seulement avec le mode d'horodatage personnalisé"
+  },
+  "Open dashboard": {
+    "tr": "Paneli aç",
+    "ru": "Открыть сводку",
+    "es": "Abrir el panel",
+    "fr": "Ouvrir le tableau de bord"
+  },
+  "Party Size": {
+    "tr": "Grup boyutu",
+    "ru": "Размер группы",
+    "es": "Tamaño del grupo",
+    "fr": "Taille du groupe"
+  },
+  "Playing": {
+    "tr": "Oynuyor",
+    "ru": "Играет",
+    "es": "Jugando",
+    "fr": "Joue"
+  },
+  "Playstation": {
+    "tr": "PlayStation",
+    "ru": "PlayStation",
+    "es": "PlayStation",
+    "fr": "PlayStation"
+  },
+  "Required. The name shown after \"Playing\"": {
+    "tr": "Zorunlu. \"Oynuyor\" ifadesinden sonra gösterilen ad",
+    "ru": "Обязательно. Название, которое показывается после «Играет в»",
+    "es": "Obligatorio. El nombre que aparece después de «Jugando a»",
+    "fr": "Obligatoire. Le nom affiché après « Joue à »"
+  },
+  "Same as your current time (not reset after 24h)": {
+    "tr": "Şu anki saatinle aynı (24 saatte sıfırlanmaz)",
+    "ru": "Как твоё текущее время (не сбрасывается через 24 ч)",
+    "es": "Igual que tu hora actual (no se reinicia a las 24 h)",
+    "fr": "Identique à ton heure actuelle (pas remis à zéro après 24 h)"
+  },
+  "Show \"Listening to\" status instead of \"Playing\"": {
+    "tr": "\"Oynuyor\" yerine \"Dinliyor\" durumu göster",
+    "ru": "Статус «Слушает» вместо «Играет»",
+    "es": "Mostrar \"Escuchando\" en vez de \"Jugando\"",
+    "fr": "Afficher « Écoute » au lieu de « Joue »"
+  },
+  "Show a gentle nudge to take a break after a while": {
+    "tr": "Bir süre sonra mola vermek için nazik bir hatırlatma göster",
+    "ru": "Мягко напоминать сделать перерыв",
+    "es": "Recordarte con suavidad tomar un descanso",
+    "fr": "Rappeler gentiment de faire une pause"
+  },
+  "Show album cover": {
+    "tr": "Albüm kapağını göster",
+    "ru": "Показывать обложку альбома",
+    "es": "Mostrar la portada del álbum",
+    "fr": "Afficher la pochette de l'album"
+  },
+  "Show Last.fm Logo": {
+    "tr": "Last.fm logosunu göster",
+    "ru": "Логотип Last.fm",
+    "es": "Mostrar logo de Last.fm",
+    "fr": "Afficher le logo Last.fm"
+  },
+  "Show link to Last.fm profile": {
+    "tr": "Last.fm profil bağlantısını göster",
+    "ru": "Ссылка на профиль Last.fm",
+    "es": "Mostrar enlace al perfil de Last.fm",
+    "fr": "Afficher le lien du profil Last.fm"
+  },
+  "Show link to scrobbler profile": {
+    "tr": "Scrobbler profil bağlantısını göster",
+    "ru": "Ссылка на профиль скробблера",
+    "es": "Mostrar enlace al perfil del scrobbler",
+    "fr": "Afficher le lien du profil du scrobbler"
+  },
+  "Show name of song and artist in status name": {
+    "tr": "Durum adında şarkı ve sanatçı adını göster",
+    "ru": "Песня и исполнитель в названии статуса",
+    "es": "Mostrar canción y artista en el nombre del estado",
+    "fr": "Afficher morceau et artiste dans le nom du statut"
+  },
+  "Show Scrobbler Logo": {
+    "tr": "Scrobbler logosunu göster",
+    "ru": "Логотип скробблера",
+    "es": "Mostrar logo del scrobbler",
+    "fr": "Afficher le logo du scrobbler"
+  },
+  "Show the Forever option at the top of the list instead of the bottom.": {
+    "tr": "Süresiz seçeneğini listenin altı yerine üstünde göster.",
+    "ru": "«Навсегда» вверху списка, а не внизу.",
+    "es": "Mostrar Para siempre arriba de la lista en vez de abajo.",
+    "fr": "Afficher Pour toujours en haut de la liste."
+  },
+  "Show the Last.fm logo by the album cover": {
+    "tr": "Albüm kapağının yanında Last.fm logosunu göster",
+    "ru": "Логотип Last.fm у обложки",
+    "es": "Mostrar el logo de Last.fm junto a la portada",
+    "fr": "Logo Last.fm près de la pochette"
+  },
+  "Show the scrobbler service logo by the album cover": {
+    "tr": "Albüm kapağının yanında scrobbler servis logosunu göster",
+    "ru": "Логотип сервиса скробблинга у обложки",
+    "es": "Mostrar el logo del scrobbler junto a la portada",
+    "fr": "Logo du service de scrobbling près de la pochette"
+  },
+  "Shows Discord's staff-only Developer options in settings, where experiments can be overridden": {
+    "tr": "Ayarlarda yalnızca Discord çalışanlarına açık Geliştirici seçeneklerini gösterir; deneyler buradan değiştirilebilir",
+    "ru": "Показывает в настройках «Параметры разработчика», доступные только сотрудникам Discord: там можно переопределять эксперименты",
+    "es": "Muestra en los ajustes las opciones de desarrollador reservadas al personal de Discord, donde se pueden cambiar los experimentos",
+    "fr": "Affiche dans les paramètres les options de développeur réservées au personnel de Discord, où les expériences peuvent être modifiées"
+  },
+  "Since discord open": {
+    "tr": "Discord açıldığından beri",
+    "ru": "С момента запуска Discord",
+    "es": "Desde que se abrió Discord",
+    "fr": "Depuis l'ouverture de Discord"
+  },
+  "Small Image Text": {
+    "tr": "Küçük görsel metni",
+    "ru": "Текст маленькой картинки",
+    "es": "Texto de la imagen pequeña",
+    "fr": "Texte de la petite image"
+  },
+  "Small Image URL/Key": {
+    "tr": "Küçük görsel bağlantısı/anahtarı",
+    "ru": "Ссылка или ключ маленькой картинки",
+    "es": "URL o clave de la imagen pequeña",
+    "fr": "Lien ou clé de la petite image"
+  },
+  "Start Timestamp (in milliseconds)": {
+    "tr": "Başlangıç zamanı (milisaniye)",
+    "ru": "Время начала (в миллисекундах)",
+    "es": "Marca de tiempo de inicio (en milisegundos)",
+    "fr": "Horodatage de début (en millisecondes)"
+  },
+  "State (line 2)": {
+    "tr": "Durum (2. satır)",
+    "ru": "Состояние (строка 2)",
+    "es": "Estado (línea 2)",
+    "fr": "État (ligne 2)"
+  },
+  "Status Presets": {
+    "tr": "Durum Hazır Ayarları",
+    "ru": "Пресеты статуса",
+    "es": "Presets de estado",
+    "fr": "Préréglages de statut"
+  },
+  "Stream Link (Twitch or YouTube, only if activity type is Streaming)": {
+    "tr": "Yayın bağlantısı (Twitch ya da YouTube, sadece etkinlik türü Yayın ise)",
+    "ru": "Ссылка на трансляцию (Twitch или YouTube, только для типа «Стрим»)",
+    "es": "Enlace de directo (Twitch o YouTube, solo si el tipo de actividad es Streaming)",
+    "fr": "Lien du stream (Twitch ou YouTube, seulement si le type d'activité est Streaming)"
+  },
+  "Streaming": {
+    "tr": "Yayında",
+    "ru": "Транслирует",
+    "es": "Transmitiendo",
+    "fr": "En stream"
+  },
+  "Successfully Saved Status": {
+    "tr": "Durum kaydedildi",
+    "ru": "Статус сохранён",
+    "es": "Estado guardado",
+    "fr": "Statut enregistré"
+  },
+  "The base url of your ListenBrainz API.": {
+    "tr": "ListenBrainz API temel URL'n.",
+    "ru": "Базовый URL вашего API ListenBrainz.",
+    "es": "URL base de tu API de ListenBrainz.",
+    "fr": "URL de base de votre API ListenBrainz."
+  },
+  "The base url of your ListenBrainz instance.": {
+    "tr": "ListenBrainz sunucunun temel URL'si.",
+    "ru": "Базовый URL вашего сервера ListenBrainz.",
+    "es": "URL base de tu instancia de ListenBrainz.",
+    "fr": "URL de base de votre instance ListenBrainz."
+  },
+  "The scrobbler backend to use.": {
+    "tr": "Kullanılacak scrobble servisi.",
+    "ru": "Сервис скробблинга.",
+    "es": "Servicio de scrobbling a usar.",
+    "fr": "Service de scrobbling à utiliser."
+  },
+  "Timestamp Mode": {
+    "tr": "Zaman Damgası Modu",
+    "ru": "Режим времени",
+    "es": "Modo de marca de tiempo",
+    "fr": "Mode d'horodatage"
+  },
+  "Today's time and messages, and the last 7 days": {
+    "tr": "Bugünkü süre ve mesajlar, son 7 gün",
+    "ru": "Время и сообщения за сегодня и за последние 7 дней",
+    "es": "El tiempo y los mensajes de hoy, y los últimos 7 días",
+    "fr": "Le temps et les messages d'aujourd'hui, et les 7 derniers jours"
+  },
+  "Today: {time}": {
+    "tr": "Bugün: {time}",
+    "ru": "Сегодня: {time}",
+    "es": "Hoy: {time}",
+    "fr": "Aujourd'hui : {time}"
+  },
+  "Use album name (falls back to custom status text if song has no album)": {
+    "tr": "Albüm adını kullan (şarkının albümü yoksa özel durum metni)",
+    "ru": "Название альбома (или свой текст, если альбома нет)",
+    "es": "Usar el nombre del álbum (o el texto personalizado si no hay)",
+    "fr": "Nom de l'album (sinon le texte personnalisé)"
+  },
+  "Use artist name only": {
+    "tr": "Sadece sanatçı adını kullan",
+    "ru": "Только исполнитель",
+    "es": "Usar solo el artista",
+    "fr": "Seulement le nom de l'artiste"
+  },
+  "Use custom status name": {
+    "tr": "Özel durum adını kullan",
+    "ru": "Своё название статуса",
+    "es": "Usar nombre de estado personalizado",
+    "fr": "Utiliser un nom de statut personnalisé"
+  },
+  "Use format 'artist - song'": {
+    "tr": "'sanatçı - şarkı' biçimini kullan",
+    "ru": "Формат «исполнитель - песня»",
+    "es": "Usar el formato 'artista - canción'",
+    "fr": "Format « artiste - morceau »"
+  },
+  "Use format 'song - artist'": {
+    "tr": "'şarkı - sanatçı' biçimini kullan",
+    "ru": "Формат «песня - исполнитель»",
+    "es": "Usar el formato 'canción - artista'",
+    "fr": "Format « morceau - artiste »"
+  },
+  "Use generic placeholder": {
+    "tr": "Genel yer tutucu kullan",
+    "ru": "Обычная заглушка",
+    "es": "Usar un marcador genérico",
+    "fr": "Espace réservé générique"
+  },
+  "Use large Last.fm logo": {
+    "tr": "Büyük Last.fm logosu kullan",
+    "ru": "Крупный логотип Last.fm",
+    "es": "Usar logo grande de Last.fm",
+    "fr": "Grand logo Last.fm"
+  },
+  "Use large scrobbler logo": {
+    "tr": "Büyük scrobbler logosu kullan",
+    "ru": "Крупный логотип скробблера",
+    "es": "Usar logo grande del scrobbler",
+    "fr": "Grand logo du scrobbler"
+  },
+  "Use music service name (falls back to custom status text)": {
+    "tr": "Müzik servisinin adını kullan (yoksa özel durum metni)",
+    "ru": "Название музыкального сервиса (или свой текст)",
+    "es": "Usar el nombre del servicio de música (o el texto personalizado)",
+    "fr": "Nom du service de musique (sinon le texte personnalisé)"
+  },
+  "Use song name only": {
+    "tr": "Sadece şarkı adını kullan",
+    "ru": "Только название песни",
+    "es": "Usar solo el nombre de la canción",
+    "fr": "Seulement le titre du morceau"
+  },
+  "Username": {
+    "tr": "Kullanıcı Adı",
+    "ru": "Имя пользователя",
+    "es": "Nombre de usuario",
+    "fr": "Nom d'utilisateur"
+  },
+  "VR": {
+    "tr": "VR",
+    "ru": "VR",
+    "es": "RV",
+    "fr": "VR"
+  },
+  "Watching": {
+    "tr": "İzliyor",
+    "ru": "Смотрит",
+    "es": "Viendo",
+    "fr": "Regarde"
+  },
+  "We can't guarantee this plugin won't get you warned or banned.": {
+    "tr": "Bu plugin'in uyarı ya da ban almana yol açmayacağını garanti edemeyiz.",
+    "ru": "Мы не можем гарантировать, что за этот плагин вы не получите предупреждение или бан.",
+    "es": "No podemos garantizar que este plugin no te lleve a una advertencia o un baneo.",
+    "fr": "Nous ne pouvons pas garantir que ce plugin ne vous vaudra pas un avertissement ou un bannissement."
+  },
+  "Web": {
+    "tr": "Web",
+    "ru": "Веб",
+    "es": "Web",
+    "fr": "Web"
+  },
+  "What platform to show up as on": {
+    "tr": "Hangi platformda görünülsün",
+    "ru": "На какой платформе отображаться",
+    "es": "Con qué plataforma aparecer",
+    "fr": "Plateforme affichée"
+  },
+  "When album or album art is missing": {
+    "tr": "Albüm veya kapağı yoksa",
+    "ru": "Если нет альбома или обложки",
+    "es": "Si falta el álbum o la portada",
+    "fr": "Si l'album ou la pochette manque"
+  },
+  "Whitelist": {
+    "tr": "Beyaz liste",
+    "ru": "Белый список",
+    "es": "Lista blanca",
+    "fr": "Liste blanche"
+  },
+  "Within your {goal} goal — nice 💖": {
+    "tr": "{goal} hedefinin içinde — harika 💖",
+    "ru": "В пределах цели в {goal} — отлично 💖",
+    "es": "Dentro de tu objetivo de {goal}, ¡bien! 💖",
+    "fr": "Dans ton objectif de {goal} — bravo 💖"
+  },
+  "Write a status first": {
+    "tr": "Önce bir durum yaz",
+    "ru": "Сначала напиши статус",
+    "es": "Escribe un estado primero",
+    "fr": "Écris d'abord un statut"
+  },
+  "Xbox": {
+    "tr": "Xbox",
+    "ru": "Xbox",
+    "es": "Xbox",
+    "fr": "Xbox"
+  },
+  "You can use the following variables: {artist} | {album} | {title}": {
+    "tr": "Şu değişkenleri kullanabilirsin: {artist} | {album} | {title}",
+    "ru": "Можно использовать переменные: {artist} | {album} | {title}",
+    "es": "Puedes usar estas variables: {artist} | {album} | {title}",
+    "fr": "Tu peux utiliser ces variables : {artist} | {album} | {title}"
+  },
+  "You can't see your own buttons on your profile, but everyone else can see it fine.": {
+    "tr": "Kendi düğmelerini profilinde göremezsin ama diğer herkes sorunsuz görür.",
+    "ru": "Свои кнопки в профиле вы не увидите, но все остальные видят их нормально.",
+    "es": "No puedes ver tus propios botones en tu perfil, pero los demás sí los ven.",
+    "fr": "Vous ne voyez pas vos propres boutons sur votre profil, mais les autres les voient très bien."
+  },
+  "You've been on Discord for a while. Time to stretch and drink some water.": {
+    "tr": "Bir süredir Discord'dasın. Biraz esneme ve su içme zamanı.",
+    "ru": "Вы давно в Discord. Пора размяться и выпить воды.",
+    "es": "Llevas un rato en Discord. Es hora de estirarte y beber agua.",
+    "fr": "Vous êtes sur Discord depuis un moment. Étirez-vous et buvez de l'eau."
+  },
+  "Your Discord, gently 🌿": {
+    "tr": "Discord'un, yumuşacık 🌿",
+    "ru": "Ваш Discord, бережно 🌿",
+    "es": "Tu Discord, con calma 🌿",
+    "fr": "Votre Discord, en douceur 🌿"
+  },
+  "{count} messages": {
+    "tr": "{count} mesaj",
+    "ru": "сообщений: {count}",
+    "es": "{count} mensajes",
+    "fr": "{count} messages"
+  }
+}
