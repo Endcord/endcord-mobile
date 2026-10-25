@@ -1,67 +1,99 @@
 name: Build Installer
 
 on:
+  push:
+    paths:
+      - "installer/**"
+      - ".github/workflows/build-installer.yml"
+  pull_request:
+    paths:
+      - "installer/**"
   workflow_dispatch:
     inputs:
       version:
         required: true
-        description: The version of this release. Should be lower than the last and in the format 1.0.0
-        default: "1.0.0"
+        description: Version of this release, for example 1.0.1 (must be higher than the last release)
       title:
-        required: true
-        description: Title of this release
-      description:
         required: false
-        description: Description of this release
+        description: Title of the release
+      notes:
+        required: false
+        description: Release notes (markdown)
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    defaults:
+      run:
+        working-directory: installer
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
-      with:
-        path: src
+      - name: Checkout
+        uses: actions/checkout@v6
 
-    - name: Setup JDK 17
-      uses: actions/setup-java@v4
-      with:
-        distribution: 'temurin'
-        java-version: '17'
+      - name: Setup JDK 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
 
-    - name: Setup Flutter
-      uses: subosito/flutter-action@44ac965b96f18d999802d4b807e3256d5a3f9fa1 # v2.16.0
-      with:
-        flutter-version: '3.24.0'
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
 
-    - name: Build Installer
-      run: |
-        cd $GITHUB_WORKSPACE/src/installer
-        echo "${{ secrets.keystore }}" | base64 -d > ../../keystore.jks
-        echo "storePassword: ${{ secrets.keystorePassword }}" > android/key.properties
-        echo "keyPassword: ${{ secrets.keyPassword }}" >> android/key.properties
-        echo "keyAlias: Installer" >> android/key.properties
-        echo "storeFile: ../../../../keystore.jks" >> android/key.properties
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v4
+        with:
+          packages: 'platform-tools'
 
-        versionName="${{ github.event.inputs.version }}"
-        versionCode="${versionName//./}"
-        flutter build apk --build-number "$versionCode" --build-name "$versionName"
+      - name: Build debug APK
+        if: ${{ github.event_name != 'workflow_dispatch' }}
+        run: |
+          chmod +x gradlew
+          ./gradlew --stacktrace :app:assembleDebug
 
-        mv build/app/outputs/flutter-apk/app-release.apk ../../Installer-release.apk
-        rm ../../keystore.jks
-        rm android/key.properties
+      - name: Upload debug APK
+        if: ${{ github.event_name != 'workflow_dispatch' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: endcord-installer-debug
+          path: installer/app/build/outputs/apk/debug/*.apk
 
-    - name: Release
-      run: |
-        cd $GITHUB_WORKSPACE/src
-        git config --local user.email "actions@github.com"
-        git config --local user.name "GitHub Actions"
-        tag="${{ github.event.inputs.version }}"
-        git tag "$tag"
-        git push origin "$tag"
-        gh release create "$tag" \
-          --title "${{ github.event.inputs.title }}" \
-          --notes "${{ github.event.inputs.description }}" \
-          ../Installer-release.apk
-      env:
-        GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+      # Releases are signed with the keystore stored in the repository secrets:
+      # SIGNING_STORE_BASE64 (base64 of the .jks), SIGNING_STORE_PASSWORD, SIGNING_KEY_ALIAS, SIGNING_KEY_PASSWORD
+      - name: Build release APK
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        env:
+          RELEASE: true
+          INSTALLER_VERSION: ${{ github.event.inputs.version }}
+          SIGNING_STORE_BASE64: ${{ secrets.SIGNING_STORE_BASE64 }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+        run: |
+          if [ -z "$SIGNING_STORE_BASE64" ]; then
+            echo "::error::The SIGNING_STORE_BASE64 secret is missing, see the README for how to create a signing key"
+            exit 1
+          fi
+          echo "$SIGNING_STORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
+          export SIGNING_STORE_FILE="$RUNNER_TEMP/release.jks"
+          chmod +x gradlew
+          ./gradlew --stacktrace :app:assembleRelease
+          cp app/build/outputs/apk/release/app-release.apk "$RUNNER_TEMP/endcord-installer-v${INSTALLER_VERSION}.apk"
+          rm "$RUNNER_TEMP/release.jks"
+
+      - name: Publish release
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ github.event.inputs.version }}
+          TITLE: ${{ github.event.inputs.title }}
+          NOTES: ${{ github.event.inputs.notes }}
+        run: |
+          tag="v${VERSION}"
+          gh release create "$tag" \
+            --target "$GITHUB_SHA" \
+            --title "${TITLE:-Endcord Installer $tag}" \
+            --notes "${NOTES:-Endcord Installer $tag}" \
+            "$RUNNER_TEMP/endcord-installer-${tag}.apk"

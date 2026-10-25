@@ -4,14 +4,12 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - gradlew*
-      - gradle/gradle-wrapper.properties
-      - gradle/gradle-wrapper.jar
+      - "**/gradlew*"
+      - "**/gradle/wrapper/**"
   pull_request:
     paths:
-      - gradlew*
-      - gradle/gradle-wrapper.properties
-      - gradle/gradle-wrapper.jar
+      - "**/gradlew*"
+      - "**/gradle/wrapper/**"
 
 jobs:
   validation:

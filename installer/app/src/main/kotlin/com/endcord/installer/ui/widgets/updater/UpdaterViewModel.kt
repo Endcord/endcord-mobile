@@ -134,7 +134,7 @@ class UpdaterViewModel(
     /**
      * This fetched the releases data from GitHub and populates the state if there is an update.
      *
-     * It obtains all the releases that have an asset named `aliucord-manager-[tag].apk`,
+     * It obtains all the releases that have an asset named `endcord-installer-[tag].apk`,
      * then finds the latest release based on the largest semantic version extracted from the tag name (`v1.0.0`),
      * and populates the state to show to the user.
      */
