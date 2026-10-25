@@ -115,6 +115,7 @@
   <string name="navigation_settings">Настройки</string>
 
   <string name="contributors_lead">Руководитель</string>
+  <string name="about_based_on_aliucord">На основе Aliucord</string>
   <string name="contributors">Участники</string>
   <string name="contributors_contributions">Вклад: %s</string>
 

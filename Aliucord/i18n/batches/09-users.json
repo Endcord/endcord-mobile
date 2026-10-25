@@ -1,0 +1,614 @@
+{
+  "...and {count} more": {
+    "tr": "...ve {count} kişi daha",
+    "ru": "...и ещё {count}",
+    "es": "...y {count} más",
+    "fr": "...et {count} de plus"
+  },
+  "{count} members in both {first} and {second}": {
+    "tr": "Hem {first} hem {second} sunucusunda olan {count} üye",
+    "ru": "Участников и на {first}, и на {second}: {count}",
+    "es": "{count} miembros en {first} y en {second}",
+    "fr": "{count} membres à la fois sur {first} et {second}"
+  },
+  "{count}d": {
+    "tr": "{count} g",
+    "ru": "{count} д",
+    "es": "{count} d",
+    "fr": "{count} j"
+  },
+  "{count}h": {
+    "tr": "{count} sa",
+    "ru": "{count} ч",
+    "es": "{count} h",
+    "fr": "{count} h"
+  },
+  "{count}m": {
+    "tr": "{count} dk",
+    "ru": "{count} мин",
+    "es": "{count} min",
+    "fr": "{count} min"
+  },
+  "{count}s": {
+    "tr": "{count} sn",
+    "ru": "{count} с",
+    "es": "{count} s",
+    "fr": "{count} s"
+  },
+  "{username} has {countdown} remaining in timeout.": {
+    "tr": "{username} kullanıcısının susturmasının bitmesine {countdown} var.",
+    "ru": "У {username} осталось {countdown} тайм-аута.",
+    "es": "A {username} le quedan {countdown} de aislamiento.",
+    "fr": "Il reste {countdown} d'exclusion à {username}."
+  },
+  "Adds options to copy role color / edit role / view role icon when long-pressing roles in the user profile": {
+    "tr": "Kullanıcı profilindeki rollere uzun basınca rol rengini kopyalama / rolü düzenleme / rol simgesini görüntüleme seçenekleri ekler",
+    "ru": "Добавляет пункты «скопировать цвет роли», «изменить роль» и «посмотреть значок роли» при долгом нажатии на роль в профиле",
+    "es": "Añade opciones para copiar el color del rol, editar el rol o ver su icono al mantener pulsado un rol en el perfil",
+    "fr": "Ajoute des options pour copier la couleur d'un rôle, le modifier ou voir son icône en appuyant longuement dessus dans le profil"
+  },
+  "Allowed": {
+    "tr": "İzin verildi",
+    "ru": "Разрешено",
+    "es": "Permitido",
+    "fr": "Autorisé"
+  },
+  "Allows you to search in the blocked users list.": {
+    "tr": "Engellenen kullanıcılar listesinde arama yapmanı sağlar.",
+    "ru": "Позволяет искать в списке заблокированных пользователей.",
+    "es": "Te permite buscar en la lista de usuarios bloqueados.",
+    "fr": "Permet de rechercher dans la liste des utilisateurs bloqués."
+  },
+  "Always opens user profile sheets fully expanded instead of halfway": {
+    "tr": "Kullanıcı profillerini her zaman yarıya kadar değil, tamamen açık şekilde açar",
+    "ru": "Всегда открывает профили пользователей полностью развёрнутыми, а не наполовину",
+    "es": "Abre siempre los perfiles de usuario completamente desplegados en lugar de a medias",
+    "fr": "Ouvre toujours les profils d'utilisateur entièrement dépliés plutôt qu'à moitié"
+  },
+  "API to use": {
+    "tr": "Kullanılacak API",
+    "ru": "Используемый API",
+    "es": "API que usar",
+    "fr": "API à utiliser"
+  },
+  "Banner to use if both Nitro and USRBG banners are present": {
+    "tr": "Hem Nitro hem USRBG afişi varsa kullanılacak afiş",
+    "ru": "Какой баннер показывать, если есть и Nitro, и USRBG",
+    "es": "Banner a usar si hay de Nitro y de USRBG",
+    "fr": "Bannière à utiliser si Nitro et USRBG existent"
+  },
+  "Bypass Slowmode": {
+    "tr": "Yavaş Modu Atla",
+    "ru": "Обходить медленный режим",
+    "es": "Omitir el modo lento",
+    "fr": "Ignorer le mode lent"
+  },
+  "Cancel": {
+    "tr": "İptal",
+    "ru": "Отмена",
+    "es": "Cancelar",
+    "fr": "Annuler"
+  },
+  "Cancel Outgoing Friend Request": {
+    "tr": "Giden Arkadaşlık İsteğini İptal Et",
+    "ru": "Отменить исходящую заявку в друзья",
+    "es": "Cancelar solicitud de amistad enviada",
+    "fr": "Annuler la demande d'ami envoyée"
+  },
+  "Channel Permissions": {
+    "tr": "Kanal İzinleri",
+    "ru": "Права в канале",
+    "es": "Permisos del canal",
+    "fr": "Permissions du salon"
+  },
+  "Compare two servers you're in and see which members are in both, with the /mutualmembers command. Only members the app has loaded are compared.": {
+    "tr": "/mutualmembers komutuyla bulunduğun iki sunucuyu karşılaştır ve her ikisinde de olan üyeleri gör. Yalnızca uygulamanın yüklediği üyeler karşılaştırılır.",
+    "ru": "Сравни два своих сервера командой /mutualmembers и узнай, какие участники есть на обоих. Сравниваются только участники, которых загрузило приложение.",
+    "es": "Compara dos servidores en los que estás y mira qué miembros están en ambos con el comando /mutualmembers. Solo se comparan los miembros que la aplicación ha cargado.",
+    "fr": "Compare deux de tes serveurs et vois quels membres sont dans les deux avec la commande /mutualmembers. Seuls les membres chargés par l'application sont comparés."
+  },
+  "Copy Role Color": {
+    "tr": "Rol Rengini Kopyala",
+    "ru": "Скопировать цвет роли",
+    "es": "Copiar color del rol",
+    "fr": "Copier la couleur du rôle"
+  },
+  "Copy Role ID": {
+    "tr": "Rol ID'sini Kopyala",
+    "ru": "Скопировать ID роли",
+    "es": "Copiar ID del rol",
+    "fr": "Copier l'identifiant du rôle"
+  },
+  "Couldn't cancel the friend request": {
+    "tr": "Arkadaşlık isteği iptal edilemedi",
+    "ru": "Не удалось отменить заявку в друзья",
+    "es": "No se pudo cancelar la solicitud de amistad",
+    "fr": "Impossible d'annuler la demande d'ami"
+  },
+  "Couldn't find that server.": {
+    "tr": "Bu sunucu bulunamadı.",
+    "ru": "Не удалось найти этот сервер.",
+    "es": "No se encontró ese servidor.",
+    "fr": "Impossible de trouver ce serveur."
+  },
+  "Couldn't load global badges": {
+    "tr": "Global rozetler yüklenemedi",
+    "ru": "Не удалось загрузить глобальные значки",
+    "es": "No se pudieron cargar las insignias globales",
+    "fr": "Impossible de charger les badges globaux"
+  },
+  "Couldn't load the repositories": {
+    "tr": "Depolar yüklenemedi",
+    "ru": "Не удалось загрузить репозитории",
+    "es": "No se pudieron cargar los repositorios",
+    "fr": "Impossible de charger les dépôts"
+  },
+  "Create Events": {
+    "tr": "Etkinlik Oluştur",
+    "ru": "Создавать события",
+    "es": "Crear eventos",
+    "fr": "Créer des événements"
+  },
+  "Create Expressions": {
+    "tr": "İfade Oluştur",
+    "ru": "Создавать выражения",
+    "es": "Crear expresiones",
+    "fr": "Créer des expressions"
+  },
+  "Create Polls": {
+    "tr": "Anket Oluştur",
+    "ru": "Создавать опросы",
+    "es": "Crear encuestas",
+    "fr": "Créer des sondages"
+  },
+  "Denied": {
+    "tr": "Reddedildi",
+    "ru": "Запрещено",
+    "es": "Denegado",
+    "fr": "Refusé"
+  },
+  "Display warning to be respectful at the top of the reviews list": {
+    "tr": "Değerlendirme listesinin üstünde saygılı olma uyarısı göster",
+    "ru": "Показывать над отзывами просьбу быть вежливыми",
+    "es": "Mostrar un aviso de respeto arriba de la lista de reseñas",
+    "fr": "Afficher un rappel de respect en haut des avis"
+  },
+  "Edit Role": {
+    "tr": "Rolü Düzenle",
+    "ru": "Изменить роль",
+    "es": "Editar rol",
+    "fr": "Modifier le rôle"
+  },
+  "Enter PNG/GIF URL": {
+    "tr": "PNG/GIF URL'si gir",
+    "ru": "Введите URL PNG/GIF",
+    "es": "Introduce la URL del PNG/GIF",
+    "fr": "Saisissez l'URL PNG/GIF"
+  },
+  "File format to use when viewing role icons": {
+    "tr": "Rol ikonlarını görüntülerken kullanılacak biçim",
+    "ru": "Формат при просмотре значков ролей",
+    "es": "Formato al ver iconos de rol",
+    "fr": "Format pour afficher les icônes de rôle"
+  },
+  "Friend request cancelled": {
+    "tr": "Arkadaşlık isteği iptal edildi",
+    "ru": "Заявка в друзья отменена",
+    "es": "Solicitud de amistad cancelada",
+    "fr": "Demande d'ami annulée"
+  },
+  "Get your own USRBG banner": {
+    "tr": "Kendi USRBG afişini al",
+    "ru": "Получить свой баннер USRBG",
+    "es": "Consigue tu propio banner de USRBG",
+    "fr": "Obtenir votre propre bannière USRBG"
+  },
+  "GitHub Repositories": {
+    "tr": "GitHub Depoları",
+    "ru": "Репозитории GitHub",
+    "es": "Repositorios de GitHub",
+    "fr": "Dépôts GitHub"
+  },
+  "Has every permission": {
+    "tr": "Tüm izinlere sahip",
+    "ru": "Есть все права",
+    "es": "Tiene todos los permisos",
+    "fr": "Possède toutes les permissions"
+  },
+  "Hide reviews from blocked users": {
+    "tr": "Engellenenlerin değerlendirmelerini gizle",
+    "ru": "Скрывать отзывы заблокированных",
+    "es": "Ocultar reseñas de bloqueados",
+    "fr": "Masquer les avis des bloqués"
+  },
+  "Hide timestamps on reviews": {
+    "tr": "Değerlendirmelerde zamanı gizle",
+    "ru": "Скрывать время в отзывах",
+    "es": "Ocultar la hora en las reseñas",
+    "fr": "Masquer l'heure des avis"
+  },
+  "How to display the timeout duration": {
+    "tr": "Zaman aşımı süresi nasıl gösterilsin",
+    "ru": "Как показывать длительность тайм-аута",
+    "es": "Cómo mostrar la duración del aislamiento",
+    "fr": "Comment afficher la durée d'exclusion"
+  },
+  "Join UserPFP Server": {
+    "tr": "UserPFP Sunucusuna Katıl",
+    "ru": "Вступить на сервер UserPFP",
+    "es": "Unirse al servidor de UserPFP",
+    "fr": "Rejoindre le serveur UserPFP"
+  },
+  "Loading members...": {
+    "tr": "Üyeler yükleniyor...",
+    "ru": "Загрузка участников...",
+    "es": "Cargando miembros...",
+    "fr": "Chargement des membres..."
+  },
+  "Loading repositories...": {
+    "tr": "Depolar yükleniyor...",
+    "ru": "Загрузка репозиториев...",
+    "es": "Cargando repositorios...",
+    "fr": "Chargement des dépôts..."
+  },
+  "Make sure that you are in a server.": {
+    "tr": "Bir sunucuda olduğundan emin ol.",
+    "ru": "Убедитесь, что вы находитесь на сервере.",
+    "es": "Asegúrate de estar en un servidor.",
+    "fr": "Assurez-vous d'être sur un serveur."
+  },
+  "Members": {
+    "tr": "Üyeler",
+    "ru": "Участники",
+    "es": "Miembros",
+    "fr": "Membres"
+  },
+  "Mutual Groups": {
+    "tr": "Ortak Gruplar",
+    "ru": "Общие группы",
+    "es": "Grupos en común",
+    "fr": "Groupes en commun"
+  },
+  "Network error: Failed to connect to ReviewDB.": {
+    "tr": "Ağ hatası: ReviewDB'ye bağlanılamadı.",
+    "ru": "Ошибка сети: не удалось подключиться к ReviewDB.",
+    "es": "Error de red: no se pudo conectar con ReviewDB.",
+    "fr": "Erreur réseau : impossible de joindre ReviewDB."
+  },
+  "Next to the timeout icon": {
+    "tr": "Zaman aşımı simgesinin yanında",
+    "ru": "Рядом со значком тайм-аута",
+    "es": "Junto al icono de aislamiento",
+    "fr": "À côté de l'icône d'exclusion"
+  },
+  "Nitro banner": {
+    "tr": "Nitro afişi",
+    "ru": "Баннер Nitro",
+    "es": "Banner de Nitro",
+    "fr": "Bannière Nitro"
+  },
+  "No members found.": {
+    "tr": "Üye bulunamadı.",
+    "ru": "Участники не найдены.",
+    "es": "No se encontraron miembros.",
+    "fr": "Aucun membre trouvé."
+  },
+  "No permissions to display!": {
+    "tr": "Gösterilecek izin yok!",
+    "ru": "Нет прав для показа!",
+    "es": "¡No hay permisos que mostrar!",
+    "fr": "Aucune permission à afficher !"
+  },
+  "No public repositories": {
+    "tr": "Herkese açık depo yok",
+    "ru": "Нет публичных репозиториев",
+    "es": "No hay repositorios públicos",
+    "fr": "Aucun dépôt public"
+  },
+  "Nobody has reviewed this user yet.": {
+    "tr": "Bu kullanıcıyı henüz kimse değerlendirmedi.",
+    "ru": "Этого пользователя ещё никто не оценил.",
+    "es": "Nadie ha reseñado a este usuario todavía.",
+    "fr": "Personne n'a encore laissé d'avis sur cet utilisateur."
+  },
+  "Not overwritten": {
+    "tr": "Değiştirilmemiş",
+    "ru": "Не переопределено",
+    "es": "Sin modificar",
+    "fr": "Non modifié"
+  },
+  "Only members the app has loaded are compared.": {
+    "tr": "Yalnızca uygulamanın yüklediği üyeler karşılaştırılır.",
+    "ru": "Сравниваются только участники, которых загрузило приложение.",
+    "es": "Solo se comparan los miembros que la aplicación ha cargado.",
+    "fr": "Seuls les membres chargés par l'application sont comparés."
+  },
+  "Override server avatars": {
+    "tr": "Sunucu avatarlarını geçersiz kıl",
+    "ru": "Заменять аватары на серверах",
+    "es": "Reemplazar avatares de servidor",
+    "fr": "Remplacer les avatars de serveur"
+  },
+  "Override server avatars with custom avatars or the default user avatar if no custom avatar is set.": {
+    "tr": "Sunucu avatarlarını özel avatarla, yoksa varsayılan kullanıcı avatarıyla değiştir.",
+    "ru": "Заменять серверные аватары своими или обычным аватаром пользователя.",
+    "es": "Reemplazar avatares de servidor por personalizados o por el avatar normal del usuario.",
+    "fr": "Remplacer les avatars de serveur par des avatars perso ou l'avatar normal."
+  },
+  "Permissions": {
+    "tr": "İzinler",
+    "ru": "Права",
+    "es": "Permisos",
+    "fr": "Permissions"
+  },
+  "Pick two different servers.": {
+    "tr": "İki farklı sunucu seç.",
+    "ru": "Выбери два разных сервера.",
+    "es": "Elige dos servidores diferentes.",
+    "fr": "Choisis deux serveurs différents."
+  },
+  "Pin Messages": {
+    "tr": "Mesajları Sabitle",
+    "ru": "Закреплять сообщения",
+    "es": "Fijar mensajes",
+    "fr": "Épingler des messages"
+  },
+  "Read the reviews other users left on a profile (Adds a new entry to profiles)": {
+    "tr": "Diğer kullanıcıların bir profile bıraktığı değerlendirmeleri oku (Profillere yeni bir seçenek ekler)",
+    "ru": "Читай отзывы, которые другие пользователи оставили в профиле (добавляет новый пункт в профили)",
+    "es": "Lee las reseñas que otros usuarios dejaron en un perfil (añade una nueva opción a los perfiles)",
+    "fr": "Lis les avis laissés par d'autres utilisateurs sur un profil (ajoute une nouvelle option aux profils)"
+  },
+  "Refetch Global Badges": {
+    "tr": "Global rozetleri yeniden getir",
+    "ru": "Обновить глобальные значки",
+    "es": "Volver a cargar insignias globales",
+    "fr": "Recharger les badges globaux"
+  },
+  "Remove": {
+    "tr": "Kaldır",
+    "ru": "Убрать",
+    "es": "Quitar",
+    "fr": "Retirer"
+  },
+  "ReviewDB website": {
+    "tr": "ReviewDB sitesi",
+    "ru": "Сайт ReviewDB",
+    "es": "Web de ReviewDB",
+    "fr": "Site de ReviewDB"
+  },
+  "Roles": {
+    "tr": "Roller",
+    "ru": "Роли",
+    "es": "Roles",
+    "fr": "Rôles"
+  },
+  "Save": {
+    "tr": "Kaydet",
+    "ru": "Сохранить",
+    "es": "Guardar",
+    "fr": "Enregistrer"
+  },
+  "Search users...": {
+    "tr": "Kullanıcı ara...",
+    "ru": "Поиск пользователей...",
+    "es": "Buscar usuarios...",
+    "fr": "Rechercher des utilisateurs..."
+  },
+  "Send Voice Messages": {
+    "tr": "Sesli Mesaj Gönder",
+    "ru": "Отправлять голосовые сообщения",
+    "es": "Enviar mensajes de voz",
+    "fr": "Envoyer des messages vocaux"
+  },
+  "Server owner": {
+    "tr": "Sunucu sahibi",
+    "ru": "Владелец сервера",
+    "es": "Propietario del servidor",
+    "fr": "Propriétaire du serveur"
+  },
+  "Server Permissions": {
+    "tr": "Sunucu İzinleri",
+    "ru": "Права на сервере",
+    "es": "Permisos del servidor",
+    "fr": "Permissions du serveur"
+  },
+  "Set Avatar": {
+    "tr": "Avatarı Ayarla",
+    "ru": "Установить аватар",
+    "es": "Establecer avatar",
+    "fr": "Définir l'avatar"
+  },
+  "Show Aero Badges": {
+    "tr": "Aero Rozetlerini Göster",
+    "ru": "Показывать значки Aero",
+    "es": "Mostrar insignias de Aero",
+    "fr": "Afficher les badges Aero"
+  },
+  "Show Aliucord Badges": {
+    "tr": "Aliucord rozetlerini göster",
+    "ru": "Показывать значки Aliucord",
+    "es": "Mostrar insignias de Aliucord",
+    "fr": "Afficher les badges Aliucord"
+  },
+  "Show Custom Badges": {
+    "tr": "Özel rozetleri göster",
+    "ru": "Показывать свои значки",
+    "es": "Mostrar insignias personalizadas",
+    "fr": "Afficher les badges personnalisés"
+  },
+  "Show Enmity Badges": {
+    "tr": "Enmity rozetlerini göster",
+    "ru": "Показывать значки Enmity",
+    "es": "Mostrar insignias de Enmity",
+    "fr": "Afficher les badges Enmity"
+  },
+  "Show Nekocord Badges": {
+    "tr": "Nekocord rozetlerini göster",
+    "ru": "Показывать значки Nekocord",
+    "es": "Mostrar insignias de Nekocord",
+    "fr": "Afficher les badges Nekocord"
+  },
+  "Show Paicord Badges": {
+    "tr": "Paicord rozetlerini göster",
+    "ru": "Показывать значки Paicord",
+    "es": "Mostrar insignias de Paicord",
+    "fr": "Afficher les badges Paicord"
+  },
+  "Show Raincord Badges": {
+    "tr": "Raincord rozetlerini göster",
+    "ru": "Показывать значки Raincord",
+    "es": "Mostrar insignias de Raincord",
+    "fr": "Afficher les badges Raincord"
+  },
+  "Show repository language": {
+    "tr": "Depo dilini göster",
+    "ru": "Язык репозитория",
+    "es": "Mostrar el lenguaje del repositorio",
+    "fr": "Afficher le langage du dépôt"
+  },
+  "Show repository stars": {
+    "tr": "Depo yıldızlarını göster",
+    "ru": "Звёзды репозитория",
+    "es": "Mostrar estrellas del repositorio",
+    "fr": "Afficher les étoiles du dépôt"
+  },
+  "Show ReviewDB Badges": {
+    "tr": "ReviewDB rozetlerini göster",
+    "ru": "Показывать значки ReviewDB",
+    "es": "Mostrar insignias de ReviewDB",
+    "fr": "Afficher les badges ReviewDB"
+  },
+  "Show Timeout Duration": {
+    "tr": "Susturma süresini göster",
+    "ru": "Показать длительность тайм-аута",
+    "es": "Mostrar duración del aislamiento",
+    "fr": "Afficher la durée de l'exclusion"
+  },
+  "Show Velocity Badges": {
+    "tr": "Velocity rozetlerini göster",
+    "ru": "Показывать значки Velocity",
+    "es": "Mostrar insignias de Velocity",
+    "fr": "Afficher les badges Velocity"
+  },
+  "Shows the Mod as Prefix": {
+    "tr": "Modu ön ek olarak gösterir",
+    "ru": "Показывает мод префиксом",
+    "es": "Muestra el mod como prefijo",
+    "fr": "Affiche le mod en préfixe"
+  },
+  "Shows the Mod as Suffix": {
+    "tr": "Modu son ek olarak gösterir",
+    "ru": "Показывает мод суффиксом",
+    "es": "Muestra el mod como sufijo",
+    "fr": "Affiche le mod en suffixe"
+  },
+  "Skipped while the built-in Badges plugin is on, since it already shows them": {
+    "tr": "Yerleşik Badges eklentisi açıkken atlanır, çünkü onları zaten gösterir",
+    "ru": "Пропускаются, пока включён встроенный плагин Badges, так как он уже их показывает",
+    "es": "Se omiten mientras el plugin integrado Badges está activado, ya que él ya las muestra",
+    "fr": "Ignorés tant que le plugin intégré Badges est activé, car il les affiche déjà"
+  },
+  "Successfully refetched global badges!": {
+    "tr": "Genel rozetler yeniden alındı",
+    "ru": "Глобальные значки обновлены",
+    "es": "Insignias globales actualizadas",
+    "fr": "Badges globaux actualisés"
+  },
+  "Tap on roles in user profiles to see which members have them.": {
+    "tr": "Hangi üyelerin sahip olduğunu görmek için kullanıcı profillerindeki rollere dokun.",
+    "ru": "Нажми на роль в профиле пользователя, чтобы увидеть, у каких участников она есть.",
+    "es": "Toca los roles en los perfiles de usuario para ver qué miembros los tienen.",
+    "fr": "Touche les rôles dans les profils pour voir quels membres les ont."
+  },
+  "timeout remaining": {
+    "tr": "susturma süresi kaldı",
+    "ru": "осталось тайм-аута",
+    "es": "de aislamiento restante",
+    "fr": "d'exclusion restante"
+  },
+  "Unknown permission ({bit})": {
+    "tr": "Bilinmeyen izin ({bit})",
+    "ru": "Неизвестное право ({bit})",
+    "es": "Permiso desconocido ({bit})",
+    "fr": "Permission inconnue ({bit})"
+  },
+  "Use External Apps": {
+    "tr": "Harici Uygulamaları Kullan",
+    "ru": "Использовать внешние приложения",
+    "es": "Usar aplicaciones externas",
+    "fr": "Utiliser des applications externes"
+  },
+  "Use External Sounds": {
+    "tr": "Harici Sesleri Kullan",
+    "ru": "Использовать внешние звуки",
+    "es": "Usar sonidos externos",
+    "fr": "Utiliser des sons externes"
+  },
+  "Use Soundboard": {
+    "tr": "Ses Panelini Kullan",
+    "ru": "Использовать звуковую панель",
+    "es": "Usar la tabla de sonidos",
+    "fr": "Utiliser la soundboard"
+  },
+  "User Reviews": {
+    "tr": "Kullanıcı Yorumları",
+    "ru": "Отзывы пользователей",
+    "es": "Reseñas de usuarios",
+    "fr": "Avis des utilisateurs"
+  },
+  "Using the set avatar feature is local only meaning only you see it change.": {
+    "tr": "Avatar ayarlama özelliği yereldir, yani değişikliği sadece sen görürsün.",
+    "ru": "Аватар меняется только локально — видите его только вы.",
+    "es": "El avatar que pongas es solo local: solo lo ves tú.",
+    "fr": "L'avatar défini est local : vous seul le voyez."
+  },
+  "USRBG banner": {
+    "tr": "USRBG afişi",
+    "ru": "Баннер USRBG",
+    "es": "Banner de USRBG",
+    "fr": "Bannière USRBG"
+  },
+  "View Creator Monetization Analytics": {
+    "tr": "İçerik Üreticisi Para Kazanma Analizlerini Görüntüle",
+    "ru": "Просмотр аналитики монетизации авторов",
+    "es": "Ver análisis de monetización de creadores",
+    "fr": "Voir les analyses de monétisation des créateurs"
+  },
+  "View Permissions": {
+    "tr": "İzinleri Görüntüle",
+    "ru": "Посмотреть права",
+    "es": "Ver permisos",
+    "fr": "Voir les permissions"
+  },
+  "View Reviews": {
+    "tr": "Yorumları Görüntüle",
+    "ru": "Посмотреть отзывы",
+    "es": "Ver reseñas",
+    "fr": "Voir les avis"
+  },
+  "View Role Icon": {
+    "tr": "Rol Simgesini Görüntüle",
+    "ru": "Посмотреть значок роли",
+    "es": "Ver icono del rol",
+    "fr": "Voir l'icône du rôle"
+  },
+  "View the permissions a user has in a server and in the channel you opened their profile from, and which roles grant them": {
+    "tr": "Bir kullanıcının sunucudaki ve profilini açtığın kanaldaki izinlerini ve bunları hangi rollerin verdiğini görüntüle",
+    "ru": "Просматривай права пользователя на сервере и в канале, из которого ты открыл его профиль, и какие роли их дают",
+    "es": "Consulta los permisos que tiene un usuario en un servidor y en el canal desde el que abriste su perfil, y qué roles se los otorgan",
+    "fr": "Affiche les permissions d'un utilisateur sur un serveur et dans le salon d'où tu as ouvert son profil, ainsi que les rôles qui les accordent"
+  },
+  "When tapping the timeout icon": {
+    "tr": "Susturma simgesine dokunulduğunda",
+    "ru": "При нажатии на значок тайм-аута",
+    "es": "Al tocar el icono de aislamiento",
+    "fr": "En touchant l'icône d'exclusion"
+  },
+  "Which avatar to use if both default animated (Nitro) pfp and UserPFP avatars are present": {
+    "tr": "Hem animasyonlu (Nitro) hem UserPFP avatarı varsa hangisi kullanılsın",
+    "ru": "Какой аватар брать, если есть и анимированный (Nitro), и UserPFP",
+    "es": "Qué avatar usar si hay uno animado (Nitro) y uno de UserPFP",
+    "fr": "Quel avatar utiliser s'il y a un animé (Nitro) et un UserPFP"
+  }
+}

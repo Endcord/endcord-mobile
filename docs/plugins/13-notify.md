@@ -1,0 +1,45 @@
+# Batch 13: notifications
+
+Plugins that react to gateway events: new messages, reactions, relationship changes and calls. Shared helpers
+live in `com.endcord.plugins.notifycommon`:
+
+* `NotifyHooks` hooks each event once, on Discord's own entry point, and hands it to every enabled plugin in a
+  fixed order: `StoreStream.handleMessageCreate`/`handleMessageUpdate`/`handleMessagesLoaded` (before and
+  after the stores), `handleReactionAdd`, `handleRelationshipRemove`, `handleGuildRemove`,
+  `handleChannelDelete`, `handleCallCreateOrUpdate`, `handleConnectionOpen` and `handleBackgrounded`, plus
+  `NotificationTextUtils.shouldNotifyInAppPopup` (Discord's decision about its in-app popup) and
+  `NotificationRenderer.display` (push notifications shown in the system tray). A hook is installed when the
+  first plugin listens and removed when the last one stops.
+* `Notifier` shows what Endcord PC's notification API shows: Discord's in-app notice at the top of the screen
+  while the app is open, and an Android notification while it is in the background, in its own
+  "Plugin notifications" channel and only when notifications are allowed (Android 13's permission included).
+* `OwnPopups` lets a plugin replace Discord's in-app popup for a message with its own, so there are never two.
+
+General mobile differences: plugins only run while Endcord runs. Push notifications that arrive while the app is
+closed come straight from Discord's servers and can't be changed. Notifications never fire for the user's own
+messages, for messages older than 30 seconds (Discord replays recent messages after reconnecting), or for the
+channel the user is looking at unless the PC plugin does it.
+
+| Plugin | Status | Notes |
+| --- | --- | --- |
+| KeywordNotify | Partial | Matching messages (content, embed titles, descriptions and fields) get the user added to their mentions, as on PC, so they are highlighted, counted in the mention badge and get Discord's in-app popup; loaded history is matched too. While the app is in the background a matching new message posts an Android notification instead, since the server sends no push for it. One list of keywords/regexes (one per line) shares the ignore case, ignore bots, whitelist, blacklist and priority settings, where PC has these per entry. The keyword log is a dialog opened from the settings (tap an entry to jump to it, plus a clear button) instead of a tab in the inbox, which the Android app doesn't have. |
+| MessageNotifier | Ported | "{user} sent a message" notification for chosen users, tap to jump to the message. Users can also be added and removed from their profile sheet. Replies count as messages too. |
+| RelationshipNotifier | Ported | Friend removals, cancelled friend requests, removal from servers and group chats, and the same removals while offline (checked against a saved snapshot each time the gateway connects). The user's own unfriending, leaving and closing of group chats is never reported. Tapping a friend notification opens their profile. The "notices" setting keeps an Android notification in the shade even while the app is open, the mobile equivalent of PC's banner. |
+| IgnoreCalls | Ported | Long-press a DM or group DM to ignore its calls until restart or permanently, or to stop ignoring them. Ignored calls stop ringing on this device (the user is taken out of the call's ringing list), a call that is already ringing stops, and the call's push notification is dropped while the app runs. There is no "Ignore" button on the incoming call screen. |
+| BypassStatus | Partial | Notifies (in-app, or an Android notification in the background) for bypassed servers, channels and users while the chosen status is set, with the phone's notification sound. Users and channels can be added from their long-press sheets; servers only by id in the settings, the Android app has no server sheet entries. Only works while the app runs: Discord's servers send no pushes while you are in Do Not Disturb. |
+| OnePingPerDM | Not applicable | The Android app already does this: all unread messages of a DM share one system notification that only alerts once (`setOnlyAlertOnce`) until the chat is read. In-app popups make no sound. |
+| SilenceUsers | Partial | Pings from silenced users are removed before Discord's stores see the message, so there is no mention highlight, mention badge or ping popup; regular messages and DMs still notify. While the app runs, their push notifications in servers that don't notify for every message (which can only be pings) are dropped too; pushes that arrive while the app is closed can't be. Users can be silenced from their profile sheet. |
+| PingNotifications | Ported | Notifications for mentions, DMs and friends in servers, with mentions, channels, roles, custom emojis and timestamps spelled out. Replaces Discord's own in-app popup for those messages instead of adding a second one. In the background only "friends in servers" posts an Android notification, Discord's own push already covers DMs and mentions. |
+| ToastNotifications | Partial | Toasts follow PC's rules (DMs, groups, friends in servers, the server's notification level, ignored users, always-notify channels, Do Not Disturb) and replace Discord's own popup for those messages. They use Discord's in-app notice at the top of the screen: position, opacity and the number shown at once can't be changed, the duration can. Android has no streamer mode, so that setting is gone. In-app only, like on PC. |
+| NoDMWhileStreaming | Partial | While you share your screen, Discord's in-app popups for DMs (and group DMs if enabled) are hidden and their push notifications are dropped, so they don't show up as heads-up notifications on the shared screen. The DM list isn't hidden. The debug setting is gone. |
+| FocusMode | Partial | One switch (settings button or `/focus`) sets the chosen status, hides Discord's in-app popups and, while the app runs, its push notifications (optionally still allowing DMs), mutes the chosen servers, and puts everything back when it ends, keeping a status you changed in the meantime. The schedule (HH:MM, overnight windows included) is checked every minute while the app runs. Hiding unread badges is not available. The server list is a setting of ids instead of a picker. |
+| AntiSnitch | Skipped | Its core is a hardcoded list of thousands of real accounts labelled "snitches" plus an alarm when they type or join your voice channel. Shipping a list that targets private individuals isn't something we port. |
+| Ghosted | Skipped | Needs the author of the last message of every DM in the DM list, which the Android app only knows for chats loaded in the current session, and a custom ghost counter above the server list. Not ported for now. |
+| AutoJumpToMessage | Partial | Opens the channel of a new message whenever Discord decides to notify you about it in the app (so muted channels, Do Not Disturb and the open channel are left out, like PC's notification event). By default only while Discord is in the background, so the chat is open when you come back. Needs Discord's in-app notifications to be on. |
+| AutoReact | Ported | Rules are written one per line as `keyword = emoji` (`<:name:id>` for custom emojis), or as PC's JSON array. Reactions are queued and spaced out to stay below Discord's rate limit, with at most 20 per message. |
+| Husk | Ported | "Husk" entry in the message long-press sheet, reacting with the configured emoji (looked up by name in the current server first). |
+| Moyai | Partial | Plays the 🗿 sound for moyai emojis (unicode and custom) sent or reacted in the open channel, up to 10 per message. The sound is downloaded once and cached; it only plays while the app is open and the ringer is on (silent and vibrate mode stay silent). Voice channel effects don't exist on the Android app; the "trigger when unfocused" setting is gone. |
+| Animalese | Ported | The 30 letter sounds are downloaded once and cached, then each message in the open channel (up to the length limit, no links, no bots) is synthesized like PC (same letter rules, pitch shift and question intonation) and played through one short `AudioTrack`. Only while the app is open and the ringer is on. |
+| Jumpscare | Skipped | A random full-screen image with loud audio when opening a channel can't be done tastefully on a phone (it ignores the setting you're in and the media volume), so it isn't ported. |
+| NotificationVolume | Partial | Sets the volume of Discord's in-app sounds: calls ringing, joins, leaves, moves, mute and deafen, streams and reconnects. Notification sounds in the shade belong to Android and follow its notification volume. |
+| CustomSounds | Partial | Replace Discord's in-app sounds (the 14 the Android app has: calls, mute/deafen, joins, leaves, moves, reconnect, streams) with a link to an audio file, one of Discord's seasonal variants (halloween, winter; beat, snow_halation, snowsgiving for call ringing) or `none`, one line per sound. Files are downloaded once; until then Discord's sound plays. Uploading your own files isn't available, link to them instead. |

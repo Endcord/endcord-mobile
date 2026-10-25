@@ -1,0 +1,36 @@
+# Batch 08: translate, fake, media and export
+
+Translation, local fake messages, message shortcuts, profile and server media, and exports. Shared helpers live in
+`com.endcord.plugins.translatecommon`:
+
+* `GoogleTranslate`: the free Google endpoint Endcord PC uses (`translate-pa.googleapis.com`, `gtx` client, the same
+  public key). Blocking; callers run it on a background thread. `Languages` is PC's Google language list; its names
+  are translated in the batch i18n file (from CLDR).
+* `Downloads`: saves files to `Download/Endcord` through MediaStore on Android 10+, and to `Endcord/downloads` on
+  older versions. Every save tells the user the final path.
+* `Media` (open a CDN image in Discord's own media viewer, `Utils.openMediaViewer`, or save it), `Rest` (Discord API
+  calls that wait out 429s), `DoubleTaps` (one patch on `WidgetChatListAdapterEventsHandler.onMessageClicked` for
+  every double-tap plugin), `ChatActions` (start an edit or a reply like the long-press sheet does).
+
+Messages are rendered through `ChatHooks`, long-press entries through `MessageActions`, and the profile and DM list
+entries through `UserSheetActions` / `ChannelSheetActions`. Nothing in this batch patches the send path.
+
+| Plugin | Status | Notes |
+| --- | --- | --- |
+| Translate | Partial | Long-press a message and pick "Translate": the translation is fetched in the background and shown under the original with a muted "(Translated from French)" line; "Show original" reverts it. Results are cached (500 messages, cleared from settings or when the message is edited) and errors are shown as toasts (rate limit, no connection, HTTP errors). Target language defaults to the device language. Google only: DeepL and Kagi need API keys or session cookies and were left out. PC's translate-before-send (chat bar button) can't be done cleanly because the shared `OutgoingMessages` pipeline is synchronous and can't wait for a request; instead `/translate text [to] [send]` translates and sends (or shows) the result. Also includes MessageTranslate's automatic mode (below). |
+| MessageTranslate | Partial (merged into Translate) | Enable "Translate incoming messages automatically" in Translate: messages are translated as they appear, with PC's options (minimum detection confidence, skip your own messages, skip bots, ignored server, channel or user IDs) and caching. Unlike PC the translation is shown under the original instead of replacing it, so the original is never hidden. Messages without words (links, mentions, emojis only) are not sent to Google; a 429 pauses auto-translation for a minute. |
+| Translate+ | Skipped (covered by Translate) | Its Google translation is the same as Translate's. The "artistic languages" send Toki Pona text to an unofficial third-party AI server (`aiapi.serversmp.xyz`) and download dictionaries from a personal GitHub repo at runtime; not ported. |
+| SurfaceTranslate | Skipped | Translating every channel name, topic and search result fires a request per item at the unofficial Google endpoint, which rate limits quickly, and needs patches on the channel list, toolbar and search adapters. Message translation (the useful part) is in Translate. |
+| FakeMessage | Partial | `/fakemsg user message` shows a local message from that user. It is never sent to Discord, is ephemeral (Discord adds its own "Only you can see this"), disappears on restart and when the plugin is turned off, and always carries a "Fake message, only visible to you" line inside the message text, so a screenshot can't pass for something the other person wrote. Only users the app has cached can be picked. |
+| FakeDM | Skipped | Its purpose is a persistent, realistic fake DM history: backdated timestamps randomized "so they never land on :00", fake calls, no marker. That makes convincing fabricated conversations with real people, so it is not ported; FakeMessage covers the harmless use with a visible label. |
+| DoubleClickEdit | Ported | Double-tap your own message to open it in the chat box for editing (mentions and emojis are turned back into editable text like the long-press "Edit"). |
+| MessageClickActions | Partial | Double-tap your own message to edit it, anyone else's to reply (mentioning them, with the mention toggle in servers), each with its own switch. Holding Backspace to delete and the Shift/Ctrl modifier need a keyboard and mouse, so they are not ported. Shares the double-tap patch with DoubleClickEdit (the first one that handles a tap wins). |
+| BypassPinPrompt | Ported | Pin and Unpin in the message long-press sheet (also in the pins list) act immediately instead of showing Discord's confirmation; errors are still reported by Discord's own handler. |
+| ExpressionCloner | Partial | Long-press a message with custom emojis or stickers, pick "Clone emoji or sticker", pick the emoji or sticker if there are several, then one of your servers where you can manage expressions. Emojis are uploaded with their name, stickers as PNG/APNG/GIF (Lottie stickers can only be uploaded by partnered servers and are left out). There is no right-click on emojis in pickers on Android, so it starts from messages only. |
+| GuildPickerDumper | Partial | `/dumpexpressions emojis` or `/dumpexpressions stickers` in a server saves all of them as one zip in `Download/Endcord` (MediaStore) and says where. A slash command instead of the server context menu entry. |
+| ProfileMedia | Ported | "View Avatar", "Download Avatar", "View Banner" and "Download Banner" at the bottom of the user profile sheet. View opens Discord's media viewer at 4096 px (GIF for animated avatars), download saves to `Download/Endcord`. |
+| ViewIcons | Partial | Tap the avatar or banner in a user profile, or the icon or banner of the server sheet, to open it full size in Discord's media viewer; long-press them for View, Save and Copy link (server avatar and banner too when the member has them). Format and size settings as on PC. Your own profile in edit mode keeps Discord's taps. Group DM icons and the context menu entries of PC's user, server and group menus are not ported; ProfileMedia covers the user sheet. |
+| ExportDM | Partial | Export the open DM or group DM with `/exportdm [format] [limit]`, or long-press a DM in the DM list and pick "Export DMs". Fetches the whole history through the API (waiting out rate limits) and writes HTML, TXT, MD, JSON or CSV with PC's layout to `Download/Endcord`, then says where. Media are linked, not downloaded, as on PC. One conversation at a time, and PC's recovery of deleted messages from its message logger database doesn't exist on mobile. |
+| ServerBackup | Skipped | Restoring recreates every role, channel and permission overwrite of a server through dozens of rate-limited, partly destructive API writes driven by a large modal UI; too risky to ship without a careful mobile UI. Not attempted in this batch. |
+| FavoriteMedia | Not applicable | It widens Discord's "favorite GIF" star to any media. The legacy Android app has no GIF favorites at all (`StoreMediaFavorites` only stores favorite emojis), so there is nothing to extend. |
+| FavoriteAnything | Not applicable | Adds a favorites tab to the desktop expression picker, uses Electron-side fetching and local thumbnails. The legacy Android picker has no favorites tab for media to add to. |

@@ -1,0 +1,1100 @@
+{
+  "A friend request from {user} has been removed.": {
+    "tr": "{user} kullanıcısından gelen arkadaşlık isteği kaldırıldı.",
+    "ru": "Запрос в друзья от {user} удалён.",
+    "es": "Se eliminó una solicitud de amistad de {user}.",
+    "fr": "Une demande d'ami de {user} a été retirée."
+  },
+  "A list of channel IDs (separate by commas) to always receive notifications from.": {
+    "tr": "Her zaman bildirim alınacak kanal ID'leri (virgülle ayır).",
+    "ru": "ID каналов (через запятую), уведомления от которых приходят всегда.",
+    "es": "IDs de canales (separados por comas) de los que recibir siempre avisos.",
+    "fr": "ID de salons (séparés par des virgules) dont recevoir toujours les notifications."
+  },
+  "A list of user IDs (separate by commas) to ignore displaying notifications for.": {
+    "tr": "Bildirimleri gösterilmeyecek kullanıcı ID'leri (virgülle ayır).",
+    "ru": "ID пользователей (через запятую), уведомления от которых не показывать.",
+    "es": "IDs de usuarios (separados por comas) cuyos avisos no mostrar.",
+    "fr": "ID d'utilisateurs (séparés par des virgules) dont masquer les notifications."
+  },
+  "Add Status Bypass": {
+    "tr": "Durum Atlatması Ekle",
+    "ru": "Добавить обход статуса",
+    "es": "Añadir excepción de estado",
+    "fr": "Ajouter un contournement du statut"
+  },
+  "Allow direct messages": {
+    "tr": "Doğrudan mesajlara izin ver",
+    "ru": "Разрешить личные сообщения",
+    "es": "Permitir mensajes directos",
+    "fr": "Autoriser les messages privés"
+  },
+  "Allow selected users to bypass status outside of DMs too (acts like a channel/guild bypass, but it's for all messages sent by the selected users)": {
+    "tr": "Seçili kişiler DM dışında da durumu atlatabilsin (kanal/sunucu atlatması gibi, ama seçili kişilerin tüm mesajları için)",
+    "ru": "Выбранные пользователи обходят статус и вне ЛС (как обход канала/сервера, но для всех их сообщений)",
+    "es": "Los usuarios elegidos se saltan el estado también fuera de privados (como un bypass de canal/servidor, pero para todos sus mensajes)",
+    "fr": "Les utilisateurs choisis contournent le statut hors MP aussi (comme un contournement de salon/serveur, pour tous leurs messages)"
+  },
+  "Also post an Android notification while the app is open, so you don't miss any removal": {
+    "tr": "Uygulama açıkken de bir Android bildirimi göster, böylece hiçbir çıkarılmayı kaçırmazsın",
+    "ru": "Показывать уведомление Android и при открытом приложении, чтобы не пропустить ни одного удаления",
+    "es": "Publicar también una notificación de Android con la app abierta, para no perderte ninguna eliminación",
+    "fr": "Publier aussi une notification Android quand l'appli est ouverte, pour ne manquer aucun retrait"
+  },
+  "Always ignored": {
+    "tr": "Her zaman yok sayılanlar",
+    "ru": "Всегда игнорировать",
+    "es": "Siempre ignorados",
+    "fr": "Toujours ignorés"
+  },
+  "Always notify for": {
+    "tr": "Her zaman bildir",
+    "ru": "Всегда уведомлять о",
+    "es": "Avisar siempre de",
+    "fr": "Toujours notifier pour"
+  },
+  "Amount of messages to keep in the log": {
+    "tr": "Kayıtta tutulacak mesaj sayısı",
+    "ru": "Сколько сообщений хранить в журнале",
+    "es": "Cantidad de mensajes a guardar en el registro",
+    "fr": "Nombre de messages à garder dans le journal"
+  },
+  "Attempt to find emoji of same name in server before using ID in settings (useful if no nitro)": {
+    "tr": "Ayarlardaki ID'yi kullanmadan önce sunucuda aynı adlı emojiyi bulmayı dene (Nitro yoksa işe yarar)",
+    "ru": "Сначала искать на сервере эмодзи с тем же именем, а не по ID (полезно без Nitro)",
+    "es": "Buscar primero un emoji con el mismo nombre en el servidor antes de usar el ID (útil sin Nitro)",
+    "fr": "Chercher d'abord un emoji du même nom sur le serveur avant l'ID (utile sans Nitro)"
+  },
+  "Automatically opens the channel from new messages you get notified about.": {
+    "tr": "Bildirim aldığın yeni mesajların kanalını otomatik olarak açar.",
+    "ru": "Автоматически открывает канал новых сообщений, о которых вы получаете уведомления.",
+    "es": "Abre automáticamente el canal de los mensajes nuevos de los que recibes notificación.",
+    "fr": "Ouvre automatiquement le salon des nouveaux messages dont vous êtes notifié."
+  },
+  "Blacklist": {
+    "tr": "Kara liste",
+    "ru": "Чёрный список",
+    "es": "Lista negra",
+    "fr": "Liste noire"
+  },
+  "Calls from this chat are always ignored": {
+    "tr": "Bu sohbetten gelen aramalar her zaman yok sayılacak",
+    "ru": "Звонки из этого чата всегда игнорируются",
+    "es": "Las llamadas de este chat se ignoran siempre",
+    "fr": "Les appels de cette discussion sont toujours ignorés"
+  },
+  "Calls from this chat are ignored until you restart Discord": {
+    "tr": "Bu sohbetten gelen aramalar Discord'u yeniden başlatana kadar yok sayılacak",
+    "ru": "Звонки из этого чата игнорируются до перезапуска Discord",
+    "es": "Las llamadas de este chat se ignoran hasta que reinicies Discord",
+    "fr": "Les appels de cette discussion sont ignorés jusqu'au redémarrage de Discord"
+  },
+  "Calls from this chat ring again": {
+    "tr": "Bu sohbetten gelen aramalar yine çalacak",
+    "ru": "Звонки из этого чата снова звонят",
+    "es": "Las llamadas de este chat vuelven a sonar",
+    "fr": "Les appels de cette discussion sonnent à nouveau"
+  },
+  "Case sensitive": {
+    "tr": "Büyük/küçük harf duyarlı",
+    "ru": "С учётом регистра",
+    "es": "Distinguir mayúsculas",
+    "fr": "Sensible à la casse"
+  },
+  "Channels": {
+    "tr": "Kanallar",
+    "ru": "Каналы",
+    "es": "Canales",
+    "fr": "Salons"
+  },
+  "Channels to let bypass (notified when pinged in that channel)": {
+    "tr": "Atlatmasına izin verilecek kanallar (o kanalda bahsedilince bildirim gelir)",
+    "ru": "Каналы-исключения (уведомление при упоминании в них)",
+    "es": "Canales que se saltan el estado (avisan al mencionarte en ellos)",
+    "fr": "Salons en contournement (notifié si mentionné dedans)"
+  },
+  "Clear keyword log": {
+    "tr": "Anahtar kelime kaydını temizle",
+    "ru": "Очистить журнал ключевых слов",
+    "es": "Borrar registro de palabras clave",
+    "fr": "Effacer le journal des mots-clés"
+  },
+  "Comma separated list of user ids to get message toasts for": {
+    "tr": "Mesaj bildirimi alınacak kullanıcı ID'leri (virgülle ayır)",
+    "ru": "ID пользователей для всплывающих уведомлений (через запятую)",
+    "es": "IDs de usuarios de los que recibir avisos (separados por comas)",
+    "fr": "ID d'utilisateurs pour les notifications de messages (virgules)"
+  },
+  "Comma-separated Discord user IDs to silence pings and server badges.": {
+    "tr": "Bahsetmeleri ve sunucu rozetleri susturulacak kullanıcı ID'leri (virgülle ayır).",
+    "ru": "ID пользователей, чьи пинги и значки серверов заглушить (через запятую).",
+    "es": "IDs de usuarios cuyas menciones y contadores silenciar (separados por comas).",
+    "fr": "ID d'utilisateurs dont couper mentions et badges (virgules)."
+  },
+  "Current channel": {
+    "tr": "Geçerli kanal",
+    "ru": "Текущий канал",
+    "es": "Canal actual",
+    "fr": "Salon actuel"
+  },
+  "Direct messages": {
+    "tr": "Doğrudan mesajlar",
+    "ru": "Личные сообщения",
+    "es": "Mensajes privados",
+    "fr": "Messages privés"
+  },
+  "Discord did not accept the status change. The other filters are on.": {
+    "tr": "Discord durum değişikliğini kabul etmedi. Diğer filtreler açık.",
+    "ru": "Discord не принял смену статуса. Остальные фильтры включены.",
+    "es": "Discord no aceptó el cambio de estado. Los demás filtros están activos.",
+    "fr": "Discord a refusé le changement de statut. Les autres filtres sont actifs."
+  },
+  "DM": {
+    "tr": "DM",
+    "ru": "ЛС",
+    "es": "MD",
+    "fr": "MP"
+  },
+  "Do Not Disturb": {
+    "tr": "Rahatsız etmeyin",
+    "ru": "Не беспокоить",
+    "es": "No molestar",
+    "fr": "Ne pas déranger"
+  },
+  "Do not show notifications when your status is Do Not Disturb.": {
+    "tr": "Durumun Rahatsız Etmeyin iken bildirim gösterme.",
+    "ru": "Не показывать уведомления в режиме «Не беспокоить».",
+    "es": "No mostrar avisos en No molestar.",
+    "fr": "Pas de notifications en Ne pas déranger."
+  },
+  "Duration": {
+    "tr": "Süre",
+    "ru": "Длительность",
+    "es": "Duración",
+    "fr": "Durée"
+  },
+  "Emoji ID": {
+    "tr": "Emoji Kimliği",
+    "ru": "ID эмодзи",
+    "es": "ID del emoji",
+    "fr": "ID de l'emoji"
+  },
+  "Emoji ID (default (from Endcord Server): 1026532993923293184)": {
+    "tr": "Emoji ID (varsayılan, Endcord sunucusundan: 1026532993923293184)",
+    "ru": "ID эмодзи (по умолчанию с сервера Endcord: 1026532993923293184)",
+    "es": "ID del emoji (por defecto, del servidor de Endcord: 1026532993923293184)",
+    "fr": "ID de l'emoji (par défaut, du serveur Endcord : 1026532993923293184)"
+  },
+  "Emoji name": {
+    "tr": "Emoji adı",
+    "ru": "Название эмодзи",
+    "es": "Nombre del emoji",
+    "fr": "Nom de l'emoji"
+  },
+  "Emoji name (default (from Endcord Server): husk)": {
+    "tr": "Emoji adı (varsayılan, Endcord sunucusundan: husk)",
+    "ru": "Название эмодзи (по умолчанию с сервера Endcord: husk)",
+    "es": "Nombre del emoji (por defecto, del servidor de Endcord: husk)",
+    "fr": "Nom de l'emoji (par défaut, du serveur Endcord : husk)"
+  },
+  "Enable to yap your own messages too": {
+    "tr": "Kendi mesajlarını da seslendir",
+    "ru": "Озвучивать и свои сообщения",
+    "es": "Leer también tus propios mensajes",
+    "fr": "Lire aussi vos propres messages"
+  },
+  "End time": {
+    "tr": "Bitiş saati",
+    "ru": "Время окончания",
+    "es": "Hora de fin",
+    "fr": "Heure de fin"
+  },
+  "End time (24-hour, HH:MM)": {
+    "tr": "Bitiş saati (24 saat, SS:DD)",
+    "ru": "Время окончания (24 ч, ЧЧ:ММ)",
+    "es": "Hora de fin (24 h, HH:MM)",
+    "fr": "Heure de fin (24 h, HH:MM)"
+  },
+  "Example Notification": {
+    "tr": "Örnek bildirim",
+    "ru": "Пример уведомления",
+    "es": "Notificación de ejemplo",
+    "fr": "Exemple de notification"
+  },
+  "Find in server": {
+    "tr": "Sunucuda ara",
+    "ru": "Искать на сервере",
+    "es": "Buscar en el servidor",
+    "fr": "Chercher dans le serveur"
+  },
+  "Focus Mode is off. Your previous settings are back.": {
+    "tr": "Odak Modu kapandı. Önceki ayarların geri geldi.",
+    "ru": "Режим фокуса выключен. Прежние настройки возвращены.",
+    "es": "Modo concentración desactivado. Tus ajustes anteriores han vuelto.",
+    "fr": "Mode concentration désactivé. Vos réglages précédents sont rétablis."
+  },
+  "Focus Mode is on": {
+    "tr": "Odak Modu açık",
+    "ru": "Режим фокуса включён",
+    "es": "Modo concentración activado",
+    "fr": "Mode concentration activé"
+  },
+  "Friend request from {user} has been revoked.": {
+    "tr": "{user} kullanıcısının arkadaşlık isteği geri çekildi.",
+    "ru": "Запрос в друзья от {user} отозван.",
+    "es": "Se retiró la solicitud de amistad de {user}.",
+    "fr": "La demande d'ami de {user} a été annulée."
+  },
+  "Friend requests": {
+    "tr": "Arkadaşlık istekleri",
+    "ru": "Запросы в друзья",
+    "es": "Solicitudes de amistad",
+    "fr": "Demandes d'ami"
+  },
+  "Friends": {
+    "tr": "Arkadaşlar",
+    "ru": "Друзья",
+    "es": "Amigos",
+    "fr": "Amis"
+  },
+  "Friends in servers": {
+    "tr": "Sunuculardaki arkadaşlar",
+    "ru": "Друзья на серверах",
+    "es": "Amigos en servidores",
+    "fr": "Amis dans les serveurs"
+  },
+  "Group": {
+    "tr": "Grup",
+    "ru": "Группа",
+    "es": "Grupo",
+    "fr": "Groupe"
+  },
+  "Group chats": {
+    "tr": "Grup sohbetleri",
+    "ru": "Групповые чаты",
+    "es": "Chats grupales",
+    "fr": "Discussions de groupe"
+  },
+  "Group DMs": {
+    "tr": "Grup DM'leri",
+    "ru": "Групповые ЛС",
+    "es": "Grupos",
+    "fr": "Groupes privés"
+  },
+  "Group messages": {
+    "tr": "Grup mesajları",
+    "ru": "Групповые сообщения",
+    "es": "Mensajes de grupo",
+    "fr": "Messages de groupe"
+  },
+  "Guilds to let bypass (notified when pinged anywhere in guild)": {
+    "tr": "Atlatmasına izin verilecek sunucular (sunucunun herhangi bir yerinde bahsedilince bildirim)",
+    "ru": "Серверы-исключения (уведомление при упоминании где угодно на сервере)",
+    "es": "Servidores que se saltan el estado (avisan al mencionarte en cualquier canal)",
+    "fr": "Serveurs en contournement (notifié si mentionné n'importe où)"
+  },
+  "HD": {
+    "tr": "HD",
+    "ru": "HD",
+    "es": "HD",
+    "fr": "HD"
+  },
+  "Hide Discord's in-app notifications and, while the app runs, its notifications in the notification shade": {
+    "tr": "Discord'un uygulama içi bildirimlerini ve uygulama çalışırken bildirim panelindeki bildirimlerini gizle",
+    "ru": "Скрывать уведомления Discord внутри приложения и, пока приложение запущено, в панели уведомлений",
+    "es": "Ocultar las notificaciones de Discord dentro de la app y, mientras la app está abierta, las del panel de notificaciones",
+    "fr": "Masquer les notifications de Discord dans l'appli et, tant que l'appli tourne, celles du volet des notifications"
+  },
+  "Hide Group DMs too while streaming": {
+    "tr": "Yayın sırasında grup DM'lerini de gizle",
+    "ru": "Скрывать и группы во время трансляции",
+    "es": "Ocultar también los grupos al transmitir",
+    "fr": "Masquer aussi les groupes pendant le stream"
+  },
+  "Hides DM and Group DM notifications while you are sharing your screen": {
+    "tr": "Ekranını paylaşırken DM ve grup DM bildirimlerini gizler",
+    "ru": "Скрывает уведомления из личных и групповых чатов, пока вы показываете экран",
+    "es": "Oculta las notificaciones de MD y MD grupales mientras compartes tu pantalla",
+    "fr": "Masque les notifications de MP et de MP de groupe pendant que vous partagez votre écran"
+  },
+  "High": {
+    "tr": "Yüksek",
+    "ru": "Высокий",
+    "es": "Alto",
+    "fr": "Élevé"
+  },
+  "Husk": {
+    "tr": "Husk",
+    "ru": "Husk",
+    "es": "Husk",
+    "fr": "Husk"
+  },
+  "Idle": {
+    "tr": "Boşta",
+    "ru": "Неактивен",
+    "es": "Ausente",
+    "fr": "Inactif"
+  },
+  "IDs of the DMs and group DMs whose calls are always ignored (comma separated). Long-press a DM to add it.": {
+    "tr": "Aramaları her zaman yok sayılan DM ve grup DM'lerin kimlikleri (virgülle ayrılmış). Eklemek için bir DM'e basılı tut.",
+    "ru": "ID личных и групповых чатов, звонки из которых всегда игнорируются (через запятую). Чтобы добавить чат, зажмите его.",
+    "es": "IDs de los MD y MD grupales cuyas llamadas se ignoran siempre (separados por comas). Mantén pulsado un MD para añadirlo.",
+    "fr": "ID des MP et MP de groupe dont les appels sont toujours ignorés (séparés par des virgules). Appuyez longuement sur un MP pour l'ajouter."
+  },
+  "IDs of the servers to mute while Focus Mode is on (comma separated). Servers you muted yourself are left alone.": {
+    "tr": "Odak Modu açıkken susturulacak sunucuların kimlikleri (virgülle ayrılmış). Kendin susturduğun sunuculara dokunulmaz.",
+    "ru": "ID серверов, которые заглушаются в режиме фокуса (через запятую). Серверы, заглушённые вами, не трогаются.",
+    "es": "IDs de los servidores que silenciar mientras el modo concentración está activo (separados por comas). Los servidores que silenciaste tú no se tocan.",
+    "fr": "ID des serveurs à rendre muets pendant le mode concentration (séparés par des virgules). Les serveurs que vous avez rendus muets vous-même ne sont pas touchés."
+  },
+  "Ignore blocked users": {
+    "tr": "Engellenen kullanıcıları yok say",
+    "ru": "Игнорировать заблокированных",
+    "es": "Ignorar usuarios bloqueados",
+    "fr": "Ignorer les utilisateurs bloqués"
+  },
+  "Ignore bots": {
+    "tr": "Botları yok say",
+    "ru": "Игнорировать ботов",
+    "es": "Ignorar bots",
+    "fr": "Ignorer les bots"
+  },
+  "Ignore case": {
+    "tr": "Büyük/küçük harfi yok say",
+    "ru": "Без учёта регистра",
+    "es": "Ignorar mayúsculas",
+    "fr": "Ignorer la casse"
+  },
+  "Ignore messages from bots": {
+    "tr": "Botlardan gelen mesajları yok say",
+    "ru": "Игнорировать сообщения ботов",
+    "es": "Ignorar mensajes de bots",
+    "fr": "Ignorer les messages des bots"
+  },
+  "Ignored users": {
+    "tr": "Yok sayılan kullanıcılar",
+    "ru": "Игнорируемые пользователи",
+    "es": "Usuarios ignorados",
+    "fr": "Utilisateurs ignorés"
+  },
+  "Invisible": {
+    "tr": "Görünmez",
+    "ru": "Невидимка",
+    "es": "Invisible",
+    "fr": "Invisible"
+  },
+  "Keep a notification in the notification shade": {
+    "tr": "Bildirim panelinde bir bildirim bırak",
+    "ru": "Оставлять уведомление в панели уведомлений",
+    "es": "Dejar una notificación en el panel de notificaciones",
+    "fr": "Garder une notification dans le volet des notifications"
+  },
+  "Keep my current status": {
+    "tr": "Mevcut durumumu koru",
+    "ru": "Оставить текущий статус",
+    "es": "Mantener mi estado actual",
+    "fr": "Garder mon statut actuel"
+  },
+  "Keyword log": {
+    "tr": "Anahtar kelime kaydı",
+    "ru": "Журнал ключевых слов",
+    "es": "Registro de palabras clave",
+    "fr": "Journal des mots-clés"
+  },
+  "Keyword log cleared": {
+    "tr": "Anahtar kelime kaydı temizlendi",
+    "ru": "Журнал ключевых слов очищен",
+    "es": "Registro de palabras clave borrado",
+    "fr": "Journal des mots-clés effacé"
+  },
+  "Keywords": {
+    "tr": "Anahtar Kelimeler",
+    "ru": "Ключевые слова",
+    "es": "Palabras clave",
+    "fr": "Mots-clés"
+  },
+  "Length limit": {
+    "tr": "Uzunluk sınırı",
+    "ru": "Ограничение длины",
+    "es": "Límite de longitud",
+    "fr": "Limite de longueur"
+  },
+  "Log size": {
+    "tr": "Kayıt boyutu",
+    "ru": "Размер журнала",
+    "es": "Tamaño del registro",
+    "fr": "Taille du journal"
+  },
+  "Low": {
+    "tr": "Düşük",
+    "ru": "Низкий",
+    "es": "Bajo",
+    "fr": "Faible"
+  },
+  "Maximum length of message to process": {
+    "tr": "İşlenecek en uzun mesaj",
+    "ru": "Макс. длина обрабатываемого сообщения",
+    "es": "Longitud máxima del mensaje a procesar",
+    "fr": "Longueur max du message à traiter"
+  },
+  "Medium": {
+    "tr": "Orta",
+    "ru": "Средний",
+    "es": "Medio",
+    "fr": "Moyen"
+  },
+  "Mentions": {
+    "tr": "Bahsetmeler",
+    "ru": "Упоминания",
+    "es": "Menciones",
+    "fr": "Mentions"
+  },
+  "Message notifications for this user are off": {
+    "tr": "Bu kullanıcı için mesaj bildirimleri kapalı",
+    "ru": "Уведомления о сообщениях этого пользователя выключены",
+    "es": "Las notificaciones de mensajes de este usuario están desactivadas",
+    "fr": "Les notifications de messages de cet utilisateur sont désactivées"
+  },
+  "Messages that matched your keywords, newest first": {
+    "tr": "Anahtar kelimelerinle eşleşen mesajlar, en yeniler önce",
+    "ru": "Сообщения с вашими ключевыми словами, сначала новые",
+    "es": "Mensajes que coincidieron con tus palabras clave, los más nuevos primero",
+    "fr": "Messages correspondant à vos mots-clés, les plus récents en premier"
+  },
+  "Never match in these servers or channels, or from these users (ids, comma separated)": {
+    "tr": "Bu sunucularda, kanallarda veya bu kullanıcılardan gelenleri asla eşleştirme (kimlikler, virgülle ayrılmış)",
+    "ru": "Никогда не искать на этих серверах, в этих каналах или у этих пользователей (ID через запятую)",
+    "es": "Nunca coincidir en estos servidores o canales, ni de estos usuarios (IDs separados por comas)",
+    "fr": "Ne jamais chercher dans ces serveurs ou salons, ni chez ces utilisateurs (ID séparés par des virgules)"
+  },
+  "No messages matched your keywords yet": {
+    "tr": "Henüz anahtar kelimelerinle eşleşen mesaj yok",
+    "ru": "Пока нет сообщений с вашими ключевыми словами",
+    "es": "Todavía ningún mensaje coincide con tus palabras clave",
+    "fr": "Aucun message ne correspond encore à vos mots-clés"
+  },
+  "Normal": {
+    "tr": "Normal",
+    "ru": "Обычный",
+    "es": "Normal",
+    "fr": "Normal"
+  },
+  "Notification sound": {
+    "tr": "Bildirim sesi",
+    "ru": "Звук уведомления",
+    "es": "Sonido de notificación",
+    "fr": "Son de notification"
+  },
+  "Notifications from Endcord plugins such as MessageNotifier and RelationshipNotifier": {
+    "tr": "MessageNotifier ve RelationshipNotifier gibi Endcord eklentilerinden gelen bildirimler",
+    "ru": "Уведомления от плагинов Endcord, например MessageNotifier и RelationshipNotifier",
+    "es": "Notificaciones de plugins de Endcord como MessageNotifier y RelationshipNotifier",
+    "fr": "Notifications des plugins Endcord comme MessageNotifier et RelationshipNotifier"
+  },
+  "Notify about removals while offline": {
+    "tr": "Çevrimdışıyken olan çıkarılmaları bildir",
+    "ru": "Уведомлять об удалениях, пока вы были не в сети",
+    "es": "Avisar de eliminaciones mientras estabas desconectado",
+    "fr": "Notifier les retraits survenus hors ligne"
+  },
+  "Notify for direct messages (DMs)": {
+    "tr": "Doğrudan mesajlarda (DM) bildir",
+    "ru": "Уведомлять о личных сообщениях",
+    "es": "Avisar de mensajes privados",
+    "fr": "Notifier les messages privés"
+  },
+  "Notify me about their messages": {
+    "tr": "Mesajlarında bana bildir",
+    "ru": "Уведомлять о его сообщениях",
+    "es": "Avisarme de sus mensajes",
+    "fr": "Me notifier de ses messages"
+  },
+  "Notify when a friend removes you": {
+    "tr": "Bir arkadaş seni çıkarınca bildir",
+    "ru": "Уведомлять, когда друг удаляет вас",
+    "es": "Avisar cuando un amigo te elimine",
+    "fr": "Notifier quand un ami vous retire"
+  },
+  "Notify when a friend request is cancelled": {
+    "tr": "Arkadaşlık isteği iptal edilince bildir",
+    "ru": "Уведомлять об отмене заявки в друзья",
+    "es": "Avisar cuando se cancele una solicitud de amistad",
+    "fr": "Notifier l'annulation d'une demande d'ami"
+  },
+  "Notify when friends send messages in servers": {
+    "tr": "Arkadaşlar sunucularda mesaj gönderince bildir",
+    "ru": "Уведомлять о сообщениях друзей на серверах",
+    "es": "Avisar cuando amigos escriban en servidores",
+    "fr": "Notifier quand des amis écrivent dans des serveurs"
+  },
+  "Notify when removed from a group chat": {
+    "tr": "Bir gruptan çıkarılınca bildir",
+    "ru": "Уведомлять об исключении из группы",
+    "es": "Avisar al ser eliminado de un grupo",
+    "fr": "Notifier le retrait d'un groupe"
+  },
+  "Notify when removed from a server": {
+    "tr": "Bir sunucudan çıkarılınca bildir",
+    "ru": "Уведомлять об исключении с сервера",
+    "es": "Avisar al ser eliminado de un servidor",
+    "fr": "Notifier le retrait d'un serveur"
+  },
+  "Notify when someone @mentions you directly": {
+    "tr": "Biri senden doğrudan @bahsedince bildir",
+    "ru": "Уведомлять о прямом @упоминании",
+    "es": "Avisar cuando alguien te @mencione",
+    "fr": "Notifier quand quelqu'un vous @mentionne"
+  },
+  "Notify you when starting Discord if you were removed while offline.": {
+    "tr": "Çevrimdışıyken çıkarıldıysan Discord'u açtığında bildir.",
+    "ru": "Уведомлять при запуске Discord, если вас удалили, пока вы были не в сети.",
+    "es": "Avisarte al abrir Discord si te quitaron mientras estabas desconectado.",
+    "fr": "Vous notifier au lancement de Discord si vous avez été retiré pendant que vous étiez hors ligne."
+  },
+  "One keyword or regular expression per line. Matching messages ping you like a mention.": {
+    "tr": "Her satıra bir anahtar kelime veya düzenli ifade. Eşleşen mesajlar sana bahsetme gibi bildirim verir.",
+    "ru": "Одно ключевое слово или регулярное выражение на строку. Подходящие сообщения уведомляют вас как упоминание.",
+    "es": "Una palabra clave o expresión regular por línea. Los mensajes que coincidan te avisan como una mención.",
+    "fr": "Un mot-clé ou une expression régulière par ligne. Les messages correspondants vous notifient comme une mention."
+  },
+  "One rule per line as keyword = emoji, for example lol = 😂. Custom emojis: use <:name:id> format. A JSON array of rules from Endcord PC works too.": {
+    "tr": "Her satıra bir kural, anahtar kelime = emoji şeklinde, örneğin lol = 😂. Özel emojiler için <:ad:id> biçimini kullan. Endcord PC'deki JSON kural listesi de çalışır.",
+    "ru": "Одно правило на строку в виде слово = эмодзи, например lol = 😂. Для своих эмодзи используйте формат <:имя:id>. JSON-массив правил из Endcord PC тоже подойдёт.",
+    "es": "Una regla por línea como palabra = emoji, por ejemplo lol = 😂. Emojis personalizados: usa el formato <:nombre:id>. También funciona una lista JSON de reglas de Endcord PC.",
+    "fr": "Une règle par ligne sous la forme mot-clé = emoji, par exemple lol = 😂. Emojis personnalisés : utilisez le format <:nom:id>. Une liste JSON de règles d'Endcord PC fonctionne aussi."
+  },
+  "One switch for Do Not Disturb, quiet notifications and muted servers, on a schedule if you like, and back to your previous settings when it ends.": {
+    "tr": "Rahatsız etmeyin, sessiz bildirimler ve susturulmuş sunucular için tek bir anahtar; istersen zamanlanmış, bittiğinde eski ayarlarına geri döner.",
+    "ru": "Один переключатель для «Не беспокоить», тихих уведомлений и заглушённых серверов, по расписанию при желании, с возвратом прежних настроек после окончания.",
+    "es": "Un solo interruptor para No molestar, notificaciones silenciosas y servidores silenciados, con horario si quieres, y vuelta a tus ajustes anteriores al terminar.",
+    "fr": "Un seul interrupteur pour Ne pas déranger, les notifications silencieuses et les serveurs en sourdine, planifiable si vous voulez, avec retour à vos réglages précédents à la fin."
+  },
+  "Only auto-react to messages you send.": {
+    "tr": "Sadece senin gönderdiğin mesajlara otomatik tepki ver.",
+    "ru": "Автореакции только на ваши сообщения.",
+    "es": "Reaccionar automáticamente solo a tus mensajes.",
+    "fr": "Réagir automatiquement seulement à vos messages."
+  },
+  "Only in the background": {
+    "tr": "Sadece arka plandayken",
+    "ru": "Только в фоне",
+    "es": "Solo en segundo plano",
+    "fr": "Seulement en arrière-plan"
+  },
+  "Only match in these servers or channels, or from these users (ids, comma separated)": {
+    "tr": "Sadece bu sunucularda, kanallarda veya bu kullanıcılardan gelenleri eşleştir (kimlikler, virgülle ayrılmış)",
+    "ru": "Совпадения только на этих серверах, в этих каналах или от этих пользователей (ID через запятую)",
+    "es": "Solo coincidir en estos servidores o canales, o de estos usuarios (IDs separados por comas)",
+    "fr": "Ne chercher que dans ces serveurs ou salons, ou chez ces utilisateurs (ID séparés par des virgules)"
+  },
+  "Only match keywords with the same capitalization": {
+    "tr": "Anahtar kelimeleri sadece aynı büyük/küçük harflerle eşleştir",
+    "ru": "Совпадение только при том же регистре букв",
+    "es": "Solo coincidir con palabras escritas con las mismas mayúsculas",
+    "fr": "Ne reconnaître les mots-clés qu'avec la même casse"
+  },
+  "Only my messages": {
+    "tr": "Sadece benim mesajlarım",
+    "ru": "Только мои сообщения",
+    "es": "Solo mis mensajes",
+    "fr": "Seulement mes messages"
+  },
+  "Only open the channel while Discord is in the background, so it's there when you come back": {
+    "tr": "Kanalı sadece Discord arka plandayken aç, geri döndüğünde orada olsun",
+    "ru": "Открывать канал, только когда Discord в фоне, чтобы он ждал вас при возвращении",
+    "es": "Abrir el canal solo cuando Discord está en segundo plano, para que esté ahí cuando vuelvas",
+    "fr": "N'ouvrir le salon que lorsque Discord est en arrière-plan, pour qu'il soit là à votre retour"
+  },
+  "Own messages": {
+    "tr": "Kendi mesajların",
+    "ru": "Свои сообщения",
+    "es": "Tus mensajes",
+    "fr": "Vos messages"
+  },
+  "Permanently Ignore Calls": {
+    "tr": "Aramaları Kalıcı Olarak Yok Say",
+    "ru": "Всегда игнорировать звонки",
+    "es": "Ignorar llamadas permanentemente",
+    "fr": "Ignorer les appels définitivement"
+  },
+  "Pings from this user are back": {
+    "tr": "Bu kullanıcının bahsetmeleri geri geldi",
+    "ru": "Упоминания от этого пользователя снова приходят",
+    "es": "Las menciones de este usuario vuelven a avisarte",
+    "fr": "Les mentions de cet utilisateur sont de retour"
+  },
+  "Pings from this user are silenced": {
+    "tr": "Bu kullanıcının bahsetmeleri susturuldu",
+    "ru": "Упоминания от этого пользователя заглушены",
+    "es": "Las menciones de este usuario están silenciadas",
+    "fr": "Les mentions de cet utilisateur sont coupées"
+  },
+  "Pings in this channel now bypass your status": {
+    "tr": "Bu kanaldaki bahsetmeler artık durumunu atlıyor",
+    "ru": "Упоминания в этом канале теперь обходят ваш статус",
+    "es": "Las menciones en este canal ahora se saltan tu estado",
+    "fr": "Les mentions dans ce salon contournent désormais votre statut"
+  },
+  "Pitch": {
+    "tr": "Perde",
+    "ru": "Высота тона",
+    "es": "Tono",
+    "fr": "Hauteur"
+  },
+  "Pitch multiplier": {
+    "tr": "Perde çarpanı",
+    "ru": "Множитель высоты тона",
+    "es": "Multiplicador de tono",
+    "fr": "Multiplicateur de hauteur"
+  },
+  "Plays a 🗿 sound effect whenever a moyai emoji is sent or reacted in your current channel.": {
+    "tr": "Bulunduğun kanalda bir moyai emojisi gönderildiğinde veya tepki olarak eklendiğinde 🗿 ses efekti çalar.",
+    "ru": "Проигрывает звук 🗿, когда в текущем канале отправляют эмодзи моаи или ставят его реакцией.",
+    "es": "Reproduce un efecto de sonido 🗿 cada vez que se envía o se reacciona con un emoji moyai en tu canal actual.",
+    "fr": "Joue un effet sonore 🗿 chaque fois qu'un emoji moyai est envoyé ou ajouté en réaction dans votre salon actuel."
+  },
+  "Plugin notifications": {
+    "tr": "Eklenti bildirimleri",
+    "ru": "Уведомления плагинов",
+    "es": "Notificaciones de plugins",
+    "fr": "Notifications des plugins"
+  },
+  "Quality": {
+    "tr": "Kalite",
+    "ru": "Качество",
+    "es": "Calidad",
+    "fr": "Qualité"
+  },
+  "Quality of sound to use": {
+    "tr": "Kullanılacak ses kalitesi",
+    "ru": "Качество звука",
+    "es": "Calidad de sonido",
+    "fr": "Qualité du son"
+  },
+  "Quality of the 🗿🗿🗿": {
+    "tr": "🗿🗿🗿 kalitesi",
+    "ru": "Качество 🗿🗿🗿",
+    "es": "Calidad del 🗿🗿🗿",
+    "fr": "Qualité du 🗿🗿🗿"
+  },
+  "Remove Status Bypass": {
+    "tr": "Durum Atlatmasını Kaldır",
+    "ru": "Убрать обход статуса",
+    "es": "Quitar excepción de estado",
+    "fr": "Retirer le contournement du statut"
+  },
+  "Respect Do Not Disturb": {
+    "tr": "Rahatsız Etmeyin'e uy",
+    "ru": "Учитывать «Не беспокоить»",
+    "es": "Respetar No molestar",
+    "fr": "Respecter Ne pas déranger"
+  },
+  "Respect silent pings": {
+    "tr": "Sessiz bahsetmelere uy",
+    "ru": "Учитывать тихие упоминания",
+    "es": "Respetar menciones silenciosas",
+    "fr": "Respecter les mentions silencieuses"
+  },
+  "Respect silent pings (@silent / suppress notifications)": {
+    "tr": "Sessiz bahsetmelere uy (@silent / bildirimleri bastır)",
+    "ru": "Учитывать тихие упоминания (@silent)",
+    "es": "Respetar menciones silenciosas (@silent)",
+    "fr": "Respecter les mentions silencieuses (@silent)"
+  },
+  "Rules": {
+    "tr": "Kurallar",
+    "ru": "Правила",
+    "es": "Reglas",
+    "fr": "Règles"
+  },
+  "Save your ears and set a separate volume for Discord's in-app sounds, like calls, joins, leaves and mute toggles": {
+    "tr": "Kulaklarını koru ve Discord'un aramalar, katılmalar, ayrılmalar ve susturma gibi uygulama içi sesleri için ayrı bir ses düzeyi belirle",
+    "ru": "Берегите уши: отдельная громкость для звуков Discord в приложении, например звонков, входов, выходов и выключения микрофона",
+    "es": "Cuida tus oídos y pon un volumen aparte para los sonidos de Discord en la app, como llamadas, entradas, salidas y silenciar",
+    "fr": "Ménagez vos oreilles avec un volume distinct pour les sons de Discord dans l'appli, comme les appels, arrivées, départs et la sourdine"
+  },
+  "Schedule": {
+    "tr": "Zamanlama",
+    "ru": "Расписание",
+    "es": "Horario",
+    "fr": "Planification"
+  },
+  "Sent a sticker": {
+    "tr": "Bir çıkartma gönderdi",
+    "ru": "Отправил(а) стикер",
+    "es": "Envió un sticker",
+    "fr": "A envoyé un autocollant"
+  },
+  "Sent an attachment": {
+    "tr": "Bir dosya gönderdi",
+    "ru": "Отправил(а) вложение",
+    "es": "Envió un archivo adjunto",
+    "fr": "A envoyé une pièce jointe"
+  },
+  "Sent an embed": {
+    "tr": "Bir ekleme gönderdi",
+    "ru": "Отправил(а) встраиваемый контент",
+    "es": "Envió un contenido incrustado",
+    "fr": "A envoyé un contenu intégré"
+  },
+  "Servers": {
+    "tr": "Sunucular",
+    "ru": "Серверы",
+    "es": "Servidores",
+    "fr": "Serveurs"
+  },
+  "Servers to mute": {
+    "tr": "Susturulacak sunucular",
+    "ru": "Серверы для заглушения",
+    "es": "Servidores que silenciar",
+    "fr": "Serveurs à rendre muets"
+  },
+  "Set a valid emoji ID in the Husk settings": {
+    "tr": "Husk ayarlarında geçerli bir emoji kimliği belirle",
+    "ru": "Укажите верный ID эмодзи в настройках Husk",
+    "es": "Pon un ID de emoji válido en los ajustes de Husk",
+    "fr": "Indiquez un ID d'emoji valide dans les paramètres de Husk"
+  },
+  "Show an example toast notification.": {
+    "tr": "Örnek bir bildirim göster.",
+    "ru": "Показать пример всплывающего уведомления.",
+    "es": "Muestra una notificación de ejemplo.",
+    "fr": "Afficher un exemple de notification."
+  },
+  "Show Example Notification": {
+    "tr": "Örnek Bildirim Göster",
+    "ru": "Показать пример уведомления",
+    "es": "Mostrar notificación de ejemplo",
+    "fr": "Afficher une notification d'exemple"
+  },
+  "Show keyword log": {
+    "tr": "Anahtar kelime kaydını göster",
+    "ru": "Показать журнал ключевых слов",
+    "es": "Mostrar registro de palabras clave",
+    "fr": "Afficher le journal des mots-clés"
+  },
+  "Show notifications even for currently active channel": {
+    "tr": "Açık olan kanal için bile bildirim göster",
+    "ru": "Уведомлять даже в открытом канале",
+    "es": "Avisar incluso en el canal activo",
+    "fr": "Notifier même pour le salon actif"
+  },
+  "Show notifications for direct messages.": {
+    "tr": "Doğrudan mesajlar için bildirim göster.",
+    "ru": "Уведомления о личных сообщениях.",
+    "es": "Avisar de mensajes privados.",
+    "fr": "Notifier les messages privés."
+  },
+  "Show notifications for group messages.": {
+    "tr": "Grup mesajları için bildirim göster.",
+    "ru": "Уведомления о сообщениях групп.",
+    "es": "Avisar de mensajes de grupo.",
+    "fr": "Notifier les messages de groupe."
+  },
+  "Show notifications when friends send messages in servers they share with you.": {
+    "tr": "Arkadaşlar ortak sunucularda mesaj gönderince bildirim göster.",
+    "ru": "Уведомлять о сообщениях друзей на общих серверах.",
+    "es": "Avisar cuando amigos escriban en servidores compartidos.",
+    "fr": "Notifier quand des amis écrivent dans des serveurs communs."
+  },
+  "Silence notifications": {
+    "tr": "Bildirimleri sustur",
+    "ru": "Заглушить уведомления",
+    "es": "Silenciar notificaciones",
+    "fr": "Couper les notifications"
+  },
+  "Silence pings": {
+    "tr": "Bahsetmeleri sustur",
+    "ru": "Заглушить упоминания",
+    "es": "Silenciar menciones",
+    "fr": "Couper les mentions"
+  },
+  "Silenced users": {
+    "tr": "Susturulan kullanıcılar",
+    "ru": "Заглушённые пользователи",
+    "es": "Usuarios silenciados",
+    "fr": "Utilisateurs coupés"
+  },
+  "Skip messages from bots.": {
+    "tr": "Botlardan gelen mesajları atla.",
+    "ru": "Пропускать сообщения ботов.",
+    "es": "Omitir mensajes de bots.",
+    "fr": "Ignorer les messages de bots."
+  },
+  "Skip muted": {
+    "tr": "Susturulanları atla",
+    "ru": "Пропускать заглушённые",
+    "es": "Omitir silenciados",
+    "fr": "Ignorer ce qui est en sourdine"
+  },
+  "Skip notifications from muted servers, channels, or users": {
+    "tr": "Susturulmuş sunucu, kanal veya kullanıcıların bildirimlerini atla",
+    "ru": "Пропускать уведомления заглушённых серверов, каналов и пользователей",
+    "es": "Omitir avisos de servidores, canales o usuarios silenciados",
+    "fr": "Ignorer les notifications des serveurs, salons ou utilisateurs en sourdine"
+  },
+  "Some custom sounds couldn't be downloaded": {
+    "tr": "Bazı özel sesler indirilemedi",
+    "ru": "Не удалось загрузить некоторые звуки",
+    "es": "No se pudieron descargar algunos sonidos personalizados",
+    "fr": "Certains sons personnalisés n'ont pas pu être téléchargés"
+  },
+  "Sounds": {
+    "tr": "Sesler",
+    "ru": "Звуки",
+    "es": "Sonidos",
+    "fr": "Sons"
+  },
+  "Speed": {
+    "tr": "Hız",
+    "ru": "Скорость",
+    "es": "Velocidad",
+    "fr": "Vitesse"
+  },
+  "Speed of the animalese sound": {
+    "tr": "Animalese sesinin hızı",
+    "ru": "Скорость звука animalese",
+    "es": "Velocidad del sonido animalese",
+    "fr": "Vitesse du son animalese"
+  },
+  "Start time": {
+    "tr": "Başlangıç saati",
+    "ru": "Время начала",
+    "es": "Hora de inicio",
+    "fr": "Heure de début"
+  },
+  "Start time (24-hour, HH:MM)": {
+    "tr": "Başlangıç saati (24 saat, SS:DD)",
+    "ru": "Время начала (24 ч, ЧЧ:ММ)",
+    "es": "Hora de inicio (24 h, HH:MM)",
+    "fr": "Heure de début (24 h, HH:MM)"
+  },
+  "Status to use for whitelist": {
+    "tr": "Beyaz liste için kullanılacak durum",
+    "ru": "Статус для белого списка",
+    "es": "Estado para la lista blanca",
+    "fr": "Statut pour la liste blanche"
+  },
+  "Status while Focus Mode is on": {
+    "tr": "Odak Modundaki durum",
+    "ru": "Статус в режиме фокуса",
+    "es": "Estado durante el modo concentración",
+    "fr": "Statut pendant le mode concentration"
+  },
+  "Still get notifications from specific sources when in do not disturb mode. Long-press users and channels to set them to bypass do not disturb mode.": {
+    "tr": "Rahatsız etmeyin modundayken bile belirli kaynaklardan bildirim al. Rahatsız etmeyin modunu atlamaları için kullanıcılara ve kanallara basılı tut.",
+    "ru": "Получайте уведомления от выбранных источников даже в режиме «Не беспокоить». Зажмите пользователя или канал, чтобы он обходил этот режим.",
+    "es": "Sigue recibiendo notificaciones de fuentes concretas en modo No molestar. Mantén pulsados usuarios y canales para que se salten el modo No molestar.",
+    "fr": "Recevez quand même les notifications de certaines sources en mode Ne pas déranger. Appuyez longuement sur des utilisateurs et des salons pour qu'ils contournent ce mode."
+  },
+  "Still notify me about direct messages": {
+    "tr": "Doğrudan mesajlarda yine bildir",
+    "ru": "Всё равно уведомлять о личных сообщениях",
+    "es": "Seguir avisándome de los mensajes privados",
+    "fr": "Toujours me notifier des messages privés"
+  },
+  "Stop Ignoring Calls": {
+    "tr": "Aramaları Yok Saymayı Bırak",
+    "ru": "Перестать игнорировать звонки",
+    "es": "Dejar de ignorar llamadas",
+    "fr": "Ne plus ignorer les appels"
+  },
+  "Stop message notifications": {
+    "tr": "Mesaj bildirimlerini durdur",
+    "ru": "Отключить уведомления о сообщениях",
+    "es": "Dejar de avisar de sus mensajes",
+    "fr": "Arrêter les notifications de messages"
+  },
+  "Tap to jump to {place}": {
+    "tr": "{place} konumuna gitmek için dokun",
+    "ru": "Нажмите, чтобы перейти: {place}",
+    "es": "Toca para ir a {place}",
+    "fr": "Appuyez pour aller à {place}"
+  },
+  "Temporarily Ignore Calls": {
+    "tr": "Aramaları Geçici Olarak Yok Say",
+    "ru": "Временно игнорировать звонки",
+    "es": "Ignorar llamadas temporalmente",
+    "fr": "Ignorer les appels temporairement"
+  },
+  "their DMs": {
+    "tr": "DM'leri",
+    "ru": "личные сообщения",
+    "es": "sus MD",
+    "fr": "ses MP"
+  },
+  "This is an example toast notification!": {
+    "tr": "Bu örnek bir bildirim",
+    "ru": "Это пример уведомления",
+    "es": "Esta es una notificación de ejemplo",
+    "fr": "Ceci est un exemple de notification"
+  },
+  "Time in seconds notifications will be shown for.": {
+    "tr": "Bildirimlerin gösterileceği süre (saniye).",
+    "ru": "Сколько секунд показывать уведомления.",
+    "es": "Segundos que se muestran las notificaciones.",
+    "fr": "Durée d'affichage des notifications en secondes."
+  },
+  "Turn Focus Mode on or off": {
+    "tr": "Odak Modunu aç veya kapat",
+    "ru": "Включить или выключить режим фокуса",
+    "es": "Activar o desactivar el modo concentración",
+    "fr": "Activer ou désactiver le mode concentration"
+  },
+  "Turn on automatically at set times": {
+    "tr": "Belirli saatlerde otomatik aç",
+    "ru": "Включать автоматически в заданное время",
+    "es": "Activar automáticamente a ciertas horas",
+    "fr": "Activer automatiquement à des heures fixes"
+  },
+  "Unnamed group": {
+    "tr": "Adsız grup",
+    "ru": "Группа без названия",
+    "es": "Grupo sin nombre",
+    "fr": "Groupe sans nom"
+  },
+  "Unsilence pings": {
+    "tr": "Bahsetmeleri aç",
+    "ru": "Вернуть упоминания",
+    "es": "Reactivar menciones",
+    "fr": "Réactiver les mentions"
+  },
+  "Users": {
+    "tr": "Kullanıcılar",
+    "ru": "Пользователи",
+    "es": "Usuarios",
+    "fr": "Utilisateurs"
+  },
+  "Users outside of DMs": {
+    "tr": "DM dışındaki kullanıcılar",
+    "ru": "Пользователи вне ЛС",
+    "es": "Usuarios fuera de los MD",
+    "fr": "Utilisateurs hors MP"
+  },
+  "Users to let bypass (notified for all messages sent in DMs)": {
+    "tr": "Atlatmasına izin verilecek kullanıcılar (DM'deki tüm mesajlar için bildirim)",
+    "ru": "Пользователи-исключения (уведомления о всех их ЛС)",
+    "es": "Usuarios que se saltan el estado (avisan de todos sus privados)",
+    "fr": "Utilisateurs en contournement (notifié pour tous leurs MP)"
+  },
+  "Volume": {
+    "tr": "Ses düzeyi",
+    "ru": "Громкость",
+    "es": "Volumen",
+    "fr": "Volume"
+  },
+  "Volume of Discord's in-app sounds, in percent. Notification sounds in the notification shade follow Android's notification volume.": {
+    "tr": "Discord'un uygulama içi seslerinin ses düzeyi (yüzde). Bildirim panelindeki bildirim sesleri Android'in bildirim ses düzeyine uyar.",
+    "ru": "Громкость звуков Discord внутри приложения в процентах. Звуки уведомлений в панели уведомлений следуют громкости уведомлений Android.",
+    "es": "Volumen de los sonidos de Discord dentro de la app, en porcentaje. Los sonidos de las notificaciones del panel siguen el volumen de notificaciones de Android.",
+    "fr": "Volume des sons de Discord dans l'appli, en pourcentage. Les sons des notifications du volet suivent le volume des notifications d'Android."
+  },
+  "Volume of the animalese sound, in percent": {
+    "tr": "Animalese sesinin ses düzeyi (yüzde)",
+    "ru": "Громкость звука animalese в процентах",
+    "es": "Volumen del sonido animalese, en porcentaje",
+    "fr": "Volume du son animalese, en pourcentage"
+  },
+  "Volume of the replaced sounds, in percent": {
+    "tr": "Değiştirilen seslerin ses düzeyi (yüzde)",
+    "ru": "Громкость заменённых звуков в процентах",
+    "es": "Volumen de los sonidos reemplazados, en porcentaje",
+    "fr": "Volume des sons remplacés, en pourcentage"
+  },
+  "Volume of the 🗿🗿🗿, in percent": {
+    "tr": "🗿🗿🗿 ses düzeyi (yüzde)",
+    "ru": "Громкость 🗿🗿🗿 в процентах",
+    "es": "Volumen del 🗿🗿🗿, en porcentaje",
+    "fr": "Volume du 🗿🗿🗿, en pourcentage"
+  },
+  "When an id is in both lists, match anyway": {
+    "tr": "Bir kimlik iki listede de varsa yine de eşleştir",
+    "ru": "Если ID есть в обоих списках, всё равно искать совпадения",
+    "es": "Si un ID está en ambas listas, coincidir igualmente",
+    "fr": "Si un ID est dans les deux listes, chercher quand même"
+  },
+  "Whether the notification sound should be played": {
+    "tr": "Bildirim sesi çalınsın mı",
+    "ru": "Проигрывать звук уведомления",
+    "es": "Reproducir el sonido de notificación",
+    "fr": "Jouer le son de notification"
+  },
+  "Whitelist": {
+    "tr": "Beyaz liste",
+    "ru": "Белый список",
+    "es": "Lista blanca",
+    "fr": "Liste blanche"
+  },
+  "Whitelist wins": {
+    "tr": "Beyaz liste öncelikli",
+    "ru": "Приоритет белого списка",
+    "es": "La lista blanca gana",
+    "fr": "La liste blanche l'emporte"
+  },
+  "You are no longer friends with {user}.": {
+    "tr": "Artık {user} ile arkadaş değilsin.",
+    "ru": "Вы больше не друзья с {user}.",
+    "es": "Ya no eres amigo de {user}.",
+    "fr": "Vous n'êtes plus ami avec {user}."
+  },
+  "You are no longer in the group {name}.": {
+    "tr": "Artık {name} grubunda değilsin.",
+    "ru": "Вы больше не состоите в группе {name}.",
+    "es": "Ya no estás en el grupo {name}.",
+    "fr": "Vous n'êtes plus dans le groupe {name}."
+  },
+  "You are no longer in the server {name}.": {
+    "tr": "Artık {name} sunucusunda değilsin.",
+    "ru": "Вы больше не состоите на сервере {name}.",
+    "es": "Ya no estás en el servidor {name}.",
+    "fr": "Vous n'êtes plus sur le serveur {name}."
+  },
+  "You can also use /focus in any chat": {
+    "tr": "Herhangi bir sohbette /focus da kullanabilirsin",
+    "ru": "Также можно написать /focus в любом чате",
+    "es": "También puedes usar /focus en cualquier chat",
+    "fr": "Vous pouvez aussi utiliser /focus dans n'importe quelle discussion"
+  },
+  "You changed your status during Focus Mode, so it was kept.": {
+    "tr": "Odak Modu sırasında durumunu değiştirdin, o yüzden aynen bırakıldı.",
+    "ru": "Вы сменили статус во время режима фокуса, поэтому он сохранён.",
+    "es": "Cambiaste tu estado durante el modo concentración, así que se ha mantenido.",
+    "fr": "Vous avez changé de statut pendant le mode concentration, il a donc été conservé."
+  },
+  "You were removed from the group {name}.": {
+    "tr": "{name} grubundan çıkarıldın.",
+    "ru": "Вас удалили из группы {name}.",
+    "es": "Te quitaron del grupo {name}.",
+    "fr": "Vous avez été retiré du groupe {name}."
+  },
+  "You were removed from the server {name}.": {
+    "tr": "{name} sunucusundan çıkarıldın.",
+    "ru": "Вас удалили с сервера {name}.",
+    "es": "Te quitaron del servidor {name}.",
+    "fr": "Vous avez été retiré du serveur {name}."
+  },
+  "You'll get a notification when they send a message": {
+    "tr": "Mesaj gönderdiklerinde bildirim alacaksın",
+    "ru": "Вы получите уведомление, когда этот пользователь напишет",
+    "es": "Recibirás una notificación cuando envíe un mensaje",
+    "fr": "Vous serez notifié quand cette personne enverra un message"
+  },
+  "{user} in {channel}": {
+    "tr": "{channel} içinde {user}",
+    "ru": "{user} в {channel}",
+    "es": "{user} en {channel}",
+    "fr": "{user} dans {channel}"
+  },
+  "{user} removed you as a friend.": {
+    "tr": "{user} seni arkadaşlıktan çıkardı.",
+    "ru": "{user} удалил(а) вас из друзей.",
+    "es": "{user} te eliminó de sus amigos.",
+    "fr": "{user} vous a retiré de ses amis."
+  },
+  "{user} sent a message": {
+    "tr": "{user} bir mesaj gönderdi",
+    "ru": "{user} отправил(а) сообщение",
+    "es": "{user} envió un mensaje",
+    "fr": "{user} a envoyé un message"
+  }
+}

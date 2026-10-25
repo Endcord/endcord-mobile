@@ -117,6 +117,13 @@ MessageActions.register(name, "Copy Raw Content", R.e.ic_copy_24dp, visible = { 
 }
 ```
 
+## Shared helpers from other batches
+
+Before writing a hook, check whether one exists: `api/` (message rows, sending, message/user/channel sheets),
+`guildscommon` (server list, channel and DM lists, server long-press menu), `notifycommon` (gateway events,
+in-app/system notifications, app in background), `composercommon` (send button menu, chat input helpers),
+`commandscommon` (late Clyde messages, regex helpers), `actionscommon` (file saving, list pages, stores).
+
 ## Finding the Android Discord classes
 
 The app is obfuscated in places (classes like `b.a.a.c`, fields like `l`). The decompiled jar the core
@@ -154,6 +161,7 @@ that doesn't exist fails at runtime, not at compile time.
   `java.util.regex.Pattern` instead of `Regex`, and pass every argument explicitly.
 * Java APIs: **Android API 24**. The core dex is *not* desugared, so `java.time` (API 26) crashes on Android 7.
   Use `java.util.Calendar`, `SimpleDateFormat` and `android.text.format.DateUtils`.
+* `kotlin.Unit` is shadowed too: `Unit` can't be written as a value. Let lambdas end with a Unit expression or `{}`.
 * Kotlin metadata of some Discord classes is stripped, so companion objects such as `WidgetUserSheet.Companion`
   aren't callable from Kotlin. A tiny Java helper class in your plugin package works.
 * `patcher.before/after/instead` can't hook static methods (they cast `thisObject`). Use
