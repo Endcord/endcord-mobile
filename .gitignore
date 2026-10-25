@@ -17,3 +17,6 @@ local.properties
 
 # Local Claude Code worktrees and settings
 /.claude/
+
+# Locally built APKs
+/dist/

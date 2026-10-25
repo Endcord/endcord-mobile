@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Endcord Installer</string>
+  <string name="app_description">Endcord для Android на основе классического приложения Discord</string>
+
+  <string name="support_server">Сервер поддержки</string>
+  <string name="installer">Установщик</string>
+
+  <string name="action_cancel">Отмена</string>
+  <string name="action_retry">Повторить</string>
+  <string name="action_continue">Продолжить</string>
+  <string name="action_retry_install">Повторить установку</string>
+  <string name="action_open_error_log">Открыть журнал ошибок</string>
+  <string name="action_apply">Применить</string>
+  <string name="action_confirm">Подтвердить</string>
+  <string name="action_dismiss">Закрыть</string>
+  <string name="action_install">Установить</string>
+  <string name="action_uninstall">Удалить</string>
+  <string name="action_add_install">Новая установка</string>
+  <string name="action_update_install">Обновить установку</string>
+  <string name="action_update">Обновить</string>
+  <string name="action_clear">Очистить</string>
+  <string name="action_delete">Удалить</string>
+  <string name="action_launch">Запустить</string>
+  <string name="action_close">Закрыть</string>
+  <string name="action_search">Поиск</string>
+  <string name="action_copy">Копировать</string>
+  <string name="action_collapse">Свернуть</string>
+  <string name="action_expand">Развернуть</string>
+  <string name="action_copied">Скопировано!</string>
+  <string name="action_cleared_cache">Кэш очищен!</string>
+  <string name="action_exit_anyways">Всё равно выйти</string>
+  <string name="action_open_info">Сведения</string>
+  <string name="action_reset_default">Сбросить по умолчанию</string>
+
+  <string name="intent_reinstall_fail">Не удалось автоматически начать переустановку. Запустите её вручную.</string>
+  <string name="intent_import_component_success">%s успешно импортирован</string>
+  <string name="intent_import_component_failure">Не удалось импортировать пользовательский компонент!</string>
+
+  <string name="permissions_title">Предоставьте разрешения</string>
+  <string name="permissions_subtitle">Endcord Installer нужны эти разрешения:</string>
+  <string name="permissions_legend">%s отмечает обязательные разрешения!</string>
+  <string name="permissions_grant">Предоставить</string>
+  <string name="permissions_granted">Предоставлено</string>
+  <string name="permissions_header_options">Параметры</string>
+  <string name="permissions_header_permissions">Разрешения</string>
+  <string name="permissions_install_title">Установка из неизвестных источников</string>
+  <string name="permissions_install_desc">Нужно, чтобы устанавливать Endcord из этого приложения.</string>
+  <string name="permissions_storage_title">Внешнее хранилище</string>
+  <string name="permissions_storage_desc">Endcord и его установщик хранят общие данные, например плагины и настройки, в ~/Endcord, для чего нужен полный доступ к хранилищу. Ограниченное хранилище пока не поддерживается.</string>
+  <string name="permissions_notifs_title">Уведомления</string>
+  <string name="permissions_battery_title">Работа в фоне</string>
+  <string name="permissions_battery_desc">Не даёт системе прервать установку, когда приложение свёрнуто.</string>
+  <string name="permissions_notifs_desc">Используется только для показа хода установки, пока Endcord Installer свёрнут.</string>
+
+  <string name="permissions_root_denied">Не удалось получить root-права</string>
+  <string name="permissions_shizuku_denied">Не удалось получить разрешения Shizuku</string>
+  <string name="permissions_dhizuku_denied">Не удалось получить разрешения Dhizuku</string>
+
+  <string name="installs_no_installs">Установки не найдены!</string>
+  <string name="launch_endcord_fail">Не удалось запустить Endcord</string>
+
+  <string name="settings_header_advanced">Дополнительно</string>
+  <string name="settings_header_installation">Установка</string>
+  <string name="settings_header_appearance">Оформление</string>
+  <string name="settings_header_info">Информация</string>
+  <string name="setting_language">Язык</string>
+  <string name="setting_language_desc">Язык этого приложения</string>
+  <string name="setting_theme">Тема</string>
+  <string name="setting_theme_desc">Тема этого приложения</string>
+  <string name="setting_dynamic_color">Динамические цвета</string>
+  <string name="setting_dynamic_color_desc">Использовать цвета обоев (Material You) вместо цветов Endcord на Android 12+</string>
+  <string name="setting_developer_options">Для разработчиков</string>
+  <string name="setting_developer_options_desc">Не включайте, если не знаете, что это делает!</string>
+  <string name="setting_installer">Способ установки</string>
+  <string name="setting_installer_desc">Как установщик взаимодействует с системным установщиком пакетов.</string>
+  <string name="setting_keep_patched_apks">Сохранять пропатченные APK</string>
+  <string name="setting_keep_patched_apks_desc">Сохраняет все пропатченные файлы и APK после установки для отладки. Экспорт APK имеет смысл только после успешной установки.</string>
+  <string name="settings_clear_cache">Очистить кэш</string>
+  <string name="settings_export_apk">Экспортировать APK</string>
+
+  <string name="language_system">Как в системе</string>
+  <string name="language_welcome_title">Добро пожаловать в Endcord</string>
+  <string name="language_welcome_desc">Выберите язык. Его можно будет изменить позже в настройках.</string>
+
+  <string name="installer_pm">Напрямую</string>
+  <string name="installer_pm_desc">Использует PackageInstaller API напрямую из приложения. (По умолчанию)</string>
+  <string name="installer_root">Root</string>
+  <string name="installer_intent">Intent</string>
+  <string name="installer_intent_desc">Передаёт установку системному установщику по умолчанию.</string>
+  <string name="installer_root_desc">Использует PackageManager напрямую через root, например Magisk или KernelSU.</string>
+  <string name="installer_shizuku">Shizuku</string>
+  <string name="installer_shizuku_desc">Использует PackageInstaller API удалённо через Shizuku. Поддерживаются ADB, беспроводной ADB и root.</string>
+  <string name="installer_dhizuku">Dhizuku</string>
+  <string name="installer_dhizuku_desc">Использует PackageInstaller API удалённо через Dhizuku с правами владельца устройства.</string>
+
+  <string name="theme_system">Системная</string>
+  <string name="theme_dark">Тёмная</string>
+  <string name="theme_light">Светлая</string>
+  <string name="theme_black">Чёрная</string>
+
+  <string name="plugins_title">Плагины</string>
+  <string name="plugins_view_changelog">Список изменений</string>
+  <string name="plugins_delete_plugin">Удалить %s</string>
+  <string name="plugins_delete_plugin_body">Удалить плагин %s?</string>
+  <string name="plugins_none_installed">Плагины не установлены!</string>
+  <string name="plugins_changelog_media">Медиа списка изменений</string>
+  <string name="plugins_error">Не удалось загрузить плагины!</string>
+  <string name="plugins_safe_mode_title">Безопасный режим</string>
+  <string name="plugins_safe_mode_desc">Временно отключает все плагины при запуске Endcord</string>
+
+  <string name="navigation_back">Назад</string>
+  <string name="navigation_about">О приложении</string>
+  <string name="navigation_logs">Журналы</string>
+  <string name="navigation_settings">Настройки</string>
+
+  <string name="contributors_lead">Руководитель</string>
+  <string name="about_based_on_aliucord">На основе Aliucord</string>
+  <string name="contributors">Участники</string>
+  <string name="contributors_contributions">Вклад: %s</string>
+
+  <string name="network_load_fail">Не удалось загрузить</string>
+  <string name="network_warning_title">Лимитная сеть</string>
+  <string name="network_warning_body">Похоже, вы используете мобильные данные или лимитную сеть. Установка может загрузить несколько сотен мегабайт. Всё равно продолжить?</string>
+  <string name="network_warning_disable">Больше не показывать</string>
+
+  <string name="version_none">Нет</string>
+  <string name="version_stable">Стабильная</string>
+  <string name="version_beta">Бета</string>
+  <string name="version_alpha">Альфа</string>
+  <string name="version_unknown">Неизвестно</string>
+  <string name="version_load_fail">Не удалось получить версию</string>
+
+  <string name="installer_file_save_success">Сохранено в %s</string>
+  <string name="installer_file_save_failed">Не удалось сохранить %s</string>
+  <string name="installer_install_success">Endcord успешно установлен</string>
+  <string name="installer_install_aborted">Установка Endcord отменена</string>
+  <string name="installer_uninstall_new">Чтобы продолжить, удалите текущую версию Endcord!</string>
+  <string name="installer_uninstall_success">Endcord удалён</string>
+  <string name="installer_uninstall_aborted">Удаление отменено</string>
+  <string name="installer_dl_verify_fail">Не удалось проверить загрузку</string>
+  <string name="installer_insufficient_storage">Недостаточно места!</string>
+  <string name="installer_banner_minimization">Оптимизация батареи не отключена, поэтому сворачивание этого экрана может прервать установку!</string>
+  <string name="installer_banner_failure">Установка не удалась! Повторите попытку или нажмите на это сообщение, чтобы получить помощь на сервере Endcord.</string>
+  <string name="installer_banner_success">Endcord установлен! Не удаляйте этот установщик: он нужен для некоторых обновлений.</string>
+
+  <string name="install_error_unknown">Ошибка установщика (причина неизвестна)</string>
+  <string name="install_error_unhandled_intent">Нет приложения для обработки %s!</string>
+  <string name="install_error_blocked">Установка заблокирована</string>
+  <string name="install_error_invalid">Один или несколько APK повреждены или некорректны</string>
+  <string name="install_error_conflict">Конфликт с установленным приложением, обычно из-за несовпадения подписей</string>
+  <string name="install_error_storage">Недостаточно места для установки</string>
+  <string name="install_error_incompatible">Приложение несовместимо с вашим устройством</string>
+  <string name="install_error_timeout">Время ожидания установщика истекло</string>
+
+  <string name="install_group_prepare">Подготовка</string>
+  <string name="install_group_download">Загрузка зависимостей</string>
+  <string name="install_group_patch">Патчинг APK</string>
+  <string name="install_group_install">Установка APK</string>
+
+  <string name="patch_step_fetch_kt_version">Получение нужной версии Discord</string>
+  <string name="patch_step_downgrade_check">Проверка более новых установок</string>
+  <string name="patch_step_restore_cache">Восстановление из кэша</string>
+  <string name="patch_step_dl_kt_apk">Загрузка APK Discord</string>
+  <string name="patch_step_dl_kotlin">Загрузка библиотеки Kotlin</string>
+  <string name="patch_step_dl_injector">Загрузка Endcord Injector</string>
+  <string name="patch_step_dl_aliuhook">Загрузка библиотеки Aliuhook</string>
+  <string name="patch_step_dl_smali">Загрузка smali-патчей</string>
+  <string name="patch_step_copy_deps">Копирование зависимостей</string>
+  <string name="patch_step_patch_manifests">Патчинг манифеста APK</string>
+  <string name="patch_step_patch_certs">Добавление современных корневых сертификатов</string>
+  <string name="patch_step_patch_icon">Патчинг значка приложения</string>
+  <string name="patch_step_add_aliuhook">Добавление библиотеки Aliuhook</string>
+  <string name="patch_step_patch_smali">Применение smali-патчей</string>
+  <string name="patch_step_reorganize_dex">Добавление файлов .dex в APK</string>
+  <string name="patch_step_save_metadata">Сохранение метаданных</string>
+  <string name="patch_step_alignment">Выравнивание APK</string>
+  <string name="patch_step_signing">Подписание APK</string>
+  <string name="patch_step_install">Установка APK</string>
+  <string name="patch_step_cleanup">Очистка</string>
+
+  <string name="status_queued">В очереди</string>
+  <string name="status_ongoing">Выполняется</string>
+  <string name="status_skipped">Пропущено</string>
+  <string name="status_success">Успешно</string>
+  <string name="status_failed">Ошибка</string>
+
+  <string name="installer_abort_title">Выйти?</string>
+  <string name="installer_abort_body">Прервать текущую установку?</string>
+
+  <string name="updater_title">Обновить до v%s</string>
+  <string name="updater_body">Вышла новая версия Endcord Installer, она может понадобиться для установки. Обновить?</string>
+  <string name="updater_open_github">Открыть релиз на GitHub</string>
+  <string name="updater_check_fail">Не удалось проверить обновления!</string>
+  <string name="updater_update_fail">Не удалось обновить! Скачайте и установите обновление вручную.</string>
+
+  <string name="downloader_err_unknown">Ошибка загрузки (неизвестно)</string>
+  <string name="downloader_err_code">Ошибка загрузки (%s)</string>
+  <string name="downloader_err_timeout">Ошибка загрузки (тайм-аут)</string>
+  <string name="downloader_err_response">Ошибка загрузки (некорректный ответ)</string>
+  <string name="downloader_err_file_exists">Ошибка загрузки (файл уже существует)</string>
+  <string name="downloader_err_storage_space">Ошибка загрузки (недостаточно места)</string>
+
+  <string name="home_network_fail">Не удалось получить данные!</string>
+
+  <string name="patchopts_title">Некоторые параметры Endcord можно выбрать только при установке, позже их не изменить.</string>
+  <string name="patchopts_pkgname_title">Имя пакета</string>
+  <string name="patchopts_pkgname_desc">Уникальный идентификатор каждого приложения. Разные имена пакетов позволяют установить Endcord несколько раз.</string>
+  <string name="patchopts_pkgname_invalid">Некорректное имя пакета!</string>
+  <string name="patchopts_pkgname_taken">Установленное приложение будет заменено!</string>
+  <string name="patchopts_pkgname_ok">Корректное имя пакета!</string>
+  <string name="patchopts_appname_title">Название приложения</string>
+  <string name="patchopts_appname_desc">Название на главном экране. Измените его для дополнительных установок, чтобы их различать.</string>
+  <string name="patchopts_debuggable_title">Отладка</string>
+  <string name="patchopts_debuggable_desc">Включает флаг debuggable в манифесте. Используйте, только если понимаете, что делаете!</string>
+  <string name="patchopts_icon_title">Заменить значок</string>
+  <string name="patchopts_icon_desc">Использовать значок Endcord (или свой) вместо значка Discord.</string>
+  <string name="patchopts_custom_injector_title">Свой инжектор</string>
+  <string name="patchopts_custom_injector_desc">Сборка инжектора, импортированная в установщик.</string>
+  <string name="patchopts_custom_patches_title">Свои патчи</string>
+  <string name="patchopts_custom_patches_desc">Набор smali-патчей, импортированный в установщик.</string>
+  <string name="patchopts_divider_basic">Основное</string>
+  <string name="patchopts_divider_advanced">Дополнительно</string>
+  <string name="patchopts_warning_invalid_iconopts">Выбранные параметры значка некорректны!</string>
+
+  <string name="iconopts_screen_title">Замена значка</string>
+  <string name="iconopts_variant_title_old_discord">Старый Discord</string>
+  <string name="iconopts_variant_desc_old_discord">Старый цвет и логотип Discord, использовавшиеся до 2021 года.</string>
+  <string name="iconopts_variant_title_color">Свой цвет</string>
+  <string name="iconopts_variant_title_image">Своё изображение</string>
+  <string name="iconopts_variant_desc_discord">Оставляет исходный значок и только добавляет недостающий монохромный значок.</string>
+  <string name="iconopts_variant_desc_endcord">Пиксельная панда Endcord на тёмно-синем фоне.</string>
+  <string name="iconopts_variant_desc_color">Выберите свой цвет фона значка.</string>
+  <string name="iconopts_variant_desc_image">Выберите своё изображение. У него должны быть достаточные поля по правилам адаптивных значков. Максимальный размер — 256 КиБ.</string>
+  <string name="iconopts_colorpicker_title">Тон и насыщенность</string>
+  <string name="iconopts_colorpicker_desc">Основные компоненты цвета HSV.</string>
+  <string name="iconopts_lightness_title">Яркость</string>
+  <string name="iconopts_lightness_desc">Яркость цвета.</string>
+  <string name="iconopts_hex_title">HEX-цвет</string>
+  <string name="iconopts_hex_desc">Введите HEX-значение цвета RGB. Прозрачность игнорируется!</string>
+  <string name="iconopts_failed_image">Не удалось открыть изображение</string>
+  <string name="iconopts_failed_image_too_big">Изображение больше 256 КиБ</string>
+  <string name="iconopts_btn_open_selection">Выбрать изображение</string>
+  <string name="iconopts_btn_open_example_image">Пример изображения</string>
+  <string name="iconopts_icon_preview_title">Предпросмотр значка</string>
+  <string name="iconopts_icon_preview_desc">Как значок будет выглядеть на вашем устройстве после обрезки и масштабирования</string>
+  <string name="iconopts_image_preview_title">Предпросмотр</string>
+  <string name="iconopts_image_preview_desc">Выбранное изображение целиком, без обрезки.</string>
+  <string name="iconopts_image_preview_none">Изображение не выбрано</string>
+
+  <string name="componentopts_screen_title">Свой компонент (%s)</string>
+  <string name="componentopts_screen_desc">Выберите сборку, импортированную в установщик.</string>
+  <string name="componentopts_selected_none">Последняя</string>
+  <string name="componentopts_deleted">Компонент удалён!</string>
+
+  <string name="log_title">Журнал</string>
+  <string name="log_section_install_info">Сведения об установке</string>
+  <string name="log_section_env_info">Сведения о среде</string>
+  <string name="log_section_error">Трассировка ошибки</string>
+  <string name="log_section_log">Журнал установки</string>
+  <string name="log_action_export">Экспортировать журнал</string>
+  <string name="log_action_export_apk">Экспортировать APK</string>
+  <string name="log_action_share">Поделиться журналом</string>
+
+  <string name="logs_title">Журналы</string>
+  <string name="logs_none">Журналов пока нет!</string>
+  <string name="logs_action_delete_all">Удалить все журналы</string>
+  <string name="logs_status_delete_success">Все журналы удалены</string>
+  <string name="logs_wipe_title">Очистить журналы</string>
+  <string name="logs_wipe_desc">Безвозвратно удалить все журналы?</string>
+
+  <string name="notif_group_install_title">Текущая установка</string>
+  <string name="notif_group_install_desc">Уведомления о ходе установки в фоне</string>
+  <string name="notif_install_ready_title">Endcord готов к установке!</string>
+  <string name="notif_install_ready_desc">Нажмите, чтобы установить…</string>
+  <string name="notif_install_fail_title">Не удалось установить Endcord</string>
+  <string name="notif_install_fail_desc">Нажмите, чтобы узнать подробности…</string>
+
+  <string name="play_protect_warning_title">Play Protect</string>
+  <string name="play_protect_warning_desc">Похоже, Google Play Защита включена. Она может помешать установке, так как Endcord использует собственный ключ подписи. Её можно отключить в настройках Play Защиты.\n\nЕсли появится предупреждение, нажмите\n«Подробнее» -> «Всё равно установить»</string>
+  <string name="play_protect_warning_ok">Продолжить</string>
+  <string name="play_protect_warning_open_gpp">Открыть Play Защиту</string>
+  <string name="play_protect_warning_disable">Больше не показывать</string>
+
+  <string name="fun_fact_prefix">А вы знали? %s</string>
+  <string name="fun_fact_1">Endcord включает плагины из Endcord для ПК; все они выключены, пока вы их не включите.</string>
+  <string name="fun_fact_2">Endcord говорит на пяти языках: английском, турецком, русском, испанском и французском.</string>
+  <string name="fun_fact_3">Endcord проверяет обновления на GitHub каждые 15 минут и обновляется одним нажатием.</string>
+  <string name="fun_fact_4">Панда на логотипе Endcord спит. Постарайтесь её не разбудить.</string>
+  <string name="fun_fact_5">Endcord на телефоне использует те же переводы, что и Endcord для ПК.</string>
+  <string name="fun_fact_6">Возникли проблемы? Спросите на Discord-сервере Endcord: discord.gg/endcord</string>
+  <string name="fun_fact_7">Конфликтующие плагины помечаются, так что вы узнаете об этом раньше, чем один из них перестанет работать.</string>
+  <string name="fun_fact_8">Endcord работает на классическом приложении Discord с настоящими Android-интерфейсами вместо React Native.</string>
+  <string name="fun_fact_9">Если что-то пошло не так, безопасный режим разом отключит все плагины.</string>
+  <string name="fun_fact_10">Журналы сбоев сохраняются в папке Endcord/crashlogs.</string>
+  <string name="fun_fact_11">Endcord основан на Aliucord, поэтому большинство плагинов Aliucord тоже работают.</string>
+  <string name="fun_fact_12">Endcord можно установить несколько раз, указав другое имя пакета.</string>
+</resources>

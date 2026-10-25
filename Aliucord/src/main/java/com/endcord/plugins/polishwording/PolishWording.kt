@@ -71,7 +71,7 @@ internal class PolishWording : ComposerPlugin(
     }
 
     private fun capitalize(text: String): String {
-        val blocked = string("blockedWords").split(BLOCKED_SPLIT).filter { it.isNotEmpty() }.map { it.lowercase() }
+        val blocked = BLOCKED_SPLIT.split(string("blockedWords")).filter { it.isNotEmpty() }.map { it.lowercase() }
 
         // Split into sentences and the whitespace between them, keeping both
         val parts = ArrayList<String>()
@@ -193,6 +193,7 @@ internal class PolishWording : ComposerPlugin(
         val FIRST_CHAR: Pattern = Pattern.compile("^(\\s*)(\\S)")
         val LONE_I: Pattern = Pattern.compile("\\bi\\b(?!\\s+is\\b)(?=['\\s]|$)")
         val ENDS_WITH_URL: Pattern = Pattern.compile("https?://\\S+$|www\\.\\S+$")
-        val BLOCKED_SPLIT = Regex(",\\s?")
+        // java.util.regex: Discord's copy of kotlin.text.Regex has no split() at runtime
+        val BLOCKED_SPLIT: java.util.regex.Pattern = java.util.regex.Pattern.compile(",\\s?")
     }
 }

@@ -35,7 +35,7 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v4
         with:
-          packages: 'platform-tools'
+          packages: 'platform-tools platforms;android-24'
 
       - name: Check translations
         run: node scripts/i18n-sync.js || echo "::warning::Some strings are missing translations, see the log above"
@@ -48,6 +48,19 @@ jobs:
           ./gradlew --stacktrace \
             :Aliucord:make :Injector:make :kotlin-stdlib:make \
             :patches:package :patches:disassembleWithPatches :patches:testPatches
+
+      # Catches calls that compile but don't exist on Android 7 or in the Kotlin stdlib the app runs with.
+      # Calls to newer Android APIs are expected when guarded by Build.VERSION.SDK_INT checks.
+      - name: Check runtime references
+        run: |
+          discord="$(find ~/.gradle/caches -path '*transformed/jars/discord-*.jar' | head -1)"
+          stdlib="$(find ~/.gradle/caches/modules-2 -name 'kotlin-stdlib-1.5.21.jar' | head -1)"
+          aliuhook="$(find ~/.gradle/caches/modules-2 -path '*Aliuhook*' -name '*.aar' | head -1)"
+          injector="$(find Injector/build/intermediates -name classes.jar | head -1)"
+          python3 scripts/check-runtime-refs.py Aliucord/build/outputs/Aliucord.zip             "$ANDROID_SDK_ROOT/platforms/android-24/android.jar" "$injector" "$discord" "$stdlib" "$aliuhook"             | tee runtime-refs.txt
+          if grep -v '\[platform\]' runtime-refs.txt | grep -q '^  L'; then
+            echo "::warning::The core references classes or methods that don't exist at runtime, see runtime-refs.txt"
+          fi
 
       - name: Collect build outputs
         run: |

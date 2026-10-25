@@ -74,9 +74,27 @@ fun AboutScreenContent(state: State<AboutScreenState>) {
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.fillMaxWidth(),
                 ) {
-                    LeadContributor("Vendicated", "the ven")
-                    LeadContributor("Juby210", "Fox")
-                    LeadContributor("rushii", "explod", "rushiiMachine")
+                    LeadContributor("rootpoi", "Endcord", "rootpoii")
+                }
+            }
+
+            // Endcord Installer and Endcord's core are built on Aliucord and Aliucord Manager
+            item(key = "ALIUCORD_DIVIDER") {
+                TextDivider(
+                    text = stringResource(R.string.about_based_on_aliucord),
+                    modifier = Modifier.padding(top = 18.dp, bottom = 20.dp),
+                )
+            }
+
+            item(key = "ALIUCORD_CONTRIBUTORS") {
+                Row(
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    LeadContributor("Vendicated", "Aliucord")
+                    LeadContributor("Juby210", "Aliucord")
+                    LeadContributor("rushii", "Aliucord Manager", "rushiiMachine")
                 }
             }
 

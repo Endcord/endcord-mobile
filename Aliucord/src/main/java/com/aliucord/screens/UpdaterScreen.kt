@@ -83,6 +83,8 @@ internal class UpdaterScreen : SettingsPage() {
         val status = coreStatus
         TextView(context, null, 0, R.i.UiKit_Settings_Item_SubText).addTo(linearLayout) {
             text = when {
+                CoreUpdater.isUpdaterDisabled() -> I18n.t("All update checks have been manually disabled.")
+                CoreUpdater.isCustomCoreLoaded() -> I18n.t("Core updates are disabled due to using a custom Endcord core.")
                 status == null && coreError -> I18n.t("Couldn't reach GitHub to check for Endcord updates.")
                 status == null -> I18n.t("Checking for updates...")
                 status.updateAvailable -> I18n.t("Version {latest} is available, you have {current}.", "latest" to status.latest, "current" to status.current)

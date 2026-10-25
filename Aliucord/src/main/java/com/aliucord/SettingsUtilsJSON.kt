@@ -22,6 +22,8 @@ class SettingsUtilsJSON(private val pluginName: String) {
                 JSONObject(settingsFile.readText())
             } catch (e: Exception) {
                 logger.error("Failed to read plugin settings for '$pluginName'", e)
+                // Keep the broken file for recovery instead of overwriting it on the next save
+                settingsFile.renameTo(File(settingsFile.parentFile, "$pluginName.json.corrupt"))
                 JSONObject()
             }
         } else {
@@ -36,7 +38,13 @@ class SettingsUtilsJSON(private val pluginName: String) {
         }
 
         try {
-            settingsFile.writeText(settings.toString(4))
+            // Write a temporary file and swap it in, so a crash or kill mid-write never leaves a broken file
+            val tmp = File(settingsDir, "$pluginName.json.tmp")
+            tmp.writeText(settings.toString(4))
+            if (!tmp.renameTo(settingsFile)) {
+                settingsFile.writeText(tmp.readText())
+                tmp.delete()
+            }
         } catch (e: Throwable) {
             logger.error("Failed to save settings for plugin '$pluginName'", e)
         }

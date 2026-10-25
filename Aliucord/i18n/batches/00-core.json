@@ -718,5 +718,59 @@
     "ru": "Скрывать индикатор набора текста только на серверах",
     "es": "Ocultar el indicador de escritura solo en los servidores",
     "fr": "Masquer l'indicateur de saisie uniquement sur les serveurs"
+  },
+  "Save the settings of Endcord and every plugin to the Endcord/backups folder, and restore them after reinstalling or on another device.": {
+    "tr": "Endcord'un ve tüm eklentilerin ayarlarını Endcord/backups klasörüne kaydedin; yeniden kurduktan sonra veya başka bir cihazda geri yükleyin.",
+    "ru": "Сохраняйте настройки Endcord и всех плагинов в папку Endcord/backups и восстанавливайте их после переустановки или на другом устройстве.",
+    "es": "Guarda los ajustes de Endcord y de todos los plugins en la carpeta Endcord/backups y restáuralos tras reinstalar o en otro dispositivo.",
+    "fr": "Enregistrez les paramètres d'Endcord et de tous les plugins dans le dossier Endcord/backups, puis restaurez-les après une réinstallation ou sur un autre appareil."
+  },
+  "Failed to save the backup": {
+    "tr": "Yedek kaydedilemedi",
+    "ru": "Не удалось сохранить резервную копию",
+    "es": "No se pudo guardar la copia de seguridad",
+    "fr": "Impossible d'enregistrer la sauvegarde"
+  },
+  "No backups found in {folder}": {
+    "tr": "{folder} klasöründe yedek bulunamadı",
+    "ru": "В папке {folder} нет резервных копий",
+    "es": "No hay copias de seguridad en {folder}",
+    "fr": "Aucune sauvegarde trouvée dans {folder}"
+  },
+  "Endcord restarts once the backup is restored.": {
+    "tr": "Yedek geri yüklendikten sonra Endcord yeniden başlar.",
+    "ru": "После восстановления резервной копии Endcord перезапустится.",
+    "es": "Endcord se reiniciará cuando se restaure la copia de seguridad.",
+    "fr": "Endcord redémarre une fois la sauvegarde restaurée."
+  },
+  "This backup doesn't contain any settings.": {
+    "tr": "Bu yedekte hiç ayar yok.",
+    "ru": "В этой резервной копии нет настроек.",
+    "es": "Esta copia de seguridad no contiene ajustes.",
+    "fr": "Cette sauvegarde ne contient aucun paramètre."
+  },
+  "Failed to restore the backup": {
+    "tr": "Yedek geri yüklenemedi",
+    "ru": "Не удалось восстановить резервную копию",
+    "es": "No se pudo restaurar la copia de seguridad",
+    "fr": "Impossible de restaurer la sauvegarde"
+  },
+  "Restart Endcord": {
+    "tr": "Endcord'u Yeniden Başlat",
+    "ru": "Перезапустить Endcord",
+    "es": "Reiniciar Endcord",
+    "fr": "Redémarrer Endcord"
+  },
+  "Open Endcord Folder": {
+    "tr": "Endcord Klasörünü Aç",
+    "ru": "Открыть папку Endcord",
+    "es": "Abrir carpeta de Endcord",
+    "fr": "Ouvrir le dossier Endcord"
+  },
+  "Something went wrong": {
+    "tr": "Bir sorun oluştu",
+    "ru": "Что-то пошло не так",
+    "es": "Algo salió mal",
+    "fr": "Un problème est survenu"
   }
 }

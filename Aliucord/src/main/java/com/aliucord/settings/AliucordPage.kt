@@ -41,6 +41,16 @@ class AliucordPage : SettingsPage() {
 
         val ctx = view.context
 
+        addHeader(ctx, I18n.t("Quick Actions"))
+        addLink(ctx, I18n.t("Restart Endcord"), R.e.ic_refresh_white_a60_24dp, external = false) {
+            Utils.restartAliucord(it.context)
+        }
+        addLink(ctx, I18n.t("Open Endcord Folder"), R.e.ic_open_in_new_white_24dp, external = false) {
+            val dir = java.io.File(Constants.BASE_PATH)
+            if (dir.exists() || dir.mkdirs()) Utils.launchFileExplorer(dir)
+        }
+
+        addDivider(ctx)
         addHeader(ctx, I18n.t("Language"))
         TextView(ctx, null, 0, R.i.UiKit_Settings_Item_SubText).run {
             text = I18n.t("Language") + "\n" + I18n.language.nativeName
@@ -83,6 +93,15 @@ class AliucordPage : SettingsPage() {
             I18n.t("Disables all plugins and optional coreplugins."),
             false,
         ) { Utils.promptRestart() }
+
+        addDivider(ctx)
+        addHeader(ctx, I18n.t("Backup & Restore"))
+        TextView(ctx, null, 0, R.i.UiKit_Settings_Item_Addition).run {
+            text = I18n.t("Save the settings of Endcord and every plugin to the Endcord/backups folder, and restore them after reinstalling or on another device.")
+            linearLayout.addView(this)
+        }
+        addLink(ctx, I18n.t("Export Settings"), R.e.ic_file_download_white_24dp, external = false) { BackupRestore.export() }
+        addLink(ctx, I18n.t("Import Settings"), R.e.ic_history_white_24dp, external = false) { BackupRestore.pickAndImport(parentFragmentManager) }
 
         if (StoreStream.getUserSettings().isDeveloperMode) {
             addDivider(ctx)
@@ -159,10 +178,17 @@ class AliucordPage : SettingsPage() {
         }
     }
 
-    private fun addLink(ctx: Context, text: String, @DrawableRes drawable: Int, action: View.OnClickListener) {
+    private fun addLink(
+        ctx: Context,
+        text: String,
+        @DrawableRes drawable: Int,
+        external: Boolean = true,
+        action: View.OnClickListener,
+    ) {
         TextView(ctx, null, 0, R.i.UiKit_Settings_Item_Icon).run {
             this.text = text
-            val drawableEnd = ContextCompat.getDrawable(ctx, R.e.ic_open_in_new_white_24dp)?.run {
+            // Only links that leave the app get the "open in new" marker
+            val drawableEnd = if (!external) null else ContextCompat.getDrawable(ctx, R.e.ic_open_in_new_white_24dp)?.run {
                 mutate()
                 Utils.tintToTheme(this)
             }
