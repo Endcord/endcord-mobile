@@ -1,0 +1,710 @@
+{
+  "Crashes": {
+    "tr": "Çökmeler",
+    "ru": "Сбои",
+    "es": "Fallos",
+    "fr": "Plantages"
+  },
+  "Open Debug Log": {
+    "tr": "Hata Ayıklama Günlüğünü Aç",
+    "ru": "Открыть журнал отладки",
+    "es": "Abrir registro de depuración",
+    "fr": "Ouvrir le journal de débogage"
+  },
+  "Endcord Support Server": {
+    "tr": "Endcord Destek Sunucusu",
+    "ru": "Сервер поддержки Endcord",
+    "es": "Servidor de soporte de Endcord",
+    "fr": "Serveur d'assistance Endcord"
+  },
+  "Safe mode enabled": {
+    "tr": "Güvenli mod açık",
+    "ru": "Безопасный режим включён",
+    "es": "Modo seguro activado",
+    "fr": "Mode sans échec activé"
+  },
+  "Safe Mode": {
+    "tr": "Güvenli Mod",
+    "ru": "Безопасный режим",
+    "es": "Modo seguro",
+    "fr": "Mode sans échec"
+  },
+  "You are currently in safe mode. Plugins are disabled.": {
+    "tr": "Şu anda güvenli moddasınız. Eklentiler devre dışı.",
+    "ru": "Сейчас включён безопасный режим. Плагины отключены.",
+    "es": "Estás en modo seguro. Los plugins están desactivados.",
+    "fr": "Vous êtes en mode sans échec. Les plugins sont désactivés."
+  },
+  "Press OK to exit safe mode and restart Endcord.": {
+    "tr": "Güvenli moddan çıkıp Endcord'u yeniden başlatmak için Tamam'a basın.",
+    "ru": "Нажмите «ОК», чтобы выйти из безопасного режима и перезапустить Endcord.",
+    "es": "Pulsa Aceptar para salir del modo seguro y reiniciar Endcord.",
+    "fr": "Appuyez sur OK pour quitter le mode sans échec et redémarrer Endcord."
+  },
+  "Server applications are not supported on mobile yet. Please join this server from Endcord PC or the official Discord app for now.": {
+    "tr": "Sunucu başvuruları mobilde henüz desteklenmiyor. Şimdilik bu sunucuya Endcord PC'den veya resmi Discord uygulamasından katılın.",
+    "ru": "Заявки на вступление в сервер пока не поддерживаются на телефоне. Пока что присоединяйтесь к этому серверу через Endcord для ПК или официальное приложение Discord.",
+    "es": "Las solicitudes de servidor aún no son compatibles en el móvil. Por ahora, únete a este servidor desde Endcord para PC o la aplicación oficial de Discord.",
+    "fr": "Les candidatures de serveur ne sont pas encore prises en charge sur mobile. Pour l'instant, rejoignez ce serveur depuis Endcord PC ou l'application Discord officielle."
+  },
+  "PluginDownloader is now built into Endcord, so the separate plugin was deleted.": {
+    "tr": "PluginDownloader artık Endcord'a dahil olduğu için ayrı eklenti silindi.",
+    "ru": "PluginDownloader теперь встроен в Endcord, поэтому отдельный плагин удалён.",
+    "es": "PluginDownloader ahora viene integrado en Endcord, así que se eliminó el plugin aparte.",
+    "fr": "PluginDownloader est désormais intégré à Endcord, le plugin séparé a donc été supprimé."
+  },
+  "PluginDownloader is now built into Endcord. Please delete the separate plugin.": {
+    "tr": "PluginDownloader artık Endcord'a dahil. Lütfen ayrı eklentiyi silin.",
+    "ru": "PluginDownloader теперь встроен в Endcord. Удалите отдельный плагин.",
+    "es": "PluginDownloader ahora viene integrado en Endcord. Elimina el plugin aparte.",
+    "fr": "PluginDownloader est désormais intégré à Endcord. Veuillez supprimer le plugin séparé."
+  },
+  "View {author}'s Plugins": {
+    "tr": "{author} kullanıcısının eklentilerini görüntüle",
+    "ru": "Плагины пользователя {author}",
+    "es": "Ver los plugins de {author}",
+    "fr": "Voir les plugins de {author}"
+  },
+  "Install {plugin}": {
+    "tr": "{plugin} eklentisini yükle",
+    "ru": "Установить {plugin}",
+    "es": "Instalar {plugin}",
+    "fr": "Installer {plugin}"
+  },
+  "Reinstall {plugin}": {
+    "tr": "{plugin} eklentisini yeniden yükle",
+    "ru": "Переустановить {plugin}",
+    "es": "Reinstalar {plugin}",
+    "fr": "Réinstaller {plugin}"
+  },
+  "Plugin {plugin} successfully installed!": {
+    "tr": "{plugin} eklentisi başarıyla yüklendi!",
+    "ru": "Плагин {plugin} установлен!",
+    "es": "¡El plugin {plugin} se instaló correctamente!",
+    "fr": "Le plugin {plugin} a bien été installé !"
+  },
+  "Plugin {plugin} successfully reinstalled!": {
+    "tr": "{plugin} eklentisi başarıyla yeniden yüklendi!",
+    "ru": "Плагин {plugin} переустановлен!",
+    "es": "¡El plugin {plugin} se reinstaló correctamente!",
+    "fr": "Le plugin {plugin} a bien été réinstallé !"
+  },
+  "Successfully uninstalled {plugin}": {
+    "tr": "{plugin} başarıyla kaldırıldı",
+    "ru": "Плагин {plugin} удалён",
+    "es": "{plugin} se desinstaló correctamente",
+    "fr": "{plugin} a bien été désinstallé"
+  },
+  "Failed to uninstall {plugin}": {
+    "tr": "{plugin} kaldırılamadı",
+    "ru": "Не удалось удалить {plugin}",
+    "es": "No se pudo desinstalar {plugin}",
+    "fr": "Impossible de désinstaller {plugin}"
+  },
+  "External plugins are not able to override built-in coreplugins!": {
+    "tr": "Harici eklentiler yerleşik çekirdek eklentilerin yerini alamaz!",
+    "ru": "Сторонние плагины не могут заменять встроенные системные плагины!",
+    "es": "¡Los plugins externos no pueden reemplazar a los plugins principales integrados!",
+    "fr": "Les plugins externes ne peuvent pas remplacer les plugins système intégrés !"
+  },
+  "Plugin not loaded due to safe mode!": {
+    "tr": "Güvenli mod nedeniyle eklenti yüklenmedi!",
+    "ru": "Плагин не загружен из-за безопасного режима!",
+    "es": "¡El plugin no se cargó por el modo seguro!",
+    "fr": "Le plugin n'a pas été chargé à cause du mode sans échec !"
+  },
+  "Failed to download {plugin}: {error}": {
+    "tr": "{plugin} indirilemedi: {error}",
+    "ru": "Не удалось загрузить {plugin}: {error}",
+    "es": "No se pudo descargar {plugin}: {error}",
+    "fr": "Impossible de télécharger {plugin} : {error}"
+  },
+  "Note: Some buttons are disabled because they require a newer Discord version. Please update Endcord using Endcord Installer first.": {
+    "tr": "Not: Bazı düğmeler daha yeni bir Discord sürümü gerektirdiği için devre dışı. Lütfen önce Endcord'u Endcord Installer ile güncelleyin.",
+    "ru": "Примечание: некоторые кнопки недоступны, так как им нужна более новая версия Discord. Сначала обновите Endcord через Endcord Installer.",
+    "es": "Nota: algunos botones están desactivados porque necesitan una versión más reciente de Discord. Primero actualiza Endcord con Endcord Installer.",
+    "fr": "Remarque : certains boutons sont désactivés car ils nécessitent une version plus récente de Discord. Mettez d'abord Endcord à jour avec Endcord Installer."
+  },
+  "Input": {
+    "tr": "Giriş",
+    "ru": "Ввод",
+    "es": "Entrada",
+    "fr": "Saisie"
+  },
+  "Please enter some text": {
+    "tr": "Lütfen bir metin girin",
+    "ru": "Введите текст",
+    "es": "Escribe algo de texto",
+    "fr": "Veuillez saisir du texte"
+  },
+  "An unrecoverable crash occurred.": {
+    "tr": "Kurtarılamayan bir çökme oluştu.",
+    "ru": "Произошёл неустранимый сбой.",
+    "es": "Se produjo un fallo irrecuperable.",
+    "fr": "Un plantage irrécupérable s'est produit."
+  },
+  "This crash was caused by {plugin}, so it was disabled automatically.": {
+    "tr": "Bu çökmeye {plugin} neden oldu, bu yüzden otomatik olarak devre dışı bırakıldı.",
+    "ru": "Сбой вызвал плагин {plugin}, поэтому он был автоматически отключён.",
+    "es": "Este fallo lo causó {plugin}, así que se desactivó automáticamente.",
+    "fr": "Ce plantage a été causé par {plugin}, il a donc été désactivé automatiquement."
+  },
+  "This crash was caused by {plugin}.": {
+    "tr": "Bu çökmeye {plugin} neden oldu.",
+    "ru": "Сбой вызвал плагин {plugin}.",
+    "es": "Este fallo lo causó {plugin}.",
+    "fr": "Ce plantage a été causé par {plugin}."
+  },
+  "Check the crashes section in the settings for more info.": {
+    "tr": "Daha fazla bilgi için ayarlardaki Çökmeler bölümüne bakın.",
+    "ru": "Подробности смотрите в разделе «Сбои» в настройках.",
+    "es": "Consulta la sección Fallos en los ajustes para más información.",
+    "fr": "Consultez la section Plantages dans les paramètres pour en savoir plus."
+  },
+  "Found directory {name} in your plugins folder. Do not extract plugin zips!": {
+    "tr": "Eklenti klasörünüzde {name} klasörü bulundu. Eklenti zip dosyalarını çıkarmayın!",
+    "ru": "В папке плагинов найдена папка {name}. Не распаковывайте zip-архивы плагинов!",
+    "es": "Se encontró la carpeta {name} en tu carpeta de plugins. ¡No descomprimas los zip de los plugins!",
+    "fr": "Le dossier {name} a été trouvé dans votre dossier de plugins. N'extrayez pas les zip des plugins !"
+  },
+  "Found extracted plugin file {name} in your plugins folder. Do not extract plugin zips!": {
+    "tr": "Eklenti klasörünüzde çıkarılmış {name} eklenti dosyası bulundu. Eklenti zip dosyalarını çıkarmayın!",
+    "ru": "В папке плагинов найден распакованный файл плагина {name}. Не распаковывайте zip-архивы плагинов!",
+    "es": "Se encontró el archivo descomprimido {name} en tu carpeta de plugins. ¡No descomprimas los zip de los plugins!",
+    "fr": "Le fichier de plugin extrait {name} a été trouvé dans votre dossier de plugins. N'extrayez pas les zip des plugins !"
+  },
+  "Some plugins failed to load. Check the plugins page for more info.": {
+    "tr": "Bazı eklentiler yüklenemedi. Daha fazla bilgi için Eklentiler sayfasına bakın.",
+    "ru": "Некоторые плагины не загрузились. Подробности на странице плагинов.",
+    "es": "Algunos plugins no se pudieron cargar. Consulta la página de plugins para más información.",
+    "fr": "Certains plugins n'ont pas pu être chargés. Consultez la page des plugins pour en savoir plus."
+  },
+  "You have to grant storage permission to use Endcord": {
+    "tr": "Endcord'u kullanmak için depolama izni vermeniz gerekiyor",
+    "ru": "Чтобы пользоваться Endcord, предоставьте доступ к хранилищу",
+    "es": "Tienes que conceder el permiso de almacenamiento para usar Endcord",
+    "fr": "Vous devez accorder l'autorisation de stockage pour utiliser Endcord"
+  },
+  "Please grant all files permission, so Endcord can access its folder in Internal Storage": {
+    "tr": "Endcord'un Dahili Depolamadaki klasörüne erişebilmesi için lütfen tüm dosyalara erişim izni verin",
+    "ru": "Предоставьте доступ ко всем файлам, чтобы Endcord мог использовать свою папку во внутренней памяти",
+    "es": "Concede el permiso de acceso a todos los archivos para que Endcord pueda usar su carpeta en el almacenamiento interno",
+    "fr": "Veuillez accorder l'accès à tous les fichiers pour qu'Endcord puisse utiliser son dossier dans le stockage interne"
+  },
+  "Checking for updates...": {
+    "tr": "Güncellemeler denetleniyor...",
+    "ru": "Проверка обновлений...",
+    "es": "Buscando actualizaciones...",
+    "fr": "Recherche de mises à jour..."
+  },
+  "Refresh": {
+    "tr": "Yenile",
+    "ru": "Обновить",
+    "es": "Actualizar",
+    "fr": "Actualiser"
+  },
+  "Update All": {
+    "tr": "Tümünü Güncelle",
+    "ru": "Обновить все",
+    "es": "Actualizar todo",
+    "fr": "Tout mettre à jour"
+  },
+  "Updating...": {
+    "tr": "Güncelleniyor...",
+    "ru": "Обновление...",
+    "es": "Actualizando...",
+    "fr": "Mise à jour..."
+  },
+  "All update checks have been manually disabled.": {
+    "tr": "Tüm güncelleme denetimleri elle kapatıldı.",
+    "ru": "Все проверки обновлений отключены вручную.",
+    "es": "Todas las búsquedas de actualizaciones se desactivaron manualmente.",
+    "fr": "Toutes les vérifications de mises à jour ont été désactivées manuellement."
+  },
+  "Core updates are disabled due to using a custom Endcord core.": {
+    "tr": "Özel bir Endcord çekirdeği kullanıldığı için çekirdek güncellemeleri kapalı.",
+    "ru": "Обновления ядра отключены, так как используется пользовательское ядро Endcord.",
+    "es": "Las actualizaciones del núcleo están desactivadas porque usas un núcleo personalizado de Endcord.",
+    "fr": "Les mises à jour du noyau sont désactivées car un noyau Endcord personnalisé est utilisé."
+  },
+  "Couldn't reach GitHub to check for Endcord updates.": {
+    "tr": "Endcord güncellemelerini denetlemek için GitHub'a ulaşılamadı.",
+    "ru": "Не удалось связаться с GitHub для проверки обновлений Endcord.",
+    "es": "No se pudo conectar con GitHub para buscar actualizaciones de Endcord.",
+    "fr": "Impossible de joindre GitHub pour rechercher les mises à jour d'Endcord."
+  },
+  "Version {latest} is available, you have {current}.": {
+    "tr": "{latest} sürümü mevcut, sizdeki sürüm {current}.",
+    "ru": "Доступна версия {latest}, у вас установлена {current}.",
+    "es": "La versión {latest} está disponible, tienes la {current}.",
+    "fr": "La version {latest} est disponible, vous avez la {current}."
+  },
+  "Endcord {current} is up to date.": {
+    "tr": "Endcord {current} güncel.",
+    "ru": "Endcord {current} — последняя версия.",
+    "es": "Endcord {current} está actualizado.",
+    "fr": "Endcord {current} est à jour."
+  },
+  "This update needs a fresh install. Tap to reinstall Endcord with Endcord Installer.": {
+    "tr": "Bu güncelleme için yeniden kurulum gerekiyor. Endcord'u Endcord Installer ile yeniden kurmak için dokunun.",
+    "ru": "Для этого обновления нужна переустановка. Нажмите, чтобы переустановить Endcord через Endcord Installer.",
+    "es": "Esta actualización necesita una instalación nueva. Toca para reinstalar Endcord con Endcord Installer.",
+    "fr": "Cette mise à jour nécessite une nouvelle installation. Touchez pour réinstaller Endcord avec Endcord Installer."
+  },
+  "Update and restart": {
+    "tr": "Güncelle ve yeniden başlat",
+    "ru": "Обновить и перезапустить",
+    "es": "Actualizar y reiniciar",
+    "fr": "Mettre à jour et redémarrer"
+  },
+  "Open Endcord Installer": {
+    "tr": "Endcord Installer'ı aç",
+    "ru": "Открыть Endcord Installer",
+    "es": "Abrir Endcord Installer",
+    "fr": "Ouvrir Endcord Installer"
+  },
+  "No plugin updates found!": {
+    "tr": "Eklenti güncellemesi bulunamadı!",
+    "ru": "Обновлений плагинов нет!",
+    "es": "¡No se encontraron actualizaciones de plugins!",
+    "fr": "Aucune mise à jour de plugin trouvée !"
+  },
+  "Found {count} plugin updates!": {
+    "tr": "{count} eklenti güncellemesi bulundu!",
+    "ru": "Найдено обновлений плагинов: {count}!",
+    "es": "¡Se encontraron {count} actualizaciones de plugins!",
+    "fr": "{count} mises à jour de plugins trouvées !"
+  },
+  "Updated {count} plugins!": {
+    "tr": "{count} eklenti güncellendi!",
+    "ru": "Обновлено плагинов: {count}!",
+    "es": "¡Se actualizaron {count} plugins!",
+    "fr": "{count} plugins mis à jour !"
+  },
+  "Updated {count} plugins, but {failed} failed!": {
+    "tr": "{count} eklenti güncellendi, ancak {failed} tanesi başarısız oldu!",
+    "ru": "Обновлено плагинов: {count}, но {failed} не удалось обновить!",
+    "es": "¡Se actualizaron {count} plugins, pero {failed} fallaron!",
+    "fr": "{count} plugins mis à jour, mais {failed} ont échoué !"
+  },
+  "Automatically update Endcord": {
+    "tr": "Endcord'u otomatik güncelle",
+    "ru": "Автоматически обновлять Endcord",
+    "es": "Actualizar Endcord automáticamente",
+    "fr": "Mettre à jour Endcord automatiquement"
+  },
+  "Endcord checks for updates every 15 minutes. When this is on, updates are downloaded in the background and applied on the next restart.": {
+    "tr": "Endcord her 15 dakikada bir güncellemeleri denetler. Bu açıkken güncellemeler arka planda indirilir ve bir sonraki yeniden başlatmada uygulanır.",
+    "ru": "Endcord проверяет обновления каждые 15 минут. Если включено, обновления загружаются в фоне и применяются при следующем перезапуске.",
+    "es": "Endcord busca actualizaciones cada 15 minutos. Si esto está activado, las actualizaciones se descargan en segundo plano y se aplican en el próximo reinicio.",
+    "fr": "Endcord recherche des mises à jour toutes les 15 minutes. Si cette option est activée, elles sont téléchargées en arrière-plan et appliquées au prochain redémarrage."
+  },
+  "Automatically update plugins": {
+    "tr": "Eklentileri otomatik güncelle",
+    "ru": "Автоматически обновлять плагины",
+    "es": "Actualizar plugins automáticamente",
+    "fr": "Mettre à jour les plugins automatiquement"
+  },
+  "Automatically disable plugins on crash": {
+    "tr": "Çökme durumunda eklentileri otomatik devre dışı bırak",
+    "ru": "Автоматически отключать плагины при сбое",
+    "es": "Desactivar plugins automáticamente si hay un fallo",
+    "fr": "Désactiver automatiquement les plugins en cas de plantage"
+  },
+  "When a plugin is found to be causing crashes, it will automatically be disabled": {
+    "tr": "Bir eklentinin çökmelere neden olduğu tespit edilirse otomatik olarak devre dışı bırakılır",
+    "ru": "Если плагин вызывает сбои, он будет автоматически отключён",
+    "es": "Si se detecta que un plugin causa fallos, se desactivará automáticamente",
+    "fr": "Si un plugin provoque des plantages, il sera automatiquement désactivé"
+  },
+  "Safe mode": {
+    "tr": "Güvenli mod",
+    "ru": "Безопасный режим",
+    "es": "Modo seguro",
+    "fr": "Mode sans échec"
+  },
+  "Disables all plugins and optional coreplugins.": {
+    "tr": "Tüm eklentileri ve isteğe bağlı çekirdek eklentileri devre dışı bırakır.",
+    "ru": "Отключает все плагины и необязательные системные плагины.",
+    "es": "Desactiva todos los plugins y los plugins principales opcionales.",
+    "fr": "Désactive tous les plugins et les plugins système facultatifs."
+  },
+  "Developer Settings": {
+    "tr": "Geliştirici Ayarları",
+    "ru": "Настройки разработчика",
+    "es": "Ajustes de desarrollador",
+    "fr": "Paramètres développeur"
+  },
+  "Load custom Endcord core": {
+    "tr": "Özel Endcord çekirdeği yükle",
+    "ru": "Загружать пользовательское ядро Endcord",
+    "es": "Cargar núcleo personalizado de Endcord",
+    "fr": "Charger un noyau Endcord personnalisé"
+  },
+  "Meant for developers. Do not enable unless you know what you're doing. Loads a custom core bundle that was pushed to the device.": {
+    "tr": "Geliştiriciler içindir. Ne yaptığınızı bilmiyorsanız açmayın. Cihaza gönderilmiş özel bir çekirdek paketini yükler.",
+    "ru": "Для разработчиков. Не включайте, если не уверены. Загружает пользовательское ядро, загруженное на устройство.",
+    "es": "Pensado para desarrolladores. No lo actives si no sabes lo que haces. Carga un paquete de núcleo personalizado enviado al dispositivo.",
+    "fr": "Réservé aux développeurs. Ne l'activez pas si vous ne savez pas ce que vous faites. Charge un noyau personnalisé envoyé sur l'appareil."
+  },
+  "Disable Updater": {
+    "tr": "Güncelleyiciyi Kapat",
+    "ru": "Отключить обновления",
+    "es": "Desactivar actualizador",
+    "fr": "Désactiver le programme de mise à jour"
+  },
+  "Disables all of Endcord's core and plugin update checks while enabled. Do not enable this unless you know the repercussions.": {
+    "tr": "Açıkken Endcord'un tüm çekirdek ve eklenti güncelleme denetimlerini kapatır. Sonuçlarını bilmiyorsanız açmayın.",
+    "ru": "Пока включено, отключает все проверки обновлений ядра и плагинов Endcord. Не включайте, если не понимаете последствий.",
+    "es": "Mientras está activado, desactiva todas las búsquedas de actualizaciones del núcleo y de los plugins de Endcord. No lo actives si no conoces las consecuencias.",
+    "fr": "Tant que c'est activé, désactive toutes les vérifications de mises à jour du noyau et des plugins d'Endcord. Ne l'activez pas si vous n'en connaissez pas les conséquences."
+  },
+  "Source Code": {
+    "tr": "Kaynak Kodu",
+    "ru": "Исходный код",
+    "es": "Código fuente",
+    "fr": "Code source"
+  },
+  "Endcord for PC": {
+    "tr": "PC için Endcord",
+    "ru": "Endcord для ПК",
+    "es": "Endcord para PC",
+    "fr": "Endcord pour PC"
+  },
+  "Endcord is based on Aliucord by Juby210, Vendicated and contributors.": {
+    "tr": "Endcord, Juby210, Vendicated ve katkıda bulunanların geliştirdiği Aliucord'a dayanır.",
+    "ru": "Endcord основан на Aliucord от Juby210, Vendicated и других участников.",
+    "es": "Endcord se basa en Aliucord, de Juby210, Vendicated y colaboradores.",
+    "fr": "Endcord est basé sur Aliucord, de Juby210, Vendicated et ses contributeurs."
+  },
+  "Crash Logs": {
+    "tr": "Çökme Kayıtları",
+    "ru": "Журналы сбоев",
+    "es": "Registros de fallos",
+    "fr": "Journaux de plantage"
+  },
+  "Open Crashlog Folder": {
+    "tr": "Çökme Kaydı Klasörünü Aç",
+    "ru": "Открыть папку журналов сбоев",
+    "es": "Abrir carpeta de registros de fallos",
+    "fr": "Ouvrir le dossier des journaux de plantage"
+  },
+  "Failed to create crashlogs directory!": {
+    "tr": "Çökme kaydı klasörü oluşturulamadı!",
+    "ru": "Не удалось создать папку журналов сбоев!",
+    "es": "¡No se pudo crear la carpeta de registros de fallos!",
+    "fr": "Impossible de créer le dossier des journaux de plantage !"
+  },
+  "Clear Crashes": {
+    "tr": "Çökmeleri Temizle",
+    "ru": "Очистить сбои",
+    "es": "Borrar fallos",
+    "fr": "Effacer les plantages"
+  },
+  "No crashes so far": {
+    "tr": "Şimdiye kadar hiç çökme yok",
+    "ru": "Сбоев пока не было",
+    "es": "Sin fallos por ahora",
+    "fr": "Aucun plantage pour l'instant"
+  },
+  "Hint: Crash logs are also in your file manager, in the Endcord/crashlogs folder. Tap a log to copy it.": {
+    "tr": "İpucu: Çökme kayıtları dosya yöneticinizde Endcord/crashlogs klasöründe de bulunur. Kopyalamak için bir kayda dokunun.",
+    "ru": "Подсказка: журналы сбоев также лежат в папке Endcord/crashlogs. Нажмите на журнал, чтобы скопировать его.",
+    "es": "Consejo: los registros de fallos también están en tu gestor de archivos, en la carpeta Endcord/crashlogs. Toca un registro para copiarlo.",
+    "fr": "Astuce : les journaux de plantage se trouvent aussi dans votre gestionnaire de fichiers, dans le dossier Endcord/crashlogs. Touchez un journal pour le copier."
+  },
+  "Copied to clipboard": {
+    "tr": "Panoya kopyalandı",
+    "ru": "Скопировано в буфер обмена",
+    "es": "Copiado al portapapeles",
+    "fr": "Copié dans le presse-papiers"
+  },
+  "Changes to this plugin take effect after a restart.": {
+    "tr": "Bu eklentideki değişiklikler yeniden başlatmadan sonra geçerli olur.",
+    "ru": "Изменения этого плагина вступят в силу после перезапуска.",
+    "es": "Los cambios en este plugin se aplican después de reiniciar.",
+    "fr": "Les modifications de ce plugin prennent effet après un redémarrage."
+  },
+  "Plugin Errors": {
+    "tr": "Eklenti Hataları",
+    "ru": "Ошибки плагинов",
+    "es": "Errores de plugins",
+    "fr": "Erreurs des plugins"
+  },
+  "Failed to launch plugin settings": {
+    "tr": "Eklenti ayarları açılamadı",
+    "ru": "Не удалось открыть настройки плагина",
+    "es": "No se pudieron abrir los ajustes del plugin",
+    "fr": "Impossible d'ouvrir les paramètres du plugin"
+  },
+  "New": {
+    "tr": "Yeni",
+    "ru": "Новый",
+    "es": "Nuevo",
+    "fr": "Nouveau"
+  },
+  "Built-in": {
+    "tr": "Yerleşik",
+    "ru": "Встроенный",
+    "es": "Integrado",
+    "fr": "Intégré"
+  },
+  "Plugin conflict": {
+    "tr": "Eklenti çakışması",
+    "ru": "Конфликт плагинов",
+    "es": "Conflicto de plugins",
+    "fr": "Conflit de plugins"
+  },
+  "{plugin} conflicts with {others}. With both turned on, one of them stops working. Turn off {others}?": {
+    "tr": "{plugin}, {others} ile çakışıyor. İkisi birlikte açıkken biri çalışmayı durdurur. {others} kapatılsın mı?",
+    "ru": "{plugin} конфликтует с {others}. Если включить оба, один из них перестанет работать. Отключить {others}?",
+    "es": "{plugin} entra en conflicto con {others}. Si ambos están activados, uno deja de funcionar. ¿Desactivar {others}?",
+    "fr": "{plugin} est en conflit avec {others}. Si les deux sont activés, l'un d'eux cesse de fonctionner. Désactiver {others} ?"
+  },
+  "Delete {plugin}": {
+    "tr": "{plugin} eklentisini sil",
+    "ru": "Удалить {plugin}",
+    "es": "Eliminar {plugin}",
+    "fr": "Supprimer {plugin}"
+  },
+  "Are you sure you want to delete this plugin? This action cannot be undone.": {
+    "tr": "Bu eklentiyi silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.",
+    "ru": "Удалить этот плагин? Это действие нельзя отменить.",
+    "es": "¿Seguro que quieres eliminar este plugin? Esta acción no se puede deshacer.",
+    "fr": "Voulez-vous vraiment supprimer ce plugin ? Cette action est irréversible."
+  },
+  "Failed to delete plugin {plugin}": {
+    "tr": "{plugin} eklentisi silinemedi",
+    "ru": "Не удалось удалить плагин {plugin}",
+    "es": "No se pudo eliminar el plugin {plugin}",
+    "fr": "Impossible de supprimer le plugin {plugin}"
+  },
+  "Successfully deleted {plugin}": {
+    "tr": "{plugin} başarıyla silindi",
+    "ru": "Плагин {plugin} удалён",
+    "es": "{plugin} se eliminó correctamente",
+    "fr": "{plugin} a bien été supprimé"
+  },
+  "Open Plugins Folder": {
+    "tr": "Eklenti Klasörünü Aç",
+    "ru": "Открыть папку плагинов",
+    "es": "Abrir carpeta de plugins",
+    "fr": "Ouvrir le dossier des plugins"
+  },
+  "Failed to create plugins directory!": {
+    "tr": "Eklenti klasörü oluşturulamadı!",
+    "ru": "Не удалось создать папку плагинов!",
+    "es": "¡No se pudo crear la carpeta de plugins!",
+    "fr": "Impossible de créer le dossier des plugins !"
+  },
+  "This page won't work while safe mode is on.": {
+    "tr": "Güvenli mod açıkken bu sayfa çalışmaz.",
+    "ru": "Эта страница не работает в безопасном режиме.",
+    "es": "Esta página no funciona con el modo seguro activado.",
+    "fr": "Cette page ne fonctionne pas en mode sans échec."
+  },
+  "Turn off safe mode in the Endcord settings to manage plugins.": {
+    "tr": "Eklentileri yönetmek için Endcord ayarlarından güvenli modu kapatın.",
+    "ru": "Отключите безопасный режим в настройках Endcord, чтобы управлять плагинами.",
+    "es": "Desactiva el modo seguro en los ajustes de Endcord para gestionar los plugins.",
+    "fr": "Désactivez le mode sans échec dans les paramètres d'Endcord pour gérer les plugins."
+  },
+  "Not Found": {
+    "tr": "Bulunamadı",
+    "ru": "Не найдено",
+    "es": "No encontrado",
+    "fr": "Introuvable"
+  },
+  "Endcord Installer is not installed on this device.": {
+    "tr": "Bu cihazda Endcord Installer yüklü değil.",
+    "ru": "Endcord Installer не установлен на этом устройстве.",
+    "es": "Endcord Installer no está instalado en este dispositivo.",
+    "fr": "Endcord Installer n'est pas installé sur cet appareil."
+  },
+  "Tap OK to download it.": {
+    "tr": "İndirmek için Tamam'a dokunun.",
+    "ru": "Нажмите «ОК», чтобы скачать его.",
+    "es": "Toca Aceptar para descargarlo.",
+    "fr": "Touchez OK pour le télécharger."
+  },
+  "Endcord update available": {
+    "tr": "Endcord güncellemesi mevcut",
+    "ru": "Доступно обновление Endcord",
+    "es": "Actualización de Endcord disponible",
+    "fr": "Mise à jour d'Endcord disponible"
+  },
+  "Endcord updated": {
+    "tr": "Endcord güncellendi",
+    "ru": "Endcord обновлён",
+    "es": "Endcord actualizado",
+    "fr": "Endcord mis à jour"
+  },
+  "Version {version} is available. Tap to update now.": {
+    "tr": "{version} sürümü mevcut. Hemen güncellemek için dokunun.",
+    "ru": "Доступна версия {version}. Нажмите, чтобы обновить сейчас.",
+    "es": "La versión {version} está disponible. Toca para actualizar ahora.",
+    "fr": "La version {version} est disponible. Touchez pour mettre à jour maintenant."
+  },
+  "Failed to check updates for Endcord": {
+    "tr": "Endcord güncellemeleri denetlenemedi",
+    "ru": "Не удалось проверить обновления Endcord",
+    "es": "No se pudieron buscar actualizaciones de Endcord",
+    "fr": "Impossible de rechercher les mises à jour d'Endcord"
+  },
+  "Updating Endcord...": {
+    "tr": "Endcord güncelleniyor...",
+    "ru": "Обновление Endcord...",
+    "es": "Actualizando Endcord...",
+    "fr": "Mise à jour d'Endcord..."
+  },
+  "Version {version} is ready. Tap to restart and apply it.": {
+    "tr": "{version} sürümü hazır. Uygulamak için dokunup yeniden başlatın.",
+    "ru": "Версия {version} готова. Нажмите, чтобы перезапустить и применить её.",
+    "es": "La versión {version} está lista. Toca para reiniciar y aplicarla.",
+    "fr": "La version {version} est prête. Touchez pour redémarrer et l'appliquer."
+  },
+  "Failed to update Endcord!": {
+    "tr": "Endcord güncellenemedi!",
+    "ru": "Не удалось обновить Endcord!",
+    "es": "¡No se pudo actualizar Endcord!",
+    "fr": "Impossible de mettre à jour Endcord !"
+  },
+  "Endcord was updated to version {version}.": {
+    "tr": "Endcord {version} sürümüne güncellendi.",
+    "ru": "Endcord обновлён до версии {version}.",
+    "es": "Endcord se actualizó a la versión {version}.",
+    "fr": "Endcord a été mis à jour vers la version {version}."
+  },
+  "Open the latest GitHub release to download it?": {
+    "tr": "İndirmek için en son GitHub sürümü açılsın mı?",
+    "ru": "Открыть последний релиз на GitHub, чтобы скачать его?",
+    "es": "¿Abrir la última versión en GitHub para descargarlo?",
+    "fr": "Ouvrir la dernière version sur GitHub pour le télécharger ?"
+  },
+  "Plugins Updater": {
+    "tr": "Eklenti Güncelleyici",
+    "ru": "Обновление плагинов",
+    "es": "Actualizador de plugins",
+    "fr": "Mise à jour des plugins"
+  },
+  "Found {count} available plugin updates:": {
+    "tr": "{count} eklenti güncellemesi bulundu:",
+    "ru": "Найдено обновлений плагинов: {count}:",
+    "es": "Se encontraron {count} actualizaciones de plugins:",
+    "fr": "{count} mises à jour de plugins disponibles :"
+  },
+  "and {count} more": {
+    "tr": "ve {count} tane daha",
+    "ru": "и ещё {count}",
+    "es": "y {count} más",
+    "fr": "et {count} autres"
+  },
+  "Tap to see more.": {
+    "tr": "Daha fazlası için dokunun.",
+    "ru": "Нажмите, чтобы узнать больше.",
+    "es": "Toca para ver más.",
+    "fr": "Touchez pour en voir plus."
+  },
+  "Failed to update some plugins:": {
+    "tr": "Bazı eklentiler güncellenemedi:",
+    "ru": "Не удалось обновить некоторые плагины:",
+    "es": "No se pudieron actualizar algunos plugins:",
+    "fr": "Impossible de mettre à jour certains plugins :"
+  },
+  "Automatically updated plugins:": {
+    "tr": "Otomatik güncellenen eklentiler:",
+    "ru": "Автоматически обновлённые плагины:",
+    "es": "Plugins actualizados automáticamente:",
+    "fr": "Plugins mis à jour automatiquement :"
+  },
+  "Plugin update requires a restart. Restart now?": {
+    "tr": "Eklenti güncellemesi yeniden başlatma gerektiriyor. Şimdi yeniden başlatılsın mı?",
+    "ru": "Для обновления плагина нужен перезапуск. Перезапустить сейчас?",
+    "es": "La actualización del plugin requiere reiniciar. ¿Reiniciar ahora?",
+    "fr": "La mise à jour du plugin nécessite un redémarrage. Redémarrer maintenant ?"
+  },
+  "No app found that can open this link.": {
+    "tr": "Bu bağlantıyı açabilecek bir uygulama bulunamadı.",
+    "ru": "Не найдено приложение, которое может открыть эту ссылку.",
+    "es": "No se encontró ninguna aplicación que pueda abrir este enlace.",
+    "fr": "Aucune application ne peut ouvrir ce lien."
+  },
+  "You don't have a file explorer installed that can handle this action.": {
+    "tr": "Bu işlemi gerçekleştirebilecek bir dosya yöneticisi yüklü değil.",
+    "ru": "Не установлен файловый менеджер, который может выполнить это действие.",
+    "es": "No tienes instalado ningún gestor de archivos que pueda hacer esto.",
+    "fr": "Aucun gestionnaire de fichiers installé ne peut effectuer cette action."
+  },
+  "Open {path} with your file manager, or install a file manager such as MiXplorer.": {
+    "tr": "{path} konumunu dosya yöneticinizle açın veya MiXplorer gibi bir dosya yöneticisi yükleyin.",
+    "ru": "Откройте {path} в файловом менеджере или установите файловый менеджер, например MiXplorer.",
+    "es": "Abre {path} con tu gestor de archivos o instala uno como MiXplorer.",
+    "fr": "Ouvrez {path} avec votre gestionnaire de fichiers, ou installez-en un comme MiXplorer."
+  },
+  "Open Folder": {
+    "tr": "Klasörü Aç",
+    "ru": "Открыть папку",
+    "es": "Abrir carpeta",
+    "fr": "Ouvrir le dossier"
+  },
+  "No app found that can open this folder.": {
+    "tr": "Bu klasörü açabilecek bir uygulama bulunamadı.",
+    "ru": "Не найдено приложение, которое может открыть эту папку.",
+    "es": "No se encontró ninguna aplicación que pueda abrir esta carpeta.",
+    "fr": "Aucune application ne peut ouvrir ce dossier."
+  },
+  "A restart is required. Restart now?": {
+    "tr": "Yeniden başlatma gerekiyor. Şimdi yeniden başlatılsın mı?",
+    "ru": "Требуется перезапуск. Перезапустить сейчас?",
+    "es": "Es necesario reiniciar. ¿Reiniciar ahora?",
+    "fr": "Un redémarrage est nécessaire. Redémarrer maintenant ?"
+  },
+  "Uninstall": {
+    "tr": "Kaldır",
+    "ru": "Удалить",
+    "es": "Desinstalar",
+    "fr": "Désinstaller"
+  },
+  "Successfully updated {plugin}": {
+    "tr": "{plugin} başarıyla güncellendi",
+    "ru": "Плагин {plugin} обновлён",
+    "es": "{plugin} se actualizó correctamente",
+    "fr": "{plugin} a bien été mis à jour"
+  },
+  "Something went wrong while updating {plugin}": {
+    "tr": "{plugin} güncellenirken bir sorun oluştu",
+    "ru": "При обновлении {plugin} что-то пошло не так",
+    "es": "Algo salió mal al actualizar {plugin}",
+    "fr": "Un problème est survenu lors de la mise à jour de {plugin}"
+  },
+  "New plugins": {
+    "tr": "Yeni eklentiler",
+    "ru": "Новые плагины",
+    "es": "Plugins nuevos",
+    "fr": "Nouveaux plugins"
+  },
+  "{count} new plugins were added: {names}": {
+    "tr": "{count} yeni eklenti eklendi: {names}",
+    "ru": "Добавлено новых плагинов: {count}: {names}",
+    "es": "Se añadieron {count} plugins nuevos: {names}",
+    "fr": "{count} nouveaux plugins ont été ajoutés : {names}"
+  },
+  "Show Built-in": {
+    "tr": "Yerleşikleri Göster",
+    "ru": "Показать встроенные",
+    "es": "Mostrar integrados",
+    "fr": "Afficher les intégrés"
+  },
+  "Show Installed": {
+    "tr": "Yüklenenleri Göster",
+    "ru": "Показать установленные",
+    "es": "Mostrar instalados",
+    "fr": "Afficher les installés"
+  },
+  "by {authors}": {
+    "tr": "{authors} tarafından",
+    "ru": "от {authors}",
+    "es": "por {authors}",
+    "fr": "par {authors}"
+  }
+}

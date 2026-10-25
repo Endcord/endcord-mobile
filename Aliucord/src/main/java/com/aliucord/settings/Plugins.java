@@ -187,18 +187,26 @@ public class Plugins extends SettingsPage {
             }
             if (!"0.0.0".equals(manifest.version)) title.append(" v").append(manifest.version);
 
-            for (int i = 0; i < manifest.authors.length; i++) {
-                Plugin.Manifest.Author author = Objects.requireNonNull(manifest.authors[i]);
-                title.append(i == 0 ? " " + I18n.t("by") + " " : ", ");
-                int start = title.length();
-                title.append(author.name);
-                if (author.id < 1 || !author.hyperlink) continue;
-                title.setSpan(new ClickableSpan() {
-                    @Override
-                    public void onClick(@NonNull View widget) {
-                        WidgetUserSheet.Companion.show(author.id, fragment.getParentFragmentManager());
-                    }
-                }, start, title.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            if (manifest.authors.length > 0) {
+                var names = new ArrayList<String>(manifest.authors.length);
+                for (Plugin.Manifest.Author author : manifest.authors) names.add(Objects.requireNonNull(author).name);
+                int bylineStart = title.length() + 1;
+                title.append(' ').append(I18n.format("by {authors}", "authors", String.join(", ", names)));
+
+                // Link every author that has a profile, wherever the translation put the names
+                int searchFrom = bylineStart;
+                for (Plugin.Manifest.Author author : manifest.authors) {
+                    int start = title.toString().indexOf(author.name, searchFrom);
+                    if (start < 0) continue;
+                    searchFrom = start + author.name.length();
+                    if (author.id < 1 || !author.hyperlink) continue;
+                    title.setSpan(new ClickableSpan() {
+                        @Override
+                        public void onClick(@NonNull View widget) {
+                            WidgetUserSheet.Companion.show(author.id, fragment.getParentFragmentManager());
+                        }
+                    }, start, searchFrom, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }
             }
 
             holder.card.titleView.setText(title);

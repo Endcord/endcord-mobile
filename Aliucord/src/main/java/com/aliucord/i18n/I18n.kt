@@ -89,7 +89,7 @@ object I18n {
      * Translates [key] and fills in `{name}` placeholders from [vars].
      *
      * ```kotlin
-     * I18n.t("Updated {count} plugins", "count" to 3)
+     * I18n.t("Found {count} plugin updates!", "count" to 3)
      * ```
      */
     @JvmStatic
