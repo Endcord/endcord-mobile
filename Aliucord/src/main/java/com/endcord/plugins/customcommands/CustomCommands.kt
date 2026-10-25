@@ -238,7 +238,7 @@ internal class CustomCommands : EndcordPlugin(
         AlertDialog.Builder(context)
             .setTitle("/${tag.name}")
             .setMessage(tag.message.replace("\\n", "\n"))
-            .setPositiveButton(tr("Edit Tag")) { _, _ -> openEditor(context, tag) }
+            .setPositiveButton(tr("Edit")) { _, _ -> openEditor(context, tag) }
             .setNegativeButton(tr("Delete")) { _, _ ->
                 Utils.threadPool.execute {
                     removeTag(tag.name)
@@ -292,7 +292,7 @@ internal class CustomCommands : EndcordPlugin(
                         if (error != null) {
                             Utils.showToast(error.replace("**", ""), true)
                         } else {
-                            Utils.showToast(tr("Saved"))
+                            Utils.showToast(tr("Tag saved"))
                             dialog.dismiss()
                         }
                     }

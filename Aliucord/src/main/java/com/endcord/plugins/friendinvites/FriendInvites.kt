@@ -14,7 +14,9 @@ import com.endcord.plugins.commandscommon.Net
 import com.endcord.plugins.commandscommon.Options
 import org.json.JSONArray
 import org.json.JSONObject
-import java.time.OffsetDateTime
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.TimeZone
 
 internal class FriendInvites : EndcordPlugin(
     name = "FriendInvites",
@@ -82,9 +84,13 @@ internal class FriendInvites : EndcordPlugin(
 
     /** A relative Discord timestamp for the invite's expiry, or null when it doesn't expire. */
     private fun expires(invite: JSONObject): String? {
-        val raw = invite.optString("expires_at").takeIf { it.isNotEmpty() && it != "null" } ?: return null
+        val raw = invite.optString("expires_at").takeIf { it.length >= 19 && it != "null" } ?: return null
         return try {
-            "<t:${OffsetDateTime.parse(raw).toEpochSecond()}:R>"
+            // Discord sends UTC ISO 8601 ("2026-11-01T12:00:00.000000+00:00"). java.time isn't desugared in the
+            // core and needs API 26, so parse the seconds part by hand.
+            val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ROOT).apply { timeZone = TimeZone.getTimeZone("UTC") }
+            val millis = format.parse(raw.substring(0, 19))?.time ?: return null
+            "<t:${millis / 1000}:R>"
         } catch (_: Throwable) {
             null
         }

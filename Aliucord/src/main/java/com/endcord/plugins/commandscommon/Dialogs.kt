@@ -42,6 +42,6 @@ internal object Dialogs {
     @JvmStatic
     fun copy(text: CharSequence) {
         Utils.setClipboard("Endcord", text)
-        Utils.showToast(I18n.t("Copied to clipboard"))
+        Utils.showToast(I18n.t("Copied!"))
     }
 }

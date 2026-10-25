@@ -54,9 +54,14 @@ internal class RemindMe : EndcordPlugin(
             label = "Clear all reminders",
             description = "Cancels every reminder that hasn't fired yet",
         ) {
-            val count = synchronized(lock) { reminders.size.also { reminders.clear() } }
+            val running = appContext != null
+            val count = synchronized(lock) {
+                // While the plugin is off its reminders are only on disk
+                if (!running) reminders.addAll(load())
+                reminders.size.also { reminders.clear() }
+            }
             persist()
-            if (appContext != null) reschedule()
+            if (running) reschedule()
             Utils.showToast(tr("Removed {count} reminders", "count" to count))
         },
     )

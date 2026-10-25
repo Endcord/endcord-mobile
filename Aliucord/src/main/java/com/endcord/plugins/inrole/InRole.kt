@@ -22,7 +22,7 @@ import java.util.regex.Pattern
 
 internal class InRole : EndcordPlugin(
     name = "InRole",
-    description = "Know who is in a role with the /inrole command or the menu of a message that mentions it (read plugin info!)",
+    description = "Know who is in a role with the /inrole command or the menu of a message that mentions it. Only members the app has loaded are listed.",
     authors = arrayOf("ewlle", "kraethis"),
 ) {
     override val tags = listOf("commands", "roles")
