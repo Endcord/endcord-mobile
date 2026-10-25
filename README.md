@@ -42,7 +42,10 @@
 2. Open **Endcord Installer**, pick your language and grant the permissions it asks for.
 3. Tap **New Install** (or **Update**), choose your options and tap **Install**. Keep the installer open
    until it finishes. If it fails, check your connection, make sure you have at least 500MB free, and retry.
-4. Tap **Launch**, grant Endcord access to its folder, and sign in to Discord.
+4. Tap **Launch**, grant Endcord access to its folder, and sign in to Discord. If signing in with a password
+   fails with "A forbidden network request has occurred", Discord is blocking password logins from this app
+   version with a captcha (Aliucord has the same issue); use **Login using token** instead (your token is the
+   `authorization` header of any request in your browser's developer tools on discord.com; never share it).
 5. Open **Settings → Endcord → Plugins** to turn on the plugins you want.
 
 Keep Endcord Installer installed: it is needed for updates that change the base app.
