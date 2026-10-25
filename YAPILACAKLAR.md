@@ -30,6 +30,13 @@ Uygulama, güncellemeleri ve dosyaları `rootpoii/endcord-mobile` deposundan ind
    `Endcord.zip`, `Injector.dex`, `patches.zip`, `kotlin.dex` ve `data.json` bulunur. Installer ve uygulama
    bu dosyaları kullanır, o yüzden iş akışı yeşil olmadan kurulum çalışmaz.
 
+   Beklemek istemezsen `builds` dalı bu bilgisayarda hazır (`scripts/prepare-builds.sh` ile üretildi). Onu
+   doğrudan gönderebilirsin:
+
+   ```bash
+   git push origin builds
+   ```
+
 ## 3. Installer için imza anahtarı
 
 Installer'ın sürüm APK'sını imzalamak için bir anahtar oluşturuldu:
@@ -65,7 +72,20 @@ Yayına almadan önce mutlaka bir telefonda dene:
   içinde "Endcord güncellendi" bildirimini gösterir ve tek dokunuşla güncellenir.
 - Installer güncellemesi: *Build Installer* iş akışını yeni bir sürüm numarasıyla çalıştır.
 
-## 7. Bilmen gereken kararlar
+## 7. Durum özeti
+
+- **487 PC eklentisinin hepsi** `docs/plugins/` içinde tek tek ele alındı: 122'si tam taşındı, 114'ü mobilde
+  yapılabildiği kadarıyla (Partial), 176'sı mobilde anlamsız (Not applicable, gerekçesiyle), 75'i bilerek
+  atlandı (Skipped, gerekçesiyle).
+- **Çeviriler:** 1913 metin; Türkçe, Rusça, İspanyolca ve Fransızca'da eksik yok. İngilizce varsayılan.
+- **Hata taraması:** yayın öncesinde dört ayrı inceleme bütün eklentileri gerçek Discord sınıflarına karşı
+  kontrol etti. Bulunan çökme, sızıntı, rate-limit ve yanlış davranış hatalarının hepsi düzeltildi
+  (ayrıntılar `docs/PORTING.md` içindeki "Lessons from the pre-release review" bölümünde).
+- **Telefonda denenmedi.** 5. adımdaki testi atlama. Özellikle şu eklentileri dene: MessageLogger,
+  ScheduledMessages, SilentDelete, AntiMoveDeco, FollowUser, VoiceRejoin, FakeMute/FakeDeafen,
+  ChannelWallpaper, ServerPinner, DmReadReceipt.
+
+## 8. Bilmen gereken kararlar
 
 - **Java paket adları `com.aliucord` olarak kaldı.** Bunlar kullanıcıya görünmez. Değiştirilseydi mevcut
   Aliucord eklentilerinin hepsi bozulurdu. Görünen her yer (uygulama adı, klasör `/Endcord`, ayarlar, bağlantılar,
@@ -75,3 +95,6 @@ Yayına almadan önce mutlaka bir telefonda dene:
 - Bazı PC eklentileri bilerek taşınmadı: AntiSoap (nefret içeriği), SpotifyCrack (ücretli özelliği atlatma),
   PullUserIntoVoice (taciz aracı). Masaüstüne özel olanlar "Not applicable" olarak `docs/plugins/` içinde
   gerekçesiyle listelendi.
+- **Gizli ayarlar:** ChatGPT eklentisinin OpenAI anahtarı gibi değerler `/sdcard/Endcord` yerine uygulamanın
+  özel deposunda tutuluyor ve yedeğe girmiyor. Yedekten geri yükleyen kullanıcı anahtarı yeniden girmeli.
+- Çekirdek modülün klasörü artık `Endcord/` (eskiden `Aliucord/`).
