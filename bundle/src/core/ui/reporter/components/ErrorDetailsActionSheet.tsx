@@ -1,3 +1,4 @@
+import { t } from "@core/i18n";
 import { hasStack, isComponentStack } from "@core/ui/reporter/utils/isStack";
 import { Codeblock } from "@lib/ui/components";
 import { ActionSheet, Text } from "@metro/common/components";
@@ -11,7 +12,7 @@ export default function ErrorDetailsActionSheet(props: {
 }) {
     return <ActionSheet>
         <View style={{ gap: 12, paddingVertical: 12 }}>
-            <Text variant="heading-lg/extrabold">Error</Text>
+            <Text variant="heading-lg/extrabold">{t("Error")}</Text>
             <Codeblock selectable={true}>{props.error.message}</Codeblock>
             {hasStack(props.error) && <ErrorStackCard error={props.error} />}
             {isComponentStack(props.error) ? <ErrorComponentStackCard componentStack={props.error.componentStack} /> : null}

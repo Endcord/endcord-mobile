@@ -317,6 +317,12 @@
         "es": "Descripción",
         "fr": "Description"
     },
+    "Details": {
+        "tr": "Ayrıntılar",
+        "ru": "Подробности",
+        "es": "Detalles",
+        "fr": "Détails"
+    },
     "DevTools URL": {
         "tr": "DevTools adresi",
         "ru": "Адрес DevTools",
@@ -442,6 +448,12 @@
         "ru": "Введите ссылку для установки:",
         "es": "Introduce el enlace desde el que instalar:",
         "fr": "Saisissez le lien à partir duquel installer :"
+    },
+    "Error": {
+        "tr": "Hata",
+        "ru": "Ошибка",
+        "es": "Error",
+        "fr": "Erreur"
     },
     "ErrorBoundary Tools": {
         "tr": "Hata ekranı araçları",
@@ -881,6 +893,12 @@
         "es": "Los demás te ven silenciado, pero te siguen oyendo",
         "fr": "Les autres vous voient muet, mais vous entendent toujours"
     },
+    "Part of the screen crashed while drawing. A plugin, Endcord or Discord itself can cause this.": {
+        "tr": "Ekranın bir bölümü çizilirken çöktü. Buna bir eklenti, Endcord veya Discord'un kendisi neden olabilir.",
+        "ru": "Часть экрана завершилась сбоем при отрисовке. Причиной может быть плагин, Endcord или сам Discord.",
+        "es": "Una parte de la pantalla falló al dibujarse. Puede deberse a un plugin, a Endcord o al propio Discord.",
+        "fr": "Une partie de l'écran a planté pendant l'affichage. Un plugin, Endcord ou Discord lui-même peut en être la cause."
+    },
     "Paste from clipboard": {
         "tr": "Panodan yapıştır",
         "ru": "Вставить из буфера обмена",
@@ -1078,6 +1096,18 @@
         "ru": "Показывать уведомление, когда кто-то удаляет сообщение с упоминанием вас",
         "es": "Mostrar un aviso cuando alguien elimine un mensaje que te mencionaba",
         "fr": "Afficher une alerte quand quelqu'un supprime un message qui vous mentionnait"
+    },
+    "Show less": {
+        "tr": "Daha az göster",
+        "ru": "Свернуть",
+        "es": "Mostrar menos",
+        "fr": "Afficher moins"
+    },
+    "Show more": {
+        "tr": "Daha fazla göster",
+        "ru": "Показать больше",
+        "es": "Mostrar más",
+        "fr": "Afficher plus"
     },
     "Show nothing for people who are offline or invisible": {
         "tr": "Çevrimdışı veya görünmez kişiler için hiçbir şey gösterme",

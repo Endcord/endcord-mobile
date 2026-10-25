@@ -55,7 +55,8 @@ export function isCorePlugin(id: string) {
 }
 
 export function getPluginSettingsComponent(id: string): React.ComponentType<any> | null {
-    const instance = pluginInstances.get(id);
+    // Built-in plugins can be set up before they are turned on
+    const instance = pluginInstances.get(id) ?? corePluginInstances.get(id);
     if (!instance) return null;
 
     if (instance.SettingsComponent) return instance.SettingsComponent;

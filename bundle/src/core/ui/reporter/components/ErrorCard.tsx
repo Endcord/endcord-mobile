@@ -1,4 +1,4 @@
-import { Strings } from "@core/i18n";
+import { Strings, t } from "@core/i18n";
 import { Codeblock } from "@lib/ui/components";
 import { showSheet } from "@lib/ui/sheets";
 import { Button, Card, Stack, Text, TwinButtons } from "@metro/common/components";
@@ -30,7 +30,7 @@ export default function ErrorCard(props: ErrorCardProps) {
                     onPress={props.onRetryRender}
                 />}
                 {props.error instanceof Error ? <Button
-                    text={"Details"}
+                    text={t("Details")}
                     // icon={findAssetId("CircleInformationIcon-primary")}
                     onPress={() => showSheet(
                         "BunnyErrorDetailsActionSheet",

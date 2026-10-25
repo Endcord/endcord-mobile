@@ -7,6 +7,7 @@ import type { PluginInstanceInternal } from "@lib/addons/plugins/types";
 import { createElement } from "react";
 
 import { EndcordPlugin, startEndcordPlugin, stopEndcordPlugin } from "./api";
+import ClearURLs from "./clearUrls";
 import CustomProfile from "./customProfile";
 import FakeMute from "./fakeMute";
 import FakeNitro from "./fakeNitro";
@@ -34,6 +35,8 @@ const plugins: EndcordPlugin<any>[] = [
     RelationshipNotifier,
     SilentTyping,
     FakeMute,
+    // Not in Endcord PC's popular list
+    ClearURLs,
 ];
 
 export function getEndcordPlugins(): EndcordPlugin<any>[] {

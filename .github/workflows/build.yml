@@ -22,6 +22,10 @@ jobs:
       - name: Install dependencies
         working-directory: bundle
         run: bun install --frozen-lockfile
+      - name: Check the translations
+        working-directory: bundle
+        # Without Endcord PC checked out, the shipped translations are checked: every string in all five languages
+        run: node scripts/i18n-sync.mjs --strict
       - name: Build
         working-directory: bundle
         run: bun run build --release-branch ${{ github.ref_name }} --build-minify
@@ -67,6 +71,11 @@ jobs:
   installer:
     name: Installer
     runs-on: ubuntu-latest
+    env:
+      INSTALLER_KEYSTORE: ${{ secrets.INSTALLER_KEYSTORE }}
+      KEYSTORE_PASSWORD: ${{ secrets.INSTALLER_KEYSTORE_PASSWORD }}
+      KEYSTORE_ENTRY_ALIAS: ${{ secrets.INSTALLER_KEY_ALIAS }}
+      KEYSTORE_ENTRY_PASSWORD: ${{ secrets.INSTALLER_KEY_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -80,7 +89,13 @@ jobs:
         working-directory: installer
         run: |
           chmod +x gradlew
-          # The release build is shrunk; without the INSTALLER_KEYSTORE secrets it is signed with the debug key
+          # Signed like the releases when the INSTALLER_KEYSTORE secrets exist, so either can update the other;
+          # otherwise with the debug key
+          if [ -n "$INSTALLER_KEYSTORE" ]; then
+            echo "$INSTALLER_KEYSTORE" | base64 -d > app/keystore.jks
+          else
+            echo "::warning::No INSTALLER_KEYSTORE secret: publishing a debug-signed installer"
+          fi
           ./gradlew --no-daemon :app:assembleRelease
       - uses: actions/upload-artifact@v4
         with:
