@@ -52,8 +52,8 @@ This is a modification of the Discord app and is against Discord's Terms of Serv
 
 | Path | What it is |
 | --- | --- |
-| `Aliucord/` | The core (Kotlin/Java). Plugins built into Endcord live in `src/main/java/com/endcord/plugins`. |
-| `Aliucord/i18n/` | Translation tables, compiled into the core at build time. |
+| `Endcord/` | The core (Kotlin/Java). Plugins built into Endcord live in `src/main/java/com/endcord/plugins`. |
+| `Endcord/i18n/` | Translation tables, compiled into the core at build time. |
 | `Injector/` | Loaded by the patched app; downloads and starts the core. |
 | `patches/` | Smali patches applied to the Discord APK at install time. |
 | `installer/` | Endcord Installer (Jetpack Compose), a separate Gradle build. |
@@ -64,7 +64,7 @@ Requirements: JDK 21 and the Android SDK (platform 36). Create a `local.properti
 `sdk.dir=/path/to/android-sdk` in the repository root (and in `installer/`).
 
 ```sh
-./gradlew :Aliucord:make          # core: Aliucord/build/outputs/Aliucord.zip
+./gradlew :Endcord:make           # core: Endcord/build/outputs/Endcord.zip
 ./gradlew :Injector:make          # injector
 cd installer && ./gradlew :app:assembleDebug   # installer APK
 node scripts/i18n-sync.js         # check translations

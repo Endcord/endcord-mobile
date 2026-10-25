@@ -9,12 +9,12 @@ Android app's classes. This guide explains how.
 
 | What | Where |
 | --- | --- |
-| Built-in plugins | `Aliucord/src/main/java/com/endcord/plugins/<pluginname>/` (one package per plugin, lowercase) |
-| Plugin registry | `Aliucord/src/main/java/com/endcord/plugins/registry/BatchNN.kt` |
-| Base class | `com.aliucord.entities.EndcordPlugin` (`Aliucord/src/main/java/com/aliucord/entities/EndcordPlugin.kt`) |
+| Built-in plugins | `Endcord/src/main/java/com/endcord/plugins/<pluginname>/` (one package per plugin, lowercase) |
+| Plugin registry | `Endcord/src/main/java/com/endcord/plugins/registry/BatchNN.kt` |
+| Base class | `com.aliucord.entities.EndcordPlugin` (`Endcord/src/main/java/com/aliucord/entities/EndcordPlugin.kt`) |
 | Settings schema | `com.aliucord.entities.PluginSetting` (same file) |
 | Message long-press entries | `com.endcord.plugins.api.MessageActions` |
-| Translations | `com.aliucord.i18n.I18n`, tables in `Aliucord/i18n/` |
+| Translations | `com.aliucord.i18n.I18n`, tables in `Endcord/i18n/` |
 | Conflicting plugin pairs | `com.endcord.plugins.PluginConflicts` |
 | Reference ports | `silenttyping/SilentTyping.kt` (patch + setting), `textcommands/ReverseText.kt` (slash command) |
 | Status of every PC plugin | `docs/plugins/*.md` |
@@ -70,7 +70,7 @@ separated text). Values are read on every call, so read them where you need them
 All user facing text is written in English and passed through `I18n.t("...")` (or the `tr("...")` shorthand)
 at the moment it is shown. Placeholders use braces: `I18n.t("Deleted {count} messages", "count" to n)`.
 Setting labels, descriptions and `MessageActions` labels are translated for you. Endcord PC's
-translations are reused where the English text matches; new strings are added to `Aliucord/i18n/core/*.json`.
+translations are reused where the English text matches; new strings are added to `Endcord/i18n/core/*.json`.
 Never translate slash command *names*.
 
 If a port's English `description` differs from Endcord PC's, add translations of the new description to your
@@ -146,7 +146,7 @@ Useful entry points:
 * `com.discord.utilities.rest.RestAPI` – REST calls, `com.aliucord.Http` for custom requests
 * `com.lytefast.flexinput.R` – Discord's resources (`R.e` drawables, `R.b` attrs, `R.i` styles);
   `Utils.getResId("name", "id")` resolves ids by name
-* The existing coreplugins in `Aliucord/src/main/java/com/aliucord/coreplugins/` show many of these in use.
+* The existing coreplugins in `Endcord/src/main/java/com/aliucord/coreplugins/` show many of these in use.
 
 Only patch methods you have **verified with `javap`**, with their exact parameter types. A patch on a method
 that doesn't exist fails at runtime, not at compile time.
@@ -199,8 +199,8 @@ to work. Partial ports are fine when the description says what the mobile versio
 
 ```sh
 export JAVA_HOME=~/dev-tools/jdk21 PATH=~/dev-tools/jdk21/bin:$PATH
-./gradlew :Aliucord:compileDebugKotlin   # fast check
-./gradlew :Aliucord:make                 # Aliucord/build/outputs/Aliucord.zip
+./gradlew :Endcord:compileDebugKotlin    # fast check
+./gradlew :Endcord:make                  # Endcord/build/outputs/Endcord.zip
 ```
 
 `local.properties` must point to the Android SDK: `sdk.dir=C:/Users/<you>/dev-tools/android-sdk`.

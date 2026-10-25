@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /*
- * Keeps Endcord mobile's translation tables in Aliucord/i18n/core in sync with the code.
+ * Keeps Endcord mobile's translation tables in Endcord/i18n/core in sync with the code.
  *
  *   node scripts/i18n-sync.js [--pc <path to Endcord PC's src/utils/i18n.ts>] [--prune]
  *
  * 1. Collects every English string passed to I18n.t / I18n.format / tr(...) in the core, plus
- *    Aliucord/i18n/extra-keys.json for keys built at runtime.
- * 2. Merges the per-batch translation files in Aliucord/i18n/batches/*.json.
+ *    Endcord/i18n/extra-keys.json for keys built at runtime.
+ * 2. Merges the per-batch translation files in Endcord/i18n/batches/*.json.
  * 3. Fills keys that are still missing from Endcord PC's translations (downloaded from GitHub when
  *    --pc isn't given), so both clients use the same wording.
  * 4. Reports the keys that still have no translation. Existing translations are never overwritten.
@@ -20,8 +20,8 @@ const path = require("path");
 const https = require("https");
 
 const root = path.resolve(__dirname, "..");
-const i18nDir = path.join(root, "Aliucord", "i18n");
-const srcDir = path.join(root, "Aliucord", "src", "main", "java");
+const i18nDir = path.join(root, "Endcord", "i18n");
+const srcDir = path.join(root, "Endcord", "src", "main", "java");
 const LANGS = ["tr", "ru", "es", "fr"];
 const PC_URL = "https://raw.githubusercontent.com/rootpoii/endcord/main/src/utils/i18n.ts";
 

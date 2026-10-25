@@ -21,7 +21,7 @@ dependencyResolutionManagement {
     }
 }
 
-include(":Aliucord")
+include(":Endcord")
 include(":Injector")
 include(":patches")
 include(":kotlin-stdlib")

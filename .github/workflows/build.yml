@@ -46,7 +46,7 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew --stacktrace \
-            :Aliucord:make :Injector:make :kotlin-stdlib:make \
+            :Endcord:make :Injector:make :kotlin-stdlib:make \
             :patches:package :patches:disassembleWithPatches :patches:testPatches
 
       # Catches calls that compile but don't exist on Android 7 or in the Kotlin stdlib the app runs with.
@@ -57,7 +57,7 @@ jobs:
           stdlib="$(find ~/.gradle/caches/modules-2 -name 'kotlin-stdlib-1.5.21.jar' | head -1)"
           aliuhook="$(find ~/.gradle/caches/modules-2 -path '*Aliuhook*' -name '*.aar' | head -1)"
           injector="$(find Injector/build/intermediates -name classes.jar | head -1)"
-          python3 scripts/check-runtime-refs.py Aliucord/build/outputs/Aliucord.zip             "$ANDROID_SDK_ROOT/platforms/android-24/android.jar" "$injector" "$discord" "$stdlib" "$aliuhook"             | tee runtime-refs.txt
+          python3 scripts/check-runtime-refs.py Endcord/build/outputs/Endcord.zip             "$ANDROID_SDK_ROOT/platforms/android-24/android.jar" "$injector" "$discord" "$stdlib" "$aliuhook"             | tee runtime-refs.txt
           if grep -v '\[platform\]' runtime-refs.txt | grep -q '^  L'; then
             echo "::warning::The core references classes or methods that don't exist at runtime, see runtime-refs.txt"
           fi
@@ -65,7 +65,7 @@ jobs:
       - name: Collect build outputs
         run: |
           mkdir -p out
-          cp Aliucord/build/outputs/Aliucord.zip out/Endcord.zip
+          cp Endcord/build/outputs/Endcord.zip out/Endcord.zip
           cp Injector/build/outputs/Injector.dex out/
           cp patches/build/outputs/patches.zip out/
           cp kotlin-stdlib/build/outputs/kotlin.dex out/

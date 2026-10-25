@@ -12,7 +12,6 @@ root="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$root"
 
 core_module="Endcord"
-[ -d "$core_module" ] || core_module="Aliucord"
 
 RELEASE=true ./gradlew --no-daemon --console=plain \
   ":$core_module:make" :Injector:make :kotlin-stdlib:make :patches:package
