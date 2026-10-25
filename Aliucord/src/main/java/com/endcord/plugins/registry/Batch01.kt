@@ -9,6 +9,7 @@ import com.aliucord.entities.EndcordPlugin
 import com.endcord.plugins.noserveremojis.NoServerEmojis
 import com.endcord.plugins.plainfoldericon.PlainFolderIcon
 import com.endcord.plugins.silenttyping.SilentTyping
+import com.endcord.plugins.songlink.SongLink
 import com.endcord.plugins.textcommands.ReverseText
 
 internal fun batch01(): List<EndcordPlugin> = listOf(
@@ -16,4 +17,5 @@ internal fun batch01(): List<EndcordPlugin> = listOf(
     PlainFolderIcon(),
     ReverseText(),
     SilentTyping(),
+    SongLink(),
 )
