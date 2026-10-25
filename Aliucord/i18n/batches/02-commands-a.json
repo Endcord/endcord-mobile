@@ -1,0 +1,722 @@
+{
+  "Couldn't find that user.": {
+    "tr": "Bu kullanıcı bulunamadı.",
+    "ru": "Не удалось найти этого пользователя.",
+    "es": "No se encontró a ese usuario.",
+    "fr": "Impossible de trouver cet utilisateur."
+  },
+  "Only numbers and + - * / % ( ) are allowed.": {
+    "tr": "Yalnızca sayılar ve + - * / % ( ) kullanılabilir.",
+    "ru": "Можно использовать только числа и + - * / % ( ).",
+    "es": "Solo se permiten números y + - * / % ( ).",
+    "fr": "Seuls les nombres et + - * / % ( ) sont autorisés."
+  },
+  "Couldn't work that one out.": {
+    "tr": "Bunu hesaplayamadım.",
+    "ru": "Не получилось это посчитать.",
+    "es": "No pude resolver eso.",
+    "fr": "Impossible de calculer ça."
+  },
+  "Copy": {
+    "tr": "Kopyala",
+    "ru": "Копировать",
+    "es": "Copiar",
+    "fr": "Copier"
+  },
+  "Close": {
+    "tr": "Kapat",
+    "ru": "Закрыть",
+    "es": "Cerrar",
+    "fr": "Fermer"
+  },
+  "Copied!": {
+    "tr": "Kopyalandı",
+    "ru": "Скопировано",
+    "es": "Copiado",
+    "fr": "Copié"
+  },
+  "Successfully created the tag **{name}**!": {
+    "tr": "**{name}** etiketi oluşturuldu!",
+    "ru": "Тег **{name}** создан!",
+    "es": "¡Se creó la etiqueta **{name}**!",
+    "fr": "Le tag **{name}** a été créé !"
+  },
+  "Successfully deleted the tag **{name}**!": {
+    "tr": "**{name}** etiketi silindi!",
+    "ru": "Тег **{name}** удалён!",
+    "es": "¡Se eliminó la etiqueta **{name}**!",
+    "fr": "Le tag **{name}** a été supprimé !"
+  },
+  "A Tag with the name **{name}** does not exist!": {
+    "tr": "**{name}** adında bir etiket yok!",
+    "ru": "Тега с названием **{name}** не существует!",
+    "es": "¡No existe ninguna etiqueta llamada **{name}**!",
+    "fr": "Aucun tag nommé **{name}** n'existe !"
+  },
+  "Woops! There are no tags yet, use `/tags create` to create one!": {
+    "tr": "Hay aksi! Henüz hiç etiket yok, oluşturmak için `/tags create` kullan!",
+    "ru": "Упс! Тегов пока нет, создайте первый с помощью `/tags create`!",
+    "es": "¡Ups! Aún no hay etiquetas, usa `/tags create` para crear una.",
+    "fr": "Oups ! Aucun tag pour l'instant, utilisez `/tags create` pour en créer un !"
+  },
+  "Tag names can only contain letters, numbers, - and _ (up to 32 characters).": {
+    "tr": "Etiket adları yalnızca harf, rakam, - ve _ içerebilir (en fazla 32 karakter).",
+    "ru": "Название тега может содержать только буквы, цифры, - и _ (не более 32 символов).",
+    "es": "Los nombres de etiqueta solo pueden tener letras, números, - y _ (hasta 32 caracteres).",
+    "fr": "Les noms de tag ne peuvent contenir que des lettres, des chiffres, - et _ (32 caractères max)."
+  },
+  "The response can't be empty.": {
+    "tr": "Yanıt boş olamaz.",
+    "ru": "Ответ не может быть пустым.",
+    "es": "La respuesta no puede estar vacía.",
+    "fr": "La réponse ne peut pas être vide."
+  },
+  "The argument name \"ephemeral\" is reserved and cannot be used.": {
+    "tr": "\"ephemeral\" argüman adı ayrılmıştır ve kullanılamaz.",
+    "ru": "Имя аргумента \"ephemeral\" зарезервировано и не может использоваться.",
+    "es": "El nombre de argumento \"ephemeral\" está reservado y no se puede usar.",
+    "fr": "Le nom d'argument « ephemeral » est réservé et ne peut pas être utilisé."
+  },
+  "Argument names can only contain letters, numbers, - and _ (up to 32 characters).": {
+    "tr": "Argüman adları yalnızca harf, rakam, - ve _ içerebilir (en fazla 32 karakter).",
+    "ru": "Имена аргументов могут содержать только буквы, цифры, - и _ (не более 32 символов).",
+    "es": "Los nombres de argumento solo pueden tener letras, números, - y _ (hasta 32 caracteres).",
+    "fr": "Les noms d'argument ne peuvent contenir que des lettres, des chiffres, - et _ (32 caractères max)."
+  },
+  "A tag can have at most 24 arguments.": {
+    "tr": "Bir etiketin en fazla 24 argümanı olabilir.",
+    "ru": "У тега может быть не более 24 аргументов.",
+    "es": "Una etiqueta puede tener como máximo 24 argumentos.",
+    "fr": "Un tag peut avoir 24 arguments au maximum."
+  },
+  "/{name} already exists, pick another name.": {
+    "tr": "/{name} zaten var, başka bir ad seç.",
+    "ru": "/{name} уже существует, выберите другое название.",
+    "es": "/{name} ya existe, elige otro nombre.",
+    "fr": "/{name} existe déjà, choisissez un autre nom."
+  },
+  "Registered Tags": {
+    "tr": "Kayıtlı Etiketler",
+    "ru": "Сохранённые теги",
+    "es": "Etiquetas registradas",
+    "fr": "Tags enregistrés"
+  },
+  "Edit": {
+    "tr": "Düzenle",
+    "ru": "Изменить",
+    "es": "Editar",
+    "fr": "Modifier"
+  },
+  "Delete": {
+    "tr": "Sil",
+    "ru": "Удалить",
+    "es": "Eliminar",
+    "fr": "Supprimer"
+  },
+  "Name": {
+    "tr": "Ad",
+    "ru": "Имя",
+    "es": "Nombre",
+    "fr": "Nom"
+  },
+  "Response": {
+    "tr": "Yanıt",
+    "ru": "Ответ",
+    "es": "Respuesta",
+    "fr": "Réponse"
+  },
+  "Create New Tag": {
+    "tr": "Yeni Etiket Oluştur",
+    "ru": "Новый тег",
+    "es": "Crear etiqueta nueva",
+    "fr": "Créer un nouveau tag"
+  },
+  "Edit Tag": {
+    "tr": "Etiketi Düzenle",
+    "ru": "Изменить тег",
+    "es": "Editar etiqueta",
+    "fr": "Modifier le tag"
+  },
+  "Create": {
+    "tr": "Oluştur",
+    "ru": "Создать",
+    "es": "Crear",
+    "fr": "Créer"
+  },
+  "Save": {
+    "tr": "Kaydet",
+    "ru": "Сохранить",
+    "es": "Guardar",
+    "fr": "Enregistrer"
+  },
+  "Cancel": {
+    "tr": "İptal",
+    "ru": "Отмена",
+    "es": "Cancelar",
+    "fr": "Annuler"
+  },
+  "Tag saved": {
+    "tr": "Etiket kaydedildi",
+    "ru": "Тег сохранён",
+    "es": "Etiqueta guardada",
+    "fr": "Tag enregistré"
+  },
+  "Create Tag": {
+    "tr": "Etiket Oluştur",
+    "ru": "Создать тег",
+    "es": "Crear etiqueta",
+    "fr": "Créer un tag"
+  },
+  "Your response can include variables wrapped in double curly braces which will become command arguments, for example Hello {{user}}. Add a default value with an equals sign: {{mood = great}}.": {
+    "tr": "Yanıtın, komut argümanına dönüşecek çift süslü parantezli değişkenler içerebilir, örneğin Hello {{user}}. Eşittir işaretiyle varsayılan değer ekle: {{mood = great}}.",
+    "ru": "Ответ может содержать переменные в двойных фигурных скобках — они станут аргументами команды, например Hello {{user}}. Значение по умолчанию задаётся через знак равенства: {{mood = great}}.",
+    "es": "Tu respuesta puede incluir variables entre llaves dobles, que se convertirán en argumentos del comando, por ejemplo Hello {{user}}. Añade un valor por defecto con un signo igual: {{mood = great}}.",
+    "fr": "Votre réponse peut contenir des variables entre doubles accolades, qui deviendront des arguments de la commande, par exemple Hello {{user}}. Ajoutez une valeur par défaut avec un signe égal : {{mood = great}}."
+  },
+  "Decoded Base64 Content": {
+    "tr": "Çözülmüş Base64 İçeriği",
+    "ru": "Декодированное содержимое Base64",
+    "es": "Contenido Base64 decodificado",
+    "fr": "Contenu Base64 décodé"
+  },
+  "Decode Base64": {
+    "tr": "Base64'ü Çöz",
+    "ru": "Декодировать Base64",
+    "es": "Decodificar Base64",
+    "fr": "Décoder le Base64"
+  },
+  "Expires: {time}": {
+    "tr": "Bitiş: {time}",
+    "ru": "Истекает: {time}",
+    "es": "Caduca: {time}",
+    "fr": "Expire : {time}"
+  },
+  "Max uses: {count}": {
+    "tr": "En fazla kullanım: {count}",
+    "ru": "Макс. использований: {count}",
+    "es": "Usos máximos: {count}",
+    "fr": "Utilisations max : {count}"
+  },
+  "Couldn't create a friend invite: {error}": {
+    "tr": "Arkadaş daveti oluşturulamadı: {error}",
+    "ru": "Не удалось создать приглашение в друзья: {error}",
+    "es": "No se pudo crear una invitación de amistad: {error}",
+    "fr": "Impossible de créer une invitation d'ami : {error}"
+  },
+  "Times used: {count}": {
+    "tr": "Kullanım: {count}",
+    "ru": "Использований: {count}",
+    "es": "Veces usada: {count}",
+    "fr": "Utilisations : {count}"
+  },
+  "You have no active friend invites!": {
+    "tr": "Etkin arkadaş davetin yok!",
+    "ru": "У вас нет активных приглашений в друзья!",
+    "es": "¡No tienes invitaciones de amistad activas!",
+    "fr": "Vous n'avez aucune invitation d'ami active !"
+  },
+  "Couldn't load your friend invites: {error}": {
+    "tr": "Arkadaş davetlerin yüklenemedi: {error}",
+    "ru": "Не удалось загрузить приглашения в друзья: {error}",
+    "es": "No se pudieron cargar tus invitaciones de amistad: {error}",
+    "fr": "Impossible de charger vos invitations d'ami : {error}"
+  },
+  "All friend invites have been revoked.": {
+    "tr": "Tüm arkadaş davetleri iptal edildi.",
+    "ru": "Все приглашения в друзья отозваны.",
+    "es": "Se revocaron todas las invitaciones de amistad.",
+    "fr": "Toutes les invitations d'ami ont été révoquées."
+  },
+  "Couldn't revoke your friend invites: {error}": {
+    "tr": "Arkadaş davetlerin iptal edilemedi: {error}",
+    "ru": "Не удалось отозвать приглашения в друзья: {error}",
+    "es": "No se pudieron revocar tus invitaciones de amistad: {error}",
+    "fr": "Impossible de révoquer vos invitations d'ami : {error}"
+  },
+  "Hyperlink": {
+    "tr": "Bağlantı",
+    "ru": "Гиперссылка",
+    "es": "Hipervínculo",
+    "fr": "Lien hypertexte"
+  },
+  "Embed": {
+    "tr": "Önizleme",
+    "ru": "Вставка",
+    "es": "Incrustación",
+    "fr": "Intégration"
+  },
+  "The search engine to use": {
+    "tr": "Kullanılacak arama motoru",
+    "ru": "Поисковая система",
+    "es": "Buscador a usar",
+    "fr": "Moteur de recherche à utiliser"
+  },
+  "Custom engine URL": {
+    "tr": "Özel arama motoru URL'si",
+    "ru": "URL своего поисковика",
+    "es": "URL de buscador personalizado",
+    "fr": "URL de moteur personnalisée"
+  },
+  "If the sent link should hyperlink with the query as the label": {
+    "tr": "Gönderilen bağlantı, arama metniyle etiketlenmiş bağlantı olsun mu",
+    "ru": "Ссылка с запросом в качестве текста",
+    "es": "Que el enlace use la búsqueda como texto",
+    "fr": "Le lien utilise la recherche comme texte"
+  },
+  "If the sent link should render an embed": {
+    "tr": "Gönderilen bağlantı önizleme göstersin mi",
+    "ru": "Показывать встраивание у ссылки",
+    "es": "Que el enlace muestre una vista previa",
+    "fr": "Le lien affiche un aperçu"
+  },
+  "The URL of the Engine you wish to use": {
+    "tr": "Kullanmak istediğin motorun URL'si",
+    "ru": "URL нужного движка",
+    "es": "URL del motor que quieres usar",
+    "fr": "URL du moteur à utiliser"
+  },
+  "Make sure that you are in a server.": {
+    "tr": "Bir sunucuda olduğundan emin ol.",
+    "ru": "Убедитесь, что вы находитесь на сервере.",
+    "es": "Asegúrate de estar en un servidor.",
+    "fr": "Assurez-vous d'être sur un serveur."
+  },
+  "View Members in Role": {
+    "tr": "Roldeki Üyeleri Görüntüle",
+    "ru": "Участники с ролью",
+    "es": "Ver miembros del rol",
+    "fr": "Voir les membres du rôle"
+  },
+  "Looks like no online cached members with that role were found. Try scrolling down on your member list to cache more users!": {
+    "tr": "Bu role sahip önbellekte çevrimiçi üye bulunamadı gibi görünüyor. Daha fazla kullanıcıyı önbelleğe almak için üye listesinde aşağı kaydırmayı dene!",
+    "ru": "Похоже, в кэше нет участников с этой ролью в сети. Прокрутите список участников, чтобы загрузить больше!",
+    "es": "Parece que no hay miembros conectados con ese rol en caché. ¡Desplázate por la lista de miembros para cargar más!",
+    "fr": "Aucun membre en ligne avec ce rôle n'est en cache. Faites défiler la liste des membres pour en charger davantage !"
+  },
+  "Members of role": {
+    "tr": "Rolün üyeleri:",
+    "ru": "Участники роли",
+    "es": "Miembros del rol",
+    "fr": "Membres du rôle"
+  },
+  "...and {count} more": {
+    "tr": "...ve {count} kişi daha",
+    "ru": "...и ещё {count}",
+    "es": "...y {count} más",
+    "fr": "...et {count} de plus"
+  },
+  "Failed to fetch system information": {
+    "tr": "Sistem bilgileri alınamadı",
+    "ru": "Не удалось получить сведения о системе",
+    "es": "No se pudo obtener la información del sistema",
+    "fr": "Impossible d'obtenir les informations système"
+  },
+  "System Uptime": {
+    "tr": "Sistem Çalışma Süresi",
+    "ru": "Время работы системы",
+    "es": "Tiempo de actividad del sistema",
+    "fr": "Temps de fonctionnement du système"
+  },
+  "{count} minutes": {
+    "tr": "{count} dakika",
+    "ru": "{count} мин.",
+    "es": "{count} min",
+    "fr": "{count} min"
+  },
+  "Current Time": {
+    "tr": "Şu Anki Saat",
+    "ru": "Текущее время",
+    "es": "Hora actual",
+    "fr": "Heure actuelle"
+  },
+  "Pong!": {
+    "tr": "Pong!",
+    "ru": "Понг!",
+    "es": "¡Pong!",
+    "fr": "Pong !"
+  },
+  "The message contains {count} words.": {
+    "tr": "Mesajda {count} kelime var.",
+    "ru": "Слов в сообщении: {count}.",
+    "es": "Palabras en el mensaje: {count}.",
+    "fr": "Le message contient {count} mots."
+  },
+  "Please provide a valid number between 1 and 10!": {
+    "tr": "Lütfen 1 ile 10 arasında geçerli bir sayı gir!",
+    "ru": "Укажите число от 1 до 10!",
+    "es": "¡Indica un número válido entre 1 y 10!",
+    "fr": "Veuillez indiquer un nombre valide entre 1 et 10 !"
+  },
+  "Go!": {
+    "tr": "Başla!",
+    "ru": "Старт!",
+    "es": "¡Ya!",
+    "fr": "Partez !"
+  },
+  "Starting countdown from {number}...": {
+    "tr": "Geri sayım başlıyor: {number}...",
+    "ru": "Обратный отсчёт с {number}...",
+    "es": "Empezando la cuenta atrás desde {number}...",
+    "fr": "Début du compte à rebours à partir de {number}..."
+  },
+  "Tablet": {
+    "tr": "Tablet",
+    "ru": "Планшет",
+    "es": "Tableta",
+    "fr": "Tablette"
+  },
+  "Mobile": {
+    "tr": "Telefon",
+    "ru": "Телефон",
+    "es": "Móvil",
+    "fr": "Mobile"
+  },
+  "Unknown": {
+    "tr": "Bilinmiyor",
+    "ru": "Неизвестно",
+    "es": "Desconocido",
+    "fr": "Inconnu"
+  },
+  "Cellular": {
+    "tr": "Mobil veri",
+    "ru": "Мобильная сеть",
+    "es": "Datos móviles",
+    "fr": "Réseau mobile"
+  },
+  "Platform": {
+    "tr": "Platform",
+    "ru": "Платформа",
+    "es": "Plataforma",
+    "fr": "Plateforme"
+  },
+  "Device Type": {
+    "tr": "Cihaz Türü",
+    "ru": "Тип устройства",
+    "es": "Tipo de dispositivo",
+    "fr": "Type d'appareil"
+  },
+  "Device": {
+    "tr": "Cihaz",
+    "ru": "Устройство",
+    "es": "Dispositivo",
+    "fr": "Appareil"
+  },
+  "CPU Cores": {
+    "tr": "İşlemci Çekirdekleri",
+    "ru": "Ядра процессора",
+    "es": "Núcleos de CPU",
+    "fr": "Cœurs du processeur"
+  },
+  "Memory": {
+    "tr": "Bellek",
+    "ru": "Память",
+    "es": "Memoria",
+    "fr": "Mémoire"
+  },
+  "Screen": {
+    "tr": "Ekran",
+    "ru": "Экран",
+    "es": "Pantalla",
+    "fr": "Écran"
+  },
+  "Languages": {
+    "tr": "Diller",
+    "ru": "Языки",
+    "es": "Idiomas",
+    "fr": "Langues"
+  },
+  "Network": {
+    "tr": "Ağ",
+    "ru": "Сеть",
+    "es": "Red",
+    "fr": "Réseau"
+  },
+  "Online": {
+    "tr": "Çevrimiçi",
+    "ru": "В сети",
+    "es": "En línea",
+    "fr": "En ligne"
+  },
+  "Offline": {
+    "tr": "Çevrimdışı",
+    "ru": "Не в сети",
+    "es": "Sin conexión",
+    "fr": "Hors ligne"
+  },
+  "Give me at least one choice.": {
+    "tr": "En az bir seçenek ver.",
+    "ru": "Укажите хотя бы один вариант.",
+    "es": "Dame al menos una opción.",
+    "fr": "Donnez au moins un choix."
+  },
+  "I choose: {choice}": {
+    "tr": "Seçimim: {choice}",
+    "ru": "Я выбираю: {choice}",
+    "es": "Elijo: {choice}",
+    "fr": "Je choisis : {choice}"
+  },
+  "Please provide a valid number of sides.": {
+    "tr": "Lütfen geçerli bir yüz sayısı gir.",
+    "ru": "Укажите корректное число граней.",
+    "es": "Indica un número de caras válido.",
+    "fr": "Veuillez indiquer un nombre de faces valide."
+  },
+  "You rolled a {roll}!": {
+    "tr": "Zar {roll} geldi!",
+    "ru": "Выпало {roll}!",
+    "es": "¡Sacaste un {roll}!",
+    "fr": "Vous avez obtenu {roll} !"
+  },
+  "Heads": {
+    "tr": "Tura",
+    "ru": "Орёл",
+    "es": "Cara",
+    "fr": "Face"
+  },
+  "Tails": {
+    "tr": "Yazı",
+    "ru": "Решка",
+    "es": "Cruz",
+    "fr": "Pile"
+  },
+  "The coin landed on: {side}": {
+    "tr": "Para şu yüzüne düştü: {side}",
+    "ru": "Выпало: {side}",
+    "es": "La moneda cayó en: {side}",
+    "fr": "La pièce est tombée sur : {side}"
+  },
+  "Random number between {min} and {max}: {number}": {
+    "tr": "{min} ile {max} arasında rastgele sayı: {number}",
+    "ru": "Случайное число от {min} до {max}: {number}",
+    "es": "Número aleatorio entre {min} y {max}: {number}",
+    "fr": "Nombre aléatoire entre {min} et {max} : {number}"
+  },
+  "Sorry, couldn't fetch a dog picture right now 🐶": {
+    "tr": "Üzgünüm, şu anda köpek resmi getirilemedi 🐶",
+    "ru": "Извините, сейчас не удалось загрузить фото собаки 🐶",
+    "es": "Lo siento, ahora no se pudo obtener una foto de perro 🐶",
+    "fr": "Désolé, impossible de récupérer une photo de chien pour l'instant 🐶"
+  },
+  "Sorry, couldn't fetch a cat picture right now 😿": {
+    "tr": "Üzgünüm, şu anda kedi resmi getirilemedi 😿",
+    "ru": "Извините, сейчас не удалось загрузить фото кошки 😿",
+    "es": "Lo siento, ahora no se pudo obtener una foto de gato 😿",
+    "fr": "Désolé, impossible de récupérer une photo de chat pour l'instant 😿"
+  },
+  "Couldn't fetch an image right now.": {
+    "tr": "Şu anda resim getirilemedi.",
+    "ru": "Сейчас не удалось загрузить изображение.",
+    "es": "Ahora no se pudo obtener una imagen.",
+    "fr": "Impossible de récupérer une image pour l'instant."
+  },
+  "<@{me}> slaps {victim} around a bit with a large trout": {
+    "tr": "<@{me}> kocaman bir alabalıkla tokatlıyor: {victim}",
+    "ru": "<@{me}> слегка шлёпает {victim} большой форелью",
+    "es": "<@{me}> le da unas cuantas bofetadas a {victim} con una trucha enorme",
+    "fr": "<@{me}> gifle un peu {victim} avec une grosse truite"
+  },
+  "Freaky ending": {
+    "tr": "/freaky kapanışı",
+    "ru": "Концовка для /freaky",
+    "es": "Final de /freaky",
+    "fr": "Fin de /freaky"
+  },
+  "Uwuify every message": {
+    "tr": "Tüm mesajları uwu'laştır",
+    "ru": "Uwu для всех сообщений",
+    "es": "Uwuificar cada mensaje",
+    "fr": "Uwuifier tous les messages"
+  },
+  "Add 👅 or ❤️ at the end": {
+    "tr": "Sona 👅 veya ❤️ ekle",
+    "ru": "Добавлять 👅 или ❤️ в конце",
+    "es": "Añadir 👅 o ❤️ al final",
+    "fr": "Ajouter 👅 ou ❤️ à la fin"
+  },
+  "Make every single message uwuified": {
+    "tr": "Her mesajı uwu'laştır",
+    "ru": "Делать каждое сообщение uwu",
+    "es": "Uwuificar todos los mensajes",
+    "fr": "Uwuifier chaque message"
+  },
+  "Delay must be at least 20.": {
+    "tr": "Gecikme en az 20 olmalı.",
+    "ru": "Задержка должна быть не меньше 20.",
+    "es": "El retraso debe ser de al menos 20.",
+    "fr": "Le délai doit être d'au moins 20."
+  },
+  "No Image specified! Attach an image, or use the url or user option.": {
+    "tr": "Resim belirtilmedi! Bir resim ekle ya da url veya user seçeneğini kullan.",
+    "ru": "Изображение не указано! Прикрепите изображение или используйте параметр url или user.",
+    "es": "¡No se indicó ninguna imagen! Adjunta una imagen o usa la opción url o user.",
+    "fr": "Aucune image indiquée ! Joignez une image ou utilisez l'option url ou user."
+  },
+  "Couldn't load the image: {error}": {
+    "tr": "Resim yüklenemedi: {error}",
+    "ru": "Не удалось загрузить изображение: {error}",
+    "es": "No se pudo cargar la imagen: {error}",
+    "fr": "Impossible de charger l'image : {error}"
+  },
+  "Couldn't download the petpet frames: {error}": {
+    "tr": "Petpet kareleri indirilemedi: {error}",
+    "ru": "Не удалось скачать кадры petpet: {error}",
+    "es": "No se pudieron descargar los fotogramas de petpet: {error}",
+    "fr": "Impossible de télécharger les images de petpet : {error}"
+  },
+  "Couldn't create the gif.": {
+    "tr": "GIF oluşturulamadı.",
+    "ru": "Не удалось создать GIF.",
+    "es": "No se pudo crear el GIF.",
+    "fr": "Impossible de créer le GIF."
+  },
+  "That isn't a valid image URL.": {
+    "tr": "Bu geçerli bir resim URL'si değil.",
+    "ru": "Это недействительный URL изображения.",
+    "es": "Esa no es una URL de imagen válida.",
+    "fr": "Ce n'est pas une URL d'image valide."
+  },
+  "Upload is not an image": {
+    "tr": "Yüklenen dosya bir resim değil",
+    "ru": "Загруженный файл не является изображением",
+    "es": "El archivo no es una imagen",
+    "fr": "Le fichier n'est pas une image"
+  },
+  "Removed {count} reminders": {
+    "tr": "{count} hatırlatıcı silindi",
+    "ru": "Удалено напоминаний: {count}",
+    "es": "Recordatorios eliminados: {count}",
+    "fr": "Rappels supprimés : {count}"
+  },
+  "Give me a positive amount of time.": {
+    "tr": "Pozitif bir süre ver.",
+    "ru": "Укажите положительное время.",
+    "es": "Dame una cantidad de tiempo positiva.",
+    "fr": "Indiquez une durée positive."
+  },
+  "⏰ Okay! I'll remind you about **{text}** {time}.": {
+    "tr": "⏰ Tamam! **{text}** konusunu sana {time} hatırlatacağım.",
+    "ru": "⏰ Хорошо! Напомню о **{text}** {time}.",
+    "es": "⏰ ¡Vale! Te recordaré **{text}** {time}.",
+    "fr": "⏰ D'accord ! Je vous rappellerai **{text}** {time}."
+  },
+  "Reminder": {
+    "tr": "Hatırlatıcı",
+    "ru": "Напоминание",
+    "es": "Recordatorio",
+    "fr": "Rappel"
+  },
+  "Reminders": {
+    "tr": "Hatırlatıcılar",
+    "ru": "Напоминания",
+    "es": "Recordatorios",
+    "fr": "Rappels"
+  },
+  "Clear all reminders": {
+    "tr": "Tüm hatırlatıcıları temizle",
+    "ru": "Удалить все напоминания",
+    "es": "Borrar todos los recordatorios",
+    "fr": "Supprimer tous les rappels"
+  },
+  "Cancels every reminder that hasn't fired yet": {
+    "tr": "Henüz gelmemiş tüm hatırlatıcıları iptal eder",
+    "ru": "Отменяет все ещё не сработавшие напоминания",
+    "es": "Cancela todos los recordatorios pendientes",
+    "fr": "Annule tous les rappels qui ne se sont pas encore déclenchés"
+  },
+  "You're not listening to any music.": {
+    "tr": "Şu anda müzik dinlemiyorsun.",
+    "ru": "Вы сейчас ничего не слушаете.",
+    "es": "No estás escuchando música.",
+    "fr": "Vous n'écoutez aucune musique."
+  },
+  "Failed to find the track on spotify.": {
+    "tr": "Parça Spotify'da bulunamadı.",
+    "ru": "Не удалось найти трек в Spotify.",
+    "es": "No se encontró la canción en Spotify.",
+    "fr": "Impossible de trouver le titre sur Spotify."
+  },
+  "Convert Units": {
+    "tr": "Birimleri Dönüştür",
+    "ru": "Перевести единицы",
+    "es": "Convertir unidades",
+    "fr": "Convertir les unités"
+  },
+  "Your units": {
+    "tr": "Birimlerin",
+    "ru": "Ваши единицы",
+    "es": "Tus unidades",
+    "fr": "Vos unités"
+  },
+  "the units you use and want things converted to. defaults to imperial": {
+    "tr": "kullandığın ve dönüştürülmesini istediğin birimler. varsayılan: İngiliz birimleri",
+    "ru": "ваши единицы, в которые переводить. по умолчанию имперские",
+    "es": "las unidades que usas y a las que convertir. por defecto imperiales",
+    "fr": "vos unités de conversion. impériales par défaut"
+  },
+  "Imperial": {
+    "tr": "İngiliz ölçü birimi",
+    "ru": "Имперская система",
+    "es": "Imperial",
+    "fr": "Impérial"
+  },
+  "Metric": {
+    "tr": "Metrik",
+    "ru": "Метрическая система",
+    "es": "Métrico",
+    "fr": "Métrique"
+  },
+  "No Wikipedia article found for **{query}**.": {
+    "tr": "**{query}** için Wikipedia makalesi bulunamadı.",
+    "ru": "Статья в Википедии для **{query}** не найдена.",
+    "es": "No se encontró ningún artículo de Wikipedia para **{query}**.",
+    "fr": "Aucun article Wikipédia trouvé pour **{query}**."
+  },
+  "Couldn't reach Wikipedia right now.": {
+    "tr": "Şu anda Wikipedia'ya ulaşılamıyor.",
+    "ru": "Сейчас не удаётся связаться с Википедией.",
+    "es": "Ahora no se puede acceder a Wikipedia.",
+    "fr": "Impossible de joindre Wikipédia pour l'instant."
+  },
+  "**{query}** is ambiguous — try being more specific.": {
+    "tr": "**{query}** birden fazla anlama geliyor, daha net olmayı dene.",
+    "ru": "**{query}** — неоднозначный запрос, уточните его.",
+    "es": "**{query}** es ambiguo; intenta ser más específico.",
+    "fr": "**{query}** est ambigu, essayez d'être plus précis."
+  },
+  "Yes": {
+    "tr": "Evet",
+    "ru": "Да",
+    "es": "Sí",
+    "fr": "Oui"
+  },
+  "No": {
+    "tr": "Hayır",
+    "ru": "Нет",
+    "es": "No",
+    "fr": "Non"
+  },
+  "Maybe": {
+    "tr": "Belki",
+    "ru": "Может быть",
+    "es": "Quizás",
+    "fr": "Peut-être"
+  },
+  "Ask again later": {
+    "tr": "Sonra tekrar sor",
+    "ru": "Спросите позже",
+    "es": "Pregunta más tarde",
+    "fr": "Redemandez plus tard"
+  },
+  "Definitely not": {
+    "tr": "Kesinlikle hayır",
+    "ru": "Точно нет",
+    "es": "Definitivamente no",
+    "fr": "Certainement pas"
+  },
+  "It is certain": {
+    "tr": "Kesinlikle öyle",
+    "ru": "Бесспорно",
+    "es": "Es seguro",
+    "fr": "C'est certain"
+  }
+}
