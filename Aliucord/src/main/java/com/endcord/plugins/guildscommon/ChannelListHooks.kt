@@ -119,7 +119,11 @@ internal object ChannelListHooks {
      */
     @JvmStatic
     fun prepare() {
-        ensureListPatched()
+        try {
+            ensureListPatched()
+        } catch (e: Throwable) {
+            logger.error("Failed to hook the list", e)
+        }
     }
 
     @JvmStatic

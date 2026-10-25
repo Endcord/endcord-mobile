@@ -79,7 +79,11 @@ internal object GuildListHooks {
      */
     @JvmStatic
     fun prepare() {
-        ensurePatched()
+        try {
+            ensurePatched()
+        } catch (e: Throwable) {
+            logger.error("Failed to hook the list", e)
+        }
     }
 
     @JvmStatic
