@@ -251,6 +251,8 @@ public class Http {
 
     /** Request Builder */
     public static class Request implements Closeable {
+        private static final int DEFAULT_CONNECT_TIMEOUT_MS = 15_000;
+        private static final int DEFAULT_READ_TIMEOUT_MS = 30_000;
         private static final String USER_AGENT =
             String.format("Endcord/%s (%s)", BuildConfig.ENDCORD_VERSION, Constants.ENDCORD_GITHUB_REPO);
 
@@ -288,6 +290,11 @@ public class Http {
             conn = (HttpURLConnection) new URL(url).openConnection();
             conn.setRequestMethod(method.toUpperCase());
             conn.addRequestProperty("User-Agent", USER_AGENT);
+            // Without a timeout a host whose IPv6 address is unreachable (common on emulators and some mobile
+            // networks) blocks the request for minutes before the IPv4 address is tried; with one the
+            // connection falls back after a few seconds. Callers can still change it with setRequestTimeout.
+            conn.setConnectTimeout(DEFAULT_CONNECT_TIMEOUT_MS);
+            conn.setReadTimeout(DEFAULT_READ_TIMEOUT_MS);
         }
 
         /**

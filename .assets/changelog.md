@@ -1,2 +1,3 @@
+- Network requests now time out instead of hanging for minutes on networks where IPv6 doesn't work, which also stalled the update check.
 - Password login: the captcha now opens when Discord asks for one, and Discord's real answer is shown instead of "A forbidden network request has occurred".
 - Fixed the injector crashing on start on some devices.

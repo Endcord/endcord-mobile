@@ -188,6 +188,9 @@ Lessons from the pre-release review:
   drops the entry. Remove entries in the matching lifecycle hook (`onDestroyView`) or hold the value weakly.
 * Anything polled (presence, now playing) must compare what it would send with what it sent last, minus
   timestamps, so nothing is resent when nothing changed.
+* `Http.Request` has a 15 s connect / 30 s read timeout by default (emulators and some mobile networks have
+  an IPv6 address that goes nowhere; without a timeout the first attempt blocks for minutes). Raise it with
+  `setRequestTimeout` for big downloads, never remove it.
 
 ## Quality bar
 
