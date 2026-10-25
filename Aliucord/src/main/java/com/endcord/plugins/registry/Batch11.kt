@@ -6,6 +6,8 @@
 package com.endcord.plugins.registry
 
 import com.aliucord.entities.EndcordPlugin
+import com.endcord.plugins.showhiddenchannels.ShowHiddenChannels
 
 internal fun batch11(): List<EndcordPlugin> = listOf(
+    ShowHiddenChannels(),
 )
