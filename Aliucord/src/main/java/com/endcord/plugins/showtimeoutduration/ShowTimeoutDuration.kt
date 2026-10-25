@@ -59,13 +59,10 @@ internal class ShowTimeoutDuration : EndcordPlugin(
             val icon = iconOf(holder) ?: return null
             val member = entry.author
             val remaining = remainingMillis(member)
-            if (icon.visibility != View.VISIBLE || remaining <= 0) {
-                icon.setOnClickListener(null)
-                icon.isClickable = false
-                return null
-            }
+            // The icon is hidden for anyone who isn't timed out, so a listener left from a recycled row never fires
+            if (icon.visibility != View.VISIBLE || remaining <= 0) return null
             val userId = member?.userId ?: 0L
-            icon.setOnClickListener { showToast(userId, member) }
+            icon.setOnClickListener { if (running) showToast(userId, member) }
 
             if (choice("displayStyle") != STYLE_INLINE) return null
             val text = "  ${formatDuration(remaining)} ${I18n.t("timeout remaining")}"
@@ -75,7 +72,17 @@ internal class ShowTimeoutDuration : EndcordPlugin(
         }
     }
 
+    /** Rows keep the icon listener after the plugin stops, until they are redrawn. */
+    @Volatile
+    private var running = false
+
+    override fun stop(context: Context) {
+        running = false
+        super.stop(context)
+    }
+
     override fun start(context: Context) {
+        running = true
         ChatHooks.register(decorator)
 
         UserSheetActions.register(

@@ -99,7 +99,7 @@ internal class ClickableRoles : EndcordPlugin(
             .map { id -> id to Users.displayName(id) }
             .sortedBy { it.second.lowercase() }
         val labels = shown.map { it.second as CharSequence }.toMutableList()
-        if (ids.size > shown.size) labels.add(I18n.t("and {count} more", "count" to ids.size - shown.size))
+        if (ids.size > shown.size) labels.add(I18n.t("...and {count} more", "count" to ids.size - shown.size))
         Dialogs.showList(activity, title, labels) { index ->
             if (index < shown.size) UserSheets.show(shown[index].first, guildId, activity.supportFragmentManager)
         }

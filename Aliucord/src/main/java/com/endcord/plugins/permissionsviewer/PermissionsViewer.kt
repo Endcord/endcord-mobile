@@ -69,7 +69,7 @@ internal class PermissionsViewer : EndcordPlugin(
 
         sb.append(I18n.t("Server Permissions")).append('\n')
         when {
-            isOwner -> sb.append("• ").append(I18n.t("@owner")).append(" — ").append(I18n.t("Has every permission")).append('\n')
+            isOwner -> sb.append("• ").append(I18n.t("Server owner")).append(" — ").append(I18n.t("Has every permission")).append('\n')
             isAdmin -> sb.append("• ").append(permissionName(context, 3)).append(" — ").append(I18n.t("Has every permission")).append('\n')
             else -> {
                 val bits = setBits(serverPerms)

@@ -15,6 +15,7 @@ import com.endcord.plugins.clickableroles.ClickableRoles
 import com.endcord.plugins.githubrepos.GitHubRepos
 import com.endcord.plugins.globalbadges.GlobalBadges
 import com.endcord.plugins.mutualgroupdms.MutualGroupDMs
+import com.endcord.plugins.mutualservermembers.MutualServerMembers
 import com.endcord.plugins.permissionsviewer.PermissionsViewer
 import com.endcord.plugins.reviewdb.ReviewDB
 import com.endcord.plugins.showtimeoutduration.ShowTimeoutDuration
@@ -31,6 +32,7 @@ internal fun batch09(): List<EndcordPlugin> = listOf(
     GitHubRepos(),
     GlobalBadges(),
     MutualGroupDMs(),
+    MutualServerMembers(),
     PermissionsViewer(),
     ReviewDB(),
     ShowTimeoutDuration(),
