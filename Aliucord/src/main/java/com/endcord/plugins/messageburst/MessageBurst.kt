@@ -35,7 +35,7 @@ internal class MessageBurst : ComposerPlugin(
     override fun start(context: Context) {
         onOutgoing(OutgoingMessages.Priority.DELIVERY + 10) { message ->
             // Replies, messages with files and empty messages are sent normally
-            if (message.reply != null || message.attachments.isNotEmpty() || message.content.isBlank()) return@onOutgoing
+            if (message.startsThread || message.reply != null || message.attachments.isNotEmpty() || message.content.isBlank()) return@onOutgoing
 
             val last = ComposerUtils.loadedMessages(message.channelId, includePending = true).lastOrNull() ?: return@onOutgoing
             // A previous message still on its way can't be edited yet

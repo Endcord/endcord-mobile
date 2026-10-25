@@ -23,7 +23,7 @@ import java.text.DateFormat as JavaDateFormat
 
 internal class SendTimestamps : ComposerPlugin(
     name = "SendTimestamps",
-    description = "Send timestamps easily via chat box button & text shortcuts. Read the extended description!",
+    description = "Send timestamps easily via the send button's long-press menu & text shortcuts. See the settings!",
     authors = arrayOf("ewlle", "kraethis"),
 ) {
     override val tags = listOf("chat", "commands")

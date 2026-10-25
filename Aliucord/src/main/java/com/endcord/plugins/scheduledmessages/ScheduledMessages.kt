@@ -72,7 +72,8 @@ internal class ScheduledMessages : ComposerPlugin(
     override fun start(context: Context) {
         load()
         running = true
-        Utils.mainThread.post(checker)
+        // Give the app a moment to connect before sending what came due while it was closed
+        Utils.mainThread.postDelayed(checker, START_DELAY_MS)
 
         composerAction("Schedule Mode", checked = { scheduleMode }) {
             scheduleMode = !scheduleMode
@@ -81,7 +82,7 @@ internal class ScheduledMessages : ComposerPlugin(
         composerAction("View Scheduled Messages", visible = { queue.isNotEmpty() }) { openList(it.context) }
 
         onOutgoing(OutgoingMessages.Priority.DELIVERY) { message ->
-            if (!scheduleMode || message.content.isBlank()) return@onOutgoing
+            if (!scheduleMode || message.startsThread || message.content.isBlank()) return@onOutgoing
             if (message.attachments.isNotEmpty()) {
                 Utils.showToast(I18n.t("Scheduled messages can't include files"))
                 message.cancel(clearInput = false)
@@ -319,5 +320,6 @@ internal class ScheduledMessages : ComposerPlugin(
 
     private companion object {
         const val QUEUE_KEY = "queue"
+        const val START_DELAY_MS = 15_000L
     }
 }

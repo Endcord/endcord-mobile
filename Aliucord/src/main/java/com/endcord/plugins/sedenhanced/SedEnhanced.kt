@@ -47,7 +47,8 @@ internal class SedEnhanced : ComposerPlugin(
         }
     }
 
-    private fun OutgoingMessage.hasNoSedShape() = content.length < 4 || content[0] != 's' || attachments.isNotEmpty()
+    private fun OutgoingMessage.hasNoSedShape() =
+        startsThread || content.length < 4 || content[0] != 's' || attachments.isNotEmpty()
 
     private fun searchReplace(message: OutgoingMessage, groups: Matcher) {
         val me = ComposerUtils.myId()

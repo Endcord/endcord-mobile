@@ -24,7 +24,7 @@ import com.endcord.plugins.composercommon.OutgoingMessages
  */
 internal class SilentMessageToggle : ComposerPlugin(
     name = "SilentMessageToggle",
-    description = "Adds a button to the chat bar to toggle sending a silent message.",
+    description = "Adds a toggle to the send button's long-press menu to send a silent message.",
     authors = arrayOf("ewlle", "kraethis"),
 ) {
     override val tags = listOf("chat", "utility")
@@ -59,10 +59,11 @@ internal class SilentMessageToggle : ComposerPlugin(
             Utils.showToast(I18n.t(if (enabled) "Silent messages on" else "Silent messages off"))
         }
 
-        onOutgoing(OutgoingMessages.Priority.DELIVERY + 30) { message ->
-            if (!isOn(message.channelId)) return@onOutgoing
+        // Before SplitLargeMessages, which handles the messages that are too long to go out silently
+        onOutgoing(OutgoingMessages.Priority.DELIVERY + 15) { message ->
+            if (message.startsThread || !isOn(message.channelId)) return@onOutgoing
             if (message.attachments.isNotEmpty() || message.content.isBlank() || message.content.length > ComposerUtils.messageLimit()) {
-                Utils.showToast(I18n.t("Silent messages can only be sent without files, so this one was sent normally"))
+                Utils.showToast(I18n.t("Silent messages can't include files or go over the length limit, so this one was sent normally"))
                 return@onOutgoing
             }
             if (bool("autoDisable")) enabled = false

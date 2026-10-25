@@ -11,6 +11,7 @@ import com.aliucord.Utils
 import com.aliucord.api.PatcherAPI
 import com.aliucord.patcher.after
 import com.aliucord.patcher.before
+import com.aliucord.wrappers.ChannelWrapper.Companion.type
 import com.discord.api.channel.Channel
 import com.discord.models.message.Message
 import com.discord.widgets.chat.MessageContent
@@ -35,6 +36,11 @@ internal class OutgoingMessage(
     @JvmField val attachments: List<Attachment<*>>,
     /** The reply bar state when replying, otherwise null. */
     @JvmField val reply: ChatInputViewModel.ViewState.Loaded.PendingReplyState.Replying?,
+    /**
+     * Whether this message creates a thread or a forum post instead of going into [channelId]. Plugins that
+     * send, edit or hold back messages themselves should leave these alone.
+     */
+    @JvmField val startsThread: Boolean,
     /** The message manager of the chat input, for sending follow-up messages. */
     @JvmField val messageManager: MessageManager,
     @JvmField val context: Context,
@@ -62,7 +68,7 @@ internal class OutgoingMessage(
         this.clearInput = clearInput
     }
 
-    /** Runs [block] on the main thread once Discord has taken the (possibly changed) message. */
+    /** Runs [block] on the main thread once Discord has taken the (possibly changed) message. Not run when cancelled. */
     fun afterSend(block: () -> Unit) {
         afterSend += block
     }
@@ -90,6 +96,8 @@ internal object OutgoingMessages {
         /** Hooks that decide how the final text is delivered (schedule, merge, silent, split). */
         const val DELIVERY = 700
     }
+
+    private const val GUILD_FORUM = 15
 
     private class Hook(
         val owner: String,
@@ -177,6 +185,7 @@ internal object OutgoingMessages {
             editing = if (isEdit) state.editingMessage?.message else null,
             attachments = (args[3] as? List<Attachment<*>>) ?: emptyList(),
             reply = state.pendingReplyState as? ChatInputViewModel.ViewState.Loaded.PendingReplyState.Replying,
+            startsThread = state.selectedThreadDraft != null || state.channel?.type == GUILD_FORUM,
             messageManager = args[1] as MessageManager,
             context = args[0] as Context,
             content = original.textContent ?: "",
@@ -195,10 +204,13 @@ internal object OutgoingMessages {
         if (message.cancelled) {
             skipOriginal()
             (args[5] as? Function1<Boolean, Unit>)?.invoke(message.clearInput)
-        } else if (message.content != original.textContent) {
+            return
+        }
+        if (message.content != original.textContent) {
             args[2] = MessageContent(message.content, original.mentionedUsers)
         }
 
+        // Posted, so it runs once the original sendMessage below has handed the message to Discord
         for (block in message.afterSend) Utils.mainThread.post {
             try {
                 block()

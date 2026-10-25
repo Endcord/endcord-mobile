@@ -20,7 +20,7 @@ import com.discord.api.message.Message as ApiMessage
 
 internal class SelfDestruct : ComposerPlugin(
     name = "SelfDestruct",
-    description = "Sends messages that are automatically deleted after a configurable delay. Red timer visible on each message.",
+    description = "Sends messages that are automatically deleted after a configurable delay.",
     authors = arrayOf("vpg"),
 ) {
     override val tags = listOf("chat", "privacy")

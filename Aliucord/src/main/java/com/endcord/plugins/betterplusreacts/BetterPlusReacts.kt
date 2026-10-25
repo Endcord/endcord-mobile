@@ -28,7 +28,7 @@ internal class BetterPlusReacts : ComposerPlugin(
     override fun start(context: Context) {
         onOutgoing(OutgoingMessages.Priority.ACTION) { message ->
             val content = message.content.trim()
-            if (!content.startsWith("+") || message.attachments.isNotEmpty()) return@onOutgoing
+            if (message.startsThread || !content.startsWith("+") || message.attachments.isNotEmpty()) return@onOutgoing
             val match = PLUS_REACT.matcher(content)
             if (!match.matches()) return@onOutgoing
             val emoji = resolveEmoji(match.group(2)!!) ?: return@onOutgoing

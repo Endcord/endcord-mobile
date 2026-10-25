@@ -23,7 +23,7 @@ internal class ZeroWidthSanitizer : ComposerPlugin(
         PluginSetting.Switch("sanitizeOutgoing", "Sanitize outgoing messages (before sending)", default = true),
         PluginSetting.Switch("sanitizeEdits", "Sanitize edited messages too", default = true),
         PluginSetting.Switch("showToastOnDetection", "Show a notification when invisible characters are detected", default = true),
-        PluginSetting.Switch("verboseLogs", "Show detailed logs in console", "Written to the Aliucord debug log", default = false),
+        PluginSetting.Switch("verboseLogs", "Show detailed logs in console", "Written to the debug log", default = false),
     )
 
     override fun start(context: Context) {

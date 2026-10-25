@@ -1,0 +1,932 @@
+{
+  "A ChatGPT request is already in progress. Please wait...": {
+    "tr": "Zaten devam eden bir ChatGPT isteği var. Lütfen bekle...",
+    "ru": "Запрос к ChatGPT уже выполняется. Пожалуйста, подождите...",
+    "es": "Ya hay una solicitud a ChatGPT en curso. Espera un momento...",
+    "fr": "Une requête ChatGPT est déjà en cours. Veuillez patienter..."
+  },
+  "API Error ({status})": {
+    "tr": "API hatası ({status})",
+    "ru": "Ошибка API ({status})",
+    "es": "Error de la API ({status})",
+    "fr": "Erreur de l'API ({status})"
+  },
+  "API Key": {
+    "tr": "API anahtarı",
+    "ru": "API-ключ",
+    "es": "Clave de API",
+    "fr": "Clé d'API"
+  },
+  "API key not configured or invalid. Configure your key in the ChatGPT plugin settings.": {
+    "tr": "API anahtarı ayarlanmamış veya geçersiz. Anahtarını ChatGPT eklentisinin ayarlarından gir.",
+    "ru": "API-ключ не задан или недействителен. Укажите ключ в настройках плагина ChatGPT.",
+    "es": "La clave de API no está configurada o no es válida. Configura tu clave en los ajustes del plugin ChatGPT.",
+    "fr": "Clé API non configurée ou invalide. Configurez votre clé dans les paramètres du plugin ChatGPT."
+  },
+  "Add a kaomoji at the end of your messages": {
+    "tr": "Mesajlarının sonuna kaomoji ekle",
+    "ru": "Добавлять каомодзи в конце сообщений",
+    "es": "Añade un kaomoji al final de tus mensajes",
+    "fr": "Ajouter un kaomoji à la fin de vos messages"
+  },
+  "Add an emoji at the end of your messages (matching message tone)": {
+    "tr": "Mesajlarının sonuna (tonuna uygun) bir emoji ekle",
+    "ru": "Добавлять эмодзи в конце сообщений (по тону)",
+    "es": "Añade un emoji al final de tus mensajes (según el tono)",
+    "fr": "Ajouter un emoji à la fin de vos messages (selon le ton)"
+  },
+  "Adds a toggle to the send button's long-press menu to send a silent message.": {
+    "tr": "Sessiz mesaj göndermek için gönder düğmesinin basılı tutma menüsüne bir seçenek ekler.",
+    "ru": "Добавляет в меню долгого нажатия кнопки отправки переключатель для отправки беззвучного сообщения.",
+    "es": "Añade al menú de pulsación larga del botón de enviar una opción para enviar un mensaje silencioso.",
+    "fr": "Ajoute au menu d'appui long du bouton d'envoi une option pour envoyer un message silencieux."
+  },
+  "All scheduled messages cleared": {
+    "tr": "Tüm zamanlanmış mesajlar temizlendi",
+    "ru": "Все запланированные сообщения удалены",
+    "es": "Se borraron todos los mensajes programados",
+    "fr": "Tous les messages programmés ont été effacés"
+  },
+  "Allow splitting in slowmode when its delay is within the configured maximum.": {
+    "tr": "Yavaş mod gecikmesi ayarlanan sınırın içindeyse bölmeye izin ver.",
+    "ru": "Разрешить разбиение в медленном режиме, если задержка в пределах максимума.",
+    "es": "Permitir dividir en modo lento si su espera está dentro del máximo.",
+    "fr": "Autoriser le découpage en mode lent si le délai reste sous le maximum."
+  },
+  "Also available from the long-press menu of the send button": {
+    "tr": "Gönder düğmesinin basılı tutma menüsünden de kullanılabilir",
+    "ru": "Также доступно в меню долгого нажатия кнопки отправки",
+    "es": "También disponible en el menú de pulsación larga del botón de enviar",
+    "fr": "Également disponible dans le menu d'appui long du bouton d'envoi"
+  },
+  "Also available from the long-press menu of the send button and with /signature": {
+    "tr": "Gönder düğmesinin basılı tutma menüsünden ve /signature ile de kullanılabilir",
+    "ru": "Также доступно в меню долгого нажатия кнопки отправки и через /signature",
+    "es": "También disponible en el menú de pulsación larga del botón de enviar y con /signature",
+    "fr": "Également disponible dans le menu d'appui long du bouton d'envoi et avec /signature"
+  },
+  "An error occurred while communicating with ChatGPT.": {
+    "tr": "ChatGPT ile iletişim kurulurken bir hata oluştu.",
+    "ru": "Произошла ошибка при обращении к ChatGPT.",
+    "es": "Se produjo un error al comunicarse con ChatGPT.",
+    "fr": "Une erreur s'est produite lors de la communication avec ChatGPT."
+  },
+  "Anonymising method": {
+    "tr": "Anonimleştirme yöntemi",
+    "ru": "Способ анонимизации",
+    "es": "Método de anonimización",
+    "fr": "Méthode d'anonymisation"
+  },
+  "Automatically disable the silent message toggle again after sending one": {
+    "tr": "Bir sessiz mesaj gönderdikten sonra düğmeyi otomatik kapat",
+    "ru": "Выключать тихий режим после отправки одного сообщения",
+    "es": "Desactivar el modo silencioso tras enviar un mensaje",
+    "fr": "Désactiver le mode silencieux après un envoi"
+  },
+  "Automatically fix grammar and punctuation": {
+    "tr": "Dilbilgisini ve noktalamayı otomatik düzelt",
+    "ru": "Автоматически исправлять грамматику и пунктуацию",
+    "es": "Corregir gramática y puntuación automáticamente",
+    "fr": "Corriger automatiquement grammaire et ponctuation"
+  },
+  "Behaviour": {
+    "tr": "Davranış",
+    "ru": "Поведение",
+    "es": "Comportamiento",
+    "fr": "Comportement"
+  },
+  "Cannot split this message because of the channel's slowmode.": {
+    "tr": "Kanalın yavaş modu nedeniyle bu mesaj bölünemiyor.",
+    "ru": "Нельзя разбить сообщение из-за медленного режима канала.",
+    "es": "No se puede dividir este mensaje por el modo lento del canal.",
+    "fr": "Impossible de découper ce message à cause du mode lent du salon."
+  },
+  "Capitalize sentences.": {
+    "tr": "Cümle başlarını büyük harf yap.",
+    "ru": "Начинать предложения с заглавной.",
+    "es": "Poner mayúscula al inicio de las frases.",
+    "fr": "Mettre une majuscule en début de phrase."
+  },
+  "ChatGPT Configuration": {
+    "tr": "ChatGPT yapılandırması",
+    "ru": "Настройки ChatGPT",
+    "es": "Configuración de ChatGPT",
+    "fr": "Configuration de ChatGPT"
+  },
+  "ChatGPT Error": {
+    "tr": "ChatGPT hatası",
+    "ru": "Ошибка ChatGPT",
+    "es": "Error de ChatGPT",
+    "fr": "Erreur ChatGPT"
+  },
+  "ChatGPT Writing (OFF)": {
+    "tr": "ChatGPT Writing (KAPALI)",
+    "ru": "ChatGPT Writing (ВЫКЛ)",
+    "es": "ChatGPT Writing (DESACTIVADO)",
+    "fr": "ChatGPT Writing (DÉSACTIVÉ)"
+  },
+  "ChatGPT Writing (ON)": {
+    "tr": "ChatGPT Writing (AÇIK)",
+    "ru": "ChatGPT Writing (ВКЛ)",
+    "es": "ChatGPT Writing (ACTIVADO)",
+    "fr": "ChatGPT Writing (ACTIVÉ)"
+  },
+  "ChatGPT model to use": {
+    "tr": "Kullanılacak ChatGPT modeli",
+    "ru": "Используемая модель ChatGPT",
+    "es": "Modelo de ChatGPT que usar",
+    "fr": "Modèle ChatGPT à utiliser"
+  },
+  "Clear All": {
+    "tr": "Tümünü Temizle",
+    "ru": "Очистить всё",
+    "es": "Borrar todo",
+    "fr": "Tout effacer"
+  },
+  "Configure your API key in the plugin settings.": {
+    "tr": "API anahtarını eklenti ayarlarından gir.",
+    "ru": "Укажите API-ключ в настройках плагина.",
+    "es": "Configura tu clave de API en los ajustes del plugin.",
+    "fr": "Configurez votre clé API dans les paramètres du plugin."
+  },
+  "Configured": {
+    "tr": "Ayarlandı",
+    "ru": "Настроен",
+    "es": "Configurada",
+    "fr": "Configurée"
+  },
+  "Consistent": {
+    "tr": "Tutarlı",
+    "ru": "Постоянный",
+    "es": "Constante",
+    "fr": "Constant"
+  },
+  "Consistent filename": {
+    "tr": "Sabit dosya adı",
+    "ru": "Постоянное имя файла",
+    "es": "Nombre de archivo constante",
+    "fr": "Nom de fichier constant"
+  },
+  "Copied!": {
+    "tr": "Kopyalandı",
+    "ru": "Скопировано",
+    "es": "Copiado",
+    "fr": "Copié"
+  },
+  "Copy": {
+    "tr": "Kopyala",
+    "ru": "Копировать",
+    "es": "Copiar",
+    "fr": "Copier"
+  },
+  "Could not decrypt this message": {
+    "tr": "Bu mesajın şifresi çözülemedi",
+    "ru": "Не удалось расшифровать сообщение",
+    "es": "No se pudo descifrar este mensaje",
+    "fr": "Impossible de déchiffrer ce message"
+  },
+  "Couldn't add the reaction": {
+    "tr": "Tepki eklenemedi",
+    "ru": "Не удалось добавить реакцию",
+    "es": "No se pudo añadir la reacción",
+    "fr": "Impossible d'ajouter la réaction"
+  },
+  "Date & Time": {
+    "tr": "Tarih ve Saat",
+    "ru": "Дата и время",
+    "es": "Fecha y hora",
+    "fr": "Date et heure"
+  },
+  "Decrypt message": {
+    "tr": "Mesajın şifresini çöz",
+    "ru": "Расшифровать сообщение",
+    "es": "Descifrar mensaje",
+    "fr": "Déchiffrer le message"
+  },
+  "Delay (minutes)": {
+    "tr": "Gecikme (dakika)",
+    "ru": "Задержка (минуты)",
+    "es": "Retraso (minutos)",
+    "fr": "Délai (minutes)"
+  },
+  "Delay before deletion (seconds)": {
+    "tr": "Silmeden önce gecikme (saniye)",
+    "ru": "Задержка перед удалением (сек)",
+    "es": "Espera antes de borrar (segundos)",
+    "fr": "Délai avant suppression (secondes)"
+  },
+  "Detected technique: {technique}": {
+    "tr": "Algılanan teknik: {technique}",
+    "ru": "Обнаруженная техника: {technique}",
+    "es": "Técnica detectada: {technique}",
+    "fr": "Technique détectée : {technique}"
+  },
+  "Do not ping the listed users / roles": {
+    "tr": "Listedeki kullanıcıları/rolleri bahsetme",
+    "ru": "Не пинговать указанных пользователей/роли",
+    "es": "No mencionar a los usuarios/roles de la lista",
+    "fr": "Ne pas mentionner les utilisateurs/rôles listés"
+  },
+  "Enable ChatGPT Writing plugin": {
+    "tr": "ChatGPT Writing eklentisini aç",
+    "ru": "Включить плагин ChatGPT Writing",
+    "es": "Activar el plugin ChatGPT Writing",
+    "fr": "Activer le plugin ChatGPT Writing"
+  },
+  "Enable Signature": {
+    "tr": "İmzayı Aç",
+    "ru": "Включить подпись",
+    "es": "Activar firma",
+    "fr": "Activer la signature"
+  },
+  "Enable yellow/red colouring as you get closer to the character limit": {
+    "tr": "Karakter sınırına yaklaştıkça sarı/kırmızı renklendir",
+    "ru": "Жёлтый/красный цвет по мере приближения к лимиту символов",
+    "es": "Color amarillo/rojo al acercarte al límite de caracteres",
+    "fr": "Couleur jaune/rouge à l'approche de la limite"
+  },
+  "Encrypt messages": {
+    "tr": "Mesajları şifrele",
+    "ru": "Шифровать сообщения",
+    "es": "Cifrar mensajes",
+    "fr": "Chiffrer les messages"
+  },
+  "Encryption active, technique {technique}": {
+    "tr": "Şifreleme etkin, teknik {technique}",
+    "ru": "Шифрование включено, техника {technique}",
+    "es": "Cifrado activado, técnica {technique}",
+    "fr": "Chiffrement activé, technique {technique}"
+  },
+  "Encryption disabled": {
+    "tr": "Şifreleme kapalı",
+    "ru": "Шифрование выключено",
+    "es": "Cifrado desactivado",
+    "fr": "Chiffrement désactivé"
+  },
+  "Encryption technique": {
+    "tr": "Şifreleme tekniği",
+    "ru": "Техника шифрования",
+    "es": "Técnica de cifrado",
+    "fr": "Technique de chiffrement"
+  },
+  "Encryption technique: {technique}": {
+    "tr": "Şifreleme tekniği: {technique}",
+    "ru": "Техника шифрования: {technique}",
+    "es": "Técnica de cifrado: {technique}",
+    "fr": "Technique de chiffrement : {technique}"
+  },
+  "Ensure contractions contain apostrophes.": {
+    "tr": "Kısaltmaların kesme işareti içermesini sağla.",
+    "ru": "Добавлять апострофы в сокращения.",
+    "es": "Asegurar que las contracciones lleven apóstrofo.",
+    "fr": "S'assurer que les contractions ont une apostrophe."
+  },
+  "Expand contractions.": {
+    "tr": "Kısaltmaları uzun yaz.",
+    "ru": "Раскрывать сокращения.",
+    "es": "Expandir las contracciones.",
+    "fr": "Développer les contractions."
+  },
+  "Failed to send part of the message": {
+    "tr": "Mesajın bir kısmı gönderilemedi",
+    "ru": "Не удалось отправить часть сообщения",
+    "es": "No se pudo enviar parte del mensaje",
+    "fr": "Impossible d'envoyer une partie du message"
+  },
+  "Failed to send scheduled message": {
+    "tr": "Zamanlanmış mesaj gönderilemedi",
+    "ru": "Не удалось отправить запланированное сообщение",
+    "es": "No se pudo enviar el mensaje programado",
+    "fr": "Impossible d'envoyer le message programmé"
+  },
+  "Failed to send the silent message": {
+    "tr": "Sessiz mesaj gönderilemedi",
+    "ru": "Не удалось отправить беззвучное сообщение",
+    "es": "No se pudo enviar el mensaje silencioso",
+    "fr": "Impossible d'envoyer le message silencieux"
+  },
+  "GPT-4o (2024-08-06) - Recommended": {
+    "tr": "GPT-4o (2024-08-06) - Önerilen",
+    "ru": "GPT-4o (2024-08-06) — рекомендуется",
+    "es": "GPT-4o (2024-08-06) - Recomendado",
+    "fr": "GPT-4o (2024-08-06) - Recommandé"
+  },
+  "GPT-4o Mini (2024-07-18) - Fast & Economical": {
+    "tr": "GPT-4o Mini (2024-07-18) - Hızlı ve Ekonomik",
+    "ru": "GPT-4o Mini (2024-07-18) — быстрый и экономичный",
+    "es": "GPT-4o Mini (2024-07-18) - Rápido y económico",
+    "fr": "GPT-4o Mini (2024-07-18) - Rapide et économique"
+  },
+  "How often to check for messages to send (seconds).": {
+    "tr": "Gönderilecek mesajlar ne sıklıkla kontrol edilsin (saniye).",
+    "ru": "Как часто проверять сообщения к отправке (секунды).",
+    "es": "Cada cuánto buscar mensajes por enviar (segundos).",
+    "fr": "Fréquence de vérification des messages à envoyer (secondes)."
+  },
+  "Insert Timestamp": {
+    "tr": "Zaman Damgası Ekle",
+    "ru": "Вставить метку времени",
+    "es": "Insertar marca de tiempo",
+    "fr": "Insérer un horodatage"
+  },
+  "Invalid or expired API key": {
+    "tr": "Geçersiz veya süresi dolmuş API anahtarı",
+    "ru": "Недействительный или просроченный API-ключ",
+    "es": "Clave de API no válida o caducada",
+    "fr": "Clé API invalide ou expirée"
+  },
+  "Inverts the `r` flag, so using the `r` flag enables non-regex mode, and omitting it uses regex mode.": {
+    "tr": "`r` bayrağını tersine çevirir: `r` kullanınca regex kapanır, kullanmayınca regex açılır.",
+    "ru": "Инвертирует флаг `r`: с ним regex выключен, без него включён.",
+    "es": "Invierte la bandera `r`: con `r` se desactiva regex y sin ella se usa regex.",
+    "fr": "Inverse le drapeau `r` : avec `r` pas de regex, sans `r` regex activée."
+  },
+  "List of role ids to allow or exempt pings for (separated by commas or spaces)": {
+    "tr": "Bahsetmeye izin verilecek veya muaf tutulacak rol ID'leri (virgül veya boşlukla ayır)",
+    "ru": "ID ролей, для которых упоминания разрешены или исключены (через запятую или пробел)",
+    "es": "IDs de roles a permitir o eximir de menciones (separadas por comas o espacios)",
+    "fr": "ID des rôles autorisés ou exemptés de mentions (virgules ou espaces)"
+  },
+  "List of user ids to allow or exempt pings for (separated by commas or spaces)": {
+    "tr": "Bahsetmeye izin verilecek veya muaf tutulacak kullanıcı ID'leri (virgül veya boşlukla ayır)",
+    "ru": "ID пользователей, для которых упоминания разрешены или исключены (через запятую или пробел)",
+    "es": "IDs de usuarios a permitir o eximir de menciones (separadas por comas o espacios)",
+    "fr": "ID des utilisateurs autorisés ou exemptés de mentions (virgules ou espaces)"
+  },
+  "Max Tokens": {
+    "tr": "En fazla token",
+    "ru": "Макс. токенов",
+    "es": "Tokens máximos",
+    "fr": "Jetons max"
+  },
+  "Max scheduled messages per channel that can fire in the same minute.": {
+    "tr": "Kanal başına aynı dakikada gönderilebilecek en fazla zamanlanmış mesaj.",
+    "ru": "Макс. запланированных сообщений на канал в одну минуту.",
+    "es": "Mensajes programados máximos por canal en el mismo minuto.",
+    "fr": "Messages programmés max par salon dans la même minute."
+  },
+  "Maximum number of tokens in the response": {
+    "tr": "Yanıttaki en fazla token",
+    "ru": "Макс. токенов в ответе",
+    "es": "Tokens máximos en la respuesta",
+    "fr": "Jetons max dans la réponse"
+  },
+  "Maximum of {count} messages per channel per minute reached": {
+    "tr": "Kanal başına dakikada en fazla {count} mesaj sınırına ulaşıldı",
+    "ru": "Достигнут предел: не более {count} сообщений на канал в минуту",
+    "es": "Se alcanzó el máximo de {count} mensajes por canal por minuto",
+    "fr": "Maximum de {count} messages par salon et par minute atteint"
+  },
+  "Maximum slowmode duration allowed when splitting messages.": {
+    "tr": "Mesaj bölerken izin verilen en uzun yavaş mod süresi.",
+    "ru": "Макс. медленный режим при разбиении сообщений.",
+    "es": "Modo lento máximo permitido al dividir mensajes.",
+    "fr": "Mode lent max autorisé pour le découpage des messages."
+  },
+  "Message scheduled!": {
+    "tr": "Mesaj zamanlandı",
+    "ru": "Сообщение запланировано",
+    "es": "Mensaje programado",
+    "fr": "Message programmé"
+  },
+  "Message too long to encrypt ({length}/2000)": {
+    "tr": "Mesaj şifrelemek için çok uzun ({length}/2000)",
+    "ru": "Сообщение слишком длинное для шифрования ({length}/2000)",
+    "es": "El mensaje es demasiado largo para cifrarlo ({length}/2000)",
+    "fr": "Message trop long pour être chiffré ({length}/2000)"
+  },
+  "Message with rules applied": {
+    "tr": "Kurallar uygulanmış mesaj",
+    "ru": "Сообщение после правил",
+    "es": "Mensaje con las reglas aplicadas",
+    "fr": "Message avec les règles appliquées"
+  },
+  "Minimum delay between each chunk in seconds.": {
+    "tr": "Parçalar arası en kısa bekleme (saniye).",
+    "ru": "Мин. задержка между частями в секундах.",
+    "es": "Retraso mínimo entre cada fragmento, en segundos.",
+    "fr": "Délai min entre chaque morceau, en secondes."
+  },
+  "Model": {
+    "tr": "Model",
+    "ru": "Модель",
+    "es": "Modelo",
+    "fr": "Modèle"
+  },
+  "More powerful replacements using Regular Expressions. This section is for advanced users. If you don't understand it, just ignore it": {
+    "tr": "Düzenli ifadelerle daha güçlü değiştirmeler. Bu bölüm ileri düzey kullanıcılar için. Anlamıyorsan görmezden gel",
+    "ru": "Более мощные замены с регулярными выражениями. Раздел для опытных пользователей — если непонятно, просто пропустите",
+    "es": "Reemplazos más potentes con expresiones regulares. Esta sección es para usuarios avanzados; si no la entiendes, ignórala",
+    "fr": "Remplacements plus puissants avec des expressions régulières. Section pour utilisateurs avancés : si vous ne comprenez pas, ignorez-la"
+  },
+  "Newlines": {
+    "tr": "Yeni satırlar",
+    "ru": "Переносы строк",
+    "es": "Saltos de línea",
+    "fr": "Sauts de ligne"
+  },
+  "No question provided!": {
+    "tr": "Soru girilmedi!",
+    "ru": "Вопрос не указан!",
+    "es": "¡No has escrito ninguna pregunta!",
+    "fr": "Aucune question fournie !"
+  },
+  "No scheduled messages": {
+    "tr": "Zamanlanmış mesaj yok",
+    "ru": "Запланированных сообщений нет",
+    "es": "No hay mensajes programados",
+    "fr": "Aucun message programmé"
+  },
+  "Not configured or invalid": {
+    "tr": "Ayarlanmamış veya geçersiz",
+    "ru": "Не настроен или недействителен",
+    "es": "Sin configurar o no válida",
+    "fr": "Non configurée ou invalide"
+  },
+  "One rule per line, written as find => replace. Add => text at the end to only apply the rule when the message includes that text. Write \\n for a new line.": {
+    "tr": "Her satıra bir kural, bul => değiştir biçiminde. Kuralın yalnızca mesaj belirli bir metni içerdiğinde uygulanması için sona => metin ekle. Yeni satır için \\n yaz.",
+    "ru": "Одно правило на строку в виде найти => заменить. Добавьте в конце => текст, чтобы правило применялось, только если сообщение содержит этот текст. Для новой строки пишите \\n.",
+    "es": "Una regla por línea, con el formato buscar => reemplazar. Añade => texto al final para aplicar la regla solo si el mensaje incluye ese texto. Escribe \\n para un salto de línea.",
+    "fr": "Une règle par ligne, sous la forme chercher => remplacer. Ajoutez => texte à la fin pour n'appliquer la règle que si le message contient ce texte. Écrivez \\n pour un retour à la ligne."
+  },
+  "Only ping the listed users / roles": {
+    "tr": "Sadece listedeki kullanıcı / rollerden bahset",
+    "ru": "Упоминать только указанных пользователей и роли",
+    "es": "Mencionar solo a los usuarios / roles de la lista",
+    "fr": "Mentionner seulement les utilisateurs / rôles listés"
+  },
+  "Percent period frequency (this majorly annoys some people).": {
+    "tr": "Nokta koyma sıklığı, yüzde (bazılarını çok sinir eder).",
+    "ru": "Частота точек в процентах (некоторых очень раздражает).",
+    "es": "Frecuencia de puntos en % (a algunos les molesta mucho).",
+    "fr": "Fréquence des points en % (agace beaucoup certains)."
+  },
+  "Please enter a valid delay": {
+    "tr": "Lütfen geçerli bir gecikme gir",
+    "ru": "Введите корректную задержку",
+    "es": "Introduce un retraso válido",
+    "fr": "Veuillez saisir un délai valide"
+  },
+  "Please select a future date and time": {
+    "tr": "Lütfen gelecekte bir tarih ve saat seç",
+    "ru": "Выберите дату и время в будущем",
+    "es": "Selecciona una fecha y hora futuras",
+    "fr": "Veuillez choisir une date et une heure à venir"
+  },
+  "Prefer this boundary when splitting a message.": {
+    "tr": "Mesajı bölerken bu sınırı tercih et.",
+    "ru": "Предпочитать эту границу при разбиении сообщения.",
+    "es": "Preferir este límite al dividir un mensaje.",
+    "fr": "Préférer cette limite pour découper un message."
+  },
+  "Preview Message": {
+    "tr": "Mesajı Önizle",
+    "ru": "Предпросмотр сообщения",
+    "es": "Vista previa del mensaje",
+    "fr": "Aperçu du message"
+  },
+  "Processing": {
+    "tr": "İşleniyor",
+    "ru": "Обработка",
+    "es": "Procesando",
+    "fr": "En cours"
+  },
+  "Punctate sentences.": {
+    "tr": "Cümlelere noktalama ekle.",
+    "ru": "Ставить знаки препинания.",
+    "es": "Puntuar las frases.",
+    "fr": "Ponctuer les phrases."
+  },
+  "Quick disable. Turns off message modifying without requiring a client reload.": {
+    "tr": "Hızlı kapat. Mesaj değiştirmeyi istemciyi yeniden yüklemeden kapatır.",
+    "ru": "Быстро отключить изменение сообщений без перезагрузки клиента.",
+    "es": "Desactivación rápida. Apaga la modificación de mensajes sin recargar.",
+    "fr": "Désactivation rapide. Coupe la modification des messages sans recharger."
+  },
+  "Random Characters": {
+    "tr": "Rastgele karakterler",
+    "ru": "Случайные символы",
+    "es": "Caracteres aleatorios",
+    "fr": "Caractères aléatoires"
+  },
+  "Random characters length": {
+    "tr": "Rastgele karakter uzunluğu",
+    "ru": "Длина случайных символов",
+    "es": "Longitud de los caracteres aleatorios",
+    "fr": "Longueur des caractères aléatoires"
+  },
+  "Rate limit reached, please try again later": {
+    "tr": "Hız sınırına ulaşıldı, lütfen daha sonra tekrar dene",
+    "ru": "Достигнут лимит запросов, попробуйте позже",
+    "es": "Se alcanzó el límite de solicitudes, inténtalo más tarde",
+    "fr": "Limite de requêtes atteinte, réessayez plus tard"
+  },
+  "Ready": {
+    "tr": "Hazır",
+    "ru": "Готов",
+    "es": "Listo",
+    "fr": "Prêt"
+  },
+  "Regex Replacements": {
+    "tr": "Regex Değiştirmeleri",
+    "ru": "Замены по regex",
+    "es": "Reemplazos con regex",
+    "fr": "Remplacements regex"
+  },
+  "Remove": {
+    "tr": "Kaldır",
+    "ru": "Убрать",
+    "es": "Quitar",
+    "fr": "Retirer"
+  },
+  "Replace timestamps in message contents": {
+    "tr": "Mesaj içeriğindeki zaman damgalarını değiştir",
+    "ru": "Заменять метки времени в сообщениях",
+    "es": "Reemplazar marcas de tiempo en los mensajes",
+    "fr": "Remplacer les horodatages dans les messages"
+  },
+  "Response creativity in percent (0 = very precise, 100 = very creative)": {
+    "tr": "Yanıt yaratıcılığı, yüzde olarak (0 = çok kesin, 100 = çok yaratıcı)",
+    "ru": "Креативность ответа в процентах (0 = очень точно, 100 = очень креативно)",
+    "es": "Creatividad de la respuesta en porcentaje (0 = muy precisa, 100 = muy creativa)",
+    "fr": "Créativité de la réponse en pourcentage (0 = très précise, 100 = très créative)"
+  },
+  "Response generated successfully": {
+    "tr": "Yanıt başarıyla oluşturuldu",
+    "ru": "Ответ успешно сгенерирован",
+    "es": "Respuesta generada correctamente",
+    "fr": "Réponse générée avec succès"
+  },
+  "Reverse messages": {
+    "tr": "Mesajları ters çevir",
+    "ru": "Переворачивать сообщения",
+    "es": "Invertir mensajes",
+    "fr": "Inverser les messages"
+  },
+  "Reversed messages off": {
+    "tr": "Ters mesajlar kapalı",
+    "ru": "Перевёрнутые сообщения выключены",
+    "es": "Mensajes invertidos desactivados",
+    "fr": "Messages inversés désactivés"
+  },
+  "Reversed messages on": {
+    "tr": "Ters mesajlar açık",
+    "ru": "Перевёрнутые сообщения включены",
+    "es": "Mensajes invertidos activados",
+    "fr": "Messages inversés activés"
+  },
+  "Rule Tester": {
+    "tr": "Kural Deneyici",
+    "ru": "Проверка правил",
+    "es": "Probador de reglas",
+    "fr": "Testeur de règles"
+  },
+  "Sanitize edited messages too": {
+    "tr": "Düzenlenen mesajları da temizle",
+    "ru": "Очищать и изменённые сообщения",
+    "es": "Limpiar también los mensajes editados",
+    "fr": "Nettoyer aussi les messages modifiés"
+  },
+  "Sanitize outgoing messages (before sending)": {
+    "tr": "Giden mesajları temizle (göndermeden önce)",
+    "ru": "Очищать исходящие сообщения (до отправки)",
+    "es": "Limpiar mensajes salientes (antes de enviar)",
+    "fr": "Nettoyer les messages sortants (avant envoi)"
+  },
+  "Schedule Message": {
+    "tr": "Mesajı Zamanla",
+    "ru": "Запланировать сообщение",
+    "es": "Programar mensaje",
+    "fr": "Programmer le message"
+  },
+  "Schedule Mode": {
+    "tr": "Zamanlama modu",
+    "ru": "Режим планирования",
+    "es": "Modo de programación",
+    "fr": "Mode planification"
+  },
+  "Schedule Mode OFF": {
+    "tr": "Zamanlama modu KAPALI",
+    "ru": "Режим планирования ВЫКЛ",
+    "es": "Modo de programación DESACTIVADO",
+    "fr": "Mode planification DÉSACTIVÉ"
+  },
+  "Schedule Mode ON": {
+    "tr": "Zamanlama modu AÇIK",
+    "ru": "Режим планирования ВКЛ",
+    "es": "Modo de programación ACTIVADO",
+    "fr": "Mode planification ACTIVÉ"
+  },
+  "Scheduled Messages": {
+    "tr": "Zamanlanmış Mesajlar",
+    "ru": "Запланированные сообщения",
+    "es": "Mensajes programados",
+    "fr": "Messages programmés"
+  },
+  "Scheduled message removed": {
+    "tr": "Zamanlanmış mesaj kaldırıldı",
+    "ru": "Запланированное сообщение удалено",
+    "es": "Mensaje programado eliminado",
+    "fr": "Message programmé supprimé"
+  },
+  "Scheduled message sent to {channel}": {
+    "tr": "Zamanlanmış mesaj {channel} kanalına gönderildi",
+    "ru": "Запланированное сообщение отправлено в {channel}",
+    "es": "Mensaje programado enviado a {channel}",
+    "fr": "Message planifié envoyé dans {channel}"
+  },
+  "Scheduled messages can't include files": {
+    "tr": "Zamanlanmış mesajlar dosya içeremez",
+    "ru": "Запланированные сообщения не могут содержать файлы",
+    "es": "Los mensajes programados no pueden incluir archivos",
+    "fr": "Les messages planifiés ne peuvent pas contenir de fichiers"
+  },
+  "SelfDestruct active": {
+    "tr": "SelfDestruct etkin",
+    "ru": "SelfDestruct включён",
+    "es": "SelfDestruct activo",
+    "fr": "SelfDestruct actif"
+  },
+  "SelfDestruct off": {
+    "tr": "SelfDestruct kapalı",
+    "ru": "SelfDestruct выключен",
+    "es": "SelfDestruct desactivado",
+    "fr": "SelfDestruct désactivé"
+  },
+  "SelfDestruct on: messages are deleted after {seconds} seconds": {
+    "tr": "SelfDestruct açık: mesajlar {seconds} saniye sonra silinir",
+    "ru": "SelfDestruct включён: сообщения удаляются через {seconds} с",
+    "es": "SelfDestruct activado: los mensajes se eliminan tras {seconds} segundos",
+    "fr": "SelfDestruct activé : les messages sont supprimés après {seconds} secondes"
+  },
+  "Send Now": {
+    "tr": "Şimdi gönder",
+    "ru": "Отправить сейчас",
+    "es": "Enviar ahora",
+    "fr": "Envoyer maintenant"
+  },
+  "Send silently": {
+    "tr": "Sessiz gönder",
+    "ru": "Отправлять беззвучно",
+    "es": "Enviar en silencio",
+    "fr": "Envoyer en silence"
+  },
+  "Send timestamps easily via the send button's long-press menu & text shortcuts. See the settings!": {
+    "tr": "Gönder düğmesinin basılı tutma menüsü ve metin kısayollarıyla kolayca zaman damgası gönder. Ayarlara göz at!",
+    "ru": "Отправляйте метки времени через меню долгого нажатия кнопки отправки и текстовые сокращения. Загляните в настройки!",
+    "es": "Envía marcas de tiempo fácilmente desde el menú de pulsación larga del botón de enviar y con atajos de texto. ¡Mira los ajustes!",
+    "fr": "Envoyez facilement des horodatages depuis le menu d'appui long du bouton d'envoi et avec des raccourcis texte. Voir les paramètres !"
+  },
+  "Sends messages that are automatically deleted after a configurable delay.": {
+    "tr": "Ayarlanabilir bir süre sonra otomatik olarak silinen mesajlar gönderir.",
+    "ru": "Отправляет сообщения, которые автоматически удаляются через заданное время.",
+    "es": "Envía mensajes que se eliminan automáticamente tras un retraso configurable.",
+    "fr": "Envoie des messages supprimés automatiquement après un délai configurable."
+  },
+  "Should the message be merged if the last message has an attachment?": {
+    "tr": "Son mesajda ek varsa mesaj birleştirilsin mi?",
+    "ru": "Объединять, если в последнем сообщении есть вложение?",
+    "es": "¿Combinar el mensaje si el último tiene un adjunto?",
+    "fr": "Fusionner si le dernier message a une pièce jointe ?"
+  },
+  "Show a notification when invisible characters are detected": {
+    "tr": "Görünmez karakterler algılanınca bildirim göster",
+    "ru": "Уведомлять о невидимых символах",
+    "es": "Avisar al detectar caracteres invisibles",
+    "fr": "Notifier quand des caractères invisibles sont détectés"
+  },
+  "Show detailed logs in console": {
+    "tr": "Konsolda ayrıntılı kayıtları göster",
+    "ru": "Подробный журнал в консоли",
+    "es": "Mostrar registros detallados en la consola",
+    "fr": "Journaux détaillés dans la console"
+  },
+  "Show notifications for errors and successes": {
+    "tr": "Hatalar ve başarılar için bildirim göster",
+    "ru": "Уведомления об ошибках и успехах",
+    "es": "Avisar de errores y éxitos",
+    "fr": "Notifier erreurs et réussites"
+  },
+  "Show toast notifications when messages are sent.": {
+    "tr": "Mesajlar gönderilince bildirim göster.",
+    "ru": "Уведомлять об отправке сообщений.",
+    "es": "Avisar al enviar mensajes.",
+    "fr": "Notifier l'envoi des messages."
+  },
+  "Signature disabled!": {
+    "tr": "İmza kapatıldı!",
+    "ru": "Подпись выключена!",
+    "es": "¡Firma desactivada!",
+    "fr": "Signature désactivée !"
+  },
+  "Signature enabled!": {
+    "tr": "İmza açıldı!",
+    "ru": "Подпись включена!",
+    "es": "¡Firma activada!",
+    "fr": "Signature activée !"
+  },
+  "Silent messages can't include files or go over the length limit, so this one was sent normally": {
+    "tr": "Sessiz mesajlar dosya içeremez veya uzunluk sınırını aşamaz, bu yüzden bu mesaj normal şekilde gönderildi",
+    "ru": "Беззвучные сообщения не могут содержать файлы или превышать лимит длины, поэтому это сообщение отправлено как обычно",
+    "es": "Los mensajes silenciosos no pueden incluir archivos ni superar el límite de longitud, así que este se envió normalmente",
+    "fr": "Les messages silencieux ne peuvent pas contenir de fichiers ni dépasser la limite de longueur, celui-ci a donc été envoyé normalement"
+  },
+  "Silent messages off": {
+    "tr": "Sessiz mesajlar kapalı",
+    "ru": "Беззвучные сообщения выключены",
+    "es": "Mensajes silenciosos desactivados",
+    "fr": "Messages silencieux désactivés"
+  },
+  "Silent messages on": {
+    "tr": "Sessiz mesajlar açık",
+    "ru": "Беззвучные сообщения включены",
+    "es": "Mensajes silenciosos activados",
+    "fr": "Messages silencieux activés"
+  },
+  "Simple Replacements": {
+    "tr": "Basit Değiştirmeler",
+    "ru": "Простые замены",
+    "es": "Reemplazos simples",
+    "fr": "Remplacements simples"
+  },
+  "Simple find and replace rules. For example, find 'brb' and replace it with 'be right back'": {
+    "tr": "Basit bul-değiştir kuralları. Örneğin 'brb'yi bulup 'hemen döneceğim' ile değiştir",
+    "ru": "Простые правила «найти и заменить». Например, найти «brb» и заменить на «скоро вернусь»",
+    "es": "Reglas sencillas de buscar y reemplazar. Por ejemplo, buscar 'brb' y cambiarlo por 'ahora vuelvo'",
+    "fr": "Règles simples de rechercher-remplacer. Par exemple, trouver « brb » et le remplacer par « je reviens »"
+  },
+  "Spaces": {
+    "tr": "Boşluklar",
+    "ru": "Пробелы",
+    "es": "Espacios",
+    "fr": "Espaces"
+  },
+  "Status": {
+    "tr": "Durum",
+    "ru": "Статус",
+    "es": "Estado",
+    "fr": "Statut"
+  },
+  "Strict character limit": {
+    "tr": "Kesin karakter sınırı",
+    "ru": "Строгий лимит символов",
+    "es": "Límite estricto de caracteres",
+    "fr": "Limite stricte de caractères"
+  },
+  "Strings not to capitalise (separate with a comma)": {
+    "tr": "Büyük harfe çevrilmeyecek metinler (virgülle ayır)",
+    "ru": "Строки без заглавной буквы (через запятую)",
+    "es": "Textos que no se ponen en mayúscula (separados por comas)",
+    "fr": "Textes à ne pas capitaliser (séparés par des virgules)"
+  },
+  "System prompt to customize ChatGPT's behavior": {
+    "tr": "ChatGPT'nin davranışını özelleştirmek için sistem istemi",
+    "ru": "Системный промпт для настройки ChatGPT",
+    "es": "Prompt del sistema para ajustar ChatGPT",
+    "fr": "Prompt système pour personnaliser ChatGPT"
+  },
+  "Temperature": {
+    "tr": "Sıcaklık",
+    "ru": "Температура",
+    "es": "Temperatura",
+    "fr": "Température"
+  },
+  "The duration of bursts (in seconds).": {
+    "tr": "Patlamaların süresi (saniye).",
+    "ru": "Длительность вспышек (секунды).",
+    "es": "Duración de las ráfagas (segundos).",
+    "fr": "Durée des rafales (secondes)."
+  },
+  "The signature that will be added to the end of your messages": {
+    "tr": "Mesajlarının sonuna eklenecek imza",
+    "ru": "Подпись в конце ваших сообщений",
+    "es": "Firma que se añadirá al final de tus mensajes",
+    "fr": "Signature ajoutée à la fin de vos messages"
+  },
+  "There is no message of yours to edit": {
+    "tr": "Düzenlenecek bir mesajın yok",
+    "ru": "Нет вашего сообщения для изменения",
+    "es": "No hay ningún mensaje tuyo que editar",
+    "fr": "Aucun de vos messages à modifier"
+  },
+  "There is no message to react to": {
+    "tr": "Tepki verilecek mesaj yok",
+    "ru": "Нет сообщения для реакции",
+    "es": "No hay ningún mensaje al que reaccionar",
+    "fr": "Aucun message auquel réagir"
+  },
+  "This message is too long to schedule": {
+    "tr": "Bu mesaj zamanlamak için çok uzun",
+    "ru": "Это сообщение слишком длинное для планирования",
+    "es": "Este mensaje es demasiado largo para programarlo",
+    "fr": "Ce message est trop long pour être planifié"
+  },
+  "Timestamp": {
+    "tr": "Zaman damgası",
+    "ru": "Метка времени",
+    "es": "Marca de tiempo",
+    "fr": "Horodatage"
+  },
+  "Timestamp Format": {
+    "tr": "Zaman Damgası Biçimi",
+    "ru": "Формат метки времени",
+    "es": "Formato de marca de tiempo",
+    "fr": "Format d'horodatage"
+  },
+  "To quickly send time only timestamps, include timestamps formatted as `HH:MM` (including the backticks!) in your message": {
+    "tr": "Sadece saat içeren zaman damgalarını hızlıca göndermek için mesajına `HH:MM` biçiminde (ters tırnaklar dahil!) saat yaz",
+    "ru": "Чтобы быстро отправить время, напишите в сообщении `HH:MM` (вместе с обратными кавычками!)",
+    "es": "Para enviar rápido marcas de solo hora, escribe en tu mensaje la hora en formato `HH:MM` (¡con las comillas invertidas!)",
+    "fr": "Pour envoyer vite un horodatage d'heure seule, écrivez l'heure au format `HH:MM` (avec les accents graves !) dans votre message"
+  },
+  "Toggle functionality": {
+    "tr": "İşlevi aç/kapat",
+    "ru": "Включить/выключить функцию",
+    "es": "Activar o desactivar la función",
+    "fr": "Activer/désactiver la fonction"
+  },
+  "Type a message to preview it": {
+    "tr": "Önizlemek için bir mesaj yaz",
+    "ru": "Введите сообщение для предпросмотра",
+    "es": "Escribe un mensaje para previsualizarlo",
+    "fr": "Écrivez un message pour le prévisualiser"
+  },
+  "Type a message to test rules on": {
+    "tr": "Kuralları denemek için bir mesaj yaz",
+    "ru": "Введите сообщение для проверки правил",
+    "es": "Escribe un mensaje para probar las reglas",
+    "fr": "Saisissez un message pour tester les règles"
+  },
+  "Unexpected response from OpenAI API": {
+    "tr": "OpenAI API'sinden beklenmeyen yanıt",
+    "ru": "Неожиданный ответ от API OpenAI",
+    "es": "Respuesta inesperada de la API de OpenAI",
+    "fr": "Réponse inattendue de l'API OpenAI"
+  },
+  "Unknown": {
+    "tr": "Bilinmiyor",
+    "ru": "Неизвестно",
+    "es": "Desconocido",
+    "fr": "Inconnu"
+  },
+  "View Scheduled Messages": {
+    "tr": "Zamanlanmış mesajları gör",
+    "ru": "Посмотреть запланированные сообщения",
+    "es": "Ver mensajes programados",
+    "fr": "Voir les messages planifiés"
+  },
+  "What header to preface text with": {
+    "tr": "Metnin başına hangi başlık eklensin",
+    "ru": "Каким заголовком начинать текст",
+    "es": "Con qué cabecera empezar el texto",
+    "fr": "En-tête à placer avant le texte"
+  },
+  "Whether to add a space between messages when merging instead of new lines.": {
+    "tr": "Birleştirirken yeni satır yerine mesajlar arasına boşluk eklensin mi.",
+    "ru": "При объединении ставить пробел вместо переноса строки.",
+    "es": "Al combinar, usar un espacio en vez de saltos de línea.",
+    "fr": "En fusionnant, mettre un espace au lieu d'un saut de ligne."
+  },
+  "Whether to persist the state of the silent message toggle when changing channels": {
+    "tr": "Kanal değiştirirken sessiz mesaj düğmesinin durumu korunsun mu",
+    "ru": "Сохранять переключатель тихих сообщений при смене канала",
+    "es": "Mantener el interruptor de mensaje silencioso al cambiar de canal",
+    "fr": "Garder l'état du message silencieux en changeant de salon"
+  },
+  "Words that will not be capitalized (comma separated).": {
+    "tr": "Büyük harfle başlamayacak kelimeler (virgülle ayır).",
+    "ru": "Слова без заглавной буквы (через запятую).",
+    "es": "Palabras que no irán en mayúscula (separadas por comas).",
+    "fr": "Mots à ne pas capitaliser (séparés par des virgules)."
+  },
+  "Written to the debug log": {
+    "tr": "Hata ayıklama günlüğüne yazılır",
+    "ru": "Записывается в журнал отладки",
+    "es": "Se escribe en el registro de depuración",
+    "fr": "Écrit dans le journal de débogage"
+  },
+  "You are an assistant...": {
+    "tr": "Sen bir asistansın...",
+    "ru": "Ты ассистент...",
+    "es": "Eres un asistente...",
+    "fr": "Vous êtes un assistant..."
+  },
+  "Your OpenAI API key (obtained from https://platform.openai.com/api-keys)": {
+    "tr": "OpenAI API anahtarın (https://platform.openai.com/api-keys)",
+    "ru": "Ваш ключ API OpenAI (https://platform.openai.com/api-keys)",
+    "es": "Tu clave API de OpenAI (https://platform.openai.com/api-keys)",
+    "fr": "Votre clé API OpenAI (https://platform.openai.com/api-keys)"
+  },
+  "ZeroWidthSanitizer: tracking characters removed from your edit": {
+    "tr": "ZeroWidthSanitizer: düzenlemendeki izleme karakterleri kaldırıldı",
+    "ru": "ZeroWidthSanitizer: из правки удалены символы отслеживания",
+    "es": "ZeroWidthSanitizer: se quitaron caracteres de rastreo de tu edición",
+    "fr": "ZeroWidthSanitizer : caractères de pistage retirés de votre modification"
+  },
+  "ZeroWidthSanitizer: tracking characters removed from your message": {
+    "tr": "ZeroWidthSanitizer: mesajındaki izleme karakterleri kaldırıldı",
+    "ru": "ZeroWidthSanitizer: из сообщения удалены символы отслеживания",
+    "es": "ZeroWidthSanitizer: se quitaron caracteres de rastreo de tu mensaje",
+    "fr": "ZeroWidthSanitizer : caractères de pistage retirés de votre message"
+  }
+}

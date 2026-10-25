@@ -49,7 +49,7 @@ internal class SplitLargeMessages : ComposerPlugin(
     override fun start(context: Context) {
         onOutgoing(OutgoingMessages.Priority.DELIVERY + 20) { message ->
             val limit = ComposerUtils.messageLimit()
-            if (message.content.length <= limit) return@onOutgoing
+            if (message.startsThread || message.content.length <= limit) return@onOutgoing
 
             val channel = message.channel
             if (!canSplitIn(message.channelId, channel)) {

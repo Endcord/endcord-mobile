@@ -49,10 +49,14 @@ internal class CharacterCounter : EndcordPlugin(
 
     override fun start(context: Context) {
         patcher.after<FlexInputFragment>("onViewCreated", View::class.java, Bundle::class.java) {
-            try {
-                attach(this)
-            } catch (e: Throwable) {
-                logger.error("Failed to add the character counter", e)
+            // Posted so the input is attached to its container by then
+            val fragment = this
+            view?.post {
+                try {
+                    if (fragment.view != null) attach(fragment)
+                } catch (e: Throwable) {
+                    logger.error("Failed to add the character counter", e)
+                }
             }
         }
         // Chat inputs that are already open
@@ -91,15 +95,15 @@ internal class CharacterCounter : EndcordPlugin(
         val input = fragment.l()
 
         // The chat input fragment sits in a vertical list (reply bar, autocomplete, input); add a row above it
-        val holder = root.parent as? View ?: return
-        val column = holder.parent as? LinearLayout
+        val holder = root.parent as? View
+        val column = holder?.parent as? LinearLayout
         val counterView = createView(root.context)
-        if (column != null && column.orientation == LinearLayout.VERTICAL) {
+        if (holder != null && column != null && column.orientation == LinearLayout.VERTICAL) {
             column.addView(counterView, column.indexOfChild(holder))
         } else if (root is LinearLayout && root.orientation == LinearLayout.VERTICAL) {
             root.addView(counterView, 0)
         } else {
-            logger.warn("No place for the character counter in ${holder.parent?.javaClass?.name}")
+            logger.warn("No place for the character counter in ${holder?.parent?.javaClass?.name}")
             return
         }
 
