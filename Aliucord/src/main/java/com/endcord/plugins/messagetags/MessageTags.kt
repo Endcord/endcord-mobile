@@ -55,13 +55,15 @@ internal class MessageTags : EndcordPlugin(
         store.load()
 
         MessageActions.register(name, "Tags", R.e.ic_flag_24dp, visible = { !it.message.isLocal }) { ctx ->
+            // The sheet is gone by the time an item is picked, so take what's needed from it now
             val fm = ctx.sheet.parentFragmentManager
+            val activity = ctx.sheet.requireActivity()
             val message = ctx.message
             val tags = availableTags()
             val current = tagsOf(message.id)
             val labels = tags.map { if (it in current) "✓ $it" else it } + I18n.t("Open Tagged Messages")
             Common.pick(fm, I18n.t("Tags"), labels) { index ->
-                if (index < tags.size) toggle(message, tags[index]) else open(ctx.sheet.requireContext())
+                if (index < tags.size) toggle(message, tags[index]) else open(activity)
             }
         }
 

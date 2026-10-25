@@ -1,0 +1,980 @@
+{
+  "(no text)": {
+    "tr": "(metin yok)",
+    "ru": "(нет текста)",
+    "es": "(sin texto)",
+    "fr": "(pas de texte)"
+  },
+  "Action failed": {
+    "tr": "İşlem başarısız oldu",
+    "ru": "Не удалось выполнить действие",
+    "es": "La acción falló",
+    "fr": "L'action a échoué"
+  },
+  "Add a note": {
+    "tr": "Not ekle",
+    "ru": "Добавить заметку",
+    "es": "Añadir una nota",
+    "fr": "Ajouter une note"
+  },
+  "Add note": {
+    "tr": "Not ekle",
+    "ru": "Добавить заметку",
+    "es": "Añadir nota",
+    "fr": "Ajouter une note"
+  },
+  "All": {
+    "tr": "Tümü",
+    "ru": "Все",
+    "es": "Todos",
+    "fr": "Tous"
+  },
+  "Also add an entry that sends the copy as a reply to the original message": {
+    "tr": "Kopyayı orijinal mesaja yanıt olarak gönderen bir seçenek de ekler",
+    "ru": "Также добавляет пункт, который отправляет копию ответом на исходное сообщение",
+    "es": "También añade una opción que envía la copia como respuesta al mensaje original",
+    "fr": "Ajoute aussi une option qui envoie la copie en réponse au message d'origine"
+  },
+  "Also add an entry to the message menu that copies the raw text right away": {
+    "tr": "Mesaj menüsüne ham metni doğrudan kopyalayan bir seçenek de ekler",
+    "ru": "Также добавляет в меню сообщения пункт, который сразу копирует исходный текст",
+    "es": "También añade al menú del mensaje una opción que copia el texto en bruto al instante",
+    "fr": "Ajoute aussi au menu du message une option qui copie directement le texte brut"
+  },
+  "Also download non-media attachments. Only enable this if you trust what people send you.": {
+    "tr": "Medya olmayan ekleri de indir. Sadece gönderilenlere güveniyorsan aç.",
+    "ru": "Скачивать и не-медиа вложения. Включайте, только если доверяете отправителям.",
+    "es": "Descargar también adjuntos que no son multimedia. Actívalo solo si confías en lo que te envían.",
+    "fr": "Télécharger aussi les pièces jointes non média. À activer seulement si vous faites confiance aux envois."
+  },
+  "Bookmark": {
+    "tr": "Yer imi ekle",
+    "ru": "Добавить в закладки",
+    "es": "Añadir a marcadores",
+    "fr": "Ajouter aux signets"
+  },
+  "Bookmarked": {
+    "tr": "Yer imlerine eklendi",
+    "ru": "Добавлено в закладки",
+    "es": "Añadido a marcadores",
+    "fr": "Ajouté aux signets"
+  },
+  "Bookmarks": {
+    "tr": "Yer İmleri",
+    "ru": "Закладки",
+    "es": "Marcadores",
+    "fr": "Signets"
+  },
+  "Browse, search and jump to your bookmarks": {
+    "tr": "Yer imlerine göz at, aralarında ara ve onlara git",
+    "ru": "Просматривайте закладки, ищите по ним и переходите к ним",
+    "es": "Explora y busca tus marcadores, y ve a ellos",
+    "fr": "Parcourez et recherchez vos signets, et accédez-y"
+  },
+  "Browse, search and jump to your tagged messages": {
+    "tr": "Etiketli mesajlarına göz at, aralarında ara ve onlara git",
+    "ru": "Просматривайте сообщения с тегами, ищите по ним и переходите к ним",
+    "es": "Explora y busca tus mensajes etiquetados, y ve a ellos",
+    "fr": "Parcourez et recherchez vos messages tagués, et accédez-y"
+  },
+  "Cancel": {
+    "tr": "İptal",
+    "ru": "Отмена",
+    "es": "Cancelar",
+    "fr": "Annuler"
+  },
+  "Catch Them In 4K.": {
+    "tr": "Onları 4K Yakala.",
+    "ru": "Поймай их в 4K.",
+    "es": "Atrápalos en 4K.",
+    "fr": "Attrapez-les en 4K."
+  },
+  "Channel Data": {
+    "tr": "Kanal Verisi",
+    "ru": "Данные канала",
+    "es": "Datos del canal",
+    "fr": "Données du salon"
+  },
+  "Channel notes": {
+    "tr": "Kanal notları",
+    "ru": "Заметки каналов",
+    "es": "Notas de canales",
+    "fr": "Notes de salons"
+  },
+  "Contacts copied to clipboard successfully.": {
+    "tr": "Kişiler panoya kopyalandı.",
+    "ru": "Контакты скопированы.",
+    "es": "Contactos copiados al portapapeles.",
+    "fr": "Contacts copiés dans le presse-papiers."
+  },
+  "Copied URL": {
+    "tr": "URL kopyalandı",
+    "ru": "URL скопирован",
+    "es": "URL copiada",
+    "fr": "URL copiée"
+  },
+  "Copied to clipboard": {
+    "tr": "Panoya kopyalandı",
+    "ru": "Скопировано в буфер обмена",
+    "es": "Copiado al portapapeles",
+    "fr": "Copié dans le presse-papiers"
+  },
+  "Copied!": {
+    "tr": "Kopyalandı",
+    "ru": "Скопировано",
+    "es": "Copiado",
+    "fr": "Copié"
+  },
+  "Copies your friends, blocked users and friend requests to the clipboard as JSON": {
+    "tr": "Arkadaşlarını, engellediğin kullanıcıları ve arkadaşlık isteklerini JSON olarak panoya kopyalar",
+    "ru": "Копирует ваших друзей, заблокированных пользователей и заявки в друзья в буфер обмена в формате JSON",
+    "es": "Copia tus amigos, usuarios bloqueados y solicitudes de amistad al portapapeles como JSON",
+    "fr": "Copie vos amis, utilisateurs bloqués et demandes d'ami dans le presse-papiers au format JSON"
+  },
+  "Copy Data": {
+    "tr": "Veriyi Kopyala",
+    "ru": "Копировать данные",
+    "es": "Copiar datos",
+    "fr": "Copier les données"
+  },
+  "Copy Emoji Markdown": {
+    "tr": "Emoji Markdown'ını Kopyala",
+    "ru": "Скопировать Markdown эмодзи",
+    "es": "Copiar Markdown del emoji",
+    "fr": "Copier le Markdown de l'emoji"
+  },
+  "Copy File Contents": {
+    "tr": "Dosya İçeriğini Kopyala",
+    "ru": "Копировать содержимое файла",
+    "es": "Copiar contenido del archivo",
+    "fr": "Copier le contenu du fichier"
+  },
+  "Copy Media Link": {
+    "tr": "Medya Bağlantısını Kopyala",
+    "ru": "Копировать ссылку на медиафайл",
+    "es": "Copiar enlace del archivo multimedia",
+    "fr": "Copier le lien du média"
+  },
+  "Copy Message Link": {
+    "tr": "Mesaj Bağlantısını Kopyala",
+    "ru": "Копировать ссылку на сообщение",
+    "es": "Copiar enlace del mensaje",
+    "fr": "Copier le lien du message"
+  },
+  "Copy Profile Colors": {
+    "tr": "Profil Renklerini Kopyala",
+    "ru": "Скопировать цвета профиля",
+    "es": "Copiar colores del perfil",
+    "fr": "Copier les couleurs du profil"
+  },
+  "Copy Raw Content": {
+    "tr": "Ham İçeriği Kopyala",
+    "ru": "Копировать исходный текст",
+    "es": "Copiar contenido en bruto",
+    "fr": "Copier le contenu brut"
+  },
+  "Copy Server Profile Colors": {
+    "tr": "Sunucu Profili Renklerini Kopyala",
+    "ru": "Скопировать цвета серверного профиля",
+    "es": "Copiar colores del perfil del servidor",
+    "fr": "Copier les couleurs du profil de serveur"
+  },
+  "Copy Sticker Link": {
+    "tr": "Çıkartma Bağlantısını Kopyala",
+    "ru": "Копировать ссылку на стикер",
+    "es": "Copiar enlace del sticker",
+    "fr": "Copier le lien de l'autocollant"
+  },
+  "Copy User Mention": {
+    "tr": "Kullanıcı Etiketini Kopyala",
+    "ru": "Скопировать упоминание",
+    "es": "Copiar mención del usuario",
+    "fr": "Copier la mention de l'utilisateur"
+  },
+  "Copy User URL": {
+    "tr": "Kullanıcı URL'sini Kopyala",
+    "ru": "Скопировать URL пользователя",
+    "es": "Copiar URL del usuario",
+    "fr": "Copier l'URL de l'utilisateur"
+  },
+  "Copy all": {
+    "tr": "Tümünü kopyala",
+    "ru": "Копировать все",
+    "es": "Copiar todos",
+    "fr": "Tout copier"
+  },
+  "Copy contacts": {
+    "tr": "Kişileri kopyala",
+    "ru": "Копировать контакты",
+    "es": "Copiar contactos",
+    "fr": "Copier les contacts"
+  },
+  "Couldn't find a reply.": {
+    "tr": "Yanıt bulunamadı.",
+    "ru": "Ответ не найден.",
+    "es": "No se encontró ninguna respuesta.",
+    "fr": "Aucune réponse trouvée."
+  },
+  "Couldn't get this button's link.": {
+    "tr": "Bu butonun bağlantısı alınamadı.",
+    "ru": "Не удалось получить ссылку этой кнопки.",
+    "es": "No se pudo obtener el enlace de este botón.",
+    "fr": "Impossible de récupérer le lien de ce bouton."
+  },
+  "Couldn't load messages for this channel.": {
+    "tr": "Bu kanalın mesajları yüklenemedi.",
+    "ru": "Не удалось загрузить сообщения этого канала.",
+    "es": "No se pudieron cargar los mensajes de este canal.",
+    "fr": "Impossible de charger les messages de ce salon."
+  },
+  "Custom watermark text (max 32 characters)": {
+    "tr": "Özel filigran metni (en fazla 32 karakter)",
+    "ru": "Свой текст водяного знака (до 32 символов)",
+    "es": "Texto de marca de agua (máx. 32 caracteres)",
+    "fr": "Texte du filigrane (32 caractères max)"
+  },
+  "Delete note": {
+    "tr": "Notu sil",
+    "ru": "Удалить заметку",
+    "es": "Eliminar nota",
+    "fr": "Supprimer la note"
+  },
+  "Direct Messages": {
+    "tr": "Doğrudan mesajlar",
+    "ru": "Личные сообщения",
+    "es": "Mensajes directos",
+    "fr": "Messages privés"
+  },
+  "Direct message": {
+    "tr": "Doğrudan mesaj",
+    "ru": "Личное сообщение",
+    "es": "Mensaje privado",
+    "fr": "Message privé"
+  },
+  "Download All Attachments": {
+    "tr": "Tüm Ekleri İndir",
+    "ru": "Скачать все вложения",
+    "es": "Descargar todos los adjuntos",
+    "fr": "Télécharger toutes les pièces jointes"
+  },
+  "Download all file types": {
+    "tr": "Tüm dosya türlerini indir",
+    "ru": "Скачивать файлы любых типов",
+    "es": "Descargar todos los tipos de archivo",
+    "fr": "Télécharger tous les types de fichiers"
+  },
+  "Downloading {count} attachments to Download/Endcord, skipped {skipped} files that aren't media.": {
+    "tr": "{count} ek Download/Endcord klasörüne indiriliyor, medya olmayan {skipped} dosya atlandı.",
+    "ru": "Вложения скачиваются в Download/Endcord: {count}. Пропущено файлов, которые не являются медиа: {skipped}.",
+    "es": "Descargando {count} adjuntos en Download/Endcord. Se omitieron {skipped} archivos que no son multimedia.",
+    "fr": "Téléchargement de {count} pièces jointes dans Download/Endcord. {skipped} fichiers qui ne sont pas des médias ont été ignorés."
+  },
+  "Downloading {count} attachments to Download/Endcord.": {
+    "tr": "{count} ek Download/Endcord klasörüne indiriliyor.",
+    "ru": "Вложения скачиваются в Download/Endcord: {count}.",
+    "es": "Descargando {count} adjuntos en Download/Endcord.",
+    "fr": "Téléchargement de {count} pièces jointes dans Download/Endcord."
+  },
+  "Downloading {done} of {total} attachments. {failed} failed.": {
+    "tr": "{total} ekten {done} tanesi indiriliyor. {failed} tanesi başarısız oldu.",
+    "ru": "Скачивается вложений: {done} из {total}. Не удалось: {failed}.",
+    "es": "Descargando {done} de {total} adjuntos. {failed} fallaron.",
+    "fr": "Téléchargement de {done} pièces jointes sur {total}. {failed} ont échoué."
+  },
+  "Edit": {
+    "tr": "Düzenle",
+    "ru": "Изменить",
+    "es": "Editar",
+    "fr": "Modifier"
+  },
+  "Edit note": {
+    "tr": "Notu düzenle",
+    "ru": "Изменить заметку",
+    "es": "Editar nota",
+    "fr": "Modifier la note"
+  },
+  "Edit tags": {
+    "tr": "Etiketleri düzenle",
+    "ru": "Изменить теги",
+    "es": "Editar etiquetas",
+    "fr": "Modifier les tags"
+  },
+  "Export Message": {
+    "tr": "Mesajı Dışa Aktar",
+    "ru": "Экспортировать сообщение",
+    "es": "Exportar mensaje",
+    "fr": "Exporter le message"
+  },
+  "Extra tags to offer next to TODO, Important, Question and Funny, one per line": {
+    "tr": "TODO, Important, Question ve Funny dışında sunulacak ek etiketler, her satıra bir tane",
+    "ru": "Дополнительные теги помимо TODO, Important, Question и Funny, по одному в строке",
+    "es": "Etiquetas adicionales además de TODO, Important, Question y Funny, una por línea",
+    "fr": "Tags supplémentaires à proposer en plus de TODO, Important, Question et Funny, un par ligne"
+  },
+  "Failed to download the file": {
+    "tr": "Dosya indirilemedi",
+    "ru": "Не удалось скачать файл",
+    "es": "No se pudo descargar el archivo",
+    "fr": "Impossible de télécharger le fichier"
+  },
+  "Failed to export message": {
+    "tr": "Mesaj dışa aktarılamadı",
+    "ru": "Не удалось экспортировать сообщение",
+    "es": "No se pudo exportar el mensaje",
+    "fr": "Impossible d'exporter le message"
+  },
+  "Failed to get embed": {
+    "tr": "Gömü alınamadı",
+    "ru": "Не удалось получить встраивание",
+    "es": "No se pudo obtener el insertado",
+    "fr": "Impossible d'obtenir l'intégration"
+  },
+  "Failed to open the message": {
+    "tr": "Mesaj açılamadı",
+    "ru": "Не удалось открыть сообщение",
+    "es": "No se pudo abrir el mensaje",
+    "fr": "Impossible d'ouvrir le message"
+  },
+  "Failed to save the image": {
+    "tr": "Görsel kaydedilemedi",
+    "ru": "Не удалось сохранить изображение",
+    "es": "No se pudo guardar la imagen",
+    "fr": "Impossible d'enregistrer l'image"
+  },
+  "Failed to search for messages.": {
+    "tr": "Mesajlar aranamadı.",
+    "ru": "Не удалось выполнить поиск сообщений.",
+    "es": "No se pudieron buscar los mensajes.",
+    "fr": "Échec de la recherche des messages."
+  },
+  "Failed to send the message": {
+    "tr": "Mesaj gönderilemedi",
+    "ru": "Не удалось отправить сообщение",
+    "es": "No se pudo enviar el mensaje",
+    "fr": "Impossible d'envoyer le message"
+  },
+  "File too large to copy": {
+    "tr": "Dosya kopyalanamayacak kadar büyük",
+    "ru": "Файл слишком большой для копирования",
+    "es": "El archivo es demasiado grande para copiarlo",
+    "fr": "Fichier trop volumineux pour être copié"
+  },
+  "Filter": {
+    "tr": "Filtre",
+    "ru": "Фильтр",
+    "es": "Filtro",
+    "fr": "Filtre"
+  },
+  "Font for the quote text, the author's name always uses Discord's font": {
+    "tr": "Alıntı metninin yazı tipi, yazarın adı her zaman Discord'un yazı tipini kullanır",
+    "ru": "Шрифт текста цитаты. Имя автора всегда набирается шрифтом Discord",
+    "es": "Fuente del texto de la cita. El nombre del autor siempre usa la fuente de Discord",
+    "fr": "Police du texte de la citation. Le nom de l'auteur utilise toujours la police de Discord"
+  },
+  "Grayscale": {
+    "tr": "Gri tonlama",
+    "ru": "Оттенки серого",
+    "es": "Escala de grises",
+    "fr": "Niveaux de gris"
+  },
+  "Hide when there are no replies": {
+    "tr": "Yanıt yoksa gizle",
+    "ru": "Скрывать, если ответов нет",
+    "es": "Ocultar si no hay respuestas",
+    "fr": "Masquer s'il n'y a pas de réponses"
+  },
+  "Hides the button if there are no replies to the message": {
+    "tr": "Mesaja yanıt yoksa butonu gizler",
+    "ru": "Скрывает кнопку, если ответов нет",
+    "es": "Oculta el botón si el mensaje no tiene respuestas",
+    "fr": "Masque le bouton s'il n'y a pas de réponses"
+  },
+  "In 1 hour": {
+    "tr": "1 saat sonra",
+    "ru": "Через 1 час",
+    "es": "En 1 hora",
+    "fr": "Dans 1 heure"
+  },
+  "In 3 hours": {
+    "tr": "3 saat sonra",
+    "ru": "Через 3 часа",
+    "es": "En 3 horas",
+    "fr": "Dans 3 heures"
+  },
+  "In 30 minutes": {
+    "tr": "30 dakika sonra",
+    "ru": "Через 30 минут",
+    "es": "En 30 minutos",
+    "fr": "Dans 30 minutes"
+  },
+  "Include pings": {
+    "tr": "Bahsetmeleri dahil et",
+    "ru": "Учитывать упоминания",
+    "es": "Incluir menciones",
+    "fr": "Inclure les mentions"
+  },
+  "Include replies to the author": {
+    "tr": "Yazara verilen yanıtları dahil et",
+    "ru": "Учитывать ответы автору",
+    "es": "Incluir respuestas al autor",
+    "fr": "Inclure les réponses à l'auteur"
+  },
+  "Jump": {
+    "tr": "Git",
+    "ru": "Перейти",
+    "es": "Ir",
+    "fr": "Aller"
+  },
+  "Jump To First Message": {
+    "tr": "İlk Mesaja Git",
+    "ru": "К первому сообщению",
+    "es": "Ir al primer mensaje",
+    "fr": "Aller au premier message"
+  },
+  "Jump To Last Message": {
+    "tr": "Son Mesaja Git",
+    "ru": "К последнему сообщению",
+    "es": "Ir al último mensaje",
+    "fr": "Aller au dernier message"
+  },
+  "Jump to Reply": {
+    "tr": "Yanıta Git",
+    "ru": "Перейти к ответу",
+    "es": "Ir a la respuesta",
+    "fr": "Aller à la réponse"
+  },
+  "Jump to the message you saved.": {
+    "tr": "Kaydettiğin mesaja git.",
+    "ru": "Перейдите к сохранённому сообщению.",
+    "es": "Ve al mensaje que guardaste.",
+    "fr": "Accédez au message que vous avez enregistré."
+  },
+  "Jump to their first message": {
+    "tr": "İlk mesajına git",
+    "ru": "Перейти к первому сообщению пользователя",
+    "es": "Ir a su primer mensaje",
+    "fr": "Aller à son premier message"
+  },
+  "Jump to their last message": {
+    "tr": "Son mesajına git",
+    "ru": "Перейти к последнему сообщению пользователя",
+    "es": "Ir a su último mensaje",
+    "fr": "Aller à son dernier message"
+  },
+  "Link copied!": {
+    "tr": "Bağlantı kopyalandı!",
+    "ru": "Ссылка скопирована!",
+    "es": "¡Enlace copiado!",
+    "fr": "Lien copié !"
+  },
+  "Media link copied!": {
+    "tr": "Medya bağlantısı kopyalandı!",
+    "ru": "Ссылка на медиафайл скопирована!",
+    "es": "¡Enlace del archivo multimedia copiado!",
+    "fr": "Lien du média copié !"
+  },
+  "Message Content": {
+    "tr": "Mesaj İçeriği",
+    "ru": "Содержимое сообщения",
+    "es": "Contenido del mensaje",
+    "fr": "Contenu du message"
+  },
+  "Message Data": {
+    "tr": "Mesaj Verisi",
+    "ru": "Данные сообщения",
+    "es": "Datos del mensaje",
+    "fr": "Données du message"
+  },
+  "Message exported successfully as {filename}": {
+    "tr": "Mesaj {filename} olarak dışa aktarıldı",
+    "ru": "Сообщение экспортировано в {filename}",
+    "es": "Mensaje exportado como {filename}",
+    "fr": "Message exporté sous {filename}"
+  },
+  "Message reminders": {
+    "tr": "Mesaj hatırlatıcıları",
+    "ru": "Напоминания о сообщениях",
+    "es": "Recordatorios de mensajes",
+    "fr": "Rappels de messages"
+  },
+  "Monospace": {
+    "tr": "Eş aralıklı",
+    "ru": "Моноширинный",
+    "es": "Monoespaciada",
+    "fr": "Chasse fixe"
+  },
+  "No bookmarks yet. Long-press a message and tap Bookmark.": {
+    "tr": "Henüz yer imi yok. Bir mesaja basılı tut ve Yer imi ekle'ye dokun.",
+    "ru": "Закладок пока нет. Зажмите сообщение и нажмите «Добавить в закладки».",
+    "es": "Aún no hay marcadores. Mantén pulsado un mensaje y toca Añadir a marcadores.",
+    "fr": "Aucun signet pour l'instant. Appuyez longuement sur un message et touchez Ajouter aux signets."
+  },
+  "No embeds found": {
+    "tr": "Gömü bulunamadı",
+    "ru": "Встраивания не найдены",
+    "es": "No se encontraron insertados",
+    "fr": "Aucune intégration trouvée"
+  },
+  "No messages found from this user in this channel.": {
+    "tr": "Bu kanalda bu kullanıcıdan mesaj bulunamadı.",
+    "ru": "В этом канале нет сообщений этого пользователя.",
+    "es": "No hay mensajes de este usuario en este canal.",
+    "fr": "Aucun message de cet utilisateur dans ce salon."
+  },
+  "No notes yet. Long-press a channel or conversation and choose Add note.": {
+    "tr": "Henüz not yok. Bir kanala veya sohbete basılı tut ve Not ekle'yi seç.",
+    "ru": "Заметок пока нет. Зажмите канал или беседу и выберите «Добавить заметку».",
+    "es": "Aún no hay notas. Mantén pulsado un canal o conversación y elige Añadir nota.",
+    "fr": "Aucune note pour l'instant. Appuyez longuement sur un salon ou une conversation et choisissez Ajouter une note."
+  },
+  "No profile colors found!": {
+    "tr": "Profil renkleri bulunamadı",
+    "ru": "Цвета профиля не найдены",
+    "es": "No se encontraron colores de perfil",
+    "fr": "Aucune couleur de profil trouvée"
+  },
+  "No reminders yet. Long-press a message and tap Remind me.": {
+    "tr": "Henüz hatırlatıcı yok. Bir mesaja basılı tut ve Bana hatırlat'a dokun.",
+    "ru": "Напоминаний пока нет. Зажмите сообщение и нажмите «Напомнить».",
+    "es": "Aún no hay recordatorios. Mantén pulsado un mensaje y toca Recordármelo.",
+    "fr": "Aucun rappel pour l'instant. Appuyez longuement sur un message et touchez Me le rappeler."
+  },
+  "No tagged messages yet. Long-press a message and tap Tags.": {
+    "tr": "Henüz etiketli mesaj yok. Bir mesaja basılı tut ve Etiketler'e dokun.",
+    "ru": "Сообщений с тегами пока нет. Зажмите сообщение и нажмите «Теги».",
+    "es": "Aún no hay mensajes etiquetados. Mantén pulsado un mensaje y toca Etiquetas.",
+    "fr": "Aucun message tagué pour l'instant. Appuyez longuement sur un message et touchez Tags."
+  },
+  "Note deleted": {
+    "tr": "Not silindi",
+    "ru": "Заметка удалена",
+    "es": "Nota eliminada",
+    "fr": "Note supprimée"
+  },
+  "Note for {channel}": {
+    "tr": "{channel} için not",
+    "ru": "Заметка: {channel}",
+    "es": "Nota de {channel}",
+    "fr": "Note pour {channel}"
+  },
+  "Note saved": {
+    "tr": "Not kaydedildi",
+    "ru": "Заметка сохранена",
+    "es": "Nota guardada",
+    "fr": "Note enregistrée"
+  },
+  "Nothing matches your search.": {
+    "tr": "Aramanla eşleşen bir şey yok.",
+    "ru": "По вашему запросу ничего не найдено.",
+    "es": "Nada coincide con tu búsqueda.",
+    "fr": "Rien ne correspond à votre recherche."
+  },
+  "Nothing to show": {
+    "tr": "Gösterilecek bir şey yok",
+    "ru": "Нечего показать",
+    "es": "No hay nada que mostrar",
+    "fr": "Rien à afficher"
+  },
+  "Only you can see this note for {channel}.": {
+    "tr": "{channel} için bu notu sadece sen görebilirsin.",
+    "ru": "Эту заметку для {channel} видите только вы.",
+    "es": "Solo tú puedes ver esta nota de {channel}.",
+    "fr": "Vous seul voyez cette note pour {channel}."
+  },
+  "Open Bookmarks": {
+    "tr": "Yer İmlerini Aç",
+    "ru": "Открыть закладки",
+    "es": "Abrir marcadores",
+    "fr": "Ouvrir les signets"
+  },
+  "Open Reminders": {
+    "tr": "Hatırlatıcıları Aç",
+    "ru": "Открыть напоминания",
+    "es": "Abrir recordatorios",
+    "fr": "Ouvrir les rappels"
+  },
+  "Open Sticker Link": {
+    "tr": "Çıkartma Bağlantısını Aç",
+    "ru": "Открыть ссылку на стикер",
+    "es": "Abrir enlace del sticker",
+    "fr": "Ouvrir le lien de l'autocollant"
+  },
+  "Open Tagged Messages": {
+    "tr": "Etiketli Mesajları Aç",
+    "ru": "Открыть сообщения с тегами",
+    "es": "Abrir mensajes etiquetados",
+    "fr": "Ouvrir les messages tagués"
+  },
+  "Open channel": {
+    "tr": "Kanalı aç",
+    "ru": "Открыть канал",
+    "es": "Abrir canal",
+    "fr": "Ouvrir le salon"
+  },
+  "Open channel notes": {
+    "tr": "Kanal notlarını aç",
+    "ru": "Открыть заметки каналов",
+    "es": "Abrir notas de canales",
+    "fr": "Ouvrir les notes de salons"
+  },
+  "Open the share sheet with the exported text, so you can send it to another app": {
+    "tr": "Dışa aktarılan metinle paylaşma menüsünü açar, böylece onu başka bir uygulamaya gönderebilirsin",
+    "ru": "Открывает меню «Поделиться» с экспортированным текстом, чтобы отправить его в другое приложение",
+    "es": "Abre el menú para compartir con el texto exportado, para que puedas enviarlo a otra aplicación",
+    "fr": "Ouvre le menu de partage avec le texte exporté pour que vous puissiez l'envoyer à une autre appli"
+  },
+  "Please provide some text.": {
+    "tr": "Lütfen bir metin gir.",
+    "ru": "Введите текст.",
+    "es": "Escribe algún texto.",
+    "fr": "Veuillez saisir du texte."
+  },
+  "Private notes you added to channels and conversations.": {
+    "tr": "Kanallara ve sohbetlere eklediğin özel notlar.",
+    "ru": "Ваши личные заметки к каналам и беседам.",
+    "es": "Notas privadas que añadiste a canales y conversaciones.",
+    "fr": "Notes privées ajoutées aux salons et aux conversations."
+  },
+  "Profile colors copied to clipboard!": {
+    "tr": "Profil renkleri panoya kopyalandı",
+    "ru": "Цвета профиля скопированы",
+    "es": "Colores de perfil copiados",
+    "fr": "Couleurs du profil copiées"
+  },
+  "Quick Mention": {
+    "tr": "Hızlı Bahset",
+    "ru": "Быстрое упоминание",
+    "es": "Mención rápida",
+    "fr": "Mention rapide"
+  },
+  "Quote": {
+    "tr": "Alıntı",
+    "ru": "Цитата",
+    "es": "Cita",
+    "fr": "Citation"
+  },
+  "Quote font": {
+    "tr": "Alıntı yazı tipi",
+    "ru": "Шрифт цитаты",
+    "es": "Fuente de la cita",
+    "fr": "Police de la citation"
+  },
+  "Raw Channel Data": {
+    "tr": "Ham Kanal Verisi",
+    "ru": "Исходные данные канала",
+    "es": "Datos en bruto del canal",
+    "fr": "Données brutes du salon"
+  },
+  "Raw Message Data": {
+    "tr": "Ham Mesaj Verisi",
+    "ru": "Исходные данные сообщения",
+    "es": "Datos en bruto del mensaje",
+    "fr": "Données brutes du message"
+  },
+  "Raw User Data": {
+    "tr": "Ham Kullanıcı Verisi",
+    "ru": "Исходные данные пользователя",
+    "es": "Datos en bruto del usuario",
+    "fr": "Données brutes de l'utilisateur"
+  },
+  "Remind me": {
+    "tr": "Bana hatırlat",
+    "ru": "Напомнить",
+    "es": "Recordármelo",
+    "fr": "Me le rappeler"
+  },
+  "Reminder set for {time}.": {
+    "tr": "Hatırlatıcı {time} için kuruldu.",
+    "ru": "Напоминание установлено на {time}.",
+    "es": "Recordatorio programado para {time}.",
+    "fr": "Rappel programmé pour {time}."
+  },
+  "Reminder: message from {author}": {
+    "tr": "Hatırlatıcı: {author} adlı kişinin mesajı",
+    "ru": "Напоминание: сообщение от {author}",
+    "es": "Recordatorio: mensaje de {author}",
+    "fr": "Rappel : message de {author}"
+  },
+  "Reminders": {
+    "tr": "Hatırlatıcılar",
+    "ru": "Напоминания",
+    "es": "Recordatorios",
+    "fr": "Rappels"
+  },
+  "Reminders you set on messages with Endcord": {
+    "tr": "Endcord ile mesajlara kurduğun hatırlatıcılar",
+    "ru": "Напоминания о сообщениях, которые вы установили в Endcord",
+    "es": "Recordatorios que programas en mensajes con Endcord",
+    "fr": "Les rappels que vous définissez sur des messages avec Endcord"
+  },
+  "Remove": {
+    "tr": "Kaldır",
+    "ru": "Убрать",
+    "es": "Quitar",
+    "fr": "Retirer"
+  },
+  "Remove Bookmark": {
+    "tr": "Yer İmini Kaldır",
+    "ru": "Удалить из закладок",
+    "es": "Quitar de marcadores",
+    "fr": "Retirer des signets"
+  },
+  "Remove Embed": {
+    "tr": "Gömüyü Kaldır",
+    "ru": "Убрать встраивание",
+    "es": "Quitar insertado",
+    "fr": "Retirer l'intégration"
+  },
+  "Removed tag {tag}": {
+    "tr": "{tag} etiketi kaldırıldı",
+    "ru": "Тег {tag} снят",
+    "es": "Se quitó la etiqueta {tag}",
+    "fr": "Tag {tag} retiré"
+  },
+  "Repeat": {
+    "tr": "Tekrarla",
+    "ru": "Повторить",
+    "es": "Repetir",
+    "fr": "Répéter"
+  },
+  "Repeat and Reply": {
+    "tr": "Tekrarla ve Yanıtla",
+    "ru": "Повторить и ответить",
+    "es": "Repetir y responder",
+    "fr": "Répéter et répondre"
+  },
+  "Replies ({count})": {
+    "tr": "Yanıtlar ({count})",
+    "ru": "Ответы ({count})",
+    "es": "Respuestas ({count})",
+    "fr": "Réponses ({count})"
+  },
+  "Sans serif (light)": {
+    "tr": "Sans serif (ince)",
+    "ru": "Без засечек (тонкий)",
+    "es": "Sans serif (fina)",
+    "fr": "Sans empattement (fin)"
+  },
+  "Save": {
+    "tr": "Kaydet",
+    "ru": "Сохранить",
+    "es": "Guardar",
+    "fr": "Enregistrer"
+  },
+  "Save it empty to delete the note.": {
+    "tr": "Notu silmek için boş kaydet.",
+    "ru": "Сохраните пустую заметку, чтобы удалить её.",
+    "es": "Guárdala vacía para eliminar la nota.",
+    "fr": "Enregistrez-la vide pour supprimer la note."
+  },
+  "Saved to Pictures/Endcord": {
+    "tr": "Pictures/Endcord klasörüne kaydedildi",
+    "ru": "Сохранено в Pictures/Endcord",
+    "es": "Guardado en Pictures/Endcord",
+    "fr": "Enregistré dans Pictures/Endcord"
+  },
+  "Search Image": {
+    "tr": "Görseli Ara",
+    "ru": "Искать изображение",
+    "es": "Buscar imagen",
+    "fr": "Rechercher l'image"
+  },
+  "Search by author or text…": {
+    "tr": "Yazara veya metne göre ara…",
+    "ru": "Поиск по автору или тексту…",
+    "es": "Buscar por autor o texto…",
+    "fr": "Rechercher par auteur ou texte…"
+  },
+  "Search notes": {
+    "tr": "Notlarda ara",
+    "ru": "Поиск по заметкам",
+    "es": "Buscar notas",
+    "fr": "Rechercher dans les notes"
+  },
+  "See and cancel the reminders you set": {
+    "tr": "Kurduğun hatırlatıcıları gör ve iptal et",
+    "ru": "Просматривайте и отменяйте установленные напоминания",
+    "es": "Mira y cancela los recordatorios que programaste",
+    "fr": "Consultez et annulez les rappels que vous avez définis"
+  },
+  "Send": {
+    "tr": "Gönder",
+    "ru": "Отправить",
+    "es": "Enviar",
+    "fr": "Envoyer"
+  },
+  "Serif": {
+    "tr": "Serif",
+    "ru": "С засечками",
+    "es": "Serif",
+    "fr": "Avec empattement"
+  },
+  "Server": {
+    "tr": "Sunucu",
+    "ru": "Сервер",
+    "es": "Servidor",
+    "fr": "Serveur"
+  },
+  "Server rules, who is who, things to remember…": {
+    "tr": "Sunucu kuralları, kim kimdir, hatırlanacaklar…",
+    "ru": "Правила сервера, кто есть кто, что не забыть…",
+    "es": "Normas del servidor, quién es quién, cosas que recordar…",
+    "fr": "Règles du serveur, qui est qui, choses à retenir…"
+  },
+  "Share after export": {
+    "tr": "Dışa aktardıktan sonra paylaş",
+    "ru": "Делиться после экспорта",
+    "es": "Compartir después de exportar",
+    "fr": "Partager après l'export"
+  },
+  "Show Copy Raw Content": {
+    "tr": "Ham İçeriği Kopyala'yı göster",
+    "ru": "Показывать «Копировать исходный текст»",
+    "es": "Mostrar Copiar contenido en bruto",
+    "fr": "Afficher Copier le contenu brut"
+  },
+  "Show Embed": {
+    "tr": "Gömüyü Göster",
+    "ru": "Показать встраивание",
+    "es": "Mostrar insertado",
+    "fr": "Afficher l'intégration"
+  },
+  "Show Repeat and Reply": {
+    "tr": "Tekrarla ve Yanıtla'yı göster",
+    "ru": "Показывать «Повторить и ответить»",
+    "es": "Mostrar Repetir y responder",
+    "fr": "Afficher Répéter et répondre"
+  },
+  "Show Watermark": {
+    "tr": "Filigranı göster",
+    "ru": "Показывать водяной знак",
+    "es": "Mostrar marca de agua",
+    "fr": "Afficher le filigrane"
+  },
+  "Show notes when opening a channel": {
+    "tr": "Kanal açılınca notunu göster",
+    "ru": "Показывать заметку при открытии канала",
+    "es": "Mostrar las notas al abrir un canal",
+    "fr": "Afficher les notes à l'ouverture d'un salon"
+  },
+  "Shows a channel's note the first time you open it after starting the app": {
+    "tr": "Uygulamayı başlattıktan sonra bir kanalı ilk açtığında notunu gösterir",
+    "ru": "Показывает заметку канала, когда вы впервые открываете его после запуска приложения",
+    "es": "Muestra la nota de un canal la primera vez que lo abres tras iniciar la aplicación",
+    "fr": "Affiche la note d'un salon la première fois que vous l'ouvrez après le lancement de l'appli"
+  },
+  "Stickers": {
+    "tr": "Çıkartmalar",
+    "ru": "Стикеры",
+    "es": "Stickers",
+    "fr": "Autocollants"
+  },
+  "Success! Copied emoji markdown.": {
+    "tr": "Başarılı! Emoji markdown'ı kopyalandı.",
+    "ru": "Готово! Markdown эмодзи скопирован.",
+    "es": "¡Listo! Se copió el Markdown del emoji.",
+    "fr": "C'est fait ! Le Markdown de l'emoji a été copié."
+  },
+  "Tag": {
+    "tr": "Etiket",
+    "ru": "Тег",
+    "es": "Etiqueta",
+    "fr": "Tag"
+  },
+  "Tagged as {tag}": {
+    "tr": "{tag} olarak etiketlendi",
+    "ru": "Добавлен тег {tag}",
+    "es": "Etiquetado como {tag}",
+    "fr": "Tag {tag} ajouté"
+  },
+  "Tagged messages": {
+    "tr": "Etiketli mesajlar",
+    "ru": "Сообщения с тегами",
+    "es": "Mensajes etiquetados",
+    "fr": "Messages tagués"
+  },
+  "Tags": {
+    "tr": "Etiketler",
+    "ru": "Теги",
+    "es": "Etiquetas",
+    "fr": "Tags"
+  },
+  "This channel has no messages yet.": {
+    "tr": "Bu kanalda henüz mesaj yok.",
+    "ru": "В этом канале пока нет сообщений.",
+    "es": "Este canal aún no tiene mensajes.",
+    "fr": "Ce salon n'a pas encore de messages."
+  },
+  "This evening": {
+    "tr": "Bu akşam",
+    "ru": "Сегодня вечером",
+    "es": "Esta tarde",
+    "fr": "Ce soir"
+  },
+  "Today at {time}": {
+    "tr": "Bugün saat {time}",
+    "ru": "Сегодня в {time}",
+    "es": "Hoy a las {time}",
+    "fr": "Aujourd'hui à {time}"
+  },
+  "Tomorrow morning": {
+    "tr": "Yarın sabah",
+    "ru": "Завтра утром",
+    "es": "Mañana por la mañana",
+    "fr": "Demain matin"
+  },
+  "Unknown": {
+    "tr": "Bilinmiyor",
+    "ru": "Неизвестно",
+    "es": "Desconocido",
+    "fr": "Inconnu"
+  },
+  "Unknown channel": {
+    "tr": "Bilinmeyen kanal",
+    "ru": "Неизвестный канал",
+    "es": "Canal desconocido",
+    "fr": "Salon inconnu"
+  },
+  "Unknown server": {
+    "tr": "Bilinmeyen sunucu",
+    "ru": "Неизвестный сервер",
+    "es": "Servidor desconocido",
+    "fr": "Serveur inconnu"
+  },
+  "User Data": {
+    "tr": "Kullanıcı Verisi",
+    "ru": "Данные пользователя",
+    "es": "Datos del usuario",
+    "fr": "Données de l'utilisateur"
+  },
+  "View Raw": {
+    "tr": "Ham Hâlini Görüntüle",
+    "ru": "Показать исходник",
+    "es": "Ver en bruto",
+    "fr": "Voir le brut"
+  },
+  "Watermark text": {
+    "tr": "Filigran metni",
+    "ru": "Текст водяного знака",
+    "es": "Texto de la marca de agua",
+    "fr": "Texte du filigrane"
+  },
+  "Will also search for messages that @ the author directly": {
+    "tr": "Yazardan doğrudan @bahseden mesajları da arar",
+    "ru": "Искать и сообщения с @упоминанием автора",
+    "es": "Buscar también mensajes que @mencionen al autor",
+    "fr": "Chercher aussi les messages qui @mentionnent l'auteur"
+  },
+  "Will also search for messages that reply to the author in general, not just that exact message": {
+    "tr": "Sadece o mesaja değil, yazara verilen tüm yanıtları da arar",
+    "ru": "Искать все ответы автору, а не только на это сообщение",
+    "es": "Buscar también respuestas al autor en general, no solo a ese mensaje",
+    "fr": "Chercher toutes les réponses à l'auteur, pas seulement à ce message"
+  },
+  "Your tags": {
+    "tr": "Etiketlerin",
+    "ru": "Ваши теги",
+    "es": "Tus etiquetas",
+    "fr": "Vos tags"
+  }
+}

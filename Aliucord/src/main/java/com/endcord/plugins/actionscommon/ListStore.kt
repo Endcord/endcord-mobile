@@ -37,7 +37,9 @@ internal class ListStore<T : Any>(
         loaded = true
         items.clear()
         try {
-            val stored = settings.getObject<Array<T>?>(key, null, arrayType)
+            // Gson leaves null slots for entries it couldn't read, whatever the declared type says
+            @Suppress("UNCHECKED_CAST")
+            val stored = settings.getObject<Array<T>?>(key, null, arrayType) as Array<T?>?
             if (stored != null) for (item in stored) if (item != null) items.add(item)
         } catch (e: Throwable) {
             logger.error("Failed to read $key, starting empty", e)

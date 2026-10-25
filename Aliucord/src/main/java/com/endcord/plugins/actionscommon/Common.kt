@@ -104,7 +104,7 @@ internal object Common {
 
     /** Copies [text] to the clipboard and confirms it with a toast. */
     fun copy(text: String, toast: String = "Copied to clipboard") {
-        Utils.setClipboard(text, text)
+        Utils.setClipboard("Endcord", text)
         Utils.showToast(I18n.t(toast))
     }
 
@@ -119,7 +119,7 @@ internal object Common {
             if (context !is Activity) intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(intent)
         } catch (e: Throwable) {
-            logger.errorToast("Failed to open the message", e)
+            logger.errorToast(I18n.t("Failed to open the message"), e)
         }
     }
 
@@ -142,7 +142,7 @@ internal object Common {
                 try {
                     onPick(index)
                 } catch (e: Throwable) {
-                    logger.errorToast("Action failed", e)
+                    logger.errorToast(I18n.t("Action failed"), e)
                 }
             }
         }.show(fragmentManager, "EndcordPick")

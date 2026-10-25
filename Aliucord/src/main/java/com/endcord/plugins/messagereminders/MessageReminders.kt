@@ -50,9 +50,11 @@ internal class MessageReminders : EndcordPlugin(
 
         MessageActions.register(name, "Remind me", R.e.ic_clock_24dp, visible = { !it.message.isLocal }) { ctx ->
             val message = ctx.message
+            // The sheet is gone by the time an item is picked, so take what's needed from it now
+            val activity = ctx.sheet.requireActivity()
             val labels = PRESETS.map { I18n.t(it.first) } + I18n.t("Open Reminders")
             Common.pick(ctx.sheet.parentFragmentManager, I18n.t("Remind me"), labels) { index ->
-                if (index < PRESETS.size) add(message, PRESETS[index].second()) else open(ctx.sheet.requireContext())
+                if (index < PRESETS.size) add(message, PRESETS[index].second()) else open(activity)
             }
         }
 

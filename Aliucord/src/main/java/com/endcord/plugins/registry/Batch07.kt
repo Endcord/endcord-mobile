@@ -26,6 +26,7 @@ import com.endcord.plugins.quickmention.QuickMention
 import com.endcord.plugins.quoter.Quoter
 import com.endcord.plugins.repeatmessages.RepeatMessages
 import com.endcord.plugins.reverseimagesearch.ReverseImageSearch
+import com.endcord.plugins.showmessageembeds.ShowMessageEmbeds
 import com.endcord.plugins.textscreenshot.TextScreenshot
 import com.endcord.plugins.viewraw.ViewRaw
 
@@ -50,6 +51,7 @@ internal fun batch07(): List<EndcordPlugin> = listOf(
     Quoter(),
     RepeatMessages(),
     ReverseImageSearch(),
+    ShowMessageEmbeds(),
     TextScreenshot(),
     ViewRaw(),
 )
