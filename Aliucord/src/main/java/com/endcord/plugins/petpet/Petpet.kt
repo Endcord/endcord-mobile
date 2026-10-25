@@ -53,7 +53,7 @@ internal class Petpet : EndcordPlugin(
                 Options.user("user", "User whose avatar to use as image"),
                 Options.bool("no-server-pfp", "Use the normal avatar instead of the server specific one when using the 'user' option"),
             ),
-        ) { ctx -> run(ctx) }
+        ) { ctx -> createGif(ctx) }
     }
 
     override fun stop(context: Context) {
@@ -63,7 +63,7 @@ internal class Petpet : EndcordPlugin(
     }
 
     /** Runs on the command thread, so network, decoding and disk work are fine here. */
-    private fun run(ctx: CommandContext): CommandResult {
+    private fun createGif(ctx: CommandContext): CommandResult {
         val delay = ctx.getIntOrDefault("delay", DEFAULT_DELAY)
         if (delay < 20) return reply(tr("Delay must be at least 20."))
         val resolution = ctx.getIntOrDefault("resolution", DEFAULT_RESOLUTION).coerceIn(16, 512)
