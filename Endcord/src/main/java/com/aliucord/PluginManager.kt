@@ -333,6 +333,7 @@ object PluginManager {
             DefaultStickers(),
             ExperimentDefaults(),
             ForwardedMessages(),
+            LoginErrors(),
             NewMessages(),
             NewPins(),
             NoTrack(),

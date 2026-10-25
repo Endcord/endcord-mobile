@@ -1,0 +1,2 @@
+- Password login: the captcha now opens when Discord asks for one, and Discord's real answer is shown instead of "A forbidden network request has occurred".
+- Fixed the injector crashing on start on some devices.
