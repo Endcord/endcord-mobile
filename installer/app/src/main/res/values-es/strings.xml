@@ -1,0 +1,178 @@
+<resources>
+    <string name="cd_library_author">Autor: %1$s</string>
+    <string name="cd_library_license">Licencia: %1$s</string>
+
+    <string name="msg_cleared_cache">Caché borrada correctamente</string>
+    <string name="msg_load_fail">No se pudieron cargar los cambios</string>
+    <string name="msg_coming_soon">Próximamente</string>
+    <string name="msg_invalid_version">Versión de Discord no válida</string>
+    <string name="msg_seven_left">7 toques más</string>
+    <string name="msg_five_left">5 toques más</string>
+    <string name="msg_two_left">2 toques más</string>
+    <string name="msg_loading">Cargando…</string>
+    <string name="msg_downgrade">Instalar versión anterior</string>
+    <string name="msg_downgrade_disallowed">No se puede instalar una versión anterior, prueba a desinstalar primero</string>
+    <string name="msg_unlocked">Ahora eres desarrollador</string>
+    <string name="msg_permission_grant">Se necesitan permisos de archivos para usar el almacenamiento compartido.</string>
+    <string name="msg_shizuku_denied">No se pudieron obtener los permisos de Shizuku</string>
+    <string name="msg_try_again">¿Quieres intentarlo de nuevo?</string>
+    <string name="msg_invalid_apk">El APK está dañado, borra la caché y vuelve a instalar</string>
+    <string name="msg_download_cancelled">Descarga cancelada</string>
+    <string name="msg_download_failed">Error de descarga</string>
+    <string name="msg_download_verify_failed">No se pudo verificar el archivo descargado, consulta los registros</string>
+    <string name="msg_copied">Copiado al portapapeles</string>
+
+    <string name="group_download">Descargar APK</string>
+    <string name="group_patch">Parcheo</string>
+    <string name="group_installing">Instalación</string>
+
+    <string name="step_dl_base">Descargando el APK base</string>
+    <string name="step_dl_lib">Descargando el APK de bibliotecas</string>
+    <string name="step_dl_lang">Descargando el APK de idioma</string>
+    <string name="step_dl_res">Descargando el APK de recursos</string>
+    <string name="step_dl_mod">Descargando Endcord</string>
+
+    <string name="step_change_icon">Cambiando el icono de la aplicación</string>
+    <string name="step_patch_manifests">Parcheando los manifiestos de la aplicación</string>
+    <string name="step_add_mod">Inyectando Endcord</string>
+
+    <string name="step_signing">Firmando los APK</string>
+    <string name="step_installing">Instalando los APK</string>
+
+    <string name="installer_success">Instalado correctamente</string>
+    <string name="installer_aborted">Instalación cancelada</string>
+
+    <string name="install_fail_generic">Error al instalar: motivo desconocido</string>
+    <string name="install_fail_blocked">La instalación fue bloqueada</string>
+    <string name="install_fail_invalid">Uno o más APK no son válidos o están dañados</string>
+    <string name="install_fail_conflict">Conflicto con una aplicación existente, normalmente por firmas distintas</string>
+    <string name="install_fail_storage">No hay suficiente espacio para instalar</string>
+    <string name="install_fail_incompatible">La aplicación no es compatible con este dispositivo</string>
+    <string name="install_fail_timeout">La instalación tardó demasiado</string>
+
+    <string name="status_ongoing">En curso</string>
+    <string name="status_successful">Completado</string>
+    <string name="status_fail">Error</string>
+    <string name="status_queued">En cola</string>
+
+    <string name="action_collapse">Contraer</string>
+    <string name="action_expand">Expandir</string>
+    <string name="action_back">Volver</string>
+    <string name="action_copy_logs">Copiar registros</string>
+    <string name="action_clear_cache">Borrar caché</string>
+    <string name="action_confirm">Confirmar</string>
+    <string name="action_start_update">Iniciar actualización</string>
+    <string name="action_install">Instalar</string>
+    <string name="action_update">Actualizar</string>
+    <string name="action_reinstall">Reinstalar</string>
+    <string name="action_launch">Abrir</string>
+    <string name="action_uninstall">Desinstalar</string>
+    <string name="action_info">Información</string>
+    <string name="action_retry">Reintentar</string>
+    <string name="action_reload">Recargar</string>
+    <string name="action_open_about">Abrir Acerca de</string>
+    <string name="action_open_settings">Abrir ajustes</string>
+    <string name="action_tap_to_install">Toca para instalar Endcord para Discord %1$s</string>
+    <string name="action_confirm_exit">Salir de todos modos</string>
+    <string name="action_dismiss_nevermind">Olvídalo</string>
+    <string name="action_dismiss_no_thanks">No, gracias</string>
+    <string name="action_try_again">Intentar de nuevo</string>
+    <string name="action_previous_theme">Ver tema anterior</string>
+    <string name="action_next_theme">Ver tema siguiente</string>
+    <string name="action_view_logs">Ver registros</string>
+    <string name="action_show_timestamp">Mostrar hora</string>
+    <string name="action_copy_log">Copiar registro</string>
+    <string name="action_save_logs">Guardar registros en un archivo</string>
+    <string name="action_share_logs">Compartir registros</string>
+    <string name="action_more_options">Más opciones</string>
+
+    <string name="msg_back_warning">Salir del instalador antes de que termine puede dañar los archivos descargados. ¿Seguro que quieres salir?</string>
+
+    <string name="installer_cached">En caché</string>
+
+    <string name="title_installer">Instalador</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_settings">Ajustes</string>
+    <string name="title_update">¡Actualización disponible!</string>
+    <string name="title_about">Acerca de</string>
+    <string name="title_permission_grant">Conceder permisos</string>
+    <string name="title_update_available">¡Hay una nueva actualización de Discord!</string>
+    <string name="title_warning">Aviso</string>
+    <string name="title_dl_failed">Error de descarga</string>
+    <string name="title_logs">Registros</string>
+    <string name="title_os_libraries">Bibliotecas de código abierto</string>
+    <string name="title_libraries">Bibliotecas</string>
+
+    <string name="theme_system">Sistema</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_dark">Oscuro</string>
+
+    <string name="duration_disabled">Desactivado</string>
+    <string name="duration_fifteen_min">Cada 15 minutos</string>
+    <string name="duration_half_hour">Cada media hora</string>
+    <string name="duration_hourly">Cada hora</string>
+    <string name="duration_bihourly">Cada dos horas</string>
+    <string name="duration_twice_daily">Dos veces al día</string>
+    <string name="duration_daily">Cada día</string>
+    <string name="duration_weekly">Cada semana</string>
+
+    <string name="settings_appearance">Apariencia</string>
+    <string name="settings_appearance_description">Cambia el aspecto de la aplicación</string>
+    <string name="settings_dynamic_color">Color dinámico</string>
+    <string name="settings_dynamic_color_description">Solo disponible en Android 12 o superior</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_check_updates">Buscar actualizaciones de Discord</string>
+
+    <string name="settings_customization">Personalización</string>
+    <string name="settings_customization_description">Personaliza tu instalación de Endcord</string>
+    <string name="settings_app_name">Nombre de la aplicación</string>
+    <string name="settings_app_icon">Reemplazar el icono de la aplicación</string>
+    <string name="settings_app_icon_description">Usa el icono de Endcord en lugar del de Discord</string>
+
+    <string name="settings_advanced">Avanzado</string>
+    <string name="settings_advanced_description">Ajustes de descarga e instalación</string>
+    <string name="settings_channel">Canal de lanzamiento</string>
+    <string name="settings_mirror">Servidor de descarga</string>
+    <string name="settings_auto_clear_cache">Borrar la caché automáticamente</string>
+    <string name="settings_auto_clear_cache_description">Borra la caché cuando Discord recibe una actualización</string>
+
+    <string name="settings_developer">Solo para desarrolladores</string>
+    <string name="settings_developer_description">Estos ajustes pueden romper cosas si se usan mal</string>
+    <string name="settings_module_location">Ubicación del módulo</string>
+    <string name="settings_module_location_description">Para desarrollar el módulo Xposed. TEN CUIDADO</string>
+    <string name="settings_module_location_reset">Restablecer la ubicación del módulo</string>
+    <string name="settings_package_name">Nombre del paquete</string>
+    <string name="settings_version">Versión de Discord</string>
+    <string name="settings_debuggable">Depurable</string>
+    <string name="settings_debuggable_description">Activa el indicador debuggable</string>
+    <string name="settings_allow_downgrade">Permitir instalar versiones anteriores</string>
+    <string name="settings_allow_downgrade_description">Omite la comprobación de versión anterior; útil si tu dispositivo ya lo permite mediante root</string>
+
+    <string name="settings_logs_alternate_lines">Alternar el fondo de las líneas</string>
+    <string name="settings_logs_line_wrap">Ajustar líneas</string>
+
+    <string name="update_description">¡Endcord Installer %1$s está disponible!</string>
+
+    <string name="channel_stable">Estable</string>
+    <string name="channel_beta">Beta</string>
+    <string name="channel_alpha">Alfa</string>
+
+    <string name="label_github">GitHub</string>
+    <string name="label_discord">Discord</string>
+    <string name="label_team">Equipo</string>
+    <string name="label_special_thanks">Agradecimientos especiales</string>
+    <string name="label_translate">Traducir</string>
+
+    <string name="battery_opt_title">Optimización de batería</string>
+    <string name="battery_opt_description">Para que las descargas sigan en segundo plano o con la pantalla apagada, hay que desactivar la optimización de batería.</string>
+    <string name="battery_opt_confirm">Permitir</string>
+    <string name="battery_opt_dismiss">Más tarde</string>
+    <string name="battery_opt_error">No se pudieron abrir los ajustes de optimización de batería.</string>
+
+    <string name="version_latest">Más reciente: %1$s</string>
+    <string name="version_target">Objetivo: %1$s</string>
+    <string name="version_current">Actual: %1$s</string>
+    <string name="install_method">Método de instalación</string>
+    <string name="default_installer">PackageManager (recomendado)</string>
+    <string name="shizuku_installer">Shizuku</string>
+</resources>

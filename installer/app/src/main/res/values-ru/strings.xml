@@ -1,0 +1,178 @@
+<resources>
+    <string name="cd_library_author">Автор: %1$s</string>
+    <string name="cd_library_license">Лицензия: %1$s</string>
+
+    <string name="msg_cleared_cache">Кэш очищен</string>
+    <string name="msg_load_fail">Не удалось загрузить список изменений</string>
+    <string name="msg_coming_soon">Скоро</string>
+    <string name="msg_invalid_version">Недопустимая версия Discord</string>
+    <string name="msg_seven_left">Ещё 7 нажатий</string>
+    <string name="msg_five_left">Ещё 5 нажатий</string>
+    <string name="msg_two_left">Ещё 2 нажатия</string>
+    <string name="msg_loading">Загрузка…</string>
+    <string name="msg_downgrade">Понизить версию</string>
+    <string name="msg_downgrade_disallowed">Понизить версию нельзя, сначала попробуйте удалить приложение</string>
+    <string name="msg_unlocked">Теперь вы разработчик</string>
+    <string name="msg_permission_grant">Для работы с общим хранилищем нужно разрешение на доступ к файлам.</string>
+    <string name="msg_shizuku_denied">Не удалось получить разрешение Shizuku</string>
+    <string name="msg_try_again">Попробовать ещё раз?</string>
+    <string name="msg_invalid_apk">APK повреждён, очистите кэш и переустановите</string>
+    <string name="msg_download_cancelled">Загрузка отменена</string>
+    <string name="msg_download_failed">Ошибка загрузки</string>
+    <string name="msg_download_verify_failed">Не удалось проверить загруженный файл, подробности в журнале</string>
+    <string name="msg_copied">Скопировано в буфер обмена</string>
+
+    <string name="group_download">Загрузка APK</string>
+    <string name="group_patch">Патчинг</string>
+    <string name="group_installing">Установка</string>
+
+    <string name="step_dl_base">Загрузка основного APK</string>
+    <string name="step_dl_lib">Загрузка APK с библиотеками</string>
+    <string name="step_dl_lang">Загрузка языкового APK</string>
+    <string name="step_dl_res">Загрузка APK с ресурсами</string>
+    <string name="step_dl_mod">Загрузка Endcord</string>
+
+    <string name="step_change_icon">Замена значка приложения</string>
+    <string name="step_patch_manifests">Патчинг манифестов приложения</string>
+    <string name="step_add_mod">Внедрение Endcord</string>
+
+    <string name="step_signing">Подписывание APK</string>
+    <string name="step_installing">Установка APK</string>
+
+    <string name="installer_success">Установка завершена</string>
+    <string name="installer_aborted">Установка отменена</string>
+
+    <string name="install_fail_generic">Не удалось установить: неизвестная причина</string>
+    <string name="install_fail_blocked">Установка заблокирована</string>
+    <string name="install_fail_invalid">Один или несколько APK недействительны или повреждены</string>
+    <string name="install_fail_conflict">Конфликт с установленным приложением, обычно из-за несовпадения подписей</string>
+    <string name="install_fail_storage">Недостаточно свободного места для установки</string>
+    <string name="install_fail_incompatible">Приложение несовместимо с этим устройством</string>
+    <string name="install_fail_timeout">Время ожидания установки истекло</string>
+
+    <string name="status_ongoing">Выполняется</string>
+    <string name="status_successful">Успешно</string>
+    <string name="status_fail">Ошибка</string>
+    <string name="status_queued">В очереди</string>
+
+    <string name="action_collapse">Свернуть</string>
+    <string name="action_expand">Развернуть</string>
+    <string name="action_back">Назад</string>
+    <string name="action_copy_logs">Копировать журнал</string>
+    <string name="action_clear_cache">Очистить кэш</string>
+    <string name="action_confirm">Подтвердить</string>
+    <string name="action_start_update">Начать обновление</string>
+    <string name="action_install">Установить</string>
+    <string name="action_update">Обновить</string>
+    <string name="action_reinstall">Переустановить</string>
+    <string name="action_launch">Открыть</string>
+    <string name="action_uninstall">Удалить</string>
+    <string name="action_info">Сведения</string>
+    <string name="action_retry">Повторить</string>
+    <string name="action_reload">Обновить список</string>
+    <string name="action_open_about">О приложении</string>
+    <string name="action_open_settings">Открыть настройки</string>
+    <string name="action_tap_to_install">Нажмите, чтобы установить Endcord для Discord %1$s</string>
+    <string name="action_confirm_exit">Всё равно выйти</string>
+    <string name="action_dismiss_nevermind">Отмена</string>
+    <string name="action_dismiss_no_thanks">Нет, спасибо</string>
+    <string name="action_try_again">Попробовать снова</string>
+    <string name="action_previous_theme">Предыдущая тема</string>
+    <string name="action_next_theme">Следующая тема</string>
+    <string name="action_view_logs">Открыть журнал</string>
+    <string name="action_show_timestamp">Показывать время</string>
+    <string name="action_copy_log">Копировать запись</string>
+    <string name="action_save_logs">Сохранить журнал в файл</string>
+    <string name="action_share_logs">Поделиться журналом</string>
+    <string name="action_more_options">Ещё</string>
+
+    <string name="msg_back_warning">Выход из установщика до завершения может повредить загруженные файлы. Вы уверены?</string>
+
+    <string name="installer_cached">В кэше</string>
+
+    <string name="title_installer">Установщик</string>
+    <string name="title_home">Главная</string>
+    <string name="title_settings">Настройки</string>
+    <string name="title_update">Доступно обновление!</string>
+    <string name="title_about">О приложении</string>
+    <string name="title_permission_grant">Выдайте разрешения</string>
+    <string name="title_update_available">Доступно новое обновление Discord!</string>
+    <string name="title_warning">Внимание</string>
+    <string name="title_dl_failed">Ошибка загрузки</string>
+    <string name="title_logs">Журнал</string>
+    <string name="title_os_libraries">Библиотеки с открытым исходным кодом</string>
+    <string name="title_libraries">Библиотеки</string>
+
+    <string name="theme_system">Как в системе</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Тёмная</string>
+
+    <string name="duration_disabled">Отключено</string>
+    <string name="duration_fifteen_min">Каждые 15 минут</string>
+    <string name="duration_half_hour">Каждые полчаса</string>
+    <string name="duration_hourly">Каждый час</string>
+    <string name="duration_bihourly">Каждые два часа</string>
+    <string name="duration_twice_daily">Дважды в день</string>
+    <string name="duration_daily">Раз в день</string>
+    <string name="duration_weekly">Раз в неделю</string>
+
+    <string name="settings_appearance">Внешний вид</string>
+    <string name="settings_appearance_description">Изменить оформление приложения</string>
+    <string name="settings_dynamic_color">Динамические цвета</string>
+    <string name="settings_dynamic_color_description">Только на Android 12 и новее</string>
+    <string name="settings_theme">Тема</string>
+    <string name="settings_check_updates">Проверять обновления Discord</string>
+
+    <string name="settings_customization">Персонализация</string>
+    <string name="settings_customization_description">Настройте свою установку Endcord</string>
+    <string name="settings_app_name">Название приложения</string>
+    <string name="settings_app_icon">Заменить значок приложения</string>
+    <string name="settings_app_icon_description">Использовать значок Endcord вместо значка Discord</string>
+
+    <string name="settings_advanced">Дополнительно</string>
+    <string name="settings_advanced_description">Параметры загрузки и установки</string>
+    <string name="settings_channel">Канал выпусков</string>
+    <string name="settings_mirror">Зеркало загрузки</string>
+    <string name="settings_auto_clear_cache">Очищать кэш автоматически</string>
+    <string name="settings_auto_clear_cache_description">Очищать кэш при выходе обновления Discord</string>
+
+    <string name="settings_developer">Только для разработчиков</string>
+    <string name="settings_developer_description">Неправильное использование этих настроек может всё сломать</string>
+    <string name="settings_module_location">Расположение модуля</string>
+    <string name="settings_module_location_description">Для разработки модуля Xposed. БУДЬТЕ ОСТОРОЖНЫ</string>
+    <string name="settings_module_location_reset">Сбросить расположение модуля</string>
+    <string name="settings_package_name">Имя пакета</string>
+    <string name="settings_version">Версия Discord</string>
+    <string name="settings_debuggable">Отладка</string>
+    <string name="settings_debuggable_description">Включить флаг debuggable</string>
+    <string name="settings_allow_downgrade">Разрешить понижение версии</string>
+    <string name="settings_allow_downgrade_description">Пропускать проверку понижения версии; полезно, если устройство уже разрешает это через root</string>
+
+    <string name="settings_logs_alternate_lines">Чередовать фон строк</string>
+    <string name="settings_logs_line_wrap">Переносить строки</string>
+
+    <string name="update_description">Доступен Endcord Installer %1$s!</string>
+
+    <string name="channel_stable">Стабильный</string>
+    <string name="channel_beta">Бета</string>
+    <string name="channel_alpha">Альфа</string>
+
+    <string name="label_github">GitHub</string>
+    <string name="label_discord">Discord</string>
+    <string name="label_team">Команда</string>
+    <string name="label_special_thanks">Отдельная благодарность</string>
+    <string name="label_translate">Перевод</string>
+
+    <string name="battery_opt_title">Оптимизация батареи</string>
+    <string name="battery_opt_description">Чтобы загрузки надёжно продолжались в фоне и при выключенном экране, нужно отключить оптимизацию батареи.</string>
+    <string name="battery_opt_confirm">Разрешить</string>
+    <string name="battery_opt_dismiss">Позже</string>
+    <string name="battery_opt_error">Не удалось открыть настройки оптимизации батареи.</string>
+
+    <string name="version_latest">Последняя: %1$s</string>
+    <string name="version_target">Целевая: %1$s</string>
+    <string name="version_current">Текущая: %1$s</string>
+    <string name="install_method">Способ установки</string>
+    <string name="default_installer">PackageManager (рекомендуется)</string>
+    <string name="shizuku_installer">Shizuku</string>
+</resources>

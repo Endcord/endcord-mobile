@@ -1,0 +1,178 @@
+<resources>
+    <string name="cd_library_author">Yazar: %1$s</string>
+    <string name="cd_library_license">Lisans: %1$s</string>
+
+    <string name="msg_cleared_cache">Önbellek temizlendi</string>
+    <string name="msg_load_fail">Değişiklikler yüklenemedi</string>
+    <string name="msg_coming_soon">Yakında</string>
+    <string name="msg_invalid_version">Geçersiz Discord sürümü</string>
+    <string name="msg_seven_left">7 dokunuş kaldı</string>
+    <string name="msg_five_left">5 dokunuş kaldı</string>
+    <string name="msg_two_left">2 dokunuş kaldı</string>
+    <string name="msg_loading">Yükleniyor…</string>
+    <string name="msg_downgrade">Sürüm düşür</string>
+    <string name="msg_downgrade_disallowed">Sürüm düşürülemiyor, önce kaldırmayı deneyin</string>
+    <string name="msg_unlocked">Artık geliştiricisiniz</string>
+    <string name="msg_permission_grant">Paylaşılan depolamayı kullanmak için dosya izni gerekiyor.</string>
+    <string name="msg_shizuku_denied">Shizuku izni alınamadı</string>
+    <string name="msg_try_again">Tekrar denemek ister misiniz?</string>
+    <string name="msg_invalid_apk">APK bozulmuş, önbelleği temizleyip yeniden kurmayı deneyin</string>
+    <string name="msg_download_cancelled">İndirme iptal edildi</string>
+    <string name="msg_download_failed">İndirme başarısız</string>
+    <string name="msg_download_verify_failed">İndirilen dosya doğrulanamadı, ayrıntılar için kayıtlara bakın</string>
+    <string name="msg_copied">Panoya kopyalandı</string>
+
+    <string name="group_download">APK\'ları indir</string>
+    <string name="group_patch">Yamalama</string>
+    <string name="group_installing">Kurulum</string>
+
+    <string name="step_dl_base">Temel APK indiriliyor</string>
+    <string name="step_dl_lib">Kütüphane APK\'sı indiriliyor</string>
+    <string name="step_dl_lang">Dil APK\'sı indiriliyor</string>
+    <string name="step_dl_res">Kaynak APK\'sı indiriliyor</string>
+    <string name="step_dl_mod">Endcord indiriliyor</string>
+
+    <string name="step_change_icon">Uygulama simgesi değiştiriliyor</string>
+    <string name="step_patch_manifests">Uygulama bildirimleri yamalanıyor</string>
+    <string name="step_add_mod">Endcord ekleniyor</string>
+
+    <string name="step_signing">APK\'lar imzalanıyor</string>
+    <string name="step_installing">APK\'lar kuruluyor</string>
+
+    <string name="installer_success">Kurulum tamamlandı</string>
+    <string name="installer_aborted">Kurulum iptal edildi</string>
+
+    <string name="install_fail_generic">Kurulamadı: bilinmeyen sebep</string>
+    <string name="install_fail_blocked">Kurulum engellendi</string>
+    <string name="install_fail_invalid">Bir veya daha fazla APK geçersiz ya da bozuk</string>
+    <string name="install_fail_conflict">Var olan bir uygulamayla çakışıyor, genellikle imzalar uyuşmadığında olur</string>
+    <string name="install_fail_storage">Kurulum için yeterli boş alan yok</string>
+    <string name="install_fail_incompatible">Uygulama bu cihazla uyumlu değil</string>
+    <string name="install_fail_timeout">Kurulum zaman aşımına uğradı</string>
+
+    <string name="status_ongoing">Sürüyor</string>
+    <string name="status_successful">Başarılı</string>
+    <string name="status_fail">Başarısız</string>
+    <string name="status_queued">Sırada</string>
+
+    <string name="action_collapse">Daralt</string>
+    <string name="action_expand">Genişlet</string>
+    <string name="action_back">Geri dön</string>
+    <string name="action_copy_logs">Kayıtları kopyala</string>
+    <string name="action_clear_cache">Önbelleği temizle</string>
+    <string name="action_confirm">Onayla</string>
+    <string name="action_start_update">Güncellemeyi başlat</string>
+    <string name="action_install">Kur</string>
+    <string name="action_update">Güncelle</string>
+    <string name="action_reinstall">Yeniden kur</string>
+    <string name="action_launch">Aç</string>
+    <string name="action_uninstall">Kaldır</string>
+    <string name="action_info">Bilgi</string>
+    <string name="action_retry">Tekrar dene</string>
+    <string name="action_reload">Yenile</string>
+    <string name="action_open_about">Hakkında sayfasını aç</string>
+    <string name="action_open_settings">Ayarları aç</string>
+    <string name="action_tap_to_install">Discord %1$s için Endcord\'u kurmak üzere dokunun</string>
+    <string name="action_confirm_exit">Yine de çık</string>
+    <string name="action_dismiss_nevermind">Vazgeç</string>
+    <string name="action_dismiss_no_thanks">Hayır, teşekkürler</string>
+    <string name="action_try_again">Tekrar dene</string>
+    <string name="action_previous_theme">Önceki temayı gör</string>
+    <string name="action_next_theme">Sonraki temayı gör</string>
+    <string name="action_view_logs">Kayıtları gör</string>
+    <string name="action_show_timestamp">Zaman damgasını göster</string>
+    <string name="action_copy_log">Kaydı kopyala</string>
+    <string name="action_save_logs">Kayıtları dosyaya kaydet</string>
+    <string name="action_share_logs">Kayıtları paylaş</string>
+    <string name="action_more_options">Diğer seçenekler</string>
+
+    <string name="msg_back_warning">Kurulum bitmeden çıkmak indirilen dosyaları bozabilir, yine de çıkmak istiyor musunuz?</string>
+
+    <string name="installer_cached">Önbellekte</string>
+
+    <string name="title_installer">Yükleyici</string>
+    <string name="title_home">Ana sayfa</string>
+    <string name="title_settings">Ayarlar</string>
+    <string name="title_update">Güncelleme var!</string>
+    <string name="title_about">Hakkında</string>
+    <string name="title_permission_grant">İzinleri ver</string>
+    <string name="title_update_available">Yeni Discord güncellemesi var!</string>
+    <string name="title_warning">Uyarı</string>
+    <string name="title_dl_failed">İndirme başarısız</string>
+    <string name="title_logs">Kayıtlar</string>
+    <string name="title_os_libraries">Açık kaynak kütüphaneler</string>
+    <string name="title_libraries">Kütüphaneler</string>
+
+    <string name="theme_system">Sistem</string>
+    <string name="theme_light">Açık</string>
+    <string name="theme_dark">Koyu</string>
+
+    <string name="duration_disabled">Kapalı</string>
+    <string name="duration_fifteen_min">15 dakikada bir</string>
+    <string name="duration_half_hour">Yarım saatte bir</string>
+    <string name="duration_hourly">Saatte bir</string>
+    <string name="duration_bihourly">İki saatte bir</string>
+    <string name="duration_twice_daily">Günde iki kez</string>
+    <string name="duration_daily">Günde bir</string>
+    <string name="duration_weekly">Haftada bir</string>
+
+    <string name="settings_appearance">Görünüm</string>
+    <string name="settings_appearance_description">Uygulamanın görünümünü değiştirin</string>
+    <string name="settings_dynamic_color">Dinamik renk</string>
+    <string name="settings_dynamic_color_description">Yalnızca Android 12 ve üstünde</string>
+    <string name="settings_theme">Tema</string>
+    <string name="settings_check_updates">Discord güncellemelerini denetle</string>
+
+    <string name="settings_customization">Kişiselleştirme</string>
+    <string name="settings_customization_description">Endcord kurulumunuzu özelleştirin</string>
+    <string name="settings_app_name">Uygulama adı</string>
+    <string name="settings_app_icon">Uygulama simgesini değiştir</string>
+    <string name="settings_app_icon_description">Discord\'un simgesi yerine Endcord\'un simgesini kullanır</string>
+
+    <string name="settings_advanced">Gelişmiş</string>
+    <string name="settings_advanced_description">İndirme ve kurulum ayarları</string>
+    <string name="settings_channel">Yayın kanalı</string>
+    <string name="settings_mirror">İndirme yansısı</string>
+    <string name="settings_auto_clear_cache">Önbelleği otomatik temizle</string>
+    <string name="settings_auto_clear_cache_description">Discord güncellenince önbelleği temizler</string>
+
+    <string name="settings_developer">Yalnızca geliştiriciler için</string>
+    <string name="settings_developer_description">Bu ayarlar yanlış kullanılırsa bir şeyleri bozabilir</string>
+    <string name="settings_module_location">Modül konumu</string>
+    <string name="settings_module_location_description">Xposed modülü geliştirirken kullanılır. DİKKATLİ OLUN</string>
+    <string name="settings_module_location_reset">Modül konumunu sıfırla</string>
+    <string name="settings_package_name">Paket adı</string>
+    <string name="settings_version">Discord sürümü</string>
+    <string name="settings_debuggable">Hata ayıklanabilir</string>
+    <string name="settings_debuggable_description">Hata ayıklama bayrağını açar</string>
+    <string name="settings_allow_downgrade">Sürüm düşürmeye izin ver</string>
+    <string name="settings_allow_downgrade_description">Sürüm düşürme denetimini atlar; cihazınız root ile zaten sürüm düşürmeye izin veriyorsa işe yarar</string>
+
+    <string name="settings_logs_alternate_lines">Satırları dönüşümlü renklendir</string>
+    <string name="settings_logs_line_wrap">Satırları kaydır</string>
+
+    <string name="update_description">Endcord Installer %1$s yayında!</string>
+
+    <string name="channel_stable">Kararlı</string>
+    <string name="channel_beta">Beta</string>
+    <string name="channel_alpha">Alfa</string>
+
+    <string name="label_github">GitHub</string>
+    <string name="label_discord">Discord</string>
+    <string name="label_team">Ekip</string>
+    <string name="label_special_thanks">Özel teşekkürler</string>
+    <string name="label_translate">Çeviri</string>
+
+    <string name="battery_opt_title">Pil Optimizasyonu</string>
+    <string name="battery_opt_description">İndirmelerin arka planda veya ekran kapalıyken kesintisiz sürmesi için pil optimizasyonunun kapatılması gerekiyor.</string>
+    <string name="battery_opt_confirm">İzin ver</string>
+    <string name="battery_opt_dismiss">Sonra</string>
+    <string name="battery_opt_error">Pil optimizasyonu ayarları açılamadı.</string>
+
+    <string name="version_latest">En yeni: %1$s</string>
+    <string name="version_target">Hedef: %1$s</string>
+    <string name="version_current">Mevcut: %1$s</string>
+    <string name="install_method">Kurulum yöntemi</string>
+    <string name="default_installer">PackageManager (önerilen)</string>
+    <string name="shizuku_installer">Shizuku</string>
+</resources>
