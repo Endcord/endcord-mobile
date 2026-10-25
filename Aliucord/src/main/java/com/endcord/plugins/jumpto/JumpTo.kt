@@ -12,7 +12,7 @@ import com.aliucord.entities.EndcordPlugin
 import com.aliucord.i18n.I18n
 import com.aliucord.wrappers.ChannelWrapper.Companion.guildId
 import com.aliucord.wrappers.ChannelWrapper.Companion.id
-import com.endcord.plugins.actionscommon.ChannelSheetActions
+import com.endcord.plugins.api.ChannelSheetActions
 import com.endcord.plugins.actionscommon.Common
 import com.endcord.plugins.api.MessageActions
 import com.lytefast.flexinput.R

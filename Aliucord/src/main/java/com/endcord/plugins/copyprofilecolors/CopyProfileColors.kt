@@ -11,7 +11,7 @@ import com.aliucord.api.rn.user.RNUserProfile
 import com.aliucord.entities.EndcordPlugin
 import com.aliucord.i18n.I18n
 import com.endcord.plugins.actionscommon.Common
-import com.endcord.plugins.actionscommon.UserSheetActions
+import com.endcord.plugins.api.UserSheetActions
 import com.lytefast.flexinput.R
 
 internal class CopyProfileColors : EndcordPlugin(

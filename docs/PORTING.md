@@ -104,6 +104,11 @@ enough. Never patch the send path yourself, or the order breaks (for example sty
 
 `EndcordPlugin.stop()` unregisters decorators, send hooks and message actions automatically.
 
+### User and channel sheet entries
+
+`api.UserSheetActions` adds entries to the user profile sheet and `api.ChannelSheetActions` to the channel/DM
+long-press sheet, the same way `MessageActions` works for messages.
+
 ### Message long-press entries
 
 ```kotlin

@@ -12,9 +12,9 @@ import com.aliucord.entities.PluginSetting
 import com.aliucord.i18n.I18n
 import com.aliucord.utils.GsonUtils
 import com.aliucord.utils.GsonUtils.toJson
-import com.endcord.plugins.actionscommon.ChannelSheetActions
+import com.endcord.plugins.api.ChannelSheetActions
 import com.endcord.plugins.actionscommon.Common
-import com.endcord.plugins.actionscommon.UserSheetActions
+import com.endcord.plugins.api.UserSheetActions
 import com.endcord.plugins.api.MessageActions
 import com.lytefast.flexinput.R
 import org.json.JSONArray

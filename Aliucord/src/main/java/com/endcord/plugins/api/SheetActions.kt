@@ -3,7 +3,7 @@
  * Licensed under the Open Software License version 3.0
  */
 
-package com.endcord.plugins.actionscommon
+package com.endcord.plugins.api
 
 import android.view.View
 import android.view.ViewGroup

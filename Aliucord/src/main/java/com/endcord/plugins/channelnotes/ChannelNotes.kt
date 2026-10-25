@@ -24,7 +24,7 @@ import com.aliucord.utils.RxUtils.subscribe
 import com.aliucord.wrappers.ChannelWrapper.Companion.id
 import com.discord.stores.StoreStream
 import com.endcord.plugins.actionscommon.BrowserPage
-import com.endcord.plugins.actionscommon.ChannelSheetActions
+import com.endcord.plugins.api.ChannelSheetActions
 import com.endcord.plugins.actionscommon.Common
 import com.endcord.plugins.actionscommon.ListStore
 import com.lytefast.flexinput.R

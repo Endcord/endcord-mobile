@@ -8,7 +8,7 @@ package com.endcord.plugins.copyusermention
 import android.content.Context
 import com.aliucord.entities.EndcordPlugin
 import com.endcord.plugins.actionscommon.Common
-import com.endcord.plugins.actionscommon.UserSheetActions
+import com.endcord.plugins.api.UserSheetActions
 import com.lytefast.flexinput.R
 
 internal class CopyUserMention : EndcordPlugin(
