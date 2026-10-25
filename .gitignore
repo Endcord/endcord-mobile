@@ -14,3 +14,6 @@ local.properties
 *org.eclipse.buildship.core.prefs
 .vscode
 /patches/smali/
+
+# Local Claude Code worktrees and settings
+/.claude/
