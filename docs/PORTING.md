@@ -72,6 +72,9 @@ Setting labels, descriptions and `MessageActions` labels are translated for you.
 translations are reused where the English text matches; new strings are added to `Aliucord/i18n/core/*.json`.
 Never translate slash command *names*.
 
+If a port's English `description` differs from Endcord PC's, add translations of the new description to your
+batch's i18n file too: the exact English text is looked up before Endcord PC's translation of the plugin.
+
 ### Slash commands
 
 ```kotlin
@@ -82,6 +85,18 @@ commands.registerCommand("reverse", "Flips your message backwards", CommandsAPI.
 
 `CommandResult(content, embeds, send)`: `send = false` shows the result only to the user, as a Clyde message.
 More options: `Utils.createCommandOption(...)`, see `coreplugins/CoreCommands.kt`.
+
+### Message rows and outgoing messages
+
+Many plugins change how a message row looks. Don't patch `WidgetChatListAdapterItemMessage` yourself: register a
+`com.endcord.plugins.api.ChatDecorator` with `ChatHooks.register(...)`. One shared set of hooks then calls every
+enabled decorator, so plugins never overwrite each other's author names, timestamps or text. Decorators can
+transform the raw content before Discord parses it, decorate the rendered text, format the author name, the
+timestamp and reply previews, and run after a row is configured. `api/Spans.kt` has span helpers.
+
+To rewrite a message before it is sent (or edited), use `SendHooks.register(owner, onEdit) { text -> ... }`.
+
+`EndcordPlugin.stop()` unregisters decorators, send hooks and message actions automatically.
 
 ### Message long-press entries
 
@@ -121,9 +136,17 @@ that doesn't exist fails at runtime, not at compile time.
 ## Runtime constraints
 
 * **Kotlin stdlib 1.5.21** is what runs on the device. Don't use newer stdlib APIs: no `entries` on enums
-  (use `values()`), no `buildList`/`buildMap`, no `kotlin.time`, no `Regex` APIs added after 1.5, no
-  coroutines. The compiler is newer, so newer *language* features are fine.
-* Java APIs: Android API 24 plus core library desugaring (`java.time` and streams are available).
+  (use `values()`), no `buildList`/`buildMap`, no `kotlin.time`, no coroutines. The compiler is newer, so newer
+  *language* features are fine.
+* **Discord's jar shadows parts of the Kotlin stdlib** (`Regex`, `MatchResult`, `IntRange`, `Pair`, `Sequence`...)
+  with stripped copies at compile time: default arguments are missing and some constructors don't exist. Use
+  `java.util.regex.Pattern` instead of `Regex`, and pass every argument explicitly.
+* Java APIs: **Android API 24**. The core dex is *not* desugared, so `java.time` (API 26) crashes on Android 7.
+  Use `java.util.Calendar`, `SimpleDateFormat` and `android.text.format.DateUtils`.
+* Kotlin metadata of some Discord classes is stripped, so companion objects such as `WidgetUserSheet.Companion`
+  aren't callable from Kotlin. A tiny Java helper class in your plugin package works.
+* `patcher.before/after/instead` can't hook static methods (they cast `thisObject`). Use
+  `patcher.patch(method, object : XC_MethodHook() { ... })` for those.
 * RxJava **1.x** (`rx.Observable`), Gson (`GsonUtils`), OkHttp via Discord.
 * No network or disk I/O on the main thread: use `Utils.threadPool.execute { }` and come back with
   `Utils.mainThread.post { }`.

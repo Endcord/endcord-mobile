@@ -116,8 +116,10 @@ object I18n {
     fun pluginDescription(pluginName: String, fallback: String): String {
         val lang = language
         if (lang == Language.ENGLISH) return fallback
-        return table(lang, I18nData.PLUGINS)[pluginName]
-            ?: table(lang, I18nData.CORE)[fallback]
+        // A translation of the exact English text wins: ports whose mobile description differs from Endcord PC's
+        // ship their own translation of it, while unchanged descriptions use Endcord PC's table by plugin name.
+        return table(lang, I18nData.CORE)[fallback]
+            ?: table(lang, I18nData.PLUGINS)[pluginName]
             ?: fallback
     }
 
