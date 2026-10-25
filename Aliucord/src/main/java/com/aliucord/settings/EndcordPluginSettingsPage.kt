@@ -30,6 +30,39 @@ import com.lytefast.flexinput.R
  */
 @SuppressLint("SetTextI18n")
 class EndcordPluginSettingsPage(private val pluginName: String) : SettingsPage() {
+    /** Text edits waiting to be written, so typing doesn't rewrite the settings file on every keystroke. */
+    private val pendingWrites = LinkedHashMap<String, Runnable>()
+
+    private fun changed(plugin: EndcordPlugin, key: String) {
+        try {
+            plugin.onSettingChanged(key)
+        } catch (e: Throwable) {
+            plugin.logger.error("Failed to apply setting $key", e)
+        }
+    }
+
+    /** Writes [write] once the user stopped typing for a moment. */
+    private fun debounce(plugin: EndcordPlugin, key: String, write: () -> Unit) {
+        pendingWrites.remove(key)?.let { Utils.mainThread.removeCallbacks(it) }
+        val task = Runnable {
+            pendingWrites.remove(key)
+            write()
+            changed(plugin, key)
+        }
+        pendingWrites[key] = task
+        Utils.mainThread.postDelayed(task, 400)
+    }
+
+    override fun onPause() {
+        // Flush edits that are still waiting when the page is left
+        for (task in pendingWrites.values.toList()) {
+            Utils.mainThread.removeCallbacks(task)
+            task.run()
+        }
+        pendingWrites.clear()
+        super.onPause()
+    }
+
     override fun onViewBound(view: View) {
         super.onViewBound(view)
 
@@ -55,7 +88,10 @@ class EndcordPluginSettingsPage(private val pluginName: String) : SettingsPage()
                 is PluginSetting.Switch -> {
                     Utils.createCheckedSetting(ctx, CheckedSetting.ViewType.SWITCH, label, description).run {
                         isChecked = settings.getBool(entry.key, entry.default)
-                        setOnCheckedListener { settings.setBool(entry.key, it) }
+                        setOnCheckedListener {
+                            settings.setBool(entry.key, it)
+                            changed(plugin, entry.key)
+                        }
                         addView(this)
                     }
                 }
@@ -70,7 +106,9 @@ class EndcordPluginSettingsPage(private val pluginName: String) : SettingsPage()
                         } else {
                             maxLines = 1
                         }
-                        addTextChangedListener(afterChange { settings.setString(entry.key, it) })
+                        addTextChangedListener(afterChange { text ->
+                            debounce(plugin, entry.key) { settings.setString(entry.key, text) }
+                        })
                     }
                     addView(input)
                 }
@@ -84,7 +122,7 @@ class EndcordPluginSettingsPage(private val pluginName: String) : SettingsPage()
                         maxLines = 1
                         addTextChangedListener(afterChange { text ->
                             val value = text.toIntOrNull() ?: return@afterChange
-                            settings.setInt(entry.key, value.coerceIn(entry.min, entry.max))
+                            debounce(plugin, entry.key) { settings.setInt(entry.key, value.coerceIn(entry.min, entry.max)) }
                         })
                     }
                     addView(input)
@@ -102,6 +140,7 @@ class EndcordPluginSettingsPage(private val pluginName: String) : SettingsPage()
                                 onResultListener = { index ->
                                     settings.setString(entry.key, entry.options[index].value)
                                     this@run.text = "$label\n${currentLabel()}"
+                                    changed(plugin, entry.key)
                                 }
                             }.show(parentFragmentManager, entry.key)
                         }

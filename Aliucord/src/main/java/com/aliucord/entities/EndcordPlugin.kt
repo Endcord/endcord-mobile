@@ -56,6 +56,12 @@ internal abstract class EndcordPlugin(
 
     override fun requiresRestart(): Boolean = restartRequired
 
+    /**
+     * Called on the main thread after the user changed the setting [key] on the generated settings page, for
+     * plugins that need to re-apply something (for example refresh the chat). Text fields report once typing pauses.
+     */
+    open fun onSettingChanged(key: String) {}
+
     override fun load(context: Context) {
         if (settingsSchema.isNotEmpty() && settingsTab == null) {
             settingsTab = SettingsTab(EndcordPluginSettingsPage::class.java).withArgs(name)

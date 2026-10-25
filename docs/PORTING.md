@@ -62,7 +62,8 @@ Declare settings in `settingsSchema` and a settings page is generated automatica
 `Switch`, `Text` (use `multiline = true` for lists), `Number` (with `min`/`max`), `Choice`, `Action`.
 Read values with `bool(key)`, `string(key)`, `int(key)`, `choice(key)` and `list(key)` (comma or newline
 separated text). Values are read on every call, so read them where you need them instead of caching them in
-`start()`, and changes apply immediately.
+`start()`, and changes apply immediately. Override `onSettingChanged(key)` if a change has to be re-applied
+(for example to refresh the chat); text fields report once the user stops typing.
 
 ### Text and translations
 
