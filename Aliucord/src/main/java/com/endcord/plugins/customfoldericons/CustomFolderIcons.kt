@@ -46,7 +46,7 @@ internal class CustomFolderIcons : EndcordPlugin(
     override val settingsSchema = listOf(
         PluginSetting.Action(
             key = "change",
-            label = "Change Icon",
+            label = "Change folder icon",
             description = "Pick a folder, then paste a link to an image",
         ) { pickFolder(it) },
         PluginSetting.Switch(
@@ -163,6 +163,8 @@ internal class CustomFolderIcons : EndcordPlugin(
 
     /** Lists the user's folders, then asks for the image of the chosen one. */
     private fun pickFolder(context: Context) {
+        // The settings page also works while the plugin is off, when the icons weren't loaded
+        if (!running) icons = loadIcons()
         withFolders { all ->
             val folders = all.filter { it.id != null }
             if (folders.isEmpty()) {
@@ -173,7 +175,7 @@ internal class CustomFolderIcons : EndcordPlugin(
                 val name = label(folder)
                 if (folder.id in icons) "$name ✓" else name
             }
-            Dialogs.showList(context, I18n.t("Change Icon"), labels) { index -> askUrl(folders[index]) }
+            Dialogs.showList(context, I18n.t("Change folder icon"), labels) { index -> askUrl(folders[index]) }
         }
     }
 
@@ -188,7 +190,7 @@ internal class CustomFolderIcons : EndcordPlugin(
         val folderId = folder.id ?: return
         val existing = icons[folderId]
         val dialog = InputDialog()
-            .setTitle(I18n.t("Set a New Icon."))
+            .setTitle(I18n.t("Set a new icon"))
             .setDescription(I18n.t("Paste a link to a PNG, JPG or GIF image. Save it empty to go back to the server icons."))
             .setPlaceholderText("https://example.com/image.png")
             .setInputType(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_URI)

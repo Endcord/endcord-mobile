@@ -66,7 +66,11 @@ internal class AntiNickname : EndcordPlugin(
     @Volatile
     private var rateLimited = false
 
+    @Volatile
+    private var active = false
+
     override fun start(context: Context) {
+        active = true
         // Runs on the store thread before the stores apply GUILD_MEMBER_ADD / GUILD_MEMBER_UPDATE
         patcher.before<StoreStream>("handleGuildMemberAdd", GuildMember::class.java) { param ->
             try {
@@ -103,6 +107,7 @@ internal class AntiNickname : EndcordPlugin(
             warnedNoPermission.clear()
         }
         rateLimited = false
+        active = false
     }
 
     private fun myId(): Long = try {
@@ -166,6 +171,11 @@ internal class AntiNickname : EndcordPlugin(
     }
 
     private fun reset(guildId: Long, forcedNick: String) {
+        // Turned off while the reset was waiting
+        if (!active || rateLimited) {
+            synchronized(lock) { pending.remove(guildId) }
+            return
+        }
         val now = System.currentTimeMillis()
         val allowed = synchronized(lock) {
             val times = recentResets.getOrPut(guildId) { ArrayList() }

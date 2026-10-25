@@ -56,7 +56,7 @@ internal class HypeSquadSwitcher : EndcordPlugin(
         val current = currentHouse()
         val labels = HOUSES.mapIndexed { i, label ->
             val text = I18n.t(label)
-            if (i == current) "$text (${I18n.t("current")})" else text
+            if (i == current) "$text ✓" else text
         }.toTypedArray()
         AlertDialog.Builder(context)
             .setTitle(I18n.t("Change HypeSquad house"))
