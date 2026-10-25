@@ -125,6 +125,12 @@
         "es": "Conectar automáticamente a DevTools",
         "fr": "Connexion automatique à DevTools"
     },
+    "Automatic": {
+        "tr": "Otomatik",
+        "ru": "Автоматически",
+        "es": "Automático",
+        "fr": "Automatique"
+    },
     "Automatically connect to the DevTools during startup": {
         "tr": "Açılışta DevTools'a otomatik olarak bağlan",
         "ru": "Автоматически подключаться к DevTools при запуске",
@@ -305,6 +311,18 @@
         "es": "Personaliza el cursor de texto y el color de selección en los cuadros de texto.",
         "fr": "Personnalisez le curseur de texte et la couleur de sélection dans les zones de texte."
     },
+    "Dark": {
+        "tr": "Koyu",
+        "ru": "Тёмная",
+        "es": "Oscuro",
+        "fr": "Sombre"
+    },
+    "Delete font pack": {
+        "tr": "Yazı tipi paketini sil",
+        "ru": "Удалить набор шрифтов",
+        "es": "Eliminar el paquete de fuentes",
+        "fr": "Supprimer le pack de polices"
+    },
     "Deletes the downloaded Endcord, so the latest one is downloaded the next time the app starts.": {
         "tr": "İndirilen Endcord'u siler; uygulama bir sonraki açılışta en yeni sürümü indirir.",
         "ru": "Удаляет загруженный Endcord, чтобы при следующем запуске загрузилась последняя версия.",
@@ -388,6 +406,18 @@
         "ru": "Не записывать свои сообщения",
         "es": "No registrar tus propios mensajes",
         "fr": "Ne pas enregistrer vos propres messages"
+    },
+    "Download the fonts again": {
+        "tr": "Yazı tiplerini yeniden indir",
+        "ru": "Загрузить шрифты заново",
+        "es": "Volver a descargar las fuentes",
+        "fr": "Retélécharger les polices"
+    },
+    "Edit font": {
+        "tr": "Yazı tipini düzenle",
+        "ru": "Изменить шрифт",
+        "es": "Editar fuente",
+        "fr": "Modifier la police"
     },
     "Emoji size": {
         "tr": "Emoji boyutu",
@@ -545,6 +575,24 @@
         "es": "Nombre de la fuente",
         "fr": "Nom de la police"
     },
+    "Font family to replace": {
+        "tr": "Değiştirilecek yazı tipi ailesi",
+        "ru": "Заменяемое семейство шрифтов",
+        "es": "Familia de fuentes que reemplazar",
+        "fr": "Famille de polices à remplacer"
+    },
+    "Font link": {
+        "tr": "Yazı tipi bağlantısı",
+        "ru": "Ссылка на шрифт",
+        "es": "Enlace de la fuente",
+        "fr": "Lien de la police"
+    },
+    "Font pack link": {
+        "tr": "Yazı tipi paketi bağlantısı",
+        "ru": "Ссылка на набор шрифтов",
+        "es": "Enlace del paquete de fuentes",
+        "fr": "Lien du pack de polices"
+    },
     "Fonts": {
         "tr": "Yazı Tipleri",
         "ru": "Шрифты",
@@ -665,6 +713,18 @@
         "es": "Tamaño de imagen",
         "fr": "Taille de l'image"
     },
+    "Import font": {
+        "tr": "Yazı tipi içe aktar",
+        "ru": "Импорт шрифта",
+        "es": "Importar fuente",
+        "fr": "Importer une police"
+    },
+    "Import fonts from a link": {
+        "tr": "Yazı tiplerini bir bağlantıdan içe aktar",
+        "ru": "Импортировать шрифты по ссылке",
+        "es": "Importar fuentes desde un enlace",
+        "fr": "Importer des polices depuis un lien"
+    },
     "Info": {
         "tr": "Bilgi",
         "ru": "Информация",
@@ -742,6 +802,12 @@
         "ru": "Слева от поля сообщения",
         "es": "A la izquierda del cuadro de mensaje",
         "fr": "À gauche de la zone de message"
+    },
+    "Light": {
+        "tr": "Açık",
+        "ru": "Светлая",
+        "es": "Claro",
+        "fr": "Clair"
     },
     "Link style": {
         "tr": "Bağlantı biçimi",
@@ -1097,6 +1163,12 @@
         "es": "Mostrar un aviso cuando alguien elimine un mensaje que te mencionaba",
         "fr": "Afficher une alerte quand quelqu'un supprime un message qui vous mentionnait"
     },
+    "Show chat background": {
+        "tr": "Sohbet arka planını göster",
+        "ru": "Показывать фон чата",
+        "es": "Mostrar el fondo del chat",
+        "fr": "Afficher l'arrière-plan de la discussion"
+    },
     "Show less": {
         "tr": "Daha az göster",
         "ru": "Свернуть",
@@ -1132,6 +1204,12 @@
         "ru": "Показывать и ваши устройства",
         "es": "Mostrar también tus dispositivos",
         "fr": "Afficher aussi vos appareils"
+    },
+    "Shows or hides the theme's background image in chat": {
+        "tr": "Temanın sohbetteki arka plan görselini gösterir veya gizler",
+        "ru": "Показывает или скрывает фоновое изображение темы в чате",
+        "es": "Muestra u oculta la imagen de fondo del tema en el chat",
+        "fr": "Affiche ou masque l'image d'arrière-plan du thème dans la discussion"
     },
     "Shows which devices people are online on (desktop, web or mobile) next to their messages.": {
         "tr": "Kişilerin hangi cihazlarda çevrimiçi olduğunu (masaüstü, web veya mobil) mesajlarının yanında gösterir.",
@@ -1240,6 +1318,12 @@
         "ru": "Тема обновлена",
         "es": "Tema descargado de nuevo",
         "fr": "Thème retéléchargé"
+    },
+    "Theme type": {
+        "tr": "Tema türü",
+        "ru": "Тип темы",
+        "es": "Tipo de tema",
+        "fr": "Type de thème"
     },
     "Themes from the community's theme marketplace and Catppuccin. Installed themes also appear in Endcord's Themes page.": {
         "tr": "Topluluğun tema pazarından ve Catppuccin'den temalar. Yüklenen temalar Endcord'un Temalar sayfasında da görünür.",

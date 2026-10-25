@@ -1,4 +1,4 @@
-import { formatString, Strings } from "@core/i18n";
+import { formatString, Strings, t } from "@core/i18n";
 import { createProxy, useProxy } from "@core/vendetta/storage";
 import { FontDefinition, fonts, removeFont, saveFont, updateFont, validateFont } from "@lib/addons/fonts";
 import { getCurrentTheme } from "@lib/addons/themes";
@@ -112,7 +112,7 @@ function JsonFontImporter({ fonts, setName, setSource }: {
         <TextInput
             autoFocus
             size="md"
-            label={"Font Link"}
+            label={t("Font link")}
             value={fontLink}
             placeholder={"https://link.to/font/pack.json"}
             onChange={setFontLink}
@@ -122,7 +122,7 @@ function JsonFontImporter({ fonts, setName, setSource }: {
         <Button
             size="md"
             variant="primary"
-            text={"Import"}
+            text={t("Import")}
             disabled={!fontLink || saving}
             loading={saving}
             onPress={() => {
@@ -158,14 +158,14 @@ function EntryEditorActionSheet(props: {
         <TextInput
             autoFocus
             size="md"
-            label={"Family Name (to override)"}
+            label={t("Font family to replace")}
             value={familyName}
             placeholder={"ggsans-Bold"}
             onChange={setFamilyName}
         />
         <TextInput
             size="md"
-            label={"Font URL"}
+            label={t("Font link")}
             value={fontUrl}
             placeholder={"https://link.to/the/font.ttf"}
             onChange={setFontUrl}
@@ -173,7 +173,7 @@ function EntryEditorActionSheet(props: {
         <Button
             size="md"
             variant="primary"
-            text={"Apply"}
+            text={t("Apply")}
             onPress={() => {
                 delete props.fontEntries[props.name];
                 props.fontEntries[familyName] = fontUrl;
@@ -194,7 +194,7 @@ function promptActionSheet(
             default: () => (
                 <ErrorBoundary>
                     <ActionSheet>
-                        <BottomSheetTitleHeader title="Import Font" />
+                        <BottomSheetTitleHeader title={t("Import font")} />
                         <Component fonts={fontEntries} {...props} />
                     </ActionSheet>
                 </ErrorBoundary>
@@ -282,7 +282,7 @@ export default function FontEditor(props: {
     return <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 38 }}>
         <Stack style={{ paddingVertical: 24, paddingHorizontal: 12 }} spacing={12}>
             {!props.name
-                ? <TableRowGroup title="Import">
+                ? <TableRowGroup title={t("Import")}>
                     {/** @ts-ignore */}
                     {getCurrentTheme()?.data?.fonts && <TableRow
                         label={Strings.LABEL_EXTRACT_FONTS_FROM_THEME}
@@ -291,15 +291,15 @@ export default function FontEditor(props: {
                         onPress={() => promptActionSheet(RevengeFontsExtractor, fontEntries, { setName })}
                     />}
                     <TableRow
-                        label={"Import font entries from a link"}
+                        label={t("Import fonts from a link")}
                         subLabel={"Directly import from a link with a pre-configured JSON file"}
                         icon={<TableRow.Icon source={findAssetId("LinkIcon")} />}
                         onPress={() => promptActionSheet(JsonFontImporter, fontEntries, { setName, setSource })}
                     />
                 </TableRowGroup>
-                : <TableRowGroup title="Actions">
+                : <TableRowGroup title={t("Actions")}>
                     <TableRow
-                        label={"Refetch fonts from source"}
+                        label={t("Download the fonts again")}
                         icon={<TableRow.Icon source={findAssetId("RetryIcon")} />}
                         onPress={async () => {
                             await updateFont(fonts[props.name!]);
@@ -308,7 +308,7 @@ export default function FontEditor(props: {
                     />
                     <TableRow
                         variant="danger"
-                        label={"Delete font pack"}
+                        label={t("Delete font pack")}
                         icon={<TableRow.Icon variant="danger" source={findAssetId("TrashIcon")} />}
                         onPress={() => removeFont(props.name!).then(() => navigation.goBack())}
                     />
@@ -323,10 +323,10 @@ export default function FontEditor(props: {
             {props.name && fonts[props.name].source && <TextInput
                 size="lg"
                 value={source}
-                label="Font Pack URL"
+                label={t("Font pack link")}
                 onChange={setSource}
             />}
-            <TableRowGroup title="Font Entries">
+            <TableRowGroup title={t("Fonts")}>
                 {Object.entries(fontEntries).map(([name, url], index) => {
                     const error = errors?.[index];
 
@@ -370,7 +370,7 @@ export default function FontEditor(props: {
                     loading={importing}
                     disabled={importing || !name || Object.keys(fontEntries).length === 0}
                     variant="primary"
-                    text={props.name ? "Save" : "Import"}
+                    text={props.name ? t("Save") : t("Import")}
                     onPress={async () => {
                         if (!name) return;
 

@@ -1,4 +1,4 @@
-import { Strings } from "@core/i18n";
+import { Strings, t } from "@core/i18n";
 import { CardWrapper } from "@core/ui/components/AddonCard";
 import { showConfirmationAlert } from "@core/vendetta/alerts";
 import { useProxy } from "@core/vendetta/storage";
@@ -90,7 +90,7 @@ export default function FontCard({ item: font }: CardWrapper<FontDefinition>) {
                             <IconButton
                                 onPress={() => {
                                     navigation.push("BUNNY_CUSTOM_PAGE", {
-                                        title: "Edit Font",
+                                        title: t("Edit font"),
                                         render: () => <FontEditor name={font.name} />
                                     });
                                 }}
@@ -102,7 +102,7 @@ export default function FontCard({ item: font }: CardWrapper<FontDefinition>) {
                             <Button
                                 size="sm"
                                 variant={selected ? "secondary" : "primary"}
-                                text={selected ? "Unapply" : "Apply"}
+                                text={selected ? t("Remove") : t("Apply")}
                                 onPress={async () => {
                                     await selectFont(selected ? null : font.name);
                                     showConfirmationAlert({

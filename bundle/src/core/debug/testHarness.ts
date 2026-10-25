@@ -164,7 +164,50 @@ async function run() {
     const { TextInput } = require("react-native");
     report("textinput", { type: typeof TextInput, render: typeof TextInput?.render, keys: Object.keys(TextInput ?? {}).slice(0, 20) });
 
+    await screens();
+
     report("done", {});
+}
+
+const wait = (ms: number) => new Promise(r => setTimeout(r, ms));
+
+/** Shows Endcord's pages one at a time; the workflow takes a screenshot of each when it sees the "shot" line */
+async function screens() {
+    const { showTestScreen } = require("@core/debug/testScreens");
+    const { settings } = require("@lib/api/settings");
+    const PluginSettings = require("@plugins/ui/PluginSettings").default;
+    const byId = (id: string) => getEndcordPlugins().find(p => p.id === id)!;
+    const pluginPage = (id: string) => () => PluginSettings({ plugin: byId(id) });
+
+    const pages: Array<[string, any]> = [
+        ["general", require("@core/ui/settings/pages/General").default],
+        ["plugins", require("@core/ui/settings/pages/Plugins").default],
+        ["messagelogger", pluginPage("endcord.message-logger")],
+        ["fakenitro", pluginPage("endcord.fake-nitro")],
+        ["themelibrary", pluginPage("endcord.theme-library")],
+        ["themes", require("@core/ui/settings/pages/Themes").default],
+    ];
+
+    const previous = settings.language;
+    try {
+        for (const language of ["en", "tr"] as const) {
+            settings.language = language;
+            for (const [name, render] of pages) {
+                if (language === "tr" && !["general", "plugins", "messagelogger"].includes(name)) continue;
+                try {
+                    showTestScreen({ title: name, render });
+                    await wait(5000);
+                    report("shot", { name: `${language}-${name}` });
+                    await wait(4000);
+                } catch (e) {
+                    report("screen-error", { name, error: String(e) });
+                }
+            }
+        }
+    } finally {
+        settings.language = previous;
+        showTestScreen(null);
+    }
 }
 
 export function initTestHarness() {

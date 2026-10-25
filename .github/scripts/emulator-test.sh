@@ -21,6 +21,8 @@ adb shell settings put global window_animation_scale 0
 adb shell settings put global transition_animation_scale 0
 adb shell settings put global animator_duration_scale 0
 adb shell getprop ro.build.version.release > results/android-version.txt
+# Room for the whole self-test, which Discord's own logging would otherwise push out
+adb logcat -G 16M
 
 step "Serve the bundle and loader"
 (cd serve && python3 -m http.server 4040 > ../results/http.log 2>&1 &)
@@ -36,10 +38,19 @@ launch_endcord() {
         sleep 10
         python3 "$SCRIPTS/ui.py" shot "$name-launch-$((i * 10))s"
     done
-    # The self-test reports for up to three minutes after start
-    for i in $(seq 1 36); do
-        if adb logcat -d | grep -q 'ENDCORD_TEST {"kind":"done"'; then break; fi
-        sleep 5
+    # The self-test reports for up to four minutes after start; each "shot" line asks for a screenshot of the
+    # page it shows, which stays up for a few seconds
+    local taken=""
+    for i in $(seq 1 120); do
+        log=$(adb logcat -d 2>/dev/null)
+        for shot in $(grep -o '"kind":"shot","data":{"name":"[a-z-]*"' <<<"$log" | sed 's/.*"name":"//; s/"$//'); do
+            case " $taken " in *" $shot "*) ;; *)
+                python3 "$SCRIPTS/ui.py" shot "$name-page-$shot"
+                taken="$taken $shot"
+            ;; esac
+        done
+        if grep -q '"kind":"done"' <<<"$log"; then break; fi
+        sleep 2
     done
     adb logcat -d > "results/$name-logcat.txt"
     grep -o 'ENDCORD_TEST .*' "results/$name-logcat.txt" | sed 's/^ENDCORD_TEST //' > "results/$name-selftest.jsonl"
