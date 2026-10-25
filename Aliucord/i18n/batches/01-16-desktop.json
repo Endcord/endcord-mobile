@@ -1,0 +1,164 @@
+{
+  "A link to an image or GIF, or a file on your device as file:///sdcard/...": {
+    "tr": "Bir resim ya da GIF bağlantısı veya cihazındaki bir dosya (file:///sdcard/... biçiminde)",
+    "ru": "Ссылка на картинку или GIF либо файл на устройстве в виде file:///sdcard/...",
+    "es": "Un enlace a una imagen o GIF, o un archivo de tu dispositivo como file:///sdcard/...",
+    "fr": "Un lien vers une image ou un GIF, ou un fichier de votre appareil sous la forme file:///sdcard/..."
+  },
+  "Adds your own ban reasons to the ban dialog. Tap one to fill in the reason.": {
+    "tr": "Yasaklama penceresine kendi yasaklama nedenlerini ekler. Nedeni doldurmak için birine dokun.",
+    "ru": "Добавляет ваши причины бана в окно бана. Нажмите на причину, чтобы подставить её.",
+    "es": "Añade tus propios motivos de expulsión al diálogo de expulsión. Toca uno para rellenar el motivo.",
+    "fr": "Ajoute vos propres raisons de bannissement à la fenêtre de bannissement. Touchez-en une pour remplir la raison."
+  },
+  "Adds your own reaction buttons to the message long-press menu. Use any emoji, or a server emoji as <:name:id>.": {
+    "tr": "Mesajın basılı tutma menüsüne kendi tepki düğmelerini ekler. Herhangi bir emoji ya da <:ad:id> biçiminde bir sunucu emojisi kullan.",
+    "ru": "Добавляет свои кнопки реакций в меню долгого нажатия на сообщение. Подойдёт любой эмодзи или эмодзи сервера в виде <:имя:id>.",
+    "es": "Añade tus propios botones de reacción al menú de mantener pulsado un mensaje. Usa cualquier emoji o un emoji de servidor como <:nombre:id>.",
+    "fr": "Ajoute vos propres boutons de réaction au menu d'appui long sur un message. Utilisez n'importe quel emoji, ou un emoji de serveur sous la forme <:nom:id>."
+  },
+  "Convert a music link to other streaming platforms.": {
+    "tr": "Bir müzik bağlantısını diğer müzik platformlarına çevir.",
+    "ru": "Преобразовать музыкальную ссылку для других платформ.",
+    "es": "Convierte un enlace de música a otras plataformas de streaming.",
+    "fr": "Convertir un lien de musique vers d'autres plateformes de streaming."
+  },
+  "Country used for lookup (Two letter country code)": {
+    "tr": "Arama için kullanılacak ülke (iki harfli kod)",
+    "ru": "Страна для поиска (двухбуквенный код)",
+    "es": "País para la búsqueda (código de dos letras)",
+    "fr": "Pays pour la recherche (code à deux lettres)"
+  },
+  "Failed to add reaction": {
+    "tr": "Tepki eklenemedi",
+    "ru": "Не удалось добавить реакцию",
+    "es": "No se pudo añadir la reacción",
+    "fr": "Impossible d'ajouter la réaction"
+  },
+  "Failed to resolve music link": {
+    "tr": "Müzik bağlantısı çözümlenemedi",
+    "ru": "Не удалось распознать музыкальную ссылку",
+    "es": "No se pudo resolver el enlace de música",
+    "fr": "Impossible de résoudre le lien de musique"
+  },
+  "Find a song link on other streaming services from the message long-press menu, or with /musiclink.": {
+    "tr": "Bir şarkı bağlantısını mesajın basılı tutma menüsünden ya da /musiclink ile diğer müzik servislerinde bul.",
+    "ru": "Находит песню по ссылке в других музыкальных сервисах: из меню долгого нажатия на сообщение или через /musiclink.",
+    "es": "Busca un enlace de canción en otros servicios de música desde el menú de mantener pulsado un mensaje o con /musiclink.",
+    "fr": "Retrouvez un lien de musique sur d'autres services de streaming depuis le menu d'appui long sur un message, ou avec /musiclink."
+  },
+  "Global wallpaper for the entire Discord interface (image or GIF).": {
+    "tr": "Tüm Discord arayüzü için genel duvar kâğıdı (resim veya GIF).",
+    "ru": "Общие обои для всего интерфейса Discord (картинка или GIF).",
+    "es": "Fondo global para toda la interfaz de Discord (imagen o GIF).",
+    "fr": "Fond d'écran global pour toute l'interface de Discord (image ou GIF)."
+  },
+  "Include the track title and artist name as a header.": {
+    "tr": "Şarkı adını ve sanatçıyı başlık olarak ekle.",
+    "ru": "Добавлять название трека и исполнителя заголовком.",
+    "es": "Incluir el título y el artista como encabezado.",
+    "fr": "Ajouter le titre et l'artiste en en-tête."
+  },
+  "Music link (Spotify, Deezer, YouTube, Tidal, Apple Music, SoundCloud)": {
+    "tr": "Müzik bağlantısı (Spotify, Deezer, YouTube, Tidal, Apple Music, SoundCloud)",
+    "ru": "Ссылка на музыку (Spotify, Deezer, YouTube, Tidal, Apple Music, SoundCloud)",
+    "es": "Enlace de música (Spotify, Deezer, YouTube, Tidal, Apple Music, SoundCloud)",
+    "fr": "Lien de musique (Spotify, Deezer, YouTube, Tidal, Apple Music, SoundCloud)"
+  },
+  "No alternative platforms found for this link.": {
+    "tr": "Bu bağlantı için başka platform bulunamadı.",
+    "ru": "Для этой ссылки не найдено других платформ.",
+    "es": "No se encontraron otras plataformas para este enlace.",
+    "fr": "Aucune autre plateforme trouvée pour ce lien."
+  },
+  "One button per line: an emoji, :name:123 or <a:name:123>, then an optional label": {
+    "tr": "Her satıra bir düğme: bir emoji, :ad:123 ya da <a:ad:123>, ardından isteğe bağlı bir etiket",
+    "ru": "Одна кнопка на строку: эмодзи, :имя:123 или <a:имя:123>, затем необязательная подпись",
+    "es": "Un botón por línea: un emoji, :nombre:123 o <a:nombre:123> y, si quieres, una etiqueta",
+    "fr": "Un bouton par ligne : un emoji, :nom:123 ou <a:nom:123>, puis un libellé facultatif"
+  },
+  "One reason per line": {
+    "tr": "Her satıra bir neden",
+    "ru": "Одна причина на строку",
+    "es": "Un motivo por línea",
+    "fr": "Une raison par ligne"
+  },
+  "Only unicode emojis": {
+    "tr": "Sadece Unicode emojiler",
+    "ru": "Только Unicode-эмодзи",
+    "es": "Solo emojis Unicode",
+    "fr": "Seulement les emojis Unicode"
+  },
+  "Reaction buttons": {
+    "tr": "Tepki düğmeleri",
+    "ru": "Кнопки реакций",
+    "es": "Botones de reacción",
+    "fr": "Boutons de réaction"
+  },
+  "Seen · typing...": {
+    "tr": "Görüldü · yazıyor...",
+    "ru": "Просмотрено · печатает...",
+    "es": "Visto · escribiendo...",
+    "fr": "Vu · écrit..."
+  },
+  "Seen ✓": {
+    "tr": "Görüldü ✓",
+    "ru": "Просмотрено ✓",
+    "es": "Visto ✓",
+    "fr": "Vu ✓"
+  },
+  "Song links": {
+    "tr": "Şarkı bağlantıları",
+    "ru": "Ссылки на песню",
+    "es": "Enlaces de la canción",
+    "fr": "Liens du morceau"
+  },
+  "The types of emojis to show in the autocomplete menu.": {
+    "tr": "Otomatik tamamlama menüsünde gösterilecek emoji türleri.",
+    "ru": "Типы эмодзи в автодополнении.",
+    "es": "Tipos de emojis del autocompletado.",
+    "fr": "Types d'emojis dans l'autocomplétion."
+  },
+  "This will take a moment...": {
+    "tr": "Bu biraz sürecek...",
+    "ru": "Это займёт немного времени...",
+    "es": "Esto tardará un momento...",
+    "fr": "Cela va prendre un instant..."
+  },
+  "Unicode emojis and all server emojis (Discord default)": {
+    "tr": "Unicode emojiler ve tüm sunucu emojileri (Discord varsayılanı)",
+    "ru": "Unicode-эмодзи и все серверные (по умолчанию)",
+    "es": "Emojis Unicode y todos los de servidor (predeterminado)",
+    "fr": "Emojis Unicode et tous ceux des serveurs (défaut)"
+  },
+  "Unicode emojis and server emojis from current server": {
+    "tr": "Unicode emojiler ve bu sunucunun emojileri",
+    "ru": "Unicode-эмодзи и эмодзи текущего сервера",
+    "es": "Emojis Unicode y los del servidor actual",
+    "fr": "Emojis Unicode et ceux du serveur actuel"
+  },
+  "Wallpaper URL": {
+    "tr": "Duvar kâğıdı bağlantısı",
+    "ru": "Ссылка на обои",
+    "es": "URL del fondo",
+    "fr": "URL du fond"
+  },
+  "Wallpaper brightness in percent (10 = very dark, 100 = normal, 200 = very bright)": {
+    "tr": "Yüzde olarak duvar kâğıdı parlaklığı (10 = çok koyu, 100 = normal, 200 = çok parlak)",
+    "ru": "Яркость обоев в процентах (10 = очень тёмные, 100 = обычно, 200 = очень яркие)",
+    "es": "Brillo del fondo en porcentaje (10 = muy oscuro, 100 = normal, 200 = muy brillante)",
+    "fr": "Luminosité du fond en pourcentage (10 = très sombre, 100 = normal, 200 = très clair)"
+  },
+  "Wallpaper opacity in percent (0 = invisible, 50 = max)": {
+    "tr": "Yüzde olarak duvar kâğıdı opaklığı (0 = görünmez, 50 = en fazla)",
+    "ru": "Непрозрачность обоев в процентах (0 = невидимы, 50 = максимум)",
+    "es": "Opacidad del fondo en porcentaje (0 = invisible, 50 = máx.)",
+    "fr": "Opacité du fond en pourcentage (0 = invisible, 50 = max)"
+  },
+  "Your custom reasons": {
+    "tr": "Özel nedenlerin",
+    "ru": "Ваши причины",
+    "es": "Tus motivos personalizados",
+    "fr": "Vos raisons personnalisées"
+  }
+}
