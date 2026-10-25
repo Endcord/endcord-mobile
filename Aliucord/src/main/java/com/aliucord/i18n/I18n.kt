@@ -52,7 +52,10 @@ object I18n {
     /** The language Endcord is currently displayed in. */
     @JvmStatic
     var language: Language
-        get() = cachedLanguage ?: resolveLanguage().also { cachedLanguage = it }
+        get() = cachedLanguage ?: resolveLanguage().also {
+            // Before the settings are loaded the stored choice isn't known yet, so don't remember the fallback
+            if (Main.settings != null) cachedLanguage = it
+        }
         set(value) {
             cachedLanguage = value
             Main.settings?.setString(LANGUAGE_KEY, value.code)
