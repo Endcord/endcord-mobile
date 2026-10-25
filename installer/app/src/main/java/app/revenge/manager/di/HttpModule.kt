@@ -2,6 +2,7 @@ package app.revenge.manager.di
 
 import app.revenge.manager.network.service.HttpService
 import app.revenge.manager.network.service.RestService
+import app.revenge.manager.network.utils.Ipv4FirstDns
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.HttpTimeout
@@ -19,6 +20,12 @@ val httpModule = module {
     }
 
     fun provideHttpClient(json: Json) = HttpClient(OkHttp) {
+        engine {
+            config {
+                dns(Ipv4FirstDns)
+            }
+        }
+
         install(ContentNegotiation) {
             json(json)
         }

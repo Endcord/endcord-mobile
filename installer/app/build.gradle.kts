@@ -27,6 +27,12 @@ android {
         buildConfigField("String", "ORG_LINK", "\"https://github.com/rootpoii/endcord-android\"")
         buildConfigField("String", "INVITE_LINK", "\"https://discord.gg/endcord\"")
         buildConfigField("String", "MODDED_APP_PACKAGE_NAME", "\"com.endcord.next\"")
+        // Where the Build workflow publishes the loader. Pass -Pendcord.loaderUrl=http://10.0.2.2:4040/endcord-xposed.apk
+        // to install a loader you serve yourself while developing.
+        val loaderUrl = providers.gradleProperty("endcord.loaderUrl")
+            .orElse("https://raw.githubusercontent.com/rootpoii/endcord-android/builds/endcord-xposed.apk")
+            .get()
+        buildConfigField("String", "LOADER_URL", "\"$loaderUrl\"")
         buildConfigField("int", "MODDED_APP_ICON", "0xFF10182A") // Endcord night blue
         buildConfigField("int", "MODDED_APP_ICON_ALPHA", "0xFF3D74E0") // cobalt (beta)
         buildConfigField("int", "MODDED_APP_ICON_OTHER", "0xFF9CCBFF") // ice (alpha)

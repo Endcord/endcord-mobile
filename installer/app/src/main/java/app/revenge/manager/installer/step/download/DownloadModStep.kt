@@ -1,6 +1,7 @@
 package app.revenge.manager.installer.step.download
 
 import androidx.compose.runtime.Stable
+import app.revenge.manager.BuildConfig
 import app.revenge.manager.R
 import app.revenge.manager.installer.step.download.base.DownloadStep
 import java.io.File
@@ -15,7 +16,7 @@ class DownloadModStep(
 
     override val nameRes = R.string.step_dl_mod
 
-    override val downloadFullUrl: String = "https://raw.githubusercontent.com/rootpoii/endcord-android/builds/endcord-xposed.apk"
+    override val downloadFullUrl: String = BuildConfig.LOADER_URL
     override val destination = preferenceManager.moduleLocation
     override val workingCopy = workingDir.resolve("xposed.apk")
 
