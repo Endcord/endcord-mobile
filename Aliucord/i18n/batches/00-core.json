@@ -706,5 +706,17 @@
     "ru": "от {authors}",
     "es": "por {authors}",
     "fr": "par {authors}"
+  },
+  "Still show typing in DMs": {
+    "tr": "DM'lerde yazıyor göstergesini yine de göster",
+    "ru": "Показывать набор текста в личных сообщениях",
+    "es": "Mostrar que escribes en los MD",
+    "fr": "Afficher quand même la saisie en MP"
+  },
+  "Only hide your typing indicator in servers": {
+    "tr": "Yazıyor göstergenizi yalnızca sunucularda gizler",
+    "ru": "Скрывать индикатор набора текста только на серверах",
+    "es": "Ocultar el indicador de escritura solo en los servidores",
+    "fr": "Masquer l'indicateur de saisie uniquement sur les serveurs"
   }
 }
