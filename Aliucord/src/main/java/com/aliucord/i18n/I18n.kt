@@ -7,6 +7,7 @@ package com.aliucord.i18n
 
 import com.aliucord.Logger
 import com.aliucord.Main
+import com.aliucord.settings.LanguageSync
 import java.util.Locale
 
 /**
@@ -63,7 +64,9 @@ object I18n {
         } catch (_: Throwable) {
             null
         }
-        return Language.fromCode(stored ?: Locale.getDefault().language)
+        if (stored != null) return Language.fromCode(stored)
+        // Until a language is picked, follow Discord's own language setting, then the system language
+        return LanguageSync.currentDiscordLanguage() ?: Language.fromCode(Locale.getDefault().language)
     }
 
     /** Whether the user picked a language themselves, rather than following the system language. */

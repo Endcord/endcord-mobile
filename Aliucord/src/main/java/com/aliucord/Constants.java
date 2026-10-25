@@ -1,5 +1,5 @@
 /*
- * This file is part of Aliucord, an Android Discord client mod.
+ * This file is part of Endcord, an Android Discord client mod based on Aliucord.
  * Copyright (c) 2021 Juby210 & Vendicated
  * Licensed under the Open Software License version 3.0
  */
@@ -29,10 +29,36 @@ public final class Constants {
         public static final int whitney_semibold = base + 7;
     }
 
-    /** Link to the Aliucord github repo */
-    public static final String ALIUCORD_GITHUB_REPO = "https://github.com/Aliucord/Aliucord";
-    /** Code of the Aliucord discord server */
-    public static final String ALIUCORD_SUPPORT = "EsNDvBaHVU";
+    /** {@code owner/name} of the GitHub repository hosting Endcord mobile, set in gradle.properties */
+    public static final String ENDCORD_REPO = BuildConfig.GITHUB_REPO;
+    /** Link to the Endcord mobile GitHub repo */
+    public static final String ENDCORD_GITHUB_REPO = "https://github.com/" + ENDCORD_REPO;
+    /** Base url of the published builds (core, injector, patches and build data) */
+    public static final String ENDCORD_BUILDS_URL = "https://raw.githubusercontent.com/" + ENDCORD_REPO + "/builds";
+    /** Link to the latest Endcord Installer release */
+    public static final String ENDCORD_INSTALLER_RELEASES = ENDCORD_GITHUB_REPO + "/releases/latest";
+    /** Link to Endcord PC, whose plugins are built into Endcord mobile */
+    public static final String ENDCORD_PC_GITHUB_REPO = "https://github.com/rootpoii/endcord";
+    /** Endcord's website */
+    public static final String ENDCORD_WEBSITE = "https://endcord.com";
+    /** Invite code of the Endcord Discord server */
+    public static final String ENDCORD_SUPPORT = "endcord";
+
+    /**
+     * Link to the GitHub repo of this client.
+     * @deprecated Kept for plugins written for Aliucord, use {@link #ENDCORD_GITHUB_REPO}.
+     */
+    @Deprecated
+    public static final String ALIUCORD_GITHUB_REPO = ENDCORD_GITHUB_REPO;
+    /**
+     * Invite code of the support server.
+     * @deprecated Kept for plugins written for Aliucord, use {@link #ENDCORD_SUPPORT}.
+     */
+    @Deprecated
+    public static final String ALIUCORD_SUPPORT = ENDCORD_SUPPORT;
+
+    // The Aliucord server, home of the Aliucord plugin ecosystem that Endcord stays compatible with.
+    // PluginDownloader installs plugins from its plugin channels.
     public static final long ALIUCORD_GUILD_ID = 811255666990907402L;
     public static final long SUPPORT_CHANNEL_ID = 811261298997460992L; // #support
     public static final long PLUGIN_SUPPORT_CHANNEL_ID = 847566769258233926L; // #plugin-support
@@ -45,8 +71,8 @@ public final class Constants {
     public static final long SUPPORT_HELPER_ROLE_ID = 1397067198761144361L; // @support-helper
     public static final long BOT_SPAM_CHANNEL_ID = 811263527239024640L; // #bot-spam
 
-    /** Path of Aliucord folder */
-    public static final String BASE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Aliucord";
+    /** Path of the Endcord folder */
+    public static final String BASE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Endcord";
     /** Path of Plugin folder */
     public static final String PLUGINS_PATH = BASE_PATH + "/plugins";
     /** Path of Crashlog folder */

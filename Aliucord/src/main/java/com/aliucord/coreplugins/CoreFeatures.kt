@@ -16,6 +16,7 @@ import com.aliucord.*
 import com.aliucord.PluginManager.isSafeModeEnabled
 import com.aliucord.entities.CorePlugin
 import com.aliucord.fragments.ConfirmDialog
+import com.aliucord.i18n.I18n
 import com.aliucord.patcher.*
 import com.aliucord.screens.UpdaterScreen
 import com.aliucord.settings.*
@@ -44,7 +45,7 @@ import com.discord.widgets.status.*
 import com.lytefast.flexinput.R
 
 /**
- * Adds Aliucord-specific core features to the stock app.
+ * Adds Endcord-specific core features to the stock app.
  */
 internal class CoreFeatures : CorePlugin(Manifest("CoreFeatures")) {
     override val isHidden = true
@@ -55,11 +56,11 @@ internal class CoreFeatures : CorePlugin(Manifest("CoreFeatures")) {
     private val WidgetGlobalStatusIndicator.indicatorState by accessField<WidgetGlobalStatusIndicatorState>()
 
     init {
-        manifest.description = "Provides core Aliucord features"
+        manifest.description = "Provides core Endcord features"
     }
 
     override fun start(context: Context) {
-        // Adds Aliucord section in settings with links to plugins, settings, etc
+        // Adds Endcord section in settings with links to plugins, settings, etc
         patcher.after<WidgetSettings>("onViewBound", View::class.java) { (_, root: ViewGroup) ->
             val layout = Utils.nestedChildAt<ViewGroup>(root, 1, 0)
             var baseIndex = layout.indexOfChild(layout.findViewById("developer_options_divider"))
@@ -68,7 +69,7 @@ internal class CoreFeatures : CorePlugin(Manifest("CoreFeatures")) {
             layout.addView(Divider(context), baseIndex++)
 
             val header = TextView(context, null, 0, R.i.UiKit_Settings_Item_Header).apply {
-                text = "Aliucord"
+                text = "Endcord"
                 setTypeface(ResourcesCompat.getFont(context, Constants.Fonts.whitney_semibold))
             }
             layout.addView(header, baseIndex++)
@@ -76,23 +77,23 @@ internal class CoreFeatures : CorePlugin(Manifest("CoreFeatures")) {
             val font = ResourcesCompat.getFont(context, Constants.Fonts.whitney_medium)!!
 
             layout.addView(
-                makeSettingsEntry(context, font, "Settings", R.e.ic_behavior_24dp, AliucordPage::class.java),
+                makeSettingsEntry(context, font, I18n.t("Settings"), R.e.ic_behavior_24dp, AliucordPage::class.java),
                 baseIndex++
             )
             layout.addView(
-                makeSettingsEntry(context, font, "Plugins", R.e.ic_clear_all_white_24dp, Plugins::class.java),
+                makeSettingsEntry(context, font, I18n.t("Plugins"), R.e.ic_clear_all_white_24dp, Plugins::class.java),
                 baseIndex++
             )
             layout.addView(
-                makeSettingsEntry(context, font, "Updater", R.e.ic_file_download_white_24dp, UpdaterScreen::class.java),
+                makeSettingsEntry(context, font, I18n.t("Updater"), R.e.ic_file_download_white_24dp, UpdaterScreen::class.java),
                 baseIndex++
             )
             layout.addView(
-                makeSettingsEntry(context, font, "Crashes", R.e.ic_history_white_24dp, Crashes::class.java),
+                makeSettingsEntry(context, font, I18n.t("Crashes"), R.e.ic_history_white_24dp, Crashes::class.java),
                 baseIndex++
             )
             layout.addView(
-                makeSettingsEntry(context, font, "Open Debug Log", R.e.ic_audit_logs_24dp, WidgetDebugging::class.java),
+                makeSettingsEntry(context, font, I18n.t("Open Debug Log"), R.e.ic_audit_logs_24dp, WidgetDebugging::class.java),
                 baseIndex
             )
 
@@ -100,13 +101,13 @@ internal class CoreFeatures : CorePlugin(Manifest("CoreFeatures")) {
 
             @Suppress("KotlinConstantConditions")
             versionView.text = buildString {
-                append(versionView.text.toString() + " | Aliucord " + BuildConfig.VERSION)
-                if (!BuildConfig.RELEASE) append(" (Custom)")
+                append(versionView.text.toString() + " | Endcord " + BuildConfig.VERSION)
+                if (!BuildConfig.RELEASE) append(" (" + I18n.t("Custom") + ")")
                 if (Utils.isDebuggable) append(" [DEBUGGABLE]")
             }
 
             layout.findViewById<TextView>("upload_debug_logs").apply {
-                text = "Aliucord Support Server"
+                text = I18n.t("Endcord Support Server")
                 setOnClickListener { v -> Utils.joinSupportServer(v.context) }
             }
 
@@ -135,7 +136,7 @@ internal class CoreFeatures : CorePlugin(Manifest("CoreFeatures")) {
             // Indicator text
             binding.i.apply {
                 setTextColor(ColorCompat.getThemedColor(context, Utils.getResId("colorHeaderPrimary", "attr")))
-                text = "Safe mode enabled"
+                text = I18n.t("Safe mode enabled")
             }
 
             Utils.mainThread.post { indicatorState.updateState(true, false, false) }
@@ -256,8 +257,8 @@ internal class CoreFeatures : CorePlugin(Manifest("CoreFeatures")) {
 
     private fun safeModeDialog(fragment: Fragment) {
         ConfirmDialog()
-            .setTitle("Safe Mode")
-            .setDescription("You are currently in safe mode. Plugins are disabled.\n\n" + "Press OK to exit safe mode and restart Aliucord.")
+            .setTitle(I18n.t("Safe Mode"))
+            .setDescription(I18n.t("You are currently in safe mode. Plugins are disabled.") + "\n\n" + I18n.t("Press OK to exit safe mode and restart Endcord."))
             .setOnOkListener {
                 Main.settings.setBool(ALIUCORD_SAFE_MODE_KEY, false)
                 Utils.restartAliucord(fragment.requireContext())

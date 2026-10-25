@@ -15,6 +15,7 @@ android {
 
         buildConfigField("String", "VERSION", "\"$version\"")
         buildConfigField("String", "TAG", "\"Injector\"")
+        buildConfigField("String", "GITHUB_REPO", "\"${providers.gradleProperty("endcord.repository").get()}\"")
     }
 
     buildTypes {

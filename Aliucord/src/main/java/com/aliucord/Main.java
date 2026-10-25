@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.aliucord.entities.CorePlugin;
 import com.aliucord.entities.Plugin;
+import com.aliucord.i18n.I18n;
 import com.aliucord.patcher.Hook;
 import com.aliucord.patcher.Patcher;
 import com.aliucord.settings.AliucordPageKt;
@@ -38,9 +39,9 @@ import dalvik.system.PathClassLoader;
 import kotlin.io.FilesKt;
 
 public final class Main {
-    /** Whether Aliucord has been preInitialized */
+    /** Whether Endcord has been preInitialized */
     public static boolean preInitialized = false;
-    /** Whether Aliucord has been initialized */
+    /** Whether Endcord has been initialized */
     public static boolean initialized = false;
     public static final Logger logger = new Logger();
 
@@ -49,7 +50,7 @@ public final class Main {
     public static SettingsUtilsJSON settings;
 
     /**
-     * Aliucord's preInit hook. Plugins are loaded here
+     * Endcord's preInit hook. Plugins are loaded here
      * @noinspection unused
      */
     public static void preInit(AppActivity activity) throws NoSuchMethodException {
@@ -60,7 +61,7 @@ public final class Main {
 
         if (checkPermissions(activity)) preInitWithPermissions(activity);
 
-        // Since 1.4.0, this is implemented via a smali patch to ensure it works even if Aliucord failed to load
+        // Since 1.4.0, this is implemented via a smali patch to ensure it works even if Endcord failed to load
         if (!ManagerBuild.hasPatches("1.4.0")) {
             // Fix 2025-04-03 gateway change that ported visual refresh theme names over the legacy user settings
             // Theme entries like "darker" and "midnight" are unsupported
@@ -94,7 +95,7 @@ public final class Main {
 
     private static void preInitWithPermissions(AppCompatActivity activity) {
         createDirectories();
-        settings = new SettingsUtilsJSON("Aliucord");
+        settings = new SettingsUtilsJSON("Endcord");
         PluginManager.loadCorePlugins(activity);
         loadAllPlugins(activity);
     }
@@ -102,17 +103,17 @@ public final class Main {
     private static void createDirectories() {
         var settingsDir = new File(Constants.SETTINGS_PATH);
         if (!settingsDir.exists() && !settingsDir.mkdirs()) {
-            throw new RuntimeException(new IOException("Failed to create Aliucord settings directory"));
+            throw new RuntimeException(new IOException("Failed to create Endcord settings directory"));
         }
 
         var pluginsDir = new File(Constants.PLUGINS_PATH);
         if (!pluginsDir.exists() && !pluginsDir.mkdirs()) {
-            throw new RuntimeException(new IOException("Failed to create Aliucord plugins directory"));
+            throw new RuntimeException(new IOException("Failed to create Endcord plugins directory"));
         }
     }
 
     /**
-     * Aliucord's init hook. Plugins are started here
+     * Endcord's init hook. Plugins are started here
      * @noinspection unused
      */
     public static void init(AppActivity activity) {
@@ -171,15 +172,14 @@ public final class Main {
                     } catch (FileNotFoundException ignored) {}
                 }
 
-                var sb = new StringBuilder("An unrecoverable crash occurred. ");
+                var sb = new StringBuilder(I18n.t("An unrecoverable crash occurred.")).append(' ');
                 if (badPlugin != null) {
-                    sb.append("This crash was caused by ").append(badPlugin);
-                    if (disabledPlugin) {
-                        sb.append(", so I automatically disabled it for you");
-                    }
-                    sb.append(". ");
+                    sb.append(disabledPlugin
+                        ? I18n.format("This crash was caused by {plugin}, so it was disabled automatically.", "plugin", badPlugin)
+                        : I18n.format("This crash was caused by {plugin}.", "plugin", badPlugin)
+                    ).append(' ');
                 }
-                sb.append("Check the crashes section in the settings for more info.");
+                sb.append(I18n.t("Check the crashes section in the settings for more info."));
 
                 Toast.makeText(Utils.getAppContext(), sb.toString(), Toast.LENGTH_LONG).show();
                 Looper.loop();
@@ -218,12 +218,12 @@ public final class Main {
                 } else if (!name.equals("oat")) { // Some roms create this
                     if (f.isDirectory()) {
                         Utils.showToast(
-                            String.format("Found directory %s in your plugins folder. DO NOT EXTRACT PLUGIN ZIPS!", name),
+                            I18n.format("Found directory {name} in your plugins folder. Do not extract plugin zips!", "name", name),
                             true
                         );
                     } else if (name.equals("classes.dex") || name.endsWith(".json")) {
                         Utils.showToast(
-                            String.format("Found extracted plugin file %s in your plugins folder. DO NOT EXTRACT PLUGIN ZIPS!", name),
+                            I18n.format("Found extracted plugin file {name} in your plugins folder. Do not extract plugin zips!", "name", name),
                             true
                         );
                     }
@@ -232,7 +232,7 @@ public final class Main {
             }
 
             if (!PluginManager.failedToLoad.isEmpty())
-                Utils.showToast("Some plugins failed to load. Check the plugins page for more info.");
+                Utils.showToast(I18n.t("Some plugins failed to load. Check the plugins page for more info."));
         }
         loadedPlugins = true;
     }
@@ -252,11 +252,14 @@ public final class Main {
             }
         }
 
+        CoreUpdater.announceCompletedUpdate();
         Utils.threadPool.execute(() -> {
             if (CoreUpdater.isUpdaterDisabled()) return;
-            CoreUpdater.checkForUpdates();
+            CoreUpdater.checkForUpdates(true);
             PluginUpdater.startupCheck();
         });
+        UpdateWatcher.start();
+        com.endcord.plugins.NewPlugins.refresh();
     }
 
     private static void permissionGrantedCallback(AppCompatActivity activity, boolean granted) {
@@ -264,7 +267,7 @@ public final class Main {
             preInitWithPermissions(activity);
             PluginManager.startCorePlugins();
             startAllPlugins();
-        } else Toast.makeText(activity, "You have to grant storage permission to use Aliucord", Toast.LENGTH_LONG).show();
+        } else Toast.makeText(activity, I18n.t("You have to grant storage permission to use Endcord"), Toast.LENGTH_LONG).show();
     }
 
     private static boolean checkPermissions(AppCompatActivity activity) {
@@ -272,7 +275,7 @@ public final class Main {
             if (Environment.isExternalStorageManager()) return true;
             Toast.makeText(
                 activity,
-                "Please grant all files permission, so Aliucord can access its folder in Internal Storage",
+                I18n.t("Please grant all files permission, so Endcord can access its folder in Internal Storage"),
                 Toast.LENGTH_LONG
             ).show();
             activity.registerForActivityResult(
