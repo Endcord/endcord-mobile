@@ -6,6 +6,8 @@
 package com.endcord.plugins.registry
 
 import com.aliucord.entities.EndcordPlugin
+import com.endcord.plugins.messagelogger.MessageLogger
 
 internal fun batch04(): List<EndcordPlugin> = listOf(
+    MessageLogger(),
 )
