@@ -244,7 +244,8 @@ internal class MessageLogger : EndcordPlugin(
             param.args[1] = remove
 
             if (logged.isEmpty()) return@before
-            val notify = bool("ghostPings")
+            // Bulk deletes are moderators purging messages, not ghost pings, so they are only logged
+            val notify = ids.size == 1 && bool("ghostPings")
             for (message in logged) {
                 val ghostPing = mentionsMe(message)
                 logEntry(if (ghostPing) MessageLog.Kind.GHOST_PING else MessageLog.Kind.DELETED, message, null)
