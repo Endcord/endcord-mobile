@@ -1001,6 +1001,18 @@
     "es": "Guardar splash",
     "fr": "Enregistrer le splash"
   },
+  "Download Avatar": {
+    "tr": "Avatarı İndir",
+    "ru": "Скачать аватар",
+    "es": "Descargar avatar",
+    "fr": "Télécharger l'avatar"
+  },
+  "Download Banner": {
+    "tr": "Afişi İndir",
+    "ru": "Скачать баннер",
+    "es": "Descargar banner",
+    "fr": "Télécharger la bannière"
+  },
   "Translate messages to": {
     "tr": "Mesajları şu dile çevir",
     "ru": "Переводить сообщения на",
@@ -1061,18 +1073,6 @@
     "es": "IDs de servidores, canales o usuarios, separados por comas",
     "fr": "Identifiants de serveurs, salons ou utilisateurs, séparés par des virgules"
   },
-  "Translate your messages before sending": {
-    "tr": "Mesajlarını göndermeden önce çevir",
-    "ru": "Переводить свои сообщения перед отправкой",
-    "es": "Traducir tus mensajes antes de enviarlos",
-    "fr": "Traduire vos messages avant l'envoi"
-  },
-  "What you type is translated to the language below before it is sent. If translating fails, nothing is sent": {
-    "tr": "Yazdıkların gönderilmeden önce aşağıdaki dile çevrilir. Çeviri başarısız olursa hiçbir şey gönderilmez",
-    "ru": "Набранный текст переводится на язык ниже перед отправкой. Если перевод не удался, ничего не отправляется",
-    "es": "Lo que escribes se traduce al idioma de abajo antes de enviarse. Si la traducción falla, no se envía nada",
-    "fr": "Ce que vous écrivez est traduit dans la langue ci-dessous avant l'envoi. Si la traduction échoue, rien n'est envoyé"
-  },
   "Translate your messages to": {
     "tr": "Mesajlarını şu dile çevir",
     "ru": "Переводить свои сообщения на",
@@ -1121,23 +1121,11 @@
     "es": "No se pudo traducir este mensaje: {reason}",
     "fr": "Impossible de traduire ce message : {reason}"
   },
-  "Still translating your last message": {
-    "tr": "Son mesajın hâlâ çevriliyor",
-    "ru": "Предыдущее сообщение ещё переводится",
-    "es": "Todavía se está traduciendo tu último mensaje",
-    "fr": "Votre dernier message est encore en cours de traduction"
-  },
   "Couldn't translate your message: {reason}": {
     "tr": "Mesajın çevrilemedi: {reason}",
     "ru": "Не удалось перевести ваше сообщение: {reason}",
     "es": "No se pudo traducir tu mensaje: {reason}",
     "fr": "Impossible de traduire votre message : {reason}"
-  },
-  "Failed to send your translated message": {
-    "tr": "Çevrilen mesajın gönderilemedi",
-    "ru": "Не удалось отправить переведённое сообщение",
-    "es": "No se pudo enviar tu mensaje traducido",
-    "fr": "Impossible d'envoyer votre message traduit"
   },
   "Google Translate is rate limiting you, try again in a minute": {
     "tr": "Google Çeviri isteklerini sınırlıyor, bir dakika sonra tekrar dene",
@@ -1258,12 +1246,6 @@
     "ru": "Не удалось сохранить изображение: {reason}",
     "es": "No se pudo guardar la imagen: {reason}",
     "fr": "Impossible d'enregistrer l'image : {reason}"
-  },
-  "Export a DM or group DM with /exportdm, with messages, links to its media, embeds, stickers and reactions, as TXT, JSON, CSV, MD or HTML.": {
-    "tr": "/exportdm ile bir DM'yi veya grup DM'yi mesajlar, medya bağlantıları, gömmeler, çıkartmalar ve tepkilerle birlikte TXT, JSON, CSV, MD veya HTML olarak dışa aktar.",
-    "ru": "Экспортируйте ЛС или групповой чат командой /exportdm: сообщения, ссылки на медиа, встраивания, стикеры и реакции в TXT, JSON, CSV, MD или HTML.",
-    "es": "Exporta un MD o un grupo con /exportdm, con mensajes, enlaces a sus archivos, embeds, stickers y reacciones, en TXT, JSON, CSV, MD o HTML.",
-    "fr": "Exportez un MP ou un groupe avec /exportdm, avec les messages, les liens vers les médias, les intégrations, les autocollants et les réactions, en TXT, JSON, CSV, MD ou HTML."
   },
   "Export this DM to a file": {
     "tr": "Bu DM'yi bir dosyaya aktar",
@@ -1426,5 +1408,47 @@
     "ru": "Не удалось скопировать {name}: {reason}",
     "es": "No se pudo clonar {name}: {reason}",
     "fr": "Impossible de cloner {name} : {reason}"
+  },
+  "Used by /translate when you don't pick a language": {
+    "tr": "/translate komutunda dil seçmezsen bu kullanılır",
+    "ru": "Используется командой /translate, если язык не указан",
+    "es": "Se usa en /translate cuando no eliges un idioma",
+    "fr": "Utilisée par /translate quand vous ne choisissez pas de langue"
+  },
+  "Translate text and send it": {
+    "tr": "Metni çevir ve gönder",
+    "ru": "Перевести текст и отправить",
+    "es": "Traducir un texto y enviarlo",
+    "fr": "Traduire un texte et l'envoyer"
+  },
+  "What to translate": {
+    "tr": "Çevrilecek metin",
+    "ru": "Что перевести",
+    "es": "Qué traducir",
+    "fr": "Le texte à traduire"
+  },
+  "Language code to translate to, like en, fr or ja": {
+    "tr": "Çevrilecek dilin kodu, örneğin en, fr veya ja",
+    "ru": "Код языка перевода, например en, fr или ja",
+    "es": "Código del idioma de destino, como en, fr o ja",
+    "fr": "Code de la langue cible, comme en, fr ou ja"
+  },
+  "Send the translation (on by default), or only show it to you": {
+    "tr": "Çeviriyi gönder (varsayılan) veya yalnızca sana göster",
+    "ru": "Отправить перевод (по умолчанию) или показать только вам",
+    "es": "Enviar la traducción (por defecto) o mostrarla solo a ti",
+    "fr": "Envoyer la traduction (par défaut) ou l'afficher seulement pour vous"
+  },
+  "View and download user avatars and banners in full resolution from the user profile sheet.": {
+    "tr": "Kullanıcı avatarlarını ve afişlerini profil sayfasından tam çözünürlükte görüntüle ve indir.",
+    "ru": "Просматривайте и скачивайте аватары и баннеры пользователей в полном разрешении из их профиля.",
+    "es": "Ve y descarga avatares y banners de usuarios a resolución completa desde su perfil.",
+    "fr": "Affichez et téléchargez les avatars et bannières des utilisateurs en pleine résolution depuis leur profil."
+  },
+  "Export a DM or group DM (long-press it in the DM list, or use /exportdm) with messages, links to its media, embeds, stickers and reactions, as TXT, JSON, CSV, MD or HTML.": {
+    "tr": "Bir DM'yi veya grup DM'yi (DM listesinde basılı tut ya da /exportdm kullan) mesajlar, medya bağlantıları, gömmeler, çıkartmalar ve tepkilerle birlikte TXT, JSON, CSV, MD veya HTML olarak dışa aktar.",
+    "ru": "Экспортируйте ЛС или групповой чат (удерживайте его в списке ЛС или используйте /exportdm): сообщения, ссылки на медиа, встраивания, стикеры и реакции в TXT, JSON, CSV, MD или HTML.",
+    "es": "Exporta un MD o un grupo (mantenlo pulsado en la lista de MD o usa /exportdm) con mensajes, enlaces a sus archivos, embeds, stickers y reacciones, en TXT, JSON, CSV, MD o HTML.",
+    "fr": "Exportez un MP ou un groupe (restez appuyé dessus dans la liste des MP, ou utilisez /exportdm) avec les messages, les liens vers les médias, les intégrations, les autocollants et les réactions, en TXT, JSON, CSV, MD ou HTML."
   }
 }

@@ -11,6 +11,7 @@ import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import com.aliucord.Utils
+import com.aliucord.api.CommandsAPI
 import com.aliucord.entities.EndcordPlugin
 import com.aliucord.entities.PluginSetting
 import com.aliucord.i18n.tr
@@ -20,20 +21,16 @@ import com.discord.models.message.Message
 import com.discord.models.user.CoreUser
 import com.discord.stores.StoreStream
 import com.discord.utilities.color.ColorCompat
-import com.discord.widgets.chat.MessageContent
-import com.discord.widgets.chat.MessageManager
-import com.discord.widgets.chat.input.ChatInputViewModel
 import com.discord.widgets.chat.list.WidgetChatList
 import com.discord.widgets.chat.list.adapter.WidgetChatListAdapterItemMessage
 import com.discord.widgets.chat.list.entries.MessageEntry
 import com.endcord.plugins.api.ChatDecorator
 import com.endcord.plugins.api.ChatHooks
 import com.endcord.plugins.api.MessageActions
+import com.endcord.plugins.commandscommon.Options
 import com.endcord.plugins.translatecommon.GoogleTranslate
 import com.endcord.plugins.translatecommon.Languages
 import com.lytefast.flexinput.R
-import de.robv.android.xposed.XC_MethodHook
-import java.lang.reflect.Method
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -86,14 +83,10 @@ internal class Translate : EndcordPlugin(
             description = "Server, channel or user IDs, separated by commas",
             multiline = true,
         ),
-        PluginSetting.Switch(
-            key = "translateSent",
-            label = "Translate your messages before sending",
-            description = "What you type is translated to the language below before it is sent. If translating fails, nothing is sent",
-        ),
         PluginSetting.Choice(
             key = "sentTarget",
             label = "Translate your messages to",
+            description = "Used by /translate when you don't pick a language",
             options = Languages.options(),
             default = "en",
         ),
@@ -126,22 +119,6 @@ internal class Translate : EndcordPlugin(
     @Volatile
     private var rateLimitedUntil = 0L
 
-    // Translate before sending
-    private var sendBypass = false
-    private var sendInFlight = false
-
-    private val sendMethod: Method by lazy {
-        ChatInputViewModel::class.java.getDeclaredMethod(
-            "sendMessage",
-            Context::class.java,
-            MessageManager::class.java,
-            MessageContent::class.java,
-            List::class.java,
-            Boolean::class.javaPrimitiveType!!,
-            Function1::class.java,
-        )
-    }
-
     override fun start(context: Context) {
         executor = Executors.newFixedThreadPool(2)
 
@@ -159,15 +136,37 @@ internal class Translate : EndcordPlugin(
 
         ChatHooks.register(Decorator())
 
-        patcher.patch(sendMethod, object : XC_MethodHook() {
-            override fun beforeHookedMethod(param: MethodHookParam) {
-                try {
-                    beforeSend(param)
-                } catch (e: Throwable) {
-                    logger.error("Failed to translate a message before sending", e)
-                }
+        // Endcord PC translates what you send from its chat bar button. The shared send pipeline
+        // (OutgoingMessages) can't wait for a network request, so on mobile this is a command instead.
+        commands.registerCommand(
+            "translate",
+            "Translate text and send it",
+            listOf(
+                Options.string("text", "What to translate", true),
+                Options.string("to", "Language code to translate to, like en, fr or ja"),
+                Options.bool("send", "Send the translation (on by default), or only show it to you"),
+            ),
+        ) { ctx ->
+            val text = ctx.getRequiredString("text")
+            val to = ctx.getString("to")?.trim()?.takeIf { it.isNotEmpty() }?.let { matchLanguage(it) }
+                ?: choice("sentTarget").ifEmpty { "en" }
+            val send = ctx.getBool("send") ?: true
+            try {
+                val res = GoogleTranslate.translate(text, "auto", to)
+                val translated = res.text.trim().ifEmpty { text }
+                CommandsAPI.CommandResult(translated, null, send)
+            } catch (e: Throwable) {
+                if (e is GoogleTranslate.HttpError && e.status == 429) rateLimitedUntil = System.currentTimeMillis() + RATE_LIMIT_PAUSE_MS
+                CommandsAPI.CommandResult(tr("Couldn't translate your message: {reason}", "reason" to GoogleTranslate.describe(e)), null, false)
             }
-        })
+        }
+    }
+
+    /** Accepts a language code in any case, or an English language name. */
+    private fun matchLanguage(input: String): String {
+        Languages.names.keys.firstOrNull { it.equals(input, true) }?.let { return it }
+        Languages.names.entries.firstOrNull { it.value.equals(input, true) }?.let { return it.key }
+        return input
     }
 
     override fun stop(context: Context) {
@@ -175,7 +174,6 @@ internal class Translate : EndcordPlugin(
         executor?.shutdownNow()
         executor = null
         clearCache()
-        sendInFlight = false
     }
 
     private fun clearCache() {
@@ -335,57 +333,11 @@ internal class Translate : EndcordPlugin(
         }
     }
 
-    private fun beforeSend(param: XC_MethodHook.MethodHookParam) {
-        if (sendBypass || !bool("translateSent")) return
-        val content = param.args[2] as? MessageContent ?: return
-        val text = content.textContent ?: return
-        if (text.isBlank()) return
-        // Results of Endcord's own slash commands are posted from CommandsAPI; leave them as they are
-        if (Thread.currentThread().stackTrace.any { it.className.startsWith(COMMANDS_API) }) return
-
-        param.result = null
-        if (sendInFlight) {
-            Utils.showToast(tr("Still translating your last message"))
-            return
-        }
-        sendInFlight = true
-        val viewModel = param.thisObject
-        val args = param.args.clone()
-        val target = choice("sentTarget").ifEmpty { "en" }
-        Utils.threadPool.execute {
-            var translated: String? = null
-            var error: Throwable? = null
-            try {
-                translated = GoogleTranslate.translate(text, "auto", target).text.trim()
-            } catch (e: Throwable) {
-                error = e
-            }
-            Utils.mainThread.post {
-                sendInFlight = false
-                if (translated == null) {
-                    // The text stays in the chat box, so nothing is lost
-                    Utils.showToast(tr("Couldn't translate your message: {reason}", "reason" to GoogleTranslate.describe(error!!)), true)
-                    return@post
-                }
-                args[2] = MessageContent(if (translated.isNullOrEmpty()) text else translated, content.mentionedUsers)
-                sendBypass = true
-                try {
-                    sendMethod.invoke(viewModel, *args)
-                } catch (e: Throwable) {
-                    logger.errorToast(tr("Failed to send your translated message"), e)
-                } finally {
-                    sendBypass = false
-                }
-            }
-        }
-    }
-
     private companion object {
         const val DESCRIPTION = "Translate messages with Google Translate."
         const val DEVICE = "device"
         const val CACHE_SIZE = 500
         const val RATE_LIMIT_PAUSE_MS = 60_000L
-        const val COMMANDS_API = "com.aliucord.api.CommandsAPI"
 
         val NOT_TEXT: Pattern = Pattern.compile("<a?:\\w+:\\d+>|<[@#][!&]?\\d+>|<t:\\d+(?::\\w)?>|https?://\\S+|:\\w+:|`[^`]*`")
         val LETTER: Pattern = Pattern.compile("\\p{L}{2,}")

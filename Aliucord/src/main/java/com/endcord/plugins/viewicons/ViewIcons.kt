@@ -7,7 +7,6 @@ package com.endcord.plugins.viewicons
 
 import android.content.Context
 import android.view.View
-import com.aliucord.Utils
 import com.aliucord.entities.EndcordPlugin
 import com.aliucord.entities.PluginSetting
 import com.aliucord.i18n.tr
@@ -17,15 +16,14 @@ import com.discord.widgets.guilds.profile.WidgetGuildProfileSheet
 import com.discord.widgets.guilds.profile.WidgetGuildProfileSheetViewModel
 import com.discord.widgets.user.profile.UserProfileHeaderView
 import com.discord.widgets.user.profile.UserProfileHeaderViewModel
-import com.endcord.plugins.commandscommon.Avatars
 import com.endcord.plugins.commandscommon.Dialogs
-import com.endcord.plugins.commandscommon.Net
 import com.endcord.plugins.translatecommon.Downloads
+import com.endcord.plugins.translatecommon.Media
 import java.lang.reflect.Method
 
 /**
  * Makes avatars and banners in user profiles, and the icon and banner of the server sheet, open in Discord's media
- * viewer at full size. Long-pressing them offers View, Save and Copy link, which also covers Endcord PC's ProfileMedia.
+ * viewer at full size. Long-pressing them offers View, Save and Copy link.
  */
 internal class ViewIcons : EndcordPlugin(
     name = "ViewIcons",
@@ -112,7 +110,6 @@ internal class ViewIcons : EndcordPlugin(
         val user = state.user
         val name = Downloads.safeName(user.username ?: user.id.toString())
 
-        val global = Avatars.url(Avatars.AvatarOwner(user.id, user.avatar, user.discriminator), 4096)
         val avatars = ArrayList<Image>(2)
         val member = state.guildMember
         val memberAvatar = member?.avatarHash
@@ -120,7 +117,7 @@ internal class ViewIcons : EndcordPlugin(
             val url = cdn("guilds/${member.guildId}/users/${user.id}/avatars/$memberAvatar", memberAvatar)
             avatars += Image("Server Avatar", url, "server_avatar_$name")
         }
-        avatars += Image("Avatar", sized(global, user.avatar), "avatar_$name")
+        avatars += Image("Avatar", Media.avatarUrl(user, format(), size()), "avatar_$name")
         attach(binding.f, avatars)
 
         val banners = ArrayList<Image>(2)
@@ -129,9 +126,8 @@ internal class ViewIcons : EndcordPlugin(
             banners += Image("Server Banner", cdn("guilds/${member.guildId}/users/${user.id}/banners/$memberBanner", memberBanner), "server_banner_$name")
         }
         val banner = state.banner
-        if (!banner.isNullOrEmpty() && banner != memberBanner) {
-            val url = if (banner.startsWith("http")) banner else cdn("banners/${user.id}/$banner", banner)
-            banners += Image("Banner", url, "banner_$name")
+        if (banner != memberBanner) {
+            Media.bannerUrl(user.id, banner, format(), size())?.let { banners += Image("Banner", it, "banner_$name") }
         }
         if (banners.isEmpty()) {
             binding.c.setOnClickListener(null)
@@ -175,46 +171,16 @@ internal class ViewIcons : EndcordPlugin(
         Dialogs.showList(context, tr(images[0].kind), labels) { actions[it]() }
     }
 
-    private fun open(image: Image) {
-        try {
-            Utils.openMediaViewer(image.url, image.fileName + "." + extension(image.url))
-        } catch (e: Throwable) {
-            logger.errorToast(tr("Couldn't open the image"), e)
-        }
-    }
+    private fun open(image: Image) = Media.open(image.url, image.fileName)
 
-    private fun save(image: Image) {
-        Utils.showToast(tr("Downloading..."))
-        Utils.threadPool.execute {
-            try {
-                val bytes = Net.getBytes(image.url, 32 * 1024 * 1024)
-                val fileName = image.fileName + "." + extension(image.url)
-                val where = Downloads.save(fileName, Downloads.mimeOf(fileName), bytes)
-                Utils.showToast(tr("Saved to {path}", "path" to where), true)
-            } catch (e: Throwable) {
-                logger.error("Failed to save ${image.url}", e)
-                Utils.showToast(tr("Failed to save the image: {reason}", "reason" to Net.describe(e)), true)
-            }
-        }
-    }
+    private fun save(image: Image) = Media.save(image.url, image.fileName)
 
-    /** A full-size CDN url for [path], a gif when [hash] is animated and the chosen format otherwise. */
-    private fun cdn(path: String, hash: String): String {
-        val ext = if (hash.startsWith("a_")) "gif" else format()
-        return "https://cdn.discordapp.com/$path.$ext?size=${choice("imgSize").ifEmpty { "4096" }}"
-    }
-
-    /** Applies the format and size settings to a url built elsewhere. */
-    private fun sized(url: String, hash: String?): String {
-        if (hash.isNullOrEmpty()) return url // default avatars only exist as png
-        val base = url.substringBefore('?')
-        val ext = if (hash.startsWith("a_")) "gif" else format()
-        return base.substringBeforeLast('.') + ".$ext?size=${choice("imgSize").ifEmpty { "4096" }}"
-    }
+    /** A CDN url for [path] in the chosen format and size. */
+    private fun cdn(path: String, hash: String): String = Media.cdn(path, hash, format(), size())
 
     private fun format() = choice("format").ifEmpty { "png" }
 
-    private fun extension(url: String) = url.substringBefore('?').substringAfterLast('.', "png")
+    private fun size() = choice("imgSize").ifEmpty { "4096" }
 
     private companion object {
         const val DESCRIPTION = "Tap avatars and banners in user profiles, and the icon and banner of a server, to view them in full size. Long-press them to save or copy the link."

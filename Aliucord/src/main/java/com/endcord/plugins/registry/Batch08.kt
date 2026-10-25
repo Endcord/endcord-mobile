@@ -13,6 +13,7 @@ import com.endcord.plugins.expressioncloner.ExpressionCloner
 import com.endcord.plugins.fakemessage.FakeMessage
 import com.endcord.plugins.guildpickerdumper.GuildPickerDumper
 import com.endcord.plugins.messageclickactions.MessageClickActions
+import com.endcord.plugins.profilemedia.ProfileMedia
 import com.endcord.plugins.translate.Translate
 import com.endcord.plugins.viewicons.ViewIcons
 
@@ -24,6 +25,7 @@ internal fun batch08(): List<EndcordPlugin> = listOf(
     FakeMessage(),
     GuildPickerDumper(),
     MessageClickActions(),
+    ProfileMedia(),
     Translate(),
     ViewIcons(),
 )

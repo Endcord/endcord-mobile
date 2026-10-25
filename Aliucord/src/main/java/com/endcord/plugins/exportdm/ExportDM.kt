@@ -6,15 +6,21 @@
 package com.endcord.plugins.exportdm
 
 import android.content.Context
+import com.aliucord.Utils
 import com.aliucord.api.CommandsAPI.CommandResult
 import com.aliucord.entities.EndcordPlugin
 import com.aliucord.i18n.tr
+import com.aliucord.wrappers.ChannelWrapper.Companion.id
 import com.aliucord.wrappers.ChannelWrapper.Companion.isDM
 import com.aliucord.wrappers.ChannelWrapper.Companion.name
 import com.aliucord.wrappers.ChannelWrapper.Companion.recipientIds
 import com.aliucord.wrappers.ChannelWrapper.Companion.type
+import com.discord.api.channel.Channel
 import com.discord.stores.StoreStream
+import com.endcord.plugins.api.ChannelSheetActions
 import com.endcord.plugins.commandscommon.BotMessages
+import com.endcord.plugins.commandscommon.Dialogs
+import com.lytefast.flexinput.R
 import com.endcord.plugins.commandscommon.Net
 import com.endcord.plugins.commandscommon.Options
 import com.endcord.plugins.translatecommon.Downloads
@@ -64,49 +70,66 @@ internal class ExportDM : EndcordPlugin(
             "exportdm",
             "Export this DM to a file",
             listOf(
-                Options.string("format", "File format (html by default)", false, Options.choices("html", "txt", "md", "json", "csv")),
+                Options.string("format", "File format (html by default)", false, Options.choices(*FORMATS.toTypedArray())),
                 Options.integer("limit", "Only export the newest messages, up to this many"),
             ),
         ) { ctx ->
             val channel = StoreStream.getChannels().getChannel(ctx.channelId)
-            // 1 is a DM and 3 a group DM
-            if (channel == null || !channel.isDM() || (channel.type != 1 && channel.type != 3)) {
+            if (channel == null || !isDirect(channel)) {
                 return@registerCommand CommandResult(tr("This only works in DMs and group DMs."), null, false)
             }
             val format = ctx.getStringOrDefault("format", "html").lowercase()
             val limit = ctx.getIntOrDefault("limit", 0).takeIf { it > 0 } ?: Int.MAX_VALUE
-            val users = StoreStream.getUsers().users
-            val channelName = channel.name.ifEmpty {
-                channel.recipientIds.joinToString(", ") { users[it]?.username ?: it.toString() }.ifEmpty { ctx.channelId.toString() }
-            }
-
             BotMessages.send(ctx.channelId, tr("Exporting... this can take a while for long conversations."))
-            val messages = try {
-                fetchAll(ctx.channelId, limit)
-            } catch (e: Throwable) {
-                logger.error("Failed to fetch messages", e)
-                return@registerCommand CommandResult(tr("Couldn't fetch the messages: {reason}", "reason" to Net.describe(e)), null, false)
-            }
-            if (messages.isEmpty()) return@registerCommand CommandResult(tr("There are no messages to export."), null, false)
+            CommandResult(export(channel, format, limit), null, false)
+        }
 
-            val text = when (format) {
+        // The same export from the long-press sheet of a DM in the DM list
+        ChannelSheetActions.register(name, "Export DMs", R.e.ic_file_download_white_24dp, visible = { isDirect(it.channel) }) { ctx ->
+            val channel = ctx.channel
+            val activity = ctx.sheet.requireActivity()
+            Dialogs.showList(activity, tr("Export DMs"), FORMATS.map { it.uppercase() }) { index ->
+                Utils.showToast(tr("Exporting... this can take a while for long conversations."), true)
+                Utils.threadPool.execute { Utils.showToast(export(channel, FORMATS[index], Int.MAX_VALUE), true) }
+            }
+        }
+    }
+
+    // 1 is a DM and 3 a group DM
+    private fun isDirect(channel: Channel) = channel.isDM() && (channel.type == 1 || channel.type == 3)
+
+    /** Fetches, formats and saves [channel]. Blocks; returns the message to show the user. */
+    private fun export(channel: Channel, format: String, limit: Int): String {
+        val channelId = channel.id
+        val users = StoreStream.getUsers().users
+        val channelName = channel.name.ifEmpty {
+            channel.recipientIds.joinToString(", ") { users[it]?.username ?: it.toString() }.ifEmpty { channelId.toString() }
+        }
+        val messages = try {
+            fetchAll(channelId, limit)
+        } catch (e: Throwable) {
+            logger.error("Failed to fetch messages", e)
+            return tr("Couldn't fetch the messages: {reason}", "reason" to Net.describe(e))
+        }
+        if (messages.isEmpty()) return tr("There are no messages to export.")
+
+        val text = when (format) {
                 "txt" -> buildTxt(messages, channelName)
                 "md" -> buildMd(messages, channelName)
                 "json" -> buildJson(messages, channelName)
                 "csv" -> buildCsv(messages)
                 else -> buildHtml(messages, channelName)
             }
-            val ext = if (format in setOf("txt", "md", "json", "csv")) format else "html"
-            val mime = Downloads.mimeOf("export.$ext")
-            val stamp = SimpleDateFormat("yyyy-MM-dd_HH-mm", Locale.US).format(Date())
-            val where = try {
-                Downloads.save("dm_${Downloads.safeName(channelName)}_$stamp.$ext", mime, text.toByteArray(Charsets.UTF_8))
-            } catch (e: Throwable) {
-                logger.error("Failed to save the export", e)
-                return@registerCommand CommandResult(tr("Couldn't save the file: {reason}", "reason" to (e.message ?: e.toString())), null, false)
-            }
-            CommandResult(tr("Exported {count} messages to {path}", "count" to messages.size, "path" to where), null, false)
+        val ext = if (format in FORMATS) format else "html"
+        val mime = Downloads.mimeOf("export.$ext")
+        val stamp = SimpleDateFormat("yyyy-MM-dd_HH-mm", Locale.US).format(Date())
+        val where = try {
+            Downloads.save("dm_${Downloads.safeName(channelName)}_$stamp.$ext", mime, text.toByteArray(Charsets.UTF_8))
+        } catch (e: Throwable) {
+            logger.error("Failed to save the export", e)
+            return tr("Couldn't save the file: {reason}", "reason" to (e.message ?: e.toString()))
         }
+        return tr("Exported {count} messages to {path}", "count" to messages.size, "path" to where)
     }
 
     /** Pages through the channel's history, newest first, and returns it oldest first. */
@@ -326,7 +349,8 @@ internal class ExportDM : EndcordPlugin(
     }
 
     private companion object {
-        const val DESCRIPTION = "Export a DM or group DM with /exportdm, with messages, links to its media, embeds, stickers and reactions, as TXT, JSON, CSV, MD or HTML."
+        const val DESCRIPTION = "Export a DM or group DM (long-press it in the DM list, or use /exportdm) with messages, links to its media, embeds, stickers and reactions, as TXT, JSON, CSV, MD or HTML."
+        val FORMATS = listOf("html", "txt", "md", "json", "csv")
         val IMAGE_EXT = listOf(".jpg", ".jpeg", ".png", ".gif", ".webp", ".avif", ".svg")
         val VIDEO_EXT = listOf(".mp4", ".webm", ".mov", ".avi", ".mkv")
         val AUDIO_EXT = listOf(".mp3", ".ogg", ".wav", ".flac", ".m4a")
