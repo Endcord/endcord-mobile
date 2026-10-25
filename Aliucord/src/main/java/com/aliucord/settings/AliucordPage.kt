@@ -41,6 +41,16 @@ class AliucordPage : SettingsPage() {
 
         val ctx = view.context
 
+        addHeader(ctx, I18n.t("Quick Actions"))
+        addLink(ctx, I18n.t("Restart Endcord"), R.e.ic_refresh_white_a60_24dp, external = false) {
+            Utils.restartAliucord(it.context)
+        }
+        addLink(ctx, I18n.t("Open Endcord Folder"), R.e.ic_open_in_new_white_24dp, external = false) {
+            val dir = java.io.File(Constants.BASE_PATH)
+            if (dir.exists() || dir.mkdirs()) Utils.launchFileExplorer(dir)
+        }
+
+        addDivider(ctx)
         addHeader(ctx, I18n.t("Language"))
         TextView(ctx, null, 0, R.i.UiKit_Settings_Item_SubText).run {
             text = I18n.t("Language") + "\n" + I18n.language.nativeName

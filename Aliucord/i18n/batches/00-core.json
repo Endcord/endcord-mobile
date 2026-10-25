@@ -754,5 +754,17 @@
     "ru": "Не удалось восстановить резервную копию",
     "es": "No se pudo restaurar la copia de seguridad",
     "fr": "Impossible de restaurer la sauvegarde"
+  },
+  "Restart Endcord": {
+    "tr": "Endcord'u Yeniden Başlat",
+    "ru": "Перезапустить Endcord",
+    "es": "Reiniciar Endcord",
+    "fr": "Redémarrer Endcord"
+  },
+  "Open Endcord Folder": {
+    "tr": "Endcord Klasörünü Aç",
+    "ru": "Открыть папку Endcord",
+    "es": "Abrir carpeta de Endcord",
+    "fr": "Ouvrir le dossier Endcord"
   }
 }
