@@ -13,6 +13,11 @@ cleanup
 # download lspatch
 curl -sSL -o $LSPATCH_FILE_NAME.jar $LSPATCH_URL
 
+# The native libraries go into the app's assets: the Android Gradle plugin drops .so files from a jar's resources,
+# and LSPatch reads them from assets/lspatch/so when it patches. They must come from the same build as the jar.
+rm -rf ../src/main/assets/lspatch/so
+unzip -q $LSPATCH_FILE_NAME.jar "assets/lspatch/so/*" -d ../src/main
+
 # prepare aar contents
 unzip -q $LSPATCH_FILE_NAME.jar "META-INF/**"
 mv $LSPATCH_FILE_NAME.jar classes.jar
