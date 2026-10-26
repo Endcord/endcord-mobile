@@ -1,6 +1,6 @@
 /*
  * Endcord for Android
- * Copyright (c) 2026 rootpoii and contributors
+ * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -42,6 +42,7 @@ const plugin = definePlugin({
     description: tx("Automatically removes tracking elements from URLs you send"),
     authors: [ENDCORD_AUTHOR],
     icon: "LinkIcon",
+    tags: ["Privacy", "Utility"],
     start({ cleanup, logger }) {
         const messages = findByProps("sendMessage", "editMessage");
         if (!messages) throw new Error("Discord's message actions weren't found");

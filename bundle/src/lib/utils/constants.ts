@@ -1,5 +1,7 @@
 export const DISCORD_SERVER = "https://discord.gg/endcord";
 export const GITHUB = "https://github.com/rootpoii/endcord-mobile/tree/next";
+/** Where the Build workflow publishes Endcord for the current Discord app */
+export const BUILDS_URL = "https://raw.githubusercontent.com/rootpoii/endcord-mobile/builds-next";
 export const HTTP_REGEX = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/;
 export const HTTP_REGEX_MULTI = /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&//=]*)/g;
 

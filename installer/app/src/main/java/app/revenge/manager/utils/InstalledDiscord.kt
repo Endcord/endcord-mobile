@@ -1,4 +1,4 @@
-// Copyright (c) 2026 rootpoii and contributors
+// Copyright (c) 2026 rootpoi and contributors
 package app.revenge.manager.utils
 
 import android.content.Context

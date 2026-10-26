@@ -1,6 +1,6 @@
 /*
  * Endcord for Android
- * Copyright (c) 2026 rootpoii and contributors
+ * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
  * The cat and its animation are from oneko.js by adryd (MIT), https://github.com/adryd325/oneko.js
@@ -40,6 +40,7 @@ const plugin = definePlugin({
     authors: [ENDCORD_AUTHOR, { name: "adryd" }],
     popular: 8,
     icon: "EmojiSmilingFaceWithHeartsIcon",
+    tags: ["Fun", "Appearance"],
     settings: {
         size: {
             type: "select",

@@ -143,7 +143,7 @@ Discord (tapping through the installer like a user), launches Endcord and runs t
 
 ## License and credits
 
-Endcord for Android is © 2026 rootpoii and contributors. Each directory keeps the license of the project it was forked
+Endcord for Android is © 2026 rootpoi and contributors. Each directory keeps the license of the project it was forked
 from: `bundle/` BSD-3-Clause, `loader/` GPL-3.0, `installer/` OSL-3.0. Endcord's plugins (`bundle/src/plugins`) and the other files marked
 `SPDX-License-Identifier: GPL-3.0-or-later` are GPL-3.0-or-later, like Endcord PC, so the built bundle as a whole is
 distributed under the GPL-3.0. The original copyright notices of Team Vendetta, pylixonly and Team Revenge are kept in

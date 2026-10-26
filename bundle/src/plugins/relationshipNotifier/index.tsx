@@ -1,6 +1,6 @@
 /*
  * Endcord for Android
- * Copyright (c) 2026 rootpoii and contributors
+ * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -44,6 +44,7 @@ const plugin = definePlugin({
     authors: [ENDCORD_AUTHOR],
     popular: 10,
     icon: "FriendsIcon",
+    tags: ["Friends", "Notifications"],
     settings: {
         friends: { type: "boolean", label: tx("Friends"), description: tx("Notify when a friend removes you"), default: true },
         friendRequestCancels: { type: "boolean", label: tx("Friend requests"), description: tx("Notify when a friend request is cancelled"), default: true },

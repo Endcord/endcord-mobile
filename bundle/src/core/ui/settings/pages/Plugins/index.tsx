@@ -14,12 +14,63 @@ import { lazyDestructure } from "@lib/utils/lazy";
 import { findByProps } from "@metro";
 import { NavigationNative } from "@metro/common";
 import { Button, Card, FlashList, IconButton, Text } from "@metro/common/components";
-import { ComponentProps } from "react";
-import { View } from "react-native";
+import { ComponentProps, createContext, useContext, useState } from "react";
+import { ScrollView, View } from "react-native";
 
 import { UnifiedPluginModel } from "./models";
 import unifyBunnyPlugin from "./models/bunny";
 import unifyVdPlugin from "./models/vendetta";
+import { useNewPlugins } from "./newPlugins";
+
+type Status = "all" | "enabled" | "disabled" | "new";
+
+interface Filters {
+    status: Status;
+    setStatus(status: Status): void;
+    tag: string | null;
+    setTag(tag: string | null): void;
+    total: number;
+    enabled: number;
+    tags: string[];
+    hasNew: boolean;
+}
+
+const FiltersContext = createContext<Filters>(null!);
+
+function Chip({ label, selected, onPress }: { label: string; selected: boolean; onPress(): void; }) {
+    return <Button size="sm" variant={selected ? "primary" : "secondary"} text={label} onPress={onPress} />;
+}
+
+function Stat({ label, value, accent }: { label: string; value: number; accent?: boolean; }) {
+    return <Card style={{ flex: 1, alignItems: "center", paddingVertical: 10 }}>
+        <Text variant="heading-xl/bold" color={accent ? "text-feedback-positive" : "text-strong"}>{String(value)}</Text>
+        <Text variant="text-xs/semibold" color="text-muted">{label.replace(/:$/, "")}</Text>
+    </Card>;
+}
+
+/** Counters and filters, like Endcord PC's plugin manager */
+function FiltersHeader() {
+    const f = useContext(FiltersContext);
+    const statuses: Array<[Status, string]> = [
+        ["all", t("Show All")],
+        ["enabled", t("Show Enabled")],
+        ["disabled", t("Show Disabled")],
+        ...(f.hasNew ? [["new", t("Show New")] as [Status, string]] : []),
+    ];
+
+    return <View style={{ gap: 10, marginTop: 12 }}>
+        <View style={{ flexDirection: "row", gap: 8 }}>
+            <Stat label={t("Total Plugins:")} value={f.total} />
+            <Stat label={t("Enabled Plugins:")} value={f.enabled} accent />
+        </View>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6 }}>
+            {statuses.map(([status, label]) => <Chip key={status} label={label} selected={f.status === status} onPress={() => f.setStatus(status)} />)}
+        </ScrollView>
+        {f.tags.length > 0 && <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6 }}>
+            {f.tags.map(tag => <Chip key={tag} label={t(tag)} selected={f.tag === tag} onPress={() => f.setTag(f.tag === tag ? null : tag)} />)}
+        </ScrollView>}
+    </View>;
+}
 
 const { openAlert } = lazyDestructure(() => findByProps("openAlert", "dismissAlert"));
 const { AlertModal, AlertActions, AlertActionButton } = lazyDestructure(() => findByProps("AlertModal", "AlertActions"));
@@ -62,24 +113,43 @@ function byPopularity(a: UnifiedPluginModel, b: UnifiedPluginModel) {
 
 export default function Plugins() {
     useProxy(settings);
+    useProxy(VdPluginManager.plugins);
+    useObservable([pluginSettings]);
     const navigation = NavigationNative.useNavigation();
+    const [status, setStatus] = useState<Status>("all");
+    const [tag, setTag] = useState<string | null>(null);
 
-    return <PluginPage
-        useItems={() => {
-            useProxy(VdPluginManager.plugins);
-            useObservable([pluginSettings]);
+    const vdPlugins = Object.values(VdPluginManager.plugins).map(unifyVdPlugin);
+    // Core plugins stay hidden, except Endcord's own, which users turn on and off
+    const bnPlugins = [...registeredPlugins.values()]
+        .filter(p => isPluginInstalled(p.id) && (!isCorePlugin(p.id) || p.extras?.endcord))
+        .map(unifyBunnyPlugin);
+    const all = [...bnPlugins, ...vdPlugins].sort(byPopularity);
 
-            const vdPlugins = Object.values(VdPluginManager.plugins).map(unifyVdPlugin);
-            // Core plugins stay hidden, except Endcord's own, which users turn on and off
-            const bnPlugins = [...registeredPlugins.values()]
-                .filter(p => isPluginInstalled(p.id) && (!isCorePlugin(p.id) || p.extras?.endcord))
-                .map(unifyBunnyPlugin);
+    const newIds = useNewPlugins(all.map(p => p.id));
+    for (const plugin of all) plugin.isNew = newIds.has(plugin.id);
 
-            return [...bnPlugins, ...vdPlugins].sort(byPopularity);
-        }}
+    const shown = all.filter(p => {
+        if (status === "enabled" && !p.isEnabled()) return false;
+        if (status === "disabled" && p.isEnabled()) return false;
+        if (status === "new" && !p.isNew) return false;
+        return !tag || p.tags?.includes(tag);
+    });
+
+    const filters: Filters = {
+        status, setStatus, tag, setTag,
+        total: all.length,
+        enabled: all.filter(p => p.isEnabled()).length,
+        tags: [...new Set(all.flatMap(p => p.tags ?? []))].sort(),
+        hasNew: newIds.size > 0,
+    };
+
+    return <FiltersContext.Provider value={filters}><PluginPage
+        useItems={() => shown}
+        filtered={status !== "all" || tag != null}
         ListHeaderComponent={() => {
             const unproxiedPlugins = Object.values(VdPluginManager.plugins).filter(p => !p.id.startsWith(VD_PROXY_PREFIX) && !p.id.startsWith(BUNNY_PROXY_PREFIX));
-            if (!unproxiedPlugins.length) return null;
+            if (!unproxiedPlugins.length) return <FiltersHeader />;
 
             return <View style={{ marginVertical: 12, marginHorizontal: 10 }}>
                 <Card border="strong">
@@ -115,6 +185,7 @@ export default function Plugins() {
                         </View>
                     </View>
                 </Card>
+                <FiltersHeader />
             </View>;
         }}
         ListFooterComponent={() => __DEV__ && (
@@ -158,5 +229,5 @@ export default function Plugins() {
                 }
             }
         }}
-    />;
+    /></FiltersContext.Provider>;
 }

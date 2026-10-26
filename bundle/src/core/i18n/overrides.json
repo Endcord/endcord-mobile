@@ -281,6 +281,12 @@
         "es": "Copiado al portapapeles",
         "fr": "Copié dans le presse-papiers"
     },
+    "Couldn't check for updates. Check your connection and try again.": {
+        "tr": "Güncellemeler denetlenemedi. Bağlantınızı kontrol edip tekrar deneyin.",
+        "ru": "Не удалось проверить обновления. Проверьте подключение и попробуйте снова.",
+        "es": "No se pudieron buscar actualizaciones. Comprueba tu conexión e inténtalo de nuevo.",
+        "fr": "Impossible de vérifier les mises à jour. Vérifiez votre connexion et réessayez."
+    },
     "Couldn't install the plugin from {url}:": {
         "tr": "Eklenti {url} adresinden yüklenemedi:",
         "ru": "Не удалось установить плагин из {url}:",
@@ -466,6 +472,12 @@
         "ru": "Endcord снова показан в настройках",
         "es": "Endcord vuelve a mostrarse en los ajustes",
         "fr": "Endcord s'affiche à nouveau dans les paramètres"
+    },
+    "Endcord updates itself every time the app starts.": {
+        "tr": "Endcord, uygulama her açıldığında kendini günceller.",
+        "ru": "Endcord обновляется при каждом запуске приложения.",
+        "es": "Endcord se actualiza cada vez que se abre la app.",
+        "fr": "Endcord se met à jour à chaque démarrage de l'application."
     },
     "Enter a number from {min} to {max}": {
         "tr": "{min} ile {max} arasında bir sayı girin",

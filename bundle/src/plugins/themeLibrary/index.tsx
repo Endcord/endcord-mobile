@@ -1,6 +1,6 @@
 /*
  * Endcord for Android
- * Copyright (c) 2026 rootpoii and contributors
+ * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -47,6 +47,7 @@ const plugin = definePlugin({
     authors: [ENDCORD_AUTHOR],
     popular: 7,
     icon: "PaintPaletteIcon",
+    tags: ["Appearance", "Customisation"],
     start() { },
     SettingsComponent: Library,
 });

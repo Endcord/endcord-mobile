@@ -4,7 +4,7 @@ import app.revenge.manager.BuildConfig
 
 object Constants {
     val TEAM_MEMBERS = listOf(
-        TeamMember("rootpoii", "Endcord", "rootpoii"),
+        TeamMember("rootpoi", "Endcord", "rootpoii"),
     )
 
     /** The Revenge team, whose bundle, loader and manager Endcord for Android is built on. */

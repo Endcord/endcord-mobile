@@ -1,6 +1,6 @@
 /*
  * Endcord for Android
- * Copyright (c) 2026 rootpoii and contributors
+ * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -21,6 +21,7 @@ const plugin = definePlugin({
     authors: [ENDCORD_AUTHOR],
     popular: 1,
     icon: "UserCircleIcon",
+    tags: ["Appearance", "Customisation"],
     settings: {
         displayName: { type: "string", label: tx("Display name"), placeholder: tx("Leave empty to keep your own"), default: "" },
         avatarUrl: { type: "string", label: tx("Avatar image link"), placeholder: "https://…", default: "" },

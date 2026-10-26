@@ -17,6 +17,10 @@ export interface UnifiedPluginModel {
     endcord?: boolean;
     /** Position in Endcord PC's list of popular plugins */
     popular?: number;
+    /** Endcord PC's tags */
+    tags?: string[];
+    /** Arrived in the last two days */
+    isNew?: boolean;
     getBadges(): Badge[];
     isEnabled(): boolean;
     usePluginState(): void;

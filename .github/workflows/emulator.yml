@@ -19,8 +19,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Android 11, 14 and 15
-        api: [30, 34, 35]
+        # Android 14 on every push; Android 11, 14 and 15 when run by hand
+        api: ${{ fromJSON(github.event_name == 'workflow_dispatch' && '[30, 34, 35]' || '[34]') }}
     permissions:
       contents: write
     steps:

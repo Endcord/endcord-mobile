@@ -1,6 +1,6 @@
 /*
  * Endcord for Android
- * Copyright (c) 2026 rootpoii and contributors
+ * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -22,6 +22,7 @@ const plugin = definePlugin({
     authors: [ENDCORD_AUTHOR],
     popular: 9,
     icon: "MobilePhoneIcon",
+    tags: ["Appearance"],
     settings: {
         messages: { type: "boolean", label: tx("Messages"), description: tx("Next to the time of each message"), default: true },
         self: { type: "boolean", label: tx("Your own messages"), description: tx("Show your own devices too"), default: false },

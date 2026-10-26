@@ -1,6 +1,6 @@
 /*
  * Endcord for Android
- * Copyright (c) 2026 rootpoii and contributors
+ * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -19,6 +19,10 @@ export type SettingDef =
     | { type: "string"; label: string; description?: string; default: string; placeholder?: string; multiline?: boolean; };
 
 export type SettingsSchema = Record<string, SettingDef>;
+
+/** Endcord PC's plugin tags that apply on mobile */
+export const PLUGIN_TAGS = ["Appearance", "Chat", "Customisation", "Emotes", "Friends", "Fun", "Media", "Notifications", "Privacy", "Servers", "Utility", "Voice"] as const;
+export type PluginTag = typeof PLUGIN_TAGS[number];
 
 export type SettingsValues<S extends SettingsSchema> = {
     -readonly [K in keyof S]: S[K]["default"] extends boolean ? boolean : S[K]["default"] extends number ? number : string;
@@ -44,6 +48,8 @@ export interface EndcordPluginDefinition<S extends SettingsSchema = SettingsSche
     popular?: number;
     /** Named asset shown next to the name */
     icon?: string;
+    /** Endcord PC's tags, for the plugin page's filters */
+    tags?: PluginTag[];
     settings?: S;
     start(ctx: PluginContext<S>): void | Promise<void>;
     stop?(ctx: PluginContext<S>): void;
@@ -57,7 +63,7 @@ export interface EndcordPlugin<S extends SettingsSchema = SettingsSchema> extend
     error?: unknown;
 }
 
-export const ENDCORD_AUTHOR: Author = { name: "rootpoii" };
+export const ENDCORD_AUTHOR: Author = { name: "rootpoi" };
 
 export function definePlugin<S extends SettingsSchema>(def: EndcordPluginDefinition<S>): EndcordPlugin<S> {
     const defaults = Object.fromEntries(Object.entries(def.settings ?? {}).map(([k, v]) => [k, v.default]));

@@ -1,6 +1,6 @@
 /*
  * Endcord for Android
- * Copyright (c) 2026 rootpoii and contributors
+ * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -28,6 +28,7 @@ const plugin = definePlugin({
     authors: [ENDCORD_AUTHOR],
     popular: 5,
     icon: "PencilIcon",
+    tags: ["Appearance", "Customisation"],
     settings: {
         caretColor: { type: "select", label: tx("Caret Color"), default: "#5865F2", options: COLORS },
         selectionColor: { type: "select", label: tx("Selection color"), default: "", options: COLORS },

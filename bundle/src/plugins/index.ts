@@ -1,6 +1,6 @@
 /*
  * Endcord for Android
- * Copyright (c) 2026 rootpoii and contributors
+ * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -64,6 +64,7 @@ export function getEndcordCorePlugins(): Record<string, { default: PluginInstanc
                     endcord: true,
                     popular: plugin.popular,
                     icon: plugin.icon,
+                    tags: plugin.tags,
                 },
             },
             start() {

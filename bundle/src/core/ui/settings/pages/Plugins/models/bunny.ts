@@ -18,6 +18,7 @@ export default function unifyBunnyPlugin(manifest: BunnyPluginManifest): Unified
         icon: manifest.extras?.icon,
         endcord: !!manifest.extras?.endcord,
         popular: manifest.extras?.popular,
+        tags: manifest.extras?.tags,
 
         getBadges() {
             return [{ source: { uri: PyoncordIcon } }];

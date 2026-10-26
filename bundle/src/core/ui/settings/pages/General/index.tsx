@@ -2,6 +2,7 @@ import { isSafeMode, toggleSafeMode } from "@core/debug/safeMode";
 import { getLanguage, LANGUAGES, Strings, t } from "@core/i18n";
 import { PyoncordIcon } from "@core/ui/settings";
 import About from "@core/ui/settings/pages/General/About";
+import Updates from "@core/ui/settings/pages/General/Updates";
 import { useProxy } from "@core/vendetta/storage";
 import { findAssetId } from "@lib/api/assets";
 import { getDebugInfo } from "@lib/api/debug";
@@ -43,6 +44,7 @@ export default function General() {
                         })}
                     />
                 </TableRowGroup>
+                <Updates />
                 <TableRadioGroup
                     title={t("Language")}
                     value={settings.language ?? "auto"}
@@ -55,6 +57,15 @@ export default function General() {
                     />
                     {LANGUAGES.map(l => <TableRadioRow key={l.code} label={l.nativeName} value={l.code} />)}
                 </TableRadioGroup>
+                <TableRowGroup title={t("Support Endcord")}>
+                    <TableRow
+                        arrow={true}
+                        label={t("Star on GitHub")}
+                        subLabel={t("Free and open source, always")}
+                        icon={<TableRow.Icon source={findAssetId("StarIcon")!} />}
+                        onPress={() => Linking.openURL(GITHUB)}
+                    />
+                </TableRowGroup>
                 <TableRowGroup title={Strings.LINKS}>
                     <TableRow
                         arrow={true}

@@ -1,6 +1,6 @@
 /*
  * Endcord for Android
- * Copyright (c) 2026 rootpoii and contributors
+ * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
  * Emojis and stickers you can't use are sent as links. Ported from the fake-nitro plugin of the Revenge community
@@ -30,6 +30,7 @@ const plugin = definePlugin({
     authors: [ENDCORD_AUTHOR],
     popular: 4,
     icon: "NitroWheelIcon",
+    tags: ["Emotes", "Appearance", "Customisation", "Chat"],
     settings: {
         emojis: { type: "boolean", label: tx("Emojis"), description: tx("Send emojis you can't use as links"), default: true },
         stickers: { type: "boolean", label: tx("Stickers"), description: tx("Send stickers you can't use as links"), default: true },

@@ -48,6 +48,13 @@ function Title() {
     </View>;
 }
 
+/** Endcord PC's add-on card badges */
+function Badge({ text, color }: { text: string; color: string; }) {
+    return <View style={{ backgroundColor: color, borderRadius: 4, paddingHorizontal: 5, paddingVertical: 1 }}>
+        <Text variant="text-xxs/bold" style={{ color: "#FFFFFF" }}>{text}</Text>
+    </View>;
+}
+
 function Authors() {
     const { plugin, result } = useCardContext();
     const styles = usePluginCardStyles();
@@ -68,9 +75,8 @@ function Authors() {
 
     return (
         <View style={{ flexDirection: "row", flexWrap: "wrap", flexShrink: 1, gap: 4, alignItems: "center" }}>
-            {plugin.popular != null && <View style={{ backgroundColor: "#5865F2", borderRadius: 4, paddingHorizontal: 5, paddingVertical: 1 }}>
-                <Text variant="text-xxs/bold" style={{ color: "#FFFFFF" }}>{t("POPULAR")}</Text>
-            </View>}
+            {plugin.isNew && <Badge text={t("NEW")} color="#ED4245" />}
+            {plugin.popular != null && <Badge text={t("POPULAR")} color="#5865F2" />}
             <Text variant="text-sm/semibold" color="text-muted">
                 {byBefore}{authorText}{byAfter}
             </Text>

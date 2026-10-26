@@ -1,4 +1,4 @@
-// Copyright (c) 2026 rootpoii and contributors
+// Copyright (c) 2026 rootpoi and contributors
 package io.github.revenge.xposed
 
 import java.util.Locale

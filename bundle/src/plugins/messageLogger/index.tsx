@@ -1,6 +1,6 @@
 /*
  * Endcord for Android
- * Copyright (c) 2026 rootpoii and contributors
+ * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
  * Deleted and edited messages stay in the chat. The approach (turning a delete into an update and restyling the row
@@ -58,6 +58,7 @@ const plugin = definePlugin({
     authors: [ENDCORD_AUTHOR],
     popular: 2,
     icon: "TrashIcon",
+    tags: ["Chat", "Utility"],
     settings: {
         logDeletes: { type: "boolean", label: tx("Log deleted messages"), default: true },
         logEdits: { type: "boolean", label: tx("Log edited messages"), default: true },

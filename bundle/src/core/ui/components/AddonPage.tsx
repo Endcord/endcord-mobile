@@ -37,6 +37,8 @@ interface AddonPageProps<T extends object, I = any> {
     };
 
     OptionsActionSheetComponent?: ComponentType<any>;
+    /** Items are narrowed by filters in the header, so an empty list must keep the header */
+    filtered?: boolean;
 
     CardComponent: ComponentType<CardWrapper<T>>;
     ListHeaderComponent?: ComponentType<any>;
@@ -148,7 +150,7 @@ export default function AddonPage<T extends object>({ CardComponent, ...props }:
         }
     }, []);
 
-    if (results.length === 0 && !search) {
+    if (results.length === 0 && !search && !props.filtered) {
         return <View style={{ gap: 32, flexGrow: 1, justifyContent: "center", alignItems: "center" }}>
             <View style={{ gap: 8, alignItems: "center" }}>
                 <Image source={findAssetId("empty_quick_switcher")!} />
