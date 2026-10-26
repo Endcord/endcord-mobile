@@ -152,7 +152,7 @@ const GlobalBadges = definePlugin({
     name: "GlobalBadges",
     description: tx("Adds global badges from other client mods"),
     authors: [ENDCORD_AUTHOR],
-    icon: "BadgeIcon",
+    icon: "MedalIcon",
     tags: ["Appearance"],
     settings: {
         showModStyle: {

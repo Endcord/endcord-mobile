@@ -5,11 +5,10 @@
  */
 
 import { tx } from "@core/i18n";
-import { instead } from "@lib/api/patcher";
 import { safeFetch } from "@lib/utils";
-import { findByProps } from "@metro";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { onSend } from "../hooks";
 
 // The ClearURLs project's rules, as on Endcord PC
 const RULES_URL = "https://raw.githubusercontent.com/ClearURLs/Rules/master/data.min.json";
@@ -44,21 +43,9 @@ const plugin = definePlugin({
     icon: "LinkIcon",
     tags: ["Privacy", "Utility"],
     start({ cleanup, logger }) {
-        const messages = findByProps("sendMessage", "editMessage");
-        if (!messages) throw new Error("Discord's message actions weren't found");
-
         loadRules().catch(e => logger.warn("Couldn't download the ClearURLs rules; using the built-in ones", e));
-
-        cleanup(
-            instead("sendMessage", messages, function (this: any, args, original) {
-                clean(args[1]);
-                return original.apply(this, args);
-            }),
-            instead("editMessage", messages, function (this: any, args, original) {
-                clean(args[2]);
-                return original.apply(this, args);
-            }),
-        );
+        // After the plugins that rewrite links, so their links are cleaned too; edits go through it as well
+        cleanup(onSend("clear-urls", cleanText, 60));
     },
 });
 
@@ -106,9 +93,10 @@ export function cleanUrl(href: string): string {
     return base + (params.length ? `?${params.join("&")}` : "") + hash;
 }
 
-function clean(message: { content?: string; } | undefined) {
-    if (!message || typeof message.content !== "string" || !/https?:\/\//.test(message.content)) return;
-    message.content = message.content.replace(/(https?:\/\/[^\s<]+[^<.,:;"'>)|\]\s])/g, match => {
+/** The text with every link in it cleaned */
+export function cleanText(content: string): string {
+    if (!/https?:\/\//.test(content)) return content;
+    return content.replace(/(https?:\/\/[^\s<]+[^<.,:;"'>)|\]\s])/g, match => {
         try {
             return cleanUrl(match);
         } catch {

@@ -232,7 +232,7 @@ const HypeSquadSwitcher = definePlugin({
     name: "HypeSquadSwitcher",
     description: tx("Easily switch between HypeSquad houses or remove your badge"),
     authors: [ENDCORD_AUTHOR],
-    icon: "BadgeIcon",
+    icon: "MedalIcon",
     tags: ["Customisation"],
     start({ cleanup }) {
         cleanup(command({

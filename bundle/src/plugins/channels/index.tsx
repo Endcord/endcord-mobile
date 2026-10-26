@@ -311,7 +311,7 @@ const MarkdownTables = definePlugin({
     name: "MarkdownTables",
     description: tx("Render GitHub-style markdown tables in Discord messages."),
     authors: [ENDCORD_AUTHOR],
-    icon: "CodeIcon",
+    icon: "PaperIcon",
     tags: ["Chat"],
     start({ cleanup }) {
         cleanup(onIncomingMessage("markdown-tables", message => {
@@ -354,7 +354,7 @@ const ShowBadgesInChat = definePlugin({
     name: "ShowBadgesInChat",
     description: tx("Shows the message author's badges beside their name in chat."),
     authors: [ENDCORD_AUTHOR],
-    icon: "BadgeIcon",
+    icon: "MedalIcon",
     tags: ["Chat", "Appearance"],
     start({ cleanup }) {
         cleanup(onMessageRow("show-badges-in-chat", (row, message) => {

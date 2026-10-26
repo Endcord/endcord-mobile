@@ -70,7 +70,7 @@ const Snowfall = definePlugin({
     name: "Snowfall",
     description: tx("Let it snow on Discord"),
     authors: [ENDCORD_AUTHOR],
-    icon: "SnowflakeIcon",
+    icon: "EmojiColdFaceIcon",
     tags: ["Fun", "Appearance"],
     settings: {
         amount: { type: "number", label: tx("Snowflakes"), description: tx("How many snowflakes fall at once"), default: 25, min: 5, max: 80 },

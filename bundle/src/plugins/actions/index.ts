@@ -136,12 +136,12 @@ const DecodeBase64 = definePlugin({
     name: "DecodeBase64",
     description: tx("Decode base64 content of any message and copy the decoded content."),
     authors: [ENDCORD_AUTHOR],
-    icon: "CodeIcon",
+    icon: "PaperIcon",
     tags: ["Utility"],
     start({ cleanup }) {
         cleanup(addMessageAction({
             key: "decode-base64",
-            icon: "CodeIcon",
+            icon: "PaperIcon",
             label: () => t("Decode Base64"),
             visible: message => base64In(message.content ?? "").length > 0,
             onPress: message => showText(t("Decoded Base64"), base64In(message.content).join("\n\n")),
@@ -310,13 +310,13 @@ const ViewRaw = definePlugin({
     name: "ViewRaw",
     description: tx("View and copy the raw content and data of any message"),
     authors: [ENDCORD_AUTHOR],
-    icon: "CodeIcon",
+    icon: "PaperIcon",
     tags: ["Utility"],
     start({ cleanup }) {
         cleanup(
             addMessageAction({
                 key: "view-raw",
-                icon: "CodeIcon",
+                icon: "PaperIcon",
                 label: () => t("View Raw"),
                 onPress: message => showText(t("View Raw"), message.content ? `${message.content}\n\n${rawJson(message)}` : rawJson(message)),
             }),
@@ -633,12 +633,12 @@ const UnitConverter = definePlugin({
     name: "UnitConverter",
     description: tx("Convert metric and imperial units in a message from the message menu"),
     authors: [ENDCORD_AUTHOR],
-    icon: "RulerIcon",
+    icon: "ArrowsLeftRightIcon",
     tags: ["Utility"],
     start({ cleanup }) {
         cleanup(addMessageAction({
             key: "unit-converter",
-            icon: "RulerIcon",
+            icon: "ArrowsLeftRightIcon",
             label: () => t("Convert Units"),
             visible: message => convertUnits(message.content ?? "").length > 0,
             onPress: message => showText(t("Convert Units"), convertUnits(message.content).join("\n")),

@@ -52,7 +52,7 @@ export default function PluginInfoActionSheet({ plugin, navigation }: PluginInfo
                     onPress={() => {
                         refreshPlugin(plugin.id)
                             .then(() => showToast(Strings.PLUGIN_REFETCH_SUCCESSFUL, findAssetId("toast_image_saved")))
-                            .catch(() => showToast(Strings.PLUGIN_REFETCH_FAILED, findAssetId("Small")));
+                            .catch(() => showToast(Strings.PLUGIN_REFETCH_FAILED, findAssetId("CircleXIcon-primary")));
                     }}
                 />}
                 {external && <PluginInfoIconButton

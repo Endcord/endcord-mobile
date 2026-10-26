@@ -75,7 +75,7 @@ const FocusMode = definePlugin({
     name: "FocusMode",
     description: tx("One switch for Do Not Disturb, for a while or until you turn it off, and back to your previous status when it ends"),
     authors: [ENDCORD_AUTHOR],
-    icon: "MoonIcon",
+    icon: "BellZIcon",
     tags: ["Notifications", "Utility"],
     settings: {
         status: {
@@ -104,14 +104,14 @@ const FocusMode = definePlugin({
             if (previous === undefined) return;
             statusSetting()?.updateSetting?.(previous);
             previous = undefined;
-            showToast(t("Focus Mode is off"), findAssetId("MoonIcon"));
+            showToast(t("Focus Mode is off"), findAssetId("BellZIcon"));
         };
         const begin = (minutes?: number) => {
             if (!on()) previous = getStore("PresenceStore")?.getStatus?.(currentUserId()) ?? "online";
             statusSetting()?.updateSetting?.(store.status);
             clearTimeout(timer);
             if (minutes) timer = setTimeout(end, minutes * 60_000);
-            showToast(minutes ? t("Focus Mode is on for {minutes} minutes", { minutes }) : t("Focus Mode is on"), findAssetId("MoonIcon"));
+            showToast(minutes ? t("Focus Mode is on for {minutes} minutes", { minutes }) : t("Focus Mode is on"), findAssetId("BellZIcon"));
         };
         const toggle = () => on() ? end() : choose(t("Focus Mode"), [
             { label: t("For 30 minutes"), value: 30 }, { label: t("For 1 hour"), value: 60 },
@@ -133,7 +133,7 @@ const FocusMode = definePlugin({
                 side: () => store.button as "left" | "right" | "none",
                 render: () => {
                     const Button = getChatInputActionButton();
-                    const Icon = generatedIcon("MoonIcon");
+                    const Icon = generatedIcon("BellZIcon");
                     return Button && Icon ? <Button accessibilityLabel={t("Focus Mode")} IconComponent={Icon} onPress={toggle} /> : null;
                 },
             }),

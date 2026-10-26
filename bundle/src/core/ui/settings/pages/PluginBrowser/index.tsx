@@ -234,7 +234,7 @@ function RepositoryRow(props: { url: string; }) {
                                         variant="destructive"
                                         onPress={async () => {
                                             await deleteRepository(props.url);
-                                            showToast("Removed repository!", findAssetId("Trash"));
+                                            showToast("Removed repository!", findAssetId("TrashIcon"));
                                             dismissAlert("bunny-remove-repository");
                                         }}
                                     />

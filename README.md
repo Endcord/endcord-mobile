@@ -1,6 +1,6 @@
 <div align="center">
     <h1>Endcord for Android</h1>
-    <p>Endcord on the <em>current</em> Discord Android app: 180 of Endcord PC's plugins, themes and fonts, in five languages.</p>
+    <p>Endcord on the <em>current</em> Discord Android app: 302 plugins (260 of them from Endcord PC), themes and fonts, in five languages.</p>
 
 [Endcord PC](https://github.com/rootpoii/endcord) · [Endcord for the classic Discord app](https://github.com/rootpoii/endcord-mobile) (the `main` branch of this repository) · [Discord](https://discord.gg/endcord)
 
@@ -15,7 +15,7 @@
 
 ## Features
 
-- **180 of Endcord PC's plugins, built in.** All off until you turn them on, each with its own settings page, in
+- **302 plugins built in, 260 of them from Endcord PC.** All off until you turn them on, each with its own settings page, in
   Endcord → Plugins, which shows how many there are and how many are on, with filters by status and tag, like Endcord
   PC's plugin manager. Endcord PC's popular plugins are listed first:
 
@@ -34,15 +34,17 @@
   | SilentTyping | Your typing indicator is never sent, with an optional chat bar button |
   | FakeMute | Appear muted or deafened while your microphone and sound keep working |
 
-  The other 168 cover slash commands (`/bold`, `/ship`, `/calc`, `/remindme`, `/translate`…), changing messages
+  The other 290 cover slash commands (`/bold`, `/ship`, `/calc`, `/remindme`, `/translate`…), changing messages
   as you send them (TextReplace, Signature, silent messages, @someone…), filtering what reaches you (ClientSideBlock,
   BlockKeywords, ReplyPingControl…), rows in the message long-press menu (Bookmarks, Translate, ViewRaw, Copy Media
   Link, Reverse Image Search…), how messages are drawn (timestamps, pronouns, roles, colors), rich presence, voice,
-  profiles, calls and more. The full list, with what each one does on a phone, is in [docs/PLUGINS.md](docs/PLUGINS.md).
+  profiles, calls, pinning and hiding DMs and servers, statuses that follow your games and calls, viewing documents and
+  ZIPs without downloading them, and 38 lookup and fun commands (`/weather`, `/define`, `/currency`, `/earthquakes`,
+  `/trivia`…). The full list, with what each one does on a phone, is in [docs/PLUGINS.md](docs/PLUGINS.md).
 
 - **Light on older phones.** Endcord starts with only a list of its plugins: a plugin's code is loaded the first time
   you turn it on, translations load for your language only, and developer tools load only when you connect them.
-  About 125 KB of Endcord's code runs when Discord starts, however many plugins it has. The StartupTimings plugin
+  About 140 KB of Endcord's code runs when Discord starts, however many plugins it has. The StartupTimings plugin
   shows how long Endcord and each plugin took to start.
 
 - **Aliucord plugins need Endcord Classic.** They're written for the older Discord that Aliucord is built on and can't

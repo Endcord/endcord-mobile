@@ -195,7 +195,24 @@ async function run() {
 
     const { TextInput, NativeModules } = require("react-native");
     report("textinput", { type: typeof TextInput, render: typeof TextInput?.render, keys: Object.keys(TextInput ?? {}).slice(0, 20) });
-    report("native", { soundManager: Object.keys(NativeModules.DCDSoundManager ?? {}).slice(0, 20) });
+    // Whether CustomSounds and NotificationVolume can wrap Discord's sound player on this Discord
+    const soundManager = NativeModules.DCDSoundManager;
+    let patchable: unknown = false;
+    try {
+        const original = soundManager?.prepare;
+        const unpatch = require("@lib/api/patcher").instead("prepare", soundManager, (args: any[], orig: any) => orig(...args));
+        patchable = soundManager.prepare !== original;
+        unpatch();
+    } catch (e) {
+        patchable = String(e);
+    }
+    report("native", {
+        soundManager: typeof soundManager,
+        keys: Object.keys(soundManager ?? {}).slice(0, 20),
+        prepare: typeof soundManager?.prepare,
+        patchable,
+        jsSound: Object.keys(findByProps("playSound") ?? {}).slice(0, 12),
+    });
 
     await behaviour();
     await screens();
@@ -298,7 +315,14 @@ ${e.stack}` : String(e) });
 
     await check("text commands register", () => withPlugins(["BoldText", "ShipCalc", "Calculator", "MoreCommands"], () => {
         const { commands } = require("@metro/common");
-        const all = commands.getBuiltInCommands(1, true, false).map((c: any) => c.name);
+        // Like Revenge's own lookup: newer Discord takes a list of command types, older a single one
+        let builtIn: any[];
+        try {
+            builtIn = commands.getBuiltInCommands(1, true, false);
+        } catch {
+            builtIn = commands.getBuiltInCommands([1], true, false);
+        }
+        const all = builtIn.map((c: any) => c.name);
         const wanted = ["bold", "ship", "calc", "choose", "morse"];
         const { calculate } = require("@plugins/text");
         const { toBold, morse } = require("@plugins/text");

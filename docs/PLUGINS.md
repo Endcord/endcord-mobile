@@ -1,7 +1,7 @@
 # Eklentiler (Endcord PC → Endcord for Android)
 
-Endcord'un mobil eklentileri `bundle/src/plugins/` altında yaşar ve uygulamayla birlikte gelir: **180 eklenti**,
-hepsi Endcord PC'den. Hepsi kapalı başlar; kullanıcı **Ayarlar → Endcord → Eklentiler** sayfasından açar. Popüler
+Endcord'un mobil eklentileri `bundle/src/plugins/` altında yaşar ve uygulamayla birlikte gelir: **302 eklenti**:
+Endcord PC'den gelen 260, Endcord'un mobil için kendi eklentileri 42 (çoğu bilgi ve eğlence komutları). Hepsi kapalı başlar; kullanıcı **Ayarlar → Endcord → Eklentiler** sayfasından açar. Popüler
 olanlar, Endcord PC'deki sırayla en üstte ve "POPÜLER" etiketiyle görünür; sayfanın üstünde toplam ve açık eklenti
 sayısı, durum ve etiket filtreleri var (Endcord PC'nin eklenti yöneticisi gibi).
 
@@ -179,7 +179,7 @@ Discord'un yerel sohbetinin satırlarını değiştirenler (`onMessageRow`): saa
 | UserMessagesPronouns | Sohbet mesajlarında kullanıcıların zamirlerini gösterir |
 | WordCount | Mesajların kelime sayısını saatlerinin yanında gösterir |
 
-### Durum ve etkinlik (6)
+### Durum ve etkinlik (7)
 Zengin durum, kayıtlı durumlar, boşta görünme.
 
 | Eklenti | Ne yapıyor |
@@ -189,6 +189,7 @@ Zengin durum, kayıtlı durumlar, boşta görünme.
 | CustomRPC | Profiline tamamen özelleştirilebilir bir Zengin Durum (oyun durumu) ekle |
 | Experiments | Discord'un gizli geliştirici deneyleri (Experiments) sekmesini etkinleştirir. |
 | LastFMRichPresence | Last.fm için küçük bir zengin durum eklentisi |
+| MusicRichPresence | ListenBrainz'den, dinlediğin şey için Zengin Durum |
 | StatusPresets | Durumlarını kaydedip sonra tekrar kullanmanı sağlar |
 
 ### Ses kanalları (4)
@@ -287,6 +288,175 @@ Konuştuğunuz kişiler: kim oldukları, izinleri, en son ne zaman çevrimiçi o
 | PermissionsViewer | Bir mesajın yazarının rollerini ve izinlerini mesaj menüsünden gör |
 | PingNotifications | Gelişmiş bahsetme biçimiyle özelleştirilebilir bildirimler |
 | ReviewDB | Bir mesajın yazarı hakkındaki ReviewDB değerlendirmelerini mesaj menüsünden oku |
+
+### Sohbet (6)
+Uzun mesajları bölme, tepkileri sıralama, yanıtların saati, sizi doğrudan etiketleyen mesajlar, titreşim ve ChatGPT.
+
+| Eklenti | Ne yapıyor |
+| --- | --- |
+| ChatGPT | ChatGPT'yi ayarlanabilir şekilde doğrudan Discord'da kullanmanı sağlar |
+| MentionColors | Seni doğrudan etiketleyen mesajları @everyone ve @here bildirimlerinden farklı işaretler |
+| ReplyTimestamp | Bir yanıtın cevapladığı mesajın ne zaman gönderildiğini, yanıtın saatinin yanında gösterir |
+| SortReactions | Sohbette tepkileri sayısına göre sıralar. |
+| SplitLargeMessages | Çok uzun mesajları göndermeden önce Discord sınırına uygun parçalara böler. |
+| VibrateOnPing | Discord açıkken biri seni etiketlediğinde ya da DM attığında telefonunu titretir |
+
+### Mesajlar (15)
+Bağlantı önizlemeleri, spoiler'lar, alıntı, sed, şifreli ve görünmez mesajlar, mesaj kasası.
+
+| Eklenti | Ne yapıyor |
+| --- | --- |
+| CustomReactionButtons | Mesaj menüsüne kendi tek dokunuşluk tepkilerini ekle |
+| DontRoundMyTimestamps | Göreli zamanları hep aşağı yuvarlar; 7,6 yıl 8 değil 7 yıl olur |
+| EncryptedMessage | /encrypt ile parolayla şifrelenmiş mesajlar gönder; yalnızca parolayı bilenler okuyabilir |
+| FakeDM | /fakedm ile bir DM'e ya da grup DM'ine sahte yerel mesajlar ekler. Discord yeniden başlasa da kalırlar; yalnızca sen görürsün. |
+| GifPaste | GIF seçince hemen göndermek yerine bağlantısını mesaj kutusuna ekler |
+| InvisibleChat | /invisible ile sıradan bir mesajın içine parola korumalı gizli bir mesaj sakla |
+| MessageLinkEmbeds | Başka mesaja bağlantı veren mesajlara önizleme ekler |
+| MessageLoggerEnhanced | Silinen ve düzenlenen mesajları Discord yeniden başladıktan sonra da saklar; göz atmak için bir liste ve /deleted ile |
+| MessageVault | Okuduğun mesajları, kaybolup gitseler bile /vault ile kelimeye ve kişiye göre ara. Yalnızca cihazında dizinlenir. |
+| Quoter | Mesaj menüsünden bir mesajı yazarıyla birlikte mesaj kutuna alıntıla |
+| RevealAllSpoilers | Mesaj menüsünden bir mesajdaki tüm spoiler'ları göster |
+| SedEnhanced | Son mesajını s/bul/değiştir/ ile düzenle; düzenli ifadeler, bayraklar ve s\|a\|b\|g gibi başka ayraçlarla |
+| TenorGifFix | Tenor GIF'lerini video yerine gerçek GIF olarak kaydeder |
+| Translate+ | Endcord'un çeviri eklentisi, sanatsal dil desteğiyle! |
+| WhitelistedEmojis | Beyaz listedekiler dışındaki tüm mesaj emojilerini kapatmanı sağlar. |
+
+### Dosyalar ve medya (8)
+Belgeleri ve ZIP'leri indirmeden görüntüleme, favoriler, GIF koleksiyonları ve DeArrow.
+
+| Eklenti | Ne yapıyor |
+| --- | --- |
+| Dearrow | YouTube yerleştirmelerinin başlıklarını DeArrow ile daha az abartılı yapar |
+| FavoriteAnything | Herhangi bir resmi, videoyu veya dosya ekini favorilere ekle |
+| FileViewer | Word, Excel ve PowerPoint eklerini indirmeden, mesaj menüsünden görüntüle |
+| FixFileExtensions | Mümkünse dosya uzantılarını desteklenen bir biçime çevirerek düzeltir |
+| GifCollections | GIF koleksiyonları oluşturmanı sağlar. |
+| PdfViewer | PDF eklerini önce indirmeden, mesaj menüsünden önizle |
+| SaveFavoriteGIFs | Favori GIF bağlantılarını dışa aktar |
+| ZipPreview | Dosya eklerinde ZIP içeriğini önizler. |
+
+### Arkadaşlar ve profiller (15)
+Engellenenler, arkadaşlık istekleri, etiketler, takma adlar, bağlantılar, zamirler ve seriler.
+
+| Eklenti | Ne yapıyor |
+| --- | --- |
+| BetterActivities | Mesaj menüsünden, mesaj sahibinin şu anda yaptığı her şeyi gör |
+| BetterBlockedUsers | Engellediğin kişilerin aranabilir listesi; tek dokunuşla engeli kaldır |
+| CancelFriendRequest | Gönderdiğin arkadaşlık isteklerini gör ve iptal et |
+| CancelFriendRequestNC | Gönderdiğin her arkadaşlık isteğini /cancelrequests ile iptal et |
+| FriendNicknames | İnsanlara sohbette yalnızca senin göreceğin takma adlar ver |
+| FriendTags | Arkadaşlarına kendi etiketlerini ver ve bir etikete sahip herkesi /friendtag ile listele |
+| GitHubRepos | Kullanıcının herkese açık GitHub depolarını profilinde gösterir |
+| MutualGroupDMs | Mesaj menüsünden, mesaj sahibiyle ortak grup DM'lerini gör |
+| ProfileMedia | Mesaj menüsünden mesaj sahibinin avatarını ve afişini tam çözünürlükte aç |
+| PronounDB | İnsanların PronounDB'deki zamirlerini mesajlarının yanında gösterir |
+| ShowConnections | Mesaj menüsünden, mesaj sahibinin bağladığı hesapları (GitHub, Steam, Spotify...) gör |
+| ShowSongName | Spotify etkinliğinde sanatçı yerine şarkı adını gösterir |
+| SortFriendRequests | Arkadaşlık isteklerini geliş tarihine göre sıralar |
+| Streaks | Biriyle art arda günlerde DM'leşince yanında seri gösterir. |
+| WhoReacted | Mesaj menüsünden, bir mesaja hangi emojiyle kimin tepki verdiğini gör |
+
+### Sunucular (12)
+Yasaklama sebepleri, davetler, roller, sunucu arama ve üye etiketleri.
+
+| Eklenti | Ne yapıyor |
+| --- | --- |
+| AutoDisconnectAndAutoMute | Seçili kişileri ses kanallarından otomatik çıkarır veya susturur |
+| BetterBanReasons | /ban ile, kaydettiğin kendi sebeplerinden seçerek yasakla |
+| BetterRoleContext | /roleinfo ile bir rolün rengini, simgesini, üyelerini ve izinlerini gör |
+| BlurNSFW | Yaş kısıtlamalı kanallardaki ekleri sen dokunana kadar spoiler arkasında gizler |
+| GreetStickerPicker | /greet ile yeni bir DM'deki birine ya da yeni bir üyeye seçtiğin çıkartmayla el salla |
+| GuildPickerDumper | /dumpemojis ile bir sunucunun tüm emoji ve çıkartmalarının bağlantılarını paylaş |
+| InviteDefaults | Ne kadar süreceği ve kaç kez kullanılabileceği için kendi varsayılanlarınla /invite ile davet oluştur |
+| MoreUserTags | Webhook'lar ve yönetici rolleri (sahip, admin vb.) için etiket ekler |
+| MutualServerMembers | Üye olduğun iki sunucuyu karşılaştır ve ikisinde de olan üyeleri /mutualmembers ile gör |
+| ServerSearch | /servers ile bir sunucuyu adıyla bul ve sonuçtan aç |
+| SurfaceTranslate | /translatechannel ile bir kanalın adını ve konusunu çevir |
+| UrlHighlighter | Kalıplarına uyan bağlantılar içeren mesajları renklendirir |
+
+### Durum, etkinlik ve sesler (9)
+Ne yaptığınıza göre değişen durum, oyun ve Spotify görünürlüğü, ses düzeyleri ve Discord'un sesleri.
+
+| Eklenti | Ne yapıyor |
+| --- | --- |
+| AutoDNDWhilePlaying | Oyun açınca çevrimiçi durumunu (çevrimiçi, boşta, rahatsız etmeyin) otomatik değiştirir |
+| CustomSounds | Discord seslerini özelleştir. |
+| ExitSounds | Sesten ayrılınca ses tablosundan ses çalar. |
+| GameActivityToggle | Ne oynadığını göstermek ya da gizlemek için mesaj kutusunun yanına bir düğme ve /gameactivity ekler |
+| IdleAutoRestart | Discord'u bir süre arka planda bıraktıktan sonra döndüğünde, temiz başlaması için yeniden yükler; ama asla bir arama sırasında değil |
+| NotificationVolume | Kulaklarını koru: bildirimler ve uygulama sesleri için ayrı ses seviyesi ayarla |
+| SpotifyActivityToggle | Spotify etkinliğinin görünürlüğü için açma/kapama butonu ekler. |
+| StatusWhileActive | Ses kanalındayken çevrimiçi durumunu otomatik değiştirir. |
+| UniversalVolume | Ses kanalındaki herkesi aynı ses seviyesine ayarlar; yeni gelenleri de aynı seviyede tutar. |
+
+### Uygulamada gezinme (18)
+DM ve sunucu sabitleme ya da gizleme, son kanallar, sayaçlar, temalar, StreamProof ve hızlı işlemler.
+
+| Eklenti | Ne yapıyor |
+| --- | --- |
+| BetterInvites | /inviteinfo ile bir davetin nereye götürdüğünü, kimin oluşturduğunu ve ne zaman sona erdiğini katılmadan önce gör |
+| ConsoleJanitor | Discord'un konsol kayıtlarını kapatır; yavaş telefonlarda iş yükünü azaltır |
+| EndcordToolbox | Mesaj kutusunun yanına Endcord hızlı işlemlerini içeren bir düğme ekler: yeniden yükle, eklenti kapat, hata ayıklama bilgisi ve güvenli mod |
+| FakeConnections | Kendi profiline yalnızca senin görebileceğin sahte bağlantılar ekle. |
+| HideServers | /hideserver ile sunucuları sunucu listenden gizle; eklentinin ayarlarından geri getir |
+| IconViewer | Eklentinin ayarlarında Discord'un tüm simgelerine göz at, ara ve adlarını kopyala |
+| ImplicitRelationships | /implicit ile Discord'un en çok konuştuğunu düşündüğü kişileri, arkadaşın olmasalar bile gör |
+| OpenInApp | Bağlantıları tarayıcı yerine ilgili uygulamada aç |
+| PinDMs | /pindm ile DM'leri DM listenin en üstüne sabitle |
+| QuickThemeSwitcher | /theme ya da mesaj kutusunun yanındaki bir düğmeyle yüklü temaların arasında geçiş yap |
+| RecentChannelSwitcher | /recent ile son açtığın kanallara ve DM'lere geri dön |
+| RecentDMSwitcher | /recentdms ile son açtığın DM'lere geri dön |
+| ServerListIndicators | /indicators ile kaç arkadaşının çevrimiçi olduğunu ve kaç sunucuda olduğunu gör |
+| ServerPinner | /pinserver ile sunucuları, klasörlerini değiştirmeden sunucu listenin en üstüne sabitle |
+| StreamProof | Ekranını paylaşırken ya da kaydederken mesajları ve resimlerini gizler. Sohbet çubuğu düğmesiyle aç/kapat. |
+| UnreadCountBadge | /unread ile bir sunucunun her kanalında kaç okunmamış mesaj olduğunu gör |
+| VoiceCount | /voicecount ile bir sunucunun her sesli kanalında kaç kişi olduğunu gör |
+| WhosWatching | /viewers ile yayınını kimin izlediğini gör |
+
+### Bilgi ve eğlence komutları (38)
+Sözlük, hava durumu, döviz, ülke ve tatil bilgisi, depremler, kod paketleri, oyunlar… Arama sonuçlarını yalnızca siz görürsünüz.
+
+| Eklenti | Ne yapıyor |
+| --- | --- |
+| Advice | /advice ile rastgele bir tavsiye gönder |
+| AnimeLookup | /anime ile bir animenin puanına, bölümlerine ve durumuna bak |
+| BoredActivity | /bored ile yapacak bir şey fikri al |
+| CatFacts | /catfact ile kediler hakkında rastgele bir bilgi gönder |
+| CharInfo | /charinfo ile bir metindeki her karakterin Unicode kod noktasını gör |
+| ColorInfo | /color ile bir rengin RGB ve HSL değerlerini gör ya da rastgele bir renk al |
+| Countdown | /countdown ile bir tarihe ne kadar kaldığını gör |
+| CountryInfo | /country ile bir ülkenin başkentine, nüfusuna, dillerine ve para birimine bak |
+| CryptoPrices | /crypto ile bir kripto paranın fiyatını ve bugünkü değişimini gör |
+| CurrencyConverter | Bugünkü kurlarla /currency ile para birimleri arasında çevir |
+| Dictionary | /define ile İngilizce bir kelimenin anlamına bak |
+| DiscordStatus | Discord'un kendisinde sorun olup olmadığını /discordstatus ile kontrol et |
+| Earthquakes | /earthquakes ile dünyadaki ya da bir yerin yakınındaki son güçlü depremleri gör |
+| Emojify | /emojify ile büyük harf emojileriyle mesaj yaz |
+| GitHubLookup | /github ile bir GitHub kullanıcısına ya da deposuna bak |
+| Hash | /sha256 ile bir metnin SHA-256 özetini al |
+| Holidays | /holidays ile bir ülkenin yaklaşan resmi tatillerini gör |
+| Jokes | /joke ile rastgele bir şaka gönder |
+| LoremIpsum | /lorem ile mesaj kutusuna yer tutucu metin koy |
+| MinecraftSkin | /mcskin ile bir Minecraft oyuncusunun skin'ini gönder |
+| MinecraftStatus | /mcstatus ile bir Minecraft sunucusunun açık olup olmadığını ve kaç kişinin oynadığını gör |
+| NpmLookup | /npm ile bir npm paketinin sürümüne, lisansına ve indirmelerine bak |
+| PasswordGenerator | /passwordgen ile güçlü, rastgele bir parola oluştur; yalnızca sen görürsün ve kopyalanır |
+| Pokedex | /pokemon ile bir Pokémon'un türlerine ve istatistiklerine bak |
+| QRCode | /qr ile herhangi bir metnin ya da bağlantının QR kodunu gönder |
+| Quotes | /quote ile rastgele ünlü bir söz gönder |
+| RandomFacts | /fact ile rastgele bir bilgi gönder |
+| RecipeFinder | /recipe ile bir yemeğin tarifini bul |
+| RockPaperScissors | /rps ile taş, kağıt, makas oyna ve sonucu gönder |
+| ShortenURL | /shorten ile bir bağlantıyı kısalt; kısa bağlantı mesaj kutusuna konur |
+| SnowflakeInfo | /snowflake ile herhangi bir Discord kimliğinin (kullanıcı, mesaj, sunucu...) ne zaman oluşturulduğunu gör |
+| SpaceLaunches | /launches ile yaklaşan roket fırlatmalarını gör |
+| SteamLookup | /steam ile bir oyunun Steam fiyatına bak |
+| Trivia | /trivia ile rastgele bir bilgi sorusunu cevapla |
+| UrbanDictionary | /urban ile Urban Dictionary'de argo ara |
+| UUIDGenerator | /uuid ile rastgele bir UUID oluştur ve kopyala |
+| Weather | /weather ile her yerin hava durumunu gör |
+| Xkcd | /xkcd ile bir xkcd çizgi romanı gönder: en yenisi, rastgele biri ya da bir numara |
 
 ### Eğlence ve sağlık (5)
 Endcord'un ekran katmanında çizilenler ve Wellbeing.

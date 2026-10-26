@@ -32,7 +32,7 @@ const BoldText = definePlugin({
     name: "BoldText",
     description: tx("/bold turns your message into 𝐮𝐧𝐢𝐜𝐨𝐝𝐞 bold (works where markdown can't)."),
     authors: [ENDCORD_AUTHOR],
-    icon: "BoldIcon",
+    icon: "LettersIcon",
     tags: ["Chat", "Fun"],
     start({ cleanup }) {
         cleanup(command({

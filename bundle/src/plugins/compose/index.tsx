@@ -188,6 +188,8 @@ const ZeroWidthSanitizer = definePlugin({
     start({ store, cleanup }) {
         cleanup(onSend("zero-width-sanitizer", (content, { editing }) => {
             if (editing ? !store.sanitizeEdits : !store.sanitizeOutgoing) return;
+            // A message InvisibleChat hid a secret in is sent as it is
+            if (content.includes(String.fromCharCode(0x2063, 0x2063))) return;
             // Zero-width joiners hold emoji sequences (👨‍👩‍👧) together, so the ones after an emoji are kept
             const cleaned = content.replace(INVISIBLE, (c, i: number) => c === "\u200D" && i > 0 && content.charCodeAt(i - 1) >= 0x2000 ? c : "");
             if (cleaned !== content && store.showToastOnDetection) showToast(t("Removed invisible characters from your message"), findAssetId("ShieldIcon"));
