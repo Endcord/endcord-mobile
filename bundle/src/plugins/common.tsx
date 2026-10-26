@@ -32,8 +32,8 @@ export const currentUserId = (): string | undefined => getStore("UserStore")?.ge
  * Sees every Flux action of a type before Discord does. Return undefined to let it through, false to drop it, or an
  * object to merge into it.
  */
-export function onAction<P extends Record<string, any> = Record<string, any>>(type: string, cb: (payload: P & { type: string; }) => unknown) {
-    return intercept(payload => payload.type === type ? cb(payload as any) : undefined);
+export function onAction<P extends Record<string, any> = Record<string, any>>(type: string, cb: (payload: P & { type: string; }) => unknown, options?: { first?: boolean; }) {
+    return intercept(payload => payload.type === type ? cb(payload as any) : undefined, options);
 }
 
 /** Runs after Discord has handled the action */
@@ -89,7 +89,7 @@ function insertButtons(tree: ReactElement, side: "left" | "right") {
     try {
         const node = findInReactTree(tree, n => Array.isArray(n?.props?.children));
         if (!node) return tree;
-        const children: any[] = node.props.children;
+        const { children }: { children: any[]; } = node.props;
         for (const button of chatButtons.values()) {
             const index = children.findIndex(c => c?.key === `endcord-${button.key}`);
             if (index !== -1) children.splice(index, 1);

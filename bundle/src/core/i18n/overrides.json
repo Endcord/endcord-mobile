@@ -1,9 +1,45 @@
 {
+    "**{query}** is ambiguous — try being more specific.": {
+        "tr": "**{query}** belirsiz — daha net yazmayı deneyin.",
+        "ru": "**{query}** — неоднозначный запрос, попробуйте уточнить.",
+        "es": "**{query}** es ambiguo; intenta ser más específico.",
+        "fr": "**{query}** est ambigu — essayez d'être plus précis."
+    },
+    "1 word": {
+        "tr": "1 kelime",
+        "ru": "1 слово",
+        "es": "1 palabra",
+        "fr": "1 mot"
+    },
+    "24-hour clock": {
+        "tr": "24 saat biçimi",
+        "ru": "24-часовой формат",
+        "es": "Reloj de 24 horas",
+        "fr": "Format 24 heures"
+    },
+    "<@{me}> slaps {victim} around a bit with a large trout": {
+        "tr": "<@{me}>, {victim} kişisini kocaman bir alabalıkla biraz tokatlıyor",
+        "ru": "<@{me}> слегка шлёпает {victim} большой форелью",
+        "es": "<@{me}> le da unas bofetadas a {victim} con una trucha enorme",
+        "fr": "<@{me}> gifle un peu {victim} avec une grosse truite"
+    },
+    "@everyone and @here": {
+        "tr": "@everyone ve @here",
+        "ru": "@everyone и @here",
+        "es": "@everyone y @here",
+        "fr": "@everyone et @here"
+    },
     "A button beside the message box to switch silent typing on and off": {
         "tr": "Sessiz yazmayı açıp kapatmak için mesaj kutusunun yanında bir düğme",
         "ru": "Кнопка рядом с полем сообщения для включения и выключения тихого набора",
         "es": "Un botón junto al cuadro de mensaje para activar y desactivar la escritura silenciosa",
         "fr": "Un bouton à côté de la zone de message pour activer et désactiver la saisie silencieuse"
+    },
+    "A button that inserts the current time as a timestamp": {
+        "tr": "Şu anki saati zaman damgası olarak ekleyen bir düğme",
+        "ru": "Кнопка, которая вставляет текущее время как метку времени",
+        "es": "Un botón que inserta la hora actual como marca de tiempo",
+        "fr": "Un bouton qui insère l'heure actuelle sous forme d'horodatage"
     },
     "A friend request from {user} has been removed.": {
         "tr": "{user} kullanıcısından gelen arkadaşlık isteği kaldırıldı.",
@@ -11,17 +47,47 @@
         "es": "Se ha retirado la solicitud de amistad de {user}.",
         "fr": "La demande d'ami de {user} a été retirée."
     },
+    "A language code like en, tr, ru, es or fr. Leave empty for Discord's language.": {
+        "tr": "en, tr, ru, es veya fr gibi bir dil kodu. Discord'un dili için boş bırakın.",
+        "ru": "Код языка, например en, tr, ru, es или fr. Оставьте пустым, чтобы использовать язык Discord.",
+        "es": "Un código de idioma como en, tr, ru, es o fr. Déjalo vacío para usar el idioma de Discord.",
+        "fr": "Un code de langue comme en, tr, ru, es ou fr. Laissez vide pour la langue de Discord."
+    },
+    "A link to an image": {
+        "tr": "Bir görselin bağlantısı",
+        "ru": "Ссылка на изображение",
+        "es": "Un enlace a una imagen",
+        "fr": "Un lien vers une image"
+    },
     "A little cat that runs to wherever you touch the screen.": {
         "tr": "Ekrana nereye dokunursanız oraya koşan küçük bir kedi.",
         "ru": "Маленький кот, который бежит туда, где вы касаетесь экрана.",
         "es": "Un gatito que corre hacia donde toques la pantalla.",
         "fr": "Un petit chat qui court là où vous touchez l'écran."
     },
+    "A message from {user}": {
+        "tr": "{user} kişisinden bir mesaj",
+        "ru": "Сообщение от {user}",
+        "es": "Un mensaje de {user}",
+        "fr": "Un message de {user}"
+    },
     "A reload is required to see the changes. Do you want to reload now?": {
         "tr": "Değişiklikleri görmek için yeniden yükleme gerekiyor. Şimdi yeniden yüklensin mi?",
         "ru": "Чтобы увидеть изменения, нужна перезагрузка. Перезагрузить сейчас?",
         "es": "Hace falta recargar para ver los cambios. ¿Quieres recargar ahora?",
         "fr": "Un rechargement est nécessaire pour voir les changements. Recharger maintenant ?"
+    },
+    "A server": {
+        "tr": "Bir sunucu",
+        "ru": "Сервер",
+        "es": "Un servidor",
+        "fr": "Un serveur"
+    },
+    "API key": {
+        "tr": "API anahtarı",
+        "ru": "Ключ API",
+        "es": "Clave de API",
+        "fr": "Clé d'API"
     },
     "About": {
         "tr": "Hakkında",
@@ -35,11 +101,53 @@
         "es": "Sobre mí",
         "fr": "À propos de moi"
     },
+    "Accent color, like #6644ff": {
+        "tr": "Vurgu rengi, örneğin #6644ff",
+        "ru": "Акцентный цвет, например #6644ff",
+        "es": "Color de acento, como #6644ff",
+        "fr": "Couleur d'accent, comme #6644ff"
+    },
     "Activate Discord Experiments": {
         "tr": "Discord deneylerini etkinleştir",
         "ru": "Включить эксперименты Discord",
         "es": "Activar los experimentos de Discord",
         "fr": "Activer les expériences de Discord"
+    },
+    "Activity type": {
+        "tr": "Etkinlik türü",
+        "ru": "Тип активности",
+        "es": "Tipo de actividad",
+        "fr": "Type d'activité"
+    },
+    "Add my signature": {
+        "tr": "İmzamı ekle",
+        "ru": "Добавлять мою подпись",
+        "es": "Añadir mi firma",
+        "fr": "Ajouter ma signature"
+    },
+    "Added :{name}: to {server}": {
+        "tr": ":{name}: {server} sunucusuna eklendi",
+        "ru": ":{name}: добавлен на {server}",
+        "es": ":{name}: se añadió a {server}",
+        "fr": ":{name}: a été ajouté à {server}"
+    },
+    "Administrator: every permission": {
+        "tr": "Yönetici: tüm izinler",
+        "ru": "Администратор: все права",
+        "es": "Administrador: todos los permisos",
+        "fr": "Administrateur : toutes les permissions"
+    },
+    "After the badge's name": {
+        "tr": "Rozet adından sonra",
+        "ru": "После названия значка",
+        "es": "Después del nombre de la insignia",
+        "fr": "Après le nom du badge"
+    },
+    "Aliucord plugins only work on the older Discord that Aliucord is built on, so they can't run here. This Endcord has Endcord's own plugins for the latest Discord. For Aliucord plugins, use Endcord Classic, which runs both.": {
+        "tr": "Aliucord eklentileri yalnızca Aliucord'un dayandığı eski Discord sürümünde çalışır, bu yüzden burada çalışamaz. Bu Endcord, en yeni Discord için Endcord'un kendi eklentilerini içerir. Aliucord eklentileri için ikisini de çalıştıran Endcord Classic'i kullanın.",
+        "ru": "Плагины Aliucord работают только на старой версии Discord, на которой основан Aliucord, поэтому здесь они не запустятся. В этом Endcord есть собственные плагины Endcord для последней версии Discord. Для плагинов Aliucord используйте Endcord Classic — он поддерживает и те, и другие.",
+        "es": "Los plugins de Aliucord solo funcionan en el Discord antiguo en el que se basa Aliucord, así que aquí no pueden ejecutarse. Este Endcord trae los plugins propios de Endcord para el Discord más reciente. Para plugins de Aliucord, usa Endcord Classic, que ejecuta ambos.",
+        "fr": "Les plugins Aliucord ne fonctionnent que sur l'ancien Discord sur lequel Aliucord est basé, ils ne peuvent donc pas tourner ici. Cet Endcord propose les plugins d'Endcord pour le Discord le plus récent. Pour les plugins Aliucord, utilisez Endcord Classic, qui gère les deux."
     },
     "All add-ons will be turned off until you leave safe mode.": {
         "tr": "Güvenli moddan çıkana kadar tüm eklentiler kapalı olacak.",
@@ -53,6 +161,48 @@
         "es": "Todos los complementos se cargarán con normalidad.",
         "fr": "Tous les modules se chargeront normalement."
     },
+    "All friend invites have been revoked.": {
+        "tr": "Tüm arkadaş davetleri iptal edildi.",
+        "ru": "Все приглашения в друзья отозваны.",
+        "es": "Se revocaron todas las invitaciones de amistad.",
+        "fr": "Toutes les invitations d'ami ont été révoquées."
+    },
+    "Already deleting messages; wait for it to finish.": {
+        "tr": "Mesajlar zaten siliniyor; bitmesini bekleyin.",
+        "ru": "Сообщения уже удаляются, дождитесь окончания.",
+        "es": "Ya se están borrando mensajes; espera a que termine.",
+        "fr": "Des messages sont déjà en cours de suppression ; attendez la fin."
+    },
+    "Also react to the messages you send": {
+        "tr": "Gönderdiğiniz mesajlara da tepki ver",
+        "ru": "Также реагировать на ваши сообщения",
+        "es": "Reaccionar también a los mensajes que envías",
+        "fr": "Réagir aussi aux messages que vous envoyez"
+    },
+    "Also show a toast when something happens in the voice channel you're in": {
+        "tr": "Bulunduğunuz ses kanalında bir şey olduğunda bildirim de göster",
+        "ru": "Также показывать уведомление, когда что-то происходит в вашем голосовом канале",
+        "es": "Mostrar también un aviso cuando pase algo en el canal de voz en el que estás",
+        "fr": "Afficher aussi une notification quand il se passe quelque chose dans votre salon vocal"
+    },
+    "Always notify for": {
+        "tr": "Her zaman bildir",
+        "ru": "Всегда уведомлять о",
+        "es": "Notificar siempre de",
+        "fr": "Toujours notifier pour"
+    },
+    "Always ping from": {
+        "tr": "Her zaman bildirim alınacaklar",
+        "ru": "Всегда упоминать от",
+        "es": "Mencionar siempre de",
+        "fr": "Toujours mentionner pour"
+    },
+    "Always ping me on replies": {
+        "tr": "Yanıtlarda beni her zaman etiketle",
+        "ru": "Всегда упоминать меня в ответах",
+        "es": "Mencionarme siempre en las respuestas",
+        "fr": "Toujours me mentionner dans les réponses"
+    },
     "Animated images always open as GIF": {
         "tr": "Hareketli görseller her zaman GIF olarak açılır",
         "ru": "Анимированные изображения всегда открываются как GIF",
@@ -64,6 +214,18 @@
         "ru": "Анимированные стикеры Discord нельзя отправить ссылкой.",
         "es": "Los stickers animados de Discord no se pueden enviar como enlace.",
         "fr": "Les autocollants animés de Discord ne peuvent pas être envoyés sous forme de lien."
+    },
+    "AntiNickname: couldn't reset nickname ({status})": {
+        "tr": "AntiNickname: takma ad sıfırlanamadı ({status})",
+        "ru": "AntiNickname: не удалось сбросить ник ({status})",
+        "es": "AntiNickname: no se pudo restablecer el apodo ({status})",
+        "fr": "AntiNickname : impossible de réinitialiser le pseudo ({status})"
+    },
+    "AntiNickname: nickname \"{nick}\" removed": {
+        "tr": "AntiNickname: \"{nick}\" takma adı kaldırıldı",
+        "ru": "AntiNickname: ник «{nick}» удалён",
+        "es": "AntiNickname: se quitó el apodo \"{nick}\"",
+        "fr": "AntiNickname : pseudo « {nick} » supprimé"
     },
     "Appear deafened while you can still hear": {
         "tr": "Hâlâ duyarken sağırlaştırılmış görün",
@@ -89,6 +251,24 @@
         "es": "Aplicado",
         "fr": "Appliqué"
     },
+    "Applied NewGuildSettings to this server.": {
+        "tr": "NewGuildSettings bu sunucuya uygulandı.",
+        "ru": "NewGuildSettings применены к этому серверу.",
+        "es": "Se aplicó NewGuildSettings a este servidor.",
+        "fr": "NewGuildSettings a été appliqué à ce serveur."
+    },
+    "Apply NewGuildSettings to this server now": {
+        "tr": "NewGuildSettings'i bu sunucuya şimdi uygula",
+        "ru": "Применить NewGuildSettings к этому серверу сейчас",
+        "es": "Aplicar NewGuildSettings a este servidor ahora",
+        "fr": "Appliquer NewGuildSettings à ce serveur maintenant"
+    },
+    "Apply or remove your HypeSquad badge": {
+        "tr": "HypeSquad rozetini uygula veya kaldır",
+        "ru": "Установить или убрать значок HypeSquad",
+        "es": "Aplicar o quitar tu insignia de HypeSquad",
+        "fr": "Appliquer ou retirer votre badge HypeSquad"
+    },
     "Are you sure you wish to clear the data of {name}?": {
         "tr": "{name} verilerini silmek istediğinize emin misiniz?",
         "ru": "Вы уверены, что хотите удалить данные {name}?",
@@ -107,6 +287,18 @@
         "es": "¿Seguro que quieres eliminar {name}? Se borrarán todos los datos del plugin.",
         "fr": "Voulez-vous vraiment supprimer {name} ? Toutes les données du plugin seront effacées."
     },
+    "Ask a yes/no question and get an answer": {
+        "tr": "Evet/hayır sorusu sorun ve cevap alın",
+        "ru": "Задайте вопрос «да/нет» и получите ответ",
+        "es": "Haz una pregunta de sí o no y obtén una respuesta",
+        "fr": "Posez une question fermée et obtenez une réponse"
+    },
+    "Ask again later": {
+        "tr": "Sonra tekrar sor",
+        "ru": "Спроси позже",
+        "es": "Pregunta más tarde",
+        "fr": "Redemande plus tard"
+    },
     "Ask before sending without embed permission": {
         "tr": "Bağlantı yerleştirme izni yoksa göndermeden önce sor",
         "ru": "Спрашивать перед отправкой без права встраивать ссылки",
@@ -118,6 +310,12 @@
         "ru": "Обзор ресурсов",
         "es": "Explorador de recursos",
         "fr": "Explorateur de ressources"
+    },
+    "Attachment": {
+        "tr": "Ek",
+        "ru": "Вложение",
+        "es": "Archivo adjunto",
+        "fr": "Pièce jointe"
     },
     "Auto-connect to DevTools": {
         "tr": "DevTools'a otomatik bağlan",
@@ -143,11 +341,53 @@
         "es": "Enlace de la imagen del avatar",
         "fr": "Lien de l'image d'avatar"
     },
+    "Badge image": {
+        "tr": "Rozet görseli",
+        "ru": "Изображение значка",
+        "es": "Imagen de la insignia",
+        "fr": "Image du badge"
+    },
+    "Badge image URL (e.g. https://cdn.discordapp.com/emojis/ID.png).": {
+        "tr": "Rozet görseli URL'si (örn. https://cdn.discordapp.com/emojis/ID.png).",
+        "ru": "URL изображения значка (например, https://cdn.discordapp.com/emojis/ID.png).",
+        "es": "URL de la imagen de la insignia (p. ej., https://cdn.discordapp.com/emojis/ID.png).",
+        "fr": "URL de l'image du badge (ex. https://cdn.discordapp.com/emojis/ID.png)."
+    },
     "Banner image link": {
         "tr": "Afiş görseli bağlantısı",
         "ru": "Ссылка на изображение баннера",
         "es": "Enlace de la imagen del banner",
         "fr": "Lien de l'image de bannière"
+    },
+    "Before the badge's name": {
+        "tr": "Rozet adından önce",
+        "ru": "Перед названием значка",
+        "es": "Antes del nombre de la insignia",
+        "fr": "Avant le nom du badge"
+    },
+    "Block Sticker": {
+        "tr": "Çıkartmayı Engelle",
+        "ru": "Заблокировать стикер",
+        "es": "Bloquear sticker",
+        "fr": "Bloquer l'autocollant"
+    },
+    "Blocked sticker: {name} ({id})": {
+        "tr": "Engellenen çıkartma: {name} ({id})",
+        "ru": "Заблокированный стикер: {name} ({id})",
+        "es": "Sticker bloqueado: {name} ({id})",
+        "fr": "Autocollant bloqué : {name} ({id})"
+    },
+    "Blocked stickers": {
+        "tr": "Engellenen çıkartmalar",
+        "ru": "Заблокированные стикеры",
+        "es": "Stickers bloqueados",
+        "fr": "Autocollants bloqués"
+    },
+    "Blocked words": {
+        "tr": "Engellenen kelimeler",
+        "ru": "Заблокированные слова",
+        "es": "Palabras bloqueadas",
+        "fr": "Mots bloqués"
     },
     "Blurple": {
         "tr": "Discord moru",
@@ -155,11 +395,53 @@
         "es": "Blurple",
         "fr": "Blurple"
     },
+    "Bookmark": {
+        "tr": "Yer İşaretine Ekle",
+        "ru": "В закладки",
+        "es": "Guardar en marcadores",
+        "fr": "Ajouter aux favoris"
+    },
+    "Bookmark removed": {
+        "tr": "Yer işareti kaldırıldı",
+        "ru": "Закладка удалена",
+        "es": "Marcador eliminado",
+        "fr": "Favori supprimé"
+    },
+    "Bookmarked. Find it in the Bookmarks plugin's settings.": {
+        "tr": "Yer işaretine eklendi. Bookmarks eklentisinin ayarlarında bulabilirsiniz.",
+        "ru": "Добавлено в закладки. Найти можно в настройках плагина Bookmarks.",
+        "es": "Guardado. Lo encontrarás en los ajustes del plugin Bookmarks.",
+        "fr": "Ajouté aux favoris. Retrouvez-le dans les paramètres du plugin Bookmarks."
+    },
+    "Bookmarks": {
+        "tr": "Yer İşaretleri",
+        "ru": "Закладки",
+        "es": "Marcadores",
+        "fr": "Favoris"
+    },
+    "Boosts": {
+        "tr": "Takviyeler",
+        "ru": "Бусты",
+        "es": "Mejoras",
+        "fr": "Boosts"
+    },
+    "Bots too": {
+        "tr": "Botlar da",
+        "ru": "И для ботов",
+        "es": "También bots",
+        "fr": "Les bots aussi"
+    },
     "Brand": {
         "tr": "Marka",
         "ru": "Бренд",
         "es": "Marca",
         "fr": "Marque"
+    },
+    "Break reminder (minutes)": {
+        "tr": "Mola hatırlatıcısı (dakika)",
+        "ru": "Напоминание о перерыве (минуты)",
+        "es": "Recordatorio de descanso (minutos)",
+        "fr": "Rappel de pause (minutes)"
     },
     "Browse and install themes for Discord on your phone without leaving the app.": {
         "tr": "Uygulamadan çıkmadan telefonunuzdaki Discord için temalara göz atın ve yükleyin.",
@@ -173,6 +455,12 @@
         "es": "Explorar plugins",
         "fr": "Parcourir les plugins"
     },
+    "Burst length (seconds)": {
+        "tr": "Birleştirme süresi (saniye)",
+        "ru": "Длительность серии (секунды)",
+        "es": "Duración de la ráfaga (segundos)",
+        "fr": "Durée de la rafale (secondes)"
+    },
     "Buttons beside the message box to switch fake mute and fake deafen": {
         "tr": "Sahte susturmayı ve sahte sağırlaştırmayı açıp kapatmak için mesaj kutusunun yanında düğmeler",
         "ru": "Кнопки рядом с полем сообщения для ложного отключения микрофона и звука",
@@ -185,17 +473,71 @@
         "es": "Bytecode",
         "fr": "Bytecode"
     },
+    "Calculate a love percentage between two people": {
+        "tr": "İki kişi arasındaki aşk yüzdesini hesapla",
+        "ru": "Рассчитать процент любви между двумя людьми",
+        "es": "Calcula el porcentaje de amor entre dos personas",
+        "fr": "Calculer le pourcentage d'amour entre deux personnes"
+    },
+    "Cameras": {
+        "tr": "Kameralar",
+        "ru": "Камеры",
+        "es": "Cámaras",
+        "fr": "Caméras"
+    },
     "Can't send this sticker": {
         "tr": "Bu çıkartma gönderilemiyor",
         "ru": "Не удалось отправить этот стикер",
         "es": "No se puede enviar este sticker",
         "fr": "Impossible d'envoyer cet autocollant"
     },
+    "Cancel Message": {
+        "tr": "Mesajı İptal Et",
+        "ru": "Отменить сообщение",
+        "es": "Cancelar mensaje",
+        "fr": "Annuler le message"
+    },
+    "Case sensitive": {
+        "tr": "Büyük/küçük harfe duyarlı",
+        "ru": "С учётом регистра",
+        "es": "Distinguir mayúsculas y minúsculas",
+        "fr": "Sensible à la casse"
+    },
     "Cat size": {
         "tr": "Kedi boyutu",
         "ru": "Размер кота",
         "es": "Tamaño del gato",
         "fr": "Taille du chat"
+    },
+    "Chance (1 in X)": {
+        "tr": "Olasılık (X'te 1)",
+        "ru": "Шанс (1 из X)",
+        "es": "Probabilidad (1 entre X)",
+        "fr": "Probabilité (1 sur X)"
+    },
+    "Change Tag": {
+        "tr": "Etiketi Değiştir",
+        "ru": "Изменить метку",
+        "es": "Cambiar etiqueta",
+        "fr": "Changer l'étiquette"
+    },
+    "Channel IDs of group DMs whose calls don't ring": {
+        "tr": "Aramaları çalmayacak grup DM'lerinin kanal kimlikleri",
+        "ru": "ID групповых чатов, звонки из которых не будут звенеть",
+        "es": "ID de los MD grupales cuyas llamadas no sonarán",
+        "fr": "ID des groupes privés dont les appels ne sonneront pas"
+    },
+    "Channel IDs separated by commas; empty means everywhere": {
+        "tr": "Virgülle ayrılmış kanal kimlikleri; boş bırakılırsa her yerde",
+        "ru": "ID каналов через запятую; пусто — везде",
+        "es": "ID de canales separados por comas; vacío significa en todas partes",
+        "fr": "ID de salons séparés par des virgules ; vide signifie partout"
+    },
+    "Channel IDs to translate, separated by commas. /autotranslate adds or removes the one you're in.": {
+        "tr": "Çevrilecek kanal kimlikleri, virgülle ayrılmış. /autotranslate bulunduğunuz kanalı ekler veya kaldırır.",
+        "ru": "ID каналов для перевода через запятую. /autotranslate добавляет или убирает текущий канал.",
+        "es": "ID de canales que se traducen, separados por comas. /autotranslate añade o quita el canal en el que estás.",
+        "fr": "ID des salons à traduire, séparés par des virgules. /autotranslate ajoute ou retire celui où vous êtes."
     },
     "Channel or server IDs where nothing is logged, separated by commas": {
         "tr": "Hiçbir şeyin kaydedilmeyeceği kanal veya sunucu kimlikleri, virgülle ayrılmış",
@@ -214,6 +556,18 @@
         "ru": "Кнопки в панели чата",
         "es": "Botones de la barra de chat",
         "fr": "Boutons de la barre de discussion"
+    },
+    "Clean your edits": {
+        "tr": "Düzenlemelerinizi temizle",
+        "ru": "Очищать правки",
+        "es": "Limpiar tus ediciones",
+        "fr": "Nettoyer vos modifications"
+    },
+    "Clean your messages": {
+        "tr": "Mesajlarınızı temizle",
+        "ru": "Очищать ваши сообщения",
+        "es": "Limpiar tus mensajes",
+        "fr": "Nettoyer vos messages"
     },
     "Clear Data": {
         "tr": "Verileri Temizle",
@@ -239,17 +593,71 @@
         "es": "Se borraron los datos de {name}",
         "fr": "Données de {name} effacées"
     },
+    "Clone Emoji": {
+        "tr": "Emojiyi Kopyala",
+        "ru": "Клонировать эмодзи",
+        "es": "Clonar emoji",
+        "fr": "Cloner l'émoji"
+    },
+    "Clone to which server?": {
+        "tr": "Hangi sunucuya kopyalansın?",
+        "ru": "На какой сервер клонировать?",
+        "es": "¿A qué servidor clonarlo?",
+        "fr": "Cloner vers quel serveur ?"
+    },
     "Codename": {
         "tr": "Kod adı",
         "ru": "Кодовое имя",
         "es": "Nombre en clave",
         "fr": "Nom de code"
     },
+    "Colors": {
+        "tr": "Renkler",
+        "ru": "Цвета",
+        "es": "Colores",
+        "fr": "Couleurs"
+    },
+    "Colors are written like #ff66aa.": {
+        "tr": "Renkler #ff66aa şeklinde yazılır.",
+        "ru": "Цвета записываются как #ff66aa.",
+        "es": "Los colores se escriben como #ff66aa.",
+        "fr": "Les couleurs s'écrivent comme #ff66aa."
+    },
+    "Comma-separated list of choices": {
+        "tr": "Virgülle ayrılmış seçenek listesi",
+        "ru": "Список вариантов через запятую",
+        "es": "Lista de opciones separadas por comas",
+        "fr": "Liste de choix séparés par des virgules"
+    },
+    "Comma-separated words or phrases to watch for": {
+        "tr": "Takip edilecek, virgülle ayrılmış kelimeler veya ifadeler",
+        "ru": "Слова или фразы через запятую, за которыми нужно следить",
+        "es": "Palabras o frases separadas por comas que vigilar",
+        "fr": "Mots ou expressions à surveiller, séparés par des virgules"
+    },
+    "Comma-separated words; messages with them are hidden behind a spoiler": {
+        "tr": "Virgülle ayrılmış kelimeler; bunları içeren mesajlar spoiler arkasına gizlenir",
+        "ru": "Слова через запятую; сообщения с ними скрываются под спойлер",
+        "es": "Palabras separadas por comas; los mensajes que las contienen se ocultan tras un spoiler",
+        "fr": "Mots séparés par des virgules ; les messages qui les contiennent sont masqués derrière un spoiler"
+    },
+    "Competing in": {
+        "tr": "Yarışıyor",
+        "ru": "Соревнуется в",
+        "es": "Compitiendo en",
+        "fr": "Participe à"
+    },
     "Component": {
         "tr": "Bileşen",
         "ru": "Компонент",
         "es": "Componente",
         "fr": "Composant"
+    },
+    "Confirm with a toast": {
+        "tr": "Bildirimle onayla",
+        "ru": "Подтверждать уведомлением",
+        "es": "Confirmar con un aviso",
+        "fr": "Confirmer par une notification"
     },
     "Connect to DevTools": {
         "tr": "DevTools'a bağlan",
@@ -275,17 +683,101 @@
         "es": "Conectado a React DevTools",
         "fr": "Connecté à React DevTools"
     },
+    "Content warning: {word}": {
+        "tr": "İçerik uyarısı: {word}",
+        "ru": "Предупреждение о содержимом: {word}",
+        "es": "Advertencia de contenido: {word}",
+        "fr": "Avertissement de contenu : {word}"
+    },
+    "Convert Units": {
+        "tr": "Birimleri Dönüştür",
+        "ru": "Перевести единицы",
+        "es": "Convertir unidades",
+        "fr": "Convertir les unités"
+    },
+    "Convert to leetspeak": {
+        "tr": "Leetspeak'e çevir",
+        "ru": "Перевести в литспик",
+        "es": "Convertir a leetspeak",
+        "fr": "Convertir en leetspeak"
+    },
     "Copied to clipboard": {
         "tr": "Panoya kopyalandı",
         "ru": "Скопировано в буфер обмена",
         "es": "Copiado al portapapeles",
         "fr": "Copié dans le presse-papiers"
     },
+    "Copied. Paste it at the end of your About Me.": {
+        "tr": "Kopyalandı. Hakkımda bölümünüzün sonuna yapıştırın.",
+        "ru": "Скопировано. Вставьте это в конец раздела «Обо мне».",
+        "es": "Copiado. Pégalo al final de tu Acerca de mí.",
+        "fr": "Copié. Collez-le à la fin de votre section À propos de moi."
+    },
+    "Copy File Contents": {
+        "tr": "Dosya İçeriğini Kopyala",
+        "ru": "Копировать содержимое файла",
+        "es": "Copiar contenido del archivo",
+        "fr": "Copier le contenu du fichier"
+    },
+    "Copy Media Link": {
+        "tr": "Medya Bağlantısını Kopyala",
+        "ru": "Копировать ссылку на медиа",
+        "es": "Copiar enlace del archivo multimedia",
+        "fr": "Copier le lien du média"
+    },
+    "Copy Raw": {
+        "tr": "Ham Metni Kopyala",
+        "ru": "Копировать исходный текст",
+        "es": "Copiar texto sin formato",
+        "fr": "Copier le texte brut"
+    },
+    "Copy Status URL": {
+        "tr": "Durum Bağlantısını Kopyala",
+        "ru": "Копировать ссылку из статуса",
+        "es": "Copiar URL del estado",
+        "fr": "Copier l'URL du statut"
+    },
+    "Copy Sticker Link": {
+        "tr": "Çıkartma Bağlantısını Kopyala",
+        "ru": "Копировать ссылку на стикер",
+        "es": "Copiar enlace del sticker",
+        "fr": "Copier le lien de l'autocollant"
+    },
+    "Couldn't change the embeds": {
+        "tr": "Yerleştirmeler değiştirilemedi",
+        "ru": "Не удалось изменить встраивания",
+        "es": "No se pudieron cambiar las inserciones",
+        "fr": "Impossible de modifier les intégrations"
+    },
     "Couldn't check for updates. Check your connection and try again.": {
         "tr": "Güncellemeler denetlenemedi. Bağlantınızı kontrol edip tekrar deneyin.",
         "ru": "Не удалось проверить обновления. Проверьте подключение и попробуйте снова.",
         "es": "No se pudieron buscar actualizaciones. Comprueba tu conexión e inténtalo de nuevo.",
         "fr": "Impossible de vérifier les mises à jour. Vérifiez votre connexion et réessayez."
+    },
+    "Couldn't clone the emoji: {error}": {
+        "tr": "Emoji kopyalanamadı: {error}",
+        "ru": "Не удалось клонировать эмодзи: {error}",
+        "es": "No se pudo clonar el emoji: {error}",
+        "fr": "Impossible de cloner l'émoji : {error}"
+    },
+    "Couldn't delete the message": {
+        "tr": "Mesaj silinemedi",
+        "ru": "Не удалось удалить сообщение",
+        "es": "No se pudo borrar el mensaje",
+        "fr": "Impossible de supprimer le message"
+    },
+    "Couldn't download the file": {
+        "tr": "Dosya indirilemedi",
+        "ru": "Не удалось скачать файл",
+        "es": "No se pudo descargar el archivo",
+        "fr": "Impossible de télécharger le fichier"
+    },
+    "Couldn't find that user.": {
+        "tr": "Bu kullanıcı bulunamadı.",
+        "ru": "Пользователь не найден.",
+        "es": "No se encontró a ese usuario.",
+        "fr": "Utilisateur introuvable."
     },
     "Couldn't install the plugin from {url}:": {
         "tr": "Eklenti {url} adresinden yüklenemedi:",
@@ -311,11 +803,95 @@
         "es": "No se pudo abrir la imagen; se copió su enlace",
         "fr": "Impossible d'ouvrir l'image ; son lien a été copié"
     },
+    "Couldn't reach ReviewDB": {
+        "tr": "ReviewDB'ye ulaşılamadı",
+        "ru": "Не удалось связаться с ReviewDB",
+        "es": "No se pudo conectar con ReviewDB",
+        "fr": "Impossible de joindre ReviewDB"
+    },
+    "Couldn't reach Wikipedia right now.": {
+        "tr": "Şu anda Vikipedi'ye ulaşılamıyor.",
+        "ru": "Сейчас не удаётся связаться с Википедией.",
+        "es": "Ahora mismo no se puede conectar con Wikipedia.",
+        "fr": "Impossible de joindre Wikipédia pour le moment."
+    },
+    "Couldn't react with that emoji": {
+        "tr": "Bu emojiyle tepki verilemedi",
+        "ru": "Не удалось поставить эту реакцию",
+        "es": "No se pudo reaccionar con ese emoji",
+        "fr": "Impossible de réagir avec cet émoji"
+    },
+    "Couldn't translate this ({status})": {
+        "tr": "Bu çevrilemedi ({status})",
+        "ru": "Не удалось перевести ({status})",
+        "es": "No se pudo traducir ({status})",
+        "fr": "Impossible de traduire ceci ({status})"
+    },
+    "Couldn't understand \"{time}\". Use something like 10m, 2h or 1d.": {
+        "tr": "\"{time}\" anlaşılamadı. 10m, 2h veya 1d gibi bir şey yazın.",
+        "ru": "Не удалось понять «{time}». Используйте, например, 10m, 2h или 1d.",
+        "es": "No se entendió \"{time}\". Usa algo como 10m, 2h o 1d.",
+        "fr": "« {time} » n'a pas été compris. Utilisez par exemple 10m, 2h ou 1d."
+    },
+    "Couldn't work that one out.": {
+        "tr": "Bunu hesaplayamadım.",
+        "ru": "Не получилось это посчитать.",
+        "es": "No pude calcular eso.",
+        "fr": "Impossible de calculer ça."
+    },
+    "Counts the number of words in a message": {
+        "tr": "Bir mesajdaki kelime sayısını sayar",
+        "ru": "Считает количество слов в сообщении",
+        "es": "Cuenta las palabras de un mensaje",
+        "fr": "Compte le nombre de mots d'un message"
+    },
+    "Create": {
+        "tr": "Oluştur",
+        "ru": "Создать",
+        "es": "Crear",
+        "fr": "Créer"
+    },
+    "Create, list or revoke your friend invite links": {
+        "tr": "Arkadaş davet bağlantılarınızı oluşturun, listeleyin veya iptal edin",
+        "ru": "Создать, показать или отозвать ссылки-приглашения в друзья",
+        "es": "Crea, consulta o revoca tus enlaces de invitación de amistad",
+        "fr": "Créer, lister ou révoquer vos liens d'invitation d'ami"
+    },
+    "Current Time": {
+        "tr": "Şu Anki Saat",
+        "ru": "Текущее время",
+        "es": "Hora actual",
+        "fr": "Heure actuelle"
+    },
+    "Custom indicators": {
+        "tr": "Özel göstergeler",
+        "ru": "Свои индикаторы",
+        "es": "Indicadores personalizados",
+        "fr": "Indicateurs personnalisés"
+    },
+    "Custom search engine": {
+        "tr": "Özel arama motoru",
+        "ru": "Своя поисковая система",
+        "es": "Buscador personalizado",
+        "fr": "Moteur de recherche personnalisé"
+    },
     "Customize the text cursor and the selection color in text boxes.": {
         "tr": "Metin kutularındaki imleci ve seçim rengini özelleştirin.",
         "ru": "Настройте текстовый курсор и цвет выделения в полях ввода.",
         "es": "Personaliza el cursor de texto y el color de selección en los cuadros de texto.",
         "fr": "Personnalisez le curseur de texte et la couleur de sélection dans les zones de texte."
+    },
+    "Custom…": {
+        "tr": "Özel…",
+        "ru": "Своё…",
+        "es": "Personalizado…",
+        "fr": "Personnalisé…"
+    },
+    "Daily average": {
+        "tr": "Günlük ortalama",
+        "ru": "В среднем за день",
+        "es": "Promedio diario",
+        "fr": "Moyenne quotidienne"
     },
     "Dark": {
         "tr": "Koyu",
@@ -323,17 +899,107 @@
         "es": "Oscuro",
         "fr": "Sombre"
     },
+    "Date and time": {
+        "tr": "Tarih ve saat",
+        "ru": "Дата и время",
+        "es": "Fecha y hora",
+        "fr": "Date et heure"
+    },
+    "Decode Base64": {
+        "tr": "Base64'ü Çöz",
+        "ru": "Декодировать Base64",
+        "es": "Decodificar Base64",
+        "fr": "Décoder le Base64"
+    },
+    "Decoded Base64": {
+        "tr": "Çözülen Base64",
+        "ru": "Декодированный Base64",
+        "es": "Base64 decodificado",
+        "fr": "Base64 décodé"
+    },
+    "Decorate your message with sparkles": {
+        "tr": "Mesajınızı ışıltılarla süsleyin",
+        "ru": "Украсить сообщение блёстками",
+        "es": "Decora tu mensaje con destellos",
+        "fr": "Décorer votre message de paillettes"
+    },
+    "Definitely not": {
+        "tr": "Kesinlikle hayır",
+        "ru": "Точно нет",
+        "es": "Definitivamente no",
+        "fr": "Certainement pas"
+    },
+    "Delay (milliseconds)": {
+        "tr": "Gecikme (milisaniye)",
+        "ru": "Задержка (миллисекунды)",
+        "es": "Retraso (milisegundos)",
+        "fr": "Délai (millisecondes)"
+    },
+    "Delay (seconds)": {
+        "tr": "Gecikme (saniye)",
+        "ru": "Задержка (секунды)",
+        "es": "Retraso (segundos)",
+        "fr": "Délai (secondes)"
+    },
+    "Delay in milliseconds before deleting the replacement message (recommended at least 200).": {
+        "tr": "Yerine konan mesaj silinmeden önceki gecikme, milisaniye cinsinden (en az 200 önerilir).",
+        "ru": "Задержка в миллисекундах перед удалением заменённого сообщения (рекомендуется не меньше 200).",
+        "es": "Retraso en milisegundos antes de borrar el mensaje de reemplazo (se recomienda al menos 200).",
+        "fr": "Délai en millisecondes avant de supprimer le message de remplacement (au moins 200 recommandé)."
+    },
+    "Delete Reminder": {
+        "tr": "Hatırlatıcıyı Sil",
+        "ru": "Удалить напоминание",
+        "es": "Borrar recordatorio",
+        "fr": "Supprimer le rappel"
+    },
+    "Delete Without Confirming": {
+        "tr": "Onay Sormadan Sil",
+        "ru": "Удалить без подтверждения",
+        "es": "Borrar sin confirmar",
+        "fr": "Supprimer sans confirmation"
+    },
     "Delete font pack": {
         "tr": "Yazı tipi paketini sil",
         "ru": "Удалить набор шрифтов",
         "es": "Eliminar el paquete de fuentes",
         "fr": "Supprimer le pack de polices"
     },
+    "Delete your last message in this channel": {
+        "tr": "Bu kanaldaki son mesajınızı silin",
+        "ru": "Удалить ваше последнее сообщение в этом канале",
+        "es": "Borra tu último mensaje en este canal",
+        "fr": "Supprimer votre dernier message dans ce salon"
+    },
+    "Delete your recent messages in this channel": {
+        "tr": "Bu kanaldaki son mesajlarınızı silin",
+        "ru": "Удалить ваши недавние сообщения в этом канале",
+        "es": "Borra tus mensajes recientes en este canal",
+        "fr": "Supprimer vos messages récents dans ce salon"
+    },
+    "Deleted your last message": {
+        "tr": "Son mesajınız silindi",
+        "ru": "Ваше последнее сообщение удалено",
+        "es": "Se borró tu último mensaje",
+        "fr": "Votre dernier message a été supprimé"
+    },
+    "Deleted {count} messages.": {
+        "tr": "{count} mesaj silindi.",
+        "ru": "Удалено сообщений: {count}.",
+        "es": "Se borraron {count} mensajes.",
+        "fr": "{count} messages supprimés."
+    },
     "Deletes the downloaded Endcord, so the latest one is downloaded the next time the app starts.": {
         "tr": "İndirilen Endcord'u siler; uygulama bir sonraki açılışta en yeni sürümü indirir.",
         "ru": "Удаляет загруженный Endcord, чтобы при следующем запуске загрузилась последняя версия.",
         "es": "Elimina el Endcord descargado para que la próxima vez que se abra la app se descargue el más reciente.",
         "fr": "Supprime l'Endcord téléchargé : la dernière version sera téléchargée au prochain démarrage."
+    },
+    "Deleting {count} of your messages…": {
+        "tr": "{count} mesajınız siliniyor…",
+        "ru": "Удаление ваших сообщений: {count}…",
+        "es": "Borrando {count} de tus mensajes…",
+        "fr": "Suppression de {count} de vos messages…"
     },
     "Description": {
         "tr": "Açıklama",
@@ -364,6 +1030,18 @@
         "ru": "Настройки разработчика",
         "es": "Ajustes de desarrollador",
         "fr": "Paramètres développeur"
+    },
+    "Devices": {
+        "tr": "Cihazlar",
+        "ru": "Устройства",
+        "es": "Dispositivos",
+        "fr": "Appareils"
+    },
+    "Direct Message": {
+        "tr": "Direkt Mesaj",
+        "ru": "Личные сообщения",
+        "es": "Mensaje directo",
+        "fr": "Message privé"
     },
     "Disable Theme": {
         "tr": "Temayı Kapat",
@@ -401,6 +1079,12 @@
         "es": "Predeterminado de Discord",
         "fr": "Par défaut de Discord"
     },
+    "Do not translate your own messages": {
+        "tr": "Kendi mesajlarınızı çevirmeyin",
+        "ru": "Не переводить ваши сообщения",
+        "es": "No traducir tus propios mensajes",
+        "fr": "Ne pas traduire vos propres messages"
+    },
     "Don't log messages from bots": {
         "tr": "Botların mesajlarını kaydetme",
         "ru": "Не записывать сообщения ботов",
@@ -413,17 +1097,59 @@
         "es": "No registrar tus propios mensajes",
         "fr": "Ne pas enregistrer vos propres messages"
     },
+    "Don't play the sound for blocked users": {
+        "tr": "Engellenen kullanıcılar için sesi çalma",
+        "ru": "Не воспроизводить звук для заблокированных",
+        "es": "No reproducir el sonido para usuarios bloqueados",
+        "fr": "Ne pas jouer le son pour les utilisateurs bloqués"
+    },
+    "Don't rejoin a call you left longer ago than this": {
+        "tr": "Bundan daha uzun süre önce ayrıldığınız bir aramaya yeniden katılma",
+        "ru": "Не возвращаться в звонок, который вы покинули раньше этого",
+        "es": "No volver a una llamada que dejaste hace más tiempo que esto",
+        "fr": "Ne pas rejoindre un appel quitté il y a plus longtemps que ça"
+    },
+    "Don't show it": {
+        "tr": "Gösterme",
+        "ru": "Не показывать",
+        "es": "No mostrarlo",
+        "fr": "Ne pas l'afficher"
+    },
+    "Download All Attachments": {
+        "tr": "Tüm Ekleri İndir",
+        "ru": "Скачать все вложения",
+        "es": "Descargar todos los archivos adjuntos",
+        "fr": "Télécharger toutes les pièces jointes"
+    },
+    "Download Voice Message": {
+        "tr": "Sesli Mesajı İndir",
+        "ru": "Скачать голосовое сообщение",
+        "es": "Descargar mensaje de voz",
+        "fr": "Télécharger le message vocal"
+    },
     "Download the fonts again": {
         "tr": "Yazı tiplerini yeniden indir",
         "ru": "Загрузить шрифты заново",
         "es": "Volver a descargar las fuentes",
         "fr": "Retélécharger les polices"
     },
+    "Downloading {count} attachments": {
+        "tr": "{count} ek indiriliyor",
+        "ru": "Скачивание вложений: {count}",
+        "es": "Descargando {count} archivos adjuntos",
+        "fr": "Téléchargement de {count} pièces jointes"
+    },
     "Edit font": {
         "tr": "Yazı tipini düzenle",
         "ru": "Изменить шрифт",
         "es": "Editar fuente",
         "fr": "Modifier la police"
+    },
+    "Emoji": {
+        "tr": "Emoji",
+        "ru": "Эмодзи",
+        "es": "Emoji",
+        "fr": "Émoji"
     },
     "Emoji size": {
         "tr": "Emoji boyutu",
@@ -509,6 +1235,54 @@
         "es": "Ejecutar código JavaScript",
         "fr": "Exécuter du code JavaScript"
     },
+    "Evaluate a maths expression (+ - * / % and parentheses)": {
+        "tr": "Bir matematik ifadesini hesapla (+ - * / % ve parantezler)",
+        "ru": "Вычислить выражение (+ - * / % и скобки)",
+        "es": "Calcula una expresión matemática (+ - * / % y paréntesis)",
+        "fr": "Calculer une expression mathématique (+ - * / % et parenthèses)"
+    },
+    "Even in my channel": {
+        "tr": "Benim kanalımda bile",
+        "ru": "Даже в моём канале",
+        "es": "Incluso en mi canal",
+        "fr": "Même dans mon salon"
+    },
+    "Everything is already read.": {
+        "tr": "Her şey zaten okundu.",
+        "ru": "Всё уже прочитано.",
+        "es": "Ya está todo leído.",
+        "fr": "Tout est déjà lu."
+    },
+    "Exceptions": {
+        "tr": "İstisnalar",
+        "ru": "Исключения",
+        "es": "Excepciones",
+        "fr": "Exceptions"
+    },
+    "Expand contractions": {
+        "tr": "Kısaltmaları aç",
+        "ru": "Раскрывать сокращения",
+        "es": "Expandir contracciones",
+        "fr": "Développer les contractions"
+    },
+    "Export the messages of this chat and share them": {
+        "tr": "Bu sohbetin mesajlarını dışa aktarın ve paylaşın",
+        "ru": "Экспортировать сообщения этого чата и поделиться ими",
+        "es": "Exporta los mensajes de este chat y compártelos",
+        "fr": "Exporter les messages de cette discussion et les partager"
+    },
+    "Export this server's channels and roles and share them": {
+        "tr": "Bu sunucunun kanallarını ve rollerini dışa aktarın ve paylaşın",
+        "ru": "Экспортировать каналы и роли этого сервера и поделиться ими",
+        "es": "Exporta los canales y roles de este servidor y compártelos",
+        "fr": "Exporter les salons et rôles de ce serveur et les partager"
+    },
+    "Exporting…": {
+        "tr": "Dışa aktarılıyor…",
+        "ru": "Экспорт…",
+        "es": "Exportando…",
+        "fr": "Exportation…"
+    },
     "Extract": {
         "tr": "Çıkar",
         "ru": "Извлечь",
@@ -526,6 +1300,12 @@
         "ru": "Не удалось очистить данные {name}",
         "es": "No se pudieron borrar los datos de {name}",
         "fr": "Impossible d'effacer les données de {name}"
+    },
+    "Failed to find the track on spotify.": {
+        "tr": "Parça Spotify'da bulunamadı.",
+        "ru": "Не удалось найти трек в Spotify.",
+        "es": "No se encontró la canción en Spotify.",
+        "fr": "Impossible de trouver le morceau sur Spotify."
     },
     "Failed to refetch plugin": {
         "tr": "Eklenti yeniden indirilemedi",
@@ -581,6 +1361,78 @@
         "es": "Rápido",
         "fr": "Rapide"
     },
+    "Find Reply": {
+        "tr": "Yanıtı Bul",
+        "ru": "Найти ответ",
+        "es": "Buscar respuesta",
+        "fr": "Trouver la réponse"
+    },
+    "First button link": {
+        "tr": "Birinci düğme bağlantısı",
+        "ru": "Ссылка первой кнопки",
+        "es": "Enlace del primer botón",
+        "fr": "Lien du premier bouton"
+    },
+    "First button text": {
+        "tr": "Birinci düğme metni",
+        "ru": "Текст первой кнопки",
+        "es": "Texto del primer botón",
+        "fr": "Texte du premier bouton"
+    },
+    "First person": {
+        "tr": "Birinci kişi",
+        "ru": "Первый человек",
+        "es": "Primera persona",
+        "fr": "Première personne"
+    },
+    "Fix apostrophes": {
+        "tr": "Kesme işaretlerini düzelt",
+        "ru": "Исправлять апострофы",
+        "es": "Corregir apóstrofos",
+        "fr": "Corriger les apostrophes"
+    },
+    "Fix capitalization": {
+        "tr": "Büyük harfleri düzelt",
+        "ru": "Исправлять заглавные буквы",
+        "es": "Corregir mayúsculas",
+        "fr": "Corriger les majuscules"
+    },
+    "Fix punctuation": {
+        "tr": "Noktalamayı düzelt",
+        "ru": "Исправлять пунктуацию",
+        "es": "Corregir puntuación",
+        "fr": "Corriger la ponctuation"
+    },
+    "Fixed name": {
+        "tr": "Sabit ad",
+        "ru": "Постоянное имя",
+        "es": "Nombre fijo",
+        "fr": "Nom fixe"
+    },
+    "Flips a coin and returns heads or tails": {
+        "tr": "Yazı tura atar",
+        "ru": "Подбрасывает монетку: орёл или решка",
+        "es": "Lanza una moneda y devuelve cara o cruz",
+        "fr": "Lance une pièce : pile ou face"
+    },
+    "Follow in Voice": {
+        "tr": "Seste Takip Et",
+        "ru": "Следовать в голосовых",
+        "es": "Seguir en voz",
+        "fr": "Suivre en vocal"
+    },
+    "Followed user": {
+        "tr": "Takip edilen kullanıcı",
+        "ru": "Отслеживаемый пользователь",
+        "es": "Usuario seguido",
+        "fr": "Utilisateur suivi"
+    },
+    "Following {user} in voice channels": {
+        "tr": "{user} ses kanallarında takip ediliyor",
+        "ru": "Вы следуете за {user} в голосовых каналах",
+        "es": "Siguiendo a {user} en los canales de voz",
+        "fr": "Vous suivez {user} dans les salons vocaux"
+    },
     "Font Name": {
         "tr": "Yazı Tipi Adı",
         "ru": "Название шрифта",
@@ -623,6 +1475,48 @@
         "es": "Solicitudes de amistad",
         "fr": "Demandes d'ami"
     },
+    "Friends in servers": {
+        "tr": "Sunuculardaki arkadaşlar",
+        "ru": "Друзья на серверах",
+        "es": "Amigos en servidores",
+        "fr": "Amis dans les serveurs"
+    },
+    "From 0 to 100": {
+        "tr": "0 ile 100 arası",
+        "ru": "От 0 до 100",
+        "es": "De 0 a 100",
+        "fr": "De 0 à 100"
+    },
+    "Generates a random number between two values": {
+        "tr": "İki değer arasında rastgele bir sayı üretir",
+        "ru": "Выдаёт случайное число между двумя значениями",
+        "es": "Genera un número aleatorio entre dos valores",
+        "fr": "Génère un nombre aléatoire entre deux valeurs"
+    },
+    "Get Endcord Classic": {
+        "tr": "Endcord Classic'i İndir",
+        "ru": "Скачать Endcord Classic",
+        "es": "Obtener Endcord Classic",
+        "fr": "Obtenir Endcord Classic"
+    },
+    "Get a random cat or dog picture": {
+        "tr": "Rastgele bir kedi veya köpek fotoğrafı al",
+        "ru": "Случайная картинка с котом или собакой",
+        "es": "Obtén una foto aleatoria de un gato o un perro",
+        "fr": "Obtenir une photo aléatoire de chat ou de chien"
+    },
+    "Get a reminder later (only you see it)": {
+        "tr": "Daha sonra hatırlatma al (yalnızca siz görürsünüz)",
+        "ru": "Получить напоминание позже (видите только вы)",
+        "es": "Recibe un recordatorio más tarde (solo lo ves tú)",
+        "fr": "Recevoir un rappel plus tard (vous seul le voyez)"
+    },
+    "Get a user's full-size avatar": {
+        "tr": "Bir kullanıcının tam boyutlu avatarını al",
+        "ru": "Получить аватар пользователя в полном размере",
+        "es": "Obtén el avatar a tamaño completo de un usuario",
+        "fr": "Obtenir l'avatar en taille réelle d'un utilisateur"
+    },
     "Ghost ping alerts": {
         "tr": "Hayalet etiket uyarıları",
         "ru": "Оповещения о «призрачных» упоминаниях",
@@ -634,6 +1528,18 @@
         "ru": "GitHub",
         "es": "GitHub",
         "fr": "GitHub"
+    },
+    "Give up after (minutes)": {
+        "tr": "Şu süreden sonra vazgeç (dakika)",
+        "ru": "Сдаться через (минуты)",
+        "es": "Rendirse tras (minutos)",
+        "fr": "Abandonner après (minutes)"
+    },
+    "Got it": {
+        "tr": "Anladım",
+        "ru": "Понятно",
+        "es": "Entendido",
+        "fr": "Compris"
     },
     "Green": {
         "tr": "Yeşil",
@@ -647,6 +1553,18 @@
         "es": "Chats de grupo",
         "fr": "Discussions de groupe"
     },
+    "Group messages": {
+        "tr": "Grup mesajları",
+        "ru": "Групповые сообщения",
+        "es": "Mensajes de grupo",
+        "fr": "Messages de groupe"
+    },
+    "Heads": {
+        "tr": "Yazı",
+        "ru": "Орёл",
+        "es": "Cara",
+        "fr": "Face"
+    },
     "Hidden behind an invisible character": {
         "tr": "Görünmez bir karakterin arkasına gizli",
         "ru": "Скрыта за невидимым символом",
@@ -659,11 +1577,77 @@
         "es": "Oculto tras el nombre del emoji",
         "fr": "Masqué derrière le nom de l'emoji"
     },
+    "Hidden users": {
+        "tr": "Gizlenen kullanıcılar",
+        "ru": "Скрытые пользователи",
+        "es": "Usuarios ocultos",
+        "fr": "Utilisateurs masqués"
+    },
     "Hide Endcord now": {
         "tr": "Endcord'u şimdi gizle",
         "ru": "Скрыть Endcord сейчас",
         "es": "Ocultar Endcord ahora",
         "fr": "Masquer Endcord maintenant"
+    },
+    "Hide Media": {
+        "tr": "Medyayı Gizle",
+        "ru": "Скрыть медиа",
+        "es": "Ocultar multimedia",
+        "fr": "Masquer les médias"
+    },
+    "Hide Message": {
+        "tr": "Mesajı Gizle",
+        "ru": "Скрыть сообщение",
+        "es": "Ocultar mensaje",
+        "fr": "Masquer le message"
+    },
+    "Hide blocked users": {
+        "tr": "Engellenen kullanıcıları gizle",
+        "ru": "Скрывать заблокированных",
+        "es": "Ocultar usuarios bloqueados",
+        "fr": "Masquer les utilisateurs bloqués"
+    },
+    "Hide blocked users too": {
+        "tr": "Engellenen kullanıcıları da gizle",
+        "ru": "Скрывать и заблокированных",
+        "es": "Ocultar también a los usuarios bloqueados",
+        "fr": "Masquer aussi les utilisateurs bloqués"
+    },
+    "Hide ignored users": {
+        "tr": "Yok sayılan kullanıcıları gizle",
+        "ru": "Скрывать игнорируемых",
+        "es": "Ocultar usuarios ignorados",
+        "fr": "Masquer les utilisateurs ignorés"
+    },
+    "Hide messages from users you blocked": {
+        "tr": "Engellediğiniz kullanıcıların mesajlarını gizle",
+        "ru": "Скрывать сообщения заблокированных вами пользователей",
+        "es": "Oculta los mensajes de los usuarios que bloqueaste",
+        "fr": "Masquer les messages des utilisateurs que vous avez bloqués"
+    },
+    "Hide messages from users you ignored": {
+        "tr": "Yok saydığınız kullanıcıların mesajlarını gizle",
+        "ru": "Скрывать сообщения игнорируемых вами пользователей",
+        "es": "Oculta los mensajes de los usuarios que ignoraste",
+        "fr": "Masquer les messages des utilisateurs que vous ignorez"
+    },
+    "Hide messages that reply to someone you have hidden": {
+        "tr": "Gizlediğiniz birine yanıt veren mesajları gizle",
+        "ru": "Скрывать ответы тем, кого вы скрыли",
+        "es": "Oculta los mensajes que responden a alguien que ocultaste",
+        "fr": "Masquer les messages qui répondent à quelqu'un que vous avez masqué"
+    },
+    "Hide replies to them": {
+        "tr": "Onlara verilen yanıtları gizle",
+        "ru": "Скрывать ответы им",
+        "es": "Ocultar las respuestas a ellos",
+        "fr": "Masquer les réponses qui leur sont adressées"
+    },
+    "Hide this user's messages": {
+        "tr": "Bu kullanıcının mesajlarını gizle",
+        "ru": "Скрыть сообщения этого пользователя",
+        "es": "Ocultar los mensajes de este usuario",
+        "fr": "Masquer les messages de cet utilisateur"
     },
     "Hide typing": {
         "tr": "Yazdığını gizle",
@@ -677,11 +1661,53 @@
         "es": "Ocultar si está desconectado",
         "fr": "Masquer si hors ligne"
     },
+    "Hide while Spotify plays": {
+        "tr": "Spotify çalarken gizle",
+        "ru": "Скрывать, пока играет Spotify",
+        "es": "Ocultar mientras suena Spotify",
+        "fr": "Masquer pendant la lecture Spotify"
+    },
     "Hides Endcord's entries in Discord's settings, for screenshots and screen sharing. Plugins keep working.": {
         "tr": "Ekran görüntüleri ve ekran paylaşımı için Endcord'un Discord ayarlarındaki bölümlerini gizler. Eklentiler çalışmaya devam eder.",
         "ru": "Скрывает разделы Endcord в настройках Discord для скриншотов и демонстрации экрана. Плагины продолжают работать.",
         "es": "Oculta las entradas de Endcord en los ajustes de Discord, para capturas y pantalla compartida. Los plugins siguen funcionando.",
         "fr": "Masque les entrées d'Endcord dans les paramètres de Discord, pour les captures et le partage d'écran. Les plugins continuent de fonctionner."
+    },
+    "Highest": {
+        "tr": "En yüksek",
+        "ru": "Наивысший",
+        "es": "Máximo",
+        "fr": "Maximum"
+    },
+    "How many characters random names have": {
+        "tr": "Rastgele adların kaç karakter olacağı",
+        "ru": "Сколько символов в случайных именах",
+        "es": "Cuántos caracteres tienen los nombres aleatorios",
+        "fr": "Nombre de caractères des noms aléatoires"
+    },
+    "How many of the latest messages to export": {
+        "tr": "Dışa aktarılacak son mesaj sayısı",
+        "ru": "Сколько последних сообщений экспортировать",
+        "es": "Cuántos de los últimos mensajes exportar",
+        "fr": "Nombre de messages récents à exporter"
+    },
+    "How many of your messages (up to 200)": {
+        "tr": "Kaç mesajınız (en fazla 200)",
+        "ru": "Сколько ваших сообщений (до 200)",
+        "es": "Cuántos de tus mensajes (hasta 200)",
+        "fr": "Combien de vos messages (jusqu'à 200)"
+    },
+    "How many sides (default 6)": {
+        "tr": "Kaç yüzlü (varsayılan 6)",
+        "ru": "Сколько граней (по умолчанию 6)",
+        "es": "Cuántas caras (por defecto 6)",
+        "fr": "Nombre de faces (6 par défaut)"
+    },
+    "How many snowflakes fall at once": {
+        "tr": "Aynı anda kaç kar tanesi düşecek",
+        "ru": "Сколько снежинок падает одновременно",
+        "es": "Cuántos copos caen a la vez",
+        "fr": "Nombre de flocons qui tombent en même temps"
     },
     "How the link looks in the message you send": {
         "tr": "Gönderdiğiniz mesajda bağlantının nasıl görüneceği",
@@ -689,11 +1715,65 @@
         "es": "Cómo se ve el enlace en el mensaje que envías",
         "fr": "L'apparence du lien dans le message envoyé"
     },
+    "Husk": {
+        "tr": "Husk",
+        "ru": "Husk",
+        "es": "Husk",
+        "fr": "Husk"
+    },
+    "HypeSquad badge removed": {
+        "tr": "HypeSquad rozeti kaldırıldı",
+        "ru": "Значок HypeSquad убран",
+        "es": "Insignia de HypeSquad quitada",
+        "fr": "Badge HypeSquad retiré"
+    },
+    "HypeSquad set to {house}": {
+        "tr": "HypeSquad {house} olarak ayarlandı",
+        "ru": "HypeSquad: {house}",
+        "es": "HypeSquad cambiado a {house}",
+        "fr": "HypeSquad défini sur {house}"
+    },
+    "I choose: {choice}": {
+        "tr": "Seçimim: {choice}",
+        "ru": "Я выбираю: {choice}",
+        "es": "Elijo: {choice}",
+        "fr": "Je choisis : {choice}"
+    },
+    "I'll remind you {when}.": {
+        "tr": "Size {when} hatırlatacağım.",
+        "ru": "Я напомню {when}.",
+        "es": "Te lo recordaré {when}.",
+        "fr": "Je vous le rappellerai {when}."
+    },
+    "ID": {
+        "tr": "Kimlik",
+        "ru": "ID",
+        "es": "ID",
+        "fr": "ID"
+    },
+    "Icon": {
+        "tr": "Simge",
+        "ru": "Значок",
+        "es": "Icono",
+        "fr": "Icône"
+    },
+    "Idea": {
+        "tr": "Fikir",
+        "ru": "Идея",
+        "es": "Idea",
+        "fr": "Idée"
+    },
     "Ignore yourself": {
         "tr": "Kendini yok say",
         "ru": "Игнорировать себя",
         "es": "Ignorarte a ti mismo",
         "fr": "Vous ignorer"
+    },
+    "Ignored callers": {
+        "tr": "Yok sayılan arayanlar",
+        "ru": "Игнорируемые звонящие",
+        "es": "Llamantes ignorados",
+        "fr": "Appelants ignorés"
     },
     "Ignored channels and servers": {
         "tr": "Yok sayılan kanallar ve sunucular",
@@ -701,11 +1781,29 @@
         "es": "Canales y servidores ignorados",
         "fr": "Salons et serveurs ignorés"
     },
+    "Ignored friends": {
+        "tr": "Yok sayılan arkadaşlar",
+        "ru": "Игнорируемые друзья",
+        "es": "Amigos ignorados",
+        "fr": "Amis ignorés"
+    },
+    "Ignored group DMs": {
+        "tr": "Yok sayılan grup DM'leri",
+        "ru": "Игнорируемые групповые чаты",
+        "es": "MD grupales ignorados",
+        "fr": "Groupes privés ignorés"
+    },
     "Ignored users": {
         "tr": "Yok sayılan kullanıcılar",
         "ru": "Игнорируемые пользователи",
         "es": "Usuarios ignorados",
         "fr": "Utilisateurs ignorés"
+    },
+    "Image": {
+        "tr": "Görsel",
+        "ru": "Изображение",
+        "es": "Imagen",
+        "fr": "Image"
     },
     "Image format": {
         "tr": "Görsel biçimi",
@@ -736,6 +1834,54 @@
         "ru": "Импортировать шрифты по ссылке",
         "es": "Importar fuentes desde un enlace",
         "fr": "Importer des polices depuis un lien"
+    },
+    "Important": {
+        "tr": "Önemli",
+        "ru": "Важное",
+        "es": "Importante",
+        "fr": "Important"
+    },
+    "In 1 hour": {
+        "tr": "1 saat içinde",
+        "ru": "Через 1 час",
+        "es": "En 1 hora",
+        "fr": "Dans 1 heure"
+    },
+    "In 15 minutes": {
+        "tr": "15 dakika içinde",
+        "ru": "Через 15 минут",
+        "es": "En 15 minutos",
+        "fr": "Dans 15 minutes"
+    },
+    "In 3 hours": {
+        "tr": "3 saat içinde",
+        "ru": "Через 3 часа",
+        "es": "En 3 horas",
+        "fr": "Dans 3 heures"
+    },
+    "In DMs too": {
+        "tr": "DM'lerde de",
+        "ru": "И в личных сообщениях",
+        "es": "También en MD",
+        "fr": "Aussi en messages privés"
+    },
+    "In the open chat too": {
+        "tr": "Açık sohbette de",
+        "ru": "И в открытом чате",
+        "es": "También en el chat abierto",
+        "fr": "Aussi dans la discussion ouverte"
+    },
+    "In voice": {
+        "tr": "Seste",
+        "ru": "В голосовых",
+        "es": "En voz",
+        "fr": "En vocal"
+    },
+    "Include mentions": {
+        "tr": "Bahsetmeleri dahil et",
+        "ru": "Учитывать упоминания",
+        "es": "Incluir menciones",
+        "fr": "Inclure les mentions"
     },
     "Info": {
         "tr": "Bilgi",
@@ -791,11 +1937,83 @@
         "es": "Instala las fuentes que usa tu tema actual.",
         "fr": "Installe les polices utilisées par votre thème actuel."
     },
+    "Invites to {server} are open again.": {
+        "tr": "{server} davetleri yeniden açık.",
+        "ru": "Приглашения на {server} снова открыты.",
+        "es": "Las invitaciones a {server} vuelven a estar abiertas.",
+        "fr": "Les invitations pour {server} sont de nouveau ouvertes."
+    },
+    "Invites to {server} are paused until you resume them.": {
+        "tr": "{server} davetleri siz yeniden açana kadar duraklatıldı.",
+        "ru": "Приглашения на {server} приостановлены, пока вы их не возобновите.",
+        "es": "Las invitaciones a {server} están en pausa hasta que las reanudes.",
+        "fr": "Les invitations pour {server} sont suspendues jusqu'à ce que vous les réactiviez."
+    },
+    "It is certain": {
+        "tr": "Kesinlikle öyle",
+        "ru": "Бесспорно",
+        "es": "Es seguro",
+        "fr": "C'est certain"
+    },
+    "Join a random voice channel": {
+        "tr": "Rastgele bir ses kanalına katıl",
+        "ru": "Зайти в случайный голосовой канал",
+        "es": "Unirse a un canal de voz al azar",
+        "fr": "Rejoindre un salon vocal au hasard"
+    },
+    "Join right away": {
+        "tr": "Hemen katıl",
+        "ru": "Зайти сразу",
+        "es": "Unirse enseguida",
+        "fr": "Rejoindre tout de suite"
+    },
+    "Join the messages with a space instead of a new line": {
+        "tr": "Mesajları yeni satır yerine boşlukla birleştir",
+        "ru": "Объединять сообщения пробелом, а не новой строкой",
+        "es": "Une los mensajes con un espacio en vez de un salto de línea",
+        "fr": "Joindre les messages avec une espace au lieu d'un retour à la ligne"
+    },
+    "Join with a space": {
+        "tr": "Boşlukla birleştir",
+        "ru": "Объединять пробелом",
+        "es": "Unir con un espacio",
+        "fr": "Joindre avec une espace"
+    },
+    "Joining <#{channel}>…": {
+        "tr": "<#{channel}> kanalına katılınıyor…",
+        "ru": "Подключение к <#{channel}>…",
+        "es": "Uniéndote a <#{channel}>…",
+        "fr": "Connexion à <#{channel}>…"
+    },
+    "Joins and leaves": {
+        "tr": "Katılmalar ve ayrılmalar",
+        "ru": "Входы и выходы",
+        "es": "Entradas y salidas",
+        "fr": "Arrivées et départs"
+    },
+    "Jump to Message": {
+        "tr": "Mesaja Git",
+        "ru": "Перейти к сообщению",
+        "es": "Ir al mensaje",
+        "fr": "Aller au message"
+    },
+    "Keep role colors and only color names that would be the default color": {
+        "tr": "Rol renklerini koru, yalnızca varsayılan renkte olacak adları renklendir",
+        "ru": "Сохранять цвета ролей и красить только имена обычного цвета",
+        "es": "Mantén los colores de rol y colorea solo los nombres que tendrían el color por defecto",
+        "fr": "Garder les couleurs de rôle et ne colorer que les noms qui auraient la couleur par défaut"
+    },
     "Keeps deleted messages in the chat and shows earlier versions of edited ones.": {
         "tr": "Silinen mesajları sohbette tutar ve düzenlenen mesajların önceki hâllerini gösterir.",
         "ru": "Оставляет удалённые сообщения в чате и показывает прежние версии отредактированных.",
         "es": "Mantiene los mensajes eliminados en el chat y muestra las versiones anteriores de los editados.",
         "fr": "Garde les messages supprimés dans la discussion et affiche les versions précédentes des messages modifiés."
+    },
+    "Language code to translate to, like en or tr": {
+        "tr": "Çevrilecek dilin kodu, örneğin en veya tr",
+        "ru": "Код языка перевода, например en или tr",
+        "es": "Código del idioma de destino, como en o tr",
+        "fr": "Code de la langue cible, comme en ou tr"
     },
     "Large": {
         "tr": "Büyük",
@@ -803,11 +2021,41 @@
         "es": "Grande",
         "fr": "Grand"
     },
+    "Large image text": {
+        "tr": "Büyük görsel metni",
+        "ru": "Текст большого изображения",
+        "es": "Texto de la imagen grande",
+        "fr": "Texte de la grande image"
+    },
+    "Last 7 days": {
+        "tr": "Son 7 gün",
+        "ru": "Последние 7 дней",
+        "es": "Últimos 7 días",
+        "fr": "7 derniers jours"
+    },
+    "Last online {time}": {
+        "tr": "Son çevrimiçi: {time}",
+        "ru": "Был(а) в сети: {time}",
+        "es": "Última conexión: {time}",
+        "fr": "Dernière connexion : {time}"
+    },
+    "Last.fm logo": {
+        "tr": "Last.fm logosu",
+        "ru": "Логотип Last.fm",
+        "es": "Logotipo de Last.fm",
+        "fr": "Logo Last.fm"
+    },
     "Leave empty to keep your own": {
         "tr": "Kendinizinkini korumak için boş bırakın",
         "ru": "Оставьте пустым, чтобы сохранить своё",
         "es": "Déjalo vacío para mantener el tuyo",
         "fr": "Laissez vide pour garder le vôtre"
+    },
+    "Leave with them": {
+        "tr": "Onlarla birlikte ayrıl",
+        "ru": "Выходить вместе с ним",
+        "es": "Salir con ellos",
+        "fr": "Partir avec eux"
     },
     "Left of the message box": {
         "tr": "Mesaj kutusunun solunda",
@@ -815,11 +2063,23 @@
         "es": "A la izquierda del cuadro de mensaje",
         "fr": "À gauche de la zone de message"
     },
+    "Level {level}": {
+        "tr": "Seviye {level}",
+        "ru": "Уровень {level}",
+        "es": "Nivel {level}",
+        "fr": "Niveau {level}"
+    },
     "Light": {
         "tr": "Açık",
         "ru": "Светлая",
         "es": "Claro",
         "fr": "Clair"
+    },
+    "Lightness of the colors, from 20 (dark) to 90 (light)": {
+        "tr": "Renklerin açıklığı, 20 (koyu) ile 90 (açık) arası",
+        "ru": "Яркость цветов, от 20 (тёмные) до 90 (светлые)",
+        "es": "Luminosidad de los colores, de 20 (oscuro) a 90 (claro)",
+        "fr": "Luminosité des couleurs, de 20 (sombre) à 90 (clair)"
     },
     "Link style": {
         "tr": "Bağlantı biçimi",
@@ -838,6 +2098,18 @@
         "ru": "Здесь ссылки не будут отображаться как изображения",
         "es": "Aquí los enlaces no se mostrarán como imágenes",
         "fr": "Les liens ne s'afficheront pas en images ici"
+    },
+    "List your bookmarks (only you see it)": {
+        "tr": "Yer işaretlerinizi listeleyin (yalnızca siz görürsünüz)",
+        "ru": "Показать ваши закладки (видите только вы)",
+        "es": "Muestra tus marcadores (solo los ves tú)",
+        "fr": "Lister vos favoris (vous seul les voyez)"
+    },
+    "Listening to": {
+        "tr": "Dinliyor",
+        "ru": "Слушает",
+        "es": "Escuchando",
+        "fr": "Écoute"
     },
     "Load Endcord from another address, for testing development builds": {
         "tr": "Geliştirme sürümlerini denemek için Endcord'u başka bir adresten yükle",
@@ -881,11 +2153,47 @@
         "es": "Mensajes registrados borrados",
         "fr": "Messages enregistrés effacés"
     },
+    "Long-press a message and choose Bookmark to save it here": {
+        "tr": "Buraya kaydetmek için bir mesaja uzun basın ve Yer İşaretine Ekle'yi seçin",
+        "ru": "Нажмите на сообщение и удерживайте, затем выберите «В закладки», чтобы сохранить его здесь",
+        "es": "Mantén pulsado un mensaje y elige Guardar en marcadores para guardarlo aquí",
+        "fr": "Appuyez longuement sur un message et choisissez Ajouter aux favoris pour l'enregistrer ici"
+    },
+    "Long-press a message and choose Tag Message to label it": {
+        "tr": "Etiketlemek için bir mesaja uzun basın ve Mesajı Etiketle'yi seçin",
+        "ru": "Нажмите на сообщение и удерживайте, затем выберите «Пометить сообщение»",
+        "es": "Mantén pulsado un mensaje y elige Etiquetar mensaje para etiquetarlo",
+        "fr": "Appuyez longuement sur un message et choisissez Étiqueter le message"
+    },
+    "Look up a Wikipedia summary": {
+        "tr": "Vikipedi özeti ara",
+        "ru": "Найти краткую статью в Википедии",
+        "es": "Busca un resumen de Wikipedia",
+        "fr": "Rechercher un résumé Wikipédia"
+    },
+    "Looking for Aliucord plugins?": {
+        "tr": "Aliucord eklentileri mi arıyorsunuz?",
+        "ru": "Ищете плагины Aliucord?",
+        "es": "¿Buscas plugins de Aliucord?",
+        "fr": "Vous cherchez des plugins Aliucord ?"
+    },
     "Machine ID": {
         "tr": "Cihaz kimliği",
         "ru": "ID устройства",
         "es": "ID del dispositivo",
         "fr": "ID de l'appareil"
+    },
+    "Make the hidden text that gives your profile theme colors": {
+        "tr": "Profilinize tema renkleri veren gizli metni oluşturun",
+        "ru": "Создать скрытый текст, задающий цвета темы профиля",
+        "es": "Crea el texto oculto que da colores de tema a tu perfil",
+        "fr": "Créer le texte caché qui donne des couleurs de thème à votre profil"
+    },
+    "Make your text unicode-bold": {
+        "tr": "Metninizi unicode kalın yapın",
+        "ru": "Сделать текст жирным с помощью Unicode",
+        "es": "Pon tu texto en negrita Unicode",
+        "fr": "Mettre votre texte en gras Unicode"
     },
     "Manufacturer": {
         "tr": "Üretici",
@@ -893,11 +2201,137 @@
         "es": "Fabricante",
         "fr": "Fabricant"
     },
+    "Mark every server as read": {
+        "tr": "Tüm sunucuları okundu olarak işaretle",
+        "ru": "Отметить все серверы прочитанными",
+        "es": "Marcar todos los servidores como leídos",
+        "fr": "Marquer tous les serveurs comme lus"
+    },
+    "Marked {count} channels as read.": {
+        "tr": "{count} kanal okundu olarak işaretlendi.",
+        "ru": "Отмечено прочитанными каналов: {count}.",
+        "es": "Se marcaron {count} canales como leídos.",
+        "fr": "{count} salons marqués comme lus."
+    },
+    "Maximum value": {
+        "tr": "En büyük değer",
+        "ru": "Максимальное значение",
+        "es": "Valor máximo",
+        "fr": "Valeur maximale"
+    },
+    "Maybe": {
+        "tr": "Belki",
+        "ru": "Может быть",
+        "es": "Quizás",
+        "fr": "Peut-être"
+    },
+    "Mention": {
+        "tr": "Bahset",
+        "ru": "Упомянуть",
+        "es": "Mencionar",
+        "fr": "Mentionner"
+    },
+    "Mention copied": {
+        "tr": "Bahsetme kopyalandı",
+        "ru": "Упоминание скопировано",
+        "es": "Mención copiada",
+        "fr": "Mention copiée"
+    },
+    "Merge with attachments": {
+        "tr": "Eklerle birleştir",
+        "ru": "Объединять с вложениями",
+        "es": "Fusionar con archivos adjuntos",
+        "fr": "Fusionner avec les pièces jointes"
+    },
+    "Message deleted": {
+        "tr": "Mesaj silindi",
+        "ru": "Сообщение удалено",
+        "es": "Mensaje borrado",
+        "fr": "Message supprimé"
+    },
+    "Message requests": {
+        "tr": "Mesaj istekleri",
+        "ru": "Запросы на переписку",
+        "es": "Solicitudes de mensajes",
+        "fr": "Demandes de messages"
+    },
+    "Messages from {user} are hidden. Reopen chats to hide older ones.": {
+        "tr": "{user} kişisinin mesajları gizlendi. Eskilerini gizlemek için sohbetleri yeniden açın.",
+        "ru": "Сообщения {user} скрыты. Откройте чаты заново, чтобы скрыть старые.",
+        "es": "Los mensajes de {user} están ocultos. Vuelve a abrir los chats para ocultar los anteriores.",
+        "fr": "Les messages de {user} sont masqués. Rouvrez les discussions pour masquer les anciens."
+    },
+    "Messages here will be translated.": {
+        "tr": "Buradaki mesajlar çevrilecek.",
+        "ru": "Сообщения здесь будут переводиться.",
+        "es": "Los mensajes de aquí se traducirán.",
+        "fr": "Les messages d'ici seront traduits."
+    },
+    "Messages here won't be translated anymore.": {
+        "tr": "Buradaki mesajlar artık çevrilmeyecek.",
+        "ru": "Сообщения здесь больше не будут переводиться.",
+        "es": "Los mensajes de aquí ya no se traducirán.",
+        "fr": "Les messages d'ici ne seront plus traduits."
+    },
+    "Messages loaded in {time}": {
+        "tr": "Mesajlar {time} içinde yüklendi",
+        "ru": "Сообщения загружены за {time}",
+        "es": "Mensajes cargados en {time}",
+        "fr": "Messages chargés en {time}"
+    },
+    "Messages sent": {
+        "tr": "Gönderilen mesajlar",
+        "ru": "Отправлено сообщений",
+        "es": "Mensajes enviados",
+        "fr": "Messages envoyés"
+    },
+    "Messages to keep": {
+        "tr": "Saklanacak mesaj sayısı",
+        "ru": "Сколько сообщений хранить",
+        "es": "Mensajes que guardar",
+        "fr": "Messages à conserver"
+    },
+    "Messages to remember": {
+        "tr": "Hatırlanacak mesaj sayısı",
+        "ru": "Сколько сообщений запоминать",
+        "es": "Mensajes que recordar",
+        "fr": "Messages à mémoriser"
+    },
+    "Milliseconds": {
+        "tr": "Milisaniye",
+        "ru": "Миллисекунды",
+        "es": "Milisegundos",
+        "fr": "Millisecondes"
+    },
+    "Minimum value": {
+        "tr": "En küçük değer",
+        "ru": "Минимальное значение",
+        "es": "Valor mínimo",
+        "fr": "Valeur minimale"
+    },
     "Miscellaneous": {
         "tr": "Diğer",
         "ru": "Прочее",
         "es": "Otros",
         "fr": "Divers"
+    },
+    "Moment.js format, like HH:mm:ss, DD/MM/YYYY HH:mm or [Today at] LT": {
+        "tr": "Moment.js biçimi, örneğin HH:mm:ss, DD/MM/YYYY HH:mm veya [Bugün] LT",
+        "ru": "Формат Moment.js, например HH:mm:ss, DD/MM/YYYY HH:mm или [Сегодня в] LT",
+        "es": "Formato de Moment.js, como HH:mm:ss, DD/MM/YYYY HH:mm o [Hoy a las] LT",
+        "fr": "Format Moment.js, comme HH:mm:ss, DD/MM/YYYY HH:mm ou [Aujourd'hui à] LT"
+    },
+    "Mute new events": {
+        "tr": "Yeni etkinlikleri sessize al",
+        "ru": "Отключать уведомления о новых событиях",
+        "es": "Silenciar eventos nuevos",
+        "fr": "Rendre muets les nouveaux événements"
+    },
+    "Mute the server": {
+        "tr": "Sunucuyu sessize al",
+        "ru": "Заглушить сервер",
+        "es": "Silenciar el servidor",
+        "fr": "Rendre le serveur muet"
     },
     "Name (A-Z)": {
         "tr": "Ad (A-Z)",
@@ -911,11 +2345,119 @@
         "es": "Nombre (Z-A)",
         "fr": "Nom (Z-A)"
     },
+    "Name This Device": {
+        "tr": "Bu Cihaza Ad Ver",
+        "ru": "Назвать это устройство",
+        "es": "Poner nombre a este dispositivo",
+        "fr": "Nommer cet appareil"
+    },
+    "Never hide my messages": {
+        "tr": "Mesajlarımı asla gizleme",
+        "ru": "Никогда не скрывать мои сообщения",
+        "es": "No ocultar nunca mis mensajes",
+        "fr": "Ne jamais masquer mes messages"
+    },
+    "Never ping from": {
+        "tr": "Asla bildirim alınmayacaklar",
+        "ru": "Никогда не упоминать от",
+        "es": "No mencionar nunca de",
+        "fr": "Ne jamais mentionner pour"
+    },
+    "New Status": {
+        "tr": "Yeni Durum",
+        "ru": "Новый статус",
+        "es": "Nuevo estado",
+        "fr": "Nouveau statut"
+    },
+    "New file names": {
+        "tr": "Yeni dosya adları",
+        "ru": "Новые имена файлов",
+        "es": "Nombres de archivo nuevos",
+        "fr": "Nouveaux noms de fichiers"
+    },
+    "New login: {device}": {
+        "tr": "Yeni giriş: {device}",
+        "ru": "Новый вход: {device}",
+        "es": "Nuevo inicio de sesión: {device}",
+        "fr": "Nouvelle connexion : {device}"
+    },
     "Next to the time of each message": {
         "tr": "Her mesajın saatinin yanında",
         "ru": "Рядом со временем каждого сообщения",
         "es": "Junto a la hora de cada mensaje",
         "fr": "À côté de l'heure de chaque message"
+    },
+    "Nickname (username)": {
+        "tr": "Takma ad (kullanıcı adı)",
+        "ru": "Ник (имя пользователя)",
+        "es": "Apodo (nombre de usuario)",
+        "fr": "Pseudo (nom d'utilisateur)"
+    },
+    "No": {
+        "tr": "Hayır",
+        "ru": "Нет",
+        "es": "No",
+        "fr": "Non"
+    },
+    "No Wikipedia article found for **{query}**.": {
+        "tr": "**{query}** için Vikipedi makalesi bulunamadı.",
+        "ru": "Статья в Википедии для **{query}** не найдена.",
+        "es": "No se encontró ningún artículo de Wikipedia para **{query}**.",
+        "fr": "Aucun article Wikipédia trouvé pour **{query}**."
+    },
+    "No devices found": {
+        "tr": "Cihaz bulunamadı",
+        "ru": "Устройства не найдены",
+        "es": "No se encontraron dispositivos",
+        "fr": "Aucun appareil trouvé"
+    },
+    "No keywords have been mentioned yet": {
+        "tr": "Henüz hiçbir anahtar kelimeden bahsedilmedi",
+        "ru": "Ключевые слова пока не встречались",
+        "es": "Todavía no se ha mencionado ninguna palabra clave",
+        "fr": "Aucun mot-clé n'a encore été mentionné"
+    },
+    "No picture came back": {
+        "tr": "Fotoğraf gelmedi",
+        "ru": "Картинка не пришла",
+        "es": "No llegó ninguna imagen",
+        "fr": "Aucune image reçue"
+    },
+    "No replies to this message in the loaded messages": {
+        "tr": "Yüklenen mesajlarda bu mesaja yanıt yok",
+        "ru": "Среди загруженных сообщений нет ответов на это",
+        "es": "No hay respuestas a este mensaje entre los mensajes cargados",
+        "fr": "Aucune réponse à ce message parmi les messages chargés"
+    },
+    "Nobody Discord has loaded has <@&{role}>. Scroll the member list to load more members.": {
+        "tr": "Discord'un yüklediği hiç kimsede <@&{role}> yok. Daha fazla üye yüklemek için üye listesini kaydırın.",
+        "ru": "Ни у кого из загруженных Discord участников нет <@&{role}>. Прокрутите список участников, чтобы загрузить больше.",
+        "es": "Nadie de los que Discord ha cargado tiene <@&{role}>. Desplázate por la lista de miembros para cargar más.",
+        "fr": "Personne parmi les membres chargés par Discord n'a <@&{role}>. Faites défiler la liste des membres pour en charger plus."
+    },
+    "Nobody has reviewed this user yet.": {
+        "tr": "Bu kullanıcıyı henüz kimse değerlendirmedi.",
+        "ru": "Отзывов об этом пользователе пока нет.",
+        "es": "Nadie ha reseñado aún a este usuario.",
+        "fr": "Personne n'a encore évalué cet utilisateur."
+    },
+    "Not on my messages": {
+        "tr": "Benim mesajlarımda değil",
+        "ru": "Не на моих сообщениях",
+        "es": "No en mis mensajes",
+        "fr": "Pas sur mes messages"
+    },
+    "Not seen online since Endcord started watching": {
+        "tr": "Endcord izlemeye başladığından beri çevrimiçi görülmedi",
+        "ru": "Не появлялся в сети с тех пор, как Endcord начал следить",
+        "es": "No se ha visto conectado desde que Endcord empezó a vigilar",
+        "fr": "Pas vu en ligne depuis qu'Endcord surveille"
+    },
+    "Nothing has happened in voice channels yet": {
+        "tr": "Ses kanallarında henüz bir şey olmadı",
+        "ru": "В голосовых каналах пока ничего не происходило",
+        "es": "Aún no ha pasado nada en los canales de voz",
+        "fr": "Il ne s'est encore rien passé dans les salons vocaux"
     },
     "Nothing here yet": {
         "tr": "Henüz burada bir şey yok",
@@ -929,11 +2471,29 @@
         "es": "Te avisa cuando un amigo, un chat de grupo o un servidor te elimina.",
         "fr": "Vous avertit lorsqu'un ami, une discussion de groupe ou un serveur vous retire."
     },
+    "Notify for @everyone and @here": {
+        "tr": "@everyone ve @here için bildir",
+        "ru": "Уведомлять о @everyone и @here",
+        "es": "Notificar de @everyone y @here",
+        "fr": "Notifier pour @everyone et @here"
+    },
+    "Notify when one of your roles is mentioned": {
+        "tr": "Rollerinizden birinden bahsedildiğinde bildir",
+        "ru": "Уведомлять, когда упоминают одну из ваших ролей",
+        "es": "Notificar cuando se mencione uno de tus roles",
+        "fr": "Notifier quand un de vos rôles est mentionné"
+    },
     "Offline removals": {
         "tr": "Çevrimdışıyken çıkarılmalar",
         "ru": "Удаления, пока вы не в сети",
         "es": "Eliminaciones sin conexión",
         "fr": "Retraits hors ligne"
+    },
+    "On my messages too": {
+        "tr": "Benim mesajlarımda da",
+        "ru": "И на моих сообщениях",
+        "es": "También en mis mensajes",
+        "fr": "Aussi sur mes messages"
     },
     "On or off (default: switch)": {
         "tr": "Açık veya kapalı (varsayılan: değiştir)",
@@ -941,11 +2501,125 @@
         "es": "Activado o desactivado (por defecto: alternar)",
         "fr": "Activé ou désactivé (par défaut : basculer)"
     },
+    "On: replies to them ping and others don't. Off: replies to them don't ping and others do.": {
+        "tr": "Açık: onlara verilen yanıtlar bildirim gönderir, diğerleri göndermez. Kapalı: onlara verilen yanıtlar bildirim göndermez, diğerleri gönderir.",
+        "ru": "Вкл.: ответы им упоминают, остальные — нет. Выкл.: ответы им не упоминают, остальные — да.",
+        "es": "Activado: las respuestas a ellos mencionan y las demás no. Desactivado: las respuestas a ellos no mencionan y las demás sí.",
+        "fr": "Activé : les réponses à ces personnes les mentionnent, les autres non. Désactivé : l'inverse."
+    },
+    "One per line: keyword = emoji. Custom emojis are written as <:name:id>.": {
+        "tr": "Her satıra bir tane: anahtar kelime = emoji. Özel emojiler <:ad:id> şeklinde yazılır.",
+        "ru": "По одному в строке: слово = эмодзи. Свои эмодзи пишутся как <:имя:id>.",
+        "es": "Uno por línea: palabra = emoji. Los emojis personalizados se escriben como <:nombre:id>.",
+        "fr": "Un par ligne : mot-clé = émoji. Les émojis personnalisés s'écrivent <:nom:id>."
+    },
+    "One per line: name = what it sends. Use \\n for a new line.": {
+        "tr": "Her satıra bir tane: ad = gönderdiği metin. Yeni satır için \\n kullanın.",
+        "ru": "По одному в строке: имя = что отправляется. Для новой строки используйте \\n.",
+        "es": "Uno por línea: nombre = lo que envía. Usa \\n para un salto de línea.",
+        "fr": "Un par ligne : nom = ce qui est envoyé. Utilisez \\n pour un retour à la ligne."
+    },
+    "One per line: user ID = color, like 123456789012345678 = #ff66aa": {
+        "tr": "Her satıra bir tane: kullanıcı kimliği = renk, örneğin 123456789012345678 = #ff66aa",
+        "ru": "По одному в строке: ID пользователя = цвет, например 123456789012345678 = #ff66aa",
+        "es": "Uno por línea: ID de usuario = color, como 123456789012345678 = #ff66aa",
+        "fr": "Un par ligne : ID utilisateur = couleur, comme 123456789012345678 = #ff66aa"
+    },
+    "One per line: user ID = time zone, like 123456789012345678 = Europe/Istanbul": {
+        "tr": "Her satıra bir tane: kullanıcı kimliği = saat dilimi, örneğin 123456789012345678 = Europe/Istanbul",
+        "ru": "По одному в строке: ID пользователя = часовой пояс, например 123456789012345678 = Europe/Istanbul",
+        "es": "Uno por línea: ID de usuario = zona horaria, como 123456789012345678 = Europe/Istanbul",
+        "fr": "Un par ligne : ID utilisateur = fuseau horaire, comme 123456789012345678 = Europe/Istanbul"
+    },
+    "Online now": {
+        "tr": "Şu an çevrimiçi",
+        "ru": "Сейчас в сети",
+        "es": "Conectado ahora",
+        "fr": "En ligne maintenant"
+    },
+    "Only calls": {
+        "tr": "Yalnızca aramalar",
+        "ru": "Только звонки",
+        "es": "Solo llamadas",
+        "fr": "Appels uniquement"
+    },
+    "Only channels with people": {
+        "tr": "Yalnızca insan olan kanallar",
+        "ru": "Только каналы с людьми",
+        "es": "Solo canales con gente",
+        "fr": "Seulement les salons occupés"
+    },
+    "Only count messages with at least this many words": {
+        "tr": "Yalnızca en az bu kadar kelime içeren mesajları say",
+        "ru": "Считать только сообщения с не меньшим числом слов",
+        "es": "Contar solo mensajes con al menos estas palabras",
+        "fr": "Ne compter que les messages d'au moins ce nombre de mots"
+    },
+    "Only in the open chat": {
+        "tr": "Yalnızca açık sohbette",
+        "ru": "Только в открытом чате",
+        "es": "Solo en el chat abierto",
+        "fr": "Seulement dans la discussion ouverte"
+    },
+    "Only in these channels": {
+        "tr": "Yalnızca bu kanallarda",
+        "ru": "Только в этих каналах",
+        "es": "Solo en estos canales",
+        "fr": "Seulement dans ces salons"
+    },
+    "Only join voice channels someone is already in": {
+        "tr": "Yalnızca içinde birilerinin olduğu ses kanallarına katıl",
+        "ru": "Заходить только в каналы, где уже кто-то есть",
+        "es": "Unirse solo a canales de voz en los que ya hay alguien",
+        "fr": "Ne rejoindre que les salons vocaux où quelqu'un est déjà"
+    },
+    "Only numbers and + - * / % ( ) are allowed.": {
+        "tr": "Yalnızca sayılar ve + - * / % ( ) kullanılabilir.",
+        "ru": "Разрешены только числа и + - * / % ( ).",
+        "es": "Solo se permiten números y + - * / % ( ).",
+        "fr": "Seuls les nombres et + - * / % ( ) sont autorisés."
+    },
+    "Only people without a role color": {
+        "tr": "Yalnızca rol rengi olmayanlar",
+        "ru": "Только люди без цвета роли",
+        "es": "Solo personas sin color de rol",
+        "fr": "Seulement les personnes sans couleur de rôle"
+    },
+    "Only pick channels in the server you're in": {
+        "tr": "Yalnızca bulunduğunuz sunucudaki kanalları seç",
+        "ru": "Выбирать только каналы текущего сервера",
+        "es": "Elegir solo canales del servidor en el que estás",
+        "fr": "Ne choisir que des salons du serveur où vous êtes"
+    },
+    "Only play it for the chat you have open": {
+        "tr": "Yalnızca açık olan sohbet için çal",
+        "ru": "Воспроизводить только для открытого чата",
+        "es": "Reproducirlo solo para el chat que tienes abierto",
+        "fr": "Ne le jouer que pour la discussion ouverte"
+    },
+    "Only replace if the message includes": {
+        "tr": "Yalnızca mesaj şunu içeriyorsa değiştir",
+        "ru": "Заменять, только если сообщение содержит",
+        "es": "Reemplazar solo si el mensaje incluye",
+        "fr": "Remplacer seulement si le message contient"
+    },
+    "Only these friends": {
+        "tr": "Yalnızca bu arkadaşlar",
+        "ru": "Только эти друзья",
+        "es": "Solo estos amigos",
+        "fr": "Seulement ces amis"
+    },
     "Only you see these changes. Clear them before you edit your real profile, so they don't end up in it.": {
         "tr": "Bu değişiklikleri yalnızca siz görürsünüz. Gerçek profilinizi düzenlemeden önce bunları temizleyin, yoksa profilinize geçebilirler.",
         "ru": "Эти изменения видите только вы. Очистите их перед редактированием настоящего профиля, чтобы они туда не попали.",
         "es": "Solo tú ves estos cambios. Bórralos antes de editar tu perfil real para que no terminen en él.",
         "fr": "Vous seul voyez ces changements. Effacez-les avant de modifier votre vrai profil, pour qu'ils n'y finissent pas."
+    },
+    "Open Sticker Link": {
+        "tr": "Çıkartma Bağlantısını Aç",
+        "ru": "Открыть ссылку на стикер",
+        "es": "Abrir enlace del sticker",
+        "fr": "Ouvrir le lien de l'autocollant"
     },
     "Open in Browser": {
         "tr": "Tarayıcıda aç",
@@ -953,11 +2627,29 @@
         "es": "Abrir en el navegador",
         "fr": "Ouvrir dans le navigateur"
     },
+    "Open in Other Services": {
+        "tr": "Diğer Servislerde Aç",
+        "ru": "Открыть в других сервисах",
+        "es": "Abrir en otros servicios",
+        "fr": "Ouvrir dans d'autres services"
+    },
+    "Open on Last.fm": {
+        "tr": "Last.fm'de Aç",
+        "ru": "Открыть на Last.fm",
+        "es": "Abrir en Last.fm",
+        "fr": "Ouvrir sur Last.fm"
+    },
     "Operating System": {
         "tr": "İşletim Sistemi",
         "ru": "Операционная система",
         "es": "Sistema operativo",
         "fr": "Système d'exploitation"
+    },
+    "Optional; a Discord application whose name and art to use": {
+        "tr": "İsteğe bağlı; adı ve görselleri kullanılacak bir Discord uygulaması",
+        "ru": "Необязательно; приложение Discord, чьи название и картинки использовать",
+        "es": "Opcional; una aplicación de Discord cuyo nombre e imágenes usar",
+        "fr": "Facultatif ; une application Discord dont utiliser le nom et les images"
     },
     "Others see you as deafened, but you still hear them": {
         "tr": "Başkaları sizi sağırlaştırılmış görür, ama siz onları duymaya devam edersiniz",
@@ -971,6 +2663,12 @@
         "es": "Los demás te ven silenciado, pero te siguen oyendo",
         "fr": "Les autres vous voient muet, mais vous entendent toujours"
     },
+    "Owner": {
+        "tr": "Sahip",
+        "ru": "Владелец",
+        "es": "Propietario",
+        "fr": "Propriétaire"
+    },
     "Part of the screen crashed while drawing. A plugin, Endcord or Discord itself can cause this.": {
         "tr": "Ekranın bir bölümü çizilirken çöktü. Buna bir eklenti, Endcord veya Discord'un kendisi neden olabilir.",
         "ru": "Часть экрана завершилась сбоем при отрисовке. Причиной может быть плагин, Endcord или сам Discord.",
@@ -982,6 +2680,42 @@
         "ru": "Вставить из буфера обмена",
         "es": "Pegar del portapapeles",
         "fr": "Coller depuis le presse-papiers"
+    },
+    "Pattern": {
+        "tr": "Desen",
+        "ru": "Шаблон",
+        "es": "Patrón",
+        "fr": "Motif"
+    },
+    "Pause or resume this server's invites with no time limit": {
+        "tr": "Bu sunucunun davetlerini süre sınırı olmadan duraklat veya devam ettir",
+        "ru": "Приостановить или возобновить приглашения на этот сервер без ограничения по времени",
+        "es": "Pausa o reanuda las invitaciones de este servidor sin límite de tiempo",
+        "fr": "Suspendre ou réactiver les invitations de ce serveur sans limite de temps"
+    },
+    "People You've Talked To": {
+        "tr": "Konuştuğunuz Kişiler",
+        "ru": "Люди, с которыми вы общались",
+        "es": "Personas con las que has hablado",
+        "fr": "Personnes avec qui vous avez parlé"
+    },
+    "People you message and who message you will be listed here": {
+        "tr": "Mesajlaştığınız kişiler burada listelenecek",
+        "ru": "Здесь появятся те, кому вы пишете и кто пишет вам",
+        "es": "Aquí aparecerán las personas a las que escribes y que te escriben",
+        "fr": "Les personnes à qui vous écrivez et qui vous écrivent apparaîtront ici"
+    },
+    "Pick your animal": {
+        "tr": "Hayvanınızı seçin",
+        "ru": "Выберите животное",
+        "es": "Elige tu animal",
+        "fr": "Choisissez votre animal"
+    },
+    "Ping the users in the list": {
+        "tr": "Listedeki kullanıcılara bildirim gönder",
+        "ru": "Упоминать пользователей из списка",
+        "es": "Mencionar a los usuarios de la lista",
+        "fr": "Mentionner les utilisateurs de la liste"
     },
     "Pink": {
         "tr": "Pembe",
@@ -1013,6 +2747,84 @@
         "es": "Populares primero",
         "fr": "Populaires d'abord"
     },
+    "Prefer Nitro banners": {
+        "tr": "Nitro afişlerini tercih et",
+        "ru": "Предпочитать баннеры Nitro",
+        "es": "Preferir banners de Nitro",
+        "fr": "Préférer les bannières Nitro"
+    },
+    "Prefer Nitro themes": {
+        "tr": "Nitro temalarını tercih et",
+        "ru": "Предпочитать темы Nitro",
+        "es": "Preferir temas de Nitro",
+        "fr": "Préférer les thèmes Nitro"
+    },
+    "Primary color, like #ff66aa": {
+        "tr": "Ana renk, örneğin #ff66aa",
+        "ru": "Основной цвет, например #ff66aa",
+        "es": "Color principal, como #ff66aa",
+        "fr": "Couleur principale, comme #ff66aa"
+    },
+    "Primary: {primary}, Accent: {accent}": {
+        "tr": "Ana: {primary}, Vurgu: {accent}",
+        "ru": "Основной: {primary}, акцент: {accent}",
+        "es": "Principal: {primary}, acento: {accent}",
+        "fr": "Principale : {primary}, accent : {accent}"
+    },
+    "Put 👏 claps 👏 between 👏 words": {
+        "tr": "Kelimelerin 👏 arasına 👏 alkış 👏 koy",
+        "ru": "Ставит 👏 хлопки 👏 между 👏 словами",
+        "es": "Pon 👏 aplausos 👏 entre 👏 palabras",
+        "fr": "Mettre 👏 des 👏 applaudissements 👏 entre 👏 les mots"
+    },
+    "Question": {
+        "tr": "Soru",
+        "ru": "Вопрос",
+        "es": "Pregunta",
+        "fr": "Question"
+    },
+    "Random characters": {
+        "tr": "Rastgele karakterler",
+        "ru": "Случайные символы",
+        "es": "Caracteres aleatorios",
+        "fr": "Caractères aléatoires"
+    },
+    "Random name length": {
+        "tr": "Rastgele ad uzunluğu",
+        "ru": "Длина случайного имени",
+        "es": "Longitud del nombre aleatorio",
+        "fr": "Longueur du nom aléatoire"
+    },
+    "Random number between {min} and {max}: {number}": {
+        "tr": "{min} ile {max} arasında rastgele sayı: {number}",
+        "ru": "Случайное число от {min} до {max}: {number}",
+        "es": "Número aleatorio entre {min} y {max}: {number}",
+        "fr": "Nombre aléatoire entre {min} et {max} : {number}"
+    },
+    "Randomly chooses from provided options": {
+        "tr": "Verilen seçenekler arasından rastgele seçer",
+        "ru": "Случайно выбирает из вариантов",
+        "es": "Elige al azar entre las opciones dadas",
+        "fr": "Choisit au hasard parmi les options données"
+    },
+    "React to my messages too": {
+        "tr": "Benim mesajlarıma da tepki ver",
+        "ru": "Реагировать и на мои сообщения",
+        "es": "Reaccionar también a mis mensajes",
+        "fr": "Réagir aussi à mes messages"
+    },
+    "Read later": {
+        "tr": "Sonra oku",
+        "ru": "Прочитать позже",
+        "es": "Leer más tarde",
+        "fr": "À lire plus tard"
+    },
+    "Recent Mentions": {
+        "tr": "Son Bahsetmeler",
+        "ru": "Недавние упоминания",
+        "es": "Menciones recientes",
+        "fr": "Mentions récentes"
+    },
     "Recent notifications": {
         "tr": "Son bildirimler",
         "ru": "Недавние уведомления",
@@ -1030,6 +2842,30 @@
         "ru": "Обновить",
         "es": "Volver a descargar",
         "fr": "Retélécharger"
+    },
+    "Regex Replace Rules": {
+        "tr": "Regex Değiştirme Kuralları",
+        "ru": "Правила замены по регулярным выражениям",
+        "es": "Reglas de reemplazo con regex",
+        "fr": "Règles de remplacement par regex"
+    },
+    "Regular expressions": {
+        "tr": "Düzenli ifadeler",
+        "ru": "Регулярные выражения",
+        "es": "Expresiones regulares",
+        "fr": "Expressions régulières"
+    },
+    "Rejoined {channel}": {
+        "tr": "{channel} kanalına yeniden katılındı",
+        "ru": "Повторное подключение к {channel}",
+        "es": "Volviste a unirte a {channel}",
+        "fr": "{channel} rejoint à nouveau"
+    },
+    "Relative": {
+        "tr": "Göreli",
+        "ru": "Относительное",
+        "es": "Relativo",
+        "fr": "Relatif"
     },
     "Reload": {
         "tr": "Yeniden yükle",
@@ -1079,11 +2915,47 @@
         "es": "Recarga la app para aplicar todos los cambios",
         "fr": "Rechargez l'application pour appliquer entièrement les changements"
     },
+    "Remind Me": {
+        "tr": "Bana Hatırlat",
+        "ru": "Напомнить",
+        "es": "Recordarme",
+        "fr": "Me le rappeler"
+    },
+    "Remind me to take a break after this long in one go; 0 turns it off": {
+        "tr": "Kesintisiz bu kadar süre sonra mola vermemi hatırlat; 0 kapatır",
+        "ru": "Напоминать о перерыве после стольких минут подряд; 0 — выключить",
+        "es": "Recuérdame descansar tras este tiempo seguido; 0 lo desactiva",
+        "fr": "Me rappeler de faire une pause après ce temps d'affilée ; 0 désactive"
+    },
+    "Reminder set for {time}": {
+        "tr": "Hatırlatıcı {time} için ayarlandı",
+        "ru": "Напоминание на {time}",
+        "es": "Recordatorio programado para {time}",
+        "fr": "Rappel prévu pour {time}"
+    },
     "Removals you make yourself are never reported.": {
         "tr": "Kendi yaptığınız çıkarmalar asla bildirilmez.",
         "ru": "О ваших собственных удалениях уведомлений не бывает.",
         "es": "Nunca se avisa de las eliminaciones que haces tú.",
         "fr": "Les retraits que vous faites vous-même ne sont jamais signalés."
+    },
+    "Remove Bookmark": {
+        "tr": "Yer İşaretini Kaldır",
+        "ru": "Убрать из закладок",
+        "es": "Quitar marcador",
+        "fr": "Retirer des favoris"
+    },
+    "Remove Tag": {
+        "tr": "Etiketi Kaldır",
+        "ru": "Убрать метку",
+        "es": "Quitar etiqueta",
+        "fr": "Retirer l'étiquette"
+    },
+    "Removed invisible characters from your message": {
+        "tr": "Mesajınızdaki görünmez karakterler kaldırıldı",
+        "ru": "Из сообщения удалены невидимые символы",
+        "es": "Se quitaron caracteres invisibles de tu mensaje",
+        "fr": "Des caractères invisibles ont été retirés de votre message"
     },
     "Reopen Discord's settings after switching for the change to show.": {
         "tr": "Değişikliğin görünmesi için değiştirdikten sonra Discord ayarlarını yeniden açın.",
@@ -1091,17 +2963,83 @@
         "es": "Vuelve a abrir los ajustes de Discord después de cambiarlo para ver el cambio.",
         "fr": "Rouvrez les paramètres de Discord après le changement pour le voir."
     },
+    "Repeat Message": {
+        "tr": "Mesajı Tekrarla",
+        "ru": "Повторить сообщение",
+        "es": "Repetir mensaje",
+        "fr": "Répéter le message"
+    },
+    "Replacement text": {
+        "tr": "Yerine konacak metin",
+        "ru": "Текст замены",
+        "es": "Texto de reemplazo",
+        "fr": "Texte de remplacement"
+    },
+    "Request failed: {error}": {
+        "tr": "İstek başarısız: {error}",
+        "ru": "Запрос не удался: {error}",
+        "es": "La solicitud falló: {error}",
+        "fr": "La requête a échoué : {error}"
+    },
+    "Resend deleted messages": {
+        "tr": "Silinen mesajları yeniden gönder",
+        "ru": "Отправлять удалённые сообщения заново",
+        "es": "Reenviar mensajes borrados",
+        "fr": "Renvoyer les messages supprimés"
+    },
     "Restart is required to take effect": {
         "tr": "Etkili olması için yeniden başlatma gerekiyor",
         "ru": "Для применения нужен перезапуск",
         "es": "Hace falta reiniciar para que surta efecto",
         "fr": "Un redémarrage est nécessaire pour appliquer"
     },
+    "Returns the current time": {
+        "tr": "Şu anki saati verir",
+        "ru": "Показывает текущее время",
+        "es": "Devuelve la hora actual",
+        "fr": "Donne l'heure actuelle"
+    },
+    "Reverse your text": {
+        "tr": "Metninizi ters çevirin",
+        "ru": "Перевернуть текст",
+        "es": "Invierte tu texto",
+        "fr": "Inverser votre texte"
+    },
+    "Reviews of {user}": {
+        "tr": "{user} hakkındaki değerlendirmeler",
+        "ru": "Отзывы о {user}",
+        "es": "Reseñas de {user}",
+        "fr": "Avis sur {user}"
+    },
+    "Revoke all": {
+        "tr": "Tümünü iptal et",
+        "ru": "Отозвать все",
+        "es": "Revocar todas",
+        "fr": "Tout révoquer"
+    },
     "Right of the message box": {
         "tr": "Mesaj kutusunun sağında",
         "ru": "Справа от поля сообщения",
         "es": "A la derecha del cuadro de mensaje",
         "fr": "À droite de la zone de message"
+    },
+    "Role mentions": {
+        "tr": "Rol bahsetmeleri",
+        "ru": "Упоминания ролей",
+        "es": "Menciones de rol",
+        "fr": "Mentions de rôle"
+    },
+    "Roll a die with the specified number of sides": {
+        "tr": "Belirtilen yüz sayısında bir zar at",
+        "ru": "Бросить кубик с заданным числом граней",
+        "es": "Tira un dado con el número de caras indicado",
+        "fr": "Lancer un dé avec le nombre de faces indiqué"
+    },
+    "Rule {number}": {
+        "tr": "Kural {number}",
+        "ru": "Правило {number}",
+        "es": "Regla {number}",
+        "fr": "Règle {number}"
     },
     "Runs JavaScript from a slash command. Only turn this on if you know exactly what the code does.": {
         "tr": "Eğik çizgi komutuyla JavaScript çalıştırır. Yalnızca kodun ne yaptığını tam olarak biliyorsanız açın.",
@@ -1127,11 +3065,101 @@
         "es": "Igual que Discord",
         "fr": "Comme Discord"
     },
+    "Save Current Status": {
+        "tr": "Şu Anki Durumu Kaydet",
+        "ru": "Сохранить текущий статус",
+        "es": "Guardar estado actual",
+        "fr": "Enregistrer le statut actuel"
+    },
+    "Save your current status to set it again later in one tap": {
+        "tr": "Daha sonra tek dokunuşla tekrar ayarlamak için şu anki durumunuzu kaydedin",
+        "ru": "Сохраните текущий статус, чтобы потом установить его в одно касание",
+        "es": "Guarda tu estado actual para volver a ponerlo luego con un toque",
+        "fr": "Enregistrez votre statut actuel pour le remettre plus tard d'un seul geste"
+    },
+    "Saved your current status": {
+        "tr": "Şu anki durumunuz kaydedildi",
+        "ru": "Текущий статус сохранён",
+        "es": "Se guardó tu estado actual",
+        "fr": "Votre statut actuel a été enregistré"
+    },
+    "Screen shares": {
+        "tr": "Ekran paylaşımları",
+        "ru": "Демонстрации экрана",
+        "es": "Pantallas compartidas",
+        "fr": "Partages d'écran"
+    },
+    "Screen time": {
+        "tr": "Ekran süresi",
+        "ru": "Экранное время",
+        "es": "Tiempo de pantalla",
+        "fr": "Temps d'écran"
+    },
+    "Second button link": {
+        "tr": "İkinci düğme bağlantısı",
+        "ru": "Ссылка второй кнопки",
+        "es": "Enlace del segundo botón",
+        "fr": "Lien du deuxième bouton"
+    },
+    "Second button text": {
+        "tr": "İkinci düğme metni",
+        "ru": "Текст второй кнопки",
+        "es": "Texto del segundo botón",
+        "fr": "Texte du deuxième bouton"
+    },
+    "Second person": {
+        "tr": "İkinci kişi",
+        "ru": "Второй человек",
+        "es": "Segunda persona",
+        "fr": "Deuxième personne"
+    },
+    "See who has a role (only members Discord has loaded are listed)": {
+        "tr": "Bir role kimlerin sahip olduğunu görün (yalnızca Discord'un yüklediği üyeler listelenir)",
+        "ru": "Посмотреть, у кого есть роль (показываются только загруженные Discord участники)",
+        "es": "Mira quién tiene un rol (solo aparecen los miembros que Discord ha cargado)",
+        "fr": "Voir qui a un rôle (seuls les membres chargés par Discord sont listés)"
+    },
     "Selection color": {
         "tr": "Seçim rengi",
         "ru": "Цвет выделения",
         "es": "Color de selección",
         "fr": "Couleur de sélection"
+    },
+    "Self-destruct is off": {
+        "tr": "Kendini imha kapalı",
+        "ru": "Самоуничтожение выключено",
+        "es": "La autodestrucción está desactivada",
+        "fr": "L'autodestruction est désactivée"
+    },
+    "Self-destruct my messages": {
+        "tr": "Mesajlarımı kendini imha ettir",
+        "ru": "Самоуничтожать мои сообщения",
+        "es": "Autodestruir mis mensajes",
+        "fr": "Autodétruire mes messages"
+    },
+    "Send Now": {
+        "tr": "Şimdi Gönder",
+        "ru": "Отправить сейчас",
+        "es": "Enviar ahora",
+        "fr": "Envoyer maintenant"
+    },
+    "Send a message later, while Discord is open": {
+        "tr": "Discord açıkken daha sonra bir mesaj gönderin",
+        "ru": "Отправить сообщение позже, пока Discord открыт",
+        "es": "Envía un mensaje más tarde, mientras Discord esté abierto",
+        "fr": "Envoyer un message plus tard, tant que Discord est ouvert"
+    },
+    "Send a random vaporwave vibe": {
+        "tr": "Rastgele bir vaporwave havası gönder",
+        "ru": "Отправить случайное вейпорвейв-настроение",
+        "es": "Envía una vibra vaporwave al azar",
+        "fr": "Envoyer une ambiance vaporwave au hasard"
+    },
+    "Send a search link": {
+        "tr": "Arama bağlantısı gönder",
+        "ru": "Отправить ссылку на поиск",
+        "es": "Envía un enlace de búsqueda",
+        "fr": "Envoyer un lien de recherche"
     },
     "Send anyway": {
         "tr": "Yine de gönder",
@@ -1157,6 +3185,12 @@
         "es": "Enviar la lista de plugins instalados",
         "fr": "Envoyer la liste des plugins installés"
     },
+    "Send silently": {
+        "tr": "Sessizce gönder",
+        "ru": "Отправлять тихо",
+        "es": "Enviar en silencio",
+        "fr": "Envoyer silencieusement"
+    },
     "Send stickers you can't use as links": {
         "tr": "Kullanamadığınız çıkartmaları bağlantı olarak gönder",
         "ru": "Отправлять недоступные стикеры ссылками",
@@ -1169,11 +3203,113 @@
         "es": "Enviar el mensaje solo visible para ti",
         "fr": "Envoyer le message visible uniquement par vous"
     },
+    "Sends a message as Clyde (locally)": {
+        "tr": "Clyde olarak bir mesaj gönderir (yalnızca sizde)",
+        "ru": "Отправляет сообщение от имени Clyde (локально)",
+        "es": "Envía un mensaje como Clyde (solo en tu dispositivo)",
+        "fr": "Envoie un message en tant que Clyde (localement)"
+    },
+    "Sent a sticker": {
+        "tr": "Bir çıkartma gönderdi",
+        "ru": "Отправил(а) стикер",
+        "es": "Envió un sticker",
+        "fr": "A envoyé un autocollant"
+    },
+    "Sent an attachment": {
+        "tr": "Bir ek gönderdi",
+        "ru": "Отправил(а) вложение",
+        "es": "Envió un archivo adjunto",
+        "fr": "A envoyé une pièce jointe"
+    },
+    "Sent your scheduled message": {
+        "tr": "Zamanlanmış mesajınız gönderildi",
+        "ru": "Запланированное сообщение отправлено",
+        "es": "Se envió tu mensaje programado",
+        "fr": "Votre message programmé a été envoyé"
+    },
+    "Server mutes and deafens": {
+        "tr": "Sunucu susturmaları ve sağırlaştırmaları",
+        "ru": "Серверные отключения микрофона и звука",
+        "es": "Silencios y ensordecimientos del servidor",
+        "fr": "Coupures de micro et de son par le serveur"
+    },
+    "Server owner": {
+        "tr": "Sunucu sahibi",
+        "ru": "Владелец сервера",
+        "es": "Propietario del servidor",
+        "fr": "Propriétaire du serveur"
+    },
+    "Servers to skip": {
+        "tr": "Atlanacak sunucular",
+        "ru": "Пропускаемые серверы",
+        "es": "Servidores que omitir",
+        "fr": "Serveurs à ignorer"
+    },
+    "Set Status": {
+        "tr": "Durumu Ayarla",
+        "ru": "Установить статус",
+        "es": "Establecer estado",
+        "fr": "Définir le statut"
+    },
+    "Share your current Spotify album in chat": {
+        "tr": "Şu anki Spotify albümünüzü sohbette paylaşın",
+        "ru": "Поделиться текущим альбомом Spotify в чате",
+        "es": "Comparte en el chat el álbum de Spotify que escuchas",
+        "fr": "Partager votre album Spotify actuel dans la discussion"
+    },
+    "Share your current Spotify artist in chat": {
+        "tr": "Şu anki Spotify sanatçınızı sohbette paylaşın",
+        "ru": "Поделиться текущим исполнителем Spotify в чате",
+        "es": "Comparte en el chat el artista de Spotify que escuchas",
+        "fr": "Partager votre artiste Spotify actuel dans la discussion"
+    },
+    "Share your current Spotify track in chat": {
+        "tr": "Şu anki Spotify parçanızı sohbette paylaşın",
+        "ru": "Поделиться текущим треком Spotify в чате",
+        "es": "Comparte en el chat la canción de Spotify que escuchas",
+        "fr": "Partager votre morceau Spotify actuel dans la discussion"
+    },
+    "Shortest message": {
+        "tr": "En kısa mesaj",
+        "ru": "Самое короткое сообщение",
+        "es": "Mensaje más corto",
+        "fr": "Message le plus court"
+    },
+    "Show Media": {
+        "tr": "Medyayı Göster",
+        "ru": "Показать медиа",
+        "es": "Mostrar multimedia",
+        "fr": "Afficher les médias"
+    },
+    "Show a message from someone that only you can see": {
+        "tr": "Birinden gelmiş gibi yalnızca sizin görebileceğiniz bir mesaj gösterin",
+        "ru": "Показать сообщение от кого-то, которое видите только вы",
+        "es": "Muestra un mensaje de alguien que solo tú puedes ver",
+        "fr": "Afficher un message de quelqu'un que vous seul pouvez voir"
+    },
+    "Show a note": {
+        "tr": "Not göster",
+        "ru": "Показывать заметку",
+        "es": "Mostrar una nota",
+        "fr": "Afficher une note"
+    },
     "Show a notice when someone deletes a message that mentioned you": {
         "tr": "Biri sizi etiketlediği bir mesajı sildiğinde bildirim göster",
         "ru": "Показывать уведомление, когда кто-то удаляет сообщение с упоминанием вас",
         "es": "Mostrar un aviso cuando alguien elimine un mensaje que te mencionaba",
         "fr": "Afficher une alerte quand quelqu'un supprime un message qui vous mentionnait"
+    },
+    "Show a notification when invisible characters are removed": {
+        "tr": "Görünmez karakterler kaldırıldığında bildirim göster",
+        "ru": "Показывать уведомление при удалении невидимых символов",
+        "es": "Mostrar un aviso cuando se quiten caracteres invisibles",
+        "fr": "Afficher une notification quand des caractères invisibles sont retirés"
+    },
+    "Show a user's Nitro banner instead of their USRBG banner when they have both": {
+        "tr": "Kullanıcının ikisi de varsa USRBG afişi yerine Nitro afişini göster",
+        "ru": "Показывать баннер Nitro вместо USRBG, если есть оба",
+        "es": "Mostrar el banner de Nitro en vez del de USRBG cuando el usuario tiene ambos",
+        "fr": "Afficher la bannière Nitro plutôt que celle d'USRBG quand l'utilisateur a les deux"
     },
     "Show chat background": {
         "tr": "Sohbet arka planını göster",
@@ -1181,11 +3317,41 @@
         "es": "Mostrar el fondo del chat",
         "fr": "Afficher l'arrière-plan de la discussion"
     },
+    "Show elapsed time": {
+        "tr": "Geçen süreyi göster",
+        "ru": "Показывать прошедшее время",
+        "es": "Mostrar tiempo transcurrido",
+        "fr": "Afficher le temps écoulé"
+    },
+    "Show how long the activity has been going": {
+        "tr": "Etkinliğin ne kadar süredir devam ettiğini göster",
+        "ru": "Показывать, сколько длится активность",
+        "es": "Muestra cuánto tiempo lleva la actividad",
+        "fr": "Afficher depuis combien de temps l'activité dure"
+    },
+    "Show how many members this server has (only you see it)": {
+        "tr": "Bu sunucunun kaç üyesi olduğunu göster (yalnızca siz görürsünüz)",
+        "ru": "Показать количество участников сервера (видите только вы)",
+        "es": "Muestra cuántos miembros tiene este servidor (solo lo ves tú)",
+        "fr": "Afficher le nombre de membres de ce serveur (vous seul le voyez)"
+    },
+    "Show information about this server (only you see it)": {
+        "tr": "Bu sunucu hakkında bilgi göster (yalnızca siz görürsünüz)",
+        "ru": "Показать информацию о сервере (видите только вы)",
+        "es": "Muestra información de este servidor (solo la ves tú)",
+        "fr": "Afficher des informations sur ce serveur (vous seul les voyez)"
+    },
     "Show less": {
         "tr": "Daha az göster",
         "ru": "Свернуть",
         "es": "Mostrar menos",
         "fr": "Afficher moins"
+    },
+    "Show member count": {
+        "tr": "Üye sayısını göster",
+        "ru": "Показывать число участников",
+        "es": "Mostrar número de miembros",
+        "fr": "Afficher le nombre de membres"
     },
     "Show more": {
         "tr": "Daha fazla göster",
@@ -1205,6 +3371,18 @@
         "es": "Mostrar u ocultar las entradas de Endcord en los ajustes de Discord",
         "fr": "Afficher ou masquer les entrées d'Endcord dans les paramètres de Discord"
     },
+    "Show the mod's name": {
+        "tr": "Modun adını göster",
+        "ru": "Показывать название мода",
+        "es": "Mostrar el nombre del mod",
+        "fr": "Afficher le nom du mod"
+    },
+    "Show the time zone": {
+        "tr": "Saat dilimini göster",
+        "ru": "Показывать часовой пояс",
+        "es": "Mostrar la zona horaria",
+        "fr": "Afficher le fuseau horaire"
+    },
     "Show typing in DMs": {
         "tr": "DM'lerde yazdığını göster",
         "ru": "Показывать набор в личных сообщениях",
@@ -1217,17 +3395,83 @@
         "es": "Mostrar también tus dispositivos",
         "fr": "Afficher aussi vos appareils"
     },
+    "Shown before the signature, like > for a quote": {
+        "tr": "İmzadan önce gösterilir, örneğin alıntı için >",
+        "ru": "Показывается перед подписью, например > для цитаты",
+        "es": "Se muestra antes de la firma, como > para una cita",
+        "fr": "Affiché avant la signature, comme > pour une citation"
+    },
+    "Shows how much longer a user's timeout will last next to their messages": {
+        "tr": "Bir kullanıcının zaman aşımının ne kadar süreceğini mesajlarının yanında gösterir",
+        "ru": "Показывает рядом с сообщениями, сколько ещё продлится тайм-аут пользователя",
+        "es": "Muestra junto a sus mensajes cuánto le queda a la expulsión temporal de un usuario",
+        "fr": "Affiche à côté de ses messages combien de temps durera encore l'exclusion d'un utilisateur"
+    },
     "Shows or hides the theme's background image in chat": {
         "tr": "Temanın sohbetteki arka plan görselini gösterir veya gizler",
         "ru": "Показывает или скрывает фоновое изображение темы в чате",
         "es": "Muestra u oculta la imagen de fondo del tema en el chat",
         "fr": "Affiche ou masque l'image d'arrière-plan du thème dans la discussion"
     },
+    "Shows the seconds in every message's time (e.g. 15:34:21)": {
+        "tr": "Her mesajın saatinde saniyeleri gösterir (örn. 15:34:21)",
+        "ru": "Показывает секунды во времени каждого сообщения (например, 15:34:21)",
+        "es": "Muestra los segundos en la hora de cada mensaje (p. ej., 15:34:21)",
+        "fr": "Affiche les secondes dans l'heure de chaque message (ex. 15:34:21)"
+    },
     "Shows which devices people are online on (desktop, web or mobile) next to their messages.": {
         "tr": "Kişilerin hangi cihazlarda çevrimiçi olduğunu (masaüstü, web veya mobil) mesajlarının yanında gösterir.",
         "ru": "Показывает рядом с сообщениями, с каких устройств человек в сети (компьютер, веб или телефон).",
         "es": "Muestra junto a sus mensajes en qué dispositivos está conectada cada persona (escritorio, web o móvil).",
         "fr": "Affiche à côté des messages les appareils sur lesquels chaque personne est en ligne (ordinateur, web ou mobile)."
+    },
+    "Signature": {
+        "tr": "İmza",
+        "ru": "Подпись",
+        "es": "Firma",
+        "fr": "Signature"
+    },
+    "Signature disabled!": {
+        "tr": "İmza kapatıldı!",
+        "ru": "Подпись выключена!",
+        "es": "¡Firma desactivada!",
+        "fr": "Signature désactivée !"
+    },
+    "Signature enabled!": {
+        "tr": "İmza açıldı!",
+        "ru": "Подпись включена!",
+        "es": "¡Firma activada!",
+        "fr": "Signature activée !"
+    },
+    "Silence this user's pings": {
+        "tr": "Bu kullanıcının bildirimlerini sustur",
+        "ru": "Заглушить упоминания от этого пользователя",
+        "es": "Silenciar las menciones de este usuario",
+        "fr": "Faire taire les mentions de cet utilisateur"
+    },
+    "Silenced users": {
+        "tr": "Susturulan kullanıcılar",
+        "ru": "Заглушённые пользователи",
+        "es": "Usuarios silenciados",
+        "fr": "Utilisateurs réduits au silence"
+    },
+    "Silent Delete": {
+        "tr": "Sessiz Sil",
+        "ru": "Тихое удаление",
+        "es": "Borrado silencioso",
+        "fr": "Suppression silencieuse"
+    },
+    "Silent messages are off": {
+        "tr": "Sessiz mesajlar kapalı",
+        "ru": "Тихие сообщения выключены",
+        "es": "Los mensajes silenciosos están desactivados",
+        "fr": "Les messages silencieux sont désactivés"
+    },
+    "Silent messages are on": {
+        "tr": "Sessiz mesajlar açık",
+        "ru": "Тихие сообщения включены",
+        "es": "Los mensajes silenciosos están activados",
+        "fr": "Les messages silencieux sont activés"
     },
     "Silent typing disabled!": {
         "tr": "Sessiz yazma kapatıldı!",
@@ -1241,17 +3485,47 @@
         "es": "¡Escritura silenciosa activada!",
         "fr": "Saisie silencieuse activée !"
     },
+    "Skip my messages": {
+        "tr": "Mesajlarımı atla",
+        "ru": "Пропускать мои сообщения",
+        "es": "Omitir mis mensajes",
+        "fr": "Ignorer mes messages"
+    },
+    "Slap someone/something.": {
+        "tr": "Birini/bir şeyi tokatla.",
+        "ru": "Шлёпнуть кого-нибудь или что-нибудь.",
+        "es": "Dale una bofetada a alguien o algo.",
+        "fr": "Gifler quelqu'un ou quelque chose."
+    },
     "Slow": {
         "tr": "Yavaş",
         "ru": "Медленно",
         "es": "Lento",
         "fr": "Lent"
     },
+    "Small image text": {
+        "tr": "Küçük görsel metni",
+        "ru": "Текст маленького изображения",
+        "es": "Texto de la imagen pequeña",
+        "fr": "Texte de la petite image"
+    },
+    "Snowflakes": {
+        "tr": "Kar taneleri",
+        "ru": "Снежинки",
+        "es": "Copos de nieve",
+        "fr": "Flocons"
+    },
     "Something went wrong": {
         "tr": "Bir şeyler ters gitti",
         "ru": "Что-то пошло не так",
         "es": "Algo salió mal",
         "fr": "Un problème est survenu"
+    },
+    "Something went wrong: {error}": {
+        "tr": "Bir şeyler ters gitti: {error}",
+        "ru": "Что-то пошло не так: {error}",
+        "es": "Algo salió mal: {error}",
+        "fr": "Un problème est survenu : {error}"
     },
     "Soothing pastel theme for the high-spirited!": {
         "tr": "Neşeli ruhlar için yatıştırıcı pastel bir tema!",
@@ -1265,11 +3539,47 @@
         "es": "Ordenar por",
         "fr": "Trier par"
     },
+    "Sound": {
+        "tr": "Ses",
+        "ru": "Звук",
+        "es": "Sonido",
+        "fr": "Son"
+    },
+    "Space out every letter": {
+        "tr": "Her harfin arasına boşluk koy",
+        "ru": "Разделить все буквы пробелами",
+        "es": "Separa cada letra",
+        "fr": "Espacer chaque lettre"
+    },
     "Stack Trace": {
         "tr": "Yığın İzi",
         "ru": "Трассировка стека",
         "es": "Traza de la pila",
         "fr": "Trace de la pile"
+    },
+    "State": {
+        "tr": "Durum",
+        "ru": "Состояние",
+        "es": "Estado",
+        "fr": "État"
+    },
+    "Status set": {
+        "tr": "Durum ayarlandı",
+        "ru": "Статус установлен",
+        "es": "Estado establecido",
+        "fr": "Statut défini"
+    },
+    "Sticker": {
+        "tr": "Çıkartma",
+        "ru": "Стикер",
+        "es": "Sticker",
+        "fr": "Autocollant"
+    },
+    "Sticker blocked": {
+        "tr": "Çıkartma engellendi",
+        "ru": "Стикер заблокирован",
+        "es": "Sticker bloqueado",
+        "fr": "Autocollant bloqué"
     },
     "Sticker size": {
         "tr": "Çıkartma boyutu",
@@ -1289,6 +3599,18 @@
         "es": "Seguir mostrando que escribes en mensajes directos y grupos",
         "fr": "Continuer à montrer votre saisie dans les messages privés et les groupes"
     },
+    "Stop silencing this user": {
+        "tr": "Bu kullanıcıyı susturmayı bırak",
+        "ru": "Больше не заглушать этого пользователя",
+        "es": "Dejar de silenciar a este usuario",
+        "fr": "Ne plus faire taire cet utilisateur"
+    },
+    "Stopped following {user}": {
+        "tr": "{user} artık takip edilmiyor",
+        "ru": "Вы больше не следуете за {user}",
+        "es": "Dejaste de seguir a {user}",
+        "fr": "Vous ne suivez plus {user}"
+    },
     "Successfully installed": {
         "tr": "Başarıyla yüklendi",
         "ru": "Успешно установлено",
@@ -1307,17 +3629,197 @@
         "es": "Tema descargado de nuevo",
         "fr": "Thème retéléchargé"
     },
+    "Suppress Embeds": {
+        "tr": "Yerleştirmeleri Gizle",
+        "ru": "Скрыть встраивания",
+        "es": "Ocultar inserciones",
+        "fr": "Masquer les intégrations"
+    },
+    "Suppress highlights": {
+        "tr": "Öne çıkanları gizle",
+        "ru": "Отключить подборки",
+        "es": "Silenciar destacados",
+        "fr": "Masquer les temps forts"
+    },
+    "Suppress role mentions": {
+        "tr": "Rol bahsetmelerini gizle",
+        "ru": "Отключить упоминания ролей",
+        "es": "Silenciar menciones de rol",
+        "fr": "Masquer les mentions de rôle"
+    },
+    "TODO": {
+        "tr": "Yapılacak",
+        "ru": "Сделать",
+        "es": "Pendiente",
+        "fr": "À faire"
+    },
+    "Tag Message": {
+        "tr": "Mesajı Etiketle",
+        "ru": "Пометить сообщение",
+        "es": "Etiquetar mensaje",
+        "fr": "Étiqueter le message"
+    },
+    "Tag name": {
+        "tr": "Etiket adı",
+        "ru": "Название метки",
+        "es": "Nombre de la etiqueta",
+        "fr": "Nom de l'étiquette"
+    },
+    "Tagged Messages": {
+        "tr": "Etiketli Mesajlar",
+        "ru": "Помеченные сообщения",
+        "es": "Mensajes etiquetados",
+        "fr": "Messages étiquetés"
+    },
+    "Tails": {
+        "tr": "Tura",
+        "ru": "Решка",
+        "es": "Cruz",
+        "fr": "Pile"
+    },
     "Tap avatars, banners and server icons to see them full size.": {
         "tr": "Avatarlara, afişlere ve sunucu simgelerine dokunarak tam boyutta görün.",
         "ru": "Нажмите на аватар, баннер или значок сервера, чтобы открыть его в полном размере.",
         "es": "Toca avatares, banners e iconos de servidor para verlos a tamaño completo.",
         "fr": "Touchez les avatars, bannières et icônes de serveur pour les voir en taille réelle."
     },
+    "Tell me": {
+        "tr": "Bana söyle",
+        "ru": "Сообщать мне",
+        "es": "Avisarme",
+        "fr": "Me prévenir"
+    },
+    "Tell me when it's sent": {
+        "tr": "Gönderildiğinde bana söyle",
+        "ru": "Сообщать об отправке",
+        "es": "Avisarme cuando se envíe",
+        "fr": "Me prévenir quand il est envoyé"
+    },
+    "Tell me when something was removed": {
+        "tr": "Bir şey kaldırıldığında bana söyle",
+        "ru": "Сообщать, когда что-то удалено",
+        "es": "Avisarme cuando se quite algo",
+        "fr": "Me prévenir quand quelque chose est retiré"
+    },
+    "Text Replace Rules": {
+        "tr": "Metin Değiştirme Kuralları",
+        "ru": "Правила замены текста",
+        "es": "Reglas de reemplazo de texto",
+        "fr": "Règles de remplacement de texte"
+    },
+    "Text before the signature": {
+        "tr": "İmzadan önceki metin",
+        "ru": "Текст перед подписью",
+        "es": "Texto antes de la firma",
+        "fr": "Texte avant la signature"
+    },
+    "Text shortcuts": {
+        "tr": "Metin kısayolları",
+        "ru": "Текстовые сокращения",
+        "es": "Atajos de texto",
+        "fr": "Raccourcis de texte"
+    },
+    "Text to add after it": {
+        "tr": "Arkasına eklenecek metin",
+        "ru": "Текст, который добавить после",
+        "es": "Texto que añadir después",
+        "fr": "Texte à ajouter après"
+    },
+    "Text to convert": {
+        "tr": "Dönüştürülecek metin",
+        "ru": "Текст для преобразования",
+        "es": "Texto que convertir",
+        "fr": "Texte à convertir"
+    },
+    "Text to send with it": {
+        "tr": "Birlikte gönderilecek metin",
+        "ru": "Текст, который отправить вместе",
+        "es": "Texto que enviar junto",
+        "fr": "Texte à envoyer avec"
+    },
     "The code to evaluate": {
         "tr": "Çalıştırılacak kod",
         "ru": "Код для выполнения",
         "es": "El código que ejecutar",
         "fr": "Le code à exécuter"
+    },
+    "The coin landed on: {side}": {
+        "tr": "Para şu yüzüne düştü: {side}",
+        "ru": "Монетка упала: {side}",
+        "es": "La moneda cayó en: {side}",
+        "fr": "La pièce est tombée sur : {side}"
+    },
+    "The emoji to react with, like 💀 or <:husk:1026532993923293184>": {
+        "tr": "Tepki verilecek emoji, örneğin 💀 veya <:husk:1026532993923293184>",
+        "ru": "Эмодзи для реакции, например 💀 или <:husk:1026532993923293184>",
+        "es": "El emoji con el que reaccionar, como 💀 o <:husk:1026532993923293184>",
+        "fr": "L'émoji de réaction, comme 💀 ou <:husk:1026532993923293184>"
+    },
+    "The expression, like (2 + 3) * 4": {
+        "tr": "İfade, örneğin (2 + 3) * 4",
+        "ru": "Выражение, например (2 + 3) * 4",
+        "es": "La expresión, como (2 + 3) * 4",
+        "fr": "L'expression, comme (2 + 3) * 4"
+    },
+    "The first line under the name": {
+        "tr": "Adın altındaki ilk satır",
+        "ru": "Первая строка под названием",
+        "es": "La primera línea bajo el nombre",
+        "fr": "La première ligne sous le nom"
+    },
+    "The game or app name people see": {
+        "tr": "İnsanların gördüğü oyun veya uygulama adı",
+        "ru": "Название игры или приложения, которое видят люди",
+        "es": "El nombre del juego o la app que ve la gente",
+        "fr": "Le nom du jeu ou de l'appli que les gens voient"
+    },
+    "The house to join, or none to remove the badge": {
+        "tr": "Katılınacak ev veya rozeti kaldırmak için hiçbiri",
+        "ru": "Дом, к которому присоединиться, или «нет», чтобы убрать значок",
+        "es": "La casa a la que unirte, o ninguna para quitar la insignia",
+        "fr": "La maison à rejoindre, ou aucune pour retirer le badge"
+    },
+    "The message contains {count} words.": {
+        "tr": "Mesajda {count} kelime var.",
+        "ru": "В сообщении {count} слов.",
+        "es": "El mensaje tiene {count} palabras.",
+        "fr": "Le message contient {count} mots."
+    },
+    "The message to send": {
+        "tr": "Gönderilecek mesaj",
+        "ru": "Сообщение для отправки",
+        "es": "El mensaje que enviar",
+        "fr": "Le message à envoyer"
+    },
+    "The name used when the fixed name is chosen": {
+        "tr": "Sabit ad seçildiğinde kullanılan ad",
+        "ru": "Имя, используемое при выборе постоянного имени",
+        "es": "El nombre que se usa cuando se elige el nombre fijo",
+        "fr": "Le nom utilisé quand le nom fixe est choisi"
+    },
+    "The regex pattern": {
+        "tr": "Regex deseni",
+        "ru": "Регулярное выражение",
+        "es": "El patrón regex",
+        "fr": "Le motif regex"
+    },
+    "The role": {
+        "tr": "Rol",
+        "ru": "Роль",
+        "es": "El rol",
+        "fr": "Le rôle"
+    },
+    "The second line under the name": {
+        "tr": "Adın altındaki ikinci satır",
+        "ru": "Вторая строка под названием",
+        "es": "La segunda línea bajo el nombre",
+        "fr": "La deuxième ligne sous le nom"
+    },
+    "The text to replace": {
+        "tr": "Değiştirilecek metin",
+        "ru": "Заменяемый текст",
+        "es": "El texto que reemplazar",
+        "fr": "Le texte à remplacer"
     },
     "Theme applied": {
         "tr": "Tema uygulandı",
@@ -1343,11 +3845,35 @@
         "es": "Temas del mercado de temas de la comunidad y de Catppuccin. Los temas instalados también aparecen en la página Temas de Endcord.",
         "fr": "Des thèmes du marché de thèmes de la communauté et de Catppuccin. Les thèmes installés apparaissent aussi dans la page Thèmes d'Endcord."
     },
+    "There's no voice channel to join.": {
+        "tr": "Katılınacak ses kanalı yok.",
+        "ru": "Нет голосового канала, куда можно зайти.",
+        "es": "No hay ningún canal de voz al que unirse.",
+        "fr": "Aucun salon vocal à rejoindre."
+    },
+    "Thing to slap": {
+        "tr": "Tokatlanacak şey",
+        "ru": "Кого шлёпнуть",
+        "es": "A quién abofetear",
+        "fr": "Ce qu'il faut gifler"
+    },
+    "This file is too big to copy": {
+        "tr": "Bu dosya kopyalanamayacak kadar büyük",
+        "ru": "Файл слишком большой для копирования",
+        "es": "Este archivo es demasiado grande para copiarlo",
+        "fr": "Ce fichier est trop volumineux pour être copié"
+    },
     "This link is a **{urlType, select, plugin {Plugin} theme {Theme} other {Add-on}}**, would you like to install it?": {
         "tr": "Bu bağlantı bir **{urlType, select, plugin {eklenti} theme {tema} other {eklenti}}**. Yüklemek ister misiniz?",
         "ru": "Это ссылка на **{urlType, select, plugin {плагин} theme {тему} other {дополнение}}**. Установить?",
         "es": "Este enlace es un **{urlType, select, plugin {plugin} theme {tema} other {complemento}}**. ¿Quieres instalarlo?",
         "fr": "Ce lien est un **{urlType, select, plugin {plugin} theme {thème} other {module}}**. Voulez-vous l'installer ?"
+    },
+    "This only works in a server.": {
+        "tr": "Bu yalnızca bir sunucuda çalışır.",
+        "ru": "Это работает только на сервере.",
+        "es": "Esto solo funciona en un servidor.",
+        "fr": "Cela ne fonctionne que dans un serveur."
     },
     "This pack overrides the following: {fonts}": {
         "tr": "Bu paket şunları değiştirir: {fonts}",
@@ -1361,6 +3887,48 @@
         "es": "Este plugin no lo han revisado los responsables del repositorio de plugins. Instálalo solo si confías en su autor.",
         "fr": "Ce plugin n'a pas été vérifié par les responsables du dépôt de plugins. Ne l'installez que si vous faites confiance à son auteur."
     },
+    "This scheduled message wasn't sent because Discord was closed:": {
+        "tr": "Bu zamanlanmış mesaj Discord kapalı olduğu için gönderilmedi:",
+        "ru": "Это запланированное сообщение не отправлено, потому что Discord был закрыт:",
+        "es": "Este mensaje programado no se envió porque Discord estaba cerrado:",
+        "fr": "Ce message programmé n'a pas été envoyé car Discord était fermé :"
+    },
+    "This server only": {
+        "tr": "Yalnızca bu sunucu",
+        "ru": "Только этот сервер",
+        "es": "Solo este servidor",
+        "fr": "Ce serveur uniquement"
+    },
+    "Threshold (seconds)": {
+        "tr": "Eşik (saniye)",
+        "ru": "Порог (секунды)",
+        "es": "Umbral (segundos)",
+        "fr": "Seuil (secondes)"
+    },
+    "Time": {
+        "tr": "Saat",
+        "ru": "Время",
+        "es": "Hora",
+        "fr": "Heure"
+    },
+    "Timed out, {time} left": {
+        "tr": "Zaman aşımında, {time} kaldı",
+        "ru": "Тайм-аут, осталось {time}",
+        "es": "Expulsado temporalmente, quedan {time}",
+        "fr": "Exclu, encore {time}"
+    },
+    "Times written between backticks, like `14:30` or `2:30 PM`, become timestamps everyone sees in their own time zone": {
+        "tr": "`14:30` veya `2:30 PM` gibi ters tırnak içine yazılan saatler, herkesin kendi saat diliminde gördüğü zaman damgalarına dönüşür",
+        "ru": "Время в обратных кавычках, например `14:30` или `2:30 PM`, становится меткой, которую каждый видит в своём часовом поясе",
+        "es": "Las horas escritas entre comillas invertidas, como `14:30` o `2:30 PM`, se convierten en marcas de tiempo que cada uno ve en su zona horaria",
+        "fr": "Les heures écrites entre accents graves, comme `14:30` ou `2:30 PM`, deviennent des horodatages que chacun voit dans son fuseau horaire"
+    },
+    "Toasts for my channel": {
+        "tr": "Kanalım için bildirimler",
+        "ru": "Уведомления для моего канала",
+        "es": "Avisos para mi canal",
+        "fr": "Notifications pour mon salon"
+    },
     "Toggle silent typing": {
         "tr": "Sessiz yazmayı aç/kapat",
         "ru": "Переключить тихий набор",
@@ -1373,11 +3941,77 @@
         "es": "Activa o desactiva ocultar que estás escribiendo.",
         "fr": "Active ou désactive le masquage de votre saisie."
     },
+    "Tomorrow": {
+        "tr": "Yarın",
+        "ru": "Завтра",
+        "es": "Mañana",
+        "fr": "Demain"
+    },
+    "Translate messages to": {
+        "tr": "Mesajları şu dile çevir",
+        "ru": "Переводить сообщения на",
+        "es": "Traducir mensajes a",
+        "fr": "Traduire les messages en"
+    },
+    "Translate text and send it": {
+        "tr": "Metni çevir ve gönder",
+        "ru": "Перевести текст и отправить",
+        "es": "Traduce un texto y envíalo",
+        "fr": "Traduire un texte et l'envoyer"
+    },
+    "Translate to": {
+        "tr": "Şu dile çevir",
+        "ru": "Переводить на",
+        "es": "Traducir a",
+        "fr": "Traduire en"
+    },
+    "Translate to or from Morse code": {
+        "tr": "Mors koduna veya Mors kodundan çevir",
+        "ru": "Перевести в азбуку Морзе или из неё",
+        "es": "Traduce a o desde código Morse",
+        "fr": "Traduire vers ou depuis le morse"
+    },
+    "Translate what you send": {
+        "tr": "Gönderdiklerinizi çevir",
+        "ru": "Переводить то, что вы отправляете",
+        "es": "Traducir lo que envías",
+        "fr": "Traduire ce que vous envoyez"
+    },
+    "Translate your messages to": {
+        "tr": "Mesajlarınızı şu dile çevir",
+        "ru": "Переводить ваши сообщения на",
+        "es": "Traducir tus mensajes a",
+        "fr": "Traduire vos messages en"
+    },
+    "Treat each keyword as a regular expression": {
+        "tr": "Her anahtar kelimeyi düzenli ifade olarak değerlendir",
+        "ru": "Считать каждое слово регулярным выражением",
+        "es": "Tratar cada palabra clave como una expresión regular",
+        "fr": "Traiter chaque mot-clé comme une expression régulière"
+    },
+    "Trigger words": {
+        "tr": "Tetikleyici kelimeler",
+        "ru": "Слова-триггеры",
+        "es": "Palabras sensibles",
+        "fr": "Mots déclencheurs"
+    },
     "Try again": {
         "tr": "Tekrar dene",
         "ru": "Повторить",
         "es": "Reintentar",
         "fr": "Réessayer"
+    },
+    "Turn automatic translation on or off for this channel": {
+        "tr": "Bu kanal için otomatik çeviriyi aç veya kapat",
+        "ru": "Включить или выключить автоперевод в этом канале",
+        "es": "Activa o desactiva la traducción automática en este canal",
+        "fr": "Activer ou désactiver la traduction automatique pour ce salon"
+    },
+    "Turn off after one message": {
+        "tr": "Bir mesajdan sonra kapat",
+        "ru": "Выключать после одного сообщения",
+        "es": "Desactivar tras un mensaje",
+        "fr": "Désactiver après un message"
     },
     "Turn this off to show your typing again without turning the plugin off": {
         "tr": "Eklentiyi kapatmadan yazdığınızı yeniden göstermek için bunu kapatın",
@@ -1385,11 +4019,41 @@
         "es": "Desactívalo para volver a mostrar que escribes sin desactivar el plugin",
         "fr": "Désactivez ceci pour montrer à nouveau votre saisie sans désactiver le plugin"
     },
+    "Turn this off to stop adding it without turning the plugin off": {
+        "tr": "Eklentiyi kapatmadan eklemeyi durdurmak için bunu kapatın",
+        "ru": "Выключите, чтобы перестать добавлять её, не выключая плагин",
+        "es": "Desactívalo para dejar de añadirla sin desactivar el plugin",
+        "fr": "Désactivez ceci pour arrêter de l'ajouter sans désactiver le plugin"
+    },
+    "Turn your signature on or off": {
+        "tr": "İmzanızı açın veya kapatın",
+        "ru": "Включить или выключить подпись",
+        "es": "Activa o desactiva tu firma",
+        "fr": "Activer ou désactiver votre signature"
+    },
+    "Turns plain social links into embeddable URLs so posts and videos are fully viewable in Discord instead of forcing users to open the external site.": {
+        "tr": "Sosyal medya bağlantılarını yerleştirilebilir adreslere çevirir; böylece gönderiler ve videolar dış siteyi açmaya gerek kalmadan Discord'da tam olarak görüntülenir.",
+        "ru": "Превращает обычные ссылки на соцсети в встраиваемые, чтобы посты и видео полностью открывались в Discord без перехода на внешний сайт.",
+        "es": "Convierte los enlaces de redes sociales en URL insertables para que las publicaciones y los vídeos se vean completos en Discord sin abrir el sitio externo.",
+        "fr": "Transforme les liens de réseaux sociaux en URL intégrables pour que les publications et vidéos soient entièrement visibles dans Discord sans ouvrir le site externe."
+    },
     "Type /hideendcord in any chat to show Endcord's settings again": {
         "tr": "Endcord ayarlarını yeniden göstermek için herhangi bir sohbette /hideendcord yazın",
         "ru": "Введите /hideendcord в любом чате, чтобы снова показать настройки Endcord",
         "es": "Escribe /hideendcord en cualquier chat para volver a mostrar los ajustes de Endcord",
         "fr": "Tapez /hideendcord dans n'importe quelle discussion pour réafficher les paramètres d'Endcord"
+    },
+    "Type a message to preview it": {
+        "tr": "Önizlemek için bir mesaj yazın",
+        "ru": "Напишите сообщение, чтобы увидеть предпросмотр",
+        "es": "Escribe un mensaje para previsualizarlo",
+        "fr": "Écrivez un message pour le prévisualiser"
+    },
+    "Unfollow in Voice": {
+        "tr": "Seste Takibi Bırak",
+        "ru": "Перестать следовать в голосовых",
+        "es": "Dejar de seguir en voz",
+        "fr": "Ne plus suivre en vocal"
     },
     "Uninstall": {
         "tr": "Kaldır",
@@ -1402,6 +4066,12 @@
         "ru": "Удалить {title}",
         "es": "Desinstalar {title}",
         "fr": "Désinstaller {title}"
+    },
+    "Unknown device": {
+        "tr": "Bilinmeyen cihaz",
+        "ru": "Неизвестное устройство",
+        "es": "Dispositivo desconocido",
+        "fr": "Appareil inconnu"
     },
     "Unlocks Discord's internal experiments menu. Changing experiments can break the app; use it at your own risk.": {
         "tr": "Discord'un dahili deneyler menüsünü açar. Deneyleri değiştirmek uygulamayı bozabilir; kullanım riski size aittir.",
@@ -1421,11 +4091,35 @@
         "es": "Se encontraron plugins no verificados",
         "fr": "Plugins non vérifiés détectés"
     },
+    "Unsuppress Embeds": {
+        "tr": "Yerleştirmeleri Göster",
+        "ru": "Показать встраивания",
+        "es": "Mostrar inserciones",
+        "fr": "Afficher les intégrations"
+    },
     "Unverified plugin": {
         "tr": "Doğrulanmamış eklenti",
         "ru": "Непроверенный плагин",
         "es": "Plugin no verificado",
         "fr": "Plugin non vérifié"
+    },
+    "Upcoming Reminders": {
+        "tr": "Yaklaşan Hatırlatıcılar",
+        "ru": "Предстоящие напоминания",
+        "es": "Próximos recordatorios",
+        "fr": "Rappels à venir"
+    },
+    "Upload time": {
+        "tr": "Yükleme zamanı",
+        "ru": "Время загрузки",
+        "es": "Hora de subida",
+        "fr": "Heure d'envoi"
+    },
+    "Use a profile's Nitro theme when it has one": {
+        "tr": "Varsa profilin Nitro temasını kullan",
+        "ru": "Использовать тему Nitro профиля, если она есть",
+        "es": "Usar el tema de Nitro del perfil si lo tiene",
+        "fr": "Utiliser le thème Nitro du profil s'il en a un"
     },
     "Use any emoji and sticker without Nitro: the ones you can't use are sent as links.": {
         "tr": "Nitro olmadan her emojiyi ve çıkartmayı kullanın: kullanamadıklarınız bağlantı olarak gönderilir.",
@@ -1433,11 +4127,59 @@
         "es": "Usa cualquier emoji y sticker sin Nitro: los que no puedes usar se envían como enlaces.",
         "fr": "Utilisez n'importe quel emoji ou autocollant sans Nitro : ceux que vous ne pouvez pas utiliser sont envoyés en lien."
     },
+    "Use something like 10m, 2h or 1d.": {
+        "tr": "10m, 2h veya 1d gibi bir şey kullanın.",
+        "ru": "Используйте, например, 10m, 2h или 1d.",
+        "es": "Usa algo como 10m, 2h o 1d.",
+        "fr": "Utilisez par exemple 10m, 2h ou 1d."
+    },
+    "Used when \"Translate what you send\" is on": {
+        "tr": "\"Gönderdiklerinizi çevir\" açıkken kullanılır",
+        "ru": "Используется, когда включено «Переводить то, что вы отправляете»",
+        "es": "Se usa cuando \"Traducir lo que envías\" está activado",
+        "fr": "Utilisé quand « Traduire ce que vous envoyez » est activé"
+    },
+    "User ID copied": {
+        "tr": "Kullanıcı kimliği kopyalandı",
+        "ru": "ID пользователя скопирован",
+        "es": "ID de usuario copiado",
+        "fr": "ID utilisateur copié"
+    },
+    "User IDs (comma separated) treated the other way round": {
+        "tr": "Tam tersi şekilde ele alınacak kullanıcı kimlikleri (virgülle ayrılmış)",
+        "ru": "ID пользователей (через запятую), для которых всё наоборот",
+        "es": "ID de usuarios (separados por comas) que se tratan al revés",
+        "fr": "ID d'utilisateurs (séparés par des virgules) traités à l'inverse"
+    },
     "User IDs whose messages aren't logged, separated by commas": {
         "tr": "Mesajları kaydedilmeyecek kullanıcı kimlikleri, virgülle ayrılmış",
         "ru": "ID пользователей, чьи сообщения не записываются, через запятую",
         "es": "ID de usuarios cuyos mensajes no se registran, separados por comas",
         "fr": "ID des utilisateurs dont les messages ne sont pas enregistrés, séparés par des virgules"
+    },
+    "Username (nickname)": {
+        "tr": "Kullanıcı adı (takma ad)",
+        "ru": "Имя пользователя (ник)",
+        "es": "Nombre de usuario (apodo)",
+        "fr": "Nom d'utilisateur (pseudo)"
+    },
+    "Users' time zones": {
+        "tr": "Kullanıcıların saat dilimleri",
+        "ru": "Часовые пояса пользователей",
+        "es": "Zonas horarias de los usuarios",
+        "fr": "Fuseaux horaires des utilisateurs"
+    },
+    "Vanity URL": {
+        "tr": "Özel URL",
+        "ru": "Персональная ссылка",
+        "es": "URL personalizada",
+        "fr": "URL personnalisée"
+    },
+    "Verification level": {
+        "tr": "Doğrulama seviyesi",
+        "ru": "Уровень проверки",
+        "es": "Nivel de verificación",
+        "fr": "Niveau de vérification"
     },
     "Versions": {
         "tr": "Sürümler",
@@ -1445,11 +4187,83 @@
         "es": "Versiones",
         "fr": "Versions"
     },
+    "View": {
+        "tr": "Görüntüle",
+        "ru": "Показать",
+        "es": "Ver",
+        "fr": "Voir"
+    },
+    "View Roles and Permissions": {
+        "tr": "Rolleri ve İzinleri Görüntüle",
+        "ru": "Роли и права",
+        "es": "Ver roles y permisos",
+        "fr": "Voir les rôles et permissions"
+    },
     "View full size": {
         "tr": "Tam boyutta görüntüle",
         "ru": "Открыть в полном размере",
         "es": "Ver a tamaño completo",
         "fr": "Voir en taille réelle"
+    },
+    "Watch for new logins": {
+        "tr": "Yeni girişleri izle",
+        "ru": "Следить за новыми входами",
+        "es": "Vigilar nuevos inicios de sesión",
+        "fr": "Surveiller les nouvelles connexions"
+    },
+    "What it says": {
+        "tr": "Ne yazdığı",
+        "ru": "Что в нём написано",
+        "es": "Lo que dice",
+        "fr": "Ce qu'il dit"
+    },
+    "What to do": {
+        "tr": "Ne yapılacağı",
+        "ru": "Что сделать",
+        "es": "Qué hacer",
+        "fr": "Que faire"
+    },
+    "What to look up": {
+        "tr": "Ne aranacağı",
+        "ru": "Что найти",
+        "es": "Qué buscar",
+        "fr": "Ce qu'il faut rechercher"
+    },
+    "What to remind you of": {
+        "tr": "Size neyin hatırlatılacağı",
+        "ru": "О чём напомнить",
+        "es": "Qué recordarte",
+        "fr": "Ce qu'il faut vous rappeler"
+    },
+    "What to search for": {
+        "tr": "Ne aranacağı",
+        "ru": "Что искать",
+        "es": "Qué buscar",
+        "fr": "Ce qu'il faut chercher"
+    },
+    "What to translate": {
+        "tr": "Ne çevrileceği",
+        "ru": "Что перевести",
+        "es": "Qué traducir",
+        "fr": "Ce qu'il faut traduire"
+    },
+    "What's on your mind?": {
+        "tr": "Aklınızda ne var?",
+        "ru": "О чём думаете?",
+        "es": "¿Qué tienes en mente?",
+        "fr": "À quoi pensez-vous ?"
+    },
+    "When was someone last online": {
+        "tr": "Birinin en son ne zaman çevrimiçi olduğu",
+        "ru": "Когда человек последний раз был в сети",
+        "es": "Cuándo estuvo alguien conectado por última vez",
+        "fr": "Quand quelqu'un était en ligne pour la dernière fois"
+    },
+    "When, like 10m, 2h, 1d or 1h30m": {
+        "tr": "Ne zaman, örneğin 10m, 2h, 1d veya 1h30m",
+        "ru": "Когда, например 10m, 2h, 1d или 1h30m",
+        "es": "Cuándo, como 10m, 2h, 1d o 1h30m",
+        "fr": "Quand, comme 10m, 2h, 1d ou 1h30m"
     },
     "Whether to hide or not that you're typing (default is toggle)": {
         "tr": "Yazdığınızın gizlenip gizlenmeyeceği (varsayılan: değiştir)",
@@ -1469,11 +4283,41 @@
         "es": "Blanco",
         "fr": "Blanc"
     },
+    "Who": {
+        "tr": "Kim",
+        "ru": "Кто",
+        "es": "Quién",
+        "fr": "Qui"
+    },
+    "Who it's from": {
+        "tr": "Kimden geldiği",
+        "ru": "От кого",
+        "es": "De quién es",
+        "fr": "De qui il vient"
+    },
+    "Whose avatar (defaults to you)": {
+        "tr": "Kimin avatarı (varsayılan olarak siz)",
+        "ru": "Чей аватар (по умолчанию ваш)",
+        "es": "De quién es el avatar (por defecto, el tuyo)",
+        "fr": "L'avatar de qui (vous par défaut)"
+    },
+    "Words to leave lowercase": {
+        "tr": "Küçük harf kalacak kelimeler",
+        "ru": "Слова, которые оставить строчными",
+        "es": "Palabras que dejar en minúscula",
+        "fr": "Mots à laisser en minuscules"
+    },
     "Yellow": {
         "tr": "Sarı",
         "ru": "Жёлтый",
         "es": "Amarillo",
         "fr": "Jaune"
+    },
+    "Yes": {
+        "tr": "Evet",
+        "ru": "Да",
+        "es": "Sí",
+        "fr": "Oui"
     },
     "You are no longer friends with {user}.": {
         "tr": "Artık {user} ile arkadaş değilsiniz.",
@@ -1493,11 +4337,47 @@
         "es": "Ya no estás en el servidor {server}.",
         "fr": "Vous n'êtes plus sur le serveur {server}."
     },
+    "You can't add emojis to any of your servers": {
+        "tr": "Hiçbir sunucunuza emoji ekleyemezsiniz",
+        "ru": "Вы не можете добавлять эмодзи ни на один свой сервер",
+        "es": "No puedes añadir emojis a ninguno de tus servidores",
+        "fr": "Vous ne pouvez ajouter d'émojis à aucun de vos serveurs"
+    },
     "You can't embed links in this channel, so the emoji or sticker will be sent as a plain link. Send it anyway?": {
         "tr": "Bu kanalda bağlantı yerleştiremiyorsunuz, bu yüzden emoji veya çıkartma düz bağlantı olarak gönderilecek. Yine de gönderilsin mi?",
         "ru": "В этом канале нельзя встраивать ссылки, поэтому эмодзи или стикер будет отправлен обычной ссылкой. Всё равно отправить?",
         "es": "No puedes insertar enlaces en este canal, así que el emoji o sticker se enviará como enlace normal. ¿Enviarlo de todos modos?",
         "fr": "Vous ne pouvez pas intégrer de liens dans ce salon : l'emoji ou l'autocollant sera envoyé sous forme de lien simple. L'envoyer quand même ?"
+    },
+    "You have no active friend invites!": {
+        "tr": "Etkin arkadaş davetiniz yok!",
+        "ru": "У вас нет активных приглашений в друзья!",
+        "es": "¡No tienes invitaciones de amistad activas!",
+        "fr": "Vous n'avez aucune invitation d'ami active !"
+    },
+    "You have no messages loaded in this channel.": {
+        "tr": "Bu kanalda yüklenmiş mesajınız yok.",
+        "ru": "В этом канале нет ваших загруженных сообщений.",
+        "es": "No tienes mensajes cargados en este canal.",
+        "fr": "Vous n'avez aucun message chargé dans ce salon."
+    },
+    "You have no reminders": {
+        "tr": "Hatırlatıcınız yok",
+        "ru": "У вас нет напоминаний",
+        "es": "No tienes recordatorios",
+        "fr": "Vous n'avez aucun rappel"
+    },
+    "You have no scheduled messages": {
+        "tr": "Zamanlanmış mesajınız yok",
+        "ru": "У вас нет запланированных сообщений",
+        "es": "No tienes mensajes programados",
+        "fr": "Vous n'avez aucun message programmé"
+    },
+    "You rolled a {roll}!": {
+        "tr": "{roll} attınız!",
+        "ru": "Выпало {roll}!",
+        "es": "¡Sacaste un {roll}!",
+        "fr": "Vous avez fait {roll} !"
     },
     "You were removed from the group {group}.": {
         "tr": "{group} grubundan çıkarıldınız.",
@@ -1529,11 +4409,71 @@
         "es": "Estás en modo seguro, así que los temas están desactivados por ahora. {enabled, select, true {Si un tema causa el problema, puedes desactivarlo abajo.} other {}}",
         "fr": "Vous êtes en mode sans échec, les thèmes sont donc désactivés pour l'instant. {enabled, select, true {Si un thème cause le problème, vous pouvez le désactiver ci-dessous.} other {}}"
     },
+    "You're not listening to any music.": {
+        "tr": "Şu anda müzik dinlemiyorsunuz.",
+        "ru": "Вы сейчас не слушаете музыку.",
+        "es": "No estás escuchando música.",
+        "fr": "Vous n'écoutez pas de musique."
+    },
+    "You've been on Discord for {time}. Time for a break?": {
+        "tr": "{time} süredir Discord'dasınız. Mola zamanı?",
+        "ru": "Вы в Discord уже {time}. Может, перерыв?",
+        "es": "Llevas {time} en Discord. ¿Un descanso?",
+        "fr": "Vous êtes sur Discord depuis {time}. Une petite pause ?"
+    },
+    "Your message": {
+        "tr": "Mesajınız",
+        "ru": "Ваше сообщение",
+        "es": "Tu mensaje",
+        "fr": "Votre message"
+    },
+    "Your message will be sent {when}. Discord has to be open then; see the plugin's settings to cancel it.": {
+        "tr": "Mesajınız {when} gönderilecek. O sırada Discord açık olmalı; iptal etmek için eklentinin ayarlarına bakın.",
+        "ru": "Сообщение будет отправлено {when}. В это время Discord должен быть открыт; отменить можно в настройках плагина.",
+        "es": "Tu mensaje se enviará {when}. Discord tiene que estar abierto entonces; cancélalo en los ajustes del plugin.",
+        "fr": "Votre message sera envoyé {when}. Discord doit être ouvert à ce moment-là ; annulez-le dans les paramètres du plugin."
+    },
+    "Your messages are translated before they're sent": {
+        "tr": "Mesajlarınız gönderilmeden önce çevrilir",
+        "ru": "Ваши сообщения переводятся перед отправкой",
+        "es": "Tus mensajes se traducen antes de enviarse",
+        "fr": "Vos messages sont traduits avant d'être envoyés"
+    },
+    "Your messages don't send push notifications": {
+        "tr": "Mesajlarınız anlık bildirim göndermez",
+        "ru": "Ваши сообщения не отправляют push-уведомления",
+        "es": "Tus mensajes no envían notificaciones push",
+        "fr": "Vos messages n'envoient pas de notifications push"
+    },
+    "Your messages will self-destruct": {
+        "tr": "Mesajlarınız kendini imha edecek",
+        "ru": "Ваши сообщения самоуничтожатся",
+        "es": "Tus mensajes se autodestruirán",
+        "fr": "Vos messages s'autodétruiront"
+    },
     "Your own messages": {
         "tr": "Kendi mesajlarınız",
         "ru": "Ваши сообщения",
         "es": "Tus propios mensajes",
         "fr": "Vos propres messages"
+    },
+    "Your own messages are always shown": {
+        "tr": "Kendi mesajlarınız her zaman gösterilir",
+        "ru": "Ваши сообщения всегда показываются",
+        "es": "Tus propios mensajes siempre se muestran",
+        "fr": "Vos propres messages sont toujours affichés"
+    },
+    "Your question": {
+        "tr": "Sorunuz",
+        "ru": "Ваш вопрос",
+        "es": "Tu pregunta",
+        "fr": "Votre question"
+    },
+    "a little upset": {
+        "tr": "biraz üzgün",
+        "ru": "немного расстроен",
+        "es": "un poco molesto",
+        "fr": "un peu contrarié"
     },
     "by {authors}": {
         "tr": "{authors} tarafından",
@@ -1565,11 +4505,227 @@
         "es": "editado",
         "fr": "modifié"
     },
+    "genuine": {
+        "tr": "içten",
+        "ru": "искренне",
+        "es": "sincero",
+        "fr": "sincère"
+    },
+    "genuine question": {
+        "tr": "gerçek bir soru",
+        "ru": "искренний вопрос",
+        "es": "pregunta sincera",
+        "fr": "vraie question"
+    },
+    "half-joking": {
+        "tr": "yarı şaka",
+        "ru": "полушутя",
+        "es": "medio en broma",
+        "fr": "à moitié pour rire"
+    },
     "https://": {
         "tr": "https://",
         "ru": "https://",
         "es": "https://",
         "fr": "https://"
+    },
+    "hyperbole": {
+        "tr": "abartı",
+        "ru": "преувеличение",
+        "es": "hipérbole",
+        "fr": "hyperbole"
+    },
+    "joking": {
+        "tr": "şaka",
+        "ru": "шутка",
+        "es": "en broma",
+        "fr": "pour rire"
+    },
+    "light-hearted": {
+        "tr": "neşeli",
+        "ru": "беззаботно",
+        "es": "desenfadado",
+        "fr": "léger"
+    },
+    "literally": {
+        "tr": "kelimenin tam anlamıyla",
+        "ru": "буквально",
+        "es": "literalmente",
+        "fr": "littéralement"
+    },
+    "mOcK PeOpLe": {
+        "tr": "İnSaNlArLa AlAy Etİn",
+        "ru": "ДрАзНиТе ЛюДеЙ",
+        "es": "BuRlAtE dE lA gEnTe",
+        "fr": "MoQuEz-VoUs DeS gEnS"
+    },
+    "metaphorically": {
+        "tr": "mecazen",
+        "ru": "метафорически",
+        "es": "metafóricamente",
+        "fr": "métaphoriquement"
+    },
+    "negative": {
+        "tr": "olumsuz",
+        "ru": "негативно",
+        "es": "negativo",
+        "fr": "négatif"
+    },
+    "nobody here": {
+        "tr": "buradaki kimse değil",
+        "ru": "никто из присутствующих",
+        "es": "nadie de aquí",
+        "fr": "personne ici"
+    },
+    "not mad": {
+        "tr": "kızgın değil",
+        "ru": "не злюсь",
+        "es": "no enfadado",
+        "fr": "pas fâché"
+    },
+    "not serious": {
+        "tr": "ciddi değil",
+        "ru": "несерьёзно",
+        "es": "no en serio",
+        "fr": "pas sérieux"
+    },
+    "platonic": {
+        "tr": "platonik",
+        "ru": "платонически",
+        "es": "platónico",
+        "fr": "platonique"
+    },
+    "positive": {
+        "tr": "olumlu",
+        "ru": "позитивно",
+        "es": "positivo",
+        "fr": "positif"
+    },
+    "reference": {
+        "tr": "gönderme",
+        "ru": "отсылка",
+        "es": "referencia",
+        "fr": "référence"
+    },
+    "rhetorical": {
+        "tr": "retorik",
+        "ru": "риторически",
+        "es": "retórico",
+        "fr": "rhétorique"
+    },
+    "role": {
+        "tr": "rol",
+        "ru": "роль",
+        "es": "rol",
+        "fr": "rôle"
+    },
+    "romantic": {
+        "tr": "romantik",
+        "ru": "романтически",
+        "es": "romántico",
+        "fr": "romantique"
+    },
+    "sarcastic": {
+        "tr": "alaycı",
+        "ru": "сарказм",
+        "es": "sarcástico",
+        "fr": "sarcastique"
+    },
+    "serious": {
+        "tr": "ciddi",
+        "ru": "серьёзно",
+        "es": "en serio",
+        "fr": "sérieux"
+    },
+    "teasing": {
+        "tr": "takılma",
+        "ru": "подкол",
+        "es": "en tono de burla",
+        "fr": "taquinerie"
+    },
+    "the call": {
+        "tr": "arama",
+        "ru": "звонок",
+        "es": "la llamada",
+        "fr": "l'appel"
+    },
+    "threat": {
+        "tr": "tehdit",
+        "ru": "угроза",
+        "es": "amenaza",
+        "fr": "menace"
+    },
+    "translated from {language}": {
+        "tr": "{language} dilinden çevrildi",
+        "ru": "переведено с {language}",
+        "es": "traducido del {language}",
+        "fr": "traduit depuis {language}"
+    },
+    "uwuifies your messages": {
+        "tr": "mesajlarınızı uwu'laştırır",
+        "ru": "превращает сообщения в uwu",
+        "es": "uwuifica tus mensajes",
+        "fr": "uwuifie vos messages"
+    },
+    "while Discord was closed": {
+        "tr": "Discord kapalıyken",
+        "ru": "пока Discord был закрыт",
+        "es": "mientras Discord estaba cerrado",
+        "fr": "pendant que Discord était fermé"
+    },
+    "with {count} others": {
+        "tr": "{count} kişiyle birlikte",
+        "ru": "вместе с ещё {count}",
+        "es": "con {count} más",
+        "fr": "avec {count} autres"
+    },
+    "{count} members have <@&{role}>:": {
+        "tr": "{count} üyede <@&{role}> var:",
+        "ru": "У {count} участников есть <@&{role}>:",
+        "es": "{count} miembros tienen <@&{role}>:",
+        "fr": "{count} membres ont <@&{role}> :"
+    },
+    "{count} messages": {
+        "tr": "{count} mesaj",
+        "ru": "Сообщений: {count}",
+        "es": "{count} mensajes",
+        "fr": "{count} messages"
+    },
+    "{count} words": {
+        "tr": "{count} kelime",
+        "ru": "Слов: {count}",
+        "es": "{count} palabras",
+        "fr": "{count} mots"
+    },
+    "{count}d": {
+        "tr": "{count}g",
+        "ru": "{count} д",
+        "es": "{count} d",
+        "fr": "{count} j"
+    },
+    "{count}h": {
+        "tr": "{count}sa",
+        "ru": "{count} ч",
+        "es": "{count} h",
+        "fr": "{count} h"
+    },
+    "{count}m": {
+        "tr": "{count}dk",
+        "ru": "{count} мин",
+        "es": "{count} min",
+        "fr": "{count} min"
+    },
+    "{hours}h {minutes}m": {
+        "tr": "{hours}sa {minutes}dk",
+        "ru": "{hours} ч {minutes} мин",
+        "es": "{hours} h {minutes} min",
+        "fr": "{hours} h {minutes} min"
+    },
+    "{minutes}m": {
+        "tr": "{minutes}dk",
+        "ru": "{minutes} мин",
+        "es": "{minutes} min",
+        "fr": "{minutes} min"
     },
     "{name} couldn't start and was turned off": {
         "tr": "{name} başlatılamadı ve kapatıldı",
@@ -1583,16 +4739,94 @@
         "es": "Actualizaciones de {name} {update, select, true {activadas} other {desactivadas}}",
         "fr": "Mises à jour de {name} {update, select, true {activées} other {désactivées}}"
     },
+    "{user} joined {channel}": {
+        "tr": "{user}, {channel} kanalına katıldı",
+        "ru": "{user} зашёл в {channel}",
+        "es": "{user} se unió a {channel}",
+        "fr": "{user} a rejoint {channel}"
+    },
+    "{user} left {channel}": {
+        "tr": "{user}, {channel} kanalından ayrıldı",
+        "ru": "{user} вышел из {channel}",
+        "es": "{user} salió de {channel}",
+        "fr": "{user} a quitté {channel}"
+    },
     "{user} mentioned you and deleted the message": {
         "tr": "{user} sizi etiketleyip mesajı sildi",
         "ru": "{user} упомянул(а) вас и удалил(а) сообщение",
         "es": "{user} te mencionó y eliminó el mensaje",
         "fr": "{user} vous a mentionné puis a supprimé le message"
     },
+    "{user} moved from {from} to {to}": {
+        "tr": "{user}, {from} kanalından {to} kanalına geçti",
+        "ru": "{user} перешёл из {from} в {to}",
+        "es": "{user} pasó de {from} a {to}",
+        "fr": "{user} est passé de {from} à {to}"
+    },
+    "{user} moved to {channel}": {
+        "tr": "{user}, {channel} kanalına geçti",
+        "ru": "{user} перешёл в {channel}",
+        "es": "{user} se movió a {channel}",
+        "fr": "{user} est passé dans {channel}"
+    },
     "{user} removed you as a friend.": {
         "tr": "{user} sizi arkadaşlıktan çıkardı.",
         "ru": "{user} удалил(а) вас из друзей.",
         "es": "{user} te eliminó de sus amigos.",
         "fr": "{user} vous a retiré de ses amis."
+    },
+    "{user} started sharing their screen": {
+        "tr": "{user} ekranını paylaşmaya başladı",
+        "ru": "{user} начал демонстрацию экрана",
+        "es": "{user} empezó a compartir pantalla",
+        "fr": "{user} a commencé à partager son écran"
+    },
+    "{user} stopped sharing their screen": {
+        "tr": "{user} ekran paylaşımını durdurdu",
+        "ru": "{user} остановил демонстрацию экрана",
+        "es": "{user} dejó de compartir pantalla",
+        "fr": "{user} a arrêté de partager son écran"
+    },
+    "{user} turned off their camera": {
+        "tr": "{user} kamerasını kapattı",
+        "ru": "{user} выключил камеру",
+        "es": "{user} apagó su cámara",
+        "fr": "{user} a coupé sa caméra"
+    },
+    "{user} turned on their camera": {
+        "tr": "{user} kamerasını açtı",
+        "ru": "{user} включил камеру",
+        "es": "{user} encendió su cámara",
+        "fr": "{user} a activé sa caméra"
+    },
+    "{user} was server deafened": {
+        "tr": "{user} sunucuda sağırlaştırıldı",
+        "ru": "{user} получил серверное отключение звука",
+        "es": "{user} fue ensordecido en el servidor",
+        "fr": "Le son de {user} a été coupé par le serveur"
+    },
+    "{user} was server muted": {
+        "tr": "{user} sunucuda susturuldu",
+        "ru": "{user} получил серверное отключение микрофона",
+        "es": "{user} fue silenciado en el servidor",
+        "fr": "Le micro de {user} a été coupé par le serveur"
+    },
+    "{user} was server undeafened": {
+        "tr": "{user} sunucudaki sağırlaştırması kaldırıldı",
+        "ru": "С {user} снято серверное отключение звука",
+        "es": "{user} dejó de estar ensordecido en el servidor",
+        "fr": "Le son de {user} a été rétabli par le serveur"
+    },
+    "{user} was server unmuted": {
+        "tr": "{user} sunucudaki susturması kaldırıldı",
+        "ru": "С {user} снято серверное отключение микрофона",
+        "es": "{user} dejó de estar silenciado en el servidor",
+        "fr": "Le micro de {user} a été rétabli par le serveur"
+    },
+    "…and {count} more": {
+        "tr": "…ve {count} kişi daha",
+        "ru": "…и ещё {count}",
+        "es": "…y {count} más",
+        "fr": "…et {count} de plus"
     }
 }

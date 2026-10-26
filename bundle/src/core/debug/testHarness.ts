@@ -8,6 +8,7 @@
  */
 
 import { getEndcordPlugins } from "@plugins";
+import { FluxDispatcher } from "@metro/common";
 import { startEndcordPlugin, stopEndcordPlugin } from "@plugins/api";
 import { findByFilePath, findByName, findByProps, findByStoreName } from "@metro";
 import { NativeClientInfoModule as ClientInfoManager } from "@lib/api/native/modules";
@@ -71,7 +72,10 @@ const PATHS: string[] = [
 const STORES = [
     "UserStore", "PresenceStore", "RelationshipStore", "GuildStore", "ChannelStore", "MessageStore", "SelectedChannelStore",
     "AuthenticationStore", "MediaEngineStore", "ThemeStore", "PermissionStore", "EmojiStore", "StickersStore",
-    "GuildMemberStore", "UserProfileStore", "SessionsStore", "LocaleStore", "VoiceStateStore"
+    "GuildMemberStore", "UserProfileStore", "SessionsStore", "LocaleStore", "VoiceStateStore",
+    // Used by the plugins Endcord gained from Endcord PC
+    "DraftStore", "MaskedLinkStore", "MessageRequestStore", "GuildMemberCountStore", "DeveloperExperimentStore",
+    "SpotifyStore", "ReadStateStore", "GuildChannelStore", "ActiveJoinedThreadsStore", "GuildRoleStore", "PendingReplyStore",
 ];
 
 const PROPS: string[][] = [
@@ -89,9 +93,26 @@ const PROPS: string[][] = [
     ["removeRelationship"],
     ["leaveGuild"],
     ["closePrivateChannel"],
+    // Used by the plugins Endcord gained from Endcord PC
+    ["createPendingReply"],
+    ["getBestActiveInputForChannelId"],
+    ["CloudUpload"],
+    ["updateGuildNotificationSettings"],
+    ["idleTimeout", "handleVoiceStateUpdates"],
+    ["CustomStatusSetting"],
+    ["getUserAvatarURL", "getUserAvatarSource"],
+    ["getUserBannerURL"],
+    ["resolveProfileBadgeId", "toProfileBadgeLegacyId"],
+    ["Permissions", "ChannelTypes"],
+    ["selectVoiceChannel"],
+    ["createFriendInvite", "getAllFriendInvites"],
+    ["getAPIBaseURL", "get"],
+    ["addReaction", "removeReaction"],
+    ["jumpToMessage"],
+    ["jsx", "jsxs"],
 ];
 
-const NAMES = ["RowManager", "ProfileBanner", "HeaderAvatar", "GuildIcon", "UserProfileHeader", "ChatInput"];
+const NAMES = ["RowManager", "ProfileBanner", "HeaderAvatar", "GuildIcon", "UserProfileHeader", "ChatInput", "MessageRecord", "useBadges", "LongPressMessageActionSheet"];
 
 async function run() {
     report("env", {
@@ -162,8 +183,9 @@ async function run() {
         report("plugin", result);
     }
 
-    const { TextInput } = require("react-native");
+    const { TextInput, NativeModules } = require("react-native");
     report("textinput", { type: typeof TextInput, render: typeof TextInput?.render, keys: Object.keys(TextInput ?? {}).slice(0, 20) });
+    report("native", { soundManager: Object.keys(NativeModules.DCDSoundManager ?? {}).slice(0, 20) });
 
     await behaviour();
     await screens();
@@ -232,6 +254,88 @@ ${e.stack}` : String(e) });
         const out = cleanUrl("https://example.com/a?utm_source=x&id=5#top");
         return { out, pass: out === "https://example.com/a?id=5#top" };
     });
+
+    const hooks = require("@plugins/hooks");
+    const byName = (name: string) => getEndcordPlugins().find(p => p.name === name)!;
+    const withPlugins = async <T>(names: string[], fn: () => Promise<T> | T): Promise<T> => {
+        const started = names.map(byName);
+        for (const p of started) await startEndcordPlugin(p);
+        try {
+            return await fn();
+        } finally {
+            for (const p of started.reverse()) stopEndcordPlugin(p);
+        }
+    };
+
+    await check("send transforms run in order", () => withPlugins(["WriteUpperCase", "ClearURLs", "NormalizeMessageLinks"], async () => {
+        const message = { content: "hello there. see https://canary.discord.com/channels/1/2/3?utm_source=x" };
+        const sent = await hooks.runTransforms("1111111111111111111", message, false, {});
+        const expected = "Hello there. See https://discord.com/channels/1/2/3";
+        return { sent, out: message.content, pass: sent === true && message.content === expected };
+    }));
+
+    await check("send transforms can cancel and set flags", () => withPlugins(["SilentMessageToggle"], async () => {
+        const silent = byName("SilentMessageToggle");
+        (silent.store as any).enabled = true;
+        (silent.store as any).autoDisable = true;
+        const options: any = {};
+        await hooks.runTransforms("1111111111111111111", { content: "shh" }, false, options);
+        const flagged = options.flags === 4096;
+        const turnedOff = (silent.store as any).enabled === false;
+        return { flags: options.flags, turnedOff, pass: flagged && turnedOff };
+    }));
+
+    await check("text commands register", () => withPlugins(["BoldText", "ShipCalc", "Calculator", "MoreCommands"], () => {
+        const { commands } = require("@metro/common");
+        const all = commands.getBuiltInCommands(1, true, false).map((c: any) => c.name);
+        const wanted = ["bold", "ship", "calc", "choose", "morse"];
+        const { calculate } = require("@plugins/text");
+        const { toBold, morse } = require("@plugins/text");
+        return {
+            found: wanted.filter(n => all.includes(n)),
+            calc: calculate("(2 + 3) * 4 - 10 % 4"),
+            bold: toBold("Ab1"),
+            morse: morse("SOS"),
+            pass: wanted.every(n => all.includes(n)) && calculate("(2 + 3) * 4 - 10 % 4") === 18 && morse("SOS") === "... --- ...",
+        };
+    }));
+
+    await check("incoming messages are filtered", () => withPlugins(["ClientSideBlock", "BlockKeywords"], async () => {
+        const MessageStore = findByStoreName("MessageStore");
+        (byName("ClientSideBlock").store as any).usersToBlock = "4444444444444444444";
+        (byName("BlockKeywords").store as any).blockedWords = "forbiddenword";
+        const channelId = "1111111111111111111";
+        const author = (id: string) => ({ id, username: "endcord-test", discriminator: "0", avatar: null, bot: false });
+        const message = (id: string, from: string, content: string) => ({
+            id, channel_id: channelId, content, type: 0, flags: 0, author: author(from), timestamp: new Date().toISOString(),
+            edited_timestamp: null, attachments: [], embeds: [], mentions: [], mention_roles: [], pinned: false,
+            mention_everyone: false, tts: false, components: [], reactions: [],
+        });
+        FluxDispatcher.dispatch({ type: "MESSAGE_CREATE", channelId, message: message("5555555555555555551", "4444444444444444444", "from a hidden user"), optimistic: false, isPushNotification: false });
+        FluxDispatcher.dispatch({ type: "MESSAGE_CREATE", channelId, message: message("5555555555555555552", "3333333333333333333", "this has forbiddenword in it"), optimistic: false, isPushNotification: false });
+        FluxDispatcher.dispatch({ type: "MESSAGE_CREATE", channelId, message: message("5555555555555555553", "3333333333333333333", "a normal message"), optimistic: false, isPushNotification: false });
+        await wait(100);
+        const hiddenUser = !MessageStore.getMessage(channelId, "5555555555555555551");
+        const hiddenWord = !MessageStore.getMessage(channelId, "5555555555555555552");
+        const kept = !!MessageStore.getMessage(channelId, "5555555555555555553");
+        (byName("ClientSideBlock").store as any).usersToBlock = "";
+        (byName("BlockKeywords").store as any).blockedWords = "";
+        return { hiddenUser, hiddenWord, kept, pass: hiddenUser && hiddenWord && kept };
+    }));
+
+    await check("message rows", () => withPlugins(["PinIcon", "WordCount", "RealtimeTimestamps", "IrcColors"], () => {
+        const MessageStore = findByStoreName("MessageStore");
+        const RowManager = findByName("RowManager");
+        const record = MessageStore.getMessage("1111111111111111111", "5555555555555555553") ?? MessageStore.getMessage("1111111111111111111", "2222222222222222222");
+        if (!record) throw new Error("No test message to draw");
+        const manager = new RowManager();
+        manager.setOptions?.({ renderEmbeds: true, renderReactions: true, renderReplies: true, inlineAttachmentMedia: true, inlineEmbedMedia: true });
+        const row = manager.generate({ rowType: 1, changeType: 0, message: record, isFirst: true, canShowImages: true, canAddNewReactions: false, roleStyle: "username" });
+        const fields: Record<string, string> = {};
+        for (const [key, value] of Object.entries(row?.message ?? {})) fields[key] = Array.isArray(value) ? `array(${(value as any[]).length})` : typeof value === "string" ? `string: ${String(value).slice(0, 40)}` : typeof value;
+        const timestamp = String(row?.message?.timestamp ?? "");
+        return { type: row?.type, fields, pass: row?.type === 1 && /words?/.test(timestamp) && /\d{1,2}[:.]\d{2}[:.]\d{2}/.test(timestamp) };
+    }));
 }
 
 /** Shows Endcord's pages one at a time; the workflow takes a screenshot of each when it sees the "shot" line */
@@ -248,6 +352,9 @@ async function screens() {
         ["messagelogger", pluginPage("endcord.message-logger")],
         ["fakenitro", pluginPage("endcord.fake-nitro")],
         ["themelibrary", pluginPage("endcord.theme-library")],
+        ["textreplace", pluginPage("endcord.text-replace")],
+        ["customrpc", pluginPage("endcord.custom-rpc")],
+        ["wellbeing", pluginPage("endcord.wellbeing")],
         ["themes", require("@core/ui/settings/pages/Themes").default],
     ];
 

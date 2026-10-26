@@ -90,7 +90,9 @@ const plugin = definePlugin({
         if (typeof RowManager?.prototype?.generate !== "function") throw new Error("Discord's message rows weren't found");
 
         cleanup(
-            onAction<{ id: string; channelId: string; guildId?: string; }>("MESSAGE_DELETE", payload => {
+            onAction<{ id: string; channelId: string; guildId?: string; endcordLocal?: boolean; }>("MESSAGE_DELETE", payload => {
+                // Messages other plugins hide from your chat weren't deleted
+                if (payload.endcordLocal) return;
                 if (!store.logDeletes || !keepDeleted(payload.channelId, payload.id, payload.guildId)) return;
                 // Turned into an update, so Discord keeps the message and redraws it
                 return { type: "MESSAGE_UPDATE", message: { id: payload.id, channel_id: payload.channelId }, guildId: payload.guildId };

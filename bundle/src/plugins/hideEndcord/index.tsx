@@ -8,8 +8,8 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { registerCommand } from "@lib/api/commands";
 import { showToast } from "@lib/ui/toasts";
-import { sectionVisibility } from "@ui/settings";
 import { Text } from "@metro/common/components";
+import { sectionVisibility } from "@ui/settings";
 
 import { definePlugin, ENDCORD_AUTHOR, onSettingChange } from "../api";
 

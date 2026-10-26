@@ -15,7 +15,14 @@ let intercepts: Intercept[] = [];
 export function injectFluxInterceptor() {
     const cb = (payload: any) => {
         for (const intercept of intercepts) {
-            const res = intercept(payload);
+            let res: unknown;
+            try {
+                res = intercept(payload);
+            } catch (e) {
+                // One broken interceptor must not stop Discord from handling the action
+                console.error(`[Endcord] a Flux interceptor failed on ${payload?.type}`, e);
+                continue;
+            }
 
             // nullish -> nothing, falsy -> block, object -> modify
             if (res == null) {
@@ -40,8 +47,10 @@ export function injectFluxInterceptor() {
  * Intercept Flux dispatches. Return type affects the end result, where
  * nullish -> nothing, falsy -> block, object -> modify
  */
-export function intercept(cb: Intercept) {
-    intercepts.push(cb);
+export function intercept(cb: Intercept, options?: { first?: boolean; }) {
+    // First, for interceptors that must see an action before others change it
+    if (options?.first) intercepts.unshift(cb);
+    else intercepts.push(cb);
 
     return () => {
         intercepts = intercepts.filter(i => i !== cb);

@@ -6,8 +6,8 @@
  * The cat and its animation are from oneko.js by adryd (MIT), https://github.com/adryd325/oneko.js
  */
 
-import { addOverlay, onTouch } from "@core/overlay";
 import { tx } from "@core/i18n";
+import { addOverlay, onTouch } from "@core/overlay";
 import { useEffect, useRef, useState } from "react";
 import { Dimensions, Image, View } from "react-native";
 

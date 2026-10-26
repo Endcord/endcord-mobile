@@ -7,22 +7,43 @@
 import type { PluginInstanceInternal } from "@lib/addons/plugins/types";
 import { createElement } from "react";
 
+import Actions from "./actions";
 import { EndcordPlugin, startEndcordPlugin, stopEndcordPlugin } from "./api";
 import ClearURLs from "./clearUrls";
+import Compose from "./compose";
 import CustomProfile from "./customProfile";
+import Effects from "./effects";
 import FakeMute from "./fakeMute";
 import FakeNitro from "./fakeNitro";
+import Filters from "./filters";
 import HideEndcord from "./hideEndcord";
+import Lookup from "./lookup";
 import MessageLogger from "./messageLogger";
+import Notify from "./notify";
 import Oneko from "./oneko";
 import PlatformIndicators from "./platformIndicators";
+import Presence from "./presence";
+import Profiles from "./profiles";
 import RelationshipNotifier from "./relationshipNotifier";
+import Rows from "./rows";
+import Schedule from "./schedule";
 import SilentTyping from "./silentTyping";
 import SmoothType from "./smoothType";
+import Social from "./social";
+import Text from "./text";
 import ThemeLibrary from "./themeLibrary";
+import Tools from "./tools";
 import ViewIcons from "./viewIcons";
+import Voice from "./voice";
 
-/** Endcord's built-in plugins, in the order of Endcord PC's popular list, then by name */
+/** The rest of Endcord PC's plugins that work on mobile, grouped by what they hook into */
+const others: EndcordPlugin<any>[] = [
+    ClearURLs,
+    ...Text, ...Lookup, ...Compose, ...Filters, ...Notify, ...Actions, ...Schedule, ...Rows,
+    ...Presence, ...Effects, ...Voice, ...Profiles, ...Tools, ...Social,
+].sort((a, b) => a.name.localeCompare(b.name, "en", { sensitivity: "base" }));
+
+/** Endcord's built-in plugins: Endcord PC's popular list in its order, then the others by name */
 const plugins: EndcordPlugin<any>[] = [
     CustomProfile,
     MessageLogger,
@@ -36,8 +57,7 @@ const plugins: EndcordPlugin<any>[] = [
     RelationshipNotifier,
     SilentTyping,
     FakeMute,
-    // Not in Endcord PC's popular list
-    ClearURLs,
+    ...others,
 ];
 
 export function getEndcordPlugins(): EndcordPlugin<any>[] {

@@ -1,5 +1,7 @@
 export const DISCORD_SERVER = "https://discord.gg/endcord";
 export const GITHUB = "https://github.com/rootpoii/endcord-mobile/tree/next";
+/** Endcord Classic: Aliucord-based, on an older Discord, with Aliucord plugin support */
+export const CLASSIC_URL = "https://github.com/rootpoii/endcord-mobile/tree/main";
 /** Where the Build workflow publishes Endcord for the current Discord app */
 export const BUILDS_URL = "https://raw.githubusercontent.com/rootpoii/endcord-mobile/builds-next";
 export const HTTP_REGEX = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_+.~#?&/=]*)$/;

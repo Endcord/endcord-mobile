@@ -2,20 +2,20 @@ import { Strings, t } from "@core/i18n";
 import AddonPage from "@core/ui/components/AddonPage";
 import PluginCard from "@core/ui/settings/pages/Plugins/components/PluginCard";
 import { VdPluginManager } from "@core/vendetta/plugins";
-import { useProxy } from "@core/vendetta/storage";
+import { createMMKVBackend, createStorage, useProxy, wrapSync } from "@core/vendetta/storage";
 import { isCorePlugin, isPluginInstalled, pluginSettings, registeredPlugins } from "@lib/addons/plugins";
 import { Author } from "@lib/addons/types";
 import { findAssetId } from "@lib/api/assets";
 import { settings } from "@lib/api/settings";
 import { useObservable } from "@lib/api/storage";
 import { showToast } from "@lib/ui/toasts";
-import { BUNNY_PROXY_PREFIX, VD_PROXY_PREFIX } from "@lib/utils/constants";
+import { BUNNY_PROXY_PREFIX, CLASSIC_URL, VD_PROXY_PREFIX } from "@lib/utils/constants";
 import { lazyDestructure } from "@lib/utils/lazy";
 import { findByProps } from "@metro";
 import { NavigationNative } from "@metro/common";
 import { Button, Card, FlashList, IconButton, Text } from "@metro/common/components";
 import { ComponentProps, createContext, useContext, useState } from "react";
-import { ScrollView, View } from "react-native";
+import { Linking, ScrollView, View } from "react-native";
 
 import { UnifiedPluginModel } from "./models";
 import unifyBunnyPlugin from "./models/bunny";
@@ -48,6 +48,24 @@ function Stat({ label, value, accent }: { label: string; value: number; accent?:
     </Card>;
 }
 
+const notices = wrapSync(createStorage<{ aliucordDismissed?: boolean; }>(createMMKVBackend("ENDCORD_NOTICES", {})));
+
+/** Aliucord plugins are built for Aliucord's older Discord; they can't run on this one */
+function AliucordNotice() {
+    useProxy(notices);
+    if (notices.aliucordDismissed) return null;
+    return <Card style={{ gap: 8 }}>
+        <Text variant="text-md/semibold" color="text-strong">{t("Looking for Aliucord plugins?")}</Text>
+        <Text variant="text-sm/medium" color="text-muted">
+            {t("Aliucord plugins only work on the older Discord that Aliucord is built on, so they can't run here. This Endcord has Endcord's own plugins for the latest Discord. For Aliucord plugins, use Endcord Classic, which runs both.")}
+        </Text>
+        <View style={{ flexDirection: "row", gap: 8 }}>
+            <Button size="sm" variant="secondary" text={t("Get Endcord Classic")} icon={findAssetId("LinkExternalSmallIcon")} onPress={() => Linking.openURL(CLASSIC_URL)} />
+            <Button size="sm" variant="tertiary" text={t("Got it")} onPress={() => void (notices.aliucordDismissed = true)} />
+        </View>
+    </Card>;
+}
+
 /** Counters and filters, like Endcord PC's plugin manager */
 function FiltersHeader() {
     const f = useContext(FiltersContext);
@@ -59,6 +77,7 @@ function FiltersHeader() {
     ];
 
     return <View style={{ gap: 10, marginTop: 12 }}>
+        <AliucordNotice />
         <View style={{ flexDirection: "row", gap: 8 }}>
             <Stat label={t("Total Plugins:")} value={f.total} />
             <Stat label={t("Enabled Plugins:")} value={f.enabled} accent />
