@@ -140,6 +140,16 @@ def install_flow(source):
             tap(confirm)
             time.sleep(3)
             continue
+        # Android asks once to allow installs from the installer, like it does for a real user
+        if find(r".*install unknown apps.*", all_nodes):
+            screenshot(f"installer-{source}-{shot}-unknown-sources")
+            shot += 1
+            tap_text(r"Settings", 10)
+            if tap_text(r"Allow from this source", 15):
+                time.sleep(1)
+            adb("shell", "input", "keyevent", "KEYCODE_BACK")
+            time.sleep(3)
+            continue
         if find(r"Installed successfully|.*successfully.*", all_nodes) or find(r"Launch", all_nodes):
             screenshot(f"installer-{source}-{shot}-done")
             return True

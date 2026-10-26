@@ -78,6 +78,7 @@ if python3 "$SCRIPTS/ui.py" install download; then
 else
     fail "download: installer didn't finish"
 fi
+adb logcat -d > results/installer-download-logcat.txt
 adb shell pm list packages | grep -q "$ENDCORD_PKG" && pass "download: Endcord installed" || fail "download: Endcord not installed"
 adb shell am force-stop $INSTALLER_PKG
 endstep
@@ -99,6 +100,7 @@ if [ -d discord ]; then
     else
         fail "installed: installer didn't finish"
     fi
+    adb logcat -d > results/installer-installed-logcat.txt
     adb shell pm list packages | grep -q "$ENDCORD_PKG" && pass "installed: Endcord installed" || fail "installed: Endcord not installed"
     adb shell am force-stop $INSTALLER_PKG
     if adb shell pm list packages | grep -q "$ENDCORD_PKG"; then
