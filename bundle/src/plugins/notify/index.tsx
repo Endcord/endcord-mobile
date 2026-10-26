@@ -282,17 +282,34 @@ const AutoReact = definePlugin({
         channels: { type: "string", label: tx("Only in these channels"), description: tx("Channel IDs separated by commas; empty means everywhere"), default: "" },
     },
     start({ store, cleanup }) {
-        // Reactions are queued so a busy chat doesn't hit Discord's rate limit
+        // Reactions are queued so a busy chat doesn't hit Discord's rate limit; the queue only ticks while it has some
         const queue: Array<() => void> = [];
-        const timer = setInterval(() => queue.shift()?.(), 400);
-        cleanup(() => clearInterval(timer), subscribe("MESSAGE_CREATE", ({ message, optimistic }) => {
+        let timer: ReturnType<typeof setInterval> | undefined;
+        const enqueue = (fn: () => void) => {
+            queue.push(fn);
+            timer ??= setInterval(() => {
+                queue.shift()?.();
+                if (!queue.length) {
+                    clearInterval(timer);
+                    timer = undefined;
+                }
+            }, 400);
+        };
+        // Every message arrives here, so the rules and channels are parsed once per change, not once per message
+        let rulesText: string | undefined, rules: ReturnType<typeof parseRules> = [];
+        let channelsText: string | undefined, only = new Set<string>();
+        cleanup(() => {
+            clearInterval(timer);
+            queue.length = 0;
+        }, subscribe("MESSAGE_CREATE", ({ message, optimistic }) => {
             if (optimistic || !message?.content) return;
             if (!store.reactToSelf && message.author?.id === currentUserId()) return;
-            const only = ids(store.channels);
+            if (channelsText !== store.channels) only = ids(channelsText = store.channels);
             if (only.size && !only.has(message.channel_id)) return;
+            if (rulesText !== store.rules) rules = parseRules(rulesText = store.rules);
             const content = message.content.toLowerCase();
-            for (const { keyword, emoji } of parseRules(store.rules)) {
-                if (content.includes(keyword)) queue.push(() => react(message.channel_id, message.id, emoji));
+            for (const { keyword, emoji } of rules) {
+                if (content.includes(keyword)) enqueue(() => react(message.channel_id, message.id, emoji));
             }
         }));
     },

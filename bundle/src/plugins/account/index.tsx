@@ -19,7 +19,7 @@ import { Button, Stack, TableRow, TableRowGroup, Text } from "@metro/common/comp
 import { version } from "bunny-build-info";
 import { View } from "react-native";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin, ENDCORD_AUTHOR, onSettingChange } from "../api";
 import { addChatButton, currentUserId, getChatInputActionButton, getStore, onAction, subscribe } from "../common";
 import { api, command, describeError, displayName, generatedIcon, getChannel, getGuild, getUser, jumpTo } from "../hooks";
 import { manifest } from "../manifest";
@@ -54,15 +54,15 @@ const ClanSwitcher = definePlugin({
             api("put", "/users/@me/clan", { identity_guild_id: guildId, identity_enabled: true }).catch(e => logger.warn("Couldn't switch the server tag", e));
         };
         let timer = setInterval(next, store.intervalSeconds * 1000);
-        let interval = store.intervalSeconds;
-        // The interval applies without restarting the plugin
-        const watch = setInterval(() => {
-            if (interval === store.intervalSeconds) return;
-            interval = store.intervalSeconds;
-            clearInterval(timer);
-            timer = setInterval(next, interval * 1000);
-        }, 5000);
-        cleanup(() => clearInterval(timer), () => clearInterval(watch));
+        cleanup(
+            () => clearInterval(timer),
+            // A new interval applies without restarting the plugin
+            onSettingChange(store, key => {
+                if (key !== "intervalSeconds") return;
+                clearInterval(timer);
+                timer = setInterval(next, store.intervalSeconds * 1000);
+            }),
+        );
     },
 });
 
