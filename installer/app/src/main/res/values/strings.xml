@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-  <string name="app_name">Endcord Installer</string>
+  <string name="app_name">Endcord Classic Installer</string>
   <string name="app_description">Endcord for Android, built on the classic Discord app</string>
 
   <string name="endcord" translatable="false">Endcord</string>
