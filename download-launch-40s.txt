@@ -1,0 +1,25 @@
+messagelogger
+Keeps deleted messages in the chat and shows earlier versions of edited ones.
+Settings
+Log deleted messages, 
+Log deleted messages
+Log edited messages, 
+Log edited messages
+Ignore bots, Don't log messages from bots
+Ignore bots
+Don't log messages from bots
+Ignore yourself, Don't log your own messages
+Ignore yourself
+Don't log your own messages
+Ghost ping alerts, Show a notice when someone deletes a message that mentioned you
+Ghost ping alerts
+Show a notice when someone deletes a message that mentioned you
+Ignored users
+e.g. 123456789012345678, 234567890123456789
+User IDs whose messages aren't logged, separated by commas
+WELCOME TO DISCORD
+Hang out, play games, or just talk. Tap below to get started!
+Register
+Register
+Log In
+Log In

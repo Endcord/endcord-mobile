@@ -1,0 +1,26 @@
+fakenitro
+Use any emoji and sticker without Nitro: the ones you can't use are sent as links.
+Settings
+Emojis, Send emojis you can't use as links
+Emojis
+Send emojis you can't use as links
+Stickers, Send stickers you can't use as links
+Stickers
+Send stickers you can't use as links
+Emoji size
+32 px, 
+32 px
+48 px, 
+48 px
+64 px, 
+64 px
+96 px, 
+96 px
+128 px, 
+128 px
+WELCOME TO DISCORD
+Hang out, play games, or just talk. Tap below to get started!
+Register
+Register
+Log In
+Log In

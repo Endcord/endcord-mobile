@@ -1,0 +1,24 @@
+wellbeing
+A gentle, private dashboard of how you use Discord — screen time, messages and calm controls. Everything stays on your computer.
+Break reminder (minutes)
+45
+Remind me to take a break after this long in one go; 0 turns it off
+Today
+Screen time, 0m, Messages sent, 0
+Screen time
+0m
+Messages sent
+0
+Last 7 days
+Daily average, 0m, Monday, Oct 26, 0 messages, 0m
+Daily average
+0m
+Monday, Oct 26
+0 messages
+0m
+WELCOME TO DISCORD
+Hang out, play games, or just talk. Tap below to get started!
+Register
+Register
+Log In
+Log In
