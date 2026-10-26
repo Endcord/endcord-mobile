@@ -8,15 +8,23 @@
 
 import { t, tx } from "@core/i18n";
 import { after } from "@lib/api/patcher";
-import { safeFetch } from "@lib/utils";
 import { findByProps } from "@metro";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { getStore } from "../common";
-import { addMessageAction, botMessage, command, copy } from "../hooks";
+import { addMessageAction, botMessage, command, copy, redrawChannel } from "../hooks";
 import { extendProfileBadges, linkedBadge } from "../profileBadges";
+import { remoteJson } from "../remote";
 
-const HOUR = 60 * 60 * 1000;
+/** What shows avatars, banners and badges draws them again, after the data for them loaded */
+function redrawProfiles() {
+    for (const name of ["UserStore", "UserProfileStore"]) {
+        try {
+            getStore(name)?.emitChange?.();
+        } catch { }
+    }
+    redrawChannel();
+}
 
 const UserPFP = definePlugin({
     id: "endcord.userpfp",
@@ -28,21 +36,19 @@ const UserPFP = definePlugin({
     start({ cleanup, logger }) {
         const icons = findByProps("getUserAvatarURL", "getUserAvatarSource") ?? findByProps("getUserAvatarURL");
         if (typeof icons?.getUserAvatarURL !== "function") throw new Error("Discord's avatar helpers weren't found");
-        let avatars: Record<string, string> = {};
-        const load = () => safeFetch("https://userpfp.github.io/UserPFP/source/data.json")
-            .then(r => r.json())
-            .then(data => void (avatars = data?.avatars ?? {}))
-            .catch(e => logger.warn("Couldn't load UserPFP's avatars", e));
-        // In the background, so a slow or missing connection doesn't hold up Discord's start
-        load();
+        // Loaded the first time an avatar is drawn, so a slow or missing connection doesn't hold up Discord's start
+        const avatars = remoteJson("https://userpfp.github.io/UserPFP/source/data.json", {
+            parse: (data): Record<string, string> => data?.avatars ?? {},
+            onError: e => logger.warn("Couldn't load UserPFP's avatars", e),
+        });
         const custom = (user: any, animated?: boolean) => {
-            const url = user?.id && avatars[user.id];
+            const url = user?.id && avatars.get()?.[user.id];
             if (!url) return;
             return !animated && /\.gif(\?|$)/.test(url) ? url.replace(/\.gif(\?|$)/, ".png$1") : url;
         };
-        const timer = setInterval(load, HOUR);
         cleanup(
-            () => clearInterval(timer),
+            avatars.clear,
+            avatars.onLoad(redrawProfiles),
             after("getUserAvatarURL", icons, ([user, animated], url) => custom(user, animated) ?? url),
         );
         if (typeof icons.getUserAvatarSource === "function") {
@@ -67,20 +73,20 @@ const USRBG = definePlugin({
     start({ store, cleanup, logger }) {
         const banners = findByProps("getUserBannerURL");
         if (typeof banners?.getUserBannerURL !== "function") throw new Error("Discord's banner helpers weren't found");
-        let data: { endpoint?: string; bucket?: string; prefix?: string; users?: Record<string, string>; } = {};
-        // Loaded in the background and again every hour, so being offline at startup doesn't turn the plugin off
-        const load = () => safeFetch("https://usrbg.is-hardly.online/users", { cache: "no-store" })
-            .then(r => r.json())
-            .then(json => void (data = json ?? {}))
-            .catch(e => logger.warn("Couldn't load USRBG's banners", e));
-        load();
-        const timer = setInterval(load, HOUR);
+        // Some 6 MB: loaded the first time a banner is drawn rather than at startup, and only again when it changed
+        const list = remoteJson("https://usrbg.is-hardly.online/users", {
+            parse: (json): { endpoint?: string; bucket?: string; prefix?: string; users?: Record<string, string>; } => json ?? {},
+            onError: e => logger.warn("Couldn't load USRBG's banners", e),
+        });
         cleanup(
-            () => clearInterval(timer),
+            list.clear,
+            list.onLoad(redrawProfiles),
             after("getUserBannerURL", banners, ([user], url) => {
                 const id = user?.id;
-                const etag = id && data.users?.[id];
-                if (!etag || store.nitroFirst && url) return url;
+                if (!id || store.nitroFirst && url) return url;
+                const data = list.get();
+                const etag = data?.users?.[id];
+                if (!etag) return url;
                 return `${data.endpoint}/${data.bucket}/${data.prefix}${id}?${etag}`;
             }),
         );
@@ -168,17 +174,14 @@ const GlobalBadges = definePlugin({
         },
     },
     start({ store, cleanup, logger }) {
-        let users: Record<string, GlobalBadge[]> = {};
-        // Loaded in the background and again every hour, so being offline at startup doesn't turn the plugin off
-        const load = () => safeFetch("https://badges.equicord.org/users", { cache: "no-cache" })
-            .then(r => r.json())
-            .then(json => void (users = json?.users ?? {}))
-            .catch(e => logger.warn("Couldn't load the global badges", e));
-        load();
-        const timer = setInterval(load, HOUR);
-        cleanup(() => clearInterval(timer));
+        // Almost 2 MB: loaded the first time a profile's badges are drawn, and only again when it changed
+        const list = remoteJson("https://badges.equicord.org/users", {
+            parse: (json): Record<string, GlobalBadge[]> => json?.users ?? {},
+            onError: e => logger.warn("Couldn't load the global badges", e),
+        });
+        cleanup(list.clear, list.onLoad(redrawProfiles));
         cleanup(extendProfileBadges("global-badges", (userId, badges) => {
-            const extra = (users[userId] || []).filter((b: GlobalBadge) => b?.badge && /^https?:\/\//.test(b.badge) && b.mod?.toLowerCase() !== "endcord");
+            const extra = (list.get()?.[userId] || []).filter((b: GlobalBadge) => b?.badge && /^https:\/\//.test(b.badge) && b.mod?.toLowerCase() !== "endcord");
             if (!extra.length) return badges;
             return [...badges, ...extra.map((b: GlobalBadge) => {
                 const label = store.showModStyle === "prefix" ? `${b.mod} - ${b.tooltip}` : store.showModStyle === "suffix" ? `${b.tooltip} - ${b.mod}` : b.tooltip;
