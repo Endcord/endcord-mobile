@@ -557,7 +557,6 @@ export function command(def: {
             required: o.required ?? false,
             choices: o.choices?.map(c => ({ name: c.name, displayName: c.name, value: c.value })),
         })) as any,
-        shouldHide: () => false,
         async execute(raw: Argument[], ctx: CommandContext) {
             const args: CommandArgs = {};
             for (const a of raw ?? []) args[a.name] = a.value;

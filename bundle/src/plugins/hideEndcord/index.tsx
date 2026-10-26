@@ -39,7 +39,6 @@ const plugin = definePlugin({
                 name: "hideendcord",
                 description: t("Show or hide Endcord's entries in Discord's settings"),
                 options: [],
-                shouldHide: () => false,
                 execute() {
                     store.hidden = !store.hidden;
                     showToast(store.hidden ? t("Endcord is hidden from settings") : t("Endcord is shown in settings again"), findAssetId(store.hidden ? "EyeSlashIcon" : "EyeIcon"));

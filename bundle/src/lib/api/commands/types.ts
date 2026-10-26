@@ -20,12 +20,16 @@ export interface ApplicationCommand {
     inputType?: ApplicationCommandInputType;
     type?: ApplicationCommandType;
     __bunny?: {
-        shouldHide: () => boolean;
+        shouldHide?: () => boolean;
     };
 }
 
 export interface BunnyApplicationCommand extends ApplicationCommand {
-    shouldHide: () => boolean;
+    /**
+     * Despite its name, the command is listed unless this returns false: Revenge's eval command passes "show while
+     * it's enabled". Leave it out for a command that's always there.
+     */
+    shouldHide?: () => boolean;
 }
 
 export enum ApplicationCommandInputType {

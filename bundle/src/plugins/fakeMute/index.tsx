@@ -110,7 +110,6 @@ const plugin = definePlugin({
                 name: "fakemute",
                 description: t("Appear muted while your microphone keeps working"),
                 options: [booleanOption()],
-                shouldHide: () => false,
                 execute(args, ctx) {
                     set("fakeMute", args.find(a => a.name === "value")?.value as unknown as boolean | undefined);
                     messageUtil.sendBotMessage(ctx.channel.id, store.fakeMute ? t("Fake mute is on") : t("Fake mute is off"));
@@ -120,7 +119,6 @@ const plugin = definePlugin({
                 name: "fakedeafen",
                 description: t("Appear deafened while you can still hear"),
                 options: [booleanOption()],
-                shouldHide: () => false,
                 execute(args, ctx) {
                     set("fakeDeafen", args.find(a => a.name === "value")?.value as unknown as boolean | undefined);
                     messageUtil.sendBotMessage(ctx.channel.id, store.fakeDeafen ? t("Fake deafen is on") : t("Fake deafen is off"));

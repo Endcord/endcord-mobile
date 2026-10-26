@@ -73,7 +73,6 @@ const plugin = definePlugin({
                     type: ApplicationCommandOptionType.BOOLEAN,
                     required: false,
                 } as any],
-                shouldHide: () => false,
                 execute(args, ctx) {
                     const value = args.find(a => a.name === "value")?.value as unknown as boolean | undefined;
                     store.isEnabled = value ?? !store.isEnabled;
