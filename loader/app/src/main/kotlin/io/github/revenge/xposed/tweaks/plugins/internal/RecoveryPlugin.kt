@@ -50,9 +50,9 @@ internal val recoveryPlugin =
  */
 fun showRecoveryAlert(context: Context) {
     AlertDialog.Builder(context)
-        .setTitle("Endcord Recovery Options")
+        .setTitle(Strings["recovery_title"])
         .setItems(
-            arrayOf("Reload", "Enter Recovery Mode", "Delete Script", "Reset Loader Config"),
+            arrayOf(Strings["recovery_reload"], Strings["recovery_enter"], Strings["recovery_delete_script"], Strings["recovery_reset_config"]),
         ) { _, which ->
             when (which) {
                 0 -> reloadApp()
@@ -99,10 +99,10 @@ fun PluginScope.addBridgeMethods() {
             val clip = ClipData.newPlainText("Stack Trace", errorString)
 
             AlertDialog.Builder(act)
-                .setTitle("Endcord Error")
+                .setTitle(Strings["error_title"])
                 .setMessage(
                     """
-                        Revenge: $version
+                        Endcord: $version
                         Discord: ${act.versionName()} (${act.versionCode()})
                         Device: ${Build.MANUFACTURER} ${Build.MODEL}
                         
@@ -113,10 +113,10 @@ fun PluginScope.addBridgeMethods() {
                 .setNeutralButton(android.R.string.copy) { dialog, _ ->
                     @Suppress("UsePropertyAccessSyntax")
                     clipboard.setPrimaryClip(clip)
-                    Toast.makeText(act, "Copied stack trace", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(act, Strings["copied_stack_trace"], Toast.LENGTH_SHORT).show()
                     dialog.dismiss()
                 }
-                .setNegativeButton("Recovery") { dialog, _ ->
+                .setNegativeButton(Strings["recovery"]) { dialog, _ ->
                     showRecoveryAlert(act)
                     dialog.dismiss()
                 }
@@ -129,15 +129,16 @@ fun PluginScope.addBridgeMethods() {
 
 fun recoveryHook() {
     var holdRunnable: Runnable? = null
+    var hintRunnable: Runnable? = null
     val handler = Handler(Looper.getMainLooper())
 
     withAppActivity {
         if (crashRecoveryTriggered) {
             AlertDialog.Builder(it)
-                .setTitle("Booted in Recovery Mode")
-                .setMessage("Endcord detected consecutive crashes and has booted into Recovery Mode.")
+                .setTitle(Strings["recovery_booted_title"])
+                .setMessage(Strings["recovery_booted_message"])
                 .setPositiveButton(android.R.string.ok) { d, _ -> d.dismiss() }
-                .setNeutralButton("Exit Recovery Mode") { _, _ -> reloadApp() }
+                .setNeutralButton(Strings["recovery_exit"]) { _, _ -> reloadApp() }
                 .show()
         }
 
@@ -150,21 +151,16 @@ fun recoveryHook() {
                     when (event.actionMasked) {
                         // 3s hold timer when 2nd finger touches screen
                         MotionEvent.ACTION_POINTER_DOWN -> {
-                            handler.postDelayed({
-                                Toast.makeText(
-                                    activity,
-                                    "Keep holding to trigger Recovery Options...",
-                                    Toast.LENGTH_SHORT
-                                )
-                                    .show()
-                            }, 1500)
+                            hintRunnable = Runnable {
+                                Toast.makeText(activity, Strings["recovery_hold"], Toast.LENGTH_SHORT).show()
+                            }.also { handler.postDelayed(it, 1500) }
 
-                            holdRunnable = { showRecoveryAlert(activity) }
-                            handler.postDelayed(holdRunnable, 3000)
+                            holdRunnable = Runnable { showRecoveryAlert(activity) }.also { handler.postDelayed(it, 3000) }
                         }
 
                         // Lifted finger early
                         MotionEvent.ACTION_POINTER_UP, MotionEvent.ACTION_CANCEL -> {
+                            hintRunnable?.let { handler.removeCallbacks(it) }
                             holdRunnable?.let { handler.removeCallbacks(it) }
                         }
                     }
