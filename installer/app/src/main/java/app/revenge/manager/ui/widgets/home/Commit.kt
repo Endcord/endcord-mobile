@@ -46,16 +46,20 @@ fun Commit(
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                AsyncImage(
-                    model = commit.author?.avatar ?: "https://github.com/ghost.png",
-                    contentDescription = commit.author?.username ?: "ghost",
-                    modifier = Modifier
-                        .size(20.dp)
-                        .clip(CircleShape)
-                )
+                // Commits made with an email GitHub doesn't know have no account; their git name is used then
+                val name = commit.author?.username ?: commit.info.author?.name ?: "Endcord"
+                commit.author?.avatar?.let { avatar ->
+                    AsyncImage(
+                        model = avatar,
+                        contentDescription = name,
+                        modifier = Modifier
+                            .size(20.dp)
+                            .clip(CircleShape)
+                    )
+                }
 
                 Text(
-                    text = commit.author?.username ?: "ghost",
+                    text = name,
                     style = MaterialTheme.typography.labelMedium
                 )
             }

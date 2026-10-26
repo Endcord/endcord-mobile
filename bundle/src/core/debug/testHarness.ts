@@ -164,12 +164,74 @@ async function run() {
     const { TextInput } = require("react-native");
     report("textinput", { type: typeof TextInput, render: typeof TextInput?.render, keys: Object.keys(TextInput ?? {}).slice(0, 20) });
 
+    await behaviour();
     await screens();
 
     report("done", {});
 }
 
 const wait = (ms: number) => new Promise(r => setTimeout(r, ms));
+
+/** Plugins' effects on Discord's own stores, with a made-up channel and message */
+async function behaviour() {
+    const { FluxDispatcher } = require("@metro/common");
+    const byId = (id: string) => getEndcordPlugins().find(p => p.id === id)!;
+    const check = async (name: string, fn: () => Promise<unknown>) => {
+        try {
+            report("behaviour", { name, result: await fn() });
+        } catch (e) {
+            report("behaviour", { name, error: e instanceof Error ? `${e.message}
+${e.stack}` : String(e) });
+        }
+    };
+
+    await check("message-logger keeps a deleted message", async () => {
+        const MessageStore = findByStoreName("MessageStore");
+        const channelId = "1111111111111111111";
+        const message = {
+            id: "2222222222222222222", channel_id: channelId, content: "Endcord test message", type: 0, flags: 0,
+            author: { id: "3333333333333333333", username: "endcord-test", discriminator: "0", avatar: null, bot: false },
+            timestamp: new Date().toISOString(), edited_timestamp: null, attachments: [], embeds: [], mentions: [],
+            mention_roles: [], pinned: false, mention_everyone: false, tts: false, components: [], reactions: [],
+        };
+        FluxDispatcher.dispatch({
+            type: "LOAD_MESSAGES_SUCCESS", channelId, messages: [message], isBefore: false, isAfter: false,
+            hasMoreBefore: false, hasMoreAfter: false, limit: 50, jump: undefined, truncate: false,
+        });
+        const loaded = !!MessageStore.getMessage(channelId, message.id);
+        const plugin = byId("endcord.message-logger");
+        await startEndcordPlugin(plugin);
+        FluxDispatcher.dispatch({ type: "MESSAGE_DELETE", id: message.id, channelId });
+        const keptWhileOn = !!MessageStore.getMessage(channelId, message.id);
+        stopEndcordPlugin(plugin);
+        await wait(200);
+        const removedWhenOff = !MessageStore.getMessage(channelId, message.id);
+        return { loaded, keptWhileOn, removedWhenOff, pass: loaded && keptWhileOn && removedWhenOff };
+    });
+
+    await check("silent-typing blocks the typing action", async () => {
+        let seen = 0;
+        const listener = () => seen++;
+        FluxDispatcher.subscribe("TYPING_START_LOCAL", listener);
+        const plugin = byId("endcord.silent-typing");
+        try {
+            await startEndcordPlugin(plugin);
+            FluxDispatcher.dispatch({ type: "TYPING_START_LOCAL", channelId: "1111111111111111111" });
+            const whileOn = seen;
+            stopEndcordPlugin(plugin);
+            FluxDispatcher.dispatch({ type: "TYPING_START_LOCAL", channelId: "1111111111111111111" });
+            return { whileOn, afterOff: seen, pass: whileOn === 0 && seen === 1 };
+        } finally {
+            FluxDispatcher.unsubscribe("TYPING_START_LOCAL", listener);
+        }
+    });
+
+    await check("clear-urls cleans links", async () => {
+        const { cleanUrl } = require("@plugins/clearUrls");
+        const out = cleanUrl("https://example.com/a?utm_source=x&id=5#top");
+        return { out, pass: out === "https://example.com/a?id=5#top" };
+    });
+}
 
 /** Shows Endcord's pages one at a time; the workflow takes a screenshot of each when it sees the "shot" line */
 async function screens() {
