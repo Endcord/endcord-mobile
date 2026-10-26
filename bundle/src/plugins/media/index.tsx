@@ -85,6 +85,18 @@ async function bytesOf(url: string): Promise<Uint8Array> {
     return fromBase64(data.slice(data.indexOf(",") + 1));
 }
 
+/** Whether bytes are well-formed UTF-8 (plain ASCII included) */
+function isUtf8(bytes: Uint8Array) {
+    for (let i = 0; i < bytes.length;) {
+        const b = bytes[i];
+        const extra = b < 0x80 ? 0 : b >> 5 === 6 ? 1 : b >> 4 === 14 ? 2 : b >> 3 === 30 ? 3 : -1;
+        if (extra < 0 || i + extra >= bytes.length + (extra ? 0 : 1)) return false;
+        for (let j = 1; j <= extra; j++) if (bytes[i + j] >> 6 !== 2) return false;
+        i += extra + 1;
+    }
+    return true;
+}
+
 /** The files in a ZIP archive, from its central directory */
 export function zipEntries(bytes: Uint8Array): Array<{ name: string; size: number; }> {
     const u16 = (i: number) => bytes[i] | bytes[i + 1] << 8;
@@ -103,8 +115,8 @@ export function zipEntries(bytes: Uint8Array): Array<{ name: string; size: numbe
     for (let i = 0; i < count && u32(offset) === 0x02014b50; i++) {
         const nameLength = u16(offset + 28), extraLength = u16(offset + 30), commentLength = u16(offset + 32);
         const raw = bytes.subarray(offset + 46, offset + 46 + nameLength);
-        // Flag bit 11 marks a UTF-8 name; older archives use the DOS code page, the same as ASCII for most names
-        const name = u16(offset + 8) & 0x800 ? fromUtf8(raw) : String.fromCharCode(...raw);
+        // Flag bit 11 marks a UTF-8 name, but many tools write UTF-8 without setting it; anything else is read byte by byte
+        const name = u16(offset + 8) & 0x800 || isUtf8(raw) ? fromUtf8(raw) : String.fromCharCode(...raw);
         entries.push({ name, size: u32(offset + 24) });
         offset += 46 + nameLength + extraLength + commentLength;
     }
