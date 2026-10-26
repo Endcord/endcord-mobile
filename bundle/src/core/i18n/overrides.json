@@ -5,6 +5,12 @@
         "es": "**{query}** es ambiguo; intenta ser más específico.",
         "fr": "**{query}** est ambigu — essayez d'être plus précis."
     },
+    "/remindme reminds you of something later with a notice in the chat. Survives restarts.": {
+        "tr": "/remindme bir şeyi daha sonra sohbette bir notla hatırlatır. Yeniden başlatmadan sonra da çalışır.",
+        "ru": "/remindme напоминает о чём-то позже сообщением в чате. Работает и после перезапуска.",
+        "es": "/remindme te recuerda algo más tarde con un aviso en el chat. Sobrevive a los reinicios.",
+        "fr": "/remindme vous rappelle quelque chose plus tard par un message dans la discussion. Survit aux redémarrages."
+    },
     "1 word": {
         "tr": "1 kelime",
         "ru": "1 слово",
@@ -46,6 +52,12 @@
         "ru": "Запрос в друзья от {user} был отменён.",
         "es": "Se ha retirado la solicitud de amistad de {user}.",
         "fr": "La demande d'ami de {user} a été retirée."
+    },
+    "A gentle, private dashboard of how you use Discord: screen time, messages and break reminders. Everything stays on your phone.": {
+        "tr": "Discord'u nasıl kullandığına dair nazik ve gizli bir pano: ekran süresi, mesajlar ve mola hatırlatıcıları. Her şey telefonunda kalır.",
+        "ru": "Спокойная личная панель о том, как вы пользуетесь Discord: экранное время, сообщения и напоминания о перерывах. Всё остаётся на телефоне.",
+        "es": "Un panel tranquilo y privado de cómo usas Discord: tiempo de pantalla, mensajes y recordatorios de descanso. Todo se queda en tu teléfono.",
+        "fr": "Un tableau de bord doux et privé de votre usage de Discord : temps d'écran, messages et rappels de pause. Tout reste sur votre téléphone."
     },
     "A language code like en, tr, ru, es or fr. Leave empty for Discord's language.": {
         "tr": "en, tr, ru, es veya fr gibi bir dil kodu. Discord'un dili için boş bırakın.",
@@ -599,6 +611,12 @@
         "es": "Clonar emoji",
         "fr": "Cloner l'émoji"
     },
+    "Clone custom emojis from a message to your own servers from the message menu": {
+        "tr": "Bir mesajdaki özel emojileri mesaj menüsünden kendi sunucularına kopyala",
+        "ru": "Клонируйте свои эмодзи из сообщения на свои серверы из меню сообщения",
+        "es": "Clona emojis personalizados de un mensaje a tus servidores desde el menú del mensaje",
+        "fr": "Clonez les émojis personnalisés d'un message vers vos serveurs depuis le menu du message"
+    },
     "Clone to which server?": {
         "tr": "Hangi sunucuya kopyalansın?",
         "ru": "На какой сервер клонировать?",
@@ -695,6 +713,12 @@
         "es": "Convertir unidades",
         "fr": "Convertir les unités"
     },
+    "Convert metric and imperial units in a message from the message menu": {
+        "tr": "Bir mesajdaki metrik ve emperyal birimleri mesaj menüsünden dönüştür",
+        "ru": "Переводите метрические и имперские единицы в сообщении из меню сообщения",
+        "es": "Convierte unidades métricas e imperiales de un mensaje desde el menú del mensaje",
+        "fr": "Convertissez les unités métriques et impériales d'un message depuis le menu du message"
+    },
     "Convert to leetspeak": {
         "tr": "Leetspeak'e çevir",
         "ru": "Перевести в литспик",
@@ -742,6 +766,36 @@
         "ru": "Копировать ссылку на стикер",
         "es": "Copiar enlace del sticker",
         "fr": "Copier le lien de l'autocollant"
+    },
+    "Copy a link to the profile of a message's author from the message menu": {
+        "tr": "Bir mesajın yazarının profil bağlantısını mesaj menüsünden kopyala",
+        "ru": "Копируйте ссылку на профиль автора сообщения из меню сообщения",
+        "es": "Copia un enlace al perfil del autor de un mensaje desde el menú del mensaje",
+        "fr": "Copiez un lien vers le profil de l'auteur d'un message depuis le menu du message"
+    },
+    "Copy the contents of text file attachments from the message menu": {
+        "tr": "Metin dosyası eklerinin içeriğini mesaj menüsünden kopyala",
+        "ru": "Копируйте содержимое текстовых вложений из меню сообщения",
+        "es": "Copia el contenido de los archivos de texto adjuntos desde el menú del mensaje",
+        "fr": "Copiez le contenu des fichiers texte joints depuis le menu du message"
+    },
+    "Copy the link of a message's images, videos and files from the message menu": {
+        "tr": "Bir mesajdaki görsel, video ve dosyaların bağlantısını mesaj menüsünden kopyala",
+        "ru": "Копируйте ссылки на изображения, видео и файлы сообщения из меню сообщения",
+        "es": "Copia el enlace de las imágenes, vídeos y archivos de un mensaje desde el menú del mensaje",
+        "fr": "Copiez le lien des images, vidéos et fichiers d'un message depuis le menu du message"
+    },
+    "Copy the links in the status of a message's author from the message menu": {
+        "tr": "Bir mesajın yazarının durumundaki bağlantıları mesaj menüsünden kopyala",
+        "ru": "Копируйте ссылки из статуса автора сообщения из меню сообщения",
+        "es": "Copia los enlaces del estado del autor de un mensaje desde el menú del mensaje",
+        "fr": "Copiez les liens du statut de l'auteur d'un message depuis le menu du message"
+    },
+    "Copy the mention of a message's author from the message menu": {
+        "tr": "Bir mesajın yazarının bahsetmesini mesaj menüsünden kopyala",
+        "ru": "Копируйте упоминание автора сообщения из меню сообщения",
+        "es": "Copia la mención del autor de un mensaje desde el menú del mensaje",
+        "fr": "Copiez la mention de l'auteur d'un message depuis le menu du message"
     },
     "Couldn't change the embeds": {
         "tr": "Yerleştirmeler değiştirilemedi",
@@ -850,6 +904,12 @@
         "ru": "Создать",
         "es": "Crear",
         "fr": "Créer"
+    },
+    "Create, list and revoke friend invite links with /friendinvites": {
+        "tr": "Arkadaş davet bağlantılarını /friendinvites ile oluştur, listele ve iptal et",
+        "ru": "Создавайте, просматривайте и отзывайте ссылки-приглашения в друзья командой /friendinvites",
+        "es": "Crea, consulta y revoca enlaces de invitación de amistad con /friendinvites",
+        "fr": "Créez, listez et révoquez vos liens d'invitation d'ami avec /friendinvites"
     },
     "Create, list or revoke your friend invite links": {
         "tr": "Arkadaş davet bağlantılarınızı oluşturun, listeleyin veya iptal edin",
@@ -965,11 +1025,23 @@
         "es": "Eliminar el paquete de fuentes",
         "fr": "Supprimer le pack de polices"
     },
+    "Delete your last message in a channel with /deletelast, or any of yours from the message menu without confirming": {
+        "tr": "Bir kanaldaki son mesajını /deletelast ile, herhangi bir mesajını da mesaj menüsünden onay sormadan sil",
+        "ru": "Удаляйте своё последнее сообщение в канале командой /deletelast, а любое своё — из меню сообщения без подтверждения",
+        "es": "Borra tu último mensaje de un canal con /deletelast, o cualquiera de los tuyos desde el menú del mensaje sin confirmar",
+        "fr": "Supprimez votre dernier message d'un salon avec /deletelast, ou n'importe lequel des vôtres depuis le menu du message sans confirmation"
+    },
     "Delete your last message in this channel": {
         "tr": "Bu kanaldaki son mesajınızı silin",
         "ru": "Удалить ваше последнее сообщение в этом канале",
         "es": "Borra tu último mensaje en este canal",
         "fr": "Supprimer votre dernier message dans ce salon"
+    },
+    "Delete your recent messages in a channel with /clearmessages": {
+        "tr": "Bir kanaldaki son mesajlarını /clearmessages ile sil",
+        "ru": "Удаляйте свои недавние сообщения в канале командой /clearmessages",
+        "es": "Borra tus mensajes recientes de un canal con /clearmessages",
+        "fr": "Supprimez vos messages récents d'un salon avec /clearmessages"
     },
     "Delete your recent messages in this channel": {
         "tr": "Bu kanaldaki son mesajlarınızı silin",
@@ -1127,11 +1199,23 @@
         "es": "Descargar mensaje de voz",
         "fr": "Télécharger le message vocal"
     },
+    "Download every attachment of a message at once from the message menu": {
+        "tr": "Bir mesajın tüm eklerini mesaj menüsünden tek seferde indir",
+        "ru": "Скачивайте все вложения сообщения разом из меню сообщения",
+        "es": "Descarga todos los archivos adjuntos de un mensaje a la vez desde el menú del mensaje",
+        "fr": "Téléchargez toutes les pièces jointes d'un message d'un coup depuis le menu du message"
+    },
     "Download the fonts again": {
         "tr": "Yazı tiplerini yeniden indir",
         "ru": "Загрузить шрифты заново",
         "es": "Volver a descargar las fuentes",
         "fr": "Retélécharger les polices"
+    },
+    "Download voice messages from the message menu": {
+        "tr": "Sesli mesajları mesaj menüsünden indir",
+        "ru": "Скачивайте голосовые сообщения из меню сообщения",
+        "es": "Descarga mensajes de voz desde el menú del mensaje",
+        "fr": "Téléchargez les messages vocaux depuis le menu du message"
     },
     "Downloading {count} attachments": {
         "tr": "{count} ek indiriliyor",
@@ -1264,6 +1348,24 @@
         "ru": "Раскрывать сокращения",
         "es": "Expandir contracciones",
         "fr": "Développer les contractions"
+    },
+    "Explains tone indicators like /srs and /gen next to them in messages": {
+        "tr": "Mesajlardaki /srs ve /gen gibi ton göstergelerini yanlarında açıklar",
+        "ru": "Поясняет индикаторы тона вроде /srs и /gen прямо рядом с ними в сообщениях",
+        "es": "Explica los indicadores de tono como /srs y /gen junto a ellos en los mensajes",
+        "fr": "Explique les indicateurs de ton comme /srs et /gen juste à côté dans les messages"
+    },
+    "Export a chat's messages, attachments, stickers and reactions as TXT, Markdown or JSON with /exportdm": {
+        "tr": "Bir sohbetin mesajlarını, eklerini, çıkartmalarını ve tepkilerini /exportdm ile TXT, Markdown veya JSON olarak dışa aktar",
+        "ru": "Экспортируйте сообщения чата, вложения, стикеры и реакции в TXT, Markdown или JSON командой /exportdm",
+        "es": "Exporta los mensajes, archivos adjuntos, stickers y reacciones de un chat en TXT, Markdown o JSON con /exportdm",
+        "fr": "Exportez les messages, pièces jointes, autocollants et réactions d'une discussion en TXT, Markdown ou JSON avec /exportdm"
+    },
+    "Export a server's channels, roles and permissions to a backup file with /serverbackup": {
+        "tr": "Bir sunucunun kanallarını, rollerini ve izinlerini /serverbackup ile bir yedek dosyasına aktar",
+        "ru": "Экспортируйте каналы, роли и права сервера в файл резервной копии командой /serverbackup",
+        "es": "Exporta los canales, roles y permisos de un servidor a un archivo de copia de seguridad con /serverbackup",
+        "fr": "Exportez les salons, rôles et permissions d'un serveur dans un fichier de sauvegarde avec /serverbackup"
     },
     "Export the messages of this chat and share them": {
         "tr": "Bu sohbetin mesajlarını dışa aktarın ve paylaşın",
@@ -1421,6 +1523,12 @@
         "es": "Seguir en voz",
         "fr": "Suivre en vocal"
     },
+    "Follow someone from the message menu to always join the same voice channel as them": {
+        "tr": "Birini mesaj menüsünden takip et ve her zaman onunla aynı ses kanalına katıl",
+        "ru": "Следуйте за человеком из меню сообщения, чтобы всегда заходить в тот же голосовой канал",
+        "es": "Sigue a alguien desde el menú del mensaje para unirte siempre a su mismo canal de voz",
+        "fr": "Suivez quelqu'un depuis le menu du message pour toujours rejoindre le même salon vocal que lui"
+    },
     "Followed user": {
         "tr": "Takip edilen kullanıcı",
         "ru": "Отслеживаемый пользователь",
@@ -1517,6 +1625,12 @@
         "es": "Obtén el avatar a tamaño completo de un usuario",
         "fr": "Obtenir l'avatar en taille réelle d'un utilisateur"
     },
+    "Get reminded about a message later from the message menu. The reminder links right back to it.": {
+        "tr": "Bir mesajı mesaj menüsünden daha sonra hatırlatılmak üzere ayarla. Hatırlatıcı seni doğrudan o mesaja götürür.",
+        "ru": "Поставьте напоминание о сообщении из меню сообщения. Напоминание ведёт прямо к нему.",
+        "es": "Recibe un recordatorio de un mensaje más tarde desde el menú del mensaje. El recordatorio te lleva directo a él.",
+        "fr": "Faites-vous rappeler un message plus tard depuis le menu du message. Le rappel vous y ramène directement."
+    },
     "Ghost ping alerts": {
         "tr": "Hayalet etiket uyarıları",
         "ru": "Оповещения о «призрачных» упоминаниях",
@@ -1528,6 +1642,12 @@
         "ru": "GitHub",
         "es": "GitHub",
         "fr": "GitHub"
+    },
+    "Give any user a custom name color in chat": {
+        "tr": "Herhangi bir kullanıcıya sohbette özel bir ad rengi ver",
+        "ru": "Задайте любому пользователю свой цвет имени в чате",
+        "es": "Da a cualquier usuario un color de nombre personalizado en el chat",
+        "fr": "Donnez à n'importe quel utilisateur une couleur de nom personnalisée dans la discussion"
     },
     "Give up after (minutes)": {
         "tr": "Şu süreden sonra vazgeç (dakika)",
@@ -1619,6 +1739,12 @@
         "es": "Ocultar usuarios ignorados",
         "fr": "Masquer les utilisateurs ignorés"
     },
+    "Hide messages from the message menu until you restart Discord": {
+        "tr": "Mesajları mesaj menüsünden Discord'u yeniden başlatana kadar gizle",
+        "ru": "Скрывайте сообщения из меню сообщения до перезапуска Discord",
+        "es": "Oculta mensajes desde el menú del mensaje hasta que reinicies Discord",
+        "fr": "Masquez des messages depuis le menu du message jusqu'au redémarrage de Discord"
+    },
     "Hide messages from users you blocked": {
         "tr": "Engellediğiniz kullanıcıların mesajlarını gizle",
         "ru": "Скрывать сообщения заблокированных вами пользователей",
@@ -1642,6 +1768,12 @@
         "ru": "Скрывать ответы им",
         "es": "Ocultar las respuestas a ellos",
         "fr": "Masquer les réponses qui leur sont adressées"
+    },
+    "Hide the attachments and embeds of a message from the message menu": {
+        "tr": "Bir mesajın eklerini ve yerleştirmelerini mesaj menüsünden gizle",
+        "ru": "Скрывайте вложения и встраивания отдельных сообщений из меню сообщения",
+        "es": "Oculta los archivos adjuntos e inserciones de un mensaje desde el menú del mensaje",
+        "fr": "Masquez les pièces jointes et intégrations d'un message depuis le menu du message"
     },
     "Hide this user's messages": {
         "tr": "Bu kullanıcının mesajlarını gizle",
@@ -1672,6 +1804,12 @@
         "ru": "Скрывает разделы Endcord в настройках Discord для скриншотов и демонстрации экрана. Плагины продолжают работать.",
         "es": "Oculta las entradas de Endcord en los ajustes de Discord, para capturas y pantalla compartida. Los plugins siguen funcionando.",
         "fr": "Masque les entrées d'Endcord dans les paramètres de Discord, pour les captures et le partage d'écran. Les plugins continuent de fonctionner."
+    },
+    "Hides messages with trigger words you choose behind a spoiler you tap to reveal": {
+        "tr": "Seçtiğin tetikleyici kelimeleri içeren mesajları dokunarak açılan bir spoilerin arkasına gizler",
+        "ru": "Прячет сообщения с выбранными вами словами-триггерами под спойлер, который открывается касанием",
+        "es": "Oculta los mensajes con las palabras sensibles que elijas tras un spoiler que se revela al tocarlo",
+        "fr": "Masque les messages contenant les mots déclencheurs de votre choix derrière un spoiler à toucher pour l'afficher"
     },
     "Highest": {
         "tr": "En yüksek",
@@ -1961,6 +2099,12 @@
         "es": "Unirse a un canal de voz al azar",
         "fr": "Rejoindre un salon vocal au hasard"
     },
+    "Join a random voice channel with /randomvoice": {
+        "tr": "/randomvoice ile rastgele bir ses kanalına katıl",
+        "ru": "Заходите в случайный голосовой канал командой /randomvoice",
+        "es": "Únete a un canal de voz al azar con /randomvoice",
+        "fr": "Rejoignez un salon vocal au hasard avec /randomvoice"
+    },
     "Join right away": {
         "tr": "Hemen katıl",
         "ru": "Зайти сразу",
@@ -2153,6 +2297,12 @@
         "es": "Mensajes registrados borrados",
         "fr": "Messages enregistrés effacés"
     },
+    "Logs voice channel activity: joins, leaves, moves, server mutes, cameras and screen shares": {
+        "tr": "Ses kanalı etkinliğini kaydeder: katılmalar, ayrılmalar, geçişler, sunucu susturmaları, kameralar ve ekran paylaşımları",
+        "ru": "Записывает активность в голосовых каналах: входы, выходы, перемещения, серверные отключения, камеры и демонстрации экрана",
+        "es": "Registra la actividad de los canales de voz: entradas, salidas, cambios, silencios del servidor, cámaras y pantallas compartidas",
+        "fr": "Enregistre l'activité des salons vocaux : arrivées, départs, déplacements, coupures par le serveur, caméras et partages d'écran"
+    },
     "Long-press a message and choose Bookmark to save it here": {
         "tr": "Buraya kaydetmek için bir mesaja uzun basın ve Yer İşaretine Ekle'yi seçin",
         "ru": "Нажмите на сообщение и удерживайте, затем выберите «В закладки», чтобы сохранить его здесь",
@@ -2207,6 +2357,12 @@
         "es": "Marcar todos los servidores como leídos",
         "fr": "Marquer tous les serveurs comme lus"
     },
+    "Mark every server as read at once with /readall": {
+        "tr": "/readall ile tüm sunucuları tek seferde okundu olarak işaretle",
+        "ru": "Отметьте все серверы прочитанными сразу командой /readall",
+        "es": "Marca todos los servidores como leídos de una vez con /readall",
+        "fr": "Marquez tous les serveurs comme lus d'un coup avec /readall"
+    },
     "Marked {count} channels as read.": {
         "tr": "{count} kanal okundu olarak işaretlendi.",
         "ru": "Отмечено прочитанными каналов: {count}.",
@@ -2230,6 +2386,12 @@
         "ru": "Упомянуть",
         "es": "Mencionar",
         "fr": "Mentionner"
+    },
+    "Mention a message's author from the message menu": {
+        "tr": "Bir mesajın yazarından mesaj menüsüyle bahset",
+        "ru": "Упоминайте автора сообщения из меню сообщения",
+        "es": "Menciona al autor de un mensaje desde el menú del mensaje",
+        "fr": "Mentionnez l'auteur d'un message depuis le menu du message"
     },
     "Mention copied": {
         "tr": "Bahsetme kopyalandı",
@@ -2639,6 +2801,12 @@
         "es": "Abrir en Last.fm",
         "fr": "Ouvrir sur Last.fm"
     },
+    "Open song links on your streaming service through song.link, from the message menu": {
+        "tr": "Şarkı bağlantılarını mesaj menüsünden song.link üzerinden kendi müzik servisinde aç",
+        "ru": "Открывайте ссылки на песни в своём музыкальном сервисе через song.link из меню сообщения",
+        "es": "Abre enlaces de canciones en tu servicio de streaming a través de song.link, desde el menú del mensaje",
+        "fr": "Ouvrez les liens de chansons sur votre service de streaming via song.link, depuis le menu du message"
+    },
     "Operating System": {
         "tr": "İşletim Sistemi",
         "ru": "Операционная система",
@@ -2729,6 +2897,12 @@
         "es": "Enlace normal",
         "fr": "Lien simple"
     },
+    "Plays a 🗿 sound effect whenever a moyai emoji is sent or reacted in the chat you have open": {
+        "tr": "Açık olan sohbette bir moyai emojisi gönderildiğinde veya tepki olarak eklendiğinde 🗿 ses efekti çalar",
+        "ru": "Проигрывает звук 🗿, когда в открытом чате отправляют эмодзи моаи или ставят такую реакцию",
+        "es": "Reproduce un efecto de sonido 🗿 cuando se envía o se reacciona con un emoji moyai en el chat que tienes abierto",
+        "fr": "Joue un effet sonore 🗿 quand un émoji moyai est envoyé ou ajouté en réaction dans la discussion ouverte"
+    },
     "Plugin browser": {
         "tr": "Eklenti tarayıcısı",
         "ru": "Обзор плагинов",
@@ -2770,6 +2944,12 @@
         "ru": "Основной: {primary}, акцент: {accent}",
         "es": "Principal: {primary}, acento: {accent}",
         "fr": "Principale : {primary}, accent : {accent}"
+    },
+    "Privately bookmark messages (beyond Discord's 50-pin limit) from the message menu, then find and jump to them in the plugin's settings or with /bookmarks": {
+        "tr": "Mesajları mesaj menüsünden gizlice yer işaretine ekle (Discord'un 50 sabitleme sınırının ötesinde), sonra eklentinin ayarlarında ya da /bookmarks ile bulup onlara git",
+        "ru": "Тайно добавляйте сообщения в закладки из меню сообщения (сверх лимита Discord в 50 закреплённых), а потом находите их в настройках плагина или командой /bookmarks",
+        "es": "Guarda mensajes en marcadores privados desde el menú del mensaje (más allá del límite de 50 fijados de Discord) y encuéntralos en los ajustes del plugin o con /bookmarks",
+        "fr": "Ajoutez des messages à vos favoris privés depuis le menu du message (au-delà de la limite de 50 épinglés de Discord), puis retrouvez-les dans les paramètres du plugin ou avec /bookmarks"
     },
     "Put 👏 claps 👏 between 👏 words": {
         "tr": "Kelimelerin 👏 arasına 👏 alkış 👏 koy",
@@ -2813,11 +2993,23 @@
         "es": "Reaccionar también a mis mensajes",
         "fr": "Réagir aussi à mes messages"
     },
+    "React with husk from the message menu (change the emoji in settings)": {
+        "tr": "Mesaj menüsünden husk ile tepki ver (emojiyi ayarlardan değiştir)",
+        "ru": "Ставьте реакцию husk из меню сообщения (эмодзи меняется в настройках)",
+        "es": "Reacciona con husk desde el menú del mensaje (cambia el emoji en los ajustes)",
+        "fr": "Réagissez avec husk depuis le menu du message (changez l'émoji dans les paramètres)"
+    },
     "Read later": {
         "tr": "Sonra oku",
         "ru": "Прочитать позже",
         "es": "Leer más tarde",
         "fr": "À lire plus tard"
+    },
+    "Read the ReviewDB reviews of a message's author from the message menu": {
+        "tr": "Bir mesajın yazarı hakkındaki ReviewDB değerlendirmelerini mesaj menüsünden oku",
+        "ru": "Читайте отзывы ReviewDB об авторе сообщения из меню сообщения",
+        "es": "Lee las reseñas de ReviewDB del autor de un mensaje desde el menú del mensaje",
+        "fr": "Lisez les avis ReviewDB sur l'auteur d'un message depuis le menu du message"
     },
     "Recent Mentions": {
         "tr": "Son Bahsetmeler",
@@ -2915,6 +3107,12 @@
         "es": "Recarga la app para aplicar todos los cambios",
         "fr": "Rechargez l'application pour appliquer entièrement les changements"
     },
+    "Remembers when your friends were last online; see it in the message menu or with /lastonline": {
+        "tr": "Arkadaşlarının en son ne zaman çevrimiçi olduğunu hatırlar; mesaj menüsünde ya da /lastonline ile gör",
+        "ru": "Запоминает, когда друзья были в сети последний раз; смотрите в меню сообщения или командой /lastonline",
+        "es": "Recuerda cuándo estuvieron conectados tus amigos por última vez; míralo en el menú del mensaje o con /lastonline",
+        "fr": "Retient quand vos amis étaient en ligne pour la dernière fois ; voyez-le dans le menu du message ou avec /lastonline"
+    },
     "Remind Me": {
         "tr": "Bana Hatırlat",
         "ru": "Напомнить",
@@ -2956,6 +3154,12 @@
         "ru": "Из сообщения удалены невидимые символы",
         "es": "Se quitaron caracteres invisibles de tu mensaje",
         "fr": "Des caractères invisibles ont été retirés de votre message"
+    },
+    "Removes the badge count of incoming friend requests and message requests": {
+        "tr": "Gelen arkadaşlık isteklerinin ve mesaj isteklerinin bildirim sayısını kaldırır",
+        "ru": "Убирает счётчик входящих запросов в друзья и запросов на переписку",
+        "es": "Quita el contador de solicitudes de amistad y de mensajes entrantes",
+        "fr": "Retire le compteur des demandes d'ami et des demandes de messages reçues"
     },
     "Reopen Discord's settings after switching for the change to show.": {
         "tr": "Değişikliğin görünmesi için değiştirdikten sonra Discord ayarlarını yeniden açın.",
@@ -3095,6 +3299,12 @@
         "es": "Tiempo de pantalla",
         "fr": "Temps d'écran"
     },
+    "Search for a message's image on Google Lens, Yandex, SauceNAO and more from the message menu": {
+        "tr": "Bir mesajdaki görseli mesaj menüsünden Google Lens, Yandex, SauceNAO ve daha fazlasında ara",
+        "ru": "Ищите изображение из сообщения в Google Lens, Яндексе, SauceNAO и других из меню сообщения",
+        "es": "Busca la imagen de un mensaje en Google Lens, Yandex, SauceNAO y más desde el menú del mensaje",
+        "fr": "Recherchez l'image d'un message sur Google Lens, Yandex, SauceNAO et d'autres depuis le menu du message"
+    },
     "Second button link": {
         "tr": "İkinci düğme bağlantısı",
         "ru": "Ссылка второй кнопки",
@@ -3113,11 +3323,35 @@
         "es": "Segunda persona",
         "fr": "Deuxième personne"
     },
+    "See how many members a server has, how many are online and how many are in voice, with /membercount": {
+        "tr": "Bir sunucunun kaç üyesi olduğunu, kaçının çevrimiçi ve kaçının seste olduğunu /membercount ile gör",
+        "ru": "Узнайте, сколько на сервере участников, сколько из них в сети и в голосовых, командой /membercount",
+        "es": "Mira cuántos miembros tiene un servidor, cuántos están conectados y cuántos en voz, con /membercount",
+        "fr": "Voyez combien de membres compte un serveur, combien sont en ligne et en vocal, avec /membercount"
+    },
+    "See the roles and permissions of a message's author from the message menu": {
+        "tr": "Bir mesajın yazarının rollerini ve izinlerini mesaj menüsünden gör",
+        "ru": "Смотрите роли и права автора сообщения из меню сообщения",
+        "es": "Mira los roles y permisos del autor de un mensaje desde el menú del mensaje",
+        "fr": "Voyez les rôles et permissions de l'auteur d'un message depuis le menu du message"
+    },
     "See who has a role (only members Discord has loaded are listed)": {
         "tr": "Bir role kimlerin sahip olduğunu görün (yalnızca Discord'un yüklediği üyeler listelenir)",
         "ru": "Посмотреть, у кого есть роль (показываются только загруженные Discord участники)",
         "es": "Mira quién tiene un rol (solo aparecen los miembros que Discord ha cargado)",
         "fr": "Voir qui a un rôle (seuls les membres chargés par Discord sont listés)"
+    },
+    "See who has a role with /inrole": {
+        "tr": "Bir role kimlerin sahip olduğunu /inrole ile gör",
+        "ru": "Узнайте, у кого есть роль, командой /inrole",
+        "es": "Mira quién tiene un rol con /inrole",
+        "fr": "Voyez qui a un rôle avec /inrole"
+    },
+    "See your logged-in devices with exact times and your own names for them, and get told about new logins": {
+        "tr": "Giriş yapılmış cihazlarını tam zamanları ve onlara verdiğin adlarla gör, yeni girişlerden haberdar ol",
+        "ru": "Смотрите устройства, где выполнен вход, с точным временем и вашими названиями, и узнавайте о новых входах",
+        "es": "Mira tus dispositivos con sesión iniciada con su hora exacta y los nombres que les pongas, y entérate de los nuevos inicios de sesión",
+        "fr": "Voyez vos appareils connectés avec l'heure exacte et vos propres noms, et soyez prévenu des nouvelles connexions"
     },
     "Selection color": {
         "tr": "Seçim rengi",
@@ -3142,6 +3376,12 @@
         "ru": "Отправить сейчас",
         "es": "Enviar ahora",
         "fr": "Envoyer maintenant"
+    },
+    "Send a message again from the message menu": {
+        "tr": "Bir mesajı mesaj menüsünden yeniden gönder",
+        "ru": "Отправляйте сообщение повторно из меню сообщения",
+        "es": "Vuelve a enviar un mensaje desde el menú del mensaje",
+        "fr": "Renvoyez un message depuis le menu du message"
     },
     "Send a message later, while Discord is open": {
         "tr": "Discord açıkken daha sonra bir mesaj gönderin",
@@ -3250,6 +3490,12 @@
         "ru": "Установить статус",
         "es": "Establecer estado",
         "fr": "Définir le statut"
+    },
+    "Share any message as text from the message menu": {
+        "tr": "Herhangi bir mesajı mesaj menüsünden metin olarak paylaş",
+        "ru": "Делитесь любым сообщением как текстом из меню сообщения",
+        "es": "Comparte cualquier mensaje como texto desde el menú del mensaje",
+        "fr": "Partagez n'importe quel message sous forme de texte depuis le menu du message"
     },
     "Share your current Spotify album in chat": {
         "tr": "Şu anki Spotify albümünüzü sohbette paylaşın",
@@ -3401,6 +3647,12 @@
         "es": "Se muestra antes de la firma, como > para una cita",
         "fr": "Affiché avant la signature, comme > pour une citation"
     },
+    "Shows a user's highest role next to their name in chat messages": {
+        "tr": "Bir kullanıcının en yüksek rolünü sohbet mesajlarında adının yanında gösterir",
+        "ru": "Показывает высшую роль пользователя рядом с его именем в сообщениях",
+        "es": "Muestra el rol más alto de un usuario junto a su nombre en los mensajes del chat",
+        "fr": "Affiche le rôle le plus élevé d'un utilisateur à côté de son nom dans les messages"
+    },
     "Shows how much longer a user's timeout will last next to their messages": {
         "tr": "Bir kullanıcının zaman aşımının ne kadar süreceğini mesajlarının yanında gösterir",
         "ru": "Показывает рядом с сообщениями, сколько ещё продлится тайм-аут пользователя",
@@ -3413,11 +3665,23 @@
         "es": "Muestra u oculta la imagen de fondo del tema en el chat",
         "fr": "Affiche ou masque l'image d'arrière-plan du thème dans la discussion"
     },
+    "Shows the local time of the users you choose next to their messages": {
+        "tr": "Seçtiğin kullanıcıların yerel saatini mesajlarının yanında gösterir",
+        "ru": "Показывает местное время выбранных пользователей рядом с их сообщениями",
+        "es": "Muestra la hora local de los usuarios que elijas junto a sus mensajes",
+        "fr": "Affiche l'heure locale des utilisateurs que vous choisissez à côté de leurs messages"
+    },
     "Shows the seconds in every message's time (e.g. 15:34:21)": {
         "tr": "Her mesajın saatinde saniyeleri gösterir (örn. 15:34:21)",
         "ru": "Показывает секунды во времени каждого сообщения (например, 15:34:21)",
         "es": "Muestra los segundos en la hora de cada mensaje (p. ej., 15:34:21)",
         "fr": "Affiche les secondes dans l'heure de chaque message (ex. 15:34:21)"
+    },
+    "Shows the word count of messages next to their time": {
+        "tr": "Mesajların kelime sayısını saatlerinin yanında gösterir",
+        "ru": "Показывает число слов в сообщениях рядом со временем",
+        "es": "Muestra el número de palabras de los mensajes junto a su hora",
+        "fr": "Affiche le nombre de mots des messages à côté de leur heure"
     },
     "Shows which devices people are online on (desktop, web or mobile) next to their messages.": {
         "tr": "Kişilerin hangi cihazlarda çevrimiçi olduğunu (masaüstü, web veya mobil) mesajlarının yanında gösterir.",
@@ -3551,6 +3815,12 @@
         "es": "Separa cada letra",
         "fr": "Espacer chaque lettre"
     },
+    "Sprinkles little neon sparkles wherever you touch": {
+        "tr": "Dokunduğun her yere küçük neon ışıltılar serper",
+        "ru": "Рассыпает маленькие неоновые искорки там, где вы касаетесь экрана",
+        "es": "Esparce pequeños destellos de neón donde toques",
+        "fr": "Saupoudre de petites étincelles néon là où vous touchez"
+    },
     "Stack Trace": {
         "tr": "Yığın İzi",
         "ru": "Трассировка стека",
@@ -3611,6 +3881,12 @@
         "es": "Dejaste de seguir a {user}",
         "fr": "Vous ne suivez plus {user}"
     },
+    "Stops Discord from marking you idle while the app is in the background": {
+        "tr": "Uygulama arka plandayken Discord'un seni boşta göstermesini engeller",
+        "ru": "Не даёт Discord ставить вам статус «Неактивен», пока приложение в фоне",
+        "es": "Evita que Discord te marque como ausente mientras la app está en segundo plano",
+        "fr": "Empêche Discord de vous mettre absent quand l'appli est en arrière-plan"
+    },
     "Successfully installed": {
         "tr": "Başarıyla yüklendi",
         "ru": "Успешно установлено",
@@ -3658,6 +3934,12 @@
         "ru": "Пометить сообщение",
         "es": "Etiquetar mensaje",
         "fr": "Étiqueter le message"
+    },
+    "Tag messages with private labels (TODO, Important, ...) shown next to their time, and find them in the plugin's settings": {
+        "tr": "Mesajları saatlerinin yanında görünen gizli etiketlerle (Yapılacak, Önemli, ...) işaretle ve eklentinin ayarlarında bul",
+        "ru": "Помечайте сообщения личными метками («Сделать», «Важное»…), которые видны рядом со временем, и находите их в настройках плагина",
+        "es": "Etiqueta mensajes con etiquetas privadas (Pendiente, Importante...) que se ven junto a su hora, y encuéntralos en los ajustes del plugin",
+        "fr": "Étiquetez des messages avec des étiquettes privées (À faire, Important...) affichées à côté de leur heure, et retrouvez-les dans les paramètres du plugin"
     },
     "Tag name": {
         "tr": "Etiket adı",
@@ -3923,6 +4205,12 @@
         "es": "Las horas escritas entre comillas invertidas, como `14:30` o `2:30 PM`, se convierten en marcas de tiempo que cada uno ve en su zona horaria",
         "fr": "Les heures écrites entre accents graves, comme `14:30` ou `2:30 PM`, deviennent des horodatages que chacun voit dans son fuseau horaire"
     },
+    "Times written like `14:30` become timestamps everyone sees in their own time zone; a chat bar button inserts the current time": {
+        "tr": "`14:30` gibi yazılan saatler herkesin kendi saat diliminde gördüğü zaman damgalarına dönüşür; sohbet çubuğundaki bir düğme şu anki saati ekler",
+        "ru": "Время вида `14:30` превращается в метку, которую каждый видит в своём часовом поясе; кнопка в панели чата вставляет текущее время",
+        "es": "Las horas escritas como `14:30` se convierten en marcas de tiempo que cada uno ve en su zona horaria; un botón en la barra del chat inserta la hora actual",
+        "fr": "Les heures écrites comme `14:30` deviennent des horodatages que chacun voit dans son fuseau horaire ; un bouton de la barre de discussion insère l'heure actuelle"
+    },
     "Toasts for my channel": {
         "tr": "Kanalım için bildirimler",
         "ru": "Уведомления для моего канала",
@@ -3946,6 +4234,12 @@
         "ru": "Завтра",
         "es": "Mañana",
         "fr": "Demain"
+    },
+    "Translate messages from the message menu, translate what you send, or use /translate (Google Translate)": {
+        "tr": "Mesajları mesaj menüsünden çevir, gönderdiklerini çevir ya da /translate kullan (Google Çeviri)",
+        "ru": "Переводите сообщения из меню сообщения, переводите то, что отправляете, или используйте /translate (Google Переводчик)",
+        "es": "Traduce mensajes desde el menú del mensaje, traduce lo que envías o usa /translate (Google Translate)",
+        "fr": "Traduisez les messages depuis le menu du message, traduisez ce que vous envoyez ou utilisez /translate (Google Traduction)"
     },
     "Translate messages to": {
         "tr": "Mesajları şu dile çevir",
@@ -4198,6 +4492,12 @@
         "ru": "Роли и права",
         "es": "Ver roles y permisos",
         "fr": "Voir les rôles et permissions"
+    },
+    "View and copy the raw content and data of any message": {
+        "tr": "Herhangi bir mesajın ham içeriğini ve verisini görüntüle ve kopyala",
+        "ru": "Просматривайте и копируйте исходный текст и данные любого сообщения",
+        "es": "Mira y copia el contenido y los datos sin formato de cualquier mensaje",
+        "fr": "Affichez et copiez le contenu et les données brutes de n'importe quel message"
     },
     "View full size": {
         "tr": "Tam boyutta görüntüle",

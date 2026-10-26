@@ -294,7 +294,7 @@ const AlwaysTrust = definePlugin({
 const CustomIdle = definePlugin({
     id: "endcord.custom-idle",
     name: "CustomIdle",
-    description: tx("Allows you to set the time before Discord goes idle (or disable auto-idle)"),
+    description: tx("Stops Discord from marking you idle while the app is in the background"),
     authors: [ENDCORD_AUTHOR],
     icon: "MoonIcon",
     tags: ["Utility"],

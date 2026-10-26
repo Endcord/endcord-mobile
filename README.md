@@ -1,6 +1,6 @@
 <div align="center">
     <h1>Endcord for Android</h1>
-    <p>Endcord on the <em>current</em> Discord Android app: Endcord PC's most used plugins, themes and fonts, in five languages.</p>
+    <p>Endcord on the <em>current</em> Discord Android app: 155 of Endcord PC's plugins, themes and fonts, in five languages.</p>
 
 [Endcord PC](https://github.com/rootpoii/endcord) · [Endcord for the classic Discord app](https://github.com/rootpoii/endcord-mobile) (the `main` branch of this repository) · [Discord](https://discord.gg/endcord)
 
@@ -15,8 +15,9 @@
 
 ## Features
 
-- **Endcord PC's popular plugins, built in.** All off until you turn them on, each with its own settings page, in
-  Endcord → Plugins (popular ones are listed first, as on PC):
+- **155 of Endcord PC's plugins, built in.** All off until you turn them on, each with its own settings page, in
+  Endcord → Plugins, which shows how many there are and how many are on, with filters by status and tag, like Endcord
+  PC's plugin manager. Endcord PC's popular plugins are listed first:
 
   | Plugin | On your phone |
   | --- | --- |
@@ -32,6 +33,16 @@
   | RelationshipNotifier | Tells you when a friend, group chat or server removes you, including while you were offline |
   | SilentTyping | Your typing indicator is never sent, with an optional chat bar button |
   | FakeMute | Appear muted or deafened while your microphone and sound keep working |
+
+  The other 143 cover slash commands (`/bold`, `/ship`, `/calc`, `/remindme`, `/translate`…), changing messages
+  as you send them (TextReplace, Signature, silent messages, @someone…), filtering what reaches you (ClientSideBlock,
+  BlockKeywords, ReplyPingControl…), rows in the message long-press menu (Bookmarks, Translate, ViewRaw, Copy Media
+  Link, Reverse Image Search…), how messages are drawn (timestamps, pronouns, roles, colors), rich presence, voice,
+  profiles and more. The full list, with what each one does on a phone, is in [docs/PLUGINS.md](docs/PLUGINS.md).
+
+- **Aliucord plugins need Endcord Classic.** They're written for the older Discord that Aliucord is built on and can't
+  run on the current one. [Endcord Classic](https://github.com/rootpoii/endcord-mobile/tree/main) runs both Endcord's
+  and Aliucord's plugins; the Plugins page says so and links it.
 
 - **Five languages** everywhere: English, Türkçe, Русский, Español and Français, with Endcord PC's translations.
   Endcord follows Discord's language, or the one you pick in Endcord → General.
@@ -117,8 +128,9 @@ Endcord's plugins live in `bundle/src/plugins/<name>/` and are defined with `def
 `bundle/src/plugins/api.ts`: a settings schema (the settings page is generated from it), `start` with a `cleanup`
 helper for every patch, and an optional extra settings component. Plugins find Discord's modules by their source path
 (`moduleAt("modules/...")`), which survives the renames that break name lookups, and must tolerate a module being
-missing: a plugin that throws while starting is turned off with a notice, never crashing Discord. The plan for the
-rest of Endcord PC's plugins is in [docs/PLUGINS.md](docs/PLUGINS.md).
+missing: a plugin that throws while starting is turned off with a notice, never crashing Discord. Most plugins use the
+shared hooks in `bundle/src/plugins/hooks.tsx` (`onSend`, `onIncomingMessage`, `onMessageRow`, `addMessageAction`,
+`command`), each patched into Discord once. The full list and how to write one are in [docs/PLUGINS.md](docs/PLUGINS.md).
 
 ### Translations
 

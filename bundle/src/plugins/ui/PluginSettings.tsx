@@ -37,7 +37,7 @@ function SwitchRow({ id, def, store }: { id: string; def: SettingDef; store: any
     return <TableSwitchRow
         label={t(def.label)}
         subLabel={def.description ? t(def.description) : undefined}
-        value={!!store[id]}
+        value={!!(store[id] ?? def.default)}
         onValueChange={(v: boolean) => store[id] = v}
     />;
 }
@@ -49,19 +49,19 @@ function Setting({ id, def, store }: { id: string; def: SettingDef; store: any; 
         case "select":
             return <TableRadioGroup
                 title={t(def.label)}
-                value={store[id]}
+                value={store[id] ?? def.default}
                 onChange={(v: string) => store[id] = v}
             >
                 {def.options.map(o => <TableRadioRow key={o.value} label={t(o.label)} value={o.value} />)}
             </TableRadioGroup>;
         case "number":
-            return <NumberSetting def={def} value={store[id]} onChange={v => store[id] = v} />;
+            return <NumberSetting def={def} value={store[id] ?? def.default} onChange={v => store[id] = v} />;
         case "string":
             return <TextInput
                 label={t(def.label)}
                 description={def.description ? t(def.description) : undefined}
                 placeholder={def.placeholder ? t(def.placeholder) : undefined}
-                value={store[id] ?? ""}
+                value={store[id] ?? def.default ?? ""}
                 multiline={def.multiline}
                 onChange={(v: string) => store[id] = v}
                 isClearable={!def.multiline}
@@ -71,6 +71,8 @@ function Setting({ id, def, store }: { id: string; def: SettingDef; store: any; 
 
 export default function PluginSettings({ plugin }: { plugin: EndcordPlugin<any>; }) {
     const store = useProxy(plugin.store);
+    // Drawn once the settings have loaded, so fields start with the saved values
+    if (!(store as any)[Symbol.for("vendetta.storage.emitter")]) return null;
     const entries = Object.entries(plugin.settings ?? {}) as [string, SettingDef][];
 
     // Switches next to each other share a group, like Discord's own settings

@@ -90,7 +90,7 @@ const DisableCallIdle = definePlugin({
 const FollowUser = definePlugin({
     id: "endcord.follow-user",
     name: "FollowUser",
-    description: tx("Adds a Follow option to the user menu to always join the same voice channel as them"),
+    description: tx("Follow someone from the message menu to always join the same voice channel as them"),
     authors: [ENDCORD_AUTHOR],
     icon: "ArrowAngleRightUpIcon",
     tags: ["Voice", "Friends"],
@@ -140,7 +140,7 @@ const FollowUser = definePlugin({
 const RandomVoice = definePlugin({
     id: "endcord.random-voice",
     name: "RandomVoice",
-    description: tx("Adds a button near mute to join a random voice channel."),
+    description: tx("Join a random voice channel with /randomvoice"),
     authors: [ENDCORD_AUTHOR],
     icon: "VoiceNormalIcon",
     tags: ["Voice", "Fun"],

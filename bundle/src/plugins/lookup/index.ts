@@ -138,7 +138,7 @@ const ServerInfo = definePlugin({
 const InRole = definePlugin({
     id: "endcord.in-role",
     name: "InRole",
-    description: tx("Know who is in a role with the role context menu or /inrole command (read plugin info!)"),
+    description: tx("See who has a role with /inrole"),
     authors: [ENDCORD_AUTHOR],
     icon: "UserIcon",
     tags: ["Servers", "Utility"],
@@ -261,7 +261,7 @@ const HypeSquadSwitcher = definePlugin({
 const FriendInvites = definePlugin({
     id: "endcord.friend-invites",
     name: "FriendInvites",
-    description: tx("Create and manage friend invite links via slash commands (/create friend invite, /view friend invites, /revoke friend invites)."),
+    description: tx("Create, list and revoke friend invite links with /friendinvites"),
     authors: [ENDCORD_AUTHOR],
     icon: "UserPlusIcon",
     tags: ["Friends"],
@@ -365,7 +365,7 @@ const channelOf = new Map<string, string>();
 const Translate = definePlugin({
     id: "endcord.translate",
     name: "Translate",
-    description: tx("Translate messages with Google Translate, DeepL or Kagi."),
+    description: tx("Translate messages from the message menu, translate what you send, or use /translate (Google Translate)"),
     authors: [ENDCORD_AUTHOR],
     icon: "LanguageIcon",
     tags: ["Chat", "Utility"],

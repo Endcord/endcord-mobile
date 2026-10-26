@@ -103,7 +103,7 @@ const title = (name: string) => name.toLowerCase().split("_").map(w => w[0].toUp
 const PermissionsViewer = definePlugin({
     id: "endcord.permissions-viewer",
     name: "PermissionsViewer",
-    description: tx("View the permissions a user or channel has, and the roles of a server"),
+    description: tx("See the roles and permissions of a message's author from the message menu"),
     authors: [ENDCORD_AUTHOR],
     icon: "ShieldIcon",
     tags: ["Servers", "Utility"],
@@ -153,7 +153,7 @@ async function dataUrl(url: string): Promise<string> {
 const ExpressionCloner = definePlugin({
     id: "endcord.expression-cloner",
     name: "ExpressionCloner",
-    description: tx("Allows you to clone Emotes & Stickers to your own server (right click them)"),
+    description: tx("Clone custom emojis from a message to your own servers from the message menu"),
     authors: [ENDCORD_AUTHOR],
     icon: "ReactionIcon",
     tags: ["Emotes", "Servers"],
@@ -208,7 +208,7 @@ function lastSeenText(userId: string): string {
 const LastOnline = definePlugin({
     id: "endcord.last-online",
     name: "LastOnline",
-    description: tx("Adds a last online indicator under usernames in your DM list"),
+    description: tx("Remembers when your friends were last online; see it in the message menu or with /lastonline"),
     authors: [ENDCORD_AUTHOR],
     icon: "ClockIcon",
     tags: ["Friends"],
@@ -283,7 +283,7 @@ const PingNotifications = definePlugin({
 const ReviewDB = definePlugin({
     id: "endcord.review-db",
     name: "ReviewDB",
-    description: tx("Review other users (Adds a new settings to profiles)"),
+    description: tx("Read the ReviewDB reviews of a message's author from the message menu"),
     authors: [ENDCORD_AUTHOR],
     icon: "StarIcon",
     tags: ["Friends", "Utility"],
@@ -311,7 +311,7 @@ const ReviewDB = definePlugin({
 const CopyStatusUrls = definePlugin({
     id: "endcord.copy-status-urls",
     name: "CopyStatusUrls",
-    description: tx("Copy a user's status URL when you right-click it"),
+    description: tx("Copy the links in the status of a message's author from the message menu"),
     authors: [ENDCORD_AUTHOR],
     icon: "LinkIcon",
     tags: ["Utility"],
@@ -425,7 +425,7 @@ function SessionsPage() {
 const BetterSessions = definePlugin({
     id: "endcord.better-sessions",
     name: "BetterSessions",
-    description: tx("Enhances the sessions (devices) menu. Allows you to view exact timestamps, give each session a custom name, and receive notifications about new sessions."),
+    description: tx("See your logged-in devices with exact times and your own names for them, and get told about new logins"),
     authors: [ENDCORD_AUTHOR],
     icon: "MobilePhoneIcon",
     tags: ["Privacy", "Utility"],

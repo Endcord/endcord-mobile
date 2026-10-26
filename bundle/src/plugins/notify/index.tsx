@@ -205,7 +205,7 @@ function VoiceLog() {
 const VoiceChannelLog = definePlugin({
     id: "endcord.voice-channel-log",
     name: "VoiceChannelLog",
-    description: tx("Logs voice channel activity including joins, leaves, soundboard, mute, camera, screenshare, and more."),
+    description: tx("Logs voice channel activity: joins, leaves, moves, server mutes, cameras and screen shares"),
     authors: [ENDCORD_AUTHOR],
     icon: "VoiceNormalIcon",
     tags: ["Voice"],
@@ -426,7 +426,7 @@ export function readAll() {
 const ReadAllNotificationsButton = definePlugin({
     id: "endcord.read-all-notifications",
     name: "ReadAllNotificationsButton",
-    description: tx("Read all server notifications with a single button click!"),
+    description: tx("Mark every server as read at once with /readall"),
     authors: [ENDCORD_AUTHOR],
     icon: "CheckmarkLargeIcon",
     tags: ["Notifications", "Servers"],

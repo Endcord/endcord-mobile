@@ -264,7 +264,7 @@ const ReplyPingControl = definePlugin({
 const HideMessages = definePlugin({
     id: "endcord.hide-messages",
     name: "HideMessages",
-    description: tx("Temporarily hide messages and DMs until you restart."),
+    description: tx("Hide messages from the message menu until you restart Discord"),
     authors: [ENDCORD_AUTHOR],
     icon: "EyeSlashIcon",
     tags: ["Chat", "Privacy"],
@@ -289,7 +289,7 @@ const HideMessages = definePlugin({
 const NoPendingCount = definePlugin({
     id: "endcord.no-pending-count",
     name: "NoPendingCount",
-    description: tx("Removes the ping count of incoming friend requests, message requests, and nitro offers."),
+    description: tx("Removes the badge count of incoming friend requests and message requests"),
     authors: [ENDCORD_AUTHOR],
     icon: "UserPlusIcon",
     tags: ["Notifications"],

@@ -184,7 +184,7 @@ async function myMessages(channelId: string, limit: number) {
 const ClearMyMessages = definePlugin({
     id: "endcord.clear-my-messages",
     name: "ClearMyMessages",
-    description: tx("Clear all button in user menu."),
+    description: tx("Delete your recent messages in a channel with /clearmessages"),
     authors: [ENDCORD_AUTHOR],
     icon: "TrashIcon",
     tags: ["Privacy", "Chat"],
@@ -221,7 +221,7 @@ const ClearMyMessages = definePlugin({
 const ExportDM = definePlugin({
     id: "endcord.export-dm",
     name: "ExportDM",
-    description: tx("Exports your DMs with messages, images, videos, audio, links, embeds, stickers, reactions in TXT/JSON/CSV/MD/HTML."),
+    description: tx("Export a chat's messages, attachments, stickers and reactions as TXT, Markdown or JSON with /exportdm"),
     authors: [ENDCORD_AUTHOR],
     icon: "ShareIcon",
     tags: ["Utility", "Privacy"],
@@ -270,7 +270,7 @@ const ExportDM = definePlugin({
 const ServerBackup = definePlugin({
     id: "endcord.server-backup",
     name: "ServerBackup",
-    description: tx("Export a server's channels, roles and permissions to a backup file, and restore it to another server."),
+    description: tx("Export a server's channels, roles and permissions to a backup file with /serverbackup"),
     authors: [ENDCORD_AUTHOR],
     icon: "ServerIcon",
     tags: ["Servers", "Utility"],
@@ -358,7 +358,7 @@ const MessageFetchTimer = definePlugin({
 const ContentWarning = definePlugin({
     id: "endcord.content-warning",
     name: "ContentWarning",
-    description: tx("Allows you to specify certain trigger words that will be blurred by default. Hovering/Clicking on the blurred content will reveal it."),
+    description: tx("Hides messages with trigger words you choose behind a spoiler you tap to reveal"),
     authors: [ENDCORD_AUTHOR],
     icon: "EyeSlashIcon",
     tags: ["Chat", "Privacy"],
@@ -383,7 +383,7 @@ const ContentWarning = definePlugin({
 const SendTimestamps = definePlugin({
     id: "endcord.send-timestamps",
     name: "SendTimestamps",
-    description: tx("Send timestamps easily via chat box button & text shortcuts. Read the extended description!"),
+    description: tx("Times written like `14:30` become timestamps everyone sees in their own time zone; a chat bar button inserts the current time"),
     authors: [ENDCORD_AUTHOR],
     icon: "ClockIcon",
     tags: ["Chat", "Utility"],
@@ -450,7 +450,7 @@ const SendTimestamps = definePlugin({
 const MemberCount = definePlugin({
     id: "endcord.member-count",
     name: "MemberCount",
-    description: tx("Shows the number of online members, total members, and users in voice channels on the server — in the member list and tooltip."),
+    description: tx("See how many members a server has, how many are online and how many are in voice, with /membercount"),
     authors: [ENDCORD_AUTHOR],
     icon: "GroupIcon",
     tags: ["Servers"],

@@ -48,7 +48,7 @@ function pickOne<T>(title: string, items: T[], label: (item: T) => string, then:
 const CopyMediaLink = definePlugin({
     id: "endcord.copy-media-link",
     name: "CopyMediaLink",
-    description: tx("Adds working Copy Media Link and Copy Link actions to the image context menu, copying through the clipboard fallback chain instead of Discord's own handler."),
+    description: tx("Copy the link of a message's images, videos and files from the message menu"),
     authors: [ENDCORD_AUTHOR],
     icon: "LinkIcon",
     tags: ["Media", "Utility"],
@@ -152,7 +152,7 @@ const DecodeBase64 = definePlugin({
 const HideMedia = definePlugin({
     id: "endcord.hide-media",
     name: "HideMedia",
-    description: tx("Hide attachments and embeds for individual messages via hover button"),
+    description: tx("Hide the attachments and embeds of a message from the message menu"),
     authors: [ENDCORD_AUTHOR],
     icon: "EyeSlashIcon",
     tags: ["Media", "Chat"],
@@ -195,7 +195,7 @@ const HideMedia = definePlugin({
 const Husk = definePlugin({
     id: "endcord.husk",
     name: "Husk",
-    description: tx("Adds Husk button (check settings to change used emoji)"),
+    description: tx("React with husk from the message menu (change the emoji in settings)"),
     authors: [ENDCORD_AUTHOR],
     icon: "ReactionIcon",
     tags: ["Emotes", "Fun"],
@@ -223,7 +223,7 @@ const Husk = definePlugin({
 const QuickMention = definePlugin({
     id: "endcord.quick-mention",
     name: "QuickMention",
-    description: tx("Adds a quick mention button to the message actions bar"),
+    description: tx("Mention a message's author from the message menu"),
     authors: [ENDCORD_AUTHOR],
     icon: "AtIcon",
     tags: ["Chat"],
@@ -244,7 +244,7 @@ const QuickMention = definePlugin({
 const RepeatMessages = definePlugin({
     id: "endcord.repeat-messages",
     name: "RepeatMessages",
-    description: tx("Allows you to repeat messages quickly. If you hold shift while clicking the Repeat option, it will reply to the message."),
+    description: tx("Send a message again from the message menu"),
     authors: [ENDCORD_AUTHOR],
     icon: "RetryIcon",
     tags: ["Chat"],
@@ -272,7 +272,7 @@ const ENGINES: Record<string, string> = {
 const ReverseImageSearch = definePlugin({
     id: "endcord.reverse-image-search",
     name: "ReverseImageSearch",
-    description: tx("Adds ImageSearch to image context menus"),
+    description: tx("Search for a message's image on Google Lens, Yandex, SauceNAO and more from the message menu"),
     authors: [ENDCORD_AUTHOR],
     icon: "MagnifyingGlassIcon",
     tags: ["Media", "Utility"],
@@ -308,7 +308,7 @@ function rawJson(message: any) {
 const ViewRaw = definePlugin({
     id: "endcord.view-raw",
     name: "ViewRaw",
-    description: tx("Copy and view the raw content/data of any message, channel or guild"),
+    description: tx("View and copy the raw content and data of any message"),
     authors: [ENDCORD_AUTHOR],
     icon: "CodeIcon",
     tags: ["Utility"],
@@ -394,7 +394,7 @@ const TEXT_FILE = /\.(txt|md|log|json|ya?ml|toml|ini|cfg|conf|csv|xml|html?|css|
 const CopyFileContents = definePlugin({
     id: "endcord.copy-file-contents",
     name: "CopyFileContents",
-    description: tx("Adds a button to text file attachments to copy their contents"),
+    description: tx("Copy the contents of text file attachments from the message menu"),
     authors: [ENDCORD_AUTHOR],
     icon: "CopyIcon",
     tags: ["Utility"],
@@ -423,7 +423,7 @@ const CopyFileContents = definePlugin({
 const CopyUserMention = definePlugin({
     id: "endcord.copy-user-mention",
     name: "CopyUserMention",
-    description: tx("Adds a button to copy user's mention on the user context menu, works best with ValidUser."),
+    description: tx("Copy the mention of a message's author from the message menu"),
     authors: [ENDCORD_AUTHOR],
     icon: "AtIcon",
     tags: ["Utility"],
@@ -441,7 +441,7 @@ const CopyUserMention = definePlugin({
 const CopyUserURLs = definePlugin({
     id: "endcord.copy-user-urls",
     name: "CopyUserURLs",
-    description: tx("Adds a 'Copy User URL' option to the user context menu."),
+    description: tx("Copy a link to the profile of a message's author from the message menu"),
     authors: [ENDCORD_AUTHOR],
     icon: "LinkIcon",
     tags: ["Utility"],
@@ -488,7 +488,7 @@ const IS_VOICE_MESSAGE = 1 << 13;
 const VoiceDownload = definePlugin({
     id: "endcord.voice-download",
     name: "VoiceDownload",
-    description: tx("Adds a download to voice messages. (Opens a new browser tab)"),
+    description: tx("Download voice messages from the message menu"),
     authors: [ENDCORD_AUTHOR],
     icon: "DownloadIcon",
     tags: ["Voice", "Media"],
@@ -506,7 +506,7 @@ const VoiceDownload = definePlugin({
 const DownloadAllAttachments = definePlugin({
     id: "endcord.download-all-attachments",
     name: "DownloadAllAttachments",
-    description: tx("Adds a popover button to download all attachments in a message at once."),
+    description: tx("Download every attachment of a message at once from the message menu"),
     authors: [ENDCORD_AUTHOR],
     icon: "DownloadIcon",
     tags: ["Media", "Utility"],
@@ -548,7 +548,7 @@ const CopyEmojiMarkdown = definePlugin({
 const ExportMessages = definePlugin({
     id: "endcord.export-messages",
     name: "ExportMessages",
-    description: tx("Allows you to export any message to a file"),
+    description: tx("Share any message as text from the message menu"),
     authors: [ENDCORD_AUTHOR],
     icon: "ShareIcon",
     tags: ["Utility"],
@@ -576,7 +576,7 @@ const MUSIC_LINK = /https?:\/\/(?:open\.spotify\.com|music\.apple\.com|music\.yo
 const SongLink = definePlugin({
     id: "endcord.song-link",
     name: "SongLink",
-    description: tx("Adds streaming service buttons below song links"),
+    description: tx("Open song links on your streaming service through song.link, from the message menu"),
     authors: [ENDCORD_AUTHOR],
     icon: "MusicIcon",
     tags: ["Media"],
@@ -630,7 +630,7 @@ export function convertUnits(text: string): string[] {
 const UnitConverter = definePlugin({
     id: "endcord.unit-converter",
     name: "UnitConverter",
-    description: tx("Converts metric units to Imperal units and vice versa"),
+    description: tx("Convert metric and imperial units in a message from the message menu"),
     authors: [ENDCORD_AUTHOR],
     icon: "RulerIcon",
     tags: ["Utility"],
@@ -648,7 +648,7 @@ const UnitConverter = definePlugin({
 const QuickDelete = definePlugin({
     id: "endcord.quick-delete",
     name: "QuickDelete",
-    description: tx("Delete your last message in the current channel with a keyboard shortcut."),
+    description: tx("Delete your last message in a channel with /deletelast, or any of yours from the message menu without confirming"),
     authors: [ENDCORD_AUTHOR],
     icon: "TrashIcon",
     tags: ["Chat"],

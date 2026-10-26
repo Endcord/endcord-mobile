@@ -61,7 +61,7 @@ function RemindersList() {
 const RemindMe = definePlugin({
     id: "endcord.remind-me",
     name: "RemindMe",
-    description: tx("/remindme <amount> <m|h|d> <text> pings you with a desktop notification later. Survives restarts."),
+    description: tx("/remindme reminds you of something later with a notice in the chat. Survives restarts."),
     authors: [ENDCORD_AUTHOR],
     icon: "ClockIcon",
     tags: ["Utility", "Notifications"],
@@ -96,7 +96,7 @@ const REMIND_IN: Array<[string, number]> = [[tx("In 15 minutes"), 15 * 60_000], 
 const MessageReminders = definePlugin({
     id: "endcord.message-reminders",
     name: "MessageReminders",
-    description: tx("Right-click a message to be reminded about it later. A notification brings you right back to it."),
+    description: tx("Get reminded about a message later from the message menu. The reminder links right back to it."),
     authors: [ENDCORD_AUTHOR],
     icon: "ClockIcon",
     tags: ["Utility", "Notifications"],
@@ -254,7 +254,7 @@ function BookmarkList() {
 const Bookmarks = definePlugin({
     id: "endcord.bookmarks",
     name: "Bookmarks",
-    description: tx("Privately bookmark messages (beyond Discord's 50-pin limit) with a hover button, then view and jump to them from the Endcord Toolbox in the title bar."),
+    description: tx("Privately bookmark messages (beyond Discord's 50-pin limit) from the message menu, then find and jump to them in the plugin's settings or with /bookmarks"),
     authors: [ENDCORD_AUTHOR],
     icon: "BookmarkIcon",
     tags: ["Utility", "Chat"],
@@ -323,7 +323,7 @@ function TagList() {
 const MessageTags = definePlugin({
     id: "endcord.message-tags",
     name: "MessageTags",
-    description: tx("Tag messages with private local labels (TODO, Important, ...), see them as chips, and browse/jump to them from the Endcord Toolbox in the title bar."),
+    description: tx("Tag messages with private labels (TODO, Important, ...) shown next to their time, and find them in the plugin's settings"),
     authors: [ENDCORD_AUTHOR],
     icon: "TagIcon",
     tags: ["Utility", "Chat"],

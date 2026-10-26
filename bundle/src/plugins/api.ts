@@ -70,8 +70,13 @@ export const ENDCORD_AUTHOR: Author = { name: "rootpoi" };
 
 export function definePlugin<S extends SettingsSchema>(def: EndcordPluginDefinition<S>): EndcordPlugin<S> {
     const defaults = Object.fromEntries(Object.entries(def.settings ?? {}).map(([k, v]) => [k, v.default]));
-    const store = wrapSync(createStorage<SettingsValues<S>>(createMMKVBackend(`ENDCORD_PLUGIN_${def.id}`, defaults)));
-    return Object.assign(def, { store });
+    let store: SettingsValues<S> | undefined;
+    // Opened the first time something reads it, so the settings of plugins that are off aren't loaded at startup
+    Object.defineProperty(def, "store", {
+        enumerable: true,
+        get: () => store ??= wrapSync(createStorage<SettingsValues<S>>(createMMKVBackend(`ENDCORD_PLUGIN_${def.id}`, defaults))),
+    });
+    return def as EndcordPlugin<S>;
 }
 
 /** Calls back with the setting's key whenever one of the store's settings changes, wherever it is changed from */

@@ -76,7 +76,7 @@ const PinIcon = definePlugin({
 const WordCount = definePlugin({
     id: "endcord.word-count",
     name: "WordCount",
-    description: tx("Shows the word count of a message below it"),
+    description: tx("Shows the word count of messages next to their time"),
     authors: [ENDCORD_AUTHOR],
     tags: ["Chat"],
     settings: {
@@ -138,7 +138,7 @@ const CustomTimestamps = definePlugin({
 const Timezones = definePlugin({
     id: "endcord.timezones",
     name: "Timezones",
-    description: tx("Shows the local time of users in profiles and message headers"),
+    description: tx("Shows the local time of the users you choose next to their messages"),
     authors: [ENDCORD_AUTHOR],
     icon: "GlobeEarthIcon",
     tags: ["Utility"],
@@ -258,7 +258,7 @@ const IrcColors = definePlugin({
 const CustomUserColors = definePlugin({
     id: "endcord.custom-user-colors",
     name: "CustomUserColors",
-    description: tx("Give any user a custom name color, everywhere. Works best with TypingTweaks and RoleColorEverywhere"),
+    description: tx("Give any user a custom name color in chat"),
     authors: [ENDCORD_AUTHOR],
     icon: "PaintPaletteIcon",
     tags: ["Appearance", "Customisation"],
@@ -292,7 +292,7 @@ function highestRole(guildId: string, userId: string) {
 const ShowRolesInChat = definePlugin({
     id: "endcord.show-roles-in-chat",
     name: "ShowRolesInChat",
-    description: tx("Shows a user's highest role next to their name in chat messages. Hide/show specific roles in their context menu (right-click)."),
+    description: tx("Shows a user's highest role next to their name in chat messages"),
     authors: [ENDCORD_AUTHOR],
     icon: "ShieldIcon",
     tags: ["Chat", "Servers"],
@@ -389,7 +389,7 @@ function annotateTones(nodes: any[], tones: Record<string, string>, prefix: stri
 const ToneIndicators = definePlugin({
     id: "endcord.tone-indicators",
     name: "ToneIndicators",
-    description: tx("Show tooltips for tone indicators like /srs, /gen, etc. in sent messages."),
+    description: tx("Explains tone indicators like /srs and /gen next to them in messages"),
     authors: [ENDCORD_AUTHOR],
     tags: ["Chat"],
     settings: {

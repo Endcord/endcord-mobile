@@ -128,7 +128,7 @@ function Sparkles() {
 const ClickSparkles = definePlugin({
     id: "endcord.click-sparkles",
     name: "ClickSparkles",
-    description: tx("Sprinkles little neon sparkles wherever you click."),
+    description: tx("Sprinkles little neon sparkles wherever you touch"),
     authors: [ENDCORD_AUTHOR],
     icon: "StarIcon",
     tags: ["Fun", "Appearance"],
@@ -188,7 +188,7 @@ const MOYAI_URL = "https://github.com/Equicord/Equibored/raw/main/sounds/moyai/m
 const Moyai = definePlugin({
     id: "endcord.moyai",
     name: "Moyai",
-    description: tx("Plays a 🗿 sound effect whenever a moyai emoji is sent, reacted, or used as a voice effect in your current channel."),
+    description: tx("Plays a 🗿 sound effect whenever a moyai emoji is sent or reacted in the chat you have open"),
     authors: [ENDCORD_AUTHOR],
     tags: ["Fun"],
     settings: {
@@ -259,7 +259,7 @@ function WellbeingPage() {
 const Wellbeing = definePlugin({
     id: "endcord.wellbeing",
     name: "Wellbeing",
-    description: tx("A gentle, private dashboard of how you use Discord — screen time, messages and calm controls. Everything stays on your computer."),
+    description: tx("A gentle, private dashboard of how you use Discord: screen time, messages and break reminders. Everything stays on your phone."),
     authors: [ENDCORD_AUTHOR],
     icon: "HeartIcon",
     tags: ["Utility"],
