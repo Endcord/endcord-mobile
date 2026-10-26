@@ -1,6 +1,7 @@
 import { ApplicationCommand, ApplicationCommandInputType, ApplicationCommandType, BunnyApplicationCommand } from "@lib/api/commands/types";
 import { after, instead } from "@lib/api/patcher";
 import { logger } from "@lib/utils/logger";
+import { findByStoreName } from "@metro";
 import { commands as commandsModule, messageUtil } from "@metro/common";
 
 let commands: ApplicationCommand[] = [];
@@ -23,10 +24,39 @@ export function patchCommands() {
         require("@core/commands/plugins")
     ].forEach(r => registerCommand(r.default()));
 
+    const unpatchTyped = patchTypedCommands();
+
     return () => {
         commands = [];
         unpatch();
+        unpatchTyped();
     };
+}
+
+/** The Endcord command a message is, when it's just "/name" and the command needs nothing more */
+function typedCommand(content: unknown) {
+    if (typeof content !== "string") return undefined;
+    const name = /^\/([\w-]+)$/.exec(content.trim())?.[1]?.toLowerCase();
+    return name ? commands.find(c => c.name === name && c.__bunny?.shouldHide?.() !== false && !c.options?.some(o => o.required)) : undefined;
+}
+
+/**
+ * A command typed out in full and sent without picking it from the suggestions reaches Discord as a plain message,
+ * which would post "/hideendcord" in the chat for everyone to see. Endcord's own commands run instead.
+ */
+function patchTypedCommands() {
+    return instead("sendMessage", messageUtil, function (this: any, args, orig) {
+        const command = typedCommand(args[1]?.content);
+        if (!command) return orig.apply(this, args);
+        const channel = findByStoreName("ChannelStore")?.getChannel?.(args[0]);
+        const guild = channel?.guild_id ? findByStoreName("GuildStore")?.getGuild?.(channel.guild_id) : undefined;
+        try {
+            command.execute([], { channel: channel ?? { id: args[0] }, guild });
+        } catch (e) {
+            logger.error("Failed to execute command", e);
+        }
+        return Promise.resolve();
+    });
 }
 
 export function registerCommand(command: BunnyApplicationCommand): () => void {

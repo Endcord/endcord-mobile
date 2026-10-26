@@ -239,6 +239,15 @@ export function getDecorationUrl(assetId: string, animated = false): string {
     return `https://cdn.discordapp.com/media/v1/collectibles-shop/${assetId}/${animated ? "animated" : "static"}`;
 }
 
+/**
+ * A shop image at the size it's shown, which Discord's CDN scales down when asked. The originals are full-size
+ * profile artwork, up to a few megabytes each, and the editor shows hundreds of them as small tiles.
+ */
+export function shopThumbnail(url: string, width: number, height: number): string {
+    if (!url.startsWith("https://cdn.discordapp.com/")) return url;
+    return `${url}${url.includes("?") ? "&" : "?"}width=${Math.round(width)}&height=${Math.round(height)}&format=webp`;
+}
+
 /** Discord's collectible item type for profile effects */
 export const COLLECTIBLE_PROFILE_EFFECT = 1;
 
