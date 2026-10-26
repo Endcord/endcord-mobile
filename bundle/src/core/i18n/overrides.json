@@ -23,17 +23,71 @@
         "es": "0 significa sin límite",
         "fr": "0 signifie sans limite"
     },
+    "1 Month": {
+        "tr": "1 Ay",
+        "ru": "1 месяц",
+        "es": "1 mes",
+        "fr": "1 mois"
+    },
     "1 word": {
         "tr": "1 kelime",
         "ru": "1 слово",
         "es": "1 palabra",
         "fr": "1 mot"
     },
+    "12 Months": {
+        "tr": "12 Ay",
+        "ru": "12 месяцев",
+        "es": "12 meses",
+        "fr": "12 mois"
+    },
+    "15 Months": {
+        "tr": "15 Ay",
+        "ru": "15 месяцев",
+        "es": "15 meses",
+        "fr": "15 mois"
+    },
+    "18 Months": {
+        "tr": "18 Ay",
+        "ru": "18 месяцев",
+        "es": "18 meses",
+        "fr": "18 mois"
+    },
+    "2 Months": {
+        "tr": "2 Ay",
+        "ru": "2 месяца",
+        "es": "2 meses",
+        "fr": "2 mois"
+    },
+    "24 Months": {
+        "tr": "24 Ay",
+        "ru": "24 месяца",
+        "es": "24 meses",
+        "fr": "24 mois"
+    },
     "24-hour clock": {
         "tr": "24 saat biçimi",
         "ru": "24-часовой формат",
         "es": "Reloj de 24 horas",
         "fr": "Format 24 heures"
+    },
+    "3 Months": {
+        "tr": "3 Ay",
+        "ru": "3 месяца",
+        "es": "3 meses",
+        "fr": "3 mois"
+    },
+    "6 Months": {
+        "tr": "6 Ay",
+        "ru": "6 месяцев",
+        "es": "6 meses",
+        "fr": "6 mois"
+    },
+    "9 Months": {
+        "tr": "9 Ay",
+        "ru": "9 месяцев",
+        "es": "9 meses",
+        "fr": "9 mois"
     },
     "<@{me}> slaps {victim} around a bit with a large trout": {
         "tr": "<@{me}>, {victim} kişisini kocaman bir alabalıkla biraz tokatlıyor",
@@ -221,12 +275,6 @@
         "es": "Acerca de",
         "fr": "À propos"
     },
-    "About me": {
-        "tr": "Hakkımda",
-        "ru": "Обо мне",
-        "es": "Sobre mí",
-        "fr": "À propos de moi"
-    },
     "Above the message box": {
         "tr": "Mesaj kutusunun üstünde",
         "ru": "Над полем сообщения",
@@ -358,6 +406,12 @@
         "ru": "Администратор: все права",
         "es": "Administrador: todos los permisos",
         "fr": "Administrateur : toutes les permissions"
+    },
+    "Adventurer": {
+        "tr": "Maceracı",
+        "ru": "Искатель приключений",
+        "es": "Aventurero",
+        "fr": "Aventurier"
     },
     "After (minutes)": {
         "tr": "Sonra (dakika)",
@@ -611,12 +665,6 @@
         "es": "Decoraciones de avatar",
         "fr": "Décorations d'avatar"
     },
-    "Avatar image link": {
-        "tr": "Avatar görseli bağlantısı",
-        "ru": "Ссылка на изображение аватара",
-        "es": "Enlace de la imagen del avatar",
-        "fr": "Lien de l'image d'avatar"
-    },
     "Badge image": {
         "tr": "Rozet görseli",
         "ru": "Изображение значка",
@@ -653,12 +701,6 @@
         "es": "{user} ha sido baneado: {reason}",
         "fr": "{user} a été banni : {reason}"
     },
-    "Banner image link": {
-        "tr": "Afiş görseli bağlantısı",
-        "ru": "Ссылка на изображение баннера",
-        "es": "Enlace de la imagen del banner",
-        "fr": "Lien de l'image de bannière"
-    },
     "Before the badge's name": {
         "tr": "Rozet adından önce",
         "ru": "Перед названием значка",
@@ -689,11 +731,11 @@
         "es": "Palabras bloqueadas",
         "fr": "Mots bloqués"
     },
-    "Blurple": {
-        "tr": "Discord moru",
-        "ru": "Фирменный синий",
-        "es": "Blurple",
-        "fr": "Blurple"
+    "Blossom": {
+        "tr": "Çiçek",
+        "ru": "Цветок",
+        "es": "Flor",
+        "fr": "Fleur"
     },
     "Bookmark": {
         "tr": "Yer İşaretine Ekle",
@@ -743,6 +785,18 @@
         "es": "Recordatorio de descanso (minutos)",
         "fr": "Rappel de pause (minutes)"
     },
+    "Breakout": {
+        "tr": "Yükselen",
+        "ru": "Прорыв",
+        "es": "Revelación",
+        "fr": "Révélation"
+    },
+    "Bristlecone": {
+        "tr": "Kılçıklı Çam",
+        "ru": "Остистая сосна",
+        "es": "Pino longevo",
+        "fr": "Pin de Bristlecone"
+    },
     "Browse and install themes for Discord on your phone without leaving the app.": {
         "tr": "Uygulamadan çıkmadan telefonunuzdaki Discord için temalara göz atın ve yükleyin.",
         "ru": "Просматривайте и устанавливайте темы для Discord на телефоне, не выходя из приложения.",
@@ -760,6 +814,12 @@
         "ru": "Обзор плагинов",
         "es": "Explorar plugins",
         "fr": "Parcourir les plugins"
+    },
+    "Bud": {
+        "tr": "Tomurcuk",
+        "ru": "Бутон",
+        "es": "Capullo",
+        "fr": "Bourgeon"
     },
     "Burst length (seconds)": {
         "tr": "Birleştirme süresi (saniye)",
@@ -839,11 +899,23 @@
         "es": "Distinguir mayúsculas y minúsculas",
         "fr": "Sensible à la casse"
     },
+    "Casual": {
+        "tr": "Gündelik",
+        "ru": "Любитель",
+        "es": "Casual",
+        "fr": "Occasionnel"
+    },
     "Cat size": {
         "tr": "Kedi boyutu",
         "ru": "Размер кота",
         "es": "Tamaño del gato",
         "fr": "Taille du chat"
+    },
+    "Champion": {
+        "tr": "Şampiyon",
+        "ru": "Чемпион",
+        "es": "Campeón",
+        "fr": "Champion"
     },
     "Chance (1 in X)": {
         "tr": "Olasılık (X'te 1)",
@@ -1042,6 +1114,12 @@
         "ru": "Слова через запятую; сообщения с ними скрываются под спойлер",
         "es": "Palabras separadas por comas; los mensajes que las contienen se ocultan tras un spoiler",
         "fr": "Mots séparés par des virgules ; les messages qui les contiennent sont masqués derrière un spoiler"
+    },
+    "Committed": {
+        "tr": "Kararlı",
+        "ru": "Увлечённый",
+        "es": "Comprometido",
+        "fr": "Engagé"
     },
     "Compare two servers you're in and see which members are in both, with /mutualmembers": {
         "tr": "Üye olduğun iki sunucuyu karşılaştır ve ikisinde de olan üyeleri /mutualmembers ile gör",
@@ -1301,6 +1379,12 @@
         "es": "No se pudo abrir la imagen; se copió su enlace",
         "fr": "Impossible d'ouvrir l'image ; son lien a été copié"
     },
+    "Couldn't open the photo picker": {
+        "tr": "Fotoğraf seçici açılamadı",
+        "ru": "Не удалось открыть выбор фото",
+        "es": "No se pudo abrir el selector de fotos",
+        "fr": "Impossible d'ouvrir le sélecteur de photos"
+    },
     "Couldn't open this ZIP file": {
         "tr": "Bu ZIP dosyası açılamadı",
         "ru": "Не удалось открыть этот ZIP-файл",
@@ -1421,17 +1505,17 @@
         "es": "Buscador personalizado",
         "fr": "Moteur de recherche personnalisé"
     },
-    "Customize the text cursor and the selection color in text boxes.": {
-        "tr": "Metin kutularındaki imleci ve seçim rengini özelleştirin.",
-        "ru": "Настройте текстовый курсор и цвет выделения в полях ввода.",
-        "es": "Personaliza el cursor de texto y el color de selección en los cuadros de texto.",
-        "fr": "Personnalisez le curseur de texte et la couleur de sélection dans les zones de texte."
-    },
     "Custom…": {
         "tr": "Özel…",
         "ru": "Своё…",
         "es": "Personalizado…",
         "fr": "Personnalisé…"
+    },
+    "Dabbler": {
+        "tr": "Heveskâr",
+        "ru": "Дилетант",
+        "es": "Aficionado",
+        "fr": "Touche-à-tout"
     },
     "Daily average": {
         "tr": "Günlük ortalama",
@@ -1480,6 +1564,12 @@
         "ru": "Расшифрованное сообщение",
         "es": "Mensaje descifrado",
         "fr": "Message déchiffré"
+    },
+    "Dedicated": {
+        "tr": "Kendini Adamış",
+        "ru": "Преданный",
+        "es": "Dedicado",
+        "fr": "Investi"
     },
     "Default": {
         "tr": "Varsayılan",
@@ -1655,6 +1745,12 @@
         "es": "Dispositivos",
         "fr": "Appareils"
     },
+    "Devoted": {
+        "tr": "Sadık",
+        "ru": "Верный",
+        "es": "Devoto",
+        "fr": "Dévoué"
+    },
     "Direct Message": {
         "tr": "Direkt Mesaj",
         "ru": "Личные сообщения",
@@ -1714,12 +1810,6 @@
         "ru": "Discord пока никого не сообщил приложению.",
         "es": "Discord aún no le ha indicado a nadie a la app.",
         "fr": "Discord n'a encore signalé personne à l'application."
-    },
-    "Discord's default": {
-        "tr": "Discord varsayılanı",
-        "ru": "Как в Discord",
-        "es": "Predeterminado de Discord",
-        "fr": "Par défaut de Discord"
     },
     "Discord's own sound": {
         "tr": "Discord'un kendi sesi",
@@ -1931,6 +2021,12 @@
         "es": "Introduce el enlace desde el que instalar:",
         "fr": "Saisissez le lien à partir duquel installer :"
     },
+    "Enthusiast": {
+        "tr": "Meraklı",
+        "ru": "Энтузиаст",
+        "es": "Entusiasta",
+        "fr": "Passionné"
+    },
     "Error": {
         "tr": "Hata",
         "ru": "Ошибка",
@@ -1942,6 +2038,12 @@
         "ru": "Инструменты экрана ошибок",
         "es": "Herramientas de la pantalla de error",
         "fr": "Outils de l'écran d'erreur"
+    },
+    "Eternal": {
+        "tr": "Ebedi",
+        "ru": "Вечный",
+        "es": "Eterno",
+        "fr": "Éternel"
     },
     "Evaluate JavaScript code": {
         "tr": "JavaScript kodu çalıştır",
@@ -1997,6 +2099,12 @@
         "es": "Ya está todo leído.",
         "fr": "Tout est déjà lu."
     },
+    "Ex : Triggerr#5954 — will appear as \"Old username: Triggerr#5954\" when hovering the badge.": {
+        "tr": "Örn: Triggerr#5954 — rozete dokununca \"Eski kullanıcı adı: Triggerr#5954\" olarak görünür.",
+        "ru": "Пример: Triggerr#5954 — при нажатии на значок будет показано «Старое имя пользователя: Triggerr#5954».",
+        "es": "Ej.: Triggerr#5954 — aparecerá como \"Nombre de usuario anterior: Triggerr#5954\" al tocar la insignia.",
+        "fr": "Ex. : Triggerr#5954 — apparaîtra comme « Ancien nom d'utilisateur : Triggerr#5954 » en touchant le badge."
+    },
     "Exceptions": {
         "tr": "İstisnalar",
         "ru": "Исключения",
@@ -2026,6 +2134,12 @@
         "ru": "Поясняет индикаторы тона вроде /srs и /gen прямо рядом с ними в сообщениях",
         "es": "Explica los indicadores de tono como /srs y /gen junto a ellos en los mensajes",
         "fr": "Explique les indicateurs de ton comme /srs et /gen juste à côté dans les messages"
+    },
+    "Explorer": {
+        "tr": "Kâşif",
+        "ru": "Исследователь",
+        "es": "Explorador",
+        "fr": "Explorateur"
     },
     "Export a chat's messages, attachments, stickers and reactions as TXT, Markdown or JSON with /exportdm": {
         "tr": "Bir sohbetin mesajlarını, eklerini, çıkartmalarını ve tepkilerini /exportdm ile TXT, Markdown veya JSON olarak dışa aktar",
@@ -2248,6 +2362,12 @@
         "ru": "Постоянное имя",
         "es": "Nombre fijo",
         "fr": "Nom fixe"
+    },
+    "Fledgling": {
+        "tr": "Acemi",
+        "ru": "Начинающий",
+        "es": "Principiante",
+        "fr": "Débutant"
     },
     "Flips a coin and returns heads or tails": {
         "tr": "Yazı tura atar",
@@ -2513,12 +2633,6 @@
         "es": "Entendido",
         "fr": "Compris"
     },
-    "Green": {
-        "tr": "Yeşil",
-        "ru": "Зелёный",
-        "es": "Verde",
-        "fr": "Vert"
-    },
     "Group chats": {
         "tr": "Grup sohbetleri",
         "ru": "Групповые чаты",
@@ -2531,11 +2645,23 @@
         "es": "Mensajes de grupo",
         "fr": "Messages de groupe"
     },
+    "Headliner": {
+        "tr": "Baş Yıldız",
+        "ru": "Хедлайнер",
+        "es": "Cabeza de cartel",
+        "fr": "Tête d'affiche"
+    },
     "Heads": {
         "tr": "Yazı",
         "ru": "Орёл",
         "es": "Cara",
         "fr": "Face"
+    },
+    "Hero": {
+        "tr": "Kahraman",
+        "ru": "Герой",
+        "es": "Héroe",
+        "fr": "Héros"
     },
     "Hidden Message": {
         "tr": "Gizli Mesaj",
@@ -3125,6 +3251,12 @@
         "es": "Las invitaciones a {server} están en pausa hasta que las reanudes.",
         "fr": "Les invitations pour {server} sont suspendues jusqu'à ce que vous les réactiviez."
     },
+    "Ironclad": {
+        "tr": "Demir Gibi",
+        "ru": "Железный",
+        "es": "Acorazado",
+        "fr": "Cuirassé"
+    },
     "It is certain": {
         "tr": "Kesinlikle öyle",
         "ru": "Бесспорно",
@@ -3335,12 +3467,6 @@
         "es": "Último mensaje",
         "fr": "Dernier message"
     },
-    "Leave empty to keep your own": {
-        "tr": "Kendinizinkini korumak için boş bırakın",
-        "ru": "Оставьте пустым, чтобы сохранить своё",
-        "es": "Déjalo vacío para mantener el tuyo",
-        "fr": "Laissez vide pour garder le vôtre"
-    },
     "Leave with them": {
         "tr": "Onlarla birlikte ayrıl",
         "ru": "Выходить вместе с ним",
@@ -3352,6 +3478,12 @@
         "ru": "Слева от поля сообщения",
         "es": "A la izquierda del cuadro de mensaje",
         "fr": "À gauche de la zone de message"
+    },
+    "Legend": {
+        "tr": "Efsane",
+        "ru": "Легенда",
+        "es": "Leyenda",
+        "fr": "Légende"
     },
     "Level {level}": {
         "tr": "Seviye {level}",
@@ -3605,6 +3737,12 @@
         "es": "¿Buscas plugins de Aliucord?",
         "fr": "Vous cherchez des plugins Aliucord ?"
     },
+    "Luminary": {
+        "tr": "Işıltılı",
+        "ru": "Светило",
+        "es": "Lumbrera",
+        "fr": "Sommité"
+    },
     "MOD": {
         "tr": "MOD",
         "ru": "МОД",
@@ -3706,6 +3844,12 @@
         "ru": "Отмечает сообщения с прямым упоминанием иначе, чем пинги @everyone и @here",
         "es": "Marca los mensajes que te mencionan directamente de forma distinta a los avisos de @everyone y @here",
         "fr": "Marque les messages qui vous mentionnent directement différemment des mentions @everyone et @here"
+    },
+    "Maverick": {
+        "tr": "Aykırı",
+        "ru": "Бунтарь",
+        "es": "Inconformista",
+        "fr": "Franc-tireur"
     },
     "Max number of uses": {
         "tr": "En fazla kullanım sayısı",
@@ -3971,6 +4115,12 @@
         "es": "Nuevo inicio de sesión: {device}",
         "fr": "Nouvelle connexion : {device}"
     },
+    "Newcomer": {
+        "tr": "Yeni Gelen",
+        "ru": "Новичок",
+        "es": "Recién llegado",
+        "fr": "Nouveau venu"
+    },
     "Next to the time of each message": {
         "tr": "Her mesajın saatinin yanında",
         "ru": "Рядом со временем каждого сообщения",
@@ -3982,6 +4132,12 @@
         "ru": "Ник (имя пользователя)",
         "es": "Apodo (nombre de usuario)",
         "fr": "Pseudo (nom d'utilisateur)"
+    },
+    "Nitro": {
+        "tr": "Nitro",
+        "ru": "Nitro",
+        "es": "Nitro",
+        "fr": "Nitro"
     },
     "No": {
         "tr": "Hayır",
@@ -4276,6 +4432,12 @@
         "ru": "Удаления, пока вы не в сети",
         "es": "Eliminaciones sin conexión",
         "fr": "Retraits hors ligne"
+    },
+    "OldUser#0000": {
+        "tr": "OldUser#0000",
+        "ru": "OldUser#0000",
+        "es": "OldUser#0000",
+        "fr": "OldUser#0000"
     },
     "Older events are removed": {
         "tr": "Daha eski olaylar silinir",
@@ -4607,6 +4769,12 @@
         "es": "Pegar del portapapeles",
         "fr": "Coller depuis le presse-papiers"
     },
+    "Patron": {
+        "tr": "Patron",
+        "ru": "Покровитель",
+        "es": "Mecenas",
+        "fr": "Mécène"
+    },
     "Pattern": {
         "tr": "Desen",
         "ru": "Шаблон",
@@ -4661,6 +4829,12 @@
         "es": "Personas con las que hablas mucho y que no son tus amigos",
         "fr": "Les personnes avec qui vous parlez beaucoup et qui ne sont pas vos amis"
     },
+    "Phenomenon": {
+        "tr": "Fenomen",
+        "ru": "Феномен",
+        "es": "Fenómeno",
+        "fr": "Phénomène"
+    },
     "Pick a voice channel to move them to.": {
         "tr": "Onları taşımak için bir ses kanalı seç.",
         "ru": "Выберите голосовой канал, куда переместить.",
@@ -4714,12 +4888,6 @@
         "ru": "Упоминать пользователей из списка",
         "es": "Mencionar a los usuarios de la lista",
         "fr": "Mentionner les utilisateurs de la liste"
-    },
-    "Pink": {
-        "tr": "Pembe",
-        "ru": "Розовый",
-        "es": "Rosa",
-        "fr": "Rose"
     },
     "Pinned": {
         "tr": "Sabitlendi",
@@ -4799,6 +4967,12 @@
         "es": "Plugins iniciados",
         "fr": "Plugins démarrés"
     },
+    "Polymath": {
+        "tr": "Çok Yönlü",
+        "ru": "Эрудит",
+        "es": "Erudito",
+        "fr": "Polymathe"
+    },
     "Popular first": {
         "tr": "Önce popüler olanlar",
         "ru": "Сначала популярные",
@@ -4852,6 +5026,12 @@
         "ru": "Основной: {primary}, акцент: {accent}",
         "es": "Principal: {primary}, acento: {accent}",
         "fr": "Principale : {primary}, accent : {accent}"
+    },
+    "Primordial": {
+        "tr": "İlkel",
+        "ru": "Первозданный",
+        "es": "Primordial",
+        "fr": "Primordial"
     },
     "Privately bookmark messages (beyond Discord's 50-pin limit) from the message menu, then find and jump to them in the plugin's settings or with /bookmarks": {
         "tr": "Mesajları mesaj menüsünden gizlice yer işaretine ekle (Discord'un 50 sabitleme sınırının ötesinde), sonra eklentinin ayarlarında ya da /bookmarks ile bulup onlara git",
@@ -4943,6 +5123,12 @@
         "es": "Elige al azar entre las opciones dadas",
         "fr": "Choisit au hasard parmi les options données"
     },
+    "Ranger": {
+        "tr": "Korucu",
+        "ru": "Рейнджер",
+        "es": "Guardabosques",
+        "fr": "Rôdeur"
+    },
     "React to my messages too": {
         "tr": "Benim mesajlarıma da tepki ver",
         "ru": "Реагировать и на мои сообщения",
@@ -4997,11 +5183,17 @@
         "es": "Notificaciones recientes",
         "fr": "Notifications récentes"
     },
-    "Red": {
-        "tr": "Kırmızı",
-        "ru": "Красный",
-        "es": "Rojo",
-        "fr": "Rouge"
+    "Recreational": {
+        "tr": "Eğlencelik",
+        "ru": "Для отдыха",
+        "es": "Recreativo",
+        "fr": "Récréatif"
+    },
+    "Redwood": {
+        "tr": "Kızıl Ağaç",
+        "ru": "Красное дерево",
+        "es": "Secuoya roja",
+        "fr": "Séquoia rouge"
     },
     "Refetch": {
         "tr": "Yeniden indir",
@@ -5339,6 +5531,18 @@
         "es": "Igual que Discord",
         "fr": "Comme Discord"
     },
+    "Sampler": {
+        "tr": "Tadımcı",
+        "ru": "Пробующий",
+        "es": "Catador",
+        "fr": "Goûteur"
+    },
+    "Sapling": {
+        "tr": "Fidan",
+        "ru": "Саженец",
+        "es": "Retoño",
+        "fr": "Jeune arbre"
+    },
     "Save Current Profile": {
         "tr": "Şu Anki Profili Kaydet",
         "ru": "Сохранить текущий профиль",
@@ -5422,6 +5626,12 @@
         "ru": "Поиск среди {count} значков",
         "es": "Buscar entre {count} iconos",
         "fr": "Chercher parmi {count} icônes"
+    },
+    "Seasoned": {
+        "tr": "Tecrübeli",
+        "ru": "Опытный",
+        "es": "Experimentado",
+        "fr": "Aguerri"
     },
     "Second button link": {
         "tr": "İkinci düğme bağlantısı",
@@ -5615,11 +5825,11 @@
         "es": "Mira tus dispositivos con sesión iniciada con su hora exacta y los nombres que les pongas, y entérate de los nuevos inicios de sesión",
         "fr": "Voyez vos appareils connectés avec l'heure exacte et vos propres noms, et soyez prévenu des nouvelles connexions"
     },
-    "Selection color": {
-        "tr": "Seçim rengi",
-        "ru": "Цвет выделения",
-        "es": "Color de selección",
-        "fr": "Couleur de sélection"
+    "Seed": {
+        "tr": "Tohum",
+        "ru": "Семя",
+        "es": "Semilla",
+        "fr": "Graine"
     },
     "Self-destruct is off": {
         "tr": "Kendini imha kapalı",
@@ -5861,6 +6071,12 @@
         "es": "Envía un mensaje como Clyde (solo en tu dispositivo)",
         "fr": "Envoie un message en tant que Clyde (localement)"
     },
+    "Sensation": {
+        "tr": "Sansasyon",
+        "ru": "Сенсация",
+        "es": "Sensación",
+        "fr": "Sensation"
+    },
     "Sent Friend Requests": {
         "tr": "Gönderilen Arkadaşlık İstekleri",
         "ru": "Отправленные запросы дружбы",
@@ -5896,6 +6112,18 @@
         "ru": "Через пробел; пользовательские эмодзи пишутся как <:имя:id>",
         "es": "Separados por espacios; los emojis personalizados se escriben como <:nombre:id>",
         "fr": "Séparés par des espaces ; les emojis personnalisés s'écrivent <:nom:id>"
+    },
+    "Sequoia": {
+        "tr": "Sekoya",
+        "ru": "Секвойя",
+        "es": "Secuoya",
+        "fr": "Séquoia"
+    },
+    "Serious": {
+        "tr": "Ciddi",
+        "ru": "Серьёзный",
+        "es": "Serio",
+        "fr": "Sérieux"
     },
     "Server deafen them": {
         "tr": "Sunucuda sağırlaştır",
@@ -6461,11 +6689,29 @@
         "es": "Esparce pequeños destellos de neón donde toques",
         "fr": "Saupoudre de petites étincelles néon là où vous touchez"
     },
+    "Sprout": {
+        "tr": "Filiz",
+        "ru": "Росток",
+        "es": "Brote",
+        "fr": "Pousse"
+    },
     "Stack Trace": {
         "tr": "Yığın İzi",
         "ru": "Трассировка стека",
         "es": "Traza de la pila",
         "fr": "Trace de la pile"
+    },
+    "Standout": {
+        "tr": "Göze Çarpan",
+        "ru": "Выдающийся",
+        "es": "Destacado",
+        "fr": "Remarquable"
+    },
+    "Star": {
+        "tr": "Yıldız",
+        "ru": "Звезда",
+        "es": "Estrella",
+        "fr": "Star"
     },
     "State": {
         "tr": "Durum",
@@ -6580,6 +6826,12 @@
         "ru": "StreamProof",
         "es": "StreamProof",
         "fr": "StreamProof"
+    },
+    "Stromatolite": {
+        "tr": "Stromatolit",
+        "ru": "Строматолит",
+        "es": "Estromatolito",
+        "fr": "Stromatolithe"
     },
     "Successfully installed": {
         "tr": "Başarıyla yüklendi",
@@ -7223,6 +7475,12 @@
         "es": "Este enlace es un **{urlType, select, plugin {plugin} theme {tema} other {complemento}}**. ¿Quieres instalarlo?",
         "fr": "Ce lien est un **{urlType, select, plugin {plugin} theme {thème} other {module}}**. Voulez-vous l'installer ?"
     },
+    "This needs a newer Endcord. Install it again with Endcord Installer.": {
+        "tr": "Bunun için daha yeni bir Endcord gerekiyor. Endcord Installer ile yeniden kur.",
+        "ru": "Для этого нужен более новый Endcord. Установите его заново через Endcord Installer.",
+        "es": "Esto necesita un Endcord más reciente. Vuelve a instalarlo con Endcord Installer.",
+        "fr": "Cela nécessite un Endcord plus récent. Réinstallez-le avec Endcord Installer."
+    },
     "This only works in DMs and group DMs.": {
         "tr": "Bu yalnızca DM'lerde ve grup DM'lerinde çalışır.",
         "ru": "Это работает только в ЛС и групповых чатах.",
@@ -7403,6 +7661,12 @@
         "es": "Tratar cada palabra clave como una expresión regular",
         "fr": "Traiter chaque mot-clé comme une expression régulière"
     },
+    "Trendsetter": {
+        "tr": "Trend Belirleyen",
+        "ru": "Законодатель моды",
+        "es": "Marcador de tendencias",
+        "fr": "Lanceur de tendances"
+    },
     "Trigger words": {
         "tr": "Tetikleyici kelimeler",
         "ru": "Слова-триггеры",
@@ -7511,6 +7775,12 @@
         "es": "Unidades",
         "fr": "Unités"
     },
+    "Universalist": {
+        "tr": "Evrensel",
+        "ru": "Универсал",
+        "es": "Universalista",
+        "fr": "Universaliste"
+    },
     "Unknown device": {
         "tr": "Bilinmeyen cihaz",
         "ru": "Неизвестное устройство",
@@ -7546,6 +7816,12 @@
         "ru": "Найдены непроверенные плагины",
         "es": "Se encontraron plugins no verificados",
         "fr": "Plugins non vérifiés détectés"
+    },
+    "Unshakeable": {
+        "tr": "Sarsılmaz",
+        "ru": "Непоколебимый",
+        "es": "Inquebrantable",
+        "fr": "Inébranlable"
     },
     "Unsuppress Embeds": {
         "tr": "Yerleştirmeleri Göster",
@@ -7775,11 +8051,23 @@
         "es": "Ver a tamaño completo",
         "fr": "Voir en taille réelle"
     },
+    "Visionary": {
+        "tr": "Vizyoner",
+        "ru": "Визионер",
+        "es": "Visionario",
+        "fr": "Visionnaire"
+    },
     "Volume (%)": {
         "tr": "Ses düzeyi (%)",
         "ru": "Громкость (%)",
         "es": "Volumen (%)",
         "fr": "Volume (%)"
+    },
+    "Voyager": {
+        "tr": "Seyyah",
+        "ru": "Путешественник",
+        "es": "Viajero",
+        "fr": "Voyageur"
     },
     "WEBHOOK": {
         "tr": "WEBHOOK",
@@ -7967,12 +8255,6 @@
         "es": "¿Qué pantalla de error se debe probar?",
         "fr": "Quel écran d'erreur tester ?"
     },
-    "White": {
-        "tr": "Beyaz",
-        "ru": "Белый",
-        "es": "Blanco",
-        "fr": "Blanc"
-    },
     "Who": {
         "tr": "Kim",
         "ru": "Кто",
@@ -8050,12 +8332,6 @@
         "ru": "Неверно, правильно: {answer}",
         "es": "Incorrecto, era {answer}",
         "fr": "Faux, c'était {answer}"
-    },
-    "Yellow": {
-        "tr": "Sarı",
-        "ru": "Жёлтый",
-        "es": "Amarillo",
-        "fr": "Jaune"
     },
     "Yes": {
         "tr": "Evet",

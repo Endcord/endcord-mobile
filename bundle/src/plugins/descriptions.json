@@ -223,7 +223,7 @@
     "endcord.greet-sticker-picker": "Wave to someone in a new DM or a new member with the sticker you pick, with /greet",
     "endcord.url-highlighter": "Colors messages with links that match your patterns",
     "endcord.silent-typing": "Hide that you are typing",
-    "endcord.smooth-type": "Customize the text cursor and the selection color in text boxes.",
+    "endcord.smooth-type": "Fully customize the cursor caret — transition delay, easing, and color — for a smooth typing animation.",
     "endcord.i-remember-you": "Remembers everyone you talk to in DMs and servers, on your device, so you can always find them again",
     "endcord.permissions-viewer": "See the roles and permissions of a message's author from the message menu",
     "endcord.expression-cloner": "Clone custom emojis from a message to your own servers from the message menu",

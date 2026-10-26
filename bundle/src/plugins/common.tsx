@@ -145,3 +145,19 @@ export function addChatButton(button: ChatButton) {
         }
     };
 }
+
+export interface ToolboxAction {
+    label: () => string;
+    icon: string;
+    run: () => unknown;
+}
+
+const toolboxActions = new Map<string, ToolboxAction>();
+
+/** Adds an entry to EndcordToolbox's menu while the plugin runs, like Endcord PC's toolboxActions */
+export function addToolboxAction(key: string, action: ToolboxAction) {
+    toolboxActions.set(key, action);
+    return () => void toolboxActions.delete(key);
+}
+
+export const getToolboxActions = () => [...toolboxActions.values()];

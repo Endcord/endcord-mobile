@@ -2,7 +2,8 @@ import { RNModules } from "./types";
 
 const nmp = window.nativeModuleProxy;
 
-function getNativeModule<T = any>(...names: string[]): T | undefined {
+/** The first of these native modules the app has, as a TurboModule or a legacy native module */
+export function getNativeModule<T = any>(...names: string[]): T | undefined {
     for (const name of names) {
         if (globalThis.__turboModuleProxy) {
             const module = globalThis.__turboModuleProxy(name);
@@ -33,3 +34,14 @@ export const NativeThemeModule = getNativeModule(
 export const BundleUpdaterManager = getNativeModule(
     "BundleUpdaterManager"
 )!;
+
+/**
+ * Calls a method the Endcord loader registers on its native bridge. The loader answers synchronous calls through
+ * react-native-svg's getBBox, which it hooks; a loader without the method answers with an error, which is thrown.
+ */
+export function callLoaderMethod<T = unknown>(method: string, ...args: unknown[]): T {
+    const response = getNativeModule("RNSVGRenderableManager")?.getBBox?.(0, { revenge: { method, args } });
+    if (!response || typeof response !== "object") throw new Error(`The loader didn't answer ${method}`);
+    if (response.error) throw new Error(String(response.error).split("\n")[0]);
+    return response.result as T;
+}

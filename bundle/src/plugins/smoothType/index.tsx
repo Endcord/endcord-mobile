@@ -4,52 +4,94 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { tx } from "@core/i18n";
-import { after } from "@lib/api/patcher";
-import { findByProps } from "@metro";
-import { ReactNative } from "@metro/common";
+import { t, tx } from "@core/i18n";
+import { useProxy } from "@core/vendetta/storage";
+import { callLoaderMethod } from "@lib/api/native/modules";
+import { Stack, Text, TextInput } from "@metro/common/components";
+import { useState } from "react";
+import { View } from "react-native";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin, ENDCORD_AUTHOR, onSettingChange } from "../api";
 
-const COLORS = [
-    { label: tx("Discord's default"), value: "" },
-    { label: tx("White"), value: "#FFFFFF" },
-    { label: tx("Blurple"), value: "#5865F2" },
-    { label: tx("Green"), value: "#23A55A" },
-    { label: tx("Yellow"), value: "#F0B232" },
-    { label: tx("Pink"), value: "#EB459E" },
-    { label: tx("Red"), value: "#F23F43" },
-];
+const DEFAULT_COLOR = 0xffffff;
+
+const toHex = (n: number) => `#${n.toString(16).padStart(6, "0")}`;
+
+/** The caret color as a number; earlier versions saved it as "#RRGGBB" */
+function caretColorOf(store: any): number {
+    const value = store.caretColor;
+    if (typeof value === "number") return value;
+    const n = typeof value === "string" ? parseInt(value.replace("#", ""), 16) : NaN;
+    return Number.isNaN(n) ? DEFAULT_COLOR : n;
+}
+
+function CaretColor({ store }: { store: any; }) {
+    useProxy(store);
+    const color = caretColorOf(store);
+    const [text, setText] = useState(toHex(color));
+    const hex = text.replace("#", "");
+    const valid = /^[0-9a-f]{6}$/i.test(hex);
+
+    return <Stack spacing={8}>
+        <Text variant="text-md/semibold">{t("Caret Color")}</Text>
+        <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
+            <View style={{ width: 40, height: 32, borderRadius: 4, backgroundColor: toHex(color) }} />
+            <View style={{ flex: 1 }}>
+                <TextInput
+                    value={text}
+                    placeholder="#ffffff"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    maxLength={7}
+                    onChange={(v: string) => {
+                        setText(v);
+                        const h = v.replace("#", "");
+                        const n = parseInt(h, 16);
+                        if (!Number.isNaN(n) && h.length === 6) store.caretColor = n;
+                    }}
+                    state={valid ? undefined : "error"}
+                />
+            </View>
+        </View>
+    </Stack>;
+}
 
 const plugin = definePlugin({
     id: "endcord.smooth-type",
     name: "SmoothType",
-    description: tx("Customize the text cursor and the selection color in text boxes."),
+    description: tx("Fully customize the cursor caret — transition delay, easing, and color — for a smooth typing animation."),
     authors: [ENDCORD_AUTHOR],
     popular: 5,
     icon: "PencilIcon",
     tags: ["Appearance", "Customisation"],
     settings: {
-        caretColor: { type: "select", label: tx("Caret Color"), default: "#5865F2", options: COLORS },
-        selectionColor: { type: "select", label: tx("Selection color"), default: "", options: COLORS },
+        transitionDelay: { type: "number", label: tx("Transition Delay (ms)"), default: 60, min: 0, max: 2000 },
+        animationType: {
+            type: "select",
+            label: tx("Animation Type"),
+            default: "ease",
+            options: [
+                { label: tx("Ease"), value: "ease" },
+                { label: tx("Linear"), value: "linear" },
+                { label: tx("Ease-in"), value: "ease-in" },
+                { label: tx("Ease-out"), value: "ease-out" },
+                { label: tx("Ease-in-out"), value: "ease-in-out" },
+            ],
+        },
     },
+    SettingsComponent: CaretColor,
     start({ store, cleanup }) {
-        const { TextInput } = ReactNative;
-        const runtime = findByProps("jsx", "jsxs");
-        if (!TextInput || !runtime) throw new Error("React Native's text input wasn't found");
-
-        // Every text input is created through the JSX runtime, whatever form TextInput takes in this React Native
-        const colorize = (args: any[], element: any) => {
-            if (args[0] !== TextInput || !element?.props) return;
-            const { props } = element;
-            if (store.caretColor && props.cursorColor == null) props.cursorColor = store.caretColor;
-            if (store.selectionColor && props.selectionColor == null) {
-                // Selected text stays readable through a translucent highlight
-                props.selectionColor = `${store.selectionColor}66`;
-                props.selectionHandleColor = store.selectionColor;
-            }
-        };
-        cleanup(after("jsx", runtime, colorize), after("jsxs", runtime, colorize));
+        // Discord's message box is a native view, so the loader draws the caret; see SmoothCaret.kt
+        const apply = (enabled: boolean) => callLoaderMethod("endcord.smoothType.configure", enabled, caretColorOf(store), store.transitionDelay, store.animationType);
+        try {
+            apply(true);
+        } catch {
+            throw new Error(t("This needs a newer Endcord. Install it again with Endcord Installer."));
+        }
+        cleanup(
+            onSettingChange(store, () => apply(true)),
+            () => apply(false),
+        );
     },
 });
 

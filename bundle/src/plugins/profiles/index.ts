@@ -7,13 +7,14 @@
  */
 
 import { t, tx } from "@core/i18n";
-import { after, before, instead } from "@lib/api/patcher";
+import { after } from "@lib/api/patcher";
 import { safeFetch } from "@lib/utils";
-import { findByName, findByProps } from "@metro";
+import { findByProps } from "@metro";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { getStore } from "../common";
 import { addMessageAction, botMessage, command, copy } from "../hooks";
+import { extendProfileBadges, linkedBadge } from "../profileBadges";
 
 const HOUR = 60 * 60 * 1000;
 
@@ -167,8 +168,6 @@ const GlobalBadges = definePlugin({
         },
     },
     start({ store, cleanup, logger }) {
-        const useBadges = findByName("useBadges", false);
-        if (typeof useBadges?.default !== "function") throw new Error("Discord's profile badges weren't found");
         let users: Record<string, GlobalBadge[]> = {};
         // Loaded in the background and again every hour, so being offline at startup doesn't turn the plugin off
         const load = () => safeFetch("https://badges.equicord.org/users", { cache: "no-cache" })
@@ -178,49 +177,14 @@ const GlobalBadges = definePlugin({
         load();
         const timer = setInterval(load, HOUR);
         cleanup(() => clearInterval(timer));
-        const sources = new Map<string, string>();
-
-        cleanup(instead("default", useBadges, function (this: any, args, original) {
-            const result = original.apply(this, args);
-            const userId = args[0]?.userId;
-            const extra = ((userId && users[userId]) || []).filter((b: GlobalBadge) => b?.badge && /^https?:\/\//.test(b.badge) && b.mod?.toLowerCase() !== "endcord");
-            if (!extra.length || !Array.isArray(result)) return result;
-            return [...result, ...extra.map((b: GlobalBadge) => {
-                const id = `gb-${userId}-${encodeURIComponent(`${b.mod}:${b.badge}`)}`;
-                sources.set(id, b.badge);
+        cleanup(extendProfileBadges("global-badges", (userId, badges) => {
+            const extra = (users[userId] || []).filter((b: GlobalBadge) => b?.badge && /^https?:\/\//.test(b.badge) && b.mod?.toLowerCase() !== "endcord");
+            if (!extra.length) return badges;
+            return [...badges, ...extra.map((b: GlobalBadge) => {
                 const label = store.showModStyle === "prefix" ? `${b.mod} - ${b.tooltip}` : store.showModStyle === "suffix" ? `${b.tooltip} - ${b.mod}` : b.tooltip;
-                return { id, description: label, icon: "dummy", iconSrc: b.badge };
+                return linkedBadge(`gb-${userId}-${encodeURIComponent(`${b.mod}:${b.badge}`)}`, label, b.badge);
             })];
         }));
-
-        // Discord draws badges from its CDN by their icon hash; these come from their own links
-        const withSource = (props: any) => {
-            const uri = props?.id && sources.get(props.id);
-            return uri ? { ...props, source: { uri } } : props;
-        };
-        const badge = findByName("ProfileBadge", false);
-        if (typeof badge?.default === "function") {
-            // Only badges go through this
-            cleanup(before("default", badge, (args: any[]) => void (args[0] = withSource(args[0]))));
-        } else {
-            // Without the component itself, every element the app creates is checked for it, which costs more
-            const runtime = findByProps("jsx", "jsxs");
-            const check = (args: any[]) => {
-                const type = args[0];
-                const name = typeof type === "function" ? type.name : type?.type?.name;
-                if (name === "ProfileBadge") args[1] = withSource(args[1]);
-            };
-            if (runtime) cleanup(before("jsx", runtime, check), before("jsxs", runtime, check));
-        }
-
-        const ids = findByProps("resolveProfileBadgeId", "toProfileBadgeLegacyId");
-        for (const key of ["resolveProfileBadgeId", "toProfileBadgeLegacyId"]) {
-            if (typeof ids?.[key] === "function") {
-                cleanup(instead(key, ids, function (this: any, args, original) {
-                    return typeof args[0] === "string" && args[0].startsWith("gb-") ? args[0] : original.apply(this, args);
-                }));
-            }
-        }
     },
 });
 
