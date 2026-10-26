@@ -14,16 +14,16 @@ import { findByProps } from "@metro";
 import { FluxUtils } from "@metro/common";
 import { Button, Stack, TableRow, TableRowGroup, TableSwitchRow, Text, TextInput } from "@metro/common/components";
 import { semanticColorOf } from "@ui/color";
-import { createStyles } from "@ui/styles";
-import { memo, type ReactNode, useCallback, useEffect, useMemo, useState } from "react";
-import { ActivityIndicator, FlatList, Image, Pressable, ScrollView, View } from "react-native";
+import { createStyles, TextStyleSheet } from "@ui/styles";
+import { memo, type ReactNode, startTransition, useCallback, useEffect, useMemo, useState } from "react";
+import { ActivityIndicator, FlatList, Image, PixelRatio, Pressable, ScrollView, Text as PlainText, View } from "react-native";
 
 import { getStore } from "../common";
 import { toastError } from "../hooks";
 import { choose, prompt } from "../ui/dialogs";
 import {
     AVATAR_DECORATIONS, BADGES, BOOST_ICONS, BOOST_LABELS, COLLECTIBLE_PROFILE_EFFECT, type CustomProfileData, getDecorationUrl,
-    GIFT_IDS, GIFT_TIER_NAMES, NITRO_LEVELS, OLD_NAME_BADGE_ICON, type SavedPreset, SPECIAL_BADGES, TIERED_BADGES
+    GIFT_IDS, GIFT_TIER_NAMES, NITRO_LEVELS, OLD_NAME_BADGE_ICON, type SavedPreset, shopThumbnail, SPECIAL_BADGES, TIERED_BADGES
 } from "./data";
 import { accountData, myId, presetsOf, repair, resetAccount, saveAccount, setPresets } from "./store";
 
@@ -54,6 +54,16 @@ const useStyles = createStyles({
         borderColor: BRAND,
         backgroundColor: "rgba(88, 101, 242, 0.2)",
     },
+    // The editor draws a few hundred labels in pills and tiles; plain text styled like Discord's costs a fraction of
+    // its Text component
+    pillLabel: {
+        ...TextStyleSheet["text-xs/medium"],
+        color: semanticColorOf("TEXT_MUTED", "TEXT_SUBTLE"),
+    },
+    pillLabelOn: {
+        ...TextStyleSheet["text-xs/bold"],
+        color: semanticColorOf("TEXT_DEFAULT", "TEXT_NORMAL"),
+    },
     tile: {
         alignItems: "center",
         justifyContent: "center",
@@ -62,7 +72,20 @@ const useStyles = createStyles({
         borderColor: semanticColorOf("BORDER_SUBTLE", "BACKGROUND_MOD_STRONG", "BACKGROUND_MOD_NORMAL"),
         backgroundColor: semanticColorOf("BACKGROUND_MOD_SUBTLE", "BACKGROUND_MOD_NORMAL", "BACKGROUND_BASE_LOW"),
     },
+    effectTile: {
+        borderRadius: 8,
+        padding: 2,
+    },
+    effectImage: {
+        position: "absolute",
+        top: 2,
+        left: 2,
+        right: 2,
+        bottom: 2,
+        borderRadius: 6,
+    },
     effectName: {
+        ...TextStyleSheet["text-xxs/semibold"],
         position: "absolute",
         left: 3,
         right: 3,
@@ -103,7 +126,7 @@ const Pill = memo(function Pill({ label, icon, active, onPress }: { label: strin
     const styles = useStyles();
     return <Pressable onPress={onPress} style={[styles.pill, active && styles.pillOn]} accessibilityRole="button" accessibilityState={{ selected: active }}>
         {icon ? <Image source={{ uri: icon }} style={{ width: 16, height: 16 }} resizeMode="contain" resizeMethod="resize" /> : null}
-        <Text variant={active ? "text-xs/bold" : "text-xs/medium"} color={active ? "text-default" : "text-muted"}>{label}</Text>
+        <PlainText style={active ? styles.pillLabelOn : styles.pillLabel}>{label}</PlainText>
     </Pressable>;
 });
 
@@ -323,20 +346,45 @@ const DecorationPicker = memo(function DecorationPicker({ selected, set }: { sel
                 onPress={() => set("decorationAsset", selected === dec.id ? undefined : dec.id)}
                 style={[styles.tile, { width: 52, height: 52, borderRadius: 6 }, selected === dec.id && styles.pillOn]}
             >
-                <Image source={{ uri: getDecorationUrl(dec.id) }} style={{ width: 46, height: 46 }} resizeMode="contain" resizeMethod="resize" />
+                <Image source={{ uri: shopThumbnail(getDecorationUrl(dec.id), DECORATION_THUMB, DECORATION_THUMB) }} style={{ width: 46, height: 46 }} resizeMode="contain" resizeMethod="resize" />
             </Pressable>)}
         </View>
     </Stack>;
 });
 
 const EFFECT_TILE = { width: 64, height: 86 };
+const EFFECT_GAP = 6;
+// Profile effects are drawn for a 450×880 profile; asking for that shape keeps the proxy from stretching them. The
+// tiles grow a little to fill the row, hence the room above their nominal width.
+const EFFECT_ASPECT = 880 / 450;
+const EFFECT_THUMB_WIDTH = PixelRatio.getPixelSizeForLayoutSize(EFFECT_TILE.width + EFFECT_GAP);
+const DECORATION_THUMB = PixelRatio.getPixelSizeForLayoutSize(46);
+
+const EffectTile = memo(function EffectTile({ effect, size, active, onPick }: { effect: ShopProfileEffect; size: { width: number; height: number; }; active: boolean; onPick: (skuId: string) => void; }) {
+    const styles = useStyles();
+    return <Pressable
+        accessibilityLabel={effect.name}
+        accessibilityState={{ selected: active }}
+        onPress={() => onPick(effect.skuId)}
+        style={[styles.tile, size, styles.effectTile, active && styles.pillOn]}
+    >
+        {effect.thumbnail && <Image source={{ uri: effect.thumbnail }} style={styles.effectImage} resizeMode="cover" resizeMethod="resize" />}
+        {/* Endcord PC names the effect when the pointer rests on it; a touch screen has no pointer */}
+        <PlainText numberOfLines={2} style={styles.effectName}>{effect.name}</PlainText>
+    </Pressable>;
+});
 
 // The shop has hundreds of effects: a list that only draws the rows on screen, in a box like Endcord PC's
 const EffectPicker = memo(function EffectPicker({ selected, set }: { selected?: string; set: Setter; }) {
     const styles = useStyles();
     const shopEffects = useShopProfileEffects();
     const [width, setWidth] = useState(0);
-    const columns = Math.max(1, Math.floor((width + 6) / (EFFECT_TILE.width + 6)));
+    const columns = Math.max(1, Math.floor((width + EFFECT_GAP) / (EFFECT_TILE.width + EFFECT_GAP)));
+    // The row's leftover width goes to the tiles, so the grid fills the box edge to edge
+    const tileWidth = (width - EFFECT_GAP * (columns - 1)) / columns;
+    const tile = useMemo(() => ({ width: tileWidth, height: tileWidth * EFFECT_TILE.height / EFFECT_TILE.width }), [tileWidth]);
+    const rowHeight = tile.height + EFFECT_GAP;
+    const pick = useCallback((skuId: string) => set("profileEffectId", selected === skuId ? undefined : skuId), [selected, set]);
 
     return <Stack spacing={10}>
         <SectionLabel>{t("Profile Effect")}</SectionLabel>
@@ -347,22 +395,18 @@ const EffectPicker = memo(function EffectPicker({ selected, set }: { selected?: 
             {width > 0 && <FlatList
                 key={columns}
                 data={shopEffects.effects}
+                extraData={selected}
                 numColumns={columns}
                 nestedScrollEnabled={true}
-                initialNumToRender={columns * 4}
-                windowSize={5}
+                // With columns, the list counts rows: a box's worth to start with, then a couple at a time
+                initialNumToRender={Math.ceil(300 / rowHeight)}
+                maxToRenderPerBatch={2}
+                windowSize={3}
+                getItemLayout={(_, index) => ({ length: rowHeight, offset: rowHeight * index, index })}
                 keyExtractor={eff => eff.skuId}
-                columnWrapperStyle={columns > 1 ? { gap: 6 } : undefined}
-                contentContainerStyle={{ gap: 6 }}
-                renderItem={({ item: eff }) => <Pressable
-                    accessibilityLabel={eff.name}
-                    onPress={() => set("profileEffectId", selected === eff.skuId ? undefined : eff.skuId)}
-                    style={[styles.tile, EFFECT_TILE, { borderRadius: 8, padding: 2 }, selected === eff.skuId && styles.pillOn]}
-                >
-                    {eff.thumbnail && <Image source={{ uri: eff.thumbnail }} style={{ position: "absolute", top: 2, left: 2, right: 2, bottom: 2, borderRadius: 6 }} resizeMode="cover" resizeMethod="resize" />}
-                    {/* Most effects are transparent overlays whose still frame shows little, so the name says what it is */}
-                    <Text variant="text-xxs/semibold" numberOfLines={2} style={styles.effectName}>{eff.name}</Text>
-                </Pressable>}
+                columnWrapperStyle={columns > 1 ? { gap: EFFECT_GAP } : undefined}
+                contentContainerStyle={{ gap: EFFECT_GAP }}
+                renderItem={({ item }) => <EffectTile effect={item} size={tile} active={selected === item.skuId} onPick={pick} />}
             />}
         </View>}
         {shopEffects.loading && <Text variant="text-xs/medium" color="text-muted">{t("Loading effects from the Discord shop…")}</Text>}
@@ -381,11 +425,15 @@ interface ShopProfileEffect {
 function useShopProfileEffects() {
     const store = getStore("CollectiblesCategoryStore");
     const fetchedAt = FluxUtils.useStateFromStores(store ? [store] : [], () => store?.lastSuccessfulFetch);
+    const fetchError = FluxUtils.useStateFromStores(store ? [store] : [], () => store?.lastErrorTimestamp);
     const [failed, setFailed] = useState(false);
+    const [openedAt] = useState(Date.now);
 
     useEffect(() => {
         if (!store) return void setFailed(true);
-        if (store.products?.size) return;
+        // Not the products already there: a profile on screen makes Discord look up its effect alone, which isn't
+        // the catalog
+        if (store.lastSuccessfulFetch || store.isFetchingCategories) return;
         const fetchCategories = findByProps("fetchCollectiblesCategories")?.fetchCollectiblesCategories;
         if (typeof fetchCategories !== "function") return void setFailed(true);
         Promise.resolve().then(() => fetchCategories({})).catch(() => setFailed(true));
@@ -400,13 +448,16 @@ function useShopProfileEffects() {
             const item = product?.items?.length === 1 ? product.items[0] : null;
             if (item?.type !== COLLECTIBLE_PROFILE_EFFECT || seen.has(product.skuId)) continue;
             seen.add(product.skuId);
-            // A still frame: the animated previews are over a megabyte each, and the list shows dozens at once
-            list.push({ skuId: product.skuId, name: product.name, thumbnail: item.staticFrameSrc ?? item.reducedMotionSrc ?? item.thumbnailPreviewSrc });
+            // The shop's preview, like Endcord PC, but shrunk to the tile: the originals are over a megabyte each, and
+            // the list shows dozens at once
+            const preview = item.thumbnailPreviewSrc ?? item.staticFrameSrc ?? item.reducedMotionSrc;
+            list.push({ skuId: product.skuId, name: product.name, thumbnail: preview && shopThumbnail(preview, EFFECT_THUMB_WIDTH, EFFECT_THUMB_WIDTH * EFFECT_ASPECT) });
         }
         return list;
     }, [fetchedAt]);
 
-    return { effects, loading: !failed && !effects.length, failed: failed && !effects.length };
+    const gaveUp = failed || !fetchedAt && fetchError >= openedAt;
+    return { effects: fetchedAt || gaveUp ? effects : [], loading: !fetchedAt && !gaveUp, failed: gaveUp };
 }
 
 function useAccounts(): any[] {
@@ -431,6 +482,8 @@ const avatarOf = (user: any): string | undefined => {
 };
 
 
+const LAST_STAGE = 4;
+
 export default function CustomProfileEditor({ onClose }: { onClose: () => void; }) {
     const styles = useStyles();
     const me = myId() ?? "";
@@ -438,12 +491,13 @@ export default function CustomProfileEditor({ onClose }: { onClose: () => void; 
     const [accountId, setAccountId] = useState(me);
     const [data, setData] = useState<CustomProfileData>(() => accountData(me));
     const [saving, setSaving] = useState(false);
-    // The page opens at once; the badges, then the decorations, then the effects follow one at a time, so drawing their
-    // hundreds of buttons and images never holds the app up for long
+    // The page opens with what fits on the first screen; the rest of the form, the badges, the decorations and the
+    // effects follow one at a time, so drawing their hundreds of buttons and images never holds the app up for long. As
+    // transitions, React draws each in small slices and lets touches and typing go first.
     const [stage, setStage] = useState(0);
     useEffect(() => {
-        if (stage >= 3) return;
-        const timer = setTimeout(() => setStage(s => s + 1), stage ? 16 : 50);
+        if (stage >= LAST_STAGE) return;
+        const timer = setTimeout(() => startTransition(() => setStage(s => s + 1)), stage ? 16 : 50);
         return () => clearTimeout(timer);
     }, [stage]);
     useEffect(() => setData(accountData(accountId)), [accountId]);
@@ -505,20 +559,22 @@ export default function CustomProfileEditor({ onClose }: { onClose: () => void; 
                 <TableRowGroup title={t("Nitro")}>
                     <TableSwitchRow label={t("Simulate Nitro")} subLabel={t("Enables gradient profile color")} value={data.nitro ?? false} onValueChange={(v: boolean) => set("nitro", v)} />
                 </TableRowGroup>
-                <ImageField label={t("Banner")} value={data.banner ?? ""} onChange={v => set("banner", v)} />
-                <Divider />
-                <TextInput label={t("Bio")} value={data.bio ?? ""} placeholder={t("My description...")} multiline={true} onChange={(v: string) => set("bio", v)} />
-                <TextInput label={t("Pronouns")} value={data.pronouns ?? ""} placeholder={t("he/him")} onChange={(v: string) => set("pronouns", v)} />
-                <Stack spacing={8}>
-                    <SectionLabel>{t("Profile color (Nitro — gradient possible)")}</SectionLabel>
-                    <ColorField label={t("Color 1")} value={data.accentColor} placeholder="#5865f2" onChange={v => set("accentColor", v)} />
-                    <ColorField label={t("Color 2")} value={data.accentColor2} placeholder={`#eb459e (${t("optional")})`} onChange={v => set("accentColor2", v)} />
-                </Stack>
-                <DateField value={data.createdAt ?? ""} onChange={v => set("createdAt", v)} />
-                <TextInput label={t("Email address (local display)")} value={data.email ?? ""} placeholder={t("exemple@mail.com")} keyboardType="email-address" autoCapitalize="none" onChange={(v: string) => set("email", v)} />
-                <TextInput label={t("Phone (local display)")} value={data.phone ?? ""} placeholder="+33 6 00 00 00 00" keyboardType="phone-pad" onChange={(v: string) => set("phone", v)} />
-                <Divider />
-                {stage >= 1 ? <BadgePicker
+                {stage >= 1 && <>
+                    <ImageField label={t("Banner")} value={data.banner ?? ""} onChange={v => set("banner", v)} />
+                    <Divider />
+                    <TextInput label={t("Bio")} value={data.bio ?? ""} placeholder={t("My description...")} multiline={true} onChange={(v: string) => set("bio", v)} />
+                    <TextInput label={t("Pronouns")} value={data.pronouns ?? ""} placeholder={t("he/him")} onChange={(v: string) => set("pronouns", v)} />
+                    <Stack spacing={8}>
+                        <SectionLabel>{t("Profile color (Nitro — gradient possible)")}</SectionLabel>
+                        <ColorField label={t("Color 1")} value={data.accentColor} placeholder="#5865f2" onChange={v => set("accentColor", v)} />
+                        <ColorField label={t("Color 2")} value={data.accentColor2} placeholder={`#eb459e (${t("optional")})`} onChange={v => set("accentColor2", v)} />
+                    </Stack>
+                    <DateField value={data.createdAt ?? ""} onChange={v => set("createdAt", v)} />
+                    <TextInput label={t("Email address (local display)")} value={data.email ?? ""} placeholder={t("exemple@mail.com")} keyboardType="email-address" autoCapitalize="none" onChange={(v: string) => set("email", v)} />
+                    <TextInput label={t("Phone (local display)")} value={data.phone ?? ""} placeholder="+33 6 00 00 00 00" keyboardType="phone-pad" onChange={(v: string) => set("phone", v)} />
+                    <Divider />
+                </>}
+                {stage >= 2 ? <BadgePicker
                     badgeFlags={data.badgeFlags}
                     nitroLevel={data.nitroLevel}
                     boostMonths={data.boostMonths}
@@ -527,11 +583,11 @@ export default function CustomProfileEditor({ onClose }: { onClose: () => void; 
                     oldName={data.oldName}
                     set={set}
                 /> : <ActivityIndicator style={{ marginVertical: 24 }} />}
-                {stage >= 2 && <>
+                {stage >= 3 && <>
                     <Divider />
                     <DecorationPicker selected={data.decorationAsset} set={set} />
                 </>}
-                {stage >= 3 && <>
+                {stage >= LAST_STAGE && <>
                     <Divider />
                     <EffectPicker selected={data.profileEffectId} set={set} />
                 </>}
