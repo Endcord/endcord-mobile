@@ -13,6 +13,10 @@ export interface UnifiedPluginModel {
     description?: string;
     authors?: Author[];
     icon?: string;
+    /** Endcord's own plugins, built into the app */
+    endcord?: boolean;
+    /** Position in Endcord PC's list of popular plugins */
+    popular?: number;
     getBadges(): Badge[];
     isEnabled(): boolean;
     usePluginState(): void;
