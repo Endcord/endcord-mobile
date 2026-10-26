@@ -1,10 +1,7 @@
-# Download LSPatch jar and convert it to an aar
+# Download LSPatch (JingMatrix's maintained fork, which supports Android 14+) and convert it to an aar
 # Jars cannot be used as a dependency without breaking R8 optimization
 
-# TODO: update to latest LSPatch
-#LSPATCH_URL="https://github.com/LSPosed/LSPatch/releases/download/v0.6/jar-v0.6-398-release.jar"
-
-LSPATCH_URL="https://github.com/vendetta-mod/VendettaManager/raw/5764b16a14c42d8449722f3656b2cb42019b82a8/app/libs/lspatch.jar"
+LSPATCH_URL="https://github.com/JingMatrix/LSPatch/releases/download/canary-492/lspatch-v1.2-492-release.jar"
 LSPATCH_FILE_NAME="lspatch"
 
 function cleanup {

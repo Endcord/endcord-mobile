@@ -13,9 +13,14 @@ concurrency:
 
 jobs:
   emulator:
-    name: Emulator (Android 14)
+    name: Emulator (API ${{ matrix.api }})
     runs-on: ubuntu-latest
     timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      matrix:
+        # Android 11, 14 and 15
+        api: [30, 34, 35]
     permissions:
       contents: write
     steps:
@@ -75,7 +80,7 @@ jobs:
       - name: Run on the emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 34
+          api-level: ${{ matrix.api }}
           target: google_apis
           arch: x86_64
           ram-size: 4096M
@@ -95,4 +100,4 @@ jobs:
           git add -A
           git commit -qm "Emulator run ${{ github.run_id }} on ${{ github.sha }}"
           # One results branch per tested branch, so parallel runs don't overwrite each other
-          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/test-results/${{ github.ref_name }}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/test-results/${{ github.ref_name }}/api-${{ matrix.api }}"

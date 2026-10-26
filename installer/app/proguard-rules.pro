@@ -33,15 +33,14 @@
 # Fix missing apksig annotations and fields
 -keep class com.android.apksig.internal.** { *; }
 
-# Fix LSPatch breaking
-# ref: https://github.com/LSPosed/LSPatch/blob/bbe8d93fb9230f7b04babaf1c4a11642110f55a6/manager/proguard-rules.pro#L12-L18
+# LSPatch: its config is written into the patched app with Gson (field names must survive), and the manifest editor
+# and APK writer are found reflectively in places
 -keep class com.beust.jcommander.** { *; }
--keep class org.lsposed.lspatch.Patcher$Options { *; }
--keep class org.lsposed.lspatch.share.LSPConfig { *; }
--keep class org.lsposed.lspatch.share.PatchConfig { *; }
--keepclassmembers class org.lsposed.patch.LSPatch {
-    private <fields>;
-}
+-keep class org.lsposed.lspatch.share.** { *; }
+-keep class org.lsposed.patch.** { *; }
+-keep class com.wind.meditor.** { *; }
+-dontwarn org.lsposed.patch.**
+-dontwarn com.wind.meditor.**
 
 # Uncomment this to preserve the line number information for
 # debugging stack traces.
