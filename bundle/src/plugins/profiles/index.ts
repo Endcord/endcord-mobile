@@ -24,7 +24,7 @@ const UserPFP = definePlugin({
     authors: [ENDCORD_AUTHOR],
     icon: "UserCircleIcon",
     tags: ["Customisation", "Appearance"],
-    async start({ cleanup, logger }) {
+    start({ cleanup, logger }) {
         const icons = findByProps("getUserAvatarURL", "getUserAvatarSource") ?? findByProps("getUserAvatarURL");
         if (typeof icons?.getUserAvatarURL !== "function") throw new Error("Discord's avatar helpers weren't found");
         let avatars: Record<string, string> = {};
@@ -32,7 +32,8 @@ const UserPFP = definePlugin({
             .then(r => r.json())
             .then(data => void (avatars = data?.avatars ?? {}))
             .catch(e => logger.warn("Couldn't load UserPFP's avatars", e));
-        await load();
+        // In the background, so a slow or missing connection doesn't hold up Discord's start
+        load();
         const custom = (user: any, animated?: boolean) => {
             const url = user?.id && avatars[user.id];
             if (!url) return;
@@ -62,16 +63,26 @@ const USRBG = definePlugin({
     settings: {
         nitroFirst: { type: "boolean", label: tx("Prefer Nitro banners"), description: tx("Show a user's Nitro banner instead of their USRBG banner when they have both"), default: true },
     },
-    async start({ store, cleanup }) {
+    start({ store, cleanup, logger }) {
         const banners = findByProps("getUserBannerURL");
         if (typeof banners?.getUserBannerURL !== "function") throw new Error("Discord's banner helpers weren't found");
-        const data = await safeFetch("https://usrbg.is-hardly.online/users", { cache: "no-store" }).then(r => r.json());
-        const { endpoint, bucket, prefix, users = {} } = data ?? {};
-        cleanup(after("getUserBannerURL", banners, ([user], url) => {
-            const id = user?.id;
-            if (!id || !users[id] || store.nitroFirst && url) return url;
-            return `${endpoint}/${bucket}/${prefix}${id}?${users[id]}`;
-        }));
+        let data: { endpoint?: string; bucket?: string; prefix?: string; users?: Record<string, string>; } = {};
+        // Loaded in the background and again every hour, so being offline at startup doesn't turn the plugin off
+        const load = () => safeFetch("https://usrbg.is-hardly.online/users", { cache: "no-store" })
+            .then(r => r.json())
+            .then(json => void (data = json ?? {}))
+            .catch(e => logger.warn("Couldn't load USRBG's banners", e));
+        load();
+        const timer = setInterval(load, HOUR);
+        cleanup(
+            () => clearInterval(timer),
+            after("getUserBannerURL", banners, ([user], url) => {
+                const id = user?.id;
+                const etag = id && data.users?.[id];
+                if (!etag || store.nitroFirst && url) return url;
+                return `${data.endpoint}/${data.bucket}/${data.prefix}${id}?${etag}`;
+            }),
+        );
     },
 });
 
@@ -155,11 +166,18 @@ const GlobalBadges = definePlugin({
             ],
         },
     },
-    async start({ store, cleanup }) {
+    start({ store, cleanup, logger }) {
         const useBadges = findByName("useBadges", false);
         if (typeof useBadges?.default !== "function") throw new Error("Discord's profile badges weren't found");
-        const json = await safeFetch("https://badges.equicord.org/users", { cache: "no-cache" }).then(r => r.json());
-        const users: Record<string, GlobalBadge[]> = json?.users ?? {};
+        let users: Record<string, GlobalBadge[]> = {};
+        // Loaded in the background and again every hour, so being offline at startup doesn't turn the plugin off
+        const load = () => safeFetch("https://badges.equicord.org/users", { cache: "no-cache" })
+            .then(r => r.json())
+            .then(json => void (users = json?.users ?? {}))
+            .catch(e => logger.warn("Couldn't load the global badges", e));
+        load();
+        const timer = setInterval(load, HOUR);
+        cleanup(() => clearInterval(timer));
         const sources = new Map<string, string>();
 
         cleanup(instead("default", useBadges, function (this: any, args, original) {

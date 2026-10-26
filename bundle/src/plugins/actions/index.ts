@@ -592,7 +592,10 @@ const SongLink = definePlugin({
 });
 
 // UnitConverter: what each unit is in its counterpart system
+// Speeds first, so "km/h" isn't read as "km"
 const UNITS: Array<{ re: RegExp; convert: (n: number) => string; }> = [
+    { re: /(-?\d+(?:[.,]\d+)?)\s*(?:km\/h|kph)\b/gi, convert: n => `${round(n * 0.621371)} mph` },
+    { re: /(-?\d+(?:[.,]\d+)?)\s*mph\b/gi, convert: n => `${round(n * 1.609344)} km/h` },
     { re: /(-?\d+(?:[.,]\d+)?)\s*(?:km|kilometers?|kilometres?)\b/gi, convert: n => `${round(n * 0.621371)} mi` },
     { re: /(-?\d+(?:[.,]\d+)?)\s*(?:mi|miles?)\b/gi, convert: n => `${round(n * 1.609344)} km` },
     { re: /(-?\d+(?:[.,]\d+)?)\s*(?:cm|centimeters?|centimetres?)\b/gi, convert: n => `${round(n / 2.54)} in` },
@@ -607,8 +610,6 @@ const UNITS: Array<{ re: RegExp; convert: (n: number) => string; }> = [
     { re: /(-?\d+(?:[.,]\d+)?)\s*(?:°\s*F|fahrenheit)\b/gi, convert: n => `${round((n - 32) * 5 / 9)} °C` },
     { re: /(-?\d+(?:[.,]\d+)?)\s*(?:l|liters?|litres?)\b/gi, convert: n => `${round(n * 0.264172)} gal` },
     { re: /(-?\d+(?:[.,]\d+)?)\s*(?:gal|gallons?)\b/gi, convert: n => `${round(n * 3.78541)} L` },
-    { re: /(-?\d+(?:[.,]\d+)?)\s*(?:km\/h|kph)\b/gi, convert: n => `${round(n * 0.621371)} mph` },
-    { re: /(-?\d+(?:[.,]\d+)?)\s*mph\b/gi, convert: n => `${round(n * 1.609344)} km/h` },
 ];
 const round = (n: number) => Math.round(n * 100) / 100;
 
