@@ -33,6 +33,13 @@ android {
             .orElse("https://raw.githubusercontent.com/rootpoii/endcord-mobile/builds-next/endcord-xposed.apk")
             .get()
         buildConfigField("String", "LOADER_URL", "\"$loaderUrl\"")
+        // Endcord Classic (on Aliucord's older Discord) is installed by its own installer, which is published next to
+        // the loader. -Pendcord.classicInstallerUrl=... points at another copy.
+        val classicInstallerUrl = providers.gradleProperty("endcord.classicInstallerUrl")
+            .orElse("${loaderUrl.substringBeforeLast('/')}/endcord-classic-installer.apk")
+            .get()
+        buildConfigField("String", "CLASSIC_INSTALLER_URL", "\"$classicInstallerUrl\"")
+        buildConfigField("String", "CLASSIC_INSTALLER_PACKAGE", "\"com.endcord.installer\"")
         // A tracker mirror to try before the public ones, e.g. -Pendcord.mirrorUrl=http://10.0.2.2:4040 for a copy of
         // the Discord APKs served from the developer's machine. Empty in normal builds.
         buildConfigField("String", "DEV_MIRROR_URL", "\"${providers.gradleProperty("endcord.mirrorUrl").orElse("").get()}\"")

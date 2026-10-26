@@ -142,36 +142,75 @@ class HomeViewModel(
 
     fun downloadAndInstallUpdate(onProgressUpdate: (Float?) -> Unit) {
         screenModelScope.launch {
-            val update = File(cacheDir, "update.apk")
-            if (update.exists()) update.delete()
             isUpdating = true
-            val downloadResult =
-                downloadManager.downloadUpdate(updateDownloadUrl!!, update, onProgressUpdate)
+            downloadAndInstall(updateDownloadUrl!!, "update.apk", onProgressUpdate)
             isUpdating = false
-
-            if (downloadResult !is DownloadResult.Success) {
-                if (downloadResult is DownloadResult.Error) {
-                    Log.e("HomeViewModel", "Download failed: ${downloadResult.debugReason}")
-                    context.showToast(R.string.msg_download_failed)
-                }
-                return@launch
-            }
-
-            val installMethod = if (prefs.installMethod == InstallMethod.SHIZUKU && !ShizukuPermissions.waitShizukuPermissions()) {
-                // Temporarily use DEFAULT if SHIZUKU permissions are not granted
-                    context.showToast(R.string.msg_shizuku_denied)
-                    InstallMethod.DEFAULT
-                } else {
-                    prefs.installMethod
-                }
-
-            val installer: Installer = when (installMethod) {
-                InstallMethod.DEFAULT -> SessionInstaller(context)
-                InstallMethod.SHIZUKU -> ShizukuInstaller(context)
-            }
-
-            installer.installApks(silent = !isMiui, update)
         }
+    }
+
+    // Endcord Classic --------------------------------------------------------------------------------------------------
+
+    /** Whether Endcord Classic Installer is on the phone */
+    var classicInstallerInstalled by mutableStateOf(isClassicInstallerInstalled())
+        private set
+    var isGettingClassic by mutableStateOf(false)
+        private set
+    var classicProgress by mutableStateOf<Float?>(null)
+        private set
+
+    private fun isClassicInstallerInstalled() =
+        context.packageManager.getLaunchIntentForPackage(BuildConfig.CLASSIC_INSTALLER_PACKAGE) != null
+
+    fun refreshClassic() {
+        classicInstallerInstalled = isClassicInstallerInstalled()
+    }
+
+    /** Opens Endcord Classic Installer, or downloads and installs it first */
+    fun openOrGetClassicInstaller() {
+        refreshClassic()
+        val intent = context.packageManager.getLaunchIntentForPackage(BuildConfig.CLASSIC_INSTALLER_PACKAGE)
+        if (intent != null) {
+            context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            return
+        }
+        if (isGettingClassic) return
+        screenModelScope.launch {
+            isGettingClassic = true
+            classicProgress = null
+            downloadAndInstall(BuildConfig.CLASSIC_INSTALLER_URL, "classic-installer.apk") { classicProgress = it }
+            isGettingClassic = false
+            refreshClassic()
+        }
+    }
+
+    /** Downloads an APK into the cache and installs it with the chosen install method */
+    private suspend fun downloadAndInstall(url: String, fileName: String, onProgressUpdate: (Float?) -> Unit) {
+        val apk = File(cacheDir, fileName)
+        if (apk.exists()) apk.delete()
+        val downloadResult = downloadManager.downloadUpdate(url, apk, onProgressUpdate)
+
+        if (downloadResult !is DownloadResult.Success) {
+            if (downloadResult is DownloadResult.Error) {
+                Log.e("HomeViewModel", "Download failed: ${downloadResult.debugReason}")
+                context.showToast(R.string.msg_download_failed)
+            }
+            return
+        }
+
+        val installMethod = if (prefs.installMethod == InstallMethod.SHIZUKU && !ShizukuPermissions.waitShizukuPermissions()) {
+            // Temporarily use DEFAULT if SHIZUKU permissions are not granted
+            context.showToast(R.string.msg_shizuku_denied)
+            InstallMethod.DEFAULT
+        } else {
+            prefs.installMethod
+        }
+
+        val installer: Installer = when (installMethod) {
+            InstallMethod.DEFAULT -> SessionInstaller(context)
+            InstallMethod.SHIZUKU -> ShizukuInstaller(context)
+        }
+
+        installer.installApks(silent = !isMiui, apk)
     }
 
     private companion object {
