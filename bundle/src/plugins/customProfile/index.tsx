@@ -18,6 +18,7 @@ import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { addChatButton, addToolboxAction, getChatInputActionButton, getStore, moduleAt, subscribe } from "../common";
 import { generatedIcon, onMessageRow, redrawChannel, toastError } from "../hooks";
 import { extendProfileBadges, isPluginBadge, linkedBadge } from "../profileBadges";
+import { openPage } from "../ui/pages";
 import { applyLayout, PROFILE_ID_PREFIX, profileBadgeId, setBadgeLayout, setManagedBadges, startBadgeManagement } from "./badges";
 import {
     AVATAR_DECORATIONS, BOOST_MONTHS, buildBadges, type CustomProfileData, getDecorationUrl, hasCustomBadgesConfigured,
@@ -35,30 +36,10 @@ const BUTTON_OPTIONS = [
 const OUR_DECORATIONS = new Set(AVATAR_DECORATIONS.map(d => d.id));
 const DATE_SUFFIX = "T12:00:00Z";
 
-/**
- * Opens the editor: from the plugin's settings, as the next page there; from the chat or EndcordToolbox, as a
- * full-screen window of its own, since the settings' pages can't be reached from outside them
- */
-function openEditor(navigation?: any) {
-    if (navigation) {
-        navigation.push("BUNNY_CUSTOM_PAGE", { title: t("Custom Profile"), render: () => <CustomProfileEditor onClose={() => navigation.goBack()} /> });
-        return;
-    }
-    const modals = findByProps("pushLazy");
-    const { Navigator, getHeaderCloseButton } = findByProps("Navigator", "getHeaderCloseButton") ?? {};
-    if (typeof modals?.push !== "function" || !Navigator || typeof getHeaderCloseButton !== "function") throw new Error("Discord's screens weren't found");
-    const close = () => modals.pop();
-    modals.push(() => <Navigator
-        initialRouteName="ENDCORD_CUSTOM_PROFILE"
-        screens={{
-            ENDCORD_CUSTOM_PROFILE: {
-                title: t("Custom Profile"),
-                headerLeft: getHeaderCloseButton(close),
-                render: () => <CustomProfileEditor onClose={close} />,
-            },
-        }}
-    />);
-}
+const EditorPage = ({ close }: { close: () => void; }) => <CustomProfileEditor onClose={close} />;
+
+/** Opens the editor: from the plugin's settings, as the next page there; from the chat or EndcordToolbox, as a window */
+const openEditor = (navigation?: any) => openPage(t("Custom Profile"), EditorPage, navigation);
 
 function OpenButton() {
     const navigation = NavigationNative.useNavigation();

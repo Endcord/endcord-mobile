@@ -7,11 +7,14 @@
  * module not being there, so a Discord update can turn a feature off but never crash the app.
  */
 
+import { Strings } from "@core/i18n";
+import { findAssetId } from "@lib/api/assets";
 import { intercept } from "@lib/api/flux";
 import { after } from "@lib/api/patcher";
 import { findInReactTree } from "@lib/utils";
 import { findByFilePath, findByStoreName } from "@metro";
 import { FluxDispatcher } from "@metro/common";
+import { addSectionRow } from "@ui/settings";
 import type { ComponentType, ReactElement } from "react";
 
 const storeCache = new Map<string, any>();
@@ -158,6 +161,19 @@ const toolboxActions = new Map<string, ToolboxAction>();
 export function addToolboxAction(key: string, action: ToolboxAction) {
     toolboxActions.set(key, action);
     return () => void toolboxActions.delete(key);
+}
+
+/**
+ * Adds a page to Endcord's section of Discord's settings while the plugin runs, like the entries Endcord PC's
+ * plugins add to its settings. It shows from the next time the settings open.
+ */
+export function addSettingsPage(key: string, page: { title: () => string; icon: string; Page: ComponentType; after?: "BUNNY_PLUGINS" | "BUNNY_THEMES" | "BUNNY_FONTS"; }) {
+    return addSectionRow(Strings.BUNNY, {
+        key: `ENDCORD_PLUGIN_PAGE_${key}`,
+        title: page.title,
+        icon: findAssetId(page.icon),
+        render: () => Promise.resolve({ default: page.Page }),
+    }, page.after);
 }
 
 export const getToolboxActions = () => [...toolboxActions.values()];
