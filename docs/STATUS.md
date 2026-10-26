@@ -85,12 +85,19 @@ Emülatör testleri (GitHub Actions, Android 11 / 14 / 15, Discord 350.8 Stable)
 Son doğrulanan durum (Android 14 ve 11, Discord 350.8):
 - Installer iki yoldan da Endcord'u kuruyor; telefondaki orijinal Discord yerinde kalıyor.
 - Endcord, Discord'un içinde yükleniyor ve öz-test çalışıyor; dil tabloları yüklü, Discord'un dili doğru okunuyor.
-- Eklentilerin hepsi gerçek Discord'da başlayıp durabiliyor (düzeltilen ikisi dahil, son testte doğrulanacak).
+- **13 eklentinin 13'ü** gerçek Discord 350.8'de, Android 11 ve 14'te, iki kurulum yolunda da hatasız başlayıp duruyor.
+- Toast düzeltmesinden sonra Discord'un arayüzü test boyunca çökmedi.
 - Davranış testleri geçti: MessageLogger silinen mesajı Discord'un mağazasında tutuyor ve kapatılınca gerçekten
   siliyor; SilentTyping "yazıyor" olayını engelliyor ve kapatılınca bırakıyor; ClearURLs izleme parametrelerini siliyor.
 - Eklentilerin kullandığı bütün modül yolları, store'lar ve fonksiyonlar Discord 350.8'de bulundu.
 
-En son test çalıştırmasının ekran görüntüleri ve logları: GitHub'da `test-results/ci/emulator-9/api-34` dalı.
+- Android 15 emülatöründe kurulum testi, sistemin "bilinmeyen kaynaklar" ayar ekranındaki anahtara test betiği
+  basamadığı için tamamlanamadı; bu bir ürün hatası değil (gerçek kullanıcı anahtarı bir kez açıyor).
+- Uygulamanın üstüne çizim yapan katman (oneko'nun kedisi) Discord 350'de bağlanmıyordu; React Native'in kök
+  sarmalayıcısı üzerinden de bağlanacak şekilde düzeltildi (`test-results/ci/emulator-10` testi bunu doğruluyor).
+
+Test sonuçları (ekran görüntüleri, loglar, öz-test raporu): GitHub'da `test-results/ci/emulator-9/*` ve
+`test-results/ci/emulator-10/*` dalları.
 
 ## Doğrulanamayanlar (giriş yapmak gerekiyor)
 
