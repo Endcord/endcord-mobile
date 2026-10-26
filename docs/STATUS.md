@@ -64,7 +64,19 @@ kurucu). Hangi upstream commit'lerinden alındığı `UPSTREAM.md` içinde.
 
 ## Test sonuçları
 
-TEST_RESULTS_PLACEHOLDER
+Emülatör testleri (GitHub Actions, Android 11 / 14 / 15, Discord 350.8 Stable) şunları buldu ve düzeltti:
+
+1. **Android 14 ve üstünde Endcord açılır açılmaz çöküyordu.** Installer'daki LSPatch, 2025 başından kalma bir
+   kopyaydı (Revenge Manager'da da aynısı var) ve Discord 350.8'in yeni `TTIComponentFactory` sınıfıyla, Android 14'ün
+   kod yükleme kısıtlamalarıyla baş edemiyordu. LSPatch, bakımı süren JingMatrix çatalının güncel sürümüne
+   (v1.2, canary 492) yükseltildi; installer'ın yamalama kodu yeni API'ye taşındı.
+2. **Installer, LSPatch'in yerel kütüphanelerini kendi `assets` klasöründen alıyordu**; yeni LSPatch'in Java kısmıyla eski
+   yerel kütüphaneler karışınca kanca altyapısı başlamıyordu. Kütüphaneler yeni sürümden alındı ve
+   `convert-lspatch.sh` artık ikisini birlikte günceller.
+3. **Kurulum iki yoldan da çalışıyor:** Discord'u indirerek ve telefondaki Discord'dan (orijinal Discord yerinde kalıyor).
+   Android 15'te sistemin "bilinmeyen kaynaklar" izni bir kez soruluyor; bu Android'in normal akışı.
+
+TEST_RESULTS_LATEST
 
 ## Doğrulanamayanlar (giriş yapmak gerekiyor)
 

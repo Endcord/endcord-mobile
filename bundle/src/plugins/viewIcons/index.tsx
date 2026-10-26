@@ -5,7 +5,6 @@
 
 import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
-import { after } from "@lib/api/patcher";
 import { showToast } from "@lib/ui/toasts";
 import { lazyDestructure } from "@lib/utils/lazy";
 import { findByName, findByProps } from "@metro";
@@ -14,7 +13,7 @@ import { cloneElement } from "react";
 import { Image, Pressable } from "react-native";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
-import { getStore, moduleAt } from "../common";
+import { afterRender, getStore, moduleAt } from "../common";
 
 const { openMediaModal } = lazyDestructure(() => findByProps("openMediaModal"));
 const { hideActionSheet } = lazyDestructure(() => findByProps("openLazy", "hideActionSheet"));
@@ -55,13 +54,14 @@ const plugin = definePlugin({
         const guildIcon = findByName("GuildIcon", false) ?? moduleAt("modules/guild/native/GuildIcon.tsx");
         if (!banner && !avatar && !guildIcon) throw new Error("Discord's profile images weren't found");
 
-        if (banner?.default) cleanup(after("default", banner, ([props], res) => {
+        const unpatchBanner = afterRender(banner, "default", (props, res) => {
             const url = bannerUrl(props);
             return url && res ? <Viewable url={url}>{res}</Viewable> : res;
-        }));
+        });
+        if (unpatchBanner) cleanup(unpatchBanner);
         else logger.warn("Profile banners not found");
 
-        if (avatar?.default) cleanup(after("default", avatar, ([props], res) => {
+        const unpatchAvatar = afterRender(avatar, "default", (props, res) => {
             // Avatars that already do something on tap (editing your profile) keep it
             if (props?.onPress || props?.isEditing || props?.editable) return res;
             const url = avatarUrl(props);
@@ -71,15 +71,17 @@ const plugin = definePlugin({
             const style = res.props?.style;
             const inner = style ? cloneElement(res, { style: undefined }) : res;
             return <Viewable url={url} longPressUrl={guildUrl} style={style}>{inner}</Viewable>;
-        }));
+        });
+        if (unpatchAvatar) cleanup(unpatchAvatar);
         else logger.warn("Profile avatars not found");
 
-        if (guildIcon?.default) cleanup(after("default", guildIcon, ([props], res) => {
+        const unpatchGuildIcon = afterRender(guildIcon, "default", (props, res) => {
             // Only the large icon at the top of a server's sheet, not the server list
             if (props?.size !== "XLARGE" && props?.size !== "XXLARGE") return res;
             const url = guildIconUrl(props?.guild);
             return url && res ? <Viewable url={url}>{res}</Viewable> : res;
-        }));
+        });
+        if (unpatchGuildIcon) cleanup(unpatchGuildIcon);
     },
 });
 

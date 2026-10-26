@@ -120,6 +120,18 @@ function patchChatInput() {
     unpatchChatInput = () => unpatches.forEach(u => u());
 }
 
+/**
+ * Runs after a component renders, whatever form its module exports it in: a function, a memo (`type`) or a
+ * forwardRef (`render`). Returns the unpatch, or null when the export isn't a component.
+ */
+export function afterRender(module: any, key: string, cb: (props: any, rendered: any) => any) {
+    const component = module?.[key];
+    if (typeof component === "function") return after(key, module, ([props], res) => cb(props, res));
+    if (typeof component?.type === "function") return after("type", component, ([props], res) => cb(props, res));
+    if (typeof component?.render === "function") return after("render", component, ([props], res) => cb(props, res));
+    return null;
+}
+
 /** Adds a button to the row of buttons beside the chat input. Returns the function that removes it. */
 export function addChatButton(button: ChatButton) {
     chatButtons.set(button.key, button);

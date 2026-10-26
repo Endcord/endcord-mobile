@@ -4,7 +4,8 @@
  */
 
 import { tx } from "@core/i18n";
-import { before } from "@lib/api/patcher";
+import { after } from "@lib/api/patcher";
+import { findByProps } from "@metro";
 import { ReactNative } from "@metro/common";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
@@ -32,20 +33,21 @@ const plugin = definePlugin({
     },
     start({ store, cleanup }) {
         const { TextInput } = ReactNative;
-        if (typeof (TextInput as any)?.render !== "function") throw new Error("React Native's text input wasn't found");
+        const runtime = findByProps("jsx", "jsxs");
+        if (!TextInput || !runtime) throw new Error("React Native's text input wasn't found");
 
-        cleanup(before("render", TextInput, (args: any[]) => {
-            const [props] = args;
-            if (!props) return;
-            const extra: Record<string, string> = {};
-            if (store.caretColor && props.cursorColor == null) extra.cursorColor = store.caretColor;
+        // Every text input is created through the JSX runtime, whatever form TextInput takes in this React Native
+        const colorize = (args: any[], element: any) => {
+            if (args[0] !== TextInput || !element?.props) return;
+            const { props } = element;
+            if (store.caretColor && props.cursorColor == null) props.cursorColor = store.caretColor;
             if (store.selectionColor && props.selectionColor == null) {
                 // Selected text stays readable through a translucent highlight
-                extra.selectionColor = `${store.selectionColor}66`;
-                extra.selectionHandleColor = store.selectionColor;
+                props.selectionColor = `${store.selectionColor}66`;
+                props.selectionHandleColor = store.selectionColor;
             }
-            if (Object.keys(extra).length) return [{ ...props, ...extra }, ...args.slice(1)];
-        }));
+        };
+        cleanup(after("jsx", runtime, colorize), after("jsxs", runtime, colorize));
     },
 });
 
