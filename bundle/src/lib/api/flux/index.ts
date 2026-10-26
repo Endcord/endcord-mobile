@@ -58,6 +58,9 @@ export function injectFluxInterceptor() {
     return () => dispatcher._interceptors &&= dispatcher._interceptors.filter(v => v !== cb);
 }
 
+/** How many interceptors are registered, for leak checks */
+export const interceptorCount = () => entries.length;
+
 /**
  * Intercept Flux dispatches. Return type affects the end result, where
  * nullish -> nothing, falsy -> block, object -> modify

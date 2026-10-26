@@ -570,3 +570,14 @@ export function command(def: {
         },
     });
 }
+
+/** How much the plugins have registered here, for leak checks */
+export const hookCounts = () => ({
+    sendTransforms: transforms.size,
+    incomingFilters: incomingFilters.size,
+    rowDecorators: decorators.size,
+    messageActions: messageActions.size,
+});
+
+/** The plugins' registered callbacks themselves, for the self-test to exercise each one */
+export const hookRegistries = () => ({ transforms, incomingFilters, decorators, messageActions });

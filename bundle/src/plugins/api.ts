@@ -97,6 +97,53 @@ export function onSettingChange(store: object, cb: (key: string) => void) {
 
 const running = new Map<string, Array<() => unknown>>();
 
+export interface PluginLogEntry {
+    level: "warn" | "error";
+    message: string;
+    time: number;
+}
+
+const MAX_LOG_ENTRIES = 20;
+const pluginLogs = new Map<string, PluginLogEntry[]>();
+
+/** The warnings and errors a plugin logged since the app started, newest last */
+export const pluginLogsOf = (id: string): readonly PluginLogEntry[] => pluginLogs.get(id) ?? [];
+export const allPluginLogs = () => Object.fromEntries(pluginLogs);
+
+const describeArg = (arg: unknown) => {
+    if (arg instanceof Error) return arg.message;
+    if (typeof arg === "string") return arg;
+    try {
+        return JSON.stringify(arg);
+    } catch {
+        return String(arg);
+    }
+};
+
+/**
+ * Discord's logger, which also keeps the plugin's warnings and errors: Discord's own doesn't hand them back, and a
+ * plugin that can't find what it patches says so with a warning
+ */
+function pluginLogger(plugin: EndcordPlugin): Logger {
+    const base: Logger = new LoggerClass(`Endcord/${plugin.name}`);
+    const keep = (level: PluginLogEntry["level"]) => (...args: unknown[]) => {
+        base[level](...args);
+        let list = pluginLogs.get(plugin.id);
+        if (!list) pluginLogs.set(plugin.id, list = []);
+        list.push({ level, message: args.map(describeArg).join(" ").slice(0, 500), time: Date.now() });
+        if (list.length > MAX_LOG_ENTRIES) list.shift();
+    };
+    return {
+        log: (...args) => base.log(...args),
+        info: (...args) => base.info(...args),
+        time: (...args) => base.time(...args),
+        trace: (...args) => base.trace(...args),
+        verbose: (...args) => base.verbose(...args),
+        warn: keep("warn"),
+        error: keep("error"),
+    };
+}
+
 /** Fills in settings added after the plugin's storage was first created */
 async function loadStore(plugin: EndcordPlugin) {
     await awaitStorage(plugin.store);
@@ -131,7 +178,7 @@ export async function startEndcordPlugin(plugin: EndcordPlugin) {
     const stopped = () => running.get(plugin.id) !== cleanups;
     const ctx: PluginContext<any> = {
         store: plugin.store,
-        logger: new LoggerClass(`Endcord/${plugin.name}`),
+        logger: pluginLogger(plugin),
         cleanup: (...fns) => {
             for (const fn of fns) {
                 if (typeof fn !== "function") continue;
@@ -163,7 +210,7 @@ export function stopEndcordPlugin(plugin: EndcordPlugin) {
     try {
         plugin.stop?.({
             store: plugin.store,
-            logger: new LoggerClass(`Endcord/${plugin.name}`),
+            logger: pluginLogger(plugin),
             cleanup: () => { }
         });
     } catch (e) {

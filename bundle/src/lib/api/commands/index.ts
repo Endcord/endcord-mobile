@@ -33,6 +33,12 @@ export function patchCommands() {
     };
 }
 
+/** How many commands are registered, for leak checks */
+export const registeredCommandCount = () => commands.length;
+
+/** The registered commands themselves, for the self-test to run each one */
+export const registeredCommands = (): readonly ApplicationCommand[] => commands;
+
 /** The Endcord command a message is, when it's just "/name" and the command needs nothing more */
 function typedCommand(content: unknown) {
     if (typeof content !== "string") return undefined;
