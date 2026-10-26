@@ -9,7 +9,7 @@
 import { tx } from "@core/i18n";
 import { addOverlay, onTouch } from "@core/overlay";
 import { useEffect, useRef, useState } from "react";
-import { Dimensions, Image, View } from "react-native";
+import { AppState, Dimensions, Image, View } from "react-native";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
 
@@ -68,22 +68,34 @@ const plugin = definePlugin({
     },
 });
 
+const TICK_MS = 100;
+
 function Neko() {
     const size = Number(plugin.store.size) || 32;
     const speed = Number(plugin.store.speed) || 10;
-    const { width, height } = Dimensions.get("window");
+    const initial = Dimensions.get("window");
     const state = useRef({
-        x: width / 2, y: height - 140, targetX: width / 2, targetY: height - 140,
+        x: initial.width / 2, y: initial.height - 140, targetX: initial.width / 2, targetY: initial.height - 140,
         frameCount: 0, idleTime: 0, idleAnimation: null as string | null, idleFrame: 0,
     });
     const [frame, setFrame] = useState<{ x: number; y: number; sprite: [number, number]; }>({ x: state.current.x, y: state.current.y, sprite: sprites.idle[0] });
 
     useEffect(() => {
         const s = state.current;
+        let { width, height } = Dimensions.get("window");
         const stopTouch = onTouch((x, y) => {
             s.targetX = x;
             s.targetY = y;
         });
+        // Turning the phone keeps the cat on screen
+        const dimensions = Dimensions.addEventListener("change", ({ window }) => {
+            ({ width, height } = window);
+            s.x = Math.min(s.x, width - size / 2);
+            s.y = Math.min(s.y, height - size / 2);
+            s.targetX = Math.min(s.targetX, width - size / 2);
+            s.targetY = Math.min(s.targetY, height - size / 2);
+        });
+        let last = { x: s.x, y: s.y, sprite: sprites.idle[0] };
 
         const sprite = (name: string, f: number): [number, number] => sprites[name][f % sprites[name].length];
 
@@ -106,7 +118,7 @@ function Neko() {
             }
         };
 
-        const tick = setInterval(() => {
+        const step = () => {
             s.frameCount++;
             const dx = s.x - s.targetX;
             const dy = s.y - s.targetY;
@@ -135,11 +147,29 @@ function Neko() {
                     s.y = Math.min(Math.max(size / 2, s.y), height - size / 2);
                 }
             }
-            setFrame({ x: s.x, y: s.y, sprite: current });
-        }, 100);
+            // Drawn only when something moved: a cat sitting still costs no renders
+            if (current !== last.sprite || s.x !== last.x || s.y !== last.y) {
+                last = { x: s.x, y: s.y, sprite: current };
+                setFrame(last);
+            }
+        };
+
+        // Only while the app is on screen
+        let tick: ReturnType<typeof setInterval> | undefined;
+        const run = (active: boolean) => {
+            if (active && !tick) tick = setInterval(step, TICK_MS);
+            else if (!active && tick) {
+                clearInterval(tick);
+                tick = undefined;
+            }
+        };
+        run(AppState.currentState === "active");
+        const appState = AppState.addEventListener("change", next => run(next === "active"));
 
         return () => {
-            clearInterval(tick);
+            run(false);
+            appState.remove();
+            dimensions.remove();
             stopTouch();
         };
     }, [size, speed]);
