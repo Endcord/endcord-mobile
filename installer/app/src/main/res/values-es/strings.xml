@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Endcord Installer</string>
+  <string name="app_name">Endcord Classic Installer</string>
   <string name="app_description">Endcord para Android, basado en la aplicación clásica de Discord</string>
 
   <string name="support_server">Servidor de soporte</string>
