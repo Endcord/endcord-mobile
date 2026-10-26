@@ -1,0 +1,36 @@
+plugins
+Ara
+Aliucord eklentileri mi arıyorsunuz?
+Aliucord eklentileri yalnızca Aliucord'un dayandığı eski Discord sürümünde çalışır, bu yüzden burada çalışamaz. Bu Endcord, en yeni Discord için Endcord'un kendi eklentilerini içerir. Aliucord eklentileri için ikisini de çalıştıran Endcord Classic'i kullanın.
+Endcord Classic'i İndir
+Endcord Classic'i İndir
+Anladım
+Anladım
+180
+Toplam Eklenti
+0
+Etkin Eklentiler
+Tümünü Göster
+Tümünü Göster
+Etkin Olanları Göster
+Etkin Olanları Göster
+Devre Dışı Olanları Göster
+Devre Dışı Olanları Göster
+Görünüm
+Görünüm
+Sohbet
+Sohbet
+Özelleştirme
+Özelleştirme
+Emojiler
+Emojiler
+CustomProfile
+POPÜLER
+rootpoi tarafından
+Discord profilinizi görsel olarak özelleştirin (kullanıcı adı, profil fotoğrafı, afiş, rozetler, hakkında...) — kalıcıdır, yalnızca size görünür.
+WELCOME TO DISCORD
+Hang out, play games, or just talk. Tap below to get started!
+Register
+Register
+Log In
+Log In
