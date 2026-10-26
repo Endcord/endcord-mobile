@@ -1,0 +1,2 @@
+    versionCode=350008 minSdk=28 targetSdk=36
+    versionName=350.8 - Stable
