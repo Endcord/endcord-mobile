@@ -82,10 +82,10 @@ function FiltersHeader() {
             <Stat label={t("Total Plugins:")} value={f.total} />
             <Stat label={t("Enabled Plugins:")} value={f.enabled} accent />
         </View>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6 }}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} keyboardShouldPersistTaps="handled" contentContainerStyle={{ gap: 6 }}>
             {statuses.map(([status, label]) => <Chip key={status} label={label} selected={f.status === status} onPress={() => f.setStatus(status)} />)}
         </ScrollView>
-        {f.tags.length > 0 && <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6 }}>
+        {f.tags.length > 0 && <ScrollView horizontal showsHorizontalScrollIndicator={false} keyboardShouldPersistTaps="handled" contentContainerStyle={{ gap: 6 }}>
             {f.tags.map(tag => <Chip key={tag} label={t(tag)} selected={f.tag === tag} onPress={() => f.setTag(f.tag === tag ? null : tag)} />)}
         </ScrollView>}
     </View>;

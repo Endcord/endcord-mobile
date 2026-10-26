@@ -45,6 +45,8 @@ interface AddonPageProps<T extends object, I = any> {
     ListFooterComponent?: ComponentType<any>;
 }
 
+const Separator = () => <View style={{ height: 8 }} />;
+
 function InputAlert(props: { label: string, fetchFn: (url: string) => Promise<void>; }) {
     const [value, setValue] = React.useState("");
     const [error, setError] = React.useState("");
@@ -212,7 +214,11 @@ export default function AddonPage<T extends object>({ CardComponent, ...props }:
                     </Text>
                 </View>}
                 contentContainerStyle={{ padding: 8, paddingHorizontal: 12, paddingBottom: 90 }}
-                ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
+                // While searching, a tap on a card's switch or buttons acts at once instead of only closing the
+                // keyboard, and scrolling the results puts the keyboard away
+                keyboardShouldPersistTaps="handled"
+                keyboardDismissMode="on-drag"
+                ItemSeparatorComponent={Separator}
                 ListFooterComponent={props.ListFooterComponent}
                 renderItem={({ item }: any) => <CardComponent item={item.obj} result={item} />}
             />
