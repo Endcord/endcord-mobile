@@ -64,7 +64,15 @@ const PALETTES: Array<[newPalette: RegExp, oldPalette: RegExp]> = [
     [/^TEAL_NEW_\d+$/, /^TEAL_\d+$/],
 ];
 
-const BLACK_AND_WHITE = /^(WHITE|BLACK)(_500)?$/;
+/**
+ * Text and icons on filled, colored controls (buttons, badges, the send button, checked boxes). Old Discord drew them
+ * in the raw color WHITE, which themes with pastel accents make dark so they stay readable; the current one draws
+ * them in the same near-white as switch thumbs and text over pictures, which must stay light.
+ */
+const ON_COLOR: string[] = [
+    "CONTROL_PRIMARY_TEXT_DEFAULT", "CONTROL_CRITICAL_PRIMARY_TEXT_DEFAULT", "CONTROL_CONNECTED_TEXT_DEFAULT",
+    "BADGE_TEXT_BRAND", "CHAT_INPUT_SEND_BUTTON_ICON_ACTIVE_TINT", "CHECKBOX_ICON_ACTIVE",
+];
 
 const rawFallbacks = new WeakMap<InternalColorDefinition, Map<string, string | null>>();
 
@@ -84,12 +92,9 @@ export function legacyRawColor(theme: InternalColorDefinition, key: string, disc
         let best = Infinity;
         for (const [oldKey, value] of Object.entries(theme.raw)) {
             const oldOriginal = discordRaw[oldKey];
-            if (!value || !oldOriginal || !chroma.valid(oldOriginal)) continue;
+            if (!value || !palette[1].test(oldKey) || !oldOriginal || !chroma.valid(oldOriginal)) continue;
             const distance = chroma.deltaE(original, oldOriginal);
-            // White and black only stand in for the very same color: themes often make "white" dark, for text on
-            // their pastel buttons, which must not darken every near-white gray
-            const candidate = palette[1].test(oldKey) || palette[0].source.includes("NEUTRAL") && BLACK_AND_WHITE.test(oldKey) && distance < 1;
-            if (candidate && distance < best) {
+            if (distance < best) {
                 best = distance;
                 found = value;
             }
@@ -104,6 +109,10 @@ export function legacySemanticColor(theme: InternalColorDefinition, name: string
     for (const oldName of LEGACY_SEMANTIC[name] ?? []) {
         const def = theme.semantic[oldName];
         if (def?.value) return def;
+    }
+    if (ON_COLOR.includes(name)) {
+        const white = theme.raw.WHITE_500 || theme.raw.WHITE;
+        if (white) return { value: white, opacity: 1 };
     }
     return undefined;
 }

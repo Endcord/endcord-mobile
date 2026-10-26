@@ -460,7 +460,7 @@ export default function CustomProfileEditor({ onClose }: { onClose: () => void; 
             saveAccount(id, { ...data });
             showToast(t("Profile Saved"), findAssetId("CheckmarkLargeIcon"));
         } catch (e) {
-            showToast(`Save error: ${(e as Error)?.message ?? e}`, findAssetId("CircleXIcon-primary"));
+            toastError(e);
         } finally {
             setSaving(false);
             onClose();
@@ -471,7 +471,7 @@ export default function CustomProfileEditor({ onClose }: { onClose: () => void; 
             resetAccount(accountId || me);
             showToast(t("Profile Reset"), findAssetId("CheckmarkLargeIcon"));
         } catch (e) {
-            showToast(`Reset error: ${(e as Error)?.message ?? e}`, findAssetId("CircleXIcon-primary"));
+            toastError(e);
         } finally {
             onClose();
         }

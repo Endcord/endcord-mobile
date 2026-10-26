@@ -240,18 +240,22 @@ async function run() {
         jsSound: Object.keys(findByProps("playSound") ?? {}).slice(0, 12),
     });
     // CustomProfile's photo picker, and the loader's bridge that SmoothType draws its caret through
-    const { callLoaderMethod, getNativeModule } = require("@lib/api/native/modules");
-    const bridge = (method: string, ...args: unknown[]) => {
-        try {
-            return { ok: true, result: callLoaderMethod(method, ...args) ?? null };
-        } catch (e) {
-            return { ok: false, error: String(e) };
-        }
+    const { callLoaderMethod, callLoaderMethodAsync, getNativeModule } = require("@lib/api/native/modules");
+    const bridge = async (method: string, ...args: unknown[]) => {
+        const outcome = async (call: () => unknown) => {
+            try {
+                return { ok: true, result: await call() ?? null };
+            } catch (e) {
+                return { ok: false, error: String(e) };
+            }
+        };
+        // Newer Discord has no react-native-svg, which the synchronous path goes through
+        return { sync: await outcome(() => callLoaderMethod(method, ...args)), async: await outcome(() => callLoaderMethodAsync(method, ...args)) };
     };
     report("loader", {
         imagePicker: typeof getNativeModule("ImagePickerManager")?.launchImageLibrary,
-        info: bridge("revenge.info"),
-        smoothType: bridge("endcord.smoothType.configure", false, 0xffffff, 60, "ease"),
+        info: await bridge("revenge.info"),
+        smoothType: await bridge("endcord.smoothType.configure", false, 0xffffff, 60, "ease"),
     });
 
     await behaviour();
