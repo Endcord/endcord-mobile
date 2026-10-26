@@ -1,0 +1,20 @@
+plugins
+Ara
+CustomProfile
+POPÜLER
+Endcord tarafından
+Discord profilinizi görsel olarak özelleştirin (kullanıcı adı, profil fotoğrafı, afiş, rozetler, hakkında...) — kalıcıdır, yalnızca size görünür.
+MessageLogger
+POPÜLER
+Endcord tarafından
+Silinen mesajları sohbette tutar ve düzenlenen mesajların önceki hâllerini gösterir.
+HideEndcord
+POPÜLER
+Endcord tarafından
+Ekran görüntüleri ve ekran paylaşımı için Endcord'un Discord ayarlarındaki bölümlerini gizler. Eklentiler çalışmaya devam eder.
+WELCOME TO DISCORD
+Hang out, play games, or just talk. Tap below to get started!
+Register
+Register
+Log In
+Log In
