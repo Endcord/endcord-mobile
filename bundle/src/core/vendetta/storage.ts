@@ -1,4 +1,5 @@
 import { Emitter, EmitterEvent, EmitterListener, EmitterListenerData } from "@core/vendetta/Emitter";
+import { writeDocument } from "@lib/api/native/fs";
 import { NativeCacheModule, NativeFileModule } from "@lib/api/native/modules";
 import { Platform } from "react-native";
 
@@ -218,7 +219,7 @@ export const createMMKVBackend = (store: string, defaultData = {}) => {
             oldData = defaultStr;
         }
 
-        await NativeFileModule.writeFile("documents", filePathFixer(mmkvPath), oldData, "utf8");
+        await writeDocument(filePathFixer(mmkvPath), oldData);
         if (await NativeCacheModule.getItem(store) !== null) {
             NativeCacheModule.removeItem(store);
             console.log(`Successfully migrated ${store} store from MMKV storage to fs`);
@@ -241,12 +242,12 @@ export const createFileBackend = (file: string, defaultData = {}, migratePromise
                 }
             }
 
-            await NativeFileModule.writeFile("documents", filePathFixer(file), JSON.stringify(defaultData), "utf8");
+            await writeDocument(filePathFixer(file), JSON.stringify(defaultData));
             return JSON.parse(await NativeFileModule.readFile(path, "utf8"));
         },
         set: async data => {
             await migratePromise;
-            await NativeFileModule.writeFile("documents", filePathFixer(file), JSON.stringify(data), "utf8");
+            await writeDocument(filePathFixer(file), JSON.stringify(data));
         }
     };
 };

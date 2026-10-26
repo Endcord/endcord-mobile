@@ -1,6 +1,21 @@
 import { NativeFileModule } from "./modules";
 
 /**
+ * Discord's writeFile into the documents directory, tried again when it fails. On a fresh install several storages
+ * create their folder at the same moment, and the ones that lose the race fail with "Failed to create parent
+ * directory" although the folder is there by then; a storage whose first write failed would stay unsaved.
+ */
+export async function writeDocument(path: string, data: string, encoding: "utf8" | "base64" = "utf8"): Promise<void> {
+    for (let attempt = 1; ; attempt++) {
+        try {
+            return void await NativeFileModule.writeFile("documents", path, data, encoding);
+        } catch (e) {
+            if (attempt >= 3) throw e;
+        }
+    }
+}
+
+/**
  * Removes all files in a directory from the path given
  * @param path Path to the targeted directory
  */
@@ -42,7 +57,7 @@ export async function fileExists(path: string, { prefix = "pyoncord/" } = {}) {
  */
 export async function writeFile(path: string, data: string, { prefix = "pyoncord/" } = {}): Promise<void> {
     if (typeof data !== "string") throw new Error("Argument 'data' must be a string");
-    return void await NativeFileModule.writeFile("documents", `${prefix}${path}`, data, "utf8");
+    return writeDocument(`${prefix}${path}`, data);
 }
 
 /**
@@ -72,5 +87,5 @@ export async function downloadFile(url: string, path: string, { prefix = "pyonco
     const arrayBuffer = await response.arrayBuffer();
     const data = Buffer.from(arrayBuffer).toString("base64");
 
-    await NativeFileModule.writeFile("documents", `${prefix}${path}`, data, "base64");
+    await writeDocument(`${prefix}${path}`, data, "base64");
 }
