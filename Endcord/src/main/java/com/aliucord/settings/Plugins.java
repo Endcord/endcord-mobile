@@ -442,6 +442,9 @@ public class Plugins extends SettingsPage {
     }
 
     private TextView countsView;
+    private RecyclerView recyclerView;
+    private Adapter adapter;
+    private TextInput searchInput;
 
     @Override
     public void onViewBound(View view) {
@@ -486,17 +489,21 @@ public class Plugins extends SettingsPage {
             addView(new Divider(context));
         }
 
+        // Where Aliucord plugins come from; a plugin installed from there shows up in the list right away
+        PluginSources.addTo(this, this::reloadPlugins);
+
         countsView = new TextView(context, null, 0, R.i.UiKit_Settings_Item_Addition);
         countsView.setPadding(padding, padding / 2, padding, 0);
         updateCounts();
 
         TextInput input = new TextInput(context);
         input.setHint(I18n.t("Search for a plugin..."));
+        searchInput = input;
 
-        RecyclerView recyclerView = new RecyclerView(context);
+        recyclerView = new RecyclerView(context);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.VERTICAL, false));
         recyclerView.setHasFixedSize(true);
-        Adapter adapter = new Adapter(this, PluginManager.plugins.values());
+        adapter = new Adapter(this, PluginManager.plugins.values());
         adapter.onPluginsChanged = this::updateCounts;
         recyclerView.setAdapter(adapter);
         ShapeDrawable shape = new ShapeDrawable(new RectShape());
@@ -541,6 +548,20 @@ public class Plugins extends SettingsPage {
             });
         }
         menu.setGroupCheckable(group, true, true);
+    }
+
+    /** Builds the list again, for plugins installed while the page is open */
+    private void reloadPlugins() {
+        if (recyclerView == null || adapter == null) return;
+        var mode = adapter.mode;
+        adapter = new Adapter(this, PluginManager.plugins.values());
+        adapter.onPluginsChanged = this::updateCounts;
+        adapter.mode = mode;
+        recyclerView.setAdapter(adapter);
+        var query = searchInput == null ? null : searchInput.getEditText().getText();
+        if (query != null && query.length() > 0) adapter.search(query);
+        else adapter.refilter();
+        updateCounts();
     }
 
     private void updateCounts() {

@@ -1,0 +1,44 @@
+{
+  "Aliucord Plugins": {
+    "tr": "Aliucord Eklentileri",
+    "ru": "Плагины Aliucord",
+    "es": "Plugins de Aliucord",
+    "fr": "Plugins Aliucord"
+  },
+  "Endcord Classic runs Endcord's built-in plugins and Aliucord plugins. To install an Aliucord plugin, long-press its link in the #plugins-list channel of the Aliucord server and choose Install, or install it from a link.": {
+    "tr": "Endcord Classic hem Endcord'un yerleşik eklentilerini hem de Aliucord eklentilerini çalıştırır. Bir Aliucord eklentisi kurmak için Aliucord sunucusunun #plugins-list kanalında bağlantısına uzun basıp Yükle'yi seçin ya da bir bağlantıdan kurun.",
+    "ru": "Endcord Classic запускает и встроенные плагины Endcord, и плагины Aliucord. Чтобы установить плагин Aliucord, нажмите и удерживайте его ссылку в канале #plugins-list на сервере Aliucord и выберите «Установить» или установите его по ссылке.",
+    "es": "Endcord Classic ejecuta los plugins integrados de Endcord y los plugins de Aliucord. Para instalar un plugin de Aliucord, mantén pulsado su enlace en el canal #plugins-list del servidor de Aliucord y elige Instalar, o instálalo desde un enlace.",
+    "fr": "Endcord Classic fait tourner les plugins intégrés d'Endcord et les plugins Aliucord. Pour installer un plugin Aliucord, appuyez longuement sur son lien dans le salon #plugins-list du serveur Aliucord et choisissez Installer, ou installez-le depuis un lien."
+  },
+  "Open the Aliucord Server": {
+    "tr": "Aliucord Sunucusunu Aç",
+    "ru": "Открыть сервер Aliucord",
+    "es": "Abrir el servidor de Aliucord",
+    "fr": "Ouvrir le serveur Aliucord"
+  },
+  "Install a Plugin from a Link": {
+    "tr": "Bağlantıdan Eklenti Kur",
+    "ru": "Установить плагин по ссылке",
+    "es": "Instalar un plugin desde un enlace",
+    "fr": "Installer un plugin depuis un lien"
+  },
+  "Endcord for the latest Discord": {
+    "tr": "En yeni Discord için Endcord",
+    "ru": "Endcord для последней версии Discord",
+    "es": "Endcord para el Discord más reciente",
+    "fr": "Endcord pour le dernier Discord"
+  },
+  "Paste a link to the plugin's .zip file, like https://github.com/user/repo/raw/builds/Plugin.zip. Only install plugins from people you trust: they can do anything Discord can.": {
+    "tr": "Eklentinin .zip dosyasının bağlantısını yapıştırın, örneğin https://github.com/user/repo/raw/builds/Plugin.zip. Yalnızca güvendiğiniz kişilerin eklentilerini kurun: Discord'un yapabildiği her şeyi yapabilirler.",
+    "ru": "Вставьте ссылку на .zip-файл плагина, например https://github.com/user/repo/raw/builds/Plugin.zip. Устанавливайте плагины только от тех, кому доверяете: они могут делать всё, что может Discord.",
+    "es": "Pega un enlace al archivo .zip del plugin, como https://github.com/user/repo/raw/builds/Plugin.zip. Instala solo plugins de gente en la que confíes: pueden hacer todo lo que puede hacer Discord.",
+    "fr": "Collez un lien vers le fichier .zip du plugin, comme https://github.com/user/repo/raw/builds/Plugin.zip. N'installez que des plugins de personnes de confiance : ils peuvent faire tout ce que Discord peut faire."
+  },
+  "That isn't a link to a plugin's .zip file": {
+    "tr": "Bu, bir eklentinin .zip dosyasına giden bağlantı değil",
+    "ru": "Это не ссылка на .zip-файл плагина",
+    "es": "Eso no es un enlace al archivo .zip de un plugin",
+    "fr": "Ce n'est pas un lien vers le fichier .zip d'un plugin"
+  }
+}
