@@ -45,9 +45,6 @@ function Title() {
             source={icon}
         />}
         {textNode}
-        {plugin.popular != null && <View style={{ backgroundColor: "#5865F2", borderRadius: 4, paddingHorizontal: 5, paddingVertical: 1 }}>
-            <Text variant="text-xxs/bold" style={{ color: "#FFFFFF" }}>{t("POPULAR")}</Text>
-        </View>}
     </View>;
 }
 
@@ -70,7 +67,10 @@ function Authors() {
     const authorText = highlightedNode.length > 0 ? highlightedNode : plugin.authors.map(a => a.name).join(", ");
 
     return (
-        <View style={{ flexDirection: "row", flexWrap: "wrap", flexShrink: 1, gap: 4 }}>
+        <View style={{ flexDirection: "row", flexWrap: "wrap", flexShrink: 1, gap: 4, alignItems: "center" }}>
+            {plugin.popular != null && <View style={{ backgroundColor: "#5865F2", borderRadius: 4, paddingHorizontal: 5, paddingVertical: 1 }}>
+                <Text variant="text-xxs/bold" style={{ color: "#FFFFFF" }}>{t("POPULAR")}</Text>
+            </View>}
             <Text variant="text-sm/semibold" color="text-muted">
                 {byBefore}{authorText}{byAfter}
             </Text>
