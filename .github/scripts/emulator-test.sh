@@ -50,6 +50,8 @@ launch_endcord() {
             ;; esac
         done
         if grep -q '"kind":"done"' <<<"$log"; then break; fi
+        # A crash ends the wait; there is nothing more to report
+        if grep -q "FATAL EXCEPTION" <<<"$log" || ! adb shell pidof $ENDCORD_PKG > /dev/null; then break; fi
         sleep 2
     done
     adb logcat -d > "results/$name-logcat.txt"

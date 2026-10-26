@@ -1,7 +1,7 @@
 # Download LSPatch (JingMatrix's maintained fork, which supports Android 14+) and convert it to an aar
 # Jars cannot be used as a dependency without breaking R8 optimization
 
-LSPATCH_URL="https://github.com/JingMatrix/LSPatch/releases/download/canary-492/lspatch-v1.2-492-release.jar"
+LSPATCH_URL="https://github.com/JingMatrix/LSPatch/releases/download/v1.2/lspatch-v1.2-487-release.jar"
 LSPATCH_FILE_NAME="lspatch"
 
 function cleanup {
