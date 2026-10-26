@@ -56,7 +56,7 @@ export default function patchDefinitionAndResolver() {
                 semanticDef = _colorRef.current.semantic[SEMANTIC_FALLBACK_MAP[name]];
             }
             // A theme for older Discord names this color differently
-            semanticDef ??= legacySemanticColor(_colorRef.current, name);
+            semanticDef ??= legacySemanticColor(_colorRef.current, name, colorDef, _colorRef.origRaw);
 
             if (semanticDef?.value) {
                 if (semanticDef.opacity === 1) return semanticDef.value;

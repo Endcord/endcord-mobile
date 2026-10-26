@@ -74,6 +74,22 @@ const ON_COLOR: string[] = [
     "BADGE_TEXT_BRAND", "CHAT_INPUT_SEND_BUTTON_ICON_ACTIVE_TINT", "CHECKBOX_ICON_ACTIVE",
 ];
 
+/**
+ * Colors Discord also takes from the raw color WHITE, but draws on its own surfaces or over pictures: the navigation
+ * header's back and close buttons, outlined and secondary buttons, text over images. The dark WHITE of themes with
+ * pastel accents would hide them, so they take the theme's text color for the same role, or else stay Discord's white.
+ */
+const ON_SURFACE: Record<string, string[]> = {
+    NAVIGATOR_HEADER_TINT: ["HEADER_PRIMARY", "INTERACTIVE_ACTIVE", "TEXT_NORMAL"],
+    BUTTON_OUTLINE_PRIMARY_TEXT: ["TEXT_NORMAL"],
+    MOBILE_LEGACY_BUTTON_SECONDARY_TEXT_DEFAULT: ["TEXT_NORMAL"],
+    APP_MESSAGE_EMBED_SECONDARY_TEXT: ["TEXT_MUTED", "HEADER_SECONDARY"],
+    CONTENT_INVENTORY_OVERLAY_TEXT_PRIMARY: [],
+    CONTENT_INVENTORY_OVERLAY_TEXT_SECONDARY: [],
+    PROFILE_GRADIENT_ROLE_PILL_BORDER: [],
+};
+const WHITE = /^WHITE(_500)?$/;
+
 const rawFallbacks = new WeakMap<InternalColorDefinition, Map<string, string | null>>();
 
 /**
@@ -104,8 +120,12 @@ export function legacyRawColor(theme: InternalColorDefinition, key: string, disc
     return found ?? undefined;
 }
 
-/** The theme's color for a new semantic color it only defines under an old name */
-export function legacySemanticColor(theme: InternalColorDefinition, name: string) {
+/**
+ * The theme's color for a semantic color it doesn't define itself, when the theme would otherwise get it wrong: a new
+ * color it only defines under an old name, or one Discord takes from the raw color WHITE that the theme made dark.
+ * `discordDef` is Discord's own definition of the color for the current theme, `discordRaw` its raw colors.
+ */
+export function legacySemanticColor(theme: InternalColorDefinition, name: string, discordDef?: { raw?: string; opacity?: number; }, discordRaw?: Record<string, string>) {
     for (const oldName of LEGACY_SEMANTIC[name] ?? []) {
         const def = theme.semantic[oldName];
         if (def?.value) return def;
@@ -113,6 +133,14 @@ export function legacySemanticColor(theme: InternalColorDefinition, name: string
     if (ON_COLOR.includes(name)) {
         const white = theme.raw.WHITE_500 || theme.raw.WHITE;
         if (white) return { value: white, opacity: 1 };
+    }
+    if (name in ON_SURFACE && discordDef?.raw && WHITE.test(discordDef.raw)) {
+        for (const oldName of ON_SURFACE[name]) {
+            const def = theme.semantic[oldName];
+            if (def?.value) return def;
+        }
+        const white = discordRaw?.[discordDef.raw];
+        if (white) return { value: white, opacity: discordDef.opacity ?? 1 };
     }
     return undefined;
 }
