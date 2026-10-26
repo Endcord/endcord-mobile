@@ -1,0 +1,4 @@
+Endcord Installer
+For your security, your phone currently isn’t allowed to install unknown apps from this source. You can change this in Settings.
+Cancel
+Settings

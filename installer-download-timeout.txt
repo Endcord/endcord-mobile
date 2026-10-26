@@ -1,0 +1,22 @@
+Successful
+Download APKs
+0.84s
+Expand
+Ongoing
+Patching
+Collapse
+Successful
+Changing app icon
+1.10s
+Successful
+Patching app manifests
+0.31s
+Ongoing
+Signing APKs
+Queued
+Injecting Endcord
+Queued
+Installing
+Expand
+Go back
+Installer

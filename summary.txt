@@ -1,0 +1,6 @@
+PASS: bundle served
+FAIL: download: installer didn't finish
+FAIL: download: Endcord not installed
+PASS: stock Discord installed
+PASS: installed: installer finished
+FAIL: installed: Endcord not installed
