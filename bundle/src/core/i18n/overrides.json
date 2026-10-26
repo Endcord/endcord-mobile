@@ -425,6 +425,12 @@
         "es": "Después del nombre de la insignia",
         "fr": "Après le nom du badge"
     },
+    "Airing": {
+        "tr": "Yayında",
+        "ru": "Выходит",
+        "es": "En emisión",
+        "fr": "En cours"
+    },
     "Aliucord plugins only work on the older Discord that Aliucord is built on, so they can't run here. This Endcord has Endcord's own plugins for the latest Discord. For Aliucord plugins, use Endcord Classic, which runs both.": {
         "tr": "Aliucord eklentileri yalnızca Aliucord'un dayandığı eski Discord sürümünde çalışır, bu yüzden burada çalışamaz. Bu Endcord, en yeni Discord için Endcord'un kendi eklentilerini içerir. Aliucord eklentileri için ikisini de çalıştıran Endcord Classic'i kullanın.",
         "ru": "Плагины Aliucord работают только на старой версии Discord, на которой основан Aliucord, поэтому здесь они не запустятся. В этом Endcord есть собственные плагины Endcord для последней версии Discord. Для плагинов Aliucord используйте Endcord Classic — он поддерживает и те, и другие.",
@@ -2314,6 +2320,12 @@
         "ru": "Найти свои серверы по названию (видите только вы)",
         "es": "Encuentra tus servidores por nombre (solo tú lo ves)",
         "fr": "Trouver vos serveurs par nom (vous seul le voyez)"
+    },
+    "Finished": {
+        "tr": "Tamamlandı",
+        "ru": "Завершён",
+        "es": "Finalizado",
+        "fr": "Terminé"
     },
     "First button link": {
         "tr": "Birinci düğme bağlantısı",
@@ -4367,6 +4379,12 @@
         "es": "No se ha visto conectado desde que Endcord empezó a vigilar",
         "fr": "Pas vu en ligne depuis qu'Endcord surveille"
     },
+    "Not yet aired": {
+        "tr": "Henüz yayınlanmadı",
+        "ru": "Ещё не вышел",
+        "es": "Aún no emitido",
+        "fr": "Pas encore diffusé"
+    },
     "Note for {channel}": {
         "tr": "{channel} için not",
         "ru": "Заметка для {channel}",
@@ -4450,6 +4468,12 @@
         "ru": "Более старые удаляются",
         "es": "Los más antiguos se eliminan",
         "fr": "Les plus anciens sont supprimés"
+    },
+    "On hiatus": {
+        "tr": "Ara verildi",
+        "ru": "На паузе",
+        "es": "En pausa",
+        "fr": "En pause"
     },
     "On my messages too": {
         "tr": "Benim mesajlarımda da",
@@ -7151,11 +7175,11 @@
         "es": "El número del cómic; 0 para uno al azar",
         "fr": "Le numéro de la BD ; 0 pour une au hasard"
     },
-    "The country": {
-        "tr": "Ülke",
-        "ru": "Страна",
-        "es": "El país",
-        "fr": "Le pays"
+    "The country, or its two-letter code": {
+        "tr": "Ülke ya da iki harfli kodu",
+        "ru": "Страна или её двухбуквенный код",
+        "es": "El país o su código de dos letras",
+        "fr": "Le pays ou son code à deux lettres"
     },
     "The dish, in English": {
         "tr": "Yemek, İngilizce olarak",

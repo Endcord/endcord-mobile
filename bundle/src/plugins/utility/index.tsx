@@ -220,6 +220,46 @@ const CryptoPrices = definePlugin({
     }),
 });
 
+interface Country {
+    code: string;
+    name: string;
+    native?: string;
+    capital?: string;
+    emoji?: string;
+    currency?: string;
+    languages?: { name: string; }[];
+    continent?: { name: string; };
+}
+
+let countries: Promise<Country[]> | undefined;
+
+/** Every country, from a free API that needs no key; fetched once, and again after a failure */
+function countryList(): Promise<Country[]> {
+    countries ??= safeFetch("https://countries.trevorblades.com/graphql", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ query: "{ countries { code name native capital emoji currency languages { name } continent { name } } }" }),
+    }).then(r => r.json()).then(data => {
+        const list = data?.data?.countries;
+        if (!Array.isArray(list)) throw new Error("No countries came back");
+        return list;
+    });
+    return countries.catch(e => {
+        countries = undefined;
+        throw e;
+    });
+}
+
+/** The country with that name, local name or code; or else the first whose name starts with, then contains it */
+export function findCountry(list: Country[], query: string): Country | undefined {
+    const q = query.trim().toLocaleLowerCase();
+    if (!q) return undefined;
+    const names = (c: Country) => [c.name, c.native ?? ""].map(n => n.toLocaleLowerCase());
+    return list.find(c => c.code.toLowerCase() === q || names(c).includes(q))
+        ?? list.find(c => names(c).some(n => n.startsWith(q)))
+        ?? list.find(c => names(c).some(n => n.includes(q)));
+}
+
 const CountryInfo = definePlugin({
     id: "endcord.country-info",
     name: "CountryInfo",
@@ -230,17 +270,20 @@ const CountryInfo = definePlugin({
     start: only({
         name: "country",
         description: tx("Facts about a country"),
-        options: [{ name: "name", description: tx("The country"), required: true }],
+        options: [{ name: "name", description: tx("The country, or its two-letter code"), required: true }],
         run: async ({ name }, ctx) => {
-            const [c] = await json(`https://restcountries.com/v3.1/name/${enc(String(name).trim())}`).catch(() => [undefined]);
+            const c = findCountry(await countryList(), String(name));
             if (!c) return answer(ctx, t("No country called {name} was found.", { name }));
+            // The World Bank's latest count; countries it doesn't track show without one
+            const population = await json(`https://api.worldbank.org/v2/country/${enc(c.code)}/indicator/SP.POP.TOTL?format=json&mrnev=1`)
+                .then(data => data?.[1]?.[0]).catch(() => undefined);
             answer(ctx, [
-                `${c.flag ?? ""} **${c.name?.common}** (${c.name?.official})`,
-                `${t("Capital")}: ${(c.capital ?? []).join(", ") || "—"}`,
-                `${t("Population")}: ${number(c.population ?? 0)}`,
-                `${t("Region")}: ${[c.region, c.subregion].filter(Boolean).join(" · ")}`,
-                `${t("Languages")}: ${Object.values(c.languages ?? {}).join(", ") || "—"}`,
-                `${t("Currency")}: ${Object.entries<any>(c.currencies ?? {}).map(([code, v]) => `${v.name} (${code}${v.symbol ? ` ${v.symbol}` : ""})`).join(", ") || "—"}`,
+                `${c.emoji ?? ""} **${c.name}**${c.native && c.native !== c.name ? ` (${c.native})` : ""}`,
+                `${t("Capital")}: ${c.capital || "—"}`,
+                `${t("Population")}: ${typeof population?.value === "number" ? `${number(population.value)} (${population.date})` : "—"}`,
+                `${t("Region")}: ${c.continent?.name || "—"}`,
+                `${t("Languages")}: ${(c.languages ?? []).map(l => l.name).join(", ") || "—"}`,
+                `${t("Currency")}: ${c.currency?.split(",").join(", ") || "—"}`,
             ].join("\n"));
         },
     }),
@@ -589,6 +632,14 @@ const Pokedex = definePlugin({
     }),
 });
 
+const ANIME_STATUS: Record<string, string> = {
+    FINISHED: tx("Finished"),
+    RELEASING: tx("Airing"),
+    NOT_YET_RELEASED: tx("Not yet aired"),
+    CANCELLED: tx("Cancelled"),
+    HIATUS: tx("On hiatus"),
+};
+
 const AnimeLookup = definePlugin({
     id: "endcord.anime-lookup",
     name: "AnimeLookup",
@@ -601,14 +652,30 @@ const AnimeLookup = definePlugin({
         description: tx("Information about an anime"),
         options: [{ name: "title", description: tx("The anime's title"), required: true }],
         run: async ({ title }, ctx) => {
-            const a = (await json(`https://api.jikan.moe/v4/anime?q=${enc(String(title).trim())}&limit=1&sfw=true`))?.data?.[0];
+            // AniList: free, no key, and up when MyAnimeList's unofficial API isn't
+            const data = await json("https://graphql.anilist.co", {
+                method: "POST",
+                headers: { "content-type": "application/json", accept: "application/json" },
+                body: JSON.stringify({
+                    query: "query ($q: String) { Media(search: $q, type: ANIME, isAdult: false) { title { romaji english } averageScore episodes status seasonYear genres description(asHtml: false) siteUrl } }",
+                    variables: { q: String(title).trim() },
+                }),
+            }).catch(() => undefined);
+            const a = data?.data?.Media;
             if (!a) return answer(ctx, t("No anime called {title} was found.", { title }));
+            const name = a.title?.english || a.title?.romaji;
+            const synopsis = String(a.description ?? "").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
             answer(ctx, [
-                `**${a.title}**${a.title_english && a.title_english !== a.title ? ` (${a.title_english})` : ""}`,
-                `⭐ ${a.score ?? "?"} · ${t("{count} episodes", { count: a.episodes ?? "?" })} · ${a.status} · ${a.year ?? ""}`,
-                (a.genres ?? []).map((g: any) => g.name).join(", "),
-                a.synopsis ? clip(a.synopsis, 400) : undefined,
-                a.url,
+                `**${name}**${a.title?.romaji && a.title.romaji !== name ? ` (${a.title.romaji})` : ""}`,
+                [
+                    typeof a.averageScore === "number" ? `⭐ ${(a.averageScore / 10).toFixed(1)}` : undefined,
+                    t("{count} episodes", { count: a.episodes ?? "?" }),
+                    ANIME_STATUS[a.status] ? t(ANIME_STATUS[a.status]) : a.status,
+                    a.seasonYear,
+                ].filter(Boolean).join(" · "),
+                (a.genres ?? []).join(", "),
+                synopsis ? clip(synopsis, 400) : undefined,
+                a.siteUrl,
             ].filter(Boolean).join("\n"));
         },
     }),
