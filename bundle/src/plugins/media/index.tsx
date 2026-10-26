@@ -16,7 +16,7 @@ import { findByProps } from "@metro";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { dispatchSoon, getStore } from "../common";
-import { fromBase64 } from "../crypto";
+import { fromBase64, fromUtf8 } from "../crypto";
 import { addMessageAction, botMessage, command, copy, currentChannelId, onIncomingMessage, openUrl, send, share } from "../hooks";
 import { choose, prompt, showText } from "../ui/dialogs";
 import LogList from "../ui/LogList";
@@ -75,7 +75,7 @@ const PdfViewer = definePlugin({
 
 /** A file's bytes; React Native's fetch can't give an ArrayBuffer, so it goes through a data URL */
 async function bytesOf(url: string): Promise<Uint8Array> {
-    const blob = await fetch(url).then(r => r.blob());
+    const blob = await safeFetch(url).then(r => r.blob());
     const data: string = await new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onload = () => resolve(String(reader.result));
@@ -102,7 +102,9 @@ export function zipEntries(bytes: Uint8Array): Array<{ name: string; size: numbe
     const entries: Array<{ name: string; size: number; }> = [];
     for (let i = 0; i < count && u32(offset) === 0x02014b50; i++) {
         const nameLength = u16(offset + 28), extraLength = u16(offset + 30), commentLength = u16(offset + 32);
-        const name = String.fromCharCode(...bytes.subarray(offset + 46, offset + 46 + nameLength));
+        const raw = bytes.subarray(offset + 46, offset + 46 + nameLength);
+        // Flag bit 11 marks a UTF-8 name; older archives use the DOS code page, the same as ASCII for most names
+        const name = u16(offset + 8) & 0x800 ? fromUtf8(raw) : String.fromCharCode(...raw);
         entries.push({ name, size: u32(offset + 24) });
         offset += 46 + nameLength + extraLength + commentLength;
     }
@@ -131,8 +133,8 @@ const ZipPreview = definePlugin({
                 try {
                     const entries = zipEntries(await bytesOf(a.url));
                     showText(a.filename, entries.map(e => e.name.endsWith("/") ? `📁 ${e.name}` : `${e.name} · ${size(e.size)}`).join("\n") || t("The archive is empty."));
-                } catch (e) {
-                    showToast(e instanceof Error ? e.message : String(e), findAssetId("CircleXIcon-primary"));
+                } catch {
+                    showToast(t("Couldn't open this ZIP file"), findAssetId("CircleXIcon-primary"));
                 }
             }),
         }));

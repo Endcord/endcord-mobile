@@ -18,7 +18,7 @@ import { useEffect, useState } from "react";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { currentUserId, getStore, subscribe } from "../common";
-import { addMessageAction, api, botMessage, command, copy, displayName, getChannel, getUser, jumpTo, onMessageRow, openUrl, redrawChannel, redrawMessage } from "../hooks";
+import { addMessageAction, api, botMessage, command, copy, describeError, displayName, getChannel, getUser, jumpTo, localDay, onMessageRow, openUrl, redrawChannel, redrawMessage } from "../hooks";
 import { avatarUrl } from "../lookup";
 import { choose, prompt, showText } from "../ui/dialogs";
 import LogList from "../ui/LogList";
@@ -40,7 +40,7 @@ const removeRelationship = (id: string) => {
     const actions = findByProps("removeRelationship");
     return actions?.removeRelationship ? Promise.resolve(actions.removeRelationship(id)) : api("del", `/users/@me/relationships/${id}`);
 };
-const failed = (e: any) => showToast(t("Request failed: {error}", { error: e?.body?.message ?? e?.message ?? String(e) }), findAssetId("CircleXIcon-primary"));
+const failed = (e: any) => showToast(t("Request failed: {error}", { error: describeError(e) }), findAssetId("CircleXIcon-primary"));
 
 /** Rerenders when relationships change */
 function useRelationships() {
@@ -160,7 +160,7 @@ function IncomingPage() {
 const SortFriendRequests = definePlugin({
     id: "endcord.sort-friend-requests",
     name: "SortFriendRequests",
-    description: tx("Sorts friend requests by date of receipt"),
+    description: tx("Your incoming friend requests, newest first, to accept or ignore in the plugin's settings"),
     authors: [ENDCORD_AUTHOR],
     icon: "UserPlusIcon",
     tags: ["Friends"],
@@ -203,6 +203,7 @@ const FriendTags = definePlugin({
                     title: t("Tags for {user}", { user: displayName(message.author) }),
                     description: t("Separate tags with commas"),
                     initial: (friendTags.users?.[message.author.id] ?? []).join(", "),
+                    allowEmpty: true,
                     onSubmit: value => {
                         const tags = [...new Set(value.split(",").map(s => s.trim().toLowerCase().replace(/^#/, "")).filter(Boolean))];
                         const users = { ...(friendTags.users ?? {}) };
@@ -255,6 +256,7 @@ const FriendNicknames = definePlugin({
                     title: t("Your nickname for {user}", { user: displayName(message.author) }),
                     description: t("Only you see it. Leave it empty to remove it."),
                     initial: nicknames.users?.[message.author.id] ?? "",
+                    allowEmpty: true,
                     onSubmit: value => {
                         const users = { ...(nicknames.users ?? {}) };
                         if (value.trim()) users[message.author.id] = value.trim().slice(0, 32);
@@ -308,7 +310,7 @@ const ShowConnections = definePlugin({
 const GitHubRepos = definePlugin({
     id: "endcord.github-repos",
     name: "GitHubRepos",
-    description: tx("Displays a user's public GitHub repositories in their profile"),
+    description: tx("See the public GitHub repositories of a message's author from the message menu"),
     authors: [ENDCORD_AUTHOR],
     icon: "PaperIcon",
     tags: ["Friends"],
@@ -475,7 +477,7 @@ interface Streak {
 }
 
 const streaks = wrapSync(createStorage<{ users: Record<string, Streak>; }>(createMMKVBackend("ENDCORD_STREAKS", { users: {} })));
-const dayOf = (ms: number) => new Date(ms).toISOString().slice(0, 10);
+const dayOf = (ms: number) => localDay(ms);
 const current = (s?: Streak) => {
     if (!s?.last) return 0;
     const today = dayOf(Date.now()), yesterday = dayOf(Date.now() - 86_400_000);
@@ -501,16 +503,17 @@ const Streaks = definePlugin({
                 const other: string | undefined = channel.recipients?.[0];
                 if (!other || message.author?.bot) return;
                 const today = dayOf(Date.now());
-                const users = { ...(streaks.users ?? {}) };
-                const s: Streak = users[other]?.day === today ? { ...users[other] } : { ...(users[other] ?? { count: 0 }), day: today, mine: false, theirs: false };
+                const before = streaks.users?.[other];
+                const s: Streak = before?.day === today ? { ...before } : { ...(before ?? { count: 0 }), day: today, mine: false, theirs: false };
                 if (message.author?.id === currentUserId()) s.mine = true;
                 else s.theirs = true;
                 if (s.mine && s.theirs && s.last !== today) {
                     s.count = s.last === dayOf(Date.now() - 86_400_000) ? s.count + 1 : 1;
                     s.last = today;
                 }
-                users[other] = s;
-                streaks.users = users;
+                // Most messages of a day change nothing, and aren't worth a write
+                if (before && JSON.stringify(before) === JSON.stringify(s)) return;
+                streaks.users = { ...(streaks.users ?? {}), [other]: s };
             }),
             onMessageRow("streaks", (row, message) => {
                 const channel = getChannel(message.channel_id);

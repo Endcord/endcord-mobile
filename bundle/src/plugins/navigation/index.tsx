@@ -24,7 +24,10 @@ import { Linking } from "react-native";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { addChatButton, currentUserId, getChatInputActionButton, getStore, subscribe } from "../common";
-import { api, botMessage, command, copy, displayName, generatedIcon, getChannel, getGuild, getUser, jumpTo, onMessageRow, redrawChannel, textNode } from "../hooks";
+import {
+    api, botMessage, command, copy, displayName, generatedIcon, getChannel, getGuild, getUser, jumpTo,
+    onMessageRow, redrawChannel, textNode, toastError
+} from "../hooks";
 import { manifest } from "../manifest";
 import { choose, prompt } from "../ui/dialogs";
 import LogList from "../ui/LogList";
@@ -35,7 +38,7 @@ const BUTTON_OPTIONS = [
     { label: tx("Right of the message box"), value: "right" },
 ];
 
-const failed = (e: unknown) => showToast(e instanceof Error ? e.message : String(e), findAssetId("CircleXIcon-primary"));
+const failed = toastError;
 
 /** A chat bar button that runs `onPress`, shown on the side the plugin's `button` setting picks */
 function chatButton(key: string, store: { button: string; }, icon: string, label: () => string, onPress: () => unknown) {

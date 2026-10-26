@@ -3,7 +3,7 @@ import { Author } from "@lib/addons/types";
 import { settings } from "@lib/api/settings";
 import { safeFetch } from "@lib/utils";
 import { BUNNY_PROXY_PREFIX, VD_PROXY_PREFIX } from "@lib/utils/constants";
-import { logger,LoggerClass } from "@lib/utils/logger";
+import { logger, LoggerClass } from "@lib/utils/logger";
 
 type EvaledPlugin = {
     onLoad?(): void;

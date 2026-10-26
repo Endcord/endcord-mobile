@@ -15,7 +15,10 @@ import { useEffect, useState } from "react";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { currentUserId, getStore, subscribe } from "../common";
-import { addMessageAction, api, botMessage, command, copy, currentChannelId, displayName, getChannel, getGuild, getUser, onMessageRow, redrawMessage, textNode } from "../hooks";
+import {
+    addMessageAction, api, botMessage, command, copy, currentChannelId, describeError, displayName, getChannel,
+    getGuild, getUser, onMessageRow, redrawMessage, textNode
+} from "../hooks";
 import { translate } from "../lookup";
 import { choose, prompt, showText } from "../ui/dialogs";
 import LogList from "../ui/LogList";
@@ -54,20 +57,31 @@ function PeopleList() {
 const IRememberYou = definePlugin({
     id: "endcord.i-remember-you",
     name: "IRememberYou",
-    description: tx("Locally saves everyone you've been communicating with (including servers), in case of lose"),
+    description: tx("Remembers everyone you talk to in DMs and servers, on your device, so you can always find them again"),
     authors: [ENDCORD_AUTHOR],
     icon: "FriendsIcon",
     tags: ["Friends", "Utility"],
     SettingsComponent: PeopleList,
     async start({ cleanup }) {
         await awaitStorage(people);
+        // Saved together a few seconds later, so a conversation doesn't rewrite the whole list for every message
+        let pending: Record<string, Remembered> = {};
+        let timer: ReturnType<typeof setTimeout> | undefined;
+        const save = () => {
+            clearTimeout(timer);
+            timer = undefined;
+            if (!Object.keys(pending).length) return;
+            people.users = { ...(people.users ?? {}), ...pending };
+            pending = {};
+        };
         const remember = (user: any, channelId: string) => {
             if (!user?.id || user.bot || user.id === currentUserId()) return;
             const channel = getChannel(channelId);
             const where = channel?.guild_id ? getGuild(channel.guild_id)?.name ?? t("A server") : t("Direct Message");
-            people.users = { ...(people.users ?? {}), [user.id]: { id: user.id, username: user.username, name: displayName(user), lastSeen: Date.now(), where } };
+            pending[user.id] = { id: user.id, username: user.username, name: displayName(user), lastSeen: Date.now(), where };
+            timer ??= setTimeout(save, 5000);
         };
-        cleanup(subscribe("MESSAGE_CREATE", ({ message, optimistic }) => {
+        cleanup(save, subscribe("MESSAGE_CREATE", ({ message, optimistic }) => {
             if (optimistic || !message?.author) return;
             const me = currentUserId();
             const channel = getChannel(message.channel_id);
@@ -185,7 +199,7 @@ const ExpressionCloner = definePlugin({
                             await api("post", `/guilds/${guildId}/emojis`, { name, image });
                             showToast(t("Added :{name}: to {server}", { name, server: getGuild(guildId)?.name ?? "" }), findAssetId("CheckmarkLargeIcon"));
                         } catch (e: any) {
-                            showToast(t("Couldn't clone the emoji: {error}", { error: e?.body?.message ?? e?.message ?? String(e) }), findAssetId("CircleXIcon-primary"));
+                            showToast(t("Couldn't clone the emoji: {error}", { error: describeError(e) }), findAssetId("CircleXIcon-primary"));
                         }
                     });
                 };
@@ -415,6 +429,7 @@ function SessionsPage() {
                 prompt({
                     title: t("Name This Device"),
                     initial: sessionState.names?.[s.id_hash] ?? "",
+                    allowEmpty: true,
                     onSubmit: name => void (sessionState.names = { ...(sessionState.names ?? {}), [s.id_hash]: name.trim() }),
                 });
             },
@@ -449,8 +464,8 @@ const BetterSessions = definePlugin({
             } catch { }
         };
         const timer = setInterval(check, 15 * 60_000);
-        cleanup(() => clearInterval(timer));
-        setTimeout(check, 10_000);
+        const first = setTimeout(check, 10_000);
+        cleanup(() => clearInterval(timer), () => clearTimeout(first));
     },
 });
 

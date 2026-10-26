@@ -37,7 +37,7 @@ export default () => <ApplicationCommand>{
             messageUtil.sendBotMessage(ctx.channel.id, content);
         } else {
             const fixNonce = Date.now().toString();
-            messageUtil.sendMessage(ctx.channel.id, { content }, void 0, {nonce:fixNonce});
+            messageUtil.sendMessage(ctx.channel.id, { content }, void 0, { nonce:fixNonce });
         }
     }
 };

@@ -40,6 +40,7 @@ function editNote(channelId: string) {
         description: t("Only you see it. Leave it empty to delete the note."),
         initial: notes.notes?.[channelId] ?? "",
         multiline: true,
+        allowEmpty: true,
         onSubmit: value => {
             const all = { ...(notes.notes ?? {}) };
             if (value.trim()) all[channelId] = value.trim();
@@ -225,9 +226,13 @@ const Ghosted = definePlugin({
                 const channel = message && getChannel(message.channel_id);
                 if (!channel || channel.guild_id || optimistic && message.author?.id !== currentUserId()) return;
                 if (store.ignoreGroupDms && channel.type === 3 || ids(store.exemptedChannels).has(channel.id)) return;
+                const mine = message.author?.id === currentUserId();
+                // Saved only when the list changes, not for every message of a conversation
+                if (mine && !waiting.chats?.[channel.id] || !mine && message.author?.bot) return;
                 const chats = { ...(waiting.chats ?? {}) };
-                if (message.author?.id === currentUserId()) delete chats[channel.id];
-                else if (!message.author?.bot) chats[channel.id] = { userId: message.author.id, at: Date.now(), preview: message.content || t("Sent an attachment") };
+                if (mine) delete chats[channel.id];
+                // Waiting since their first unanswered message, showing the latest
+                else chats[channel.id] = { userId: message.author.id, at: chats[channel.id]?.at ?? Date.now(), preview: message.content || t("Sent an attachment") };
                 waiting.chats = chats;
             }),
             command({
@@ -316,7 +321,8 @@ const MarkdownTables = definePlugin({
     start({ cleanup }) {
         cleanup(onIncomingMessage("markdown-tables", message => {
             const content: string = message.content ?? "";
-            if (!content.includes("|") || !content.includes("-")) return;
+            // Your own messages keep their text, which is what editing them starts from
+            if (!content.includes("|") || !content.includes("-") || message.author?.id === currentUserId()) return;
             const rendered = renderTables(content);
             return rendered !== content ? { ...message, content: rendered } : undefined;
         }));

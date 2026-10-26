@@ -17,7 +17,7 @@ import { Animated, AppState, Dimensions, Easing, Image, View } from "react-nativ
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { currentUserId, subscribe } from "../common";
-import { currentChannelId, playSound } from "../hooks";
+import { currentChannelId, localDay, playSound } from "../hooks";
 
 // Snowfall -------------------------------------------------------------------------------------------------------------
 
@@ -223,7 +223,7 @@ interface Day {
 }
 
 const wellbeing = wrapSync(createStorage<{ days: Day[]; }>(createMMKVBackend("ENDCORD_WELLBEING", { days: [] })));
-const today = () => new Date().toISOString().slice(0, 10);
+const today = () => localDay();
 
 function addToToday(change: Partial<Day>) {
     const days = Array.isArray(wellbeing.days) ? wellbeing.days : [];

@@ -56,9 +56,9 @@ export async function saveFont(data: string | FontDefinition, selected = false) 
         if (ext !== "ttf" && ext !== "otf") ext = "ttf";
         const path = `downloads/fonts/${fontDefJson.name}/${font}.${ext}`;
         if (!await fileExists(path)) await downloadFile(url, path);
-    })).then(it => it.map(it => it.status === 'fulfilled' ? undefined : it.reason));
+    })).then(it => it.map(it => it.status === "fulfilled" ? undefined : it.reason));
 
-    if (errors.some(it => it)) throw errors
+    if (errors.some(it => it)) throw errors;
 
     fonts[fontDefJson.name] = fontDefJson;
 
@@ -67,17 +67,17 @@ export async function saveFont(data: string | FontDefinition, selected = false) 
 }
 
 export async function updateFont(fontDef: FontDefinition) {
-    let fontDefCopy = { ...fontDef }
+    let fontDefCopy = { ...fontDef };
     if (fontDefCopy.source) fontDefCopy = {
         ...await fetch(fontDefCopy.source).then(it => it.json()),
         // Can't change these properties
         name: fontDef.name,
         source: fontDef.source
-    }
+    };
 
-    const selected = fonts.__selected === fontDef.name
-    await removeFont(fontDef.name)
-    await saveFont(fontDefCopy, selected)
+    const selected = fonts.__selected === fontDef.name;
+    await removeFont(fontDef.name);
+    await saveFont(fontDefCopy, selected);
 }
 
 export async function installFont(url: string, selected = false) {

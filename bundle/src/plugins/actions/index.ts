@@ -13,7 +13,10 @@ import { findByProps } from "@metro";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { currentUserId, dispatchSoon, getStore } from "../common";
-import { addMessageAction, api, botMessage, command, copy, deleteMessage, displayName, edit, insertText, jumpTo, loadedMessages, messageLink, onIncomingMessage, openUrl, parseEmoji, react, send, share } from "../hooks";
+import {
+    addMessageAction, api, botMessage, command, copy, deleteMessage, displayName, edit, insertText, jumpTo,
+    loadedMessages, messageLink, onIncomingMessage, openUrl, parseEmoji, react, send, share, toastError
+} from "../hooks";
 import { choose, showText } from "../ui/dialogs";
 
 const isMine = (message: any) => message.author?.id === currentUserId();
@@ -181,7 +184,7 @@ const HideMedia = definePlugin({
                 onPress: message => {
                     channelOf.set(message.id, message.channel_id);
                     if (hidden.delete(message.id)) {
-                        restore(message.channel_id, message.id).catch(e => showToast(String(e?.message ?? e), findAssetId("CircleXIcon-primary")));
+                        restore(message.channel_id, message.id).catch(toastError);
                     } else {
                         hidden.add(message.id);
                         dispatchSoon({ type: "MESSAGE_UPDATE", message: { id: message.id, channel_id: message.channel_id, attachments: [], embeds: [] } });
@@ -411,7 +414,10 @@ const CopyFileContents = definePlugin({
                     return;
                 }
                 try {
-                    copy(await fetch(file.url).then(r => r.text()));
+                    const res = await fetch(file.url);
+                    // An expired link answers with an error page, which isn't the file
+                    if (!res.ok) throw new Error(String(res.status));
+                    copy(await res.text());
                 } catch {
                     showToast(t("Couldn't download the file"), findAssetId("CircleXIcon-primary"));
                 }

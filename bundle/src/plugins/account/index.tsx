@@ -21,7 +21,7 @@ import { View } from "react-native";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { addChatButton, currentUserId, getChatInputActionButton, getStore, onAction, subscribe } from "../common";
-import { api, command, displayName, generatedIcon, getChannel, getGuild, getUser, jumpTo } from "../hooks";
+import { api, command, describeError, displayName, generatedIcon, getChannel, getGuild, getUser, jumpTo } from "../hooks";
 import { manifest } from "../manifest";
 import { choose, prompt } from "../ui/dialogs";
 import LogList from "../ui/LogList";
@@ -185,7 +185,7 @@ function ProfileSetsPage() {
                     if (action === "delete") presets.items = presetList().filter((_, j) => j !== i);
                     else applyProfile(p)
                         .then(() => showToast(t("Profile updated"), findAssetId("CheckmarkLargeIcon")))
-                        .catch(e => showToast(t("Request failed: {error}", { error: e?.body?.message ?? e?.message ?? String(e) }), findAssetId("CircleXIcon-primary")));
+                        .catch(e => showToast(t("Request failed: {error}", { error: describeError(e) }), findAssetId("CircleXIcon-primary")));
                 }),
             }))}
         />
@@ -228,7 +228,7 @@ function TimingsPage() {
 const StartupTimings = definePlugin({
     id: "endcord.startup-timings",
     name: "StartupTimings",
-    description: tx("Adds Startup Timings to the Settings menu"),
+    description: tx("Shows how long Endcord and each of its plugins took to start, in the plugin's settings"),
     authors: [ENDCORD_AUTHOR],
     icon: "TimerIcon",
     tags: ["Utility"],
@@ -320,7 +320,7 @@ function EventLogsPage() {
 const EventLogs = definePlugin({
     id: "endcord.event-logs",
     name: "EventLogs",
-    description: tx("Logs: deleted/edited messages, voice, friends, servers."),
+    description: tx("Keeps a log of deleted and edited messages, friends added and removed, and servers you join and leave"),
     authors: [ENDCORD_AUTHOR],
     icon: "BookCheckIcon",
     tags: ["Utility"],

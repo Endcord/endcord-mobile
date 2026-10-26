@@ -194,15 +194,24 @@ const GlobalBadges = definePlugin({
         }));
 
         // Discord draws badges from its CDN by their icon hash; these come from their own links
-        const runtime = findByProps("jsx", "jsxs");
-        const withSource = (args: any[]) => {
-            const type = args[0];
-            const name = typeof type === "function" ? type.name : type?.type?.name;
-            if (name !== "ProfileBadge" || !args[1]?.id) return;
-            const uri = sources.get(args[1].id);
-            if (uri) args[1] = { ...args[1], source: { uri } };
+        const withSource = (props: any) => {
+            const uri = props?.id && sources.get(props.id);
+            return uri ? { ...props, source: { uri } } : props;
         };
-        if (runtime) cleanup(before("jsx", runtime, withSource), before("jsxs", runtime, withSource));
+        const badge = findByName("ProfileBadge", false);
+        if (typeof badge?.default === "function") {
+            // Only badges go through this
+            cleanup(before("default", badge, (args: any[]) => void (args[0] = withSource(args[0]))));
+        } else {
+            // Without the component itself, every element the app creates is checked for it, which costs more
+            const runtime = findByProps("jsx", "jsxs");
+            const check = (args: any[]) => {
+                const type = args[0];
+                const name = typeof type === "function" ? type.name : type?.type?.name;
+                if (name === "ProfileBadge") args[1] = withSource(args[1]);
+            };
+            if (runtime) cleanup(before("jsx", runtime, check), before("jsxs", runtime, check));
+        }
 
         const ids = findByProps("resolveProfileBadgeId", "toProfileBadgeLegacyId");
         for (const key of ["resolveProfileBadgeId", "toProfileBadgeLegacyId"]) {
@@ -218,7 +227,7 @@ const GlobalBadges = definePlugin({
 const CopyProfileColors = definePlugin({
     id: "endcord.copy-profile-colors",
     name: "CopyProfileColors",
-    description: tx("A plugin to copy people's profile gradient colors to clipboard."),
+    description: tx("Copy the profile theme colors of a message's author from the message menu"),
     authors: [ENDCORD_AUTHOR],
     icon: "PaintPaletteIcon",
     tags: ["Utility", "Customisation"],

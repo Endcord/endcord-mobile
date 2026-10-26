@@ -206,6 +206,15 @@ async function run() {
     } catch (e) {
         patchable = String(e);
     }
+    // Discord renames its color tokens between versions; which of the names Endcord's screens use this one has
+    const { semanticColors } = require("@ui/color");
+    const tokenNames = ["ICON_DEFAULT", "INTERACTIVE_ICON_DEFAULT", "INTERACTIVE_NORMAL", "TEXT_DEFAULT", "TEXT_NORMAL", "TEXT_MUTED", "LOGO_PRIMARY",
+        "BACKGROUND_BASE_LOWER", "BG_BASE_SECONDARY", "BG_BASE_PRIMARY", "BACKGROUND_SECONDARY", "BACKGROUND_PRIMARY", "TEXT_FEEDBACK_CRITICAL", "TEXT_DANGER"];
+    report("tokens", {
+        present: tokenNames.filter(n => semanticColors?.[n]),
+        missing: tokenNames.filter(n => !semanticColors?.[n]),
+        sample: Object.keys(semanticColors ?? {}).filter(k => /^(ICON|BACKGROUND|BG)_/.test(k)).slice(0, 40),
+    });
     report("native", {
         soundManager: typeof soundManager,
         keys: Object.keys(soundManager ?? {}).slice(0, 20),
@@ -383,26 +392,28 @@ async function screens() {
     const byId = (id: string) => getEndcordPlugins().find(p => p.id === id)!;
     const pluginPage = (id: string) => () => PluginSettings({ plugin: byId(id) });
 
-    const pages: Array<[string, any]> = [
-        ["general", require("@core/ui/settings/pages/General").default],
-        ["plugins", require("@core/ui/settings/pages/Plugins").default],
-        ["messagelogger", pluginPage("endcord.message-logger")],
-        ["fakenitro", pluginPage("endcord.fake-nitro")],
-        ["themelibrary", pluginPage("endcord.theme-library")],
-        ["textreplace", pluginPage("endcord.text-replace")],
-        ["customrpc", pluginPage("endcord.custom-rpc")],
-        ["wellbeing", pluginPage("endcord.wellbeing")],
-        ["themes", require("@core/ui/settings/pages/Themes").default],
+    const { Strings } = require("@core/i18n");
+    // Screenshot name, the title the app shows for the page, and the page
+    const pages: Array<[string, () => string, any]> = [
+        ["general", () => Strings.GENERAL, require("@core/ui/settings/pages/General").default],
+        ["plugins", () => Strings.PLUGINS, require("@core/ui/settings/pages/Plugins").default],
+        ["messagelogger", () => "MessageLogger", pluginPage("endcord.message-logger")],
+        ["fakenitro", () => "FakeNitro", pluginPage("endcord.fake-nitro")],
+        ["themelibrary", () => "ThemeLibrary", pluginPage("endcord.theme-library")],
+        ["textreplace", () => "TextReplace", pluginPage("endcord.text-replace")],
+        ["customrpc", () => "CustomRPC", pluginPage("endcord.custom-rpc")],
+        ["wellbeing", () => "Wellbeing", pluginPage("endcord.wellbeing")],
+        ["themes", () => Strings.THEMES, require("@core/ui/settings/pages/Themes").default],
     ];
 
     const previous = settings.language;
     try {
         for (const language of ["en", "tr"] as const) {
             settings.language = language;
-            for (const [name, render] of pages) {
+            for (const [name, title, render] of pages) {
                 if (language === "tr" && !["general", "plugins", "messagelogger"].includes(name)) continue;
                 try {
-                    showTestScreen({ title: name, render });
+                    showTestScreen({ title: title(), render });
                     await wait(5000);
                     report("shot", { name: `${language}-${name}` });
                     // A screenshot and a UI dump take a few seconds on the emulator

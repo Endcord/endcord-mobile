@@ -18,11 +18,11 @@ const { AlertModal, AlertActionButton } = lazyDestructure(() => findByProps("Ale
 
 function promptDetachConfirmationForThen(fontName: string | undefined, cb: () => void) {
     if (fontName && fonts[fontName].source) openAlert("revenge-fonts-detach-source-confirmation", <AlertModal
-        title="Detach font pack URL?"
-        content="You need to detach the font pack URL from this font pack before you can manually edit its font entries. Do you want to detach the font pack URL?"
+        title={t("Detach the font pack link?")}
+        content={t("This font pack is linked to an address. To edit its fonts yourself, detach it from that link first.")}
         actions={
             <Stack>
-                <AlertActionButton text="Detach" variant="destructive" onPress={() => {
+                <AlertActionButton text={t("Detach")} variant="destructive" onPress={() => {
                     delete fonts[fontName!].source;
                     cb();
                 }} />
@@ -31,7 +31,7 @@ function promptDetachConfirmationForThen(fontName: string | undefined, cb: () =>
         }
     />);
     else cb();
-};
+}
 
 function guessFontName(urls: string[]) {
     const fileNames = urls.map(url => {
@@ -332,7 +332,7 @@ export default function FontEditor(props: {
 
                     return <TableRow
                         label={name}
-                        subLabel={error ? <Text variant='text-xs/medium' color='text-feedback-critical'>{error.message}</Text> : url}
+                        subLabel={error ? <Text variant="text-xs/medium" color="text-feedback-critical">{error.message}</Text> : url}
                         trailing={<Stack spacing={8} direction="horizontal">
                             <IconButton
                                 size="sm"
@@ -363,7 +363,7 @@ export default function FontEditor(props: {
                 })}
                 <TableRow label={<NewEntryRow fontName={props.name} fontEntry={fontEntries} />} />
             </TableRowGroup>
-            {errors && <Text variant='text-sm/medium' color='text-feedback-critical'>Some font entries cannot be imported. Please modify the entries and try again.</Text>}
+            {errors && <Text variant="text-sm/medium" color="text-feedback-critical">Some font entries cannot be imported. Please modify the entries and try again.</Text>}
             <View style={{ flexDirection: "row", justifyContent: "flex-end", bottom: 0, left: 0 }}>
                 <Button
                     size="lg"

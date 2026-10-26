@@ -4,18 +4,18 @@ import { showConfirmationAlert } from "@core/vendetta/alerts";
 import { useProxy } from "@core/vendetta/storage";
 import { FontDefinition, fonts, selectFont } from "@lib/addons/fonts";
 import { findAssetId } from "@lib/api/assets";
-import { lazyDestructure } from "@lib/utils/lazy";
 import { BundleUpdaterManager } from "@lib/api/native/modules";
 import { createStyles, TextStyleSheet } from "@lib/ui/styles";
+import { lazyDestructure } from "@lib/utils/lazy";
+import { findByProps } from "@metro";
 import { NavigationNative, tokens } from "@metro/common";
 import { Button, Card, IconButton, Stack, Text } from "@metro/common/components";
-import { findByProps } from "@metro";
 import { useMemo, useState } from "react";
 import { PixelRatio, View } from "react-native";
 import { WebView } from "react-native-webview";
-import previewHtml from "./preview.html";
 
 import FontEditor from "./FontEditor";
+import previewHtml from "./preview.html";
 
 const { useToken } = lazyDestructure(() => findByProps("useToken"));
 

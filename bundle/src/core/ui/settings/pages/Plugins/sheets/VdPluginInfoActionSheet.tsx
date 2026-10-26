@@ -1,4 +1,4 @@
-import { formatString, Strings } from "@core/i18n";
+import { formatString, Strings, t } from "@core/i18n";
 import { showConfirmationAlert } from "@core/vendetta/alerts";
 import { VdPluginManager } from "@core/vendetta/plugins";
 import { purgeStorage } from "@core/vendetta/storage";
@@ -26,7 +26,7 @@ export default function PluginInfoActionSheet({ plugin, navigation }: PluginInfo
                 <View style={{ marginLeft: "auto" }}>
                     {SettingsComponent && <Button
                         size="md"
-                        text="Configure"
+                        text={t("Settings")}
                         variant="secondary"
                         icon={findAssetId("WrenchIcon")}
                         onPress={() => {

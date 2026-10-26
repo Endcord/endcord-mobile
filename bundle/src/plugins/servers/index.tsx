@@ -9,7 +9,7 @@
 import { t, tx } from "@core/i18n";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin, ENDCORD_AUTHOR, onSettingChange } from "../api";
 import { currentUserId, getStore, subscribe } from "../common";
 import { api, botMessage, command, copy, getChannel, getGuild, nativeColor, onIncomingMessage, onMessageRow, share } from "../hooks";
 import { translate } from "../lookup";
@@ -108,7 +108,25 @@ const BetterBanReasons = definePlugin({
     },
     start({ store, cleanup }) {
         const reasons = () => store.reasons.split("\n").map(r => r.trim()).filter(Boolean).slice(0, 25);
-        cleanup(command({
+        // The reasons are the command's choices, so it's registered again when they change
+        let unregister: (() => void) | undefined;
+        let timer: ReturnType<typeof setTimeout> | undefined;
+        const register = () => {
+            unregister?.();
+            unregister = banCommand();
+        };
+        cleanup(
+            () => {
+                clearTimeout(timer);
+                unregister?.();
+            },
+            onSettingChange(store, key => {
+                if (key !== "reasons") return;
+                clearTimeout(timer);
+                timer = setTimeout(register, 800);
+            }),
+        );
+        const banCommand = () => command({
             name: "ban",
             description: tx("Ban someone from this server with a reason"),
             options: [
@@ -129,7 +147,8 @@ const BetterBanReasons = definePlugin({
                 else await api("put", `/guilds/${guildId}/bans/${user}`, { delete_message_seconds: seconds });
                 botMessage(ctx.channel.id, `🔨 ${reason ? t("Banned {user}: {reason}", { user: `<@${user}>`, reason }) : t("Banned {user}", { user: `<@${user}>` })}`);
             },
-        }));
+        });
+        register();
     },
 });
 
@@ -424,10 +443,20 @@ const UrlHighlighter = definePlugin({
         color: { type: "string", label: tx("Color"), description: tx("Like #f0b232"), default: "#f0b232" },
     },
     start({ store, cleanup }) {
+        // Compiled again only when the setting changes
+        let source: string | undefined;
+        let compiled: RegExp[] = [];
+        const patternsOf = (text: string) => {
+            if (text !== source) {
+                source = text;
+                compiled = text.split("\n").filter(p => p.trim()).map(globToRegex);
+            }
+            return compiled;
+        };
         cleanup(onMessageRow("url-highlighter", (row, message) => {
             const urls: string[] = String(message.content ?? "").match(/https?:\/\/\S+/g) ?? [];
             if (!urls.length) return;
-            const patterns = store.patterns.split("\n").filter(p => p.trim()).map(globToRegex);
+            const patterns = patternsOf(store.patterns);
             if (!urls.some(u => patterns.some(p => p.test(u)))) return;
             const color = nativeColor(store.color.trim() || "#f0b232");
             if (color !== undefined) row.textColor = color;

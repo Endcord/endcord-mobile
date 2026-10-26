@@ -1,10 +1,11 @@
+import { Strings } from "@core/i18n";
 import { after } from "@lib/api/patcher";
+import { findInReactTree } from "@lib/utils";
 import { TableRow } from "@metro/common/components";
 import { findByNameLazy, findByPropsLazy } from "@metro/wrappers";
 import { getVisibleSections, registeredSections } from "@ui/settings";
-import { Strings } from "@core/i18n";
+
 import { CustomPageRenderer, wrapOnPress } from "./shared";
-import { findInReactTree } from "@lib/utils";
 
 const settingConstants = findByPropsLazy("SETTING_RENDERER_CONFIG");
 const createListModule = findByPropsLazy("createList");
@@ -78,17 +79,17 @@ export function patchTabsUI(unpatches: (() => void | boolean)[]) {
     try{
         unpatches.push(after("createList", createListModule, function(args, ret) {
             const [config] = args;
-        
+
             if (config?.sections && Array.isArray(config.sections)) {
-                const sections = config.sections;
-            
+                const { sections } = config;
+
                 const accountSectionIndex = sections.findIndex((i: any) => i.settings?.includes("ACCOUNT"));
-            
+
                 if (accountSectionIndex !== -1) {
                     // Credit to @palmdevs - https://discord.com/channels/1196075698301968455/1243605828783571024/1307940348378742816
 
                     let index = accountSectionIndex + 1;
-                
+
                     getVisibleSections().forEach(sect => {
                         const alreadyExists = sections.some((s: any) => s.label === sect);
                         if (!alreadyExists) {
@@ -105,20 +106,20 @@ export function patchTabsUI(unpatches: (() => void | boolean)[]) {
         },));
 
     }catch{
-    unpatches.push(after("default", SettingsOverviewScreen, (_, ret) => {
-        if (useIsFirstRender()) return; // :shrug:
+        unpatches.push(after("default", SettingsOverviewScreen, (_, ret) => {
+            if (useIsFirstRender()) return; // :shrug:
 
-        const { sections } = findInReactTree(ret, i => i.props?.sections).props;
-        // Credit to @palmdevs - https://discord.com/channels/1196075698301968455/1243605828783571024/1307940348378742816
-        let index = -~sections.findIndex((i: any) => i.settings.includes("ACCOUNT")) || 1;
+            const { sections } = findInReactTree(ret, i => i.props?.sections).props;
+            // Credit to @palmdevs - https://discord.com/channels/1196075698301968455/1243605828783571024/1307940348378742816
+            let index = -~sections.findIndex((i: any) => i.settings.includes("ACCOUNT")) || 1;
 
-        getVisibleSections().forEach(sect => {
-            sections.splice(index++, 0, {
-                label: sect,
-                title: sect,
-                settings: registeredSections[sect].map(a => a.key)
+            getVisibleSections().forEach(sect => {
+                sections.splice(index++, 0, {
+                    label: sect,
+                    title: sect,
+                    settings: registeredSections[sect].map(a => a.key)
+                });
             });
-        });
-    }));
+        }));
     }
-};
+}

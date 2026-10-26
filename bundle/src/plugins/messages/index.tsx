@@ -18,8 +18,8 @@ import { currentUserId, getStore, onAction, subscribe } from "../common";
 import { fromBase64, open, seal, toBase64 } from "../crypto";
 import {
     addMessageAction, api, botMessage, command, copy, displayName, edit, getChannel, getUser, insertText, jumpTo,
-    loadedMessages, messageLink, onIncomingMessage, onMessageRow, onSend, parseEmoji, parseMessageLink, react,
-    receiveLocalMessage, redrawMessage, textNode,
+    loadedMessages, localSnowflake, messageLink, onIncomingMessage, onMessageRow, onSend, parseEmoji,
+    parseMessageLink, react, receiveLocalMessage, redrawMessage, textNode
 } from "../hooks";
 import { prompt, showText } from "../ui/dialogs";
 import LogList from "../ui/LogList";
@@ -119,7 +119,8 @@ const WhitelistedEmojis = definePlugin({
     start({ store, cleanup }) {
         cleanup(onIncomingMessage("whitelisted-emojis", message => {
             const content: string = message.content ?? "";
-            if (!content.includes("<")) return;
+            // Your own messages keep their emojis, which is what editing them starts from
+            if (!content.includes("<") || message.author?.id === currentUserId()) return;
             const allowed = ids(store.whitelist.toLowerCase());
             const replaced = content.replace(/<a?:(\w+):(\d+)>/g, (m, name: string, id: string) => allowed.has(name.toLowerCase()) || allowed.has(id) ? m : `:${name}:`);
             return replaced !== content ? { ...message, content: replaced } : undefined;
@@ -443,6 +444,22 @@ const CustomReactionButtons = definePlugin({
 
 const SEALED = /🔐 ([A-Za-z0-9+/]{16,}={0,2})/;
 
+/**
+ * Decryption, remembered for each message and password: rows are drawn again and again, and each decryption hashes
+ * the whole message several times
+ */
+function decryptionCache(decrypt: (content: string, password: string) => string | undefined) {
+    const results = new Map<string, string | undefined>();
+    return (message: any, password: string) => {
+        const key = `${message.id}:${password}`;
+        if (!results.has(key)) {
+            if (results.size > 500) results.clear();
+            results.set(key, decrypt(message.content ?? "", password));
+        }
+        return results.get(key);
+    };
+}
+
 function revealPrompt(title: string, unlock: (password: string) => string | undefined) {
     prompt({
         title,
@@ -471,6 +488,7 @@ const EncryptedMessage = definePlugin({
             const match = content.match(SEALED);
             return match ? open(fromBase64(match[1]), password) : undefined;
         };
+        const shown = decryptionCache(decrypt);
         cleanup(
             command({
                 name: "encrypt",
@@ -497,7 +515,7 @@ const EncryptedMessage = definePlugin({
             }),
             onMessageRow("encrypted-message", (row, message) => {
                 if (!store.password || !Array.isArray(row.content) || !SEALED.test(message.content ?? "")) return;
-                const text = decrypt(message.content, store.password);
+                const text = shown(message, store.password);
                 if (text !== undefined) row.content = [...row.content, textNode(`\n🔓 ${text}`)];
             }),
         );
@@ -538,6 +556,7 @@ const InvisibleChat = definePlugin({
             const bytes = unhide(content);
             return bytes ? open(bytes, password) : undefined;
         };
+        const shown = decryptionCache(reveal);
         cleanup(
             command({
                 name: "invisible",
@@ -565,7 +584,7 @@ const InvisibleChat = definePlugin({
             }),
             onMessageRow("invisible-chat", (row, message) => {
                 if (!store.password || !Array.isArray(row.content) || !(message.content ?? "").includes(INVISIBLE_MARKER)) return;
-                const text = reveal(message.content, store.password);
+                const text = shown(message, store.password);
                 if (text !== undefined) row.content = [...row.content, textNode(`\n🔓 ${text}`)];
             }),
         );
@@ -602,7 +621,7 @@ export const STYLES: Record<string, (text: string) => string> = {
 const TranslatePlus = definePlugin({
     id: "endcord.translate-plus",
     name: "Translate+",
-    description: tx("Endcord's translate plugin but with support for artistic languages!"),
+    description: tx("Rewrite your text in fun styles (small caps, upside down, fraktur, pirate...) with /translateplus"),
     authors: [ENDCORD_AUTHOR],
     icon: "LanguageIcon",
     tags: ["Fun", "Chat"],
@@ -679,7 +698,7 @@ const FakeDM = definePlugin({
                         botMessage(ctx.channel.id, t("This only works in DMs and group DMs."));
                         return;
                     }
-                    const fake: Fake = { id: String(Math.floor((Date.now() - 1420070400000) * 4194304)), authorId: user, content: String(message), at: Date.now() };
+                    const fake: Fake = { id: localSnowflake(), authorId: user, content: String(message), at: Date.now() };
                     fakes.channels = { ...(fakes.channels ?? {}), [ctx.channel.id]: [...(fakes.channels?.[ctx.channel.id] ?? []), fake] };
                     injectFakes(ctx.channel.id);
                 },

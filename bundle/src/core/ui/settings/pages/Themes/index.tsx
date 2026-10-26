@@ -9,7 +9,7 @@ import { Author } from "@lib/addons/types";
 import { findAssetId } from "@lib/api/assets";
 import { settings } from "@lib/api/settings";
 import { useObservable } from "@lib/api/storage";
-import { ActionSheet, BottomSheetTitleHeader, Button, TableRowGroup, TableRowIcon, TableSwitchRow, TableRow, TableRadioGroup, TableRadioRow } from "@metro/common/components";
+import { ActionSheet, BottomSheetTitleHeader, Button, TableRadioGroup, TableRadioRow,TableRow, TableRowGroup, TableRowIcon, TableSwitchRow } from "@metro/common/components";
 import { View } from "react-native";
 
 export default function Themes() {
@@ -69,7 +69,7 @@ export default function Themes() {
                                 subLabel={t("Shows or hides the theme's background image in chat")}
                                 icon={<TableRow.Icon source={findAssetId("ImageIcon")} />}
                                 value={colorsPref.customBackground !== "hidden"}
-                                onValueChange={(value) => {
+                                onValueChange={value => {
                                     colorsPref.customBackground = value ? null : "hidden";
                                 }}
                             />

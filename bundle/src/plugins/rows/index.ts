@@ -24,6 +24,22 @@ const timeOf = (message: any): number => {
     return Date.parse(ts) || snowflakeTime(message.id);
 };
 
+/**
+ * A function of a setting's text, worked out again only when the text changes; row decorators run for every message
+ * drawn, so they don't parse their settings each time
+ */
+function cached<T>(fn: (text: string) => T): (text: string) => T {
+    let key: string | undefined;
+    let value: T;
+    return text => {
+        if (text !== key) {
+            key = text;
+            value = fn(text);
+        }
+        return value;
+    };
+}
+
 /** "userId = value" lines, as a map */
 function lines(text: string) {
     const map = new Map<string, string>();
@@ -110,7 +126,7 @@ const RealtimeTimestamps = definePlugin({
 const CustomTimestamps = definePlugin({
     id: "endcord.custom-timestamps",
     name: "CustomTimestamps",
-    description: tx("Custom timestamps on messages and tooltips"),
+    description: tx("Shows message times in a format you choose"),
     authors: [ENDCORD_AUTHOR],
     icon: "ClockIcon",
     tags: ["Chat", "Customisation"],
@@ -155,8 +171,9 @@ const Timezones = definePlugin({
         showTimezoneInfo: { type: "boolean", label: tx("Show the time zone"), description: tx("Show timezone info next to time"), default: false },
     },
     start({ store, cleanup }) {
+        const zones = cached(lines);
         cleanup(onMessageRow("timezones", (row, message) => {
-            const zone = lines(store.timezones).get(message.author?.id);
+            const zone = zones(store.timezones).get(message.author?.id);
             if (!zone) return;
             try {
                 const local = new Date(timeOf(message)).toLocaleTimeString(undefined, { timeZone: zone, hour: "2-digit", minute: "2-digit", hour12: !store.twentyFourHourFormat });
@@ -171,7 +188,7 @@ const Timezones = definePlugin({
 const UserMessagesPronouns = definePlugin({
     id: "endcord.user-messages-pronouns",
     name: "UserMessagesPronouns",
-    description: tx("Adds pronouns to chat user messages"),
+    description: tx("Shows people's pronouns from their Discord profile next to their messages"),
     authors: [ENDCORD_AUTHOR],
     tags: ["Chat"],
     settings: {
@@ -273,8 +290,9 @@ const CustomUserColors = definePlugin({
         },
     },
     start({ store, cleanup }) {
+        const colors = cached(lines);
         cleanup(onMessageRow("custom-user-colors", (row, message) => {
-            const color = lines(store.colors).get(message.author?.id);
+            const color = colors(store.colors).get(message.author?.id);
             if (color) setNameColor(row, color);
         }));
     },
@@ -373,15 +391,24 @@ const DEFAULT_TONES: Record<string, string> = {
     rt: tx("rhetorical"), ref: tx("reference"), m: tx("metaphorically"), li: tx("literally"), hyp: tx("hyperbole"), th: tx("threat"),
 };
 
-function annotateTones(nodes: any[], tones: Record<string, string>, prefix: string): any[] {
-    const escaped = prefix.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const re = new RegExp(`(^|\\s)${escaped}(${Object.keys(tones).join("|")})(?=$|[\\s.,!?])`, "gi");
+const escapeRegex = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+/** The tones and the pattern that finds them, from the prefix and custom indicators settings */
+function compileTones(key: string) {
+    const [prefix, customText]: [string, string] = JSON.parse(key);
+    const custom = Object.fromEntries(customText.split(";").map(p => p.split("=").map(s => s.trim())).filter(p => p[0] && p[1]).map(([k, v]) => [k.toLowerCase(), v]));
+    const tones: Record<string, string> = { ...DEFAULT_TONES, ...custom };
+    const re = new RegExp(`(^|\\s)${escapeRegex(prefix)}(${Object.keys(tones).map(escapeRegex).join("|")})(?=$|[\\s.,!?])`, "gi");
+    return { tones, re };
+}
+
+function annotateTones(nodes: any[], tones: Record<string, string>, re: RegExp): any[] {
     return nodes.map(node => {
         if (node?.type === "text" && typeof node.content === "string") {
             const content = node.content.replace(re, (m: string, space: string, tone: string) => `${m} (${t(tones[tone.toLowerCase()])})`);
             return content === node.content ? node : { ...node, content };
         }
-        if (Array.isArray(node?.content)) return { ...node, content: annotateTones(node.content, tones, prefix) };
+        if (Array.isArray(node?.content)) return { ...node, content: annotateTones(node.content, tones, re) };
         return node;
     });
 }
@@ -397,10 +424,11 @@ const ToneIndicators = definePlugin({
         customIndicators: { type: "string", label: tx("Custom indicators"), description: tx("Custom tone indicators (format: jk=Joking; srs=Serious)"), default: "" },
     },
     start({ store, cleanup }) {
+        const compiled = cached(compileTones);
         cleanup(onMessageRow("tone-indicators", row => {
             if (!Array.isArray(row.content) || !store.prefix) return;
-            const custom = Object.fromEntries(store.customIndicators.split(";").map(p => p.split("=").map(s => s.trim())).filter(p => p[0] && p[1]).map(([k, v]) => [k.toLowerCase(), v]));
-            row.content = annotateTones(row.content, { ...DEFAULT_TONES, ...custom }, store.prefix);
+            const { tones, re } = compiled(JSON.stringify([store.prefix, store.customIndicators]));
+            row.content = annotateTones(row.content, tones, re);
         }));
     },
 });

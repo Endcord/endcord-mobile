@@ -19,7 +19,7 @@ import { AppState, NativeModules } from "react-native";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { addChatButton, currentUserId, getChatInputActionButton, getStore, subscribe } from "../common";
-import { api, botMessage, command, generatedIcon, playSound } from "../hooks";
+import { api, botMessage, command, generatedIcon, playSound, toastError } from "../hooks";
 import { choose, prompt } from "../ui/dialogs";
 import LogList from "../ui/LogList";
 
@@ -165,7 +165,7 @@ const GameActivityToggle = definePlugin({
                         try {
                             toggleGameActivity();
                         } catch (e) {
-                            showToast(e instanceof Error ? e.message : String(e), findAssetId("CircleXIcon-primary"));
+                            toastError(e);
                         }
                     }} /> : null;
                 },
@@ -199,7 +199,7 @@ const SpotifyActivityToggle = definePlugin({
         button: { type: "select", label: tx("Chat bar button"), default: "none", options: BUTTON_OPTIONS },
     },
     start({ store, cleanup }) {
-        const toggle = () => toggleSpotifyActivity().catch(e => showToast(e?.body?.message ?? String(e?.message ?? e), findAssetId("CircleXIcon-primary")));
+        const toggle = () => toggleSpotifyActivity().catch(toastError);
         cleanup(
             command({ name: "spotifyactivity", description: tx("Show or hide your Spotify on your profile"), run: toggle }),
             addChatButton({

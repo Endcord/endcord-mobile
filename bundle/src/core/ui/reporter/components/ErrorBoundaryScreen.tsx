@@ -5,8 +5,8 @@ import { BundleUpdaterManager } from "@lib/api/native/modules";
 import { settings } from "@lib/api/settings";
 import { Codeblock, ErrorBoundary } from "@lib/ui/components";
 import { createStyles } from "@lib/ui/styles";
-import { tokens } from "@metro/common";
 import { Button, Card, SafeAreaProvider, SafeAreaView, Text } from "@metro/common/components";
+import { semanticColorOf } from "@ui/color";
 import { ScrollView, View } from "react-native";
 
 import ErrorComponentStackCard from "./ErrorComponentStackCard";
@@ -15,7 +15,7 @@ import ErrorStackCard from "./ErrorStackCard";
 const useStyles = createStyles({
     container: {
         flex: 1,
-        backgroundColor: tokens.colors.BG_BASE_SECONDARY,
+        backgroundColor: semanticColorOf("BACKGROUND_BASE_LOWER", "BG_BASE_SECONDARY", "BACKGROUND_SECONDARY", "BACKGROUND_PRIMARY"),
         paddingHorizontal: 16,
         height: "100%",
         gap: 12

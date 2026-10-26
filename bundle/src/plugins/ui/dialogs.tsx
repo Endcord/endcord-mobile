@@ -15,7 +15,7 @@ import { ActionSheet, ActionSheetRow, AlertActionButton, AlertModal, BottomSheet
 import { useState } from "react";
 import { ScrollView } from "react-native";
 
-import { copy, generatedIcon } from "../hooks";
+import { copy, describeError, generatedIcon } from "../hooks";
 
 export interface PromptOptions {
     title: string;
@@ -25,6 +25,8 @@ export interface PromptOptions {
     confirm?: string;
     multiline?: boolean;
     keyboardType?: "default" | "numeric";
+    /** Whether an empty field can be saved, for prompts where that removes the value */
+    allowEmpty?: boolean;
     /** Throw to keep the dialog open and show the error under the field */
     onSubmit(value: string): void | Promise<void>;
 }
@@ -41,7 +43,7 @@ function PromptAlert({ id, options }: { id: string; options: PromptOptions; }) {
         Promise.resolve()
             .then(() => options.onSubmit(value))
             .then(() => dismissAlert(id))
-            .catch((e: unknown) => setError(e instanceof Error ? e.message : String(e)))
+            .catch((e: unknown) => setError(describeError(e)))
             .finally(() => setBusy(false));
     };
 
@@ -65,7 +67,7 @@ function PromptAlert({ id, options }: { id: string; options: PromptOptions; }) {
             errorMessage={error || undefined}
         />}
         actions={<Stack>
-            <Button loading={busy} text={options.confirm ?? t("Save")} variant="primary" disabled={!value.trim()} onPress={submit} />
+            <Button loading={busy} text={options.confirm ?? t("Save")} variant="primary" disabled={!options.allowEmpty && !value.trim()} onPress={submit} />
             <AlertActionButton disabled={busy} text={t("Cancel")} variant="secondary" />
         </Stack>}
     />;

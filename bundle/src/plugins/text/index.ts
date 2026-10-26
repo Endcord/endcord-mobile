@@ -10,7 +10,7 @@ import { t, tx } from "@core/i18n";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { currentUserId } from "../common";
-import { botMessage, command, displayName,getUser } from "../hooks";
+import { botMessage, command, displayName, getUser } from "../hooks";
 
 const message = (description = tx("Your message")) => ({ name: "message", description, required: true });
 
@@ -282,7 +282,7 @@ const ENGINES: Record<string, string> = {
 const GoogleThat = definePlugin({
     id: "endcord.google-that",
     name: "GoogleThat",
-    description: tx("Adds a command to send a internet search link"),
+    description: tx("Send a web search link for anything with /googlethat"),
     authors: [ENDCORD_AUTHOR],
     icon: "MagnifyingGlassIcon",
     tags: ["Utility"],

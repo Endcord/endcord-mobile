@@ -7,13 +7,14 @@
  */
 
 import { t, tx } from "@core/i18n";
-import { findAssetId } from "@lib/api/assets";
-import { showToast } from "@lib/ui/toasts";
 import { findByProps } from "@metro";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { currentUserId, getStore } from "../common";
-import { addMessageAction, api, botMessage, command, getGuild, getUser, onMessageRow, onSend, redrawMessage, textNode } from "../hooks";
+import {
+    addMessageAction, api, botMessage, command, describeError, getGuild, getUser, onMessageRow, onSend,
+    redrawMessage, textNode, toastError
+} from "../hooks";
 
 const CDN = "https://cdn.discordapp.com";
 const unix = (ms: number) => Math.floor(ms / 1000);
@@ -251,7 +252,7 @@ const HypeSquadSwitcher = definePlugin({
                     await applyHouse(id);
                     botMessage(ctx.channel.id, id === 0 ? `✅ ${t("HypeSquad badge removed")}` : `✅ ${t("HypeSquad set to {house}", { house: t(HOUSES[id]) })}`);
                 } catch (e: any) {
-                    botMessage(ctx.channel.id, `❌ ${t("Request failed: {error}", { error: e?.body?.message ?? e?.message ?? String(e) })}`);
+                    botMessage(ctx.channel.id, `❌ ${t("Request failed: {error}", { error: describeError(e) })}`);
                 }
             },
         }));
@@ -302,7 +303,7 @@ const FriendInvites = definePlugin({
 const PauseInvitesForever = definePlugin({
     id: "endcord.pause-invites-forever",
     name: "PauseInvitesForever",
-    description: tx("Brings back the option to pause invites indefinitely that stupit Discord removed."),
+    description: tx("Pause a server's invites with no time limit, which Discord no longer offers, with /pauseinvites"),
     authors: [ENDCORD_AUTHOR],
     icon: "LinkIcon",
     tags: ["Servers"],
@@ -324,7 +325,7 @@ const PauseInvitesForever = definePlugin({
                     });
                     botMessage(ctx.channel.id, paused ? t("Invites to {server} are open again.", { server: guild.name }) : t("Invites to {server} are paused until you resume them.", { server: guild.name }));
                 } catch (e: any) {
-                    botMessage(ctx.channel.id, `❌ ${t("Request failed: {error}", { error: e?.body?.message ?? e?.message ?? String(e) })}`);
+                    botMessage(ctx.channel.id, `❌ ${t("Request failed: {error}", { error: describeError(e) })}`);
                 }
             },
         }));
@@ -422,7 +423,7 @@ const Translate = definePlugin({
                         translations.set(message.id, await translate(message.content, target()));
                         redrawMessage(message.channel_id, message.id);
                     } catch (e) {
-                        showToast(e instanceof Error ? e.message : String(e), findAssetId("CircleXIcon-primary"));
+                        toastError(e);
                     }
                 },
             }),

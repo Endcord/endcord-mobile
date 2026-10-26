@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import { ActivityIndicator, Image, View } from "react-native";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { describeError } from "../hooks";
 
 interface LibraryTheme {
     name: string;
@@ -77,7 +78,7 @@ function ThemeRow({ theme }: { theme: LibraryTheme; }) {
             showToast(t("Theme applied"), findAssetId("CheckmarkLargeIcon"));
             promptReload();
         } catch (e) {
-            showToast(t("Couldn't install the theme: {error}", { error: e instanceof Error ? e.message : String(e) }), findAssetId("CircleXIcon-primary"));
+            showToast(t("Couldn't install the theme: {error}", { error: describeError(e) }), findAssetId("CircleXIcon-primary"));
         } finally {
             setBusy(false);
         }

@@ -18,7 +18,7 @@ import { Button, Stack } from "@metro/common/components";
 
 import { definePlugin, ENDCORD_AUTHOR, onSettingChange } from "../api";
 import { getStore, onAction } from "../common";
-import { api } from "../hooks";
+import { api, toastError } from "../hooks";
 import { choose, prompt } from "../ui/dialogs";
 import LogList from "../ui/LogList";
 
@@ -30,6 +30,10 @@ const ACTIVITY_TYPES = [
 ];
 
 const assetCache = new Map<string, string>();
+
+// Any real application can put a picture on Discord's media proxy, and the "mp:" path it gets works for every
+// activity; this one (the Last.fm presence's) is used when you haven't given your own
+const ASSET_APP = "1108588077900898414";
 
 /** Discord shows outside images through its media proxy; an "mp:" path points there */
 async function externalAsset(appId: string, url: string): Promise<string | undefined> {
@@ -70,7 +74,7 @@ const CustomRPC = definePlugin({
         button1Url: { type: "string", label: tx("First button link"), placeholder: "https://…", default: "" },
         button2Text: { type: "string", label: tx("Second button text"), default: "" },
         button2Url: { type: "string", label: tx("Second button link"), placeholder: "https://…", default: "" },
-        appId: { type: "string", label: tx("Application ID"), description: tx("Optional; a Discord application whose name and art to use"), default: "" },
+        appId: { type: "string", label: tx("Application ID"), description: tx("Optional; a Discord application whose name and art to use. Image links work without one."), default: "" },
     },
     start({ store, cleanup, logger }) {
         const started = Date.now();
@@ -78,7 +82,7 @@ const CustomRPC = definePlugin({
         const update = async () => {
             const current = ++generation;
             const appId = store.appId.trim() || "0";
-            const image = async (url: string) => url.trim() ? externalAsset(appId, url.trim()).catch(e => void logger.warn("Couldn't load an image", e)) : undefined;
+            const image = async (url: string) => url.trim() ? externalAsset(appId !== "0" ? appId : ASSET_APP, url.trim()).catch(e => void logger.warn("Couldn't load an image", e)) : undefined;
             const [large, small] = await Promise.all([image(store.largeImage), image(store.smallImage)]);
             if (current !== generation) return;
             const buttons = [[store.button1Text, store.button1Url], [store.button2Text, store.button2Url]].filter(([text, url]) => text.trim() && /^https?:\/\//.test(url.trim()));
@@ -115,13 +119,13 @@ const CustomRPC = definePlugin({
 });
 
 const LASTFM_KEY = "790c37d90400163a5a5fe00d6ca32ef0";
-const LASTFM_APP = "1108588077900898414";
+const LASTFM_APP = ASSET_APP;
 const LASTFM = "endcord:lastfm";
 
 const LastFMRichPresence = definePlugin({
     id: "endcord.lastfm-rich-presence",
     name: "LastFMRichPresence",
-    description: tx("Little plugin for Last.fm rich presence"),
+    description: tx("Shows what you're listening to on Last.fm as your Rich Presence"),
     authors: [ENDCORD_AUTHOR],
     icon: "MusicIcon",
     tags: ["Media", "Customisation"],
@@ -290,7 +294,7 @@ function StatusPresetsPage() {
                             applyPreset(p);
                             showToast(t("Status set"), findAssetId("CheckmarkLargeIcon"));
                         } catch (e) {
-                            showToast(String(e instanceof Error ? e.message : e), findAssetId("CircleXIcon-primary"));
+                            toastError(e);
                         }
                     }
                 }),

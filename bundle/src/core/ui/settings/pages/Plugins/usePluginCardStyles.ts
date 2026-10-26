@@ -1,14 +1,17 @@
-import { tokens } from "@metro/common";
+import { semanticColorOf } from "@ui/color";
 import { createStyles } from "@ui/styles";
+
+// The theme's icon color; LOGO_PRIMARY, which this used before, is gone from newer Discord, leaving icons untinted
+const iconColor = semanticColorOf("ICON_DEFAULT", "INTERACTIVE_ICON_DEFAULT", "INTERACTIVE_NORMAL", "TEXT_DEFAULT", "TEXT_NORMAL", "LOGO_PRIMARY");
 
 export const usePluginCardStyles = createStyles({
     smallIcon: {
-        tintColor: tokens.colors.LOGO_PRIMARY,
+        tintColor: iconColor,
         height: 18,
         width: 18,
     },
     badgeIcon: {
-        tintColor: tokens.colors.LOGO_PRIMARY,
+        tintColor: iconColor,
         height: 12,
         width: 12,
     },

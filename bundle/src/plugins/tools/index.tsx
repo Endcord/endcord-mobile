@@ -16,7 +16,10 @@ import { useEffect, useState } from "react";
 
 import { definePlugin, ENDCORD_AUTHOR, onSettingChange } from "../api";
 import { addChatButton, currentUserId, getChatInputActionButton, getStore, onAction, subscribe } from "../common";
-import { api, botMessage, command, copy, currentChannelId, deleteMessage, generatedIcon, getGuild, getUser, insertText, onIncomingMessage, onMessageRow, onSend, openUrl, receiveLocalMessage, share } from "../hooks";
+import {
+    api, botMessage, command, copy, currentChannelId, deleteMessage, generatedIcon, getGuild, getUser, insertText,
+    localSnowflake, MAX_SHARE_LENGTH, onIncomingMessage, onMessageRow, onSend, openUrl, receiveLocalMessage, share
+} from "../hooks";
 import { choose } from "../ui/dialogs";
 import LogList from "../ui/LogList";
 
@@ -46,7 +49,8 @@ const CustomCommands = definePlugin({
             unregister = [];
             for (const line of store.commands.split("\n")) {
                 const index = line.indexOf("=");
-                const name = line.slice(0, index).trim().toLowerCase().replace(/[^\w-]/g, "");
+                // Discord's rules for command names: lowercase letters, digits, - and _, at most 32 of them
+                const name = line.slice(0, index).trim().toLowerCase().replace(/[^\w-]/g, "").slice(0, 32);
                 const response = line.slice(index + 1).trim().replace(/\\n/g, "\n");
                 if (index <= 0 || !name || !response) continue;
                 unregister.push(command({
@@ -71,9 +75,6 @@ const CustomCommands = definePlugin({
         );
     },
 });
-
-/** A made-up snowflake for now, so client-only messages sort where they belong */
-const fakeId = () => String(Math.floor((Date.now() - 1420070400000) * 4194304 + Math.random() * 4194303));
 
 function rawUser(user: any) {
     return {
@@ -108,7 +109,7 @@ const FakeMessage = definePlugin({
                     return;
                 }
                 receiveLocalMessage(ctx.channel.id, {
-                    id: fakeId(),
+                    id: localSnowflake(),
                     channel_id: ctx.channel.id,
                     guild_id: ctx.channel.guild_id,
                     author: rawUser(user),
@@ -157,7 +158,7 @@ function FriendCodesPage() {
 const FriendCodes = definePlugin({
     id: "endcord.friend-codes",
     name: "FriendCodes",
-    description: tx("Generate FriendCodes to easily add friends"),
+    description: tx("Create and manage friend invite links in the plugin's settings, to add friends easily"),
     authors: [ENDCORD_AUTHOR],
     icon: "UserPlusIcon",
     tags: ["Friends"],
@@ -257,10 +258,19 @@ const ExportDM = definePlugin({
                     ...(m.sticker_items ?? []).map((s: any) => `[${t("Sticker")}: ${s.name}]`),
                     ...(m.reactions ?? []).map((r: any) => `${r.emoji?.name} ×${r.count}`),
                 ];
-                let text: string;
-                if (store.format === "json") text = JSON.stringify(messages, null, 1);
-                else if (store.format === "md") text = messages.map(m => `**${name(m)}** — ${new Date(m.timestamp).toLocaleString()}\n${[m.content, ...extras(m)].filter(Boolean).join("\n")}`).join("\n\n");
-                else text = messages.map(m => `[${new Date(m.timestamp).toLocaleString()}] ${name(m)}: ${[m.content, ...extras(m)].filter(Boolean).join(" ")}`).join("\n");
+                const render = (list: any[]) => {
+                    if (store.format === "json") return JSON.stringify(list);
+                    if (store.format === "md") return list.map(m => `**${name(m)}** — ${new Date(m.timestamp).toLocaleString()}\n${[m.content, ...extras(m)].filter(Boolean).join("\n")}`).join("\n\n");
+                    return list.map(m => `[${new Date(m.timestamp).toLocaleString()}] ${name(m)}: ${[m.content, ...extras(m)].filter(Boolean).join(" ")}`).join("\n");
+                };
+                // The share sheet takes only so much text; the oldest messages are left out until it fits
+                let shown = messages;
+                let text = render(shown);
+                while (text.length > MAX_SHARE_LENGTH && shown.length > 1) {
+                    shown = shown.slice(Math.ceil(shown.length / 10));
+                    text = render(shown);
+                }
+                if (shown.length < messages.length) botMessage(ctx.channel.id, t("That was too long to share at once, so the export has the latest {count} messages.", { count: shown.length }));
                 await share(text, t("Export"));
             },
         }));
@@ -296,7 +306,8 @@ const ServerBackup = definePlugin({
                     roles,
                     channels,
                 };
-                await share(JSON.stringify(backup, null, 1), `${guild.name}.json`);
+                // Without indentation, so bigger servers still fit in the share sheet
+                await share(JSON.stringify(backup), `${guild.name}.json`);
             },
         }));
     },
@@ -536,7 +547,7 @@ const PreviewMessage = definePlugin({
                             return;
                         }
                         receiveLocalMessage(channelId, {
-                            id: fakeId(),
+                            id: localSnowflake(),
                             channel_id: channelId,
                             author: rawUser(getStore("UserStore")?.getCurrentUser?.() ?? { id: currentUserId(), username: "?" }),
                             content: draft,

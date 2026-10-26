@@ -51,7 +51,7 @@ export default function PluginInfoActionSheet({ plugin, navigation }: PluginInfo
                     icon={findAssetId("RetryIcon")}
                     onPress={() => {
                         refreshPlugin(plugin.id)
-                            .then(() => showToast(Strings.PLUGIN_REFETCH_SUCCESSFUL, findAssetId("toast_image_saved")))
+                            .then(() => showToast(Strings.PLUGIN_REFETCH_SUCCESSFUL, findAssetId("CheckmarkLargeIcon")))
                             .catch(() => showToast(Strings.PLUGIN_REFETCH_FAILED, findAssetId("CircleXIcon-primary")));
                     }}
                 />}

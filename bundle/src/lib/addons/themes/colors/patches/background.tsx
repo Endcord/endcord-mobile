@@ -3,10 +3,10 @@ import { _colorRef } from "@lib/addons/themes/colors/updater";
 import { after } from "@lib/api/patcher";
 import { useObservable } from "@lib/api/storage";
 import { findInReactTree } from "@lib/utils";
+import { logger } from "@lib/utils/logger";
 import { findByDisplayNameLazy } from "@metro";
 import chroma from "chroma-js";
 import { ImageBackground, StyleSheet } from "react-native";
-import { logger } from "@lib/utils/logger";
 
 const MessagesModule = findByDisplayNameLazy("MessagesConnected", false);
 
@@ -55,8 +55,8 @@ export default function patchChatBackground() {
             }
 
             return <ThemeBackground>{ret}</ThemeBackground>;
-        }
-        
+        };
+
         const patches = [
             typeof MessagesModule.default === "function"
                 ? after("default", MessagesModule, patch)

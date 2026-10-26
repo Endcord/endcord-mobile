@@ -106,18 +106,19 @@ async function loadStore(plugin: EndcordPlugin) {
     }
 }
 
+function runCleanup(id: string, fn: () => unknown) {
+    try {
+        fn();
+    } catch (e) {
+        console.error(`[Endcord] ${id}: cleanup failed`, e);
+    }
+}
+
 function runCleanups(id: string) {
     const fns = running.get(id);
     running.delete(id);
-    if (!fns) return;
     // Last registered first, so patches stacked on each other come off in order
-    for (const fn of fns.reverse()) {
-        try {
-            fn();
-        } catch (e) {
-            console.error(`[Endcord] ${id}: cleanup failed`, e);
-        }
-    }
+    for (const fn of fns?.reverse() ?? []) runCleanup(id, fn);
 }
 
 export async function startEndcordPlugin(plugin: EndcordPlugin) {
@@ -125,11 +126,18 @@ export async function startEndcordPlugin(plugin: EndcordPlugin) {
 
     const cleanups: Array<() => unknown> = [];
     running.set(plugin.id, cleanups);
+    // Turned off while it was still starting (waiting for its storage or the network): whatever it sets up from then
+    // on is undone right away, so nothing keeps running for a plugin that shows as off
+    const stopped = () => running.get(plugin.id) !== cleanups;
     const ctx: PluginContext<any> = {
         store: plugin.store,
         logger: new LoggerClass(`Endcord/${plugin.name}`),
         cleanup: (...fns) => {
-            for (const fn of fns) if (typeof fn === "function") cleanups.push(fn);
+            for (const fn of fns) {
+                if (typeof fn !== "function") continue;
+                if (stopped()) runCleanup(plugin.id, fn);
+                else cleanups.push(fn);
+            }
         }
     };
 
@@ -137,12 +145,15 @@ export async function startEndcordPlugin(plugin: EndcordPlugin) {
         const started = Date.now();
         await loadStore(plugin);
         await plugin.start(ctx);
+        if (stopped()) return;
         recordPluginStart(plugin.id, Date.now() - started);
         plugin.error = undefined;
     } catch (e) {
+        console.error(`[Endcord] ${plugin.name} failed to start`, e);
+        // Nothing to report for a plugin that was turned off meanwhile
+        if (stopped()) return;
         plugin.error = e;
         runCleanups(plugin.id);
-        console.error(`[Endcord] ${plugin.name} failed to start`, e);
         showToast(t("{name} couldn't start and was turned off", { name: plugin.name }), findAssetId("CircleXIcon-primary"));
         throw e;
     }

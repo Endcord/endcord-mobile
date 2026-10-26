@@ -341,6 +341,12 @@
         "es": "Añade un botón junto al cuadro de mensaje con acciones rápidas de Endcord: recargar, desactivar plugins, información de depuración y modo seguro",
         "fr": "Ajoute un bouton à côté de la zone de message avec les actions rapides d'Endcord : recharger, désactiver des plugins, infos de débogage et mode sans échec"
     },
+    "Adds your signature to the end of every message you send": {
+        "tr": "Gönderdiğin her mesajın sonuna imzanı ekler",
+        "ru": "Добавляет вашу подпись в конец каждого отправленного сообщения",
+        "es": "Añade tu firma al final de cada mensaje que envías",
+        "fr": "Ajoute votre signature à la fin de chaque message que vous envoyez"
+    },
     "Admin": {
         "tr": "Yönetici",
         "ru": "Админ",
@@ -562,6 +568,12 @@
         "ru": "Обзор ресурсов",
         "es": "Explorador de recursos",
         "fr": "Explorateur de ressources"
+    },
+    "Assets that can't be previewed are marked in red.": {
+        "tr": "Önizlenemeyen öğeler kırmızıyla işaretlenir.",
+        "ru": "Ресурсы, которые нельзя просмотреть, отмечены красным.",
+        "es": "Los recursos que no se pueden previsualizar se marcan en rojo.",
+        "fr": "Les ressources qui ne peuvent pas être prévisualisées sont marquées en rouge."
     },
     "Attachment": {
         "tr": "Ek",
@@ -1133,6 +1145,18 @@
         "es": "Copiado. Pégalo al final de tu Acerca de mí.",
         "fr": "Copié. Collez-le à la fin de votre section À propos de moi."
     },
+    "Copy Asset Index": {
+        "tr": "Öğe Dizinini Kopyala",
+        "ru": "Скопировать индекс ресурса",
+        "es": "Copiar índice del recurso",
+        "fr": "Copier l'index de la ressource"
+    },
+    "Copy Asset Name": {
+        "tr": "Öğe Adını Kopyala",
+        "ru": "Скопировать имя ресурса",
+        "es": "Copiar nombre del recurso",
+        "fr": "Copier le nom de la ressource"
+    },
     "Copy Debug Info": {
         "tr": "Hata Ayıklama Bilgisini Kopyala",
         "ru": "Скопировать отладочную информацию",
@@ -1198,6 +1222,12 @@
         "ru": "Копируйте упоминание автора сообщения из меню сообщения",
         "es": "Copia la mención del autor de un mensaje desde el menú del mensaje",
         "fr": "Copiez la mention de l'auteur d'un message depuis le menu du message"
+    },
+    "Copy the profile theme colors of a message's author from the message menu": {
+        "tr": "Mesaj menüsünden mesaj sahibinin profil tema renklerini kopyala",
+        "ru": "Копируйте цвета темы профиля автора сообщения из меню сообщения",
+        "es": "Copia los colores del tema del perfil del autor de un mensaje desde el menú del mensaje",
+        "fr": "Copiez les couleurs du thème de profil de l'auteur d'un message depuis le menu du message"
     },
     "Correct!": {
         "tr": "Doğru!",
@@ -1271,6 +1301,12 @@
         "es": "No se pudo abrir la imagen; se copió su enlace",
         "fr": "Impossible d'ouvrir l'image ; son lien a été copié"
     },
+    "Couldn't open this ZIP file": {
+        "tr": "Bu ZIP dosyası açılamadı",
+        "ru": "Не удалось открыть этот ZIP-файл",
+        "es": "No se pudo abrir este archivo ZIP",
+        "fr": "Impossible d'ouvrir ce fichier ZIP"
+    },
     "Couldn't reach ReviewDB": {
         "tr": "ReviewDB'ye ulaşılamadı",
         "ru": "Не удалось связаться с ReviewDB",
@@ -1324,6 +1360,12 @@
         "ru": "Создать приглашение в этот канал с вашими настройками по умолчанию",
         "es": "Crea una invitación a este canal con tus valores predeterminados",
         "fr": "Créer une invitation vers ce salon avec vos réglages par défaut"
+    },
+    "Create and manage friend invite links in the plugin's settings, to add friends easily": {
+        "tr": "Kolayca arkadaş eklemek için eklentinin ayarlarında arkadaş davet bağlantıları oluştur ve yönet",
+        "ru": "Создавайте и управляйте ссылками-приглашениями в друзья в настройках плагина, чтобы легко добавлять друзей",
+        "es": "Crea y gestiona enlaces de invitación de amistad en los ajustes del plugin, para añadir amigos fácilmente",
+        "fr": "Créez et gérez des liens d'invitation d'ami dans les paramètres du plugin, pour ajouter des amis facilement"
     },
     "Create invites with your own defaults for how long they last and how many uses they have, with /invite": {
         "tr": "Ne kadar süreceği ve kaç kez kullanılabileceği için kendi varsayılanlarınla /invite ile davet oluştur",
@@ -1571,6 +1613,18 @@
         "es": "Descripción",
         "fr": "Description"
     },
+    "Detach": {
+        "tr": "Ayır",
+        "ru": "Отвязать",
+        "es": "Desvincular",
+        "fr": "Détacher"
+    },
+    "Detach the font pack link?": {
+        "tr": "Yazı tipi paketinin bağlantısı ayrılsın mı?",
+        "ru": "Отвязать ссылку набора шрифтов?",
+        "es": "¿Desvincular el enlace del paquete de fuentes?",
+        "fr": "Détacher le lien du pack de polices ?"
+    },
     "Details": {
         "tr": "Ayrıntılar",
         "ru": "Подробности",
@@ -1810,6 +1864,12 @@
         "ru": "Сначала включённые",
         "es": "Activados primero",
         "fr": "Activés d'abord"
+    },
+    "End your messages with a period.": {
+        "tr": "Mesajlarını noktayla bitir.",
+        "ru": "Заканчивать сообщения точкой.",
+        "es": "Termina tus mensajes con un punto.",
+        "fr": "Terminer vos messages par un point."
     },
     "Endcord Toolbox": {
         "tr": "Endcord Araç Kutusu",
@@ -3035,6 +3095,12 @@
         "es": "Plugin instalado",
         "fr": "Plugin installé"
     },
+    "Installed. Reload Discord to use it.": {
+        "tr": "Yüklendi. Kullanmak için Discord'u yeniden yükle.",
+        "ru": "Установлено. Перезагрузите Discord, чтобы использовать.",
+        "es": "Instalado. Recarga Discord para usarlo.",
+        "fr": "Installé. Rechargez Discord pour l'utiliser."
+    },
     "Installs the fonts that your current theme uses.": {
         "tr": "Geçerli temanızın kullandığı yazı tiplerini yükler.",
         "ru": "Устанавливает шрифты, которые использует текущая тема.",
@@ -3202,6 +3268,12 @@
         "ru": "Ведёт список личных сообщений, на которые вы ещё не ответили, с призраком для каждого",
         "es": "Lleva una lista de los MD que aún no has respondido, con un fantasma para cada uno",
         "fr": "Tient la liste des messages privés auxquels vous n'avez pas encore répondu, avec un fantôme pour chacun"
+    },
+    "Keeps a log of deleted and edited messages, friends added and removed, and servers you join and leave": {
+        "tr": "Silinen ve düzenlenen mesajların, eklenen ve çıkarılan arkadaşların, katıldığın ve ayrıldığın sunucuların kaydını tutar",
+        "ru": "Ведёт журнал удалённых и изменённых сообщений, добавленных и удалённых друзей и серверов, на которые вы вошли и которые покинули",
+        "es": "Guarda un registro de los mensajes eliminados y editados, los amigos añadidos y eliminados, y los servidores a los que entras y de los que sales",
+        "fr": "Garde un journal des messages supprimés et modifiés, des amis ajoutés et retirés, et des serveurs que vous rejoignez et quittez"
     },
     "Keeps deleted and edited messages after Discord restarts, with a list to browse them and /deleted": {
         "tr": "Silinen ve düzenlenen mesajları Discord yeniden başladıktan sonra da saklar; göz atmak için bir liste ve /deleted ile",
@@ -3376,6 +3448,12 @@
         "ru": "Загрузчик",
         "es": "Cargador",
         "fr": "Chargeur"
+    },
+    "Loader settings": {
+        "tr": "Yükleyici ayarları",
+        "ru": "Настройки загрузчика",
+        "es": "Ajustes del cargador",
+        "fr": "Paramètres du chargeur"
     },
     "Log deleted and edited messages": {
         "tr": "Silinen ve düzenlenen mesajları kaydet",
@@ -4469,17 +4547,23 @@
         "es": "Sistema operativo",
         "fr": "Système d'exploitation"
     },
-    "Optional; a Discord application whose name and art to use": {
-        "tr": "İsteğe bağlı; adı ve görselleri kullanılacak bir Discord uygulaması",
-        "ru": "Необязательно; приложение Discord, чьи название и картинки использовать",
-        "es": "Opcional; una aplicación de Discord cuyo nombre e imágenes usar",
-        "fr": "Facultatif ; une application Discord dont utiliser le nom et les images"
+    "Optional; a Discord application whose name and art to use. Image links work without one.": {
+        "tr": "İsteğe bağlı; adı ve görselleri kullanılacak bir Discord uygulaması. Resim bağlantıları onsuz da çalışır.",
+        "ru": "Необязательно; приложение Discord, чьё название и картинки использовать. Ссылки на изображения работают и без него.",
+        "es": "Opcional; una aplicación de Discord cuyo nombre e imágenes usar. Los enlaces de imágenes funcionan sin ella.",
+        "fr": "Facultatif ; une application Discord dont utiliser le nom et les images. Les liens d'images fonctionnent sans."
     },
     "Or write a reason": {
         "tr": "Ya da bir sebep yaz",
         "ru": "Или напишите причину",
         "es": "O escribe un motivo",
         "fr": "Ou écrivez une raison"
+    },
+    "Other": {
+        "tr": "Diğer",
+        "ru": "Другое",
+        "es": "Otros",
+        "fr": "Autre"
     },
     "Others see you as deafened, but you still hear them": {
         "tr": "Başkaları sizi sağırlaştırılmış görür, ama siz onları duymaya devam edersiniz",
@@ -4534,6 +4618,12 @@
         "ru": "Пауза (секунды)",
         "es": "Pausa (segundos)",
         "fr": "Pause (secondes)"
+    },
+    "Pause a server's invites with no time limit, which Discord no longer offers, with /pauseinvites": {
+        "tr": "/pauseinvites ile bir sunucunun davetlerini, Discord'un artık sunmadığı şekilde süresiz duraklat",
+        "ru": "Приостанавливайте приглашения сервера без ограничения по времени (Discord больше так не умеет) с /pauseinvites",
+        "es": "Pausa las invitaciones de un servidor sin límite de tiempo, algo que Discord ya no ofrece, con /pauseinvites",
+        "fr": "Mettez en pause les invitations d'un serveur sans limite de temps, ce que Discord ne propose plus, avec /pauseinvites"
     },
     "Pause between parts (ms)": {
         "tr": "Parçalar arası bekleme (ms)",
@@ -5015,6 +5105,12 @@
         "es": "Recarga Discord cuando vuelves tras dejarlo un rato en segundo plano, para que empiece de cero, pero nunca durante una llamada",
         "fr": "Recharge Discord quand vous revenez après l'avoir laissé un moment en arrière-plan, pour repartir à neuf, mais jamais pendant un appel"
     },
+    "Remembers everyone you talk to in DMs and servers, on your device, so you can always find them again": {
+        "tr": "DM'lerde ve sunucularda konuştuğun herkesi cihazında hatırlar; böylece onları her zaman yeniden bulabilirsin",
+        "ru": "Запоминает всех, с кем вы общаетесь в ЛС и на серверах, на вашем устройстве, чтобы вы всегда могли их найти",
+        "es": "Recuerda en tu dispositivo a todas las personas con las que hablas en MD y servidores, para que siempre puedas volver a encontrarlas",
+        "fr": "Retient sur votre appareil toutes les personnes avec qui vous parlez en MP et sur les serveurs, pour les retrouver à tout moment"
+    },
     "Remembers when your friends were last online; see it in the message menu or with /lastonline": {
         "tr": "Arkadaşlarının en son ne zaman çevrimiçi olduğunu hatırlar; mesaj menüsünde ya da /lastonline ile gör",
         "ru": "Запоминает, когда друзья были в сети последний раз; смотрите в меню сообщения или командой /lastonline",
@@ -5182,6 +5278,12 @@
         "ru": "Перепишите текст в забавном стиле",
         "es": "Reescribe tu texto con un estilo divertido",
         "fr": "Réécrivez votre texte dans un style amusant"
+    },
+    "Rewrite your text in fun styles (small caps, upside down, fraktur, pirate...) with /translateplus": {
+        "tr": "/translateplus ile metnini eğlenceli stillerle yeniden yaz (küçük büyük harf, ters, fraktur, korsan...)",
+        "ru": "Переписывайте текст в забавных стилях (капитель, вверх ногами, фрактура, пират...) с /translateplus",
+        "es": "Reescribe tu texto con estilos divertidos (versalitas, al revés, fraktur, pirata...) con /translateplus",
+        "fr": "Réécrivez votre texte dans des styles amusants (petites capitales, à l'envers, fraktur, pirate...) avec /translateplus"
     },
     "Rich Presence for what you're playing, from ListenBrainz": {
         "tr": "ListenBrainz'den, dinlediğin şey için Zengin Durum",
@@ -5441,6 +5543,12 @@
         "es": "Mira con quién cree Discord que más hablas, aunque no sean tus amigos, con /implicit",
         "fr": "Voyez les personnes avec qui Discord pense que vous parlez le plus, même si ce ne sont pas vos amis, avec /implicit"
     },
+    "See the public GitHub repositories of a message's author from the message menu": {
+        "tr": "Mesaj menüsünden mesaj sahibinin herkese açık GitHub depolarını gör",
+        "ru": "Смотрите публичные репозитории GitHub автора сообщения из меню сообщения",
+        "es": "Mira los repositorios públicos de GitHub del autor de un mensaje desde el menú del mensaje",
+        "fr": "Voyez les dépôts GitHub publics de l'auteur d'un message depuis le menu du message"
+    },
     "See the roles and permissions of a message's author from the message menu": {
         "tr": "Bir mesajın yazarının rollerini ve izinlerini mesaj menüsünden gör",
         "ru": "Смотрите роли и права автора сообщения из меню сообщения",
@@ -5650,6 +5758,12 @@
         "ru": "Отправить ссылку на поиск",
         "es": "Envía un enlace de búsqueda",
         "fr": "Envoyer un lien de recherche"
+    },
+    "Send a web search link for anything with /googlethat": {
+        "tr": "/googlethat ile herhangi bir şey için web araması bağlantısı gönder",
+        "ru": "Отправляйте ссылку на веб-поиск чего угодно с /googlethat",
+        "es": "Envía un enlace de búsqueda web de cualquier cosa con /googlethat",
+        "fr": "Envoyez un lien de recherche web pour n'importe quoi avec /googlethat"
     },
     "Send an encrypted message": {
         "tr": "Şifreli bir mesaj gönder",
@@ -6101,6 +6215,12 @@
         "es": "Marca los mensajes de quienes están en un canal de voz y te deja unirte a ellos desde el menú del mensaje",
         "fr": "Marque les messages des personnes en salon vocal et vous permet de les rejoindre depuis le menu du message"
     },
+    "Shows how long Endcord and each of its plugins took to start, in the plugin's settings": {
+        "tr": "Endcord'un ve her eklentisinin açılmasının ne kadar sürdüğünü eklentinin ayarlarında gösterir",
+        "ru": "Показывает в настройках плагина, сколько запускались Endcord и каждый из его плагинов",
+        "es": "Muestra cuánto tardaron en iniciarse Endcord y cada uno de sus plugins, en los ajustes del plugin",
+        "fr": "Affiche le temps de démarrage d'Endcord et de chacun de ses plugins, dans les paramètres du plugin"
+    },
     "Shows how long you've spent in voice with each user": {
         "tr": "Her kullanıcıyla seste ne kadar zaman geçirdiğini gösterir",
         "ru": "Показывает, сколько времени вы провели в голосовых с каждым пользователем",
@@ -6113,6 +6233,12 @@
         "es": "Muestra junto a sus mensajes cuánto le queda a la expulsión temporal de un usuario",
         "fr": "Affiche à côté de ses messages combien de temps durera encore l'exclusion d'un utilisateur"
     },
+    "Shows message times in a format you choose": {
+        "tr": "Mesaj saatlerini seçtiğin biçimde gösterir",
+        "ru": "Показывает время сообщений в выбранном вами формате",
+        "es": "Muestra la hora de los mensajes en el formato que elijas",
+        "fr": "Affiche l'heure des messages dans le format de votre choix"
+    },
     "Shows or hides the theme's background image in chat": {
         "tr": "Temanın sohbetteki arka plan görselini gösterir veya gizler",
         "ru": "Показывает или скрывает фоновое изображение темы в чате",
@@ -6124,6 +6250,12 @@
         "ru": "Показывает местоимения из PronounDB рядом с сообщениями",
         "es": "Muestra los pronombres de PronounDB junto a los mensajes de cada persona",
         "fr": "Affiche les pronoms PronounDB des gens à côté de leurs messages"
+    },
+    "Shows people's pronouns from their Discord profile next to their messages": {
+        "tr": "İnsanların Discord profilindeki zamirleri mesajlarının yanında gösterir",
+        "ru": "Показывает местоимения из профиля Discord рядом с сообщениями",
+        "es": "Muestra los pronombres del perfil de Discord de cada persona junto a sus mensajes",
+        "fr": "Affiche les pronoms du profil Discord des gens à côté de leurs messages"
     },
     "Shows the Discord voice server you're connected to and its ping": {
         "tr": "Bağlı olduğun Discord ses sunucusunu ve gecikmesini gösterir",
@@ -6148,6 +6280,12 @@
         "ru": "Показывает число слов в сообщениях рядом со временем",
         "es": "Muestra el número de palabras de los mensajes junto a su hora",
         "fr": "Affiche le nombre de mots des messages à côté de leur heure"
+    },
+    "Shows what you're listening to on Last.fm as your Rich Presence": {
+        "tr": "Last.fm'de dinlediğin şeyi Zengin Durum olarak gösterir",
+        "ru": "Показывает, что вы слушаете в Last.fm, как Rich Presence",
+        "es": "Muestra lo que escuchas en Last.fm como tu Rich Presence",
+        "fr": "Affiche ce que vous écoutez sur Last.fm en Rich Presence"
     },
     "Shows when the message a reply answers was sent, next to the reply's time": {
         "tr": "Bir yanıtın cevapladığı mesajın ne zaman gönderildiğini, yanıtın saatinin yanında gösterir",
@@ -6419,6 +6557,12 @@
         "es": "Dejaste de seguir a {user}",
         "fr": "Vous ne suivez plus {user}"
     },
+    "Stopped moving you back, since someone keeps moving you": {
+        "tr": "Biri seni sürekli taşıdığı için geri taşıma durduruldu",
+        "ru": "Больше не возвращаю вас: кто-то постоянно вас перемещает",
+        "es": "Se dejó de devolverte a tu canal, porque alguien te sigue moviendo",
+        "fr": "Retour arrêté, car quelqu'un continue de vous déplacer"
+    },
     "Stops Discord from marking you idle while the app is in the background": {
         "tr": "Uygulama arka plandayken Discord'un seni boşta göstermesini engeller",
         "ru": "Не даёт Discord ставить вам статус «Неактивен», пока приложение в фоне",
@@ -6689,6 +6833,12 @@
         "es": "No se pudo acortar ese enlace.",
         "fr": "Ce lien n'a pas pu être raccourci."
     },
+    "That was too long to share at once, so the export has the latest {count} messages.": {
+        "tr": "Bu tek seferde paylaşmak için çok uzundu; dışa aktarma son {count} mesajı içeriyor.",
+        "ru": "Это слишком длинно, чтобы поделиться за раз, поэтому в экспорте последние {count} сообщений.",
+        "es": "Era demasiado largo para compartirlo de una vez, así que la exportación tiene los últimos {count} mensajes.",
+        "fr": "C'était trop long pour être partagé d'un coup, l'export contient donc les {count} derniers messages."
+    },
     "The ID": {
         "tr": "Kimlik",
         "ru": "ID",
@@ -6887,6 +7037,12 @@
         "es": "El patrón regex",
         "fr": "Le motif regex"
     },
+    "The request failed ({status})": {
+        "tr": "İstek başarısız oldu ({status})",
+        "ru": "Запрос не удался ({status})",
+        "es": "La solicitud falló ({status})",
+        "fr": "La requête a échoué ({status})"
+    },
     "The role": {
         "tr": "Rol",
         "ru": "Роль",
@@ -7048,6 +7204,18 @@
         "ru": "Этот файл слишком большой для просмотра",
         "es": "Este archivo es demasiado grande para mirar dentro",
         "fr": "Ce fichier est trop volumineux pour être exploré"
+    },
+    "This font pack is linked to an address. To edit its fonts yourself, detach it from that link first.": {
+        "tr": "Bu yazı tipi paketi bir adrese bağlı. Yazı tiplerini kendin düzenlemek için önce onu bu bağlantıdan ayır.",
+        "ru": "Этот набор шрифтов привязан к адресу. Чтобы редактировать его шрифты самостоятельно, сначала отвяжите его от этой ссылки.",
+        "es": "Este paquete de fuentes está vinculado a una dirección. Para editar sus fuentes tú mismo, primero desvincúlalo de ese enlace.",
+        "fr": "Ce pack de polices est lié à une adresse. Pour modifier ses polices vous-même, détachez-le d'abord de ce lien."
+    },
+    "This is too long to share at once ({size} characters)": {
+        "tr": "Bu, tek seferde paylaşmak için çok uzun ({size} karakter)",
+        "ru": "Это слишком длинно, чтобы поделиться за раз ({size} символов)",
+        "es": "Esto es demasiado largo para compartirlo de una vez ({size} caracteres)",
+        "fr": "C'est trop long pour être partagé d'un coup ({size} caractères)"
     },
     "This link is a **{urlType, select, plugin {Plugin} theme {Theme} other {Add-on}}**, would you like to install it?": {
         "tr": "Bu bağlantı bir **{urlType, select, plugin {eklenti} theme {tema} other {eklenti}}**. Yüklemek ister misiniz?",
@@ -7493,6 +7661,18 @@
         "es": "ID de usuarios (separados por comas) que se tratan al revés",
         "fr": "ID d'utilisateurs (séparés par des virgules) traités à l'inverse"
     },
+    "User IDs of the friends to get join messages from, separated by commas or spaces; empty means all friends": {
+        "tr": "Katılma mesajları alınacak arkadaşların kullanıcı kimlikleri, virgül ya da boşlukla ayrılmış; boş bırakmak tüm arkadaşlar demektir",
+        "ru": "ID друзей, о входе которых сообщать, через запятую или пробел; пусто — все друзья",
+        "es": "IDs de usuario de los amigos de los que recibir mensajes al unirse, separados por comas o espacios; vacío significa todos",
+        "fr": "ID des amis dont recevoir les messages d'arrivée, séparés par des virgules ou des espaces ; vide signifie tous vos amis"
+    },
+    "User IDs of the friends to never get join messages from, separated by commas or spaces": {
+        "tr": "Katılma mesajları hiç alınmayacak arkadaşların kullanıcı kimlikleri, virgül ya da boşlukla ayrılmış",
+        "ru": "ID друзей, о входе которых никогда не сообщать, через запятую или пробел",
+        "es": "IDs de usuario de los amigos de los que nunca recibir mensajes al unirse, separados por comas o espacios",
+        "fr": "ID des amis dont ne jamais recevoir les messages d'arrivée, séparés par des virgules ou des espaces"
+    },
     "User IDs separated by commas": {
         "tr": "Virgülle ayrılmış kullanıcı kimlikleri",
         "ru": "ID пользователей через запятую",
@@ -7780,6 +7960,12 @@
         "ru": "Поддерживать ли 'await' в коде; для результата нужен явный return (по умолчанию: нет)",
         "es": "Si admitir 'await' en el código; hay que usar return para obtener el resultado (por defecto: no)",
         "fr": "Prendre en charge 'await' dans le code ; un return explicite est nécessaire pour le résultat (par défaut : non)"
+    },
+    "Which error screen should be tested?": {
+        "tr": "Hangi hata ekranı test edilsin?",
+        "ru": "Какой экран ошибки проверить?",
+        "es": "¿Qué pantalla de error se debe probar?",
+        "fr": "Quel écran d'erreur tester ?"
     },
     "White": {
         "tr": "Beyaz",
@@ -8074,6 +8260,12 @@
         "ru": "Ваша активность снова видна",
         "es": "Tu actividad vuelve a mostrarse",
         "fr": "Votre activité est de nouveau affichée"
+    },
+    "Your incoming friend requests, newest first, to accept or ignore in the plugin's settings": {
+        "tr": "Gelen arkadaşlık isteklerin, en yeni önce; eklentinin ayarlarında kabul et ya da yok say",
+        "ru": "Входящие запросы дружбы, сначала новые, чтобы принять или отклонить их в настройках плагина",
+        "es": "Tus solicitudes de amistad recibidas, las más nuevas primero, para aceptarlas o ignorarlas en los ajustes del plugin",
+        "fr": "Vos demandes d'ami reçues, les plus récentes d'abord, à accepter ou ignorer dans les paramètres du plugin"
     },
     "Your message": {
         "tr": "Mesajınız",
@@ -8608,6 +8800,12 @@
         "ru": "осталось {span}",
         "es": "faltan {span}",
         "fr": "encore {span}"
+    },
+    "{type} assets can't be previewed.": {
+        "tr": "{type} öğeleri önizlenemez.",
+        "ru": "Ресурсы {type} нельзя просмотреть.",
+        "es": "Los recursos {type} no se pueden previsualizar.",
+        "fr": "Les ressources {type} ne peuvent pas être prévisualisées."
     },
     "{update, select, true {Enabled} other {Disabled}} updates for {name}": {
         "tr": "{name} için güncellemeler {update, select, true {açıldı} other {kapatıldı}}",

@@ -21,6 +21,15 @@ export const rawColors = (color?.default?.unsafe_rawColors ?? constants?.Colors)
 const ThemeStore = findByStoreNameLazy("ThemeStore");
 const colorResolver = color.default.meta ??= color.default.internal;
 
+/**
+ * The first of these semantic colors this Discord has. Discord renames its color tokens between versions, and a name
+ * that's gone would leave a style without its color.
+ */
+export function semanticColorOf(...names: string[]): any {
+    for (const name of names) if (semanticColors?.[name]) return semanticColors[name];
+    return undefined;
+}
+
 export function isSemanticColor(sym: any): boolean {
     return colorResolver.isSemanticColor(sym);
 }

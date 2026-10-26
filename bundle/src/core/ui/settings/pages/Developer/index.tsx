@@ -1,4 +1,4 @@
-import { Strings } from "@core/i18n";
+import { Strings, t } from "@core/i18n";
 import { CheckState, useFileExists } from "@core/ui/hooks/useFS";
 import AssetBrowser from "@core/ui/settings/pages/Developer/AssetBrowser";
 import { useProxy } from "@core/vendetta/storage";
@@ -17,8 +17,7 @@ import { DevToolsClient } from "@revenge-mod/devtools-client";
 import { semanticColors } from "@ui/color";
 import { ErrorBoundary } from "@ui/components";
 import { createStyles, TextStyleSheet } from "@ui/styles";
-import { NativeModules } from "react-native";
-import { ScrollView } from "react-native";
+import { NativeModules, ScrollView } from "react-native";
 
 const { hideActionSheet } = lazyDestructure(() => findByProps("openLazy", "hideActionSheet"));
 const { showSimpleActionSheet } = lazyDestructure(() => findByProps("showSimpleActionSheet"));
@@ -84,7 +83,7 @@ export default function Developer() {
                         </>}
                     </TableRowGroup>
                     {isLoaderConfigSupported() && <>
-                        <TableRowGroup title="Loader config">
+                        <TableRowGroup title={t("Loader settings")}>
                             <TableSwitchRow
                                 label={Strings.LOAD_FROM_CUSTOM_URL}
                                 subLabel={Strings.LOAD_FROM_CUSTOM_URL_DEC}
@@ -112,7 +111,7 @@ export default function Developer() {
                             />}
                         </TableRowGroup>
                     </>}
-                    <TableRowGroup title="Other">
+                    <TableRowGroup title={t("Other")}>
                         <TableRow
                             label={Strings.CLEAR_BUNDLE}
                             subLabel={Strings.CLEAR_BUNDLE_DESC}
@@ -148,7 +147,7 @@ export default function Developer() {
                             onPress={() => showSimpleActionSheet({
                                 key: "ErrorBoundaryTools",
                                 header: {
-                                    title: "Which ErrorBoundary do you want to trip?",
+                                    title: t("Which error screen should be tested?"),
                                     icon: <TableRow.Icon style={{ marginRight: 8 }} source={findAssetId("WarningIcon")} />,
                                     onClose: () => hideActionSheet(),
                                 },
@@ -174,7 +173,7 @@ export default function Developer() {
                                     onPress={async () => {
                                         if (rdtFileExists === CheckState.FALSE) {
                                             fs.downloadFile(RDT_EMBED_LINK, "preloads/reactDevtools.js")
-                                                .then(() => showToast("Successfully installed! A reload is required", findAssetId("DownloadIcon")));
+                                                .then(() => showToast(t("Installed. Reload Discord to use it."), findAssetId("DownloadIcon")));
                                         } else if (rdtFileExists === CheckState.TRUE) {
                                             fs.removeFile("preloads/reactDevtools.js");
                                         }

@@ -160,10 +160,21 @@ const BlockKeywords = definePlugin({
         ignoreOwn: { type: "boolean", label: tx("Never hide my messages"), description: tx("Your own messages are always shown"), default: true },
     },
     start({ store, cleanup }) {
+        // Built again only when the settings change, not for each of the many messages a chat loads
+        let key = "";
+        let matches: (text: string) => boolean = () => false;
+        const matcher = () => {
+            const current = `${store.useRegex}:${store.caseSensitive}:${store.blockedWords}`;
+            if (current !== key) {
+                key = current;
+                matches = keywordMatcher(store.blockedWords, store.useRegex, store.caseSensitive);
+            }
+            return matches;
+        };
         cleanup(onIncomingMessage("block-keywords", message => {
             if (store.ignoreOwn && message.author?.id === currentUserId()) return;
             const text = [message.content, ...(message.embeds ?? []).flatMap((e: any) => [e.title, e.description])].filter(Boolean).join("\n");
-            if (text && keywordMatcher(store.blockedWords, store.useRegex, store.caseSensitive)(text)) return null;
+            if (text && matcher()(text)) return null;
         }));
     },
 });

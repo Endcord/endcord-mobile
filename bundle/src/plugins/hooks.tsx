@@ -43,6 +43,22 @@ export async function api(method: "get" | "post" | "patch" | "put" | "del", url:
     return res?.body ?? res;
 }
 
+/**
+ * A readable message for an error. Discord's API rejects with its response rather than an Error, which would
+ * otherwise show as "[object Object]".
+ */
+export function describeError(e: unknown): string {
+    if (e instanceof Error) return e.message;
+    const error = e as any;
+    const message = error?.body?.message ?? error?.message ?? error?.text;
+    if (typeof message === "string" && message) return message;
+    if (typeof error?.status === "number") return t("The request failed ({status})", { status: error.status });
+    return String(e);
+}
+
+/** Shows an error as a toast */
+export const toastError = (e: unknown) => void showToast(describeError(e), findAssetId("CircleXIcon-primary"));
+
 export const currentChannelId = (): string | undefined => getStore("SelectedChannelStore")?.getChannelId?.();
 export const getChannel = (id?: string) => (id ? getStore("ChannelStore")?.getChannel?.(id) : undefined);
 export const getUser = (id?: string) => (id ? getStore("UserStore")?.getUser?.(id) : undefined);
@@ -65,8 +81,15 @@ export function copy(text: string, message?: string) {
 
 export const openUrl = (url: string) => Linking.openURL(url);
 
+/**
+ * The longest text Android's share sheet takes: it travels in one binder transaction, which fails past about 1 MB, at
+ * two bytes a character
+ */
+export const MAX_SHARE_LENGTH = 200_000;
+
 /** Opens Android's share sheet */
 export function share(message: string, title?: string) {
+    if (message.length > MAX_SHARE_LENGTH) throw new Error(t("This is too long to share at once ({size} characters)", { size: message.length.toLocaleString() }));
     return Share.share({ message, title });
 }
 
@@ -163,6 +186,15 @@ export function parseMessageLink(link: string) {
 
 /** When a snowflake ID was made */
 export const snowflakeTime = (id: string) => Math.floor(Number(id) / 4194304) + 1420070400000;
+
+/** The day a moment falls on where you are, like 2026-10-26 (toISOString would give the day in UTC) */
+export function localDay(ms = Date.now()) {
+    const date = new Date(ms);
+    return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
+
+/** A snowflake for now, for messages that only exist in your client; exact, since it's too big for a number */
+export const localSnowflake = () => String(BigInt(Date.now() - 1420070400000) << 22n | BigInt(Math.floor(Math.random() * 4194304)));
 
 /** Puts a message into the chat that only you see, as if it was sent by someone (like Endcord PC's FakeMessage) */
 export function receiveLocalMessage(channelId: string, message: Record<string, any>) {
@@ -534,7 +566,7 @@ export function command(def: {
                 if (typeof result === "string") return { content: result };
                 if (result && typeof result === "object") return result as any;
             } catch (e) {
-                botMessage(ctx.channel.id, t("Something went wrong: {error}", { error: e instanceof Error ? e.message : String(e) }));
+                botMessage(ctx.channel.id, t("Something went wrong: {error}", { error: describeError(e) }));
             }
         },
     });

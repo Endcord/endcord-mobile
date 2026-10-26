@@ -10,6 +10,7 @@ import { t, tx } from "@core/i18n";
 import { addOverlay } from "@core/overlay";
 import { awaitStorage, createMMKVBackend, createStorage, useProxy, wrapSync } from "@core/vendetta/storage";
 import { findAssetId } from "@lib/api/assets";
+import { before } from "@lib/api/patcher";
 import { showToast } from "@lib/ui/toasts";
 import { findByProps } from "@metro";
 import { Text } from "@metro/common/components";
@@ -18,7 +19,7 @@ import { View } from "react-native";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { currentUserId, getStore, subscribe } from "../common";
-import { addMessageAction, api, botMessage, command, displayName, getChannel, getUser, playSound } from "../hooks";
+import { addMessageAction, api, botMessage, command, describeError, displayName, getChannel, getUser, playSound } from "../hooks";
 import LogList from "../ui/LogList";
 
 const myVoiceChannel = (): string | undefined => getStore("SelectedChannelStore")?.getVoiceChannelId?.() ?? undefined;
@@ -200,7 +201,7 @@ const PullUserIntoVoice = definePlugin({
         const pull = (guildId: string, userId: string) => {
             const mine = myVoiceChannel();
             if (!mine) return;
-            moveMember(guildId, userId, mine).catch(e => showToast(t("Request failed: {error}", { error: e?.body?.message ?? e?.message ?? String(e) }), findAssetId("CircleXIcon-primary")));
+            moveMember(guildId, userId, mine).catch(e => showToast(t("Request failed: {error}", { error: describeError(e) }), findAssetId("CircleXIcon-primary")));
         };
         cleanup(
             subscribe("VOICE_STATE_UPDATES", ({ voiceStates }) => {
@@ -310,27 +311,34 @@ const AntiMoveDeco = definePlugin({
         disconnects: { type: "boolean", label: tx("When I'm disconnected"), description: tx("Rejoin when someone disconnects you"), default: true },
     },
     start({ store, cleanup }) {
-        // The channel you chose yourself; Discord sends this action for your own joins and leaves
-        let wanted = myVoiceChannel();
-        let selecting = false;
         const actions = voiceActions();
+        if (typeof actions?.selectVoiceChannel !== "function") throw new Error("Discord's voice actions weren't found");
+        // The channel you chose yourself. Only your own joins, switches and leaves go through these two, so a move by
+        // someone else (which Discord reports like any other) is never mistaken for your choice.
+        let wanted = myVoiceChannel();
+        // Moves back in the last minute: when something keeps moving you, this gives up instead of fighting it
+        let recent: number[] = [];
         cleanup(
-            subscribe("VOICE_CHANNEL_SELECT", ({ channelId }) => {
-                if (!selecting) wanted = channelId ?? undefined;
-            }),
+            before("selectVoiceChannel", actions, ([channelId]: any[]) => void (wanted = channelId ?? undefined)),
+            typeof actions.disconnect === "function" ? before("disconnect", actions, () => void (wanted = undefined)) : undefined,
             subscribe("VOICE_STATE_UPDATES", ({ voiceStates }) => {
                 const me = (voiceStates ?? []).find((s: any) => s.userId === currentUserId());
                 if (!me || !wanted || me.channelId === wanted) return;
                 if (me.channelId ? !store.moves : !store.disconnects) return;
+                const now = Date.now();
+                recent = recent.filter(at => now - at < 60_000);
+                if (recent.length >= 3) {
+                    wanted = undefined;
+                    showToast(t("Stopped moving you back, since someone keeps moving you"), findAssetId("ShieldIcon"));
+                    return;
+                }
+                recent.push(now);
                 const back = wanted;
                 setTimeout(() => {
-                    selecting = true;
-                    try {
-                        actions?.selectVoiceChannel?.(back);
-                        showToast(t("Moved back to {channel}", { channel: getChannel(back)?.name ?? "" }), findAssetId("ShieldIcon"));
-                    } finally {
-                        selecting = false;
-                    }
+                    // You went somewhere else yourself meanwhile
+                    if (wanted !== back) return;
+                    actions.selectVoiceChannel(back);
+                    showToast(t("Moved back to {channel}", { channel: getChannel(back)?.name ?? "" }), findAssetId("ShieldIcon"));
                 }, 400);
             }),
         );

@@ -13,7 +13,7 @@ import { AppState, Vibration } from "react-native";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { currentUserId, getStore, subscribe } from "../common";
-import { appendToTimestamp, botMessage, command, MessageActions, onIncomingMessage, onMessageRow, onSend, snowflakeTime } from "../hooks";
+import { appendToTimestamp, botMessage, command, MessageActions, onIncomingMessage, onMessageRow, onSend, snowflakeTime, toastError } from "../hooks";
 
 // SplitLargeMessages ---------------------------------------------------------------------------------------------------
 
@@ -56,7 +56,7 @@ const SplitLargeMessages = definePlugin({
                     following.add(part);
                     await MessageActions()?.sendMessage(channelId, { content: part, tts: false, invalidEmojis: [], validNonShortcutEmojis: [] }, undefined, {});
                 }
-            })().catch(e => showToast(String(e?.message ?? e), findAssetId("CircleXIcon-primary")));
+            })().catch(toastError);
             showToast(t("Sending in {count} parts", { count: others.length + 1 }), findAssetId("ChatIcon"));
             return first;
         }, 97));

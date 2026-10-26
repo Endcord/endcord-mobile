@@ -147,8 +147,8 @@ const VoiceJoinMessages = definePlugin({
     settings: {
         friendDirectMessagesShowMemberCount: { type: "boolean", label: tx("Show member count"), description: tx("Show the count of other members in the voice channel when receiving a DM notification of your friend joining a voice channel"), default: true },
         friendDirectMessagesSelf: { type: "boolean", label: tx("Even in my channel"), description: tx("Receive notifications in your friends' DMs even if you are in the same voice channel as them"), default: false },
-        allowedFriends: { type: "string", label: tx("Only these friends"), description: tx("Comma or space separated list of friends' user IDs you want to recieve join messages from"), default: "" },
-        ignoredFriends: { type: "string", label: tx("Ignored friends"), description: tx("Comma or space separated list of friends' user IDs you do NOT want to recieve join messages from"), default: "" },
+        allowedFriends: { type: "string", label: tx("Only these friends"), description: tx("User IDs of the friends to get join messages from, separated by commas or spaces; empty means all friends"), default: "" },
+        ignoredFriends: { type: "string", label: tx("Ignored friends"), description: tx("User IDs of the friends to never get join messages from, separated by commas or spaces"), default: "" },
     },
     start({ store, cleanup }) {
         cleanup(onAction<{ voiceStates: any[]; }>("VOICE_STATE_UPDATES", ({ voiceStates }) => {
@@ -395,8 +395,16 @@ const AntiNickname = definePlugin({
                 setTimeout(() => resetting.delete(guildId), 2000);
             }
         };
+        // Nicknames you set yourself (Edit Server Profile, /nick) are yours to keep: the server, and when
+        let own: { guildId?: string; at: number; } | undefined;
+        const markOwn = (guildId?: unknown) => void (own = { guildId: typeof guildId === "string" ? guildId : undefined, at: Date.now() });
+        const nicknames = findByProps("changeNickname");
+        if (typeof nicknames?.changeNickname === "function") cleanup(before("changeNickname", nicknames, ([guildId]: any[]) => markOwn(guildId)));
+        const identity = findByProps("saveGuildIdentityChanges");
+        if (typeof identity?.saveGuildIdentityChanges === "function") cleanup(before("saveGuildIdentityChanges", identity, ([guildId]: any[]) => markOwn(guildId)));
         cleanup(subscribe("GUILD_MEMBER_UPDATE", ({ guildId, user, nick }) => {
             if (user?.id !== currentUserId() || !nick) return;
+            if (own && Date.now() - own.at < 30_000 && (!own.guildId || own.guildId === guildId)) return;
             setTimeout(() => reset(guildId, nick), 300);
         }));
     },
