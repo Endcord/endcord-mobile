@@ -4661,6 +4661,12 @@
         "es": "Abrir enlace del sticker",
         "fr": "Ouvrir le lien de l'autocollant"
     },
+    "Open Theme Library": {
+        "tr": "Tema Kütüphanesini Aç",
+        "ru": "Открыть библиотеку тем",
+        "es": "Abrir la biblioteca de temas",
+        "fr": "Ouvrir la bibliothèque de thèmes"
+    },
     "Open a DM and use /pindm to pin it": {
         "tr": "Bir DM aç ve sabitlemek için /pindm kullan",
         "ru": "Откройте ЛС и используйте /pindm, чтобы закрепить его",

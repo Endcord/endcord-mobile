@@ -2,6 +2,8 @@
  * Endcord for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
+ *
+ * Endcord PC's ThemeLibrary: a page of themes to browse and install, in Endcord's settings and EndcordToolbox.
  */
 
 import { t, tx } from "@core/i18n";
@@ -13,11 +15,14 @@ import { openAlert } from "@lib/ui/alerts";
 import { showToast } from "@lib/ui/toasts";
 import { safeFetch } from "@lib/utils";
 import { AlertActionButton, AlertActions, AlertModal, Button, Card, Stack, Text } from "@metro/common/components";
-import { useEffect, useState } from "react";
-import { ActivityIndicator, Image, View } from "react-native";
+import { Search } from "@ui/components";
+import { memo, useEffect, useMemo, useState } from "react";
+import { ActivityIndicator, Image, ScrollView, View } from "react-native";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { addSettingsPage, addToolboxAction } from "../common";
 import { describeError } from "../hooks";
+import { openPage } from "../ui/pages";
 
 interface LibraryTheme {
     name: string;
@@ -41,6 +46,10 @@ const catppuccin: LibraryTheme[] = [
     previewUrl: `https://raw.githubusercontent.com/catppuccin/vendetta/main/assets/${id}.webp`,
 }));
 
+// Cards share the row out evenly, never narrower than this, so a tablet shows a few side by side
+const MIN_CARD_WIDTH = 300;
+const GAP = 12;
+
 const plugin = definePlugin({
     id: "endcord.theme-library",
     name: "ThemeLibrary",
@@ -49,7 +58,12 @@ const plugin = definePlugin({
     popular: 7,
     icon: "PaintPaletteIcon",
     tags: ["Appearance", "Customisation"],
-    start() { },
+    start({ cleanup }) {
+        cleanup(
+            addSettingsPage("theme-library", { title: () => t("Theme Library"), icon: "PaintbrushThinIcon", Page: LibraryPage, after: "BUNNY_THEMES" }),
+            addToolboxAction("theme-library", { label: () => t("Open Theme Library"), icon: "PaintbrushThinIcon", run: () => openPage(t("Theme Library"), LibraryPage) }),
+        );
+    },
     SettingsComponent: Library,
 });
 
@@ -64,7 +78,7 @@ function promptReload() {
     />);
 }
 
-function ThemeRow({ theme }: { theme: LibraryTheme; }) {
+const ThemeCard = memo(function ThemeCard({ theme, width }: { theme: LibraryTheme; width: number; }) {
     const installed = useProxy(themes);
     const [busy, setBusy] = useState(false);
     const entry = installed[theme.installUrl];
@@ -84,12 +98,14 @@ function ThemeRow({ theme }: { theme: LibraryTheme; }) {
         }
     };
 
-    return <Card>
+    return <Card style={{ width, justifyContent: "space-between", gap: 10 }}>
         <Stack spacing={10}>
             {theme.previewUrl && <Image
                 source={{ uri: theme.previewUrl }}
                 style={{ width: "100%", aspectRatio: 16 / 9, borderRadius: 8 }}
                 resizeMode="cover"
+                // The previews are full-size screenshots; decoded at the card's size they don't hold up scrolling
+                resizeMethod="resize"
             />}
             <View>
                 <Text variant="heading-md/semibold">{theme.name}</Text>
@@ -98,19 +114,19 @@ function ThemeRow({ theme }: { theme: LibraryTheme; }) {
                 </Text>}
             </View>
             {!!theme.description && <Text variant="text-md/medium">{t(theme.description)}</Text>}
-            <Button
-                text={applied ? t("Applied") : entry ? t("Apply") : t("Install")}
-                variant={applied ? "secondary" : "primary"}
-                size="md"
-                disabled={applied}
-                loading={busy}
-                onPress={apply}
-            />
         </Stack>
+        <Button
+            text={applied ? t("Applied") : entry ? t("Apply") : t("Install")}
+            variant={applied ? "secondary" : "primary"}
+            size="md"
+            disabled={applied}
+            loading={busy}
+            onPress={apply}
+        />
     </Card>;
-}
+});
 
-function Library() {
+function useMarketplace() {
     const [list, setList] = useState<LibraryTheme[] | null>(null);
     const [failed, setFailed] = useState(false);
 
@@ -132,15 +148,43 @@ function Library() {
             });
     }, []);
 
+    return { list, failed };
+}
+
+/** The library: Catppuccin's themes, then the marketplace's, searchable by name, author and description */
+function Library() {
+    const { list, failed } = useMarketplace();
+    const [query, setQuery] = useState("");
+    const [width, setWidth] = useState(0);
+    const columns = Math.max(1, Math.floor((width + GAP) / (MIN_CARD_WIDTH + GAP)));
+    const cardWidth = (width - GAP * (columns - 1)) / columns;
+
+    const shown = useMemo(() => {
+        const all = [...catppuccin, ...list ?? []];
+        const q = query.trim().toLowerCase();
+        if (!q) return all;
+        return all.filter(theme => [theme.name, theme.description && t(theme.description), ...theme.authors ?? []]
+            .some(text => text?.toLowerCase().includes(q)));
+    }, [list, query]);
+
     return <Stack spacing={12}>
         <Text variant="text-sm/medium" color="text-muted">
             {t("Themes from the community's theme marketplace and Catppuccin. Installed themes also appear in Endcord's Themes page.")}
         </Text>
-        {catppuccin.map(theme => <ThemeRow key={theme.installUrl} theme={theme} />)}
+        <Search placeholder={t("Search for a theme...")} onChangeText={setQuery} />
+        <View style={{ flexDirection: "row", flexWrap: "wrap", gap: GAP }} onLayout={e => setWidth(e.nativeEvent.layout.width)}>
+            {width > 0 && shown.map(theme => <ThemeCard key={theme.installUrl} theme={theme} width={cardWidth} />)}
+        </View>
         {list === null && <ActivityIndicator style={{ marginVertical: 24 }} />}
+        {list !== null && !shown.length && <Text variant="text-md/medium" color="text-muted" style={{ textAlign: "center" }}>{t("No results")}</Text>}
         {failed && <Text variant="text-md/medium" color="text-feedback-critical">{t("Couldn't load the theme list. Check your connection and try again.")}</Text>}
-        {list?.map(theme => <ThemeRow key={theme.installUrl} theme={theme} />)}
     </Stack>;
+}
+
+function LibraryPage() {
+    return <ScrollView contentContainerStyle={{ padding: 12, paddingBottom: 38 }} keyboardShouldPersistTaps="handled" keyboardDismissMode="on-drag">
+        <Library />
+    </ScrollView>;
 }
 
 export default plugin;

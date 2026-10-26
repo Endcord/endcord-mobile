@@ -35,6 +35,21 @@ export function registerSection(section: { name: string; items: RowConfig[]; }) 
 }
 
 /**
+ * Adds a row to a registered section, after the row with the key `after` or else at the end. It shows from the next
+ * time Discord's settings open.
+ */
+export function addSectionRow(section: string, row: RowConfig, after?: string) {
+    const rows = registeredSections[section] ??= [];
+    const anchor = after ? rows.findIndex(r => r.key === after) : -1;
+    if (anchor >= 0) rows.splice(anchor + 1, 0, row);
+    else rows.push(row);
+    return () => {
+        const index = registeredSections[section]?.indexOf(row) ?? -1;
+        if (index >= 0) registeredSections[section].splice(index, 1);
+    };
+}
+
+/**
  * @internal
  */
 export function patchSettings() {
