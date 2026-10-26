@@ -138,7 +138,7 @@ function Library() {
         </Text>
         {catppuccin.map(theme => <ThemeRow key={theme.installUrl} theme={theme} />)}
         {list === null && <ActivityIndicator style={{ marginVertical: 24 }} />}
-        {failed && <Text variant="text-md/medium" color="text-danger">{t("Couldn't load the theme list. Check your connection and try again.")}</Text>}
+        {failed && <Text variant="text-md/medium" color="text-feedback-critical">{t("Couldn't load the theme list. Check your connection and try again.")}</Text>}
         {list?.map(theme => <ThemeRow key={theme.installUrl} theme={theme} />)}
     </Stack>;
 }
