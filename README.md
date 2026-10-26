@@ -1,6 +1,6 @@
 <div align="center">
     <h1>Endcord for Android</h1>
-    <p>Endcord on the <em>current</em> Discord Android app: plugins, themes and fonts, with an installer in five languages.</p>
+    <p>Endcord on the <em>current</em> Discord Android app: Endcord PC's most used plugins, themes and fonts, in five languages.</p>
 
 [Endcord PC](https://github.com/rootpoii/endcord) · [Endcord for the classic Discord app](https://github.com/rootpoii/endcord-mobile) (the `main` branch of this repository) · [Discord](https://discord.gg/endcord)
 
@@ -8,39 +8,56 @@
 
 > [!NOTE]
 > This project is a **fork of [Revenge](https://github.com/revenge-mod)** (bundle, Xposed loader and manager), which
-> itself continues Bunny and Vendetta. Endcord adds its own branding, five languages, an update channel on this
-> repository's `builds` branch and, over time, the plugins of Endcord PC. See [UPSTREAM.md](UPSTREAM.md) for the
-> exact upstream commits. It lives on the `next` branch of the `endcord-mobile` repository, next to the classic-app
-> Endcord on `main`; the two are separate apps and separate code. It is not affiliated with Discord Inc. or the Revenge team.
+> itself continues Bunny and Vendetta. Endcord adds its own plugins, five languages and an update channel on this
+> repository. See [UPSTREAM.md](UPSTREAM.md) for the exact upstream commits. It lives on the `next` branch of the
+> `endcord-mobile` repository, next to the classic-app Endcord on `main`; the two are separate apps and separate code.
+> It is not affiliated with Discord Inc. or the Revenge team.
 
-## What is in this repository
+## Features
 
-| Directory | What it is | Upstream |
-| --- | --- | --- |
-| `bundle/` | The JavaScript bundle that runs inside Discord: plugin system, settings UI, themes, fonts. Built with Bun into `endcord.min.js`. | revenge-bundle (BSD-3) |
-| `loader/` | The Xposed module that loads the bundle into Discord. Works both embedded by the installer (no root) and as a regular LSPosed module (root). | revenge-xposed (GPL-3) |
-| `installer/` | Endcord Installer: downloads the latest Discord, embeds the loader with LSPatch, re-signs and installs it as a separate app. | revenge-manager (OSL-3) |
+- **Endcord PC's popular plugins, built in.** All off until you turn them on, each with its own settings page, in
+  Endcord → Plugins (popular ones are listed first, as on PC):
 
-Builds are published by the [Build workflow](.github/workflows/build.yml) to the `builds-next` branch:
-`endcord.min.js` (bundle), `endcord-xposed.apk` (loader) and `data.json` (what was built). The loader fetches the
-bundle from there on every start (with ETag caching), and the installer checks that branch every 15 minutes.
+  | Plugin | On your phone |
+  | --- | --- |
+  | CustomProfile | Your own avatar, banner, display name, bio and pronouns, only visible to you |
+  | MessageLogger | Deleted messages stay in red with a "deleted" tag, earlier versions of edited ones show above them, ghost ping alerts |
+  | HideEndcord | Hides Endcord's settings for screenshots and screen sharing; `/hideendcord` brings them back |
+  | FakeNitro | Emojis and stickers you can't use are sent as links |
+  | SmoothType | Caret and selection colors for text boxes |
+  | ViewIcons | Tap avatars, banners and server icons to see them full size |
+  | ThemeLibrary | Browse and install community themes and Catppuccin without leaving the app |
+  | oneko | The cat, running to wherever you touch |
+  | PlatformIndicators | Desktop, web and mobile icons next to the time of messages |
+  | RelationshipNotifier | Tells you when a friend, group chat or server removes you, including while you were offline |
+  | SilentTyping | Your typing indicator is never sent, with an optional chat bar button |
+  | FakeMute | Appear muted or deafened while your microphone and sound keep working |
+
+- **Five languages** everywhere: English, Türkçe, Русский, Español and Français, with Endcord PC's translations.
+  Endcord follows Discord's language, or the one you pick in Endcord → General.
+- **Built from the Discord you already have.** The installer uses the Discord installed on your phone (from the Play
+  Store), or downloads the latest one if you prefer or don't have it.
+- **Updates without reinstalling.** Endcord itself updates every time the app starts; when Discord updates, the
+  installer tells you and rebuilds Endcord from the new version.
+- Compatible with Vendetta and Revenge plugins and themes.
 
 ## Installing
 
 ### Without root (everyone)
 
-Android only lets an app be modified by whoever signed it, so Discord from the Play Store can't be changed in
-place. Endcord Installer therefore downloads Discord itself and installs the patched copy **as a separate app
-called Endcord**. Your normal Discord stays untouched; you can keep both.
+Android only lets the app that signed Discord change it, so nobody but Discord can modify the installed Discord app
+in place. Endcord Installer therefore copies Discord, adds Endcord to the copy and installs it **as a separate app
+called Endcord**. Your Discord stays installed and untouched; you can keep both.
 
 1. Download the latest `next-installer-v*` release's APK from the [releases](../../releases) and install it.
-2. Open **Endcord Installer**, choose your language if it didn't pick the right one, and tap **Install**.
-   It downloads Discord (stable channel by default), adds Endcord and installs it.
-3. Open **Endcord** and sign in to Discord.
+2. Open **Endcord Installer**. If Discord is on your phone, **Use the Discord on this phone** is selected; otherwise
+   (or if you choose **Download Discord**) the latest Discord is downloaded.
+3. Tap **Install** and confirm Android's prompt.
+4. Open **Endcord** and sign in to Discord. Endcord's settings are in Discord's settings, in the **Endcord** section.
 
 ### With root (LSPosed): Endcord inside the real Discord
 
-This is the "desktop-like" mode: nothing is reinstalled, the Play Store Discord runs Endcord.
+This is the desktop-like mode: nothing is reinstalled, the Play Store Discord runs Endcord.
 
 1. Install [LSPosed](https://github.com/JingMatrix/LSPosed) (or another Xposed framework).
 2. Download `endcord-xposed.apk` from the [`builds-next` branch](../../tree/builds-next) and install it.
@@ -49,11 +66,30 @@ This is the "desktop-like" mode: nothing is reinstalled, the Play Store Discord 
 
 ## Updating
 
-- **Endcord itself** (the bundle): updated automatically. The loader downloads the newest `endcord.min.js` when
-  Discord starts, and Endcord's settings have a "Clear JS bundle" option if you ever need to force it.
-- **Discord**: Endcord Installer checks for new Discord versions every 15 minutes (configurable) and shows a
-  notification; tap it to update. Without root, Discord updates always go through the installer.
-- **The installer**: it tells you when a new release is available.
+- **Endcord itself** (the bundle) updates automatically: the loader downloads the newest `endcord.min.js` when Discord
+  starts. If the download fails (offline, say), the copy from last time is used.
+- **Discord**: when Discord on your phone updates, or a new Discord is released if you chose to download it, Endcord
+  Installer shows a notification (checked every 15 minutes by default); tap it to rebuild Endcord.
+- **The installer** tells you when a new release is available.
+
+## Troubleshooting
+
+- Shake the phone, or hold two fingers on the screen for 3 seconds right after Endcord opens, for the recovery menu: reload, recovery mode (plugins and themes
+  off), delete the downloaded Endcord, reset the loader settings.
+- A plugin that fails to start turns itself off and says so; turn it back on after updating.
+- Endcord → General → **Safe Mode** reloads without plugins and themes.
+
+## What is in this repository
+
+| Directory | What it is | Upstream |
+| --- | --- | --- |
+| `bundle/` | The JavaScript that runs inside Discord: Endcord's plugins (`src/plugins`), the plugin system, settings UI, themes, fonts and translations (`src/core/i18n`). Built with Bun into `endcord.min.js`. | revenge-bundle (BSD-3) |
+| `loader/` | The Xposed module that loads the bundle into Discord. Works both embedded by the installer (no root) and as a regular LSPosed module (root). | revenge-xposed (GPL-3) |
+| `installer/` | Endcord Installer: takes the installed or the latest Discord, embeds the loader with LSPatch, re-signs and installs it as a separate app. | revenge-manager (OSL-3) |
+
+Every push to `next` is built by the [Build workflow](.github/workflows/build.yml) and published to the
+`builds-next` branch: `endcord.min.js` (bundle), `endcord-xposed.apk` (loader), `endcord-installer.apk` (installer
+build) and `data.json` (what was built).
 
 ## Development
 
@@ -75,27 +111,48 @@ cd installer && ./gradlew :app:assembleDebug
 Package names: the installer is `com.endcord.installer.next`, the patched Discord is `com.endcord.next` (the
 classic-app Endcord uses `com.endcord`, so both can be installed at once), the loader module is `com.endcord.xposed`.
 
-### Releasing
-
-- Every push to `next` rebuilds the bundle and the loader and publishes them to the `builds-next` branch. Add the
-  `LOADER_KEYSTORE` (base64), `LOADER_KEYSTORE_PASSWORD`, `LOADER_KEY_ALIAS` and `LOADER_KEY_PASSWORD` secrets so
-  the loader is release-signed; without them the debug-signed module is published.
-- Installer releases: run **Release Installer** by hand with a version number. It needs `INSTALLER_KEYSTORE`
-  (base64), `INSTALLER_KEYSTORE_PASSWORD`, `INSTALLER_KEY_ALIAS` and `INSTALLER_KEY_PASSWORD`.
-
 ### Plugins
 
-The plugin system is Revenge's (Vendetta-compatible plugins written in TypeScript). The plan for bringing
-Endcord PC's plugins over is in [docs/PLUGINS.md](docs/PLUGINS.md); the state of the project is in
-[docs/STATUS.md](docs/STATUS.md).
+Endcord's plugins live in `bundle/src/plugins/<name>/` and are defined with `definePlugin` from
+`bundle/src/plugins/api.ts`: a settings schema (the settings page is generated from it), `start` with a `cleanup`
+helper for every patch, and an optional extra settings component. Plugins find Discord's modules by their source path
+(`moduleAt("modules/...")`), which survives the renames that break name lookups, and must tolerate a module being
+missing: a plugin that throws while starting is turned off with a notice, never crashing Discord. The plan for the
+rest of Endcord PC's plugins is in [docs/PLUGINS.md](docs/PLUGINS.md).
+
+### Translations
+
+User-visible text is English in the code, passed through `t()` (or marked with `tx()`). `bun run i18n` (or
+`node scripts/i18n-sync.mjs --pc <path to Endcord PC>`) builds `src/core/i18n/locales/*.json` from Endcord PC's
+translations, with mobile-specific wording in `src/core/i18n/overrides.json`. CI fails if a string is untranslated.
+
+### Testing
+
+The [Emulator test workflow](.github/workflows/emulator.yml) runs on every push to a `ci/**` branch: it installs
+Endcord Installer on an Android emulator, installs Endcord both by downloading Discord and from a pre-installed
+Discord (tapping through the installer like a user), launches Endcord and runs the bundle's self-test (built with
+`--test`) inside Discord. Screenshots, logs and the self-test report are pushed to the `test-results/<branch>` branch.
+
+### Releasing
+
+- Every push to `next` rebuilds the bundle, the loader and the installer and publishes them to `builds-next`. Add the
+  `LOADER_KEYSTORE` (base64), `LOADER_KEYSTORE_PASSWORD`, `LOADER_KEY_ALIAS` and `LOADER_KEY_PASSWORD` secrets so the
+  loader is release-signed; without them the debug-signed module is published.
+- Installer releases: run **Release Installer** by hand with a version number. It needs `INSTALLER_KEYSTORE`
+  (base64), `INSTALLER_KEYSTORE_PASSWORD`, `INSTALLER_KEY_ALIAS` and `INSTALLER_KEY_PASSWORD`.
 
 ## License and credits
 
 Each directory keeps the license of the project it was forked from: `bundle/` BSD-3-Clause, `loader/` GPL-3.0,
-`installer/` OSL-3.0. The original copyright notices of Team Vendetta, pylixonly and Team Revenge are kept in the
-source files and shown in the installer's About screen.
+`installer/` OSL-3.0. Endcord's plugins (`bundle/src/plugins`) and the other files marked
+`SPDX-License-Identifier: GPL-3.0-or-later` are GPL-3.0-or-later, like Endcord PC, so the built bundle as a whole is
+distributed under the GPL-3.0. The original copyright notices of Team Vendetta, pylixonly and Team Revenge are kept in
+the source files and shown in the installer's About screen.
 
 Endcord for Android would not exist without [Revenge](https://github.com/revenge-mod), Bunny and Vendetta,
-[LSPatch](https://github.com/LSPosed/LSPatch) and the Vendetta tracker mirrors that serve the Discord APKs.
+[LSPatch](https://github.com/LSPosed/LSPatch) and the Vendetta tracker mirrors that serve the Discord APKs. MessageLogger
+and FakeNitro follow the approaches of the [Revenge community plugins](https://github.com/revenge-mod/revenge-community-plugins)
+(GPL-3.0); oneko's cat is [oneko.js](https://github.com/adryd325/oneko.js) by adryd; ThemeLibrary lists
+[Catppuccin](https://github.com/catppuccin/vendetta) and the community [theme marketplace](https://github.com/kmmiio99o/theme-marketplace).
 
 This is a modification of the Discord app and is against Discord's Terms of Service. Use it at your own risk.
