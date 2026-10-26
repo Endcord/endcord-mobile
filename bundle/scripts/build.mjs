@@ -59,6 +59,8 @@ const config = {
     },
     inject: ["./shims/asyncIteratorSymbol.js", "./shims/promiseAllSettled.js"],
     legalComments: "none",
+    // Non-ASCII text as UTF-8 instead of escapes, which take three times the space for Cyrillic and Turkish
+    charset: "utf8",
     alias: {
         "!bunny-deps-shim!": "./shims/depsModule.ts",
         "spitroast": "./node_modules/spitroast",
@@ -127,7 +129,9 @@ export async function buildBundle(overrideConfig = {}, skipHermes) {
     };
 
     const initialStartTime = performance.now();
-    await build({ ...config, ...overrideConfig });
+    // The plugin manifest is built from the plugins themselves, so it never falls behind them
+    execFileSync(process.execPath, ["scripts/plugin-manifest.mjs"], { stdio: "pipe" });
+    const result = await build({ ...config, ...overrideConfig });
 
     if (!skipHermes) {
         const paths = {
@@ -153,6 +157,7 @@ export async function buildBundle(overrideConfig = {}, skipHermes) {
     return {
         config,
         context,
+        result,
         timeTook: performance.now() - initialStartTime
     };
 }

@@ -1,7 +1,8 @@
 import patchErrorBoundary from "@core/debug/patches/patchErrorBoundary";
 import initFixes from "@core/fixes";
-import { initOverlayHost } from "@core/overlay";
 import { initFetchI18nStrings } from "@core/i18n";
+import { initOverlayHost } from "@core/overlay";
+import { markReady } from "@core/timings";
 import initSettings from "@core/ui/settings";
 import { initVendettaObject } from "@core/vendetta/api";
 import { VdPluginManager } from "@core/vendetta/plugins";
@@ -59,5 +60,6 @@ export default async () => {
 
     if (__ENDCORD_TEST__) require("@core/debug/testHarness").initTestHarness();
 
+    markReady();
     logger.log("Endcord is ready!");
 };

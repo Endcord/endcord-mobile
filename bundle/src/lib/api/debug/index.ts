@@ -2,11 +2,12 @@ import { getThemeFromLoader, selectTheme, themes } from "@lib/addons/themes";
 import { getLoaderName, getLoaderVersion, isReactDevToolsPreloaded, isThemeSupported } from "@lib/api/native/loader";
 import { BundleUpdaterManager, NativeClientInfoModule, NativeDeviceModule } from "@lib/api/native/modules";
 import { settings } from "@lib/api/settings";
+import { logger } from "@lib/utils/logger";
 import { version } from "bunny-build-info";
 import { Platform, type PlatformConstants } from "react-native";
+
 import { connectDt, dtConnected } from "./devtools";
 import { connectRdt, rdtConnected } from "./react";
-import { logger } from "@lib/utils/logger";
 
 export interface RNConstants extends PlatformConstants {
     // Android

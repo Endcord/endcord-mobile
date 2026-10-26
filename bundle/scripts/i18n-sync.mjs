@@ -1,7 +1,9 @@
 // @ts-nocheck
 /* eslint-disable no-restricted-syntax */
 /**
- * Builds src/core/i18n/locales/<lang>.json, the translations shipped in the bundle.
+ * Builds src/core/i18n/locales/<lang>.json, the translations to read and review, and src/core/i18n/compiled/<lang>.json,
+ * what ships in the bundle: the same translations keyed by a short hash of the English text, so the English isn't
+ * repeated in every language and only the language in use is loaded.
  *
  * Every user-visible string is English text: the values of src/core/i18n/default.json, and every literal passed to
  * t() or tx() anywhere in src/. Each one is translated from, in order:
@@ -15,7 +17,7 @@
  * Without --pc (or when the Endcord PC checkout isn't there), the translations already in locales/ are kept for strings
  * that overrides.json doesn't cover, so the script also works on a machine that only has this repository.
  */
-import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import vm from "vm";
@@ -99,6 +101,24 @@ if (existsSync(pcI18n)) {
     console.log(`Endcord PC not found at ${pcRoot}; keeping the existing translations for strings it would provide`);
 }
 
+// The hash the bundle looks translations up by; must match textHash in src/core/i18n/index.ts
+function textHash(text) {
+    let h = 0x811c9dc5;
+    for (let i = 0; i < text.length; i++) h = Math.imul(h ^ text.charCodeAt(i), 0x01000193);
+    return (h >>> 0).toString(36);
+}
+
+const hashes = new Map();
+for (const text of needed) {
+    const h = textHash(text);
+    if (hashes.has(h)) {
+        console.error(`Hash collision between "${hashes.get(h)}" and "${text}"; change one of them`);
+        process.exit(1);
+    }
+    hashes.set(h, text);
+}
+mkdirSync(path.join(i18nDir, "compiled"), { recursive: true });
+
 // 3. Build each language
 const overrides = JSON.parse(readFileSync(path.join(i18nDir, "overrides.json"), "utf8"));
 let missingTotal = 0;
@@ -118,6 +138,7 @@ for (const lang of LANGS) {
     }
 
     writeFileSync(file, JSON.stringify(out, null, 4) + "\n");
+    writeFileSync(path.join(i18nDir, "compiled", `${lang}.json`), JSON.stringify(Object.fromEntries(Object.entries(out).map(([k, v]) => [textHash(k), v]))));
     missingTotal += missing.length;
     console.log(`${lang}: ${Object.keys(out).length}/${needed.size} translated`);
     for (const m of missing) console.log(`   missing: ${m}`);

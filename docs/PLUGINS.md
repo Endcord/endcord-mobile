@@ -1,6 +1,6 @@
 # Eklentiler (Endcord PC → Endcord for Android)
 
-Endcord'un mobil eklentileri `bundle/src/plugins/` altında yaşar ve uygulamayla birlikte gelir: **155 eklenti**,
+Endcord'un mobil eklentileri `bundle/src/plugins/` altında yaşar ve uygulamayla birlikte gelir: **180 eklenti**,
 hepsi Endcord PC'den. Hepsi kapalı başlar; kullanıcı **Ayarlar → Endcord → Eklentiler** sayfasından açar. Popüler
 olanlar, Endcord PC'deki sırayla en üstte ve "POPÜLER" etiketiyle görünür; sayfanın üstünde toplam ve açık eklenti
 sayısı, durum ve etiket filtreleri var (Endcord PC'nin eklenti yöneticisi gibi).
@@ -199,6 +199,49 @@ Zengin durum, kayıtlı durumlar, boşta görünme.
 | FollowUser | Birini mesaj menüsünden takip et ve her zaman onunla aynı ses kanalına katıl |
 | RandomVoice | /randomvoice ile rastgele bir ses kanalına katıl |
 | VoiceRejoin | Discord yeniden başlayınca DM/sunucu aramasına otomatik geri girer. |
+
+### Aramalar (9)
+Aramada olanlar ve kanaldaki herkese birden işlem.
+
+| Eklenti | Ne yapıyor |
+| --- | --- |
+| AntiMoveDeco | Biri seni taşıdığında ya da bağlantını kestiğinde seni ses kanalına geri koyar |
+| CallTimer | Sesli aramalarda ve kanallarda geçen süreyi gösteren bir sayaç ekler. |
+| PullUserIntoVoice | Bir mesajın yazarını mesaj menüsünden ses kanalına çek, istersen çekmeye devam et |
+| VoiceChatUtilities | Ses kanalındaki herkesi /voiceall ile tek seferde at, taşı, sustur veya sağırlaştır |
+| VoiceFakeDetector | Ses kanalındaki biri susturulmuş ya da sağırlaştırılmış görünüp konuşuyorsa sana söyler |
+| VoiceServerInfo | Bağlı olduğun Discord ses sunucusunu ve gecikmesini gösterir |
+| VoiceStats | Her kullanıcıyla seste ne kadar zaman geçirdiğini gösterir |
+| WaitForSlot | Dolu bir ses kanalında yer açılınca otomatik girer. |
+| WebcamStartNotifier | Ses kanalındaki biri kamerasını açtığında ya da kapattığında sana söyler |
+
+### Sohbetlerde gezinme (9)
+Notlar, atlamalar, yanıt bekleyenler, tablolar ve rozetler.
+
+| Eklenti | Ne yapıyor |
+| --- | --- |
+| AntiSnitch | Seçtiğin kişiler bu kanalda yazmaya başlayınca ses ve bildirimle haber verir. |
+| ChannelNotes | Herhangi bir kanala, DM'e veya gruba özel notlar ekle: kurallar, kim kimdir, hatırlanacaklar. Notlar cihazında kalır. |
+| Ghosted | Henüz yanıtlamadığın DM'lerin listesini her biri için bir hayaletle tutar |
+| ImageLink | Mesajdaki tek içerik olsa bile resim bağlantılarını gizlemez |
+| JumpTo | Bir sohbetin ilk ya da en son mesajına /jumpto ile git |
+| LastActive | Bir sohbette kendinin ya da başkasının son mesajına /lastactive ile git |
+| MarkdownTables | Discord mesajlarında GitHub tarzı markdown tablolarını gösterir. |
+| ShowBadgesInChat | Sohbette mesaj sahibinin rozetlerini adının yanında gösterir. |
+| UserVoiceShow | Ses kanalındaki kişilerin mesajlarında bir gösterge gösterir ve mesaj menüsünden onlara katılmanı sağlar |
+
+### Hesap ve uygulama (7)
+Sunucu etiketleri, odak modu, profil ön ayarları, açılış süreleri, kayıtlar.
+
+| Eklenti | Ne yapıyor |
+| --- | --- |
+| ClanSwitcher | Discord klan etiketlerini otomatik değiştirir |
+| Declutter | Profil efektlerini ve avatar süslemelerini kaldırarak Discord'u sadeleştirir |
+| DiscordDevBanner | Sürüm kimliğini gösteren Discord geliştirici şeridini açar |
+| EventLogs | Kayıtlar: silinen/düzenlenen mesajlar, ses, arkadaşlar, sunucular. |
+| FocusMode | Rahatsız Etmeyin için tek düğme: bir süreliğine ya da sen kapatana kadar; bittiğinde önceki durumuna döner |
+| ProfileSets | Farklı profil ön ayarlarını kaydedip yüklemeni sağlar. |
+| StartupTimings | Ayarlar menüsüne başlangıç süreleri ekler |
 
 ### Profiller (5)
 Endcord PC'nin kullandığı servislerden avatar, afiş, rozet ve tema renkleri.

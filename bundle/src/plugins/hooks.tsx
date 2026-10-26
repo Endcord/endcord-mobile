@@ -275,13 +275,16 @@ function filterMessage(message: any): any {
  */
 export function onIncomingMessage(key: string, fn: IncomingFilter) {
     if (!unpatchIncoming) {
-        unpatchIncoming = intercept(payload => {
-            if (payload.type === "MESSAGE_CREATE" && payload.message) {
+        // One interceptor per action type, so the actions that don't carry messages never reach these
+        const unpatches = [
+            intercept(payload => {
+                if (!payload.message) return;
                 const result = filterMessage(payload.message);
                 if (result === null) return false;
                 return result !== payload.message ? { message: result } : undefined;
-            }
-            if (MESSAGE_LISTS.has(payload.type) && Array.isArray(payload.messages)) {
+            }, { type: "MESSAGE_CREATE" }),
+            ...[...MESSAGE_LISTS].map(type => intercept(payload => {
+                if (!Array.isArray(payload.messages)) return;
                 let changed = false;
                 const messages = payload.messages.flatMap((m: any) => {
                     const result = filterMessage(m);
@@ -289,8 +292,9 @@ export function onIncomingMessage(key: string, fn: IncomingFilter) {
                     return result === null ? [] : [result];
                 });
                 return changed ? { messages } : undefined;
-            }
-        });
+            }, { type })),
+        ];
+        unpatchIncoming = () => unpatches.forEach(u => u());
     }
     incomingFilters.set(key, fn);
     return () => {

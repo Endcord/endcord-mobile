@@ -1,13 +1,9 @@
 import { settings } from "@lib/api/settings";
 import { findByNameLazy, findByStoreName } from "@metro/wrappers";
-import { NativeModules } from "react-native";
 import { PrimitiveType } from "intl-messageformat";
+import { NativeModules } from "react-native";
 
 import langDefault from "./default.json";
-import es from "./locales/es.json";
-import fr from "./locales/fr.json";
-import ru from "./locales/ru.json";
-import tr from "./locales/tr.json";
 
 const IntlMessageFormat = findByNameLazy("MessageFormat") as typeof import("intl-messageformat").default;
 
@@ -22,8 +18,40 @@ export const LANGUAGES: { code: EndcordLanguage; nativeName: string; }[] = [
     { code: "fr", nativeName: "Français" },
 ];
 
-// Built from Endcord PC's translations by scripts/i18n-sync.mjs, keyed by the English text
-const tables: Record<Exclude<EndcordLanguage, "en">, Record<string, string>> = { tr, ru, es, fr };
+type Translated = Exclude<EndcordLanguage, "en">;
+
+// Built from Endcord PC's translations by scripts/i18n-sync.mjs. Only the language in use is loaded: the others stay
+// unparsed in the bundle, which matters on slower phones.
+const loaders: Record<Translated, () => Record<string, string>> = {
+    tr: () => require("./compiled/tr.json"),
+    ru: () => require("./compiled/ru.json"),
+    es: () => require("./compiled/es.json"),
+    fr: () => require("./compiled/fr.json"),
+};
+const tables: Partial<Record<Translated, Record<string, string>>> = {};
+
+/** FNV-1a of the English text, the key of the compiled tables; must match textHash in scripts/i18n-sync.mjs */
+function textHash(text: string) {
+    let h = 0x811c9dc5;
+    for (let i = 0; i < text.length; i++) h = Math.imul(h ^ text.charCodeAt(i), 0x01000193);
+    return (h >>> 0).toString(36);
+}
+
+const translated = new Map<string, string>();
+let translatedLang: EndcordLanguage = "en";
+
+function lookup(lang: Translated, text: string) {
+    if (translatedLang !== lang) {
+        translated.clear();
+        translatedLang = lang;
+    }
+    let out = translated.get(text);
+    if (out === undefined) {
+        out = (tables[lang] ??= loaders[lang]())[textHash(text)] ?? text;
+        translated.set(text, out);
+    }
+    return out;
+}
 
 type I18nKey = keyof typeof langDefault;
 
@@ -68,7 +96,7 @@ export function getLanguage(): EndcordLanguage {
  */
 export function t(text: string, vars?: Record<string, PrimitiveType>): string {
     const lang = getLanguage();
-    let out = lang === "en" ? text : tables[lang][text] ?? text;
+    let out = lang === "en" ? text : lookup(lang, text);
     if (vars) out = out.replace(/\{(\w+)\}/g, (match, key) => key in vars ? String(vars[key]) : match);
     return out;
 }

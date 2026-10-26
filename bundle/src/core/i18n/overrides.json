@@ -65,6 +65,12 @@
         "es": "Un código de idioma como en, tr, ru, es o fr. Déjalo vacío para usar el idioma de Discord.",
         "fr": "Un code de langue comme en, tr, ru, es ou fr. Laissez vide pour la langue de Discord."
     },
+    "A link to a sound to play; leave empty for none": {
+        "tr": "Çalınacak bir sesin bağlantısı; ses istemiyorsanız boş bırakın",
+        "ru": "Ссылка на звук; оставьте пустым, чтобы без звука",
+        "es": "Un enlace a un sonido; déjalo vacío para no reproducir ninguno",
+        "fr": "Un lien vers un son à jouer ; laissez vide pour aucun"
+    },
     "A link to an image": {
         "tr": "Bir görselin bağlantısı",
         "ru": "Ссылка на изображение",
@@ -95,6 +101,18 @@
         "es": "Un servidor",
         "fr": "Un serveur"
     },
+    "A slot opened in {channel}": {
+        "tr": "{channel} kanalında yer açıldı",
+        "ru": "В {channel} освободилось место",
+        "es": "Hay un hueco libre en {channel}",
+        "fr": "Une place s'est libérée dans {channel}"
+    },
+    "A slot opened in {channel}; joining": {
+        "tr": "{channel} kanalında yer açıldı; katılınıyor",
+        "ru": "В {channel} освободилось место; подключение",
+        "es": "Hay un hueco libre en {channel}; uniéndote",
+        "fr": "Une place s'est libérée dans {channel} ; connexion"
+    },
     "API key": {
         "tr": "API anahtarı",
         "ru": "Ключ API",
@@ -113,11 +131,29 @@
         "es": "Sobre mí",
         "fr": "À propos de moi"
     },
+    "Above the message box": {
+        "tr": "Mesaj kutusunun üstünde",
+        "ru": "Над полем сообщения",
+        "es": "Encima del cuadro de mensaje",
+        "fr": "Au-dessus de la zone de message"
+    },
     "Accent color, like #6644ff": {
         "tr": "Vurgu rengi, örneğin #6644ff",
         "ru": "Акцентный цвет, например #6644ff",
         "es": "Color de acento, como #6644ff",
         "fr": "Couleur d'accent, comme #6644ff"
+    },
+    "Act on everyone in your voice channel": {
+        "tr": "Ses kanalındaki herkese işlem uygula",
+        "ru": "Действие для всех в вашем голосовом канале",
+        "es": "Actúa sobre todos los de tu canal de voz",
+        "fr": "Agir sur tout le monde dans votre salon vocal"
+    },
+    "Actions before a pause": {
+        "tr": "Duraklamadan önceki işlem sayısı",
+        "ru": "Действий до паузы",
+        "es": "Acciones antes de una pausa",
+        "fr": "Actions avant une pause"
     },
     "Activate Discord Experiments": {
         "tr": "Discord deneylerini etkinleştir",
@@ -347,6 +383,12 @@
         "es": "Conectar automáticamente a DevTools al iniciar",
         "fr": "Se connecter automatiquement à DevTools au démarrage"
     },
+    "Avatar decorations": {
+        "tr": "Avatar süslemeleri",
+        "ru": "Украшения аватаров",
+        "es": "Decoraciones de avatar",
+        "fr": "Décorations d'avatar"
+    },
     "Avatar image link": {
         "tr": "Avatar görseli bağlantısı",
         "ru": "Ссылка на изображение аватара",
@@ -551,6 +593,24 @@
         "es": "ID de canales que se traducen, separados por comas. /autotranslate añade o quita el canal en el que estás.",
         "fr": "ID des salons à traduire, séparés par des virgules. /autotranslate ajoute ou retire celui où vous êtes."
     },
+    "Channel IDs, separated by commas, that are never listed": {
+        "tr": "Hiç listelenmeyecek kanal kimlikleri, virgülle ayrılmış",
+        "ru": "ID каналов через запятую, которые никогда не показываются",
+        "es": "ID de canales, separados por comas, que nunca se muestran",
+        "fr": "ID de salons, séparés par des virgules, jamais listés"
+    },
+    "Channel Note": {
+        "tr": "Kanal Notu",
+        "ru": "Заметка о канале",
+        "es": "Nota del canal",
+        "fr": "Note du salon"
+    },
+    "Channel Notes": {
+        "tr": "Kanal Notları",
+        "ru": "Заметки о каналах",
+        "es": "Notas de canales",
+        "fr": "Notes de salons"
+    },
     "Channel or server IDs where nothing is logged, separated by commas": {
         "tr": "Hiçbir şeyin kaydedilmeyeceği kanal veya sunucu kimlikleri, virgülle ayrılmış",
         "ru": "ID каналов или серверов, где ничего не записывается, через запятую",
@@ -580,6 +640,12 @@
         "ru": "Очищать ваши сообщения",
         "es": "Limpiar tus mensajes",
         "fr": "Nettoyer vos messages"
+    },
+    "Cleans up Discord by removing profile effects and avatar decorations": {
+        "tr": "Profil efektlerini ve avatar süslemelerini kaldırarak Discord'u sadeleştirir",
+        "ru": "Очищает Discord, убирая эффекты профиля и украшения аватаров",
+        "es": "Limpia Discord quitando los efectos de perfil y las decoraciones de avatar",
+        "fr": "Allège Discord en retirant les effets de profil et les décorations d'avatar"
     },
     "Clear Data": {
         "tr": "Verileri Temizle",
@@ -1049,6 +1115,12 @@
         "es": "Borra tus mensajes recientes en este canal",
         "fr": "Supprimer vos messages récents dans ce salon"
     },
+    "Deleted and edited messages, friends and servers will be logged here": {
+        "tr": "Silinen ve düzenlenen mesajlar, arkadaşlar ve sunucular burada kaydedilecek",
+        "ru": "Здесь будут удалённые и изменённые сообщения, друзья и серверы",
+        "es": "Aquí se registrarán los mensajes borrados y editados, los amigos y los servidores",
+        "fr": "Les messages supprimés et modifiés, les amis et les serveurs seront enregistrés ici"
+    },
     "Deleted your last message": {
         "tr": "Son mesajınız silindi",
         "ru": "Ваше последнее сообщение удалено",
@@ -1145,6 +1217,12 @@
         "es": "Desconectar de React DevTools",
         "fr": "Se déconnecter de React DevTools"
     },
+    "Disconnect, move, mute or deafen everyone in your voice channel at once with /voiceall": {
+        "tr": "Ses kanalındaki herkesi /voiceall ile tek seferde at, taşı, sustur veya sağırlaştır",
+        "ru": "Отключайте, перемещайте, глушите микрофон или звук всем в вашем голосовом канале сразу командой /voiceall",
+        "es": "Desconecta, mueve, silencia o ensordece a todos los de tu canal de voz a la vez con /voiceall",
+        "fr": "Déconnectez, déplacez, rendez muets ou sourds tous les membres de votre salon vocal d'un coup avec /voiceall"
+    },
     "Discord's default": {
         "tr": "Discord varsayılanı",
         "ru": "Как в Discord",
@@ -1186,6 +1264,12 @@
         "ru": "Не показывать",
         "es": "No mostrarlo",
         "fr": "Ne pas l'afficher"
+    },
+    "Done for {count} of {total} members.": {
+        "tr": "{total} üyeden {count} tanesi için yapıldı.",
+        "ru": "Готово для {count} из {total} участников.",
+        "es": "Hecho para {count} de {total} miembros.",
+        "fr": "Fait pour {count} membres sur {total}."
     },
     "Download All Attachments": {
         "tr": "Tüm Ekleri İndir",
@@ -1289,6 +1373,12 @@
         "es": "Endcord se actualiza cada vez que se abre la app.",
         "fr": "Endcord se met à jour à chaque démarrage de l'application."
     },
+    "Endcord's own startup": {
+        "tr": "Endcord'un kendi açılışı",
+        "ru": "Запуск самого Endcord",
+        "es": "Arranque de Endcord",
+        "fr": "Démarrage d'Endcord"
+    },
     "Enter a number from {min} to {max}": {
         "tr": "{min} ile {max} arasında bir sayı girin",
         "ru": "Введите число от {min} до {max}",
@@ -1330,6 +1420,24 @@
         "ru": "Даже в моём канале",
         "es": "Incluso en mi canal",
         "fr": "Même dans mon salon"
+    },
+    "Event Logs": {
+        "tr": "Olay Kayıtları",
+        "ru": "Журнал событий",
+        "es": "Registro de eventos",
+        "fr": "Journal des événements"
+    },
+    "Events to keep": {
+        "tr": "Saklanacak olay sayısı",
+        "ru": "Сколько событий хранить",
+        "es": "Eventos que guardar",
+        "fr": "Événements à conserver"
+    },
+    "Every (seconds)": {
+        "tr": "Her (saniye)",
+        "ru": "Каждые (секунды)",
+        "es": "Cada (segundos)",
+        "fr": "Toutes les (secondes)"
     },
     "Everything is already read.": {
         "tr": "Her şey zaten okundu.",
@@ -1481,6 +1589,12 @@
         "es": "Texto del primer botón",
         "fr": "Texte du premier bouton"
     },
+    "First message": {
+        "tr": "İlk mesaj",
+        "ru": "Первое сообщение",
+        "es": "Primer mensaje",
+        "fr": "Premier message"
+    },
     "First person": {
         "tr": "Birinci kişi",
         "ru": "Первый человек",
@@ -1516,6 +1630,12 @@
         "ru": "Подбрасывает монетку: орёл или решка",
         "es": "Lanza una moneda y devuelve cara o cruz",
         "fr": "Lance une pièce : pile ou face"
+    },
+    "Focus Mode is on for {minutes} minutes": {
+        "tr": "Odak Modu {minutes} dakika boyunca açık",
+        "ru": "Режим фокуса включён на {minutes} мин",
+        "es": "El modo concentración está activo durante {minutes} minutos",
+        "fr": "Le mode concentration est activé pour {minutes} minutes"
     },
     "Follow in Voice": {
         "tr": "Seste Takip Et",
@@ -1570,6 +1690,24 @@
         "ru": "Шрифты",
         "es": "Fuentes",
         "fr": "Polices"
+    },
+    "For 1 hour": {
+        "tr": "1 saat boyunca",
+        "ru": "На 1 час",
+        "es": "Durante 1 hora",
+        "fr": "Pendant 1 heure"
+    },
+    "For 2 hours": {
+        "tr": "2 saat boyunca",
+        "ru": "На 2 часа",
+        "es": "Durante 2 horas",
+        "fr": "Pendant 2 heures"
+    },
+    "For 30 minutes": {
+        "tr": "30 dakika boyunca",
+        "ru": "На 30 минут",
+        "es": "Durante 30 minutos",
+        "fr": "Pendant 30 minutes"
     },
     "Friend request from {user} has been revoked.": {
         "tr": "{user} kullanıcısının arkadaşlık isteği geri çekildi.",
@@ -1654,6 +1792,12 @@
         "ru": "Сдаться через (минуты)",
         "es": "Rendirse tras (minutos)",
         "fr": "Abandonner après (minutes)"
+    },
+    "Go back when someone moves you to another channel": {
+        "tr": "Biri seni başka bir kanala taşıdığında geri dön",
+        "ru": "Возвращаться, когда вас перемещают в другой канал",
+        "es": "Volver cuando alguien te mueva a otro canal",
+        "fr": "Revenir quand quelqu'un vous déplace dans un autre salon"
     },
     "Got it": {
         "tr": "Anladım",
@@ -1817,6 +1961,12 @@
         "es": "Máximo",
         "fr": "Maximum"
     },
+    "How long; leave it out to keep it on until you turn it off": {
+        "tr": "Ne kadar süre; sen kapatana kadar açık kalması için boş bırak",
+        "ru": "Как долго; не указывайте, чтобы режим работал до выключения",
+        "es": "Cuánto tiempo; déjalo vacío para mantenerlo hasta que lo desactives",
+        "fr": "Combien de temps ; laissez vide pour le garder jusqu'à ce que vous l'arrêtiez"
+    },
     "How many characters random names have": {
         "tr": "Rastgele adların kaç karakter olacağı",
         "ru": "Сколько символов в случайных именах",
@@ -1846,6 +1996,12 @@
         "ru": "Сколько снежинок падает одновременно",
         "es": "Cuántos copos caen a la vez",
         "fr": "Nombre de flocons qui tombent en même temps"
+    },
+    "How often the tag changes; Discord limits how fast it can": {
+        "tr": "Etiketin ne sıklıkla değiştiği; Discord ne kadar hızlı olabileceğini sınırlar",
+        "ru": "Как часто меняется тег; Discord ограничивает частоту",
+        "es": "Cada cuánto cambia la etiqueta; Discord limita lo rápido que puede",
+        "fr": "Fréquence de changement du tag ; Discord limite la vitesse possible"
     },
     "How the link looks in the message you send": {
         "tr": "Gönderdiğiniz mesajda bağlantının nasıl görüneceği",
@@ -1888,6 +2044,12 @@
         "ru": "ID",
         "es": "ID",
         "fr": "ID"
+    },
+    "IDs of the servers whose tags to rotate, separated by commas": {
+        "tr": "Etiketleri sırayla kullanılacak sunucuların kimlikleri, virgülle ayrılmış",
+        "ru": "ID серверов, чьи теги чередовать, через запятую",
+        "es": "ID de los servidores cuyas etiquetas alternar, separados por comas",
+        "fr": "ID des serveurs dont alterner les tags, séparés par des virgules"
     },
     "Icon": {
         "tr": "Simge",
@@ -2003,6 +2165,18 @@
         "es": "También en MD",
         "fr": "Aussi en messages privés"
     },
+    "In calls": {
+        "tr": "Aramalarda",
+        "ru": "В звонках",
+        "es": "En llamadas",
+        "fr": "Dans les appels"
+    },
+    "In servers": {
+        "tr": "Sunucularda",
+        "ru": "На серверах",
+        "es": "En servidores",
+        "fr": "Dans les serveurs"
+    },
     "In the open chat too": {
         "tr": "Açık sohbette de",
         "ru": "И в открытом чате",
@@ -2093,6 +2267,18 @@
         "es": "Es seguro",
         "fr": "C'est certain"
     },
+    "Join Them in {channel}": {
+        "tr": "{channel} kanalında onlara katıl",
+        "ru": "Присоединиться в {channel}",
+        "es": "Unirte a ellos en {channel}",
+        "fr": "Les rejoindre dans {channel}"
+    },
+    "Join a full voice channel as soon as someone leaves": {
+        "tr": "Dolu bir ses kanalına biri ayrılır ayrılmaz katıl",
+        "ru": "Зайти в заполненный голосовой канал, как только кто-то выйдет",
+        "es": "Únete a un canal de voz lleno en cuanto alguien salga",
+        "fr": "Rejoindre un salon vocal plein dès que quelqu'un part"
+    },
     "Join a random voice channel": {
         "tr": "Rastgele bir ses kanalına katıl",
         "ru": "Зайти в случайный голосовой канал",
@@ -2104,6 +2290,12 @@
         "ru": "Заходите в случайный голосовой канал командой /randomvoice",
         "es": "Únete a un canal de voz al azar con /randomvoice",
         "fr": "Rejoignez un salon vocal au hasard avec /randomvoice"
+    },
+    "Join a server voice channel first.": {
+        "tr": "Önce bir sunucu ses kanalına katıl.",
+        "ru": "Сначала зайдите в голосовой канал сервера.",
+        "es": "Primero únete a un canal de voz de un servidor.",
+        "fr": "Rejoignez d'abord un salon vocal de serveur."
     },
     "Join right away": {
         "tr": "Hemen katıl",
@@ -2141,11 +2333,47 @@
         "es": "Ir al mensaje",
         "fr": "Aller au message"
     },
+    "Jump to someone's last message here": {
+        "tr": "Birinin buradaki son mesajına git",
+        "ru": "Перейти к последнему сообщению человека здесь",
+        "es": "Ir al último mensaje de alguien aquí",
+        "fr": "Aller au dernier message de quelqu'un ici"
+    },
+    "Jump to the first or the latest message of a chat with /jumpto": {
+        "tr": "Bir sohbetin ilk ya da en son mesajına /jumpto ile git",
+        "ru": "Переходите к первому или последнему сообщению чата командой /jumpto",
+        "es": "Ve al primer o al último mensaje de un chat con /jumpto",
+        "fr": "Allez au premier ou au dernier message d'une discussion avec /jumpto"
+    },
+    "Jump to the last message of yourself or someone else in a chat with /lastactive": {
+        "tr": "Bir sohbette kendinin ya da başkasının son mesajına /lastactive ile git",
+        "ru": "Переходите к своему или чужому последнему сообщению в чате командой /lastactive",
+        "es": "Ve a tu último mensaje o al de otra persona en un chat con /lastactive",
+        "fr": "Allez à votre dernier message ou à celui de quelqu'un d'autre dans une discussion avec /lastactive"
+    },
+    "Jump to the start or the end of this chat": {
+        "tr": "Bu sohbetin başına ya da sonuna git",
+        "ru": "Перейти в начало или конец этого чата",
+        "es": "Ve al principio o al final de este chat",
+        "fr": "Aller au début ou à la fin de cette discussion"
+    },
+    "Keep pulling them": {
+        "tr": "Çekmeye devam et",
+        "ru": "Продолжать затягивать",
+        "es": "Seguir trayéndolo",
+        "fr": "Continuer à le ramener"
+    },
     "Keep role colors and only color names that would be the default color": {
         "tr": "Rol renklerini koru, yalnızca varsayılan renkte olacak adları renklendir",
         "ru": "Сохранять цвета ролей и красить только имена обычного цвета",
         "es": "Mantén los colores de rol y colorea solo los nombres que tendrían el color por defecto",
         "fr": "Garder les couleurs de rôle et ne colorer que les noms qui auraient la couleur par défaut"
+    },
+    "Keeps a list of the DMs you haven't answered yet, with a ghost for each": {
+        "tr": "Henüz yanıtlamadığın DM'lerin listesini her biri için bir hayaletle tutar",
+        "ru": "Ведёт список личных сообщений, на которые вы ещё не ответили, с призраком для каждого",
+        "es": "Lleva una lista de los MD que aún no has respondido, con un fantasma para cada uno",
+        "fr": "Tient la liste des messages privés auxquels vous n'avez pas encore répondu, avec un fantôme pour chacun"
     },
     "Keeps deleted messages in the chat and shows earlier versions of edited ones.": {
         "tr": "Silinen mesajları sohbette tutar ve düzenlenen mesajların önceki hâllerini gösterir.",
@@ -2188,6 +2416,12 @@
         "ru": "Логотип Last.fm",
         "es": "Logotipo de Last.fm",
         "fr": "Logo Last.fm"
+    },
+    "Latest message": {
+        "tr": "En son mesaj",
+        "ru": "Последнее сообщение",
+        "es": "Último mensaje",
+        "fr": "Dernier message"
     },
     "Leave empty to keep your own": {
         "tr": "Kendinizinkini korumak için boş bırakın",
@@ -2279,6 +2513,12 @@
         "es": "Cargador",
         "fr": "Chargeur"
     },
+    "Log deleted and edited messages": {
+        "tr": "Silinen ve düzenlenen mesajları kaydet",
+        "ru": "Записывать удалённые и изменённые сообщения",
+        "es": "Registrar mensajes borrados y editados",
+        "fr": "Enregistrer les messages supprimés et modifiés"
+    },
     "Log deleted messages": {
         "tr": "Silinen mesajları kaydet",
         "ru": "Записывать удалённые сообщения",
@@ -2290,6 +2530,18 @@
         "ru": "Записывать отредактированные сообщения",
         "es": "Registrar los mensajes editados",
         "fr": "Enregistrer les messages modifiés"
+    },
+    "Log friends added and removed": {
+        "tr": "Eklenen ve çıkarılan arkadaşları kaydet",
+        "ru": "Записывать добавленных и удалённых друзей",
+        "es": "Registrar amigos añadidos y eliminados",
+        "fr": "Enregistrer les amis ajoutés et retirés"
+    },
+    "Log servers you join and leave": {
+        "tr": "Katıldığın ve ayrıldığın sunucuları kaydet",
+        "ru": "Записывать серверы, в которые вы вступаете и из которых выходите",
+        "es": "Registrar los servidores a los que te unes y que dejas",
+        "fr": "Enregistrer les serveurs que vous rejoignez et quittez"
     },
     "Logged messages cleared": {
         "tr": "Kaydedilen mesajlar temizlendi",
@@ -2483,6 +2735,12 @@
         "es": "Formato de Moment.js, como HH:mm:ss, DD/MM/YYYY HH:mm o [Hoy a las] LT",
         "fr": "Format Moment.js, comme HH:mm:ss, DD/MM/YYYY HH:mm ou [Aujourd'hui à] LT"
     },
+    "Moved back to {channel}": {
+        "tr": "{channel} kanalına geri dönüldü",
+        "ru": "Возвращены в {channel}",
+        "es": "Has vuelto a {channel}",
+        "fr": "Retour dans {channel}"
+    },
     "Mute new events": {
         "tr": "Yeni etkinlikleri sessize al",
         "ru": "Отключать уведомления о новых событиях",
@@ -2512,6 +2770,12 @@
         "ru": "Назвать это устройство",
         "es": "Poner nombre a este dispositivo",
         "fr": "Nommer cet appareil"
+    },
+    "Never ghosted": {
+        "tr": "Asla listelenmeyecekler",
+        "ru": "Никогда не показывать",
+        "es": "Nunca en la lista",
+        "fr": "Jamais listés"
     },
     "Never hide my messages": {
         "tr": "Mesajlarımı asla gizleme",
@@ -2579,6 +2843,12 @@
         "es": "Todavía no se ha mencionado ninguna palabra clave",
         "fr": "Aucun mot-clé n'a encore été mentionné"
     },
+    "No messages from {user} here.": {
+        "tr": "Burada {user} kişisinden mesaj yok.",
+        "ru": "Здесь нет сообщений от {user}.",
+        "es": "Aquí no hay mensajes de {user}.",
+        "fr": "Aucun message de {user} ici."
+    },
     "No picture came back": {
         "tr": "Fotoğraf gelmedi",
         "ru": "Картинка не пришла",
@@ -2603,6 +2873,18 @@
         "es": "Nadie ha reseñado aún a este usuario.",
         "fr": "Personne n'a encore évalué cet utilisateur."
     },
+    "Nobody is waiting for an answer from you 👻": {
+        "tr": "Kimse senden yanıt beklemiyor 👻",
+        "ru": "Никто не ждёт от вас ответа 👻",
+        "es": "Nadie está esperando una respuesta tuya 👻",
+        "fr": "Personne n'attend de réponse de votre part 👻"
+    },
+    "Not group DMs": {
+        "tr": "Grup DM'leri hariç",
+        "ru": "Кроме групповых чатов",
+        "es": "Sin MD grupales",
+        "fr": "Pas les groupes privés"
+    },
     "Not on my messages": {
         "tr": "Benim mesajlarımda değil",
         "ru": "Не на моих сообщениях",
@@ -2614,6 +2896,18 @@
         "ru": "Не появлялся в сети с тех пор, как Endcord начал следить",
         "es": "No se ha visto conectado desde que Endcord empezó a vigilar",
         "fr": "Pas vu en ligne depuis qu'Endcord surveille"
+    },
+    "Note for {channel}": {
+        "tr": "{channel} için not",
+        "ru": "Заметка для {channel}",
+        "es": "Nota para {channel}",
+        "fr": "Note pour {channel}"
+    },
+    "Note saved.": {
+        "tr": "Not kaydedildi.",
+        "ru": "Заметка сохранена.",
+        "es": "Nota guardada.",
+        "fr": "Note enregistrée."
     },
     "Nothing has happened in voice channels yet": {
         "tr": "Ses kanallarında henüz bir şey olmadı",
@@ -2650,6 +2944,12 @@
         "ru": "Удаления, пока вы не в сети",
         "es": "Eliminaciones sin conexión",
         "fr": "Retraits hors ligne"
+    },
+    "Older events are removed": {
+        "tr": "Daha eski olaylar silinir",
+        "ru": "Более старые события удаляются",
+        "es": "Los eventos más antiguos se eliminan",
+        "fr": "Les événements plus anciens sont supprimés"
     },
     "On my messages too": {
         "tr": "Benim mesajlarımda da",
@@ -2692,6 +2992,12 @@
         "ru": "По одному в строке: ID пользователя = часовой пояс, например 123456789012345678 = Europe/Istanbul",
         "es": "Uno por línea: ID de usuario = zona horaria, como 123456789012345678 = Europe/Istanbul",
         "fr": "Un par ligne : ID utilisateur = fuseau horaire, comme 123456789012345678 = Europe/Istanbul"
+    },
+    "One switch for Do Not Disturb, for a while or until you turn it off, and back to your previous status when it ends": {
+        "tr": "Rahatsız Etmeyin için tek düğme: bir süreliğine ya da sen kapatana kadar; bittiğinde önceki durumuna döner",
+        "ru": "Одна кнопка для режима «Не беспокоить» — на время или до выключения, а потом возврат к прежнему статусу",
+        "es": "Un solo interruptor para No molestar, durante un rato o hasta que lo apagues, y vuelta a tu estado anterior al terminar",
+        "fr": "Un seul interrupteur pour Ne pas déranger, pour un moment ou jusqu'à ce que vous l'arrêtiez, puis retour à votre statut précédent"
     },
     "Online now": {
         "tr": "Şu an çevrimiçi",
@@ -2771,6 +3077,12 @@
         "es": "Solo estos amigos",
         "fr": "Seulement ces amis"
     },
+    "Only you see it. Leave it empty to delete the note.": {
+        "tr": "Yalnızca sen görürsün. Notu silmek için boş bırak.",
+        "ru": "Видите только вы. Оставьте пустым, чтобы удалить заметку.",
+        "es": "Solo la ves tú. Déjala vacía para borrar la nota.",
+        "fr": "Vous seul la voyez. Laissez vide pour supprimer la note."
+    },
     "Only you see these changes. Clear them before you edit your real profile, so they don't end up in it.": {
         "tr": "Bu değişiklikleri yalnızca siz görürsünüz. Gerçek profilinizi düzenlemeden önce bunları temizleyin, yoksa profilinize geçebilirler.",
         "ru": "Эти изменения видите только вы. Очистите их перед редактированием настоящего профиля, чтобы они туда не попали.",
@@ -2782,6 +3094,12 @@
         "ru": "Открыть ссылку на стикер",
         "es": "Abrir enlace del sticker",
         "fr": "Ouvrir le lien de l'autocollant"
+    },
+    "Open a chat and use /note or the chat bar button to write one": {
+        "tr": "Not yazmak için bir sohbet aç ve /note ya da sohbet çubuğu düğmesini kullan",
+        "ru": "Откройте чат и используйте /note или кнопку в панели чата, чтобы написать заметку",
+        "es": "Abre un chat y usa /note o el botón de la barra del chat para escribir una",
+        "fr": "Ouvrez une discussion et utilisez /note ou le bouton de la barre pour en écrire une"
     },
     "Open in Browser": {
         "tr": "Tarayıcıda aç",
@@ -2855,6 +3173,12 @@
         "es": "Patrón",
         "fr": "Motif"
     },
+    "Pause (seconds)": {
+        "tr": "Duraklama (saniye)",
+        "ru": "Пауза (секунды)",
+        "es": "Pausa (segundos)",
+        "fr": "Pause (secondes)"
+    },
     "Pause or resume this server's invites with no time limit": {
         "tr": "Bu sunucunun davetlerini süre sınırı olmadan duraklat veya devam ettir",
         "ru": "Приостановить или возобновить приглашения на этот сервер без ограничения по времени",
@@ -2872,6 +3196,18 @@
         "ru": "Здесь появятся те, кому вы пишете и кто пишет вам",
         "es": "Aquí aparecerán las personas a las que escribes y que te escriben",
         "fr": "Les personnes à qui vous écrivez et qui vous écrivent apparaîtront ici"
+    },
+    "Pick a voice channel to move them to.": {
+        "tr": "Onları taşımak için bir ses kanalı seç.",
+        "ru": "Выберите голосовой канал, куда переместить.",
+        "es": "Elige un canal de voz al que moverlos.",
+        "fr": "Choisissez un salon vocal où les déplacer."
+    },
+    "Pick a voice channel.": {
+        "tr": "Bir ses kanalı seç.",
+        "ru": "Выберите голосовой канал.",
+        "es": "Elige un canal de voz.",
+        "fr": "Choisissez un salon vocal."
     },
     "Pick your animal": {
         "tr": "Hayvanınızı seçin",
@@ -2915,6 +3251,18 @@
         "es": "Los plugins de fuentes no verificadas pueden ejecutar código sin revisar en esta app sin que lo sepas.",
         "fr": "Les plugins installés depuis des sources non vérifiées peuvent exécuter du code non contrôlé dans l'application à votre insu."
     },
+    "Plugins load in the background, so a slow one doesn't hold Discord up. Only the plugins you turn on are loaded.": {
+        "tr": "Eklentiler arka planda yüklenir, böylece yavaş biri Discord'u bekletmez. Yalnızca açtığın eklentiler yüklenir.",
+        "ru": "Плагины загружаются в фоне, поэтому медленный не задерживает Discord. Загружаются только включённые плагины.",
+        "es": "Los plugins se cargan en segundo plano, así que uno lento no retrasa Discord. Solo se cargan los que activas.",
+        "fr": "Les plugins se chargent en arrière-plan, un plugin lent ne retarde donc pas Discord. Seuls ceux que vous activez sont chargés."
+    },
+    "Plugins started": {
+        "tr": "Başlatılan eklentiler",
+        "ru": "Запущено плагинов",
+        "es": "Plugins iniciados",
+        "fr": "Plugins démarrés"
+    },
     "Popular first": {
         "tr": "Önce popüler olanlar",
         "ru": "Сначала популярные",
@@ -2932,6 +3280,12 @@
         "ru": "Предпочитать темы Nitro",
         "es": "Preferir temas de Nitro",
         "fr": "Préférer les thèmes Nitro"
+    },
+    "Preset name": {
+        "tr": "Ön ayar adı",
+        "ru": "Название пресета",
+        "es": "Nombre del preajuste",
+        "fr": "Nom du préréglage"
     },
     "Primary color, like #ff66aa": {
         "tr": "Ana renk, örneğin #ff66aa",
@@ -2951,11 +3305,47 @@
         "es": "Guarda mensajes en marcadores privados desde el menú del mensaje (más allá del límite de 50 fijados de Discord) y encuéntralos en los ajustes del plugin o con /bookmarks",
         "fr": "Ajoutez des messages à vos favoris privés depuis le menu du message (au-delà de la limite de 50 épinglés de Discord), puis retrouvez-les dans les paramètres du plugin ou avec /bookmarks"
     },
+    "Profile Presets": {
+        "tr": "Profil Ön Ayarları",
+        "ru": "Пресеты профиля",
+        "es": "Preajustes de perfil",
+        "fr": "Préréglages de profil"
+    },
+    "Profile effects": {
+        "tr": "Profil efektleri",
+        "ru": "Эффекты профиля",
+        "es": "Efectos de perfil",
+        "fr": "Effets de profil"
+    },
+    "Profile updated": {
+        "tr": "Profil güncellendi",
+        "ru": "Профиль обновлён",
+        "es": "Perfil actualizado",
+        "fr": "Profil mis à jour"
+    },
+    "Pull Into My Voice Channel": {
+        "tr": "Ses Kanalıma Çek",
+        "ru": "Затянуть в мой голосовой канал",
+        "es": "Traer a mi canal de voz",
+        "fr": "Ramener dans mon salon vocal"
+    },
+    "Pull a message's author into your voice channel from the message menu, and keep pulling them if you like": {
+        "tr": "Bir mesajın yazarını mesaj menüsünden ses kanalına çek, istersen çekmeye devam et",
+        "ru": "Затягивайте автора сообщения в свой голосовой канал из меню сообщения и при желании продолжайте затягивать",
+        "es": "Trae al autor de un mensaje a tu canal de voz desde el menú del mensaje y, si quieres, sigue trayéndolo",
+        "fr": "Ramenez l'auteur d'un message dans votre salon vocal depuis le menu du message, et continuez si vous le souhaitez"
+    },
     "Put 👏 claps 👏 between 👏 words": {
         "tr": "Kelimelerin 👏 arasına 👏 alkış 👏 koy",
         "ru": "Ставит 👏 хлопки 👏 между 👏 словами",
         "es": "Pon 👏 aplausos 👏 entre 👏 palabras",
         "fr": "Mettre 👏 des 👏 applaudissements 👏 entre 👏 les mots"
+    },
+    "Puts you back in your voice channel when someone moves or disconnects you": {
+        "tr": "Biri seni taşıdığında ya da bağlantını kestiğinde seni ses kanalına geri koyar",
+        "ru": "Возвращает вас в голосовой канал, когда кто-то перемещает или отключает вас",
+        "es": "Te devuelve a tu canal de voz cuando alguien te mueve o te desconecta",
+        "fr": "Vous remet dans votre salon vocal quand quelqu'un vous déplace ou vous déconnecte"
     },
     "Question": {
         "tr": "Soru",
@@ -3046,6 +3436,12 @@
         "ru": "Регулярные выражения",
         "es": "Expresiones regulares",
         "fr": "Expressions régulières"
+    },
+    "Rejoin when someone disconnects you": {
+        "tr": "Biri bağlantını kestiğinde yeniden katıl",
+        "ru": "Переподключаться, когда вас отключают",
+        "es": "Volver a entrar cuando alguien te desconecte",
+        "fr": "Revenir quand quelqu'un vous déconnecte"
     },
     "Rejoined {channel}": {
         "tr": "{channel} kanalına yeniden katılındı",
@@ -3148,6 +3544,18 @@
         "ru": "Убрать метку",
         "es": "Quitar etiqueta",
         "fr": "Retirer l'étiquette"
+    },
+    "Remove avatar decorations": {
+        "tr": "Avatar süslemelerini kaldır",
+        "ru": "Убрать украшения аватаров",
+        "es": "Quitar decoraciones de avatar",
+        "fr": "Retirer les décorations d'avatar"
+    },
+    "Remove profile animations": {
+        "tr": "Profil animasyonlarını kaldır",
+        "ru": "Убрать анимации профиля",
+        "es": "Quitar animaciones de perfil",
+        "fr": "Retirer les animations de profil"
     },
     "Removed invisible characters from your message": {
         "tr": "Mesajınızdaki görünmez karakterler kaldırıldı",
@@ -3269,6 +3677,12 @@
         "es": "Igual que Discord",
         "fr": "Comme Discord"
     },
+    "Save Current Profile": {
+        "tr": "Şu Anki Profili Kaydet",
+        "ru": "Сохранить текущий профиль",
+        "es": "Guardar perfil actual",
+        "fr": "Enregistrer le profil actuel"
+    },
     "Save Current Status": {
         "tr": "Şu Anki Durumu Kaydet",
         "ru": "Сохранить текущий статус",
@@ -3280,6 +3694,12 @@
         "ru": "Сохраните текущий статус, чтобы потом установить его в одно касание",
         "es": "Guarda tu estado actual para volver a ponerlo luego con un toque",
         "fr": "Enregistrez votre statut actuel pour le remettre plus tard d'un seul geste"
+    },
+    "Save your display name, About Me and pronouns to switch back to them in one tap": {
+        "tr": "Görünen adını, Hakkımda bölümünü ve zamirlerini kaydet; tek dokunuşla geri dön",
+        "ru": "Сохраните отображаемое имя, «Обо мне» и местоимения, чтобы вернуть их одним касанием",
+        "es": "Guarda tu nombre visible, Acerca de mí y pronombres para volver a ellos con un toque",
+        "fr": "Enregistrez votre nom d'affichage, votre À propos de moi et vos pronoms pour y revenir d'un geste"
     },
     "Saved your current status": {
         "tr": "Şu anki durumunuz kaydedildi",
@@ -3346,6 +3766,12 @@
         "ru": "Узнайте, у кого есть роль, командой /inrole",
         "es": "Mira quién tiene un rol con /inrole",
         "fr": "Voyez qui a un rôle avec /inrole"
+    },
+    "See who is waiting for your answer (only you see it)": {
+        "tr": "Kimin yanıtını beklediğini gör (yalnızca sen görürsün)",
+        "ru": "Посмотреть, кто ждёт вашего ответа (видите только вы)",
+        "es": "Mira quién espera tu respuesta (solo lo ves tú)",
+        "fr": "Voir qui attend votre réponse (vous seul le voyez)"
     },
     "See your logged-in devices with exact times and your own names for them, and get told about new logins": {
         "tr": "Giriş yapılmış cihazlarını tam zamanları ve onlara verdiğin adlarla gör, yeni girişlerden haberdar ol",
@@ -3617,6 +4043,12 @@
         "es": "Mostrar u ocultar las entradas de Endcord en los ajustes de Discord",
         "fr": "Afficher ou masquer les entrées d'Endcord dans les paramètres de Discord"
     },
+    "Show or write this chat's private note": {
+        "tr": "Bu sohbetin gizli notunu göster ya da yaz",
+        "ru": "Показать или написать личную заметку этого чата",
+        "es": "Muestra o escribe la nota privada de este chat",
+        "fr": "Afficher ou écrire la note privée de cette discussion"
+    },
     "Show the mod's name": {
         "tr": "Modun adını göster",
         "ru": "Показывать название мода",
@@ -3629,11 +4061,23 @@
         "es": "Mostrar la zona horaria",
         "fr": "Afficher le fuseau horaire"
     },
+    "Show the voice server you're connected to (only you see it)": {
+        "tr": "Bağlı olduğun ses sunucusunu göster (yalnızca sen görürsün)",
+        "ru": "Показать голосовой сервер, к которому вы подключены (видите только вы)",
+        "es": "Muestra el servidor de voz al que estás conectado (solo lo ves tú)",
+        "fr": "Afficher le serveur vocal auquel vous êtes connecté (vous seul le voyez)"
+    },
     "Show typing in DMs": {
         "tr": "DM'lerde yazdığını göster",
         "ru": "Показывать набор в личных сообщениях",
         "es": "Mostrar que escribes en MD",
         "fr": "Montrer la saisie en MP"
+    },
+    "Show when I open the chat": {
+        "tr": "Sohbeti açtığımda göster",
+        "ru": "Показывать при открытии чата",
+        "es": "Mostrar al abrir el chat",
+        "fr": "Afficher quand j'ouvre la discussion"
     },
     "Show your own devices too": {
         "tr": "Kendi cihazlarınızı da göster",
@@ -3647,11 +4091,29 @@
         "es": "Se muestra antes de la firma, como > para una cita",
         "fr": "Affiché avant la signature, comme > pour une citation"
     },
+    "Shows a chat's note as a notice when you open it": {
+        "tr": "Bir sohbetin notunu sohbeti açtığında bildirim olarak gösterir",
+        "ru": "Показывает заметку чата уведомлением при его открытии",
+        "es": "Muestra la nota de un chat como aviso al abrirlo",
+        "fr": "Affiche la note d'une discussion en notification quand vous l'ouvrez"
+    },
     "Shows a user's highest role next to their name in chat messages": {
         "tr": "Bir kullanıcının en yüksek rolünü sohbet mesajlarında adının yanında gösterir",
         "ru": "Показывает высшую роль пользователя рядом с его именем в сообщениях",
         "es": "Muestra el rol más alto de un usuario junto a su nombre en los mensajes del chat",
         "fr": "Affiche le rôle le plus élevé d'un utilisateur à côté de son nom dans les messages"
+    },
+    "Shows an indicator on messages from people in a voice channel, and lets you join them from the message menu": {
+        "tr": "Ses kanalındaki kişilerin mesajlarında bir gösterge gösterir ve mesaj menüsünden onlara katılmanı sağlar",
+        "ru": "Отмечает сообщения людей, находящихся в голосовом канале, и позволяет присоединиться к ним из меню сообщения",
+        "es": "Marca los mensajes de quienes están en un canal de voz y te deja unirte a ellos desde el menú del mensaje",
+        "fr": "Marque les messages des personnes en salon vocal et vous permet de les rejoindre depuis le menu du message"
+    },
+    "Shows how long you've spent in voice with each user": {
+        "tr": "Her kullanıcıyla seste ne kadar zaman geçirdiğini gösterir",
+        "ru": "Показывает, сколько времени вы провели в голосовых с каждым пользователем",
+        "es": "Muestra cuánto tiempo has pasado en voz con cada usuario",
+        "fr": "Affiche combien de temps vous avez passé en vocal avec chaque utilisateur"
     },
     "Shows how much longer a user's timeout will last next to their messages": {
         "tr": "Bir kullanıcının zaman aşımının ne kadar süreceğini mesajlarının yanında gösterir",
@@ -3664,6 +4126,12 @@
         "ru": "Показывает или скрывает фоновое изображение темы в чате",
         "es": "Muestra u oculta la imagen de fondo del tema en el chat",
         "fr": "Affiche ou masque l'image d'arrière-plan du thème dans la discussion"
+    },
+    "Shows the Discord voice server you're connected to and its ping": {
+        "tr": "Bağlı olduğun Discord ses sunucusunu ve gecikmesini gösterir",
+        "ru": "Показывает голосовой сервер Discord, к которому вы подключены, и его пинг",
+        "es": "Muestra el servidor de voz de Discord al que estás conectado y su ping",
+        "fr": "Affiche le serveur vocal Discord auquel vous êtes connecté et son ping"
     },
     "Shows the local time of the users you choose next to their messages": {
         "tr": "Seçtiğin kullanıcıların yerel saatini mesajlarının yanında gösterir",
@@ -3869,6 +4337,18 @@
         "es": "Seguir mostrando que escribes en mensajes directos y grupos",
         "fr": "Continuer à montrer votre saisie dans les messages privés et les groupes"
     },
+    "Still working on the last one.": {
+        "tr": "Hâlâ bir öncekiyle uğraşılıyor.",
+        "ru": "Предыдущая команда ещё выполняется.",
+        "es": "Todavía estoy con la anterior.",
+        "fr": "La précédente est encore en cours."
+    },
+    "Stop Pulling Into My Voice Channel": {
+        "tr": "Ses Kanalıma Çekmeyi Bırak",
+        "ru": "Перестать затягивать в мой голосовой канал",
+        "es": "Dejar de traer a mi canal de voz",
+        "fr": "Arrêter de ramener dans mon salon vocal"
+    },
     "Stop silencing this user": {
         "tr": "Bu kullanıcıyı susturmayı bırak",
         "ru": "Больше не заглушать этого пользователя",
@@ -3971,6 +4451,12 @@
         "es": "Avisarme",
         "fr": "Me prévenir"
     },
+    "Tell me on connect": {
+        "tr": "Bağlanınca söyle",
+        "ru": "Сообщать при подключении",
+        "es": "Avisarme al conectar",
+        "fr": "Me prévenir à la connexion"
+    },
     "Tell me when it's sent": {
         "tr": "Gönderildiğinde bana söyle",
         "ru": "Сообщать об отправке",
@@ -3982,6 +4468,18 @@
         "ru": "Сообщать, когда что-то удалено",
         "es": "Avisarme cuando se quite algo",
         "fr": "Me prévenir quand quelque chose est retiré"
+    },
+    "Tells you when someone in your voice channel shows as muted or deafened but is talking": {
+        "tr": "Ses kanalındaki biri susturulmuş ya da sağırlaştırılmış görünüp konuşuyorsa sana söyler",
+        "ru": "Сообщает, когда кто-то в вашем голосовом канале отображается заглушённым, но говорит",
+        "es": "Te avisa cuando alguien de tu canal de voz aparece silenciado o ensordecido pero está hablando",
+        "fr": "Vous prévient quand quelqu'un de votre salon vocal apparaît muet ou sourd mais parle"
+    },
+    "Tells you when someone in your voice channel turns their camera on or off": {
+        "tr": "Ses kanalındaki biri kamerasını açtığında ya da kapattığında sana söyler",
+        "ru": "Сообщает, когда кто-то в вашем голосовом канале включает или выключает камеру",
+        "es": "Te avisa cuando alguien de tu canal de voz enciende o apaga su cámara",
+        "fr": "Vous prévient quand quelqu'un de votre salon vocal active ou coupe sa caméra"
     },
     "Text Replace Rules": {
         "tr": "Metin Değiştirme Kuralları",
@@ -4079,6 +4577,12 @@
         "es": "El nombre que se usa cuando se elige el nombre fijo",
         "fr": "Le nom utilisé quand le nom fixe est choisi"
     },
+    "The new note; leave it out to see the current one": {
+        "tr": "Yeni not; şu ankini görmek için boş bırak",
+        "ru": "Новая заметка; не указывайте, чтобы увидеть текущую",
+        "es": "La nota nueva; déjala vacía para ver la actual",
+        "fr": "La nouvelle note ; laissez vide pour voir l'actuelle"
+    },
     "The regex pattern": {
         "tr": "Regex deseni",
         "ru": "Регулярное выражение",
@@ -4102,6 +4606,18 @@
         "ru": "Заменяемый текст",
         "es": "El texto que reemplazar",
         "fr": "Le texte à remplacer"
+    },
+    "The voice channel": {
+        "tr": "Ses kanalı",
+        "ru": "Голосовой канал",
+        "es": "El canal de voz",
+        "fr": "Le salon vocal"
+    },
+    "The voice channel to move them to": {
+        "tr": "Taşınacakları ses kanalı",
+        "ru": "Голосовой канал, куда переместить",
+        "es": "El canal de voz al que moverlos",
+        "fr": "Le salon vocal où les déplacer"
     },
     "Theme applied": {
         "tr": "Tema uygulandı",
@@ -4138,6 +4654,18 @@
         "ru": "Кого шлёпнуть",
         "es": "A quién abofetear",
         "fr": "Ce qu'il faut gifler"
+    },
+    "This chat has no messages.": {
+        "tr": "Bu sohbette mesaj yok.",
+        "ru": "В этом чате нет сообщений.",
+        "es": "Este chat no tiene mensajes.",
+        "fr": "Cette discussion n'a aucun message."
+    },
+    "This chat has no note yet.": {
+        "tr": "Bu sohbetin henüz notu yok.",
+        "ru": "У этого чата пока нет заметки.",
+        "es": "Este chat aún no tiene nota.",
+        "fr": "Cette discussion n'a pas encore de note."
     },
     "This file is too big to copy": {
         "tr": "Bu dosya kopyalanamayacak kadar büyük",
@@ -4193,6 +4721,24 @@
         "es": "Hora",
         "fr": "Heure"
     },
+    "Time in Voice Together": {
+        "tr": "Birlikte Seste Geçen Süre",
+        "ru": "Время в голосовых вместе",
+        "es": "Tiempo en voz juntos",
+        "fr": "Temps passé ensemble en vocal"
+    },
+    "Time in voice together: {time}": {
+        "tr": "Birlikte seste geçen süre: {time}",
+        "ru": "Время в голосовых вместе: {time}",
+        "es": "Tiempo en voz juntos: {time}",
+        "fr": "Temps ensemble en vocal : {time}"
+    },
+    "Time you spend in voice channels with people will show up here": {
+        "tr": "İnsanlarla ses kanallarında geçirdiğin süre burada görünecek",
+        "ru": "Здесь появится время, проведённое с людьми в голосовых каналах",
+        "es": "Aquí aparecerá el tiempo que pasas con gente en canales de voz",
+        "fr": "Le temps passé avec des gens dans les salons vocaux apparaîtra ici"
+    },
     "Timed out, {time} left": {
         "tr": "Zaman aşımında, {time} kaldı",
         "ru": "Тайм-аут, осталось {time}",
@@ -4234,6 +4780,12 @@
         "ru": "Завтра",
         "es": "Mañana",
         "fr": "Demain"
+    },
+    "Top of the screen": {
+        "tr": "Ekranın üstü",
+        "ru": "Вверху экрана",
+        "es": "Parte superior de la pantalla",
+        "fr": "En haut de l'écran"
     },
     "Translate messages from the message menu, translate what you send, or use /translate (Google Translate)": {
         "tr": "Mesajları mesaj menüsünden çevir, gönderdiklerini çevir ya da /translate kullan (Google Çeviri)",
@@ -4294,6 +4846,12 @@
         "ru": "Повторить",
         "es": "Reintentar",
         "fr": "Réessayer"
+    },
+    "Turn Focus Mode on or off": {
+        "tr": "Odak Modunu aç veya kapat",
+        "ru": "Включить или выключить режим фокуса",
+        "es": "Activa o desactiva el modo concentración",
+        "fr": "Activer ou désactiver le mode concentration"
     },
     "Turn automatic translation on or off for this channel": {
         "tr": "Bu kanal için otomatik çeviriyi aç veya kapat",
@@ -4391,6 +4949,12 @@
         "es": "Mostrar inserciones",
         "fr": "Afficher les intégrations"
     },
+    "Until I turn it off": {
+        "tr": "Ben kapatana kadar",
+        "ru": "Пока не выключу",
+        "es": "Hasta que lo desactive",
+        "fr": "Jusqu'à ce que je l'arrête"
+    },
     "Unverified plugin": {
         "tr": "Doğrulanmamış eklenti",
         "ru": "Непроверенный плагин",
@@ -4444,6 +5008,12 @@
         "ru": "ID пользователей (через запятую), для которых всё наоборот",
         "es": "ID de usuarios (separados por comas) que se tratan al revés",
         "fr": "ID d'utilisateurs (séparés par des virgules) traités à l'inverse"
+    },
+    "User IDs separated by commas": {
+        "tr": "Virgülle ayrılmış kullanıcı kimlikleri",
+        "ru": "ID пользователей через запятую",
+        "es": "ID de usuarios separados por comas",
+        "fr": "ID d'utilisateurs séparés par des virgules"
     },
     "User IDs whose messages aren't logged, separated by commas": {
         "tr": "Mesajları kaydedilmeyecek kullanıcı kimlikleri, virgülle ayrılmış",
@@ -4505,6 +5075,18 @@
         "es": "Ver a tamaño completo",
         "fr": "Voir en taille réelle"
     },
+    "Waiting for Your Answer": {
+        "tr": "Yanıtını Bekleyenler",
+        "ru": "Ждут вашего ответа",
+        "es": "Esperando tu respuesta",
+        "fr": "En attente de votre réponse"
+    },
+    "Waiting for a slot in <#{channel}>.": {
+        "tr": "<#{channel}> kanalında yer bekleniyor.",
+        "ru": "Ожидание места в <#{channel}>.",
+        "es": "Esperando un hueco en <#{channel}>.",
+        "fr": "En attente d'une place dans <#{channel}>."
+    },
     "Watch for new logins": {
         "tr": "Yeni girişleri izle",
         "ru": "Следить за новыми входами",
@@ -4553,6 +5135,18 @@
         "es": "¿Qué tienes en mente?",
         "fr": "À quoi pensez-vous ?"
     },
+    "When I'm disconnected": {
+        "tr": "Bağlantım kesildiğinde",
+        "ru": "Когда меня отключают",
+        "es": "Cuando me desconecten",
+        "fr": "Quand on me déconnecte"
+    },
+    "When I'm moved": {
+        "tr": "Taşındığımda",
+        "ru": "Когда меня перемещают",
+        "es": "Cuando me muevan",
+        "fr": "Quand on me déplace"
+    },
     "When was someone last online": {
         "tr": "Birinin en son ne zaman çevrimiçi olduğu",
         "ru": "Когда человек последний раз был в сети",
@@ -4564,6 +5158,18 @@
         "ru": "Когда, например 10m, 2h, 1d или 1h30m",
         "es": "Cuándo, como 10m, 2h, 1d o 1h30m",
         "fr": "Quand, comme 10m, 2h, 1d ou 1h30m"
+    },
+    "Where the timer is": {
+        "tr": "Sayacın yeri",
+        "ru": "Где показывать таймер",
+        "es": "Dónde está el temporizador",
+        "fr": "Emplacement du minuteur"
+    },
+    "Where to go": {
+        "tr": "Nereye gidilecek",
+        "ru": "Куда перейти",
+        "es": "A dónde ir",
+        "fr": "Où aller"
     },
     "Whether to hide or not that you're typing (default is toggle)": {
         "tr": "Yazdığınızın gizlenip gizlenmeyeceği (varsayılan: değiştir)",
@@ -4600,6 +5206,12 @@
         "ru": "Чей аватар (по умолчанию ваш)",
         "es": "De quién es el avatar (por defecto, el tuyo)",
         "fr": "L'avatar de qui (vous par défaut)"
+    },
+    "Whose message (defaults to you)": {
+        "tr": "Kimin mesajı (varsayılan olarak sen)",
+        "ru": "Чьё сообщение (по умолчанию ваше)",
+        "es": "De quién es el mensaje (por defecto, tuyo)",
+        "fr": "Le message de qui (vous par défaut)"
     },
     "Words to leave lowercase": {
         "tr": "Küçük harf kalacak kelimeler",
@@ -4649,6 +5261,12 @@
         "es": "No puedes insertar enlaces en este canal, así que el emoji o sticker se enviará como enlace normal. ¿Enviarlo de todos modos?",
         "fr": "Vous ne pouvez pas intégrer de liens dans ce salon : l'emoji ou l'autocollant sera envoyé sous forme de lien simple. L'envoyer quand même ?"
     },
+    "You don't have permission to do that here.": {
+        "tr": "Burada bunu yapma iznin yok.",
+        "ru": "У вас нет прав на это здесь.",
+        "es": "No tienes permiso para hacer eso aquí.",
+        "fr": "Vous n'avez pas la permission de faire ça ici."
+    },
     "You have no active friend invites!": {
         "tr": "Etkin arkadaş davetiniz yok!",
         "ru": "У вас нет активных приглашений в друзья!",
@@ -4672,6 +5290,18 @@
         "ru": "У вас нет запланированных сообщений",
         "es": "No tienes mensajes programados",
         "fr": "Vous n'avez aucun message programmé"
+    },
+    "You joined {server}": {
+        "tr": "{server} sunucusuna katıldın",
+        "ru": "Вы вступили в {server}",
+        "es": "Te uniste a {server}",
+        "fr": "Vous avez rejoint {server}"
+    },
+    "You left {server}": {
+        "tr": "{server} sunucusundan ayrıldın",
+        "ru": "Вы покинули {server}",
+        "es": "Saliste de {server}",
+        "fr": "Vous avez quitté {server}"
     },
     "You rolled a {roll}!": {
         "tr": "{roll} attınız!",
@@ -4708,6 +5338,12 @@
         "ru": "Вы в безопасном режиме, поэтому темы пока отключены. {enabled, select, true {Если проблему вызывает тема, её можно отключить ниже.} other {}}",
         "es": "Estás en modo seguro, así que los temas están desactivados por ahora. {enabled, select, true {Si un tema causa el problema, puedes desactivarlo abajo.} other {}}",
         "fr": "Vous êtes en mode sans échec, les thèmes sont donc désactivés pour l'instant. {enabled, select, true {Si un thème cause le problème, vous pouvez le désactiver ci-dessous.} other {}}"
+    },
+    "You're not connected to a voice channel.": {
+        "tr": "Bir ses kanalına bağlı değilsin.",
+        "ru": "Вы не подключены к голосовому каналу.",
+        "es": "No estás conectado a un canal de voz.",
+        "fr": "Vous n'êtes connecté à aucun salon vocal."
     },
     "You're not listening to any music.": {
         "tr": "Şu anda müzik dinlemiyorsunuz.",
@@ -4991,6 +5627,12 @@
         "es": "{count} mensajes",
         "fr": "{count} messages"
     },
+    "{count} plugins": {
+        "tr": "{count} eklenti",
+        "ru": "Плагинов: {count}",
+        "es": "{count} plugins",
+        "fr": "{count} plugins"
+    },
     "{count} words": {
         "tr": "{count} kelime",
         "ru": "Слов: {count}",
@@ -5039,6 +5681,24 @@
         "es": "Actualizaciones de {name} {update, select, true {activadas} other {desactivadas}}",
         "fr": "Mises à jour de {name} {update, select, true {activées} other {désactivées}}"
     },
+    "{user} is no longer your friend": {
+        "tr": "{user} artık arkadaşın değil",
+        "ru": "{user} больше не ваш друг",
+        "es": "{user} ya no es tu amigo",
+        "fr": "{user} n'est plus votre ami"
+    },
+    "{user} is now your friend": {
+        "tr": "{user} artık arkadaşın",
+        "ru": "{user} теперь ваш друг",
+        "es": "{user} ahora es tu amigo",
+        "fr": "{user} est maintenant votre ami"
+    },
+    "{user} is typing": {
+        "tr": "{user} yazıyor",
+        "ru": "{user} печатает",
+        "es": "{user} está escribiendo",
+        "fr": "{user} est en train d'écrire"
+    },
     "{user} joined {channel}": {
         "tr": "{user}, {channel} kanalına katıldı",
         "ru": "{user} зашёл в {channel}",
@@ -5074,6 +5734,12 @@
         "ru": "{user} удалил(а) вас из друзей.",
         "es": "{user} te eliminó de sus amigos.",
         "fr": "{user} vous a retiré de ses amis."
+    },
+    "{user} shows as muted but is talking": {
+        "tr": "{user} susturulmuş görünüyor ama konuşuyor",
+        "ru": "{user} отображается заглушённым, но говорит",
+        "es": "{user} aparece silenciado pero está hablando",
+        "fr": "{user} apparaît muet mais parle"
     },
     "{user} started sharing their screen": {
         "tr": "{user} ekranını paylaşmaya başladı",

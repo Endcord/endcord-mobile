@@ -33,7 +33,7 @@ export const currentUserId = (): string | undefined => getStore("UserStore")?.ge
  * object to merge into it.
  */
 export function onAction<P extends Record<string, any> = Record<string, any>>(type: string, cb: (payload: P & { type: string; }) => unknown, options?: { first?: boolean; }) {
-    return intercept(payload => payload.type === type ? cb(payload as any) : undefined, options);
+    return intercept(payload => cb(payload as any), { ...options, type });
 }
 
 /** Runs after Discord has handled the action */

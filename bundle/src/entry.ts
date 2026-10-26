@@ -5,6 +5,9 @@ const { instead } = require("spitroast");
 // @ts-ignore - window is defined later in the bundle, so we assign it early
 globalThis.window = globalThis;
 
+// When the bundle started running, for StartupTimings
+(globalThis as any).__ENDCORD_TIMINGS__ ??= { loaded: Date.now(), plugins: {} };
+
 async function initializeRevenge() {
     try {
         // Make 'freeze' and 'seal' do nothing
@@ -43,10 +46,10 @@ if (typeof window.__r === "undefined") {
     const unpatches: Array<() => void> = [];
 
     const deferMethodExecution = (
-        object: any, 
-        method: string, 
-        condition?: (...args: any[]) => boolean, 
-        resume?: (queue: DeferredQueue) => void, 
+        object: any,
+        method: string,
+        condition?: (...args: any[]) => boolean,
+        resume?: (queue: DeferredQueue) => void,
         returnWith?: (queue: DeferredQueue) => any
     ) => {
         const restore = instead(method, object, function (this: any, args: any[], original: any) {
@@ -61,7 +64,7 @@ if (typeof window.__r === "undefined") {
         });
 
         unpatches.push(restore);
-    }
+    };
 
     const resumeDeferred = () => {
         for (const queue of deferredCalls) {
@@ -75,7 +78,7 @@ if (typeof window.__r === "undefined") {
         }
 
         deferredCalls.length = 0;
-    }
+    };
 
     const onceIndexRequired = (originalRequire: Metro.RequireFn) => {
         // We hold calls from the native side
@@ -103,7 +106,7 @@ if (typeof window.__r === "undefined") {
 
         const startDiscord = async () => {
             await initializeRevenge();
-            
+
             for (const unpatch of unpatches) unpatch();
             unpatches.length = 0;
 
@@ -112,7 +115,7 @@ if (typeof window.__r === "undefined") {
         };
 
         startDiscord();
-    }
+    };
 
     Object.defineProperties(globalThis, {
         __r: {

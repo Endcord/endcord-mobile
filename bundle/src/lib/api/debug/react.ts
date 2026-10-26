@@ -1,7 +1,8 @@
-import { logger } from "@lib/utils/logger";
-import { getReactDevToolsProp, isReactDevToolsPreloaded } from "../native/loader";
 import { showToast } from "@lib/ui/toasts";
+import { logger } from "@lib/utils/logger";
+
 import { findAssetId } from "../assets";
+import { getReactDevToolsProp, isReactDevToolsPreloaded } from "../native/loader";
 
 const rdtPort = 8097;
 
@@ -27,22 +28,22 @@ export function connectRdt(url: string, quiet?: boolean) {
     const base = url.split(":").slice(0, -1);
     const ws = (rdtClient = new WebSocket(`ws://${base}:${rdtPort}`));
 
-    ws.addEventListener('open', () => {
+    ws.addEventListener("open", () => {
         if (!quiet) showToast("Connected to React DevTools", findAssetId("CheckmarkSmallIcon"));
 
         rdtConnected = true;
         bump();
     });
 
-    ws.addEventListener('close', () => {
+    ws.addEventListener("close", () => {
         cleanup();
     });
 
-    ws.addEventListener('error', (e: any) => {
+    ws.addEventListener("error", (e: any) => {
         cleanup();
 
         const err = e?.message ?? e?.stack ?? String(e);
-        logger.error('React DevTools error:', err);
+        logger.error("React DevTools error:", err);
 
         if (!quiet) showToast(err, findAssetId("CircleXIcon-primary"));
     });

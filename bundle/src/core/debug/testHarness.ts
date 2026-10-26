@@ -127,6 +127,8 @@ async function run() {
     const { settings } = require("@lib/api/settings");
     const { VdPluginManager } = require("@core/vendetta/plugins");
     const emitter = Symbol.for("vendetta.storage.emitter");
+    // Endcord must not load plugin code it doesn't need: on a fresh install every plugin is off
+    report("lazy", { pluginsLoadedAtStartup: require("@plugins").loadedPluginCount(), timings: require("@core/timings").getTimings() });
     report("storages", { settings: !!settings[emitter], vendettaPlugins: !!VdPluginManager.plugins?.[emitter] });
 
     const locale = findByStoreName("LocaleStore");
@@ -198,6 +200,7 @@ async function run() {
     await behaviour();
     await screens();
 
+    report("timings", require("@core/timings").getTimings());
     report("done", {});
 }
 

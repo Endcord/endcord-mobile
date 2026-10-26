@@ -5,6 +5,7 @@
  */
 
 import { t, tx } from "@core/i18n";
+import { recordPluginStart } from "@core/timings";
 import { awaitStorage, createMMKVBackend, createStorage, wrapSync } from "@core/vendetta/storage";
 import type { Author } from "@lib/addons/types";
 import { findAssetId } from "@lib/api/assets";
@@ -133,8 +134,10 @@ export async function startEndcordPlugin(plugin: EndcordPlugin) {
     };
 
     try {
+        const started = Date.now();
         await loadStore(plugin);
         await plugin.start(ctx);
+        recordPluginStart(plugin.id, Date.now() - started);
         plugin.error = undefined;
     } catch (e) {
         plugin.error = e;

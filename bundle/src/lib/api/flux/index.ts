@@ -7,17 +7,32 @@ const modifiedSym = Symbol.for("bunny.flux.modified");
 export const dispatcher = FluxDispatcher;
 
 type Intercept = (payload: Record<string, any> & { type: string; }) => any;
-let intercepts: Intercept[] = [];
+
+interface Entry {
+    cb: Intercept;
+    /** Only actions of this type are shown to cb */
+    type?: string;
+}
+
+let entries: Entry[] = [];
+// Discord dispatches hundreds of actions a second; these let the ones no interceptor is for go straight through
+let untyped = 0;
+const typed = new Map<string, number>();
 
 /**
  * @internal
  */
 export function injectFluxInterceptor() {
     const cb = (payload: any) => {
-        for (const intercept of intercepts) {
+        if (!untyped && !typed.has(payload?.type)) return false;
+
+        for (const entry of entries) {
+            // Read every time: an earlier interceptor may have turned the action into another type
+            if (entry.type !== undefined && entry.type !== payload.type) continue;
+
             let res: unknown;
             try {
-                res = intercept(payload);
+                res = entry.cb(payload);
             } catch (e) {
                 // One broken interceptor must not stop Discord from handling the action
                 console.error(`[Endcord] a Flux interceptor failed on ${payload?.type}`, e);
@@ -46,13 +61,24 @@ export function injectFluxInterceptor() {
 /**
  * Intercept Flux dispatches. Return type affects the end result, where
  * nullish -> nothing, falsy -> block, object -> modify
+ *
+ * With `type`, only actions of that type reach the callback, and others don't cost anything.
  */
-export function intercept(cb: Intercept, options?: { first?: boolean; }) {
+export function intercept(cb: Intercept, options?: { first?: boolean; type?: string; }) {
+    const entry: Entry = { cb, type: options?.type };
     // First, for interceptors that must see an action before others change it
-    if (options?.first) intercepts.unshift(cb);
-    else intercepts.push(cb);
+    if (options?.first) entries = [entry, ...entries];
+    else entries = [...entries, entry];
+    if (entry.type === undefined) untyped++;
+    else typed.set(entry.type, (typed.get(entry.type) ?? 0) + 1);
 
+    let removed = false;
     return () => {
-        intercepts = intercepts.filter(i => i !== cb);
+        if (removed) return;
+        removed = true;
+        entries = entries.filter(e => e !== entry);
+        if (entry.type === undefined) untyped--;
+        else if ((typed.get(entry.type) ?? 1) <= 1) typed.delete(entry.type);
+        else typed.set(entry.type, typed.get(entry.type)! - 1);
     };
 }

@@ -1,13 +1,14 @@
 //! Adapted from https://github.com/revenge-mod/revenge-bundle-next/blob/cb3b12f2eedd46c29d289d578502561c9b56e30c/src/plugins/start/developer-kit/devtools.ts
 
-import { DevToolsClient } from "@revenge-mod/devtools-client";
-import { instead } from "../patcher";
-import { LogLevel } from "@revenge-mod/devtools-shared/constants";
-import { getDebugInfo } from ".";
-import { React } from "@metro/common";
-import { logger } from "@lib/utils/logger";
 import { showToast } from "@lib/ui/toasts";
+import { logger } from "@lib/utils/logger";
+import { React } from "@metro/common";
+import type { DevToolsClient } from "@revenge-mod/devtools-client";
+import { LogLevel } from "@revenge-mod/devtools-shared/constants";
+
 import { findAssetId } from "../assets";
+import { instead } from "../patcher";
+import { getDebugInfo } from ".";
 
 export let dtClient: DevToolsClient | null = null;
 export let dtConnected = false;
@@ -22,11 +23,11 @@ function interceptLogging() {
 
     const unpatches: (() => void)[] = [];
     for (const [key, level] of [
-        ['log', LogLevel.Default],
-        ['warn', LogLevel.Warn],
-        ['error', LogLevel.Error],
-        ['info', LogLevel.Default],
-        ['debug', LogLevel.Debug],
+        ["log", LogLevel.Default],
+        ["warn", LogLevel.Warn],
+        ["error", LogLevel.Error],
+        ["info", LogLevel.Default],
+        ["debug", LogLevel.Debug],
     ] as const) {
         unpatches.push(
             instead(key, console, (args, orig) => {
@@ -57,7 +58,9 @@ export function connectDt(url: string, quiet?: boolean) {
     if (dtClient) return;
 
     const info = getDebugInfo();
-    const client = (dtClient = new DevToolsClient());
+    // Loaded only when connecting, so nobody who never uses DevTools pays for it at startup
+    const { DevToolsClient: Client } = require("@revenge-mod/devtools-client") as typeof import("@revenge-mod/devtools-client");
+    const client = (dtClient = new Client());
 
     client.connect(
         `ws://${url}`,
@@ -66,15 +69,15 @@ export function connectDt(url: string, quiet?: boolean) {
 
     const ws = client.ws!;
 
-    ws.addEventListener('open', () => {
+    ws.addEventListener("open", () => {
         if (!quiet) showToast("Connected to DevTools", findAssetId("CheckmarkSmallIcon"));
 
         if (client.settings.log.interceptConsole) {
             const unintercept = interceptLogging();
 
-            ws.addEventListener('close', function self() {
+            ws.addEventListener("close", function self() {
                 unintercept?.();
-                ws.removeEventListener('close', self);
+                ws.removeEventListener("close", self);
             });
         }
 
@@ -82,15 +85,15 @@ export function connectDt(url: string, quiet?: boolean) {
         bump();
     });
 
-    ws.addEventListener('close', () => {
+    ws.addEventListener("close", () => {
         cleanup();
     });
 
-    ws.addEventListener('error', (e: any) => {
+    ws.addEventListener("error", (e: any) => {
         cleanup();
 
         const err = e?.message ?? e?.stack ?? String(e);
-        logger.error('DevTools error:', err);
+        logger.error("DevTools error:", err);
 
         if (!quiet) showToast(err, findAssetId("CircleXIcon-primary"));
     });

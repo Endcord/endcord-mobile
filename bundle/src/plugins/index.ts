@@ -2,104 +2,92 @@
  * Endcord for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
+ *
+ * Endcord's built-in plugins. Endcord starts with only their manifest (names, descriptions, tags); a plugin's code is
+ * loaded the first time it starts or its settings open, so the plugins that are off cost nothing at startup.
  */
 
 import type { PluginInstanceInternal } from "@lib/addons/plugins/types";
 import { createElement } from "react";
 
-import Actions from "./actions";
-import { EndcordPlugin, startEndcordPlugin, stopEndcordPlugin } from "./api";
-import ClearURLs from "./clearUrls";
-import Compose from "./compose";
-import CustomProfile from "./customProfile";
-import Effects from "./effects";
-import FakeMute from "./fakeMute";
-import FakeNitro from "./fakeNitro";
-import Filters from "./filters";
-import HideEndcord from "./hideEndcord";
-import Lookup from "./lookup";
-import MessageLogger from "./messageLogger";
-import Notify from "./notify";
-import Oneko from "./oneko";
-import PlatformIndicators from "./platformIndicators";
-import Presence from "./presence";
-import Profiles from "./profiles";
-import RelationshipNotifier from "./relationshipNotifier";
-import Rows from "./rows";
-import Schedule from "./schedule";
-import SilentTyping from "./silentTyping";
-import SmoothType from "./smoothType";
-import Social from "./social";
-import Text from "./text";
-import ThemeLibrary from "./themeLibrary";
-import Tools from "./tools";
-import ViewIcons from "./viewIcons";
-import Voice from "./voice";
+import { ENDCORD_AUTHOR, EndcordPlugin, isEndcordPluginRunning, startEndcordPlugin, stopEndcordPlugin } from "./api";
+import { groups, manifest, PluginInfo } from "./manifest";
 
-/** The rest of Endcord PC's plugins that work on mobile, grouped by what they hook into */
-const others: EndcordPlugin<any>[] = [
-    ClearURLs,
-    ...Text, ...Lookup, ...Compose, ...Filters, ...Notify, ...Actions, ...Schedule, ...Rows,
-    ...Presence, ...Effects, ...Voice, ...Profiles, ...Tools, ...Social,
-].sort((a, b) => a.name.localeCompare(b.name, "en", { sensitivity: "base" }));
+const loaded = new Map<string, EndcordPlugin<any>>();
 
-/** Endcord's built-in plugins: Endcord PC's popular list in its order, then the others by name */
-const plugins: EndcordPlugin<any>[] = [
-    CustomProfile,
-    MessageLogger,
-    HideEndcord,
-    FakeNitro,
-    SmoothType,
-    ViewIcons,
-    ThemeLibrary,
-    Oneko,
-    PlatformIndicators,
-    RelationshipNotifier,
-    SilentTyping,
-    FakeMute,
-    ...others,
-];
+let descriptions: Record<string, string> | undefined;
+/** English descriptions, read the first time the plugin list shows one */
+const descriptionOf = (id: string) => (descriptions ??= require("./descriptions.json") as Record<string, string>)[id] ?? "";
 
+/** A plugin's code, loaded with the rest of its group the first time it's needed */
+export function loadEndcordPlugin(id: string): EndcordPlugin<any> {
+    const cached = loaded.get(id);
+    if (cached) return cached;
+    const info = manifest.find(p => p.id === id);
+    if (!info) throw new Error(`No Endcord plugin is called ${id}`);
+    const exported = groups[info.group]().default;
+    for (const plugin of Array.isArray(exported) ? exported : [exported]) loaded.set(plugin.id, plugin);
+    const plugin = loaded.get(id);
+    if (!plugin) throw new Error(`${info.group} doesn't define ${id}; regenerate the plugin manifest`);
+    return plugin;
+}
+
+/** How many plugins have had their code loaded, for the self-test to check that startup loads none it needn't */
+export const loadedPluginCount = () => loaded.size;
+
+/** Every built-in plugin, loading all of their code (for the self-test) */
 export function getEndcordPlugins(): EndcordPlugin<any>[] {
-    return plugins;
+    return sorted().map(p => loadEndcordPlugin(p.id));
+}
+
+/** Endcord PC's popular plugins first, in its order, then the others by name */
+function sorted(): PluginInfo[] {
+    const popular = manifest.filter(p => p.popular != null).sort((a, b) => a.popular! - b.popular!);
+    const others = manifest.filter(p => p.popular == null).sort((a, b) => a.name.localeCompare(b.name, "en", { sensitivity: "base" }));
+    return [...popular, ...others];
 }
 
 /** Endcord plugins as core plugins of the plugin manager, which handles enabling and settings storage */
 export function getEndcordCorePlugins(): Record<string, { default: PluginInstanceInternal; preenabled: boolean; }> {
-    return Object.fromEntries(plugins.map(plugin => [plugin.id, {
+    return Object.fromEntries(sorted().map(info => [info.id, {
         preenabled: false,
         default: {
             manifest: {
-                id: plugin.id,
+                id: info.id,
                 spec: 3,
                 type: "plugin",
                 version: "1.0.0",
                 main: "",
                 display: {
-                    name: plugin.name,
-                    description: plugin.description,
-                    authors: plugin.authors,
+                    name: info.name,
+                    get description() {
+                        return descriptionOf(info.id);
+                    },
+                    authors: [ENDCORD_AUTHOR],
                 },
                 extras: {
                     endcord: true,
-                    popular: plugin.popular,
-                    icon: plugin.icon,
-                    tags: plugin.tags,
+                    popular: info.popular,
+                    icon: info.icon,
+                    tags: info.tags,
                 },
             },
             start() {
                 // The plugin manager doesn't wait for this; failures turn the plugin off and show a toast
-                startEndcordPlugin(plugin).catch(() => {
-                    import("@lib/addons/plugins").then(({ disablePlugin, isPluginEnabled }) => {
-                        if (isPluginEnabled(plugin.id)) disablePlugin(plugin.id);
+                Promise.resolve()
+                    .then(() => startEndcordPlugin(loadEndcordPlugin(info.id)))
+                    .catch(() => {
+                        import("@lib/addons/plugins").then(({ disablePlugin, isPluginEnabled }) => {
+                            if (isPluginEnabled(info.id)) disablePlugin(info.id);
+                        });
                     });
-                });
             },
             stop() {
-                stopEndcordPlugin(plugin);
+                // A plugin that never started has nothing to stop, and its code needn't be loaded for that
+                if (isEndcordPluginRunning(info.id)) stopEndcordPlugin(loadEndcordPlugin(info.id));
             },
-            SettingsComponent: plugin.settings || plugin.SettingsComponent
-                ? () => createElement(require("./ui/PluginSettings").default, { plugin })
+            SettingsComponent: info.hasSettings
+                ? () => createElement(require("./ui/PluginSettings").default, { plugin: loadEndcordPlugin(info.id) })
                 : undefined,
         } as PluginInstanceInternal,
     }]));
