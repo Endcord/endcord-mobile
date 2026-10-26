@@ -1,5 +1,6 @@
 //! Adapted from https://github.com/revenge-mod/revenge-bundle-next/blob/cb3b12f2eedd46c29d289d578502561c9b56e30c/src/plugins/start/developer-kit/devtools.ts
 
+import { t } from "@core/i18n";
 import { showToast } from "@lib/ui/toasts";
 import { logger } from "@lib/utils/logger";
 import { React } from "@metro/common";
@@ -70,7 +71,7 @@ export function connectDt(url: string, quiet?: boolean) {
     const ws = client.ws!;
 
     ws.addEventListener("open", () => {
-        if (!quiet) showToast("Connected to DevTools", findAssetId("CheckmarkSmallIcon"));
+        if (!quiet) showToast(t("Connected to DevTools"), findAssetId("CheckmarkSmallIcon"));
 
         if (client.settings.log.interceptConsole) {
             const unintercept = interceptLogging();

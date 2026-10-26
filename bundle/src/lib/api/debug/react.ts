@@ -1,3 +1,4 @@
+import { t } from "@core/i18n";
 import { showToast } from "@lib/ui/toasts";
 import { logger } from "@lib/utils/logger";
 
@@ -29,7 +30,7 @@ export function connectRdt(url: string, quiet?: boolean) {
     const ws = (rdtClient = new WebSocket(`ws://${base}:${rdtPort}`));
 
     ws.addEventListener("open", () => {
-        if (!quiet) showToast("Connected to React DevTools", findAssetId("CheckmarkSmallIcon"));
+        if (!quiet) showToast(t("Connected to React DevTools"), findAssetId("CheckmarkSmallIcon"));
 
         rdtConnected = true;
         bump();

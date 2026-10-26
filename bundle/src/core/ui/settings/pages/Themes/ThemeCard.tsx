@@ -1,4 +1,4 @@
-import { formatString, Strings } from "@core/i18n";
+import { formatString, Strings, t } from "@core/i18n";
 import AddonCard, { CardWrapper } from "@core/ui/components/AddonCard";
 import { showConfirmationAlert } from "@core/vendetta/alerts";
 import { useProxy } from "@core/vendetta/storage";
@@ -29,8 +29,8 @@ export default function ThemeCard({ item: theme }: CardWrapper<VdThemeInfo>) {
     return (
         <AddonCard
             headerLabel={theme.data.name}
-            headerSublabel={authors ? `by ${authors.map(i => i.name).join(", ")}` : ""}
-            descriptionLabel={theme.data.description ?? "No description."}
+            headerSublabel={authors?.length ? t("by {authors}", { authors: authors.map(i => i.name).join(", ") }) : ""}
+            descriptionLabel={theme.data.description}
             toggleType={!settings.safeMode?.enabled ? "radio" : undefined}
             toggleValue={() => themes[theme.id].selected}
             onToggleChange={(v: boolean) => {
