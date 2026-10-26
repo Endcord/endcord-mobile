@@ -51,7 +51,9 @@ import org.koin.core.parameter.parametersOf
 import java.util.UUID
 
 class InstallerScreen(
-    val version: DiscordVersion
+    val version: DiscordVersion,
+    /** Build from the Discord installed on the phone instead of downloading it */
+    val useInstalled: Boolean = false
 ) : Screen {
 
     override val key: ScreenKey = "Installer-${UUID.randomUUID()}"
@@ -61,7 +63,7 @@ class InstallerScreen(
         val nav = LocalNavigator.currentOrThrow
         val activity = LocalContext.current as? ComponentActivity
         val viewModel: InstallerViewModel = getScreenModel {
-            parametersOf(version)
+            parametersOf(version, useInstalled)
         }
 
         LaunchedEffect(viewModel.runner.currentStep) {
@@ -105,7 +107,7 @@ class InstallerScreen(
                 onTryAgainClick = {
                     viewModel.dismissDownloadFailedDialog()
                     viewModel.cancelInstall()
-                    nav.replace(InstallerScreen(version))
+                    nav.replace(InstallerScreen(version, useInstalled))
                 },
                 onDismiss = {
                     viewModel.dismissDownloadFailedDialog()

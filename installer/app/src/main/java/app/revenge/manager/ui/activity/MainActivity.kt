@@ -8,7 +8,11 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.core.app.ActivityCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import app.revenge.manager.domain.manager.DiscordSource
+import app.revenge.manager.domain.manager.PreferenceManager
 import app.revenge.manager.ui.screen.home.HomeScreen
+import app.revenge.manager.utils.InstalledDiscord
+import org.koin.android.ext.android.get
 import app.revenge.manager.ui.screen.installer.InstallerScreen
 import app.revenge.manager.ui.theme.RevengeManagerTheme
 import app.revenge.manager.utils.DiscordVersion
@@ -31,8 +35,9 @@ class MainActivity : ComponentActivity() {
             )
         }
 
-        val screen = if (intent.action == Intents.Actions.INSTALL && version != null) {
-            InstallerScreen(DiscordVersion.fromVersionCode(version)!!)
+        val target = version?.let { DiscordVersion.fromVersionCode(it) }
+        val screen = if (intent.action == Intents.Actions.INSTALL && target != null) {
+            InstallerScreen(target, useInstalled = fromInstalled(target))
         } else {
             HomeScreen()
         }
@@ -45,4 +50,8 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    /** An update for the Discord on the phone is built from it, like the install was */
+    private fun fromInstalled(version: DiscordVersion): Boolean =
+        get<PreferenceManager>().discordSource == DiscordSource.INSTALLED && InstalledDiscord.version(this) == version
 }

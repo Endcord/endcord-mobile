@@ -1,6 +1,5 @@
 package app.revenge.manager.utils
 
-import android.os.Environment
 import app.revenge.manager.BuildConfig
 
 object Constants {
@@ -15,8 +14,6 @@ object Constants {
         TeamMember("Nexpid", "Developer of Revenge", "nexpid"),
     )
 
-    // NOTE: This is no longer used
-    val MOD_DIR = Environment.getExternalStorageDirectory().resolve(BuildConfig.MOD_NAME)
 
     val DUMMY_VERSION = DiscordVersion(1, 0, DiscordVersion.Type.STABLE)
 }

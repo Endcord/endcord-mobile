@@ -54,6 +54,9 @@ class PreferenceManager(context: Context) :
 
     var allowDowngrade by booleanPreference("allow_downgrade", false)
 
+    /** Where the Discord to patch comes from, when Discord is installed on the phone */
+    var discordSource by enumPreference("discord_source", DiscordSource.INSTALLED)
+
     var hasAskedForBatteryOpt by booleanPreference("has_asked_for_battery_opt", false)
 
     init {
@@ -84,6 +87,13 @@ enum class Mirror(val baseUrl: String) {
     DEFAULT("https://tracker.vendetta.rocks"),
     NEXPID("https://tracker.vd.nexpid.xyz"),
     USHIE("https://proxy.vd.ushie.dev")
+}
+
+enum class DiscordSource {
+    /** The Discord already on the phone, usually from the Play Store */
+    INSTALLED,
+    /** A download of the latest Discord of the chosen channel */
+    DOWNLOAD
 }
 
 enum class InstallMethod(@StringRes val labelRes: Int) {

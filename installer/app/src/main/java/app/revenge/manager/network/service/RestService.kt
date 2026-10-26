@@ -44,9 +44,11 @@ class RestService(
         }
     }
 
+    /** Commits of the `next` branch; the repository's default branch is the classic-app client. */
     suspend fun getCommits(repo: String, page: Int = 1) = withContext(Dispatchers.IO) {
         httpService.request<List<Commit>> {
             url("https://api.github.com/repos/$repo/commits")
+            parameter("sha", "next")
             parameter("page", page)
         }
     }

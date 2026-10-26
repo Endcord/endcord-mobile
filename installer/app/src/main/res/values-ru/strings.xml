@@ -175,4 +175,10 @@
     <string name="install_method">Способ установки</string>
     <string name="default_installer">PackageManager (рекомендуется)</string>
     <string name="shizuku_installer">Shizuku</string>
+    <string name="step_copy_installed">Копирование установленного Discord</string>
+    <string name="version_on_phone">На этом телефоне: %1$s</string>
+    <string name="source_installed">Использовать Discord на этом телефоне</string>
+    <string name="source_installed_desc">Discord %1$s, уже установленная версия. Он останется установленным как есть.</string>
+    <string name="source_download">Скачать Discord</string>
+    <string name="source_download_desc">Discord %1$s, последняя версия</string>
 </resources>

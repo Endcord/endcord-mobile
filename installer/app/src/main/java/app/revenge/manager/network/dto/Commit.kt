@@ -15,12 +15,19 @@ data class Commit(
     @Serializable
     data class Info(
         val message: String,
-        val committer: Committer
+        val committer: Committer,
+        /** The git author, for commits whose email isn't linked to a GitHub account */
+        val author: GitAuthor? = null
     )
 
     @Serializable
     data class Committer(
         val date: Instant
+    )
+
+    @Serializable
+    data class GitAuthor(
+        val name: String? = null
     )
 
 }

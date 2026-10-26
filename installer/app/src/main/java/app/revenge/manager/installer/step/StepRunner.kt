@@ -9,6 +9,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import app.revenge.manager.BuildConfig
 import app.revenge.manager.domain.manager.PreferenceManager
+import app.revenge.manager.installer.step.download.CopyInstalledDiscordStep
 import app.revenge.manager.installer.step.download.DownloadBaseStep
 import app.revenge.manager.installer.step.download.DownloadLangStep
 import app.revenge.manager.installer.step.download.DownloadLibsStep
@@ -38,7 +39,9 @@ import java.io.File
  */
 @Stable
 class StepRunner(
-    private val discordVersion: DiscordVersion
+    private val discordVersion: DiscordVersion,
+    /** Build from the Discord installed on the phone instead of downloading it */
+    private val useInstalled: Boolean = false
 ): KoinComponent {
 
     private val preferenceManager: PreferenceManager by inject()
@@ -116,10 +119,14 @@ class StepRunner(
      */
     val steps: ImmutableList<Step> = buildList {
         // Downloading
-        add(DownloadBaseStep(discordCacheDir, patchedDir, discordVersion.toVersionCode()))
-        add(DownloadLibsStep(discordCacheDir, patchedDir, discordVersion.toVersionCode()))
-        add(DownloadLangStep(discordCacheDir, patchedDir, discordVersion.toVersionCode()))
-        add(DownloadResourcesStep(discordCacheDir, patchedDir, discordVersion.toVersionCode()))
+        if (useInstalled) {
+            add(CopyInstalledDiscordStep(patchedDir))
+        } else {
+            add(DownloadBaseStep(discordCacheDir, patchedDir, discordVersion.toVersionCode()))
+            add(DownloadLibsStep(discordCacheDir, patchedDir, discordVersion.toVersionCode()))
+            add(DownloadLangStep(discordCacheDir, patchedDir, discordVersion.toVersionCode()))
+            add(DownloadResourcesStep(discordCacheDir, patchedDir, discordVersion.toVersionCode()))
+        }
         add(DownloadModStep(patchedDir))
 
         // Patching
@@ -131,6 +138,31 @@ class StepRunner(
         // Installing
         add(InstallStep(lspatchedDir))
     }.toImmutableList()
+
+    /**
+     * The Discord APK with the app's code and manifest, downloaded or copied from the installed Discord
+     */
+    fun baseApk(): File =
+        if (useInstalled) getCompletedStep<CopyInstalledDiscordStep>().baseApk
+        else getCompletedStep<DownloadBaseStep>().workingCopy
+
+    /**
+     * Every Discord APK to patch and install, base first
+     */
+    fun discordApks(): List<File> =
+        if (useInstalled) getCompletedStep<CopyInstalledDiscordStep>().apks
+        else listOf(
+            getCompletedStep<DownloadBaseStep>().workingCopy,
+            getCompletedStep<DownloadLibsStep>().workingCopy,
+            getCompletedStep<DownloadLangStep>().workingCopy,
+            getCompletedStep<DownloadResourcesStep>().workingCopy,
+        )
+
+    /**
+     * Whether the APK holds native libraries, whose alignment has to be kept
+     */
+    fun isLibrariesApk(apk: File): Boolean =
+        Regex("""config.(arm64_v8a|armeabi_v7a|x86_64|x86)""").containsMatchIn(apk.name)
 
     /**
      * Get a step that has already been successfully executed.

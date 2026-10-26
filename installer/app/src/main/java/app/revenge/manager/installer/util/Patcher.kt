@@ -2,7 +2,9 @@ package app.revenge.manager.installer.util
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.lsposed.patch.LSPatch
+import org.lsposed.patch.ApkPatcher
+import org.lsposed.patch.KeystoreSpec
+import org.lsposed.patch.PatchSpec
 import org.lsposed.patch.util.Logger
 import java.io.File
 
@@ -15,22 +17,18 @@ object Patcher {
         embeddedModules: List<String>
     ) {
         withContext(Dispatchers.IO) {
-            LSPatch(
-                logger,
-                *apkPaths.toTypedArray(),
-                "-o",
-                outputDir.absolutePath,
-                "-l",
-                "0",
-                "-v",
-                "-m",
-                *embeddedModules.toTypedArray(),
-                "-k",
-                app.revenge.manager.installer.util.Signer.keyStore.absolutePath,
-                "password",
-                "alias",
-                "password"
-            ).doCommandLine()
+            val spec = PatchSpec.builder()
+                .apks(apkPaths.map(::File))
+                .outputDir(outputDir)
+                // Signature bypass level 0: Endcord doesn't need Discord's original signature
+                .sigBypassLevel(0)
+                .verbose(true)
+                .forceOverwrite(true)
+                .modules(embeddedModules.map(::File))
+                .keystore(KeystoreSpec.of(Signer.keyStore, "password", "alias", "password"))
+                .build()
+
+            ApkPatcher(logger, spec).patch()
         }
     }
 

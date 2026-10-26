@@ -1,5 +1,6 @@
 package app.revenge.manager.ui.viewmodel.home
 
+import app.revenge.manager.utils.InstalledDiscord
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -52,6 +53,10 @@ class HomeViewModel(
     var discordVersions by mutableStateOf<Map<DiscordVersion.Type, DiscordVersion?>?>(null)
         private set
 
+    /** The version of the Discord installed on the phone, if it is */
+    var installedDiscord by mutableStateOf(InstalledDiscord.version(context))
+        private set
+
     var release by mutableStateOf<Release?>(null)
         private set
 
@@ -68,6 +73,8 @@ class HomeViewModel(
     }
 
     fun getDiscordVersions() {
+        installedDiscord = InstalledDiscord.version(context)
+        installManager.getInstalled()
         screenModelScope.launch {
             discordVersions = repo.getLatestDiscordVersions().dataOrNull
             if (prefs.autoClearCache) autoClearCache()

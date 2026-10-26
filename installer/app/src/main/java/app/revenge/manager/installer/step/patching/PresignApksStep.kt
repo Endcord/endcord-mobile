@@ -8,10 +8,6 @@ import app.revenge.manager.R
 import app.revenge.manager.installer.step.Step
 import app.revenge.manager.installer.step.StepGroup
 import app.revenge.manager.installer.step.StepRunner
-import app.revenge.manager.installer.step.download.DownloadBaseStep
-import app.revenge.manager.installer.step.download.DownloadLangStep
-import app.revenge.manager.installer.step.download.DownloadLibsStep
-import app.revenge.manager.installer.step.download.DownloadResourcesStep
 import app.revenge.manager.installer.util.Signer
 import java.io.File
 
@@ -28,14 +24,10 @@ class PresignApksStep(
     override val nameRes = R.string.step_signing
 
     override suspend fun run(runner: StepRunner) {
-        val baseApk = runner.getCompletedStep<DownloadBaseStep>().workingCopy
-        val libsApk = runner.getCompletedStep<DownloadLibsStep>().workingCopy
-        val langApk = runner.getCompletedStep<DownloadLangStep>().workingCopy
-        val resApk = runner.getCompletedStep<DownloadResourcesStep>().workingCopy
 
         runner.logger.i("Creating dir for signed apks: ${signedDir.absolutePath}")
         signedDir.mkdirs()
-        val apks = listOf(baseApk, libsApk, langApk, resApk)
+        val apks = runner.discordApks()
 
         // Align resources.arsc due to targeting api 30 for silent install
         if(Build.VERSION.SDK_INT >= 30) {

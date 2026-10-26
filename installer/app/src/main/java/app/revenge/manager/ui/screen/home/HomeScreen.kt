@@ -16,7 +16,11 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.OpenInNew
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.Button
+import androidx.compose.material3.RadioButton
+import androidx.compose.ui.semantics.Role
+import app.revenge.manager.domain.manager.DiscordSource
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -47,7 +51,6 @@ import app.revenge.manager.ui.screen.settings.SettingsScreen
 import app.revenge.manager.ui.viewmodel.home.HomeViewModel
 import app.revenge.manager.ui.widgets.AppIcon
 import app.revenge.manager.ui.widgets.dialog.BatteryOptimizationDialog
-import app.revenge.manager.ui.widgets.dialog.StoragePermissionsDialog
 import app.revenge.manager.ui.widgets.home.CommitList
 import app.revenge.manager.ui.widgets.updater.UpdateDialog
 import app.revenge.manager.utils.Constants
@@ -71,7 +74,7 @@ class HomeScreen : Screen {
             DiscordVersion.fromVersionCode(viewModel.installManager.current?.versionCode.toString())
         }
 
-        val latestVersion =
+        val downloadVersion =
             remember(prefs.discordVersion, viewModel.discordVersions, prefs.channel) {
                 when {
                     prefs.discordVersion.isBlank() -> viewModel.discordVersions?.get(prefs.channel)
@@ -79,9 +82,14 @@ class HomeScreen : Screen {
                 }
             }
 
+        // Endcord is built from the Discord on the phone when there is one, unless the user picks a download
+        var source by remember { mutableStateOf(prefs.discordSource) }
+        val installedDiscord = viewModel.installedDiscord
+        val useInstalled = installedDiscord != null && source == DiscordSource.INSTALLED
+        val latestVersion = if (useInstalled) installedDiscord else downloadVersion
+
         // == Dialogs == //
 
-        StoragePermissionsDialog()
         BatteryOptimizationDialog()
 
         if (
@@ -142,8 +150,11 @@ class HomeScreen : Screen {
                         )
                     }
 
-                    val latestLabel =
-                        if (prefs.discordVersion.isNotBlank()) R.string.version_target else R.string.version_latest
+                    val latestLabel = when {
+                        useInstalled -> R.string.version_on_phone
+                        prefs.discordVersion.isNotBlank() -> R.string.version_target
+                        else -> R.string.version_latest
+                    }
 
                     AnimatedVisibility(visible = latestVersion != null) {
                         Text(
@@ -155,9 +166,21 @@ class HomeScreen : Screen {
                     }
                 }
 
+                if (installedDiscord != null) {
+                    SourcePicker(
+                        source = source,
+                        installed = installedDiscord,
+                        download = downloadVersion,
+                        onChange = {
+                            source = it
+                            prefs.discordSource = it
+                        }
+                    )
+                }
+
                 Button(
                     onClick = {
-                        navigator.navigate(InstallerScreen(latestVersion!!))
+                        navigator.navigate(InstallerScreen(latestVersion!!, useInstalled))
                     },
                     enabled = latestVersion != null && (prefs.allowDowngrade || latestVersion >= (currentVersion ?: Constants.DUMMY_VERSION)),
                     modifier = Modifier.fillMaxWidth()
@@ -216,10 +239,57 @@ class HomeScreen : Screen {
     }
 
     @Composable
+    private fun SourcePicker(
+        source: DiscordSource,
+        installed: DiscordVersion,
+        download: DiscordVersion?,
+        onChange: (DiscordSource) -> Unit
+    ) {
+        ElevatedCard(modifier = Modifier.fillMaxWidth()) {
+            Column(modifier = Modifier.padding(vertical = 8.dp)) {
+                SourceOption(
+                    selected = source == DiscordSource.INSTALLED,
+                    title = stringResource(R.string.source_installed),
+                    subtitle = stringResource(R.string.source_installed_desc, installed.toString()),
+                    onClick = { onChange(DiscordSource.INSTALLED) }
+                )
+                SourceOption(
+                    selected = source == DiscordSource.DOWNLOAD,
+                    title = stringResource(R.string.source_download),
+                    subtitle = download?.let { stringResource(R.string.source_download_desc, it.toString()) }
+                        ?: stringResource(R.string.msg_loading),
+                    onClick = { onChange(DiscordSource.DOWNLOAD) }
+                )
+            }
+        }
+    }
+
+    @Composable
+    private fun SourceOption(selected: Boolean, title: String, subtitle: String, onClick: () -> Unit) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .selectable(selected = selected, role = Role.RadioButton, onClick = onClick)
+                .padding(horizontal = 12.dp, vertical = 8.dp)
+        ) {
+            RadioButton(selected = selected, onClick = null)
+            Column(modifier = Modifier.padding(start = 12.dp)) {
+                Text(text = title, style = MaterialTheme.typography.titleSmall)
+                Text(
+                    text = subtitle,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = LocalContentColor.current.copy(alpha = 0.6f)
+                )
+            }
+        }
+    }
+
+    @Composable
     @OptIn(ExperimentalMaterial3Api::class)
     private fun TitleBar() {
         TopAppBar(
-            title = { Text(stringResource(R.string.title_home)) },
+            title = { Text(stringResource(R.string.app_name)) },
             actions = { Actions() }
         )
     }
