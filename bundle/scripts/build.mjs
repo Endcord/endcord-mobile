@@ -24,7 +24,9 @@ const {
     "build-minify": buildMinify,
     "dev": dev,
     // Adds the self-test that the emulator workflow runs
-    "test": test
+    "test": test,
+    // The branch the in-app update check reads: a test build's loader fetches from a branch other than builds-next
+    "builds-branch": buildsBranch = "builds-next"
 } = args;
 
 let context = null;
@@ -55,7 +57,8 @@ const config = {
         window: "globalThis",
         // Published builds (main and next) are release builds; local and branch builds keep the developer tools
         __DEV__: dev ?? JSON.stringify(!["main", "next"].includes(releaseBranch)),
-        __ENDCORD_TEST__: JSON.stringify(!!test)
+        __ENDCORD_TEST__: JSON.stringify(!!test),
+        __BUILDS_BRANCH__: JSON.stringify(buildsBranch)
     },
     inject: ["./shims/asyncIteratorSymbol.js", "./shims/promiseAllSettled.js"],
     legalComments: "none",
