@@ -82,12 +82,17 @@ export function createProxy(target: any = {}): { proxy: any; emitter: Emitter; }
 }
 
 export function useProxy<T>(storage: T): T {
-    const emitter = (storage as any)?.[emitterSymbol] as Emitter;
-    if (!emitter) throw new Error("storage?.[emitterSymbol] is undefined");
-
+    const emitter = (storage as any)?.[emitterSymbol] as Emitter | undefined;
     const [, forceUpdate] = React.useReducer(n => ~n, 0);
 
     React.useEffect(() => {
+        if (!emitter) {
+            // A wrapSync storage that is still loading: draw again once it has loaded, then listen to it
+            let active = true;
+            (storage as any)?.[syncAwaitSymbol]?.(() => active && forceUpdate());
+            return () => void (active = false);
+        }
+
         const listener: EmitterListener = (event: EmitterEvent, data: EmitterListenerData) => {
             if (event === "DEL" && data.value === storage) return;
             forceUpdate();
@@ -100,7 +105,7 @@ export function useProxy<T>(storage: T): T {
             emitter.off("SET", listener);
             emitter.off("DEL", listener);
         };
-    }, []);
+    }, [emitter]);
 
     return storage;
 }

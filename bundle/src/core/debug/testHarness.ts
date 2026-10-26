@@ -114,12 +114,21 @@ const PROPS: string[][] = [
 
 const NAMES = ["RowManager", "ProfileBanner", "HeaderAvatar", "GuildIcon", "UserProfileHeader", "ChatInput", "MessageRecord", "useBadges", "LongPressMessageActionSheet"];
 
+// When the self-test started; the workflow's screenshot loop only starts a minute after launch
+const startedAt = Date.now();
+
 async function run() {
     report("env", {
         bundle: version,
         build: ClientInfoManager.getConstants().Build,
         version: ClientInfoManager.getConstants().Version,
     });
+
+    // Storages pages draw from, and whether they've loaded: a page that draws before one has loaded must wait for it
+    const { settings } = require("@lib/api/settings");
+    const { VdPluginManager } = require("@core/vendetta/plugins");
+    const emitter = Symbol.for("vendetta.storage.emitter");
+    report("storages", { settings: !!settings[emitter], vendettaPlugins: !!VdPluginManager.plugins?.[emitter] });
 
     const locale = findByStoreName("LocaleStore");
     report("i18n", {
@@ -340,6 +349,8 @@ ${e.stack}` : String(e) });
 
 /** Shows Endcord's pages one at a time; the workflow takes a screenshot of each when it sees the "shot" line */
 async function screens() {
+    // The workflow takes launch screenshots for the first minute and only then watches for "shot" lines
+    await wait(Math.max(0, 90_000 - (Date.now() - startedAt)));
     const { showTestScreen } = require("@core/debug/testScreens");
     const { settings } = require("@lib/api/settings");
     const PluginSettings = require("@plugins/ui/PluginSettings").default;
@@ -368,7 +379,8 @@ async function screens() {
                     showTestScreen({ title: name, render });
                     await wait(5000);
                     report("shot", { name: `${language}-${name}` });
-                    await wait(4000);
+                    // A screenshot and a UI dump take a few seconds on the emulator
+                    await wait(7000);
                 } catch (e) {
                     report("screen-error", { name, error: String(e) });
                 }

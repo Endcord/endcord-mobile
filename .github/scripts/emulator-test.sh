@@ -38,10 +38,10 @@ launch_endcord() {
         sleep 10
         python3 "$SCRIPTS/ui.py" shot "$name-launch-$((i * 10))s"
     done
-    # The self-test reports for up to four minutes after start; each "shot" line asks for a screenshot of the
+    # The self-test reports for up to six minutes after start; each "shot" line asks for a screenshot of the
     # page it shows, which stays up for a few seconds
     local taken=""
-    for i in $(seq 1 120); do
+    for i in $(seq 1 200); do
         log=$(adb logcat -d 2>/dev/null)
         for shot in $(grep -o '"kind":"shot","data":{"name":"[a-z-]*"' <<<"$log" | sed 's/.*"name":"//; s/"$//'); do
             case " $taken " in *" $shot "*) ;; *)
