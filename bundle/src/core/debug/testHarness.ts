@@ -129,7 +129,8 @@ async function run() {
     const emitter = Symbol.for("vendetta.storage.emitter");
     // Endcord must not load plugin code it doesn't need: on a fresh install every plugin is off
     report("lazy", { pluginsLoadedAtStartup: require("@plugins").loadedPluginCount(), timings: require("@core/timings").getTimings() });
-    report("storages", { settings: !!settings[emitter], vendettaPlugins: !!VdPluginManager.plugins?.[emitter] });
+    const { themes } = require("@lib/addons/themes");
+    report("storages", { settings: !!settings[emitter], vendettaPlugins: !!VdPluginManager.plugins?.[emitter], themes: !!themes[emitter] });
 
     const locale = findByStoreName("LocaleStore");
     report("i18n", {
@@ -173,11 +174,15 @@ async function run() {
         }
     }
 
-    // Every plugin must start and stop cleanly, even before anyone has logged in
+    // Every plugin must start and stop cleanly, even before anyone has logged in. One that never finishes starting is
+    // reported, not waited for, so the plugins after it are still checked.
     for (const plugin of getEndcordPlugins()) {
         const result: Record<string, unknown> = { id: plugin.id };
         try {
-            await startEndcordPlugin(plugin);
+            await Promise.race([
+                startEndcordPlugin(plugin),
+                wait(15_000).then(() => Promise.reject(new Error("Didn't finish starting within 15 seconds"))),
+            ]);
             result.started = true;
         } catch (e) {
             result.started = false;
