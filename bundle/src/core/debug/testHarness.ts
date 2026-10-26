@@ -1,5 +1,6 @@
 /*
  * Endcord for Android
+ * Copyright (c) 2026 rootpoii and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
  * Only in bundles built with --test (the emulator workflow): checks Endcord against the Discord it runs in and

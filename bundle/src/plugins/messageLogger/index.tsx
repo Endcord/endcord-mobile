@@ -1,5 +1,6 @@
 /*
  * Endcord for Android
+ * Copyright (c) 2026 rootpoii and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
  * Deleted and edited messages stay in the chat. The approach (turning a delete into an update and restyling the row

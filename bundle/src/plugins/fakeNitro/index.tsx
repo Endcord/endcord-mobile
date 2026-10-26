@@ -1,5 +1,6 @@
 /*
  * Endcord for Android
+ * Copyright (c) 2026 rootpoii and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
  * Emojis and stickers you can't use are sent as links. Ported from the fake-nitro plugin of the Revenge community

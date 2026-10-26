@@ -1,5 +1,6 @@
 /*
  * Endcord for Android
+ * Copyright (c) 2026 rootpoii and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
@@ -56,7 +57,7 @@ export interface EndcordPlugin<S extends SettingsSchema = SettingsSchema> extend
     error?: unknown;
 }
 
-export const ENDCORD_AUTHOR: Author = { name: "Endcord" };
+export const ENDCORD_AUTHOR: Author = { name: "rootpoii" };
 
 export function definePlugin<S extends SettingsSchema>(def: EndcordPluginDefinition<S>): EndcordPlugin<S> {
     const defaults = Object.fromEntries(Object.entries(def.settings ?? {}).map(([k, v]) => [k, v.default]));

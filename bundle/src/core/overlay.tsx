@@ -1,5 +1,6 @@
 /*
  * Endcord for Android
+ * Copyright (c) 2026 rootpoii and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
  * A layer above all of Discord's screens that plugins can draw on, and the position of the last touch anywhere in the

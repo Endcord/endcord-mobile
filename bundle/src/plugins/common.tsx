@@ -1,5 +1,6 @@
 /*
  * Endcord for Android
+ * Copyright (c) 2026 rootpoii and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
  * Helpers shared by Endcord's plugins. Everything that touches Discord's modules is resolved lazily and tolerates the

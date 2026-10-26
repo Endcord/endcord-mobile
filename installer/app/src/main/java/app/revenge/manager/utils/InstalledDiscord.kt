@@ -1,3 +1,4 @@
+// Copyright (c) 2026 rootpoii and contributors
 package app.revenge.manager.utils
 
 import android.content.Context
