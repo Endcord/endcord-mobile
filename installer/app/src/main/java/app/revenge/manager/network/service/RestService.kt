@@ -36,10 +36,13 @@ class RestService(
         }
     }
 
-    /** The published build on the `builds-next` branch of [repo]. The query parameter defeats GitHub's cache. */
-    suspend fun getBuildInfo(repo: String) = withContext(Dispatchers.IO) {
+    /**
+     * The published build: `data.json` next to the loader this installer downloads, so a test installer reads its own
+     * builds branch. The query parameter defeats GitHub's cache.
+     */
+    suspend fun getBuildInfo() = withContext(Dispatchers.IO) {
         httpService.request<BuildInfo> {
-            url("https://raw.githubusercontent.com/$repo/builds-next/data.json")
+            url("${BuildConfig.LOADER_URL.substringBeforeLast('/')}/data.json")
             parameter("t", System.currentTimeMillis() / 60_000)
         }
     }

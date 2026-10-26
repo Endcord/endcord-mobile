@@ -129,7 +129,7 @@ class HomeViewModel(
                 showUpdateDialog = it.tagName.removePrefix(RELEASE_TAG_PREFIX) != BuildConfig.VERSION_NAME
             }
             // The loader comes from the builds branch; a new build invalidates the cached module
-            repo.getBuildInfo(BuildConfig.REPO).ifSuccessful {
+            repo.getBuildInfo().ifSuccessful {
                 val version = "${it.loaderVersion}-${it.commit.take(7)}"
                 if (prefs.moduleVersion != version) {
                     prefs.moduleVersion = version
