@@ -177,3 +177,6 @@ export function addSettingsPage(key: string, page: { title: () => string; icon: 
 }
 
 export const getToolboxActions = () => [...toolboxActions.values()];
+
+/** How much the plugins have registered here, for leak checks */
+export const registryCounts = () => ({ chatButtons: chatButtons.size, toolboxActions: toolboxActions.size });
