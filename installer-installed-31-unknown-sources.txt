@@ -1,0 +1,6 @@
+Endcord Installer
+1.0.0
+Allow from this source
+Your phone and personal data are more vulnerable to attack by unknown apps. By installing apps from this source, you agree that you are responsible for any damage to your phone or loss of data that may result from their use.
+Navigate up
+Install unknown apps
