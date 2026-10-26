@@ -57,6 +57,7 @@ class Main : IXposedHookLoadPackage, IXposedHookZygoteInit {
         fonts,
         themes,
         sysColors,
+        smoothCaret,
         pluginLoader,
         pluginMethods,
         pluginInstallMethods,

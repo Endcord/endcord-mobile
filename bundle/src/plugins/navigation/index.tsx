@@ -23,7 +23,7 @@ import { useMemo, useState } from "react";
 import { Linking } from "react-native";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
-import { addChatButton, currentUserId, getChatInputActionButton, getStore, subscribe } from "../common";
+import { addChatButton, currentUserId, getChatInputActionButton, getStore, getToolboxActions, subscribe } from "../common";
 import {
     api, botMessage, command, copy, displayName, generatedIcon, getChannel, getGuild, getUser, jumpTo,
     onMessageRow, redrawChannel, textNode, toastError
@@ -590,13 +590,19 @@ const StreamProof = definePlugin({
 // EndcordToolbox -------------------------------------------------------------------------------------------------------
 
 function toolbox() {
+    // Other plugins' entries, such as CustomProfile's
+    const extra = getToolboxActions();
     choose(t("Endcord Toolbox"), [
         { label: t("Reload Discord"), value: "reload", icon: "RetryIcon" },
         { label: t("Turn Off a Plugin…"), value: "plugins", icon: "PuzzlePieceIcon" },
         { label: t("Copy Debug Info"), value: "debug", icon: "CopyIcon" },
+        ...extra.map((a, i) => ({ label: a.label(), value: `extra-${i}`, icon: a.icon })),
         { label: t("Restart in Safe Mode"), value: "safe", icon: "ShieldIcon", danger: true },
     ], action => {
-        if (action === "reload") BundleUpdaterManager.reload();
+        if (action.startsWith("extra-")) {
+            const result = extra[Number(action.slice("extra-".length))]?.run();
+            if (result instanceof Promise) result.catch(failed);
+        } else if (action === "reload") BundleUpdaterManager.reload();
         else if (action === "safe") toggleSafeMode({ to: true });
         else if (action === "debug") {
             const info = getDebugInfo() as any;

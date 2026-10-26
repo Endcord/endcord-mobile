@@ -66,6 +66,9 @@ const PATHS: string[] = [
     "modules/user_profile/native/UserProfileBanner.tsx",
     "modules/profile_customization/native/HeaderAvatar.tsx",
     "modules/guild/native/GuildIcon.tsx",
+    // CustomProfile
+    "modules/user_profile/DisplayProfile.tsx",
+    "modules/collectibles/CollectiblesActionCreators.tsx",
 ];
 
 const STORES = [
@@ -75,6 +78,7 @@ const STORES = [
     // Used by the plugins Endcord gained from Endcord PC
     "DraftStore", "MaskedLinkStore", "MessageRequestStore", "GuildMemberCountStore", "DeveloperExperimentStore",
     "SpotifyStore", "ReadStateStore", "GuildChannelStore", "ActiveJoinedThreadsStore", "GuildRoleStore", "PendingReplyStore",
+    "MultiAccountStore", "CollectiblesCategoryStore", "BadgeDirectoryStore",
 ];
 
 const PROPS: string[][] = [
@@ -109,6 +113,14 @@ const PROPS: string[][] = [
     ["addReaction", "removeReaction"],
     ["jumpToMessage"],
     ["jsx", "jsxs"],
+    // CustomProfile
+    ["useName", "getGlobalName"],
+    ["getUserTag", "getGlobalName"],
+    ["getAvatarDecorationURL"],
+    ["extractTimestamp"],
+    ["fetchCollectiblesCategories"],
+    ["PREMIUM_TENURE", "GAME_VARIETY", "ACCOUNT_AGE"],
+    ["getRootNavigationRef"],
 ];
 
 const NAMES = ["RowManager", "ProfileBanner", "HeaderAvatar", "GuildIcon", "UserProfileHeader", "ChatInput", "MessageRecord", "useBadges", "LongPressMessageActionSheet"];
@@ -226,6 +238,20 @@ async function run() {
         prepare: typeof soundManager?.prepare,
         patchable,
         jsSound: Object.keys(findByProps("playSound") ?? {}).slice(0, 12),
+    });
+    // CustomProfile's photo picker, and the loader's bridge that SmoothType draws its caret through
+    const { callLoaderMethod, getNativeModule } = require("@lib/api/native/modules");
+    const bridge = (method: string, ...args: unknown[]) => {
+        try {
+            return { ok: true, result: callLoaderMethod(method, ...args) ?? null };
+        } catch (e) {
+            return { ok: false, error: String(e) };
+        }
+    };
+    report("loader", {
+        imagePicker: typeof getNativeModule("ImagePickerManager")?.launchImageLibrary,
+        info: bridge("revenge.info"),
+        smoothType: bridge("endcord.smoothType.configure", false, 0xffffff, 60, "ease"),
     });
 
     await behaviour();
