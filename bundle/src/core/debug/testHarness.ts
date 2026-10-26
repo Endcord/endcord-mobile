@@ -7,13 +7,12 @@
  * reports to logcat as "ENDCORD_TEST <json>" lines, which .github/scripts/emulator-test.sh collects.
  */
 
-import { getEndcordPlugins } from "@plugins";
-import { FluxDispatcher } from "@metro/common";
-import { startEndcordPlugin, stopEndcordPlugin } from "@plugins/api";
-import { findByFilePath, findByName, findByProps, findByStoreName } from "@metro";
-import { NativeClientInfoModule as ClientInfoManager } from "@lib/api/native/modules";
-import { version } from "bunny-build-info";
 import { getLanguage, LANGUAGES, t } from "@core/i18n";
+import { NativeClientInfoModule as ClientInfoManager } from "@lib/api/native/modules";
+import { findByFilePath, findByName, findByProps, findByStoreName } from "@metro";
+import { getEndcordPlugins } from "@plugins";
+import { startEndcordPlugin, stopEndcordPlugin } from "@plugins/api";
+import { version } from "bunny-build-info";
 
 function report(kind: string, data: unknown) {
     try {
