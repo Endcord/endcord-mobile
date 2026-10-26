@@ -35,11 +35,29 @@ const BUTTON_OPTIONS = [
 const OUR_DECORATIONS = new Set(AVATAR_DECORATIONS.map(d => d.id));
 const DATE_SUFFIX = "T12:00:00Z";
 
-/** Opens the editor, from anywhere in the app */
+/**
+ * Opens the editor: from the plugin's settings, as the next page there; from the chat or EndcordToolbox, as a
+ * full-screen window of its own, since the settings' pages can't be reached from outside them
+ */
 function openEditor(navigation?: any) {
-    navigation ??= findByProps("getRootNavigationRef")?.getRootNavigationRef?.();
-    if (!navigation) throw new Error("Discord's navigation wasn't found");
-    navigation.navigate("BUNNY_CUSTOM_PAGE", { title: t("Custom Profile"), render: CustomProfileEditor });
+    if (navigation) {
+        navigation.push("BUNNY_CUSTOM_PAGE", { title: t("Custom Profile"), render: () => <CustomProfileEditor onClose={() => navigation.goBack()} /> });
+        return;
+    }
+    const modals = findByProps("pushLazy");
+    const { Navigator, getHeaderCloseButton } = findByProps("Navigator", "getHeaderCloseButton") ?? {};
+    if (typeof modals?.push !== "function" || !Navigator || typeof getHeaderCloseButton !== "function") throw new Error("Discord's screens weren't found");
+    const close = () => modals.pop();
+    modals.push(() => <Navigator
+        initialRouteName="ENDCORD_CUSTOM_PROFILE"
+        screens={{
+            ENDCORD_CUSTOM_PROFILE: {
+                title: t("Custom Profile"),
+                headerLeft: getHeaderCloseButton(close),
+                render: () => <CustomProfileEditor onClose={close} />,
+            },
+        }}
+    />);
 }
 
 function OpenButton() {

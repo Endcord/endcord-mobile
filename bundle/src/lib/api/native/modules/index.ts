@@ -45,3 +45,13 @@ export function callLoaderMethod<T = unknown>(method: string, ...args: unknown[]
     if (response.error) throw new Error(String(response.error).split("\n")[0]);
     return response.result as T;
 }
+
+/** {@link callLoaderMethod} through the loader's asynchronous path, FileReaderModule's readAsDataURL, which it hooks */
+export async function callLoaderMethodAsync<T = unknown>(method: string, ...args: unknown[]): Promise<T> {
+    const reader = getNativeModule("FileReaderModule");
+    if (typeof reader?.readAsDataURL !== "function") throw new Error(`The loader didn't answer ${method}`);
+    const response = await reader.readAsDataURL({ revenge: { method, args } });
+    if (!response || typeof response !== "object") throw new Error(`The loader didn't answer ${method}`);
+    if (response.error) throw new Error(String(response.error).split("\n")[0]);
+    return response.result as T;
+}
