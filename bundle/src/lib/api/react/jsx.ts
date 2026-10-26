@@ -1,7 +1,7 @@
 import { after } from "@lib/api/patcher";
 import { findByPropsLazy } from "@metro";
 
-type Callback = (Component: any, ret: JSX.Element) => JSX.Element;
+type Callback = (Component: any, ret: JSX.Element) => JSX.Element | void;
 const callbacks = new Map<string, Callback[]>();
 
 const jsxRuntime = findByPropsLazy("jsx", "jsxs");

@@ -20,6 +20,15 @@ export const registeredSections = {} as {
     [key: string]: RowConfig[];
 };
 
+/** Set by the HideEndcord plugin: Endcord's sections are left out of Discord's settings */
+export const sectionVisibility = { hidden: false };
+
+/** The sections to show: empty ones (kept for plugins that add rows to them) and hidden ones are left out */
+export function getVisibleSections(): string[] {
+    if (sectionVisibility.hidden) return [];
+    return Object.keys(registeredSections).filter(name => registeredSections[name].length > 0);
+}
+
 export function registerSection(section: { name: string; items: RowConfig[]; }) {
     registeredSections[section.name] = section.items;
     return () => delete registeredSections[section.name];

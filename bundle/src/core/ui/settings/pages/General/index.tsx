@@ -1,5 +1,5 @@
 import { isSafeMode, toggleSafeMode } from "@core/debug/safeMode";
-import { Strings } from "@core/i18n";
+import { getLanguage, LANGUAGES, Strings, t } from "@core/i18n";
 import { PyoncordIcon } from "@core/ui/settings";
 import About from "@core/ui/settings/pages/General/About";
 import { useProxy } from "@core/vendetta/storage";
@@ -10,7 +10,7 @@ import { settings } from "@lib/api/settings";
 import { openAlert } from "@lib/ui/alerts";
 import { DISCORD_SERVER, GITHUB } from "@lib/utils/constants";
 import { NavigationNative } from "@metro/common";
-import { AlertActionButton, AlertActions, AlertModal, Stack, TableRow, TableRowGroup, TableSwitchRow } from "@metro/common/components";
+import { AlertActionButton, AlertActions, AlertModal, Stack, TableRadioGroup, TableRadioRow, TableRow, TableRowGroup, TableSwitchRow } from "@metro/common/components";
 import { Linking, ScrollView } from "react-native";
 
 export default function General() {
@@ -43,6 +43,18 @@ export default function General() {
                         })}
                     />
                 </TableRowGroup>
+                <TableRadioGroup
+                    title={t("Language")}
+                    value={settings.language ?? "auto"}
+                    onChange={(v: string) => settings.language = v as typeof settings.language}
+                >
+                    <TableRadioRow
+                        label={t("Same as Discord")}
+                        subLabel={LANGUAGES.find(l => l.code === getLanguage())?.nativeName}
+                        value="auto"
+                    />
+                    {LANGUAGES.map(l => <TableRadioRow key={l.code} label={l.nativeName} value={l.code} />)}
+                </TableRadioGroup>
                 <TableRowGroup title={Strings.LINKS}>
                     <TableRow
                         arrow={true}
@@ -73,15 +85,15 @@ export default function General() {
                             openAlert(
                                 "bunny-reload-safe-mode",
                                 <AlertModal
-                                    title="Reload now?"
-                                    content={!to ? "All add-ons will load normally." : "All add-ons will be temporarily disabled upon reload."}
+                                    title={Strings.MODAL_RELOAD_REQUIRED}
+                                    content={!to ? t("All add-ons will load normally.") : t("All add-ons will be turned off until you leave safe mode.")}
                                     actions={<AlertActions>
                                         <AlertActionButton
-                                            text="Reload Now"
+                                            text={t("Reload now")}
                                             variant="destructive"
                                             onPress={() => BundleUpdaterManager.reload()}
                                         />
-                                        <AlertActionButton text="Later" variant="secondary" />
+                                        <AlertActionButton text={t("Later")} variant="secondary" />
                                     </AlertActions>}
                                 />
                             );

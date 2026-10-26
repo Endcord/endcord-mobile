@@ -11,6 +11,8 @@ export interface Settings {
         currentThemeId?: string;
     };
     enableEvalCommand?: boolean;
+    /** "auto" (or unset) follows Discord's language */
+    language?: "auto" | import("@core/i18n").EndcordLanguage;
 }
 
 export interface LoaderConfig {

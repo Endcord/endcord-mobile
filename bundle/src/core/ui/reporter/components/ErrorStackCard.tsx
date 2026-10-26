@@ -1,3 +1,4 @@
+import { t } from "@core/i18n";
 import parseErrorStack, { StackFrame } from "@core/ui/reporter/utils/parseErrorStack";
 import { findAssetId } from "@lib/api/assets";
 import { clipboard, constants } from "@metro/common";
@@ -33,12 +34,12 @@ export default function ErrorStackCard(props: {
             <View style={{ gap: 8, flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
                 <Button
                     variant="secondary"
-                    text={`Show ${collapsed ? "more" : "less"}`}
+                    text={collapsed ? t("Show more") : t("Show less")}
                     icon={findAssetId(collapsed ? "ChevronSmallUpIcon" : "ChevronSmallDownIcon")}
                     onPress={() => setCollapsed(v => !v)} />
                 <Button
                     variant="secondary"
-                    text="Copy"
+                    text={t("Copy")}
                     icon={findAssetId("CopyIcon")}
                     onPress={() => clipboard.setString(props.error.stack)} />
             </View>

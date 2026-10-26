@@ -1,3 +1,4 @@
+import { Strings, t } from "@core/i18n";
 import { hasStack, isComponentStack } from "@core/ui/reporter/utils/isStack";
 import { getDebugInfo, toggleSafeMode } from "@lib/api/debug";
 import { BundleUpdaterManager } from "@lib/api/native/modules";
@@ -32,8 +33,8 @@ export default function ErrorBoundaryScreen(props: {
         <SafeAreaProvider>
             <SafeAreaView style={styles.container}>
                 <View style={{ gap: 4 }}>
-                    <Text variant="display-lg">Uh oh.</Text>
-                    <Text variant="text-md/normal">A crash occurred while rendering a component. This could be caused by a plugin, Endcord, or Discord itself.</Text>
+                    <Text variant="display-lg">{Strings.UH_OH}</Text>
+                    <Text variant="text-md/normal">{t("Part of the screen crashed while drawing. A plugin, Endcord or Discord itself can cause this.")}</Text>
                     <Text variant="text-sm/normal" color="text-muted">{debugInfo.os.name}; {debugInfo.discord.build} ({debugInfo.discord.version}); {debugInfo.bunny.version}</Text>
                 </View>
                 <ScrollView fadingEdgeLength={64} contentContainerStyle={{ gap: 12 }}>
@@ -42,9 +43,9 @@ export default function ErrorBoundaryScreen(props: {
                     {isComponentStack(props.error) ? <ErrorComponentStackCard componentStack={props.error.componentStack} /> : null}
                 </ScrollView>
                 <Card style={{ gap: 6 }}>
-                    <Button text="Reload Discord" onPress={() => BundleUpdaterManager.reload()} />
-                    {!settings.safeMode?.enabled && <Button text="Reload in Safe Mode" onPress={() => toggleSafeMode()} />}
-                    <Button variant="destructive" text="Retry Render" onPress={() => props.rerender()} />
+                    <Button text={Strings.RELOAD_DISCORD} onPress={() => BundleUpdaterManager.reload()} />
+                    {!settings.safeMode?.enabled && <Button text={Strings.RELOAD_IN_SAFE_MODE} onPress={() => toggleSafeMode()} />}
+                    <Button variant="destructive" text={Strings.RETRY_RENDER} onPress={() => props.rerender()} />
                 </Card>
             </SafeAreaView>
         </SafeAreaProvider>

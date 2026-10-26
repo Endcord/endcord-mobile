@@ -22,7 +22,9 @@ const args = yargs(process.argv.slice(2));
 const {
     "release-branch": releaseBranch,
     "build-minify": buildMinify,
-    "dev": dev
+    "dev": dev,
+    // Adds the self-test that the emulator workflow runs
+    "test": test
 } = args;
 
 let context = null;
@@ -51,7 +53,9 @@ const config = {
     },
     define: {
         window: "globalThis",
-        __DEV__: dev ?? JSON.stringify(releaseBranch !== "main")
+        // Published builds (main and next) are release builds; local and branch builds keep the developer tools
+        __DEV__: dev ?? JSON.stringify(!["main", "next"].includes(releaseBranch)),
+        __ENDCORD_TEST__: JSON.stringify(!!test)
     },
     inject: ["./shims/asyncIteratorSymbol.js", "./shims/promiseAllSettled.js"],
     legalComments: "none",
