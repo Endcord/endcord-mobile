@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { t } from "@core/i18n";
+import { t, tx } from "@core/i18n";
 import { awaitStorage, createMMKVBackend, createStorage, wrapSync } from "@core/vendetta/storage";
 import type { Author } from "@lib/addons/types";
 import { findAssetId } from "@lib/api/assets";
@@ -23,6 +23,9 @@ export type SettingsSchema = Record<string, SettingDef>;
 /** Endcord PC's plugin tags that apply on mobile */
 export const PLUGIN_TAGS = ["Appearance", "Chat", "Customisation", "Emotes", "Friends", "Fun", "Media", "Notifications", "Privacy", "Servers", "Utility", "Voice"] as const;
 export type PluginTag = typeof PLUGIN_TAGS[number];
+
+// The tags' labels, translated where the filters show them
+void [tx("Appearance"), tx("Chat"), tx("Customisation"), tx("Emotes"), tx("Friends"), tx("Fun"), tx("Media"), tx("Notifications"), tx("Privacy"), tx("Servers"), tx("Utility"), tx("Voice")];
 
 export type SettingsValues<S extends SettingsSchema> = {
     -readonly [K in keyof S]: S[K]["default"] extends boolean ? boolean : S[K]["default"] extends number ? number : string;

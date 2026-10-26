@@ -21,7 +21,8 @@ export default function unifyBunnyPlugin(manifest: BunnyPluginManifest): Unified
         tags: manifest.extras?.tags,
 
         getBadges() {
-            return [{ source: { uri: PyoncordIcon } }];
+            // Endcord's own plugins don't need a badge saying where they come from
+            return manifest.extras?.endcord ? [] : [{ source: { uri: PyoncordIcon } }];
         },
         isEnabled: () => isPluginEnabled(manifest.id),
         isInstalled: () => manifest.id in pluginSettings,

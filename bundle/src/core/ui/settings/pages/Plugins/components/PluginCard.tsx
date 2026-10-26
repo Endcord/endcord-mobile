@@ -33,6 +33,8 @@ function Title() {
     const textNode = (
         <Text
             numberOfLines={1}
+            adjustsFontSizeToFit
+            minimumFontScale={0.8}
             variant="heading-lg/semibold"
         >
             {highlightedNode.length ? highlightedNode : plugin.name}
@@ -142,25 +144,24 @@ export default function PluginCard({ result, item: plugin }: CardWrapper<Unified
         <CardContext.Provider value={cardContextValue}>
             <Card>
                 <Stack spacing={16}>
-                    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                        <View style={{ flexShrink: 1 }}>
+                    {/* The name gets the whole width beside the switch; settings and info sit under the description */}
+                    <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+                        <View style={{ flexShrink: 1, flexGrow: 1 }}>
                             <Title />
                             <Authors />
                         </View>
-                        <View>
-                            <Stack spacing={12} direction="horizontal">
-                                <Actions />
-                                <TableSwitch
-                                    value={plugin.isEnabled()}
-                                    onValueChange={(v: boolean) => {
-                                        plugin.toggle(v);
-                                        forceUpdate();
-                                    }}
-                                />
-                            </Stack>
-                        </View>
+                        <TableSwitch
+                            value={plugin.isEnabled()}
+                            onValueChange={(v: boolean) => {
+                                plugin.toggle(v);
+                                forceUpdate();
+                            }}
+                        />
                     </View>
                     <Description />
+                    <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
+                        <Actions />
+                    </View>
                 </Stack>
             </Card>
         </CardContext.Provider>
