@@ -11,12 +11,12 @@ import { findAssetId } from "@lib/api/assets";
 import { getNativeModule } from "@lib/api/native/modules";
 import { showToast } from "@lib/ui/toasts";
 import { findByProps } from "@metro";
-import { FluxUtils, NavigationNative } from "@metro/common";
+import { FluxUtils } from "@metro/common";
 import { Button, Stack, TableRow, TableRowGroup, TableSwitchRow, Text, TextInput } from "@metro/common/components";
 import { semanticColorOf } from "@ui/color";
 import { createStyles } from "@ui/styles";
-import { type ReactNode, useEffect, useMemo, useState } from "react";
-import { Image, Pressable, ScrollView, View } from "react-native";
+import { memo, type ReactNode, useCallback, useEffect, useMemo, useState } from "react";
+import { ActivityIndicator, FlatList, Image, Pressable, ScrollView, View } from "react-native";
 
 import { getStore } from "../common";
 import { toastError } from "../hooks";
@@ -86,13 +86,13 @@ function Divider() {
     return <View style={useStyles().divider} />;
 }
 
-function Pill({ label, icon, active, onPress }: { label: string; icon?: string; active: boolean; onPress: () => void; }) {
+const Pill = memo(function Pill({ label, icon, active, onPress }: { label: string; icon?: string; active: boolean; onPress: () => void; }) {
     const styles = useStyles();
     return <Pressable onPress={onPress} style={[styles.pill, active && styles.pillOn]} accessibilityRole="button" accessibilityState={{ selected: active }}>
         {icon ? <Image source={{ uri: icon }} style={{ width: 16, height: 16 }} resizeMode="contain" /> : null}
         <Text variant={active ? "text-xs/bold" : "text-xs/medium"} color={active ? "text-default" : "text-muted"}>{label}</Text>
     </Pressable>;
-}
+});
 
 /** Asks the photo picker for an image, as a data: link so it doesn't depend on the file staying where it is */
 function pickImage(maxWidth: number, maxHeight: number): Promise<string | undefined> {
@@ -220,7 +220,12 @@ function PresetsBar({ accountId, currentData, onLoad }: { accountId: string; cur
     </ScrollView>;
 }
 
-function BadgePicker({ data, set }: { data: CustomProfileData; set: <K extends keyof CustomProfileData>(key: K, val: CustomProfileData[K]) => void; }) {
+type Setter = <K extends keyof CustomProfileData>(key: K, val: CustomProfileData[K]) => void;
+
+type BadgeData = Pick<CustomProfileData, "badgeFlags" | "nitroLevel" | "boostMonths" | "customBadgeIds" | "tieredBadges" | "oldName">;
+
+// Drawn again only when the badges change, not on every letter typed elsewhere in the editor
+const BadgePicker = memo(function BadgePicker({ set, ...data }: BadgeData & { set: Setter; }) {
     const selected = data.badgeFlags ?? 0;
     const nitroType = data.nitroLevel ?? -1;
     const boostLevel = data.boostMonths ?? -1;
@@ -290,7 +295,66 @@ function BadgePicker({ data, set }: { data: CustomProfileData; set: <K extends k
             </Stack>;
         })}
     </Stack>;
-}
+});
+
+const DecorationPicker = memo(function DecorationPicker({ selected, set }: { selected?: string; set: Setter; }) {
+    const styles = useStyles();
+    return <Stack spacing={10}>
+        <SectionLabel>{t("Avatar decoration")}</SectionLabel>
+        <View style={styles.wrap}>
+            <Pill label={t("None")} active={!selected} onPress={() => set("decorationAsset", undefined)} />
+            {AVATAR_DECORATIONS.map(dec => <Pressable
+                key={`${dec.id}-${dec.label}`}
+                accessibilityLabel={dec.label}
+                onPress={() => set("decorationAsset", selected === dec.id ? undefined : dec.id)}
+                style={[styles.tile, { width: 52, height: 52, borderRadius: 6 }, selected === dec.id && styles.pillOn]}
+            >
+                <Image source={{ uri: getDecorationUrl(dec.id) }} style={{ width: 46, height: 46 }} resizeMode="contain" />
+            </Pressable>)}
+        </View>
+    </Stack>;
+});
+
+const EFFECT_TILE = { width: 64, height: 86 };
+
+// The shop has hundreds of effects: a list that only draws the rows on screen, in a box like Endcord PC's
+const EffectPicker = memo(function EffectPicker({ selected, set }: { selected?: string; set: Setter; }) {
+    const styles = useStyles();
+    const shopEffects = useShopProfileEffects();
+    const [width, setWidth] = useState(0);
+    const columns = Math.max(1, Math.floor((width + 6) / (EFFECT_TILE.width + 6)));
+
+    return <Stack spacing={10}>
+        <SectionLabel>{t("Profile Effect")}</SectionLabel>
+        <View style={styles.wrap}>
+            <Pill label={t("None")} active={!selected} onPress={() => set("profileEffectId", undefined)} />
+        </View>
+        {shopEffects.effects.length > 0 && <View style={{ height: 300 }} onLayout={e => setWidth(e.nativeEvent.layout.width)}>
+            {width > 0 && <FlatList
+                key={columns}
+                data={shopEffects.effects}
+                numColumns={columns}
+                nestedScrollEnabled={true}
+                initialNumToRender={columns * 4}
+                windowSize={5}
+                keyExtractor={eff => eff.skuId}
+                columnWrapperStyle={columns > 1 ? { gap: 6 } : undefined}
+                contentContainerStyle={{ gap: 6 }}
+                renderItem={({ item: eff }) => <Pressable
+                    accessibilityLabel={eff.name}
+                    onPress={() => set("profileEffectId", selected === eff.skuId ? undefined : eff.skuId)}
+                    style={[styles.tile, EFFECT_TILE, { borderRadius: 8, padding: 2 }, selected === eff.skuId && styles.pillOn]}
+                >
+                    {eff.thumbnail
+                        ? <Image source={{ uri: eff.thumbnail }} style={{ width: "100%", height: "100%", borderRadius: 6 }} resizeMode="cover" />
+                        : <Text variant="text-xxs/medium" color="text-default" style={{ textAlign: "center" }}>{eff.name}</Text>}
+                </Pressable>}
+            />}
+        </View>}
+        {shopEffects.loading && <Text variant="text-xs/medium" color="text-muted">{t("Loading effects from the Discord shop…")}</Text>}
+        {shopEffects.failed && <Text variant="text-xs/medium" color="text-muted">{t("Couldn't load effects from the Discord shop. Close this window and try again.")}</Text>}
+    </Stack>;
+});
 
 interface ShopProfileEffect {
     skuId: string;
@@ -351,20 +415,25 @@ const avatarOf = (user: any): string | undefined => {
     }
 };
 
-export default function CustomProfileEditor() {
-    const navigation = NavigationNative.useNavigation();
+
+export default function CustomProfileEditor({ onClose }: { onClose: () => void; }) {
     const styles = useStyles();
-    const shopEffects = useShopProfileEffects();
     const me = myId() ?? "";
     const accounts = useAccounts();
     const [accountId, setAccountId] = useState(me);
     const [data, setData] = useState<CustomProfileData>(() => accountData(me));
     const [saving, setSaving] = useState(false);
+    // The page opens at once; the badges, decorations and effects, with their hundreds of images, follow a moment later
+    const [ready, setReady] = useState(false);
+    useEffect(() => {
+        const timer = setTimeout(() => setReady(true), 50);
+        return () => clearTimeout(timer);
+    }, []);
     useEffect(() => setData(accountData(accountId)), [accountId]);
 
-    const set = <K extends keyof CustomProfileData>(key: K, val: CustomProfileData[K]) => setData(d => ({ ...d, [key]: val }));
-    const close = () => navigation.goBack();
+    const set: Setter = useCallback((key, val) => setData(d => ({ ...d, [key]: val })), []);
     const account = accounts.find(a => a?.id === accountId);
+    const accountAvatar = useMemo(() => account && avatarOf(account), [account]);
 
     const save = () => {
         try {
@@ -377,7 +446,7 @@ export default function CustomProfileEditor() {
             showToast(`Save error: ${(e as Error)?.message ?? e}`, findAssetId("CircleXIcon-primary"));
         } finally {
             setSaving(false);
-            close();
+            onClose();
         }
     };
     const reset = () => {
@@ -387,7 +456,7 @@ export default function CustomProfileEditor() {
         } catch (e) {
             showToast(`Reset error: ${(e as Error)?.message ?? e}`, findAssetId("CircleXIcon-primary"));
         } finally {
-            close();
+            onClose();
         }
     };
     const runRepair = () => {
@@ -396,7 +465,7 @@ export default function CustomProfileEditor() {
         } catch (e) {
             console.error("[Endcord] CustomProfile repair failed", e);
         }
-        close();
+        onClose();
     };
 
     return <View style={{ flex: 1 }}>
@@ -405,7 +474,7 @@ export default function CustomProfileEditor() {
                 {accounts.length > 1 && <TableRowGroup title={t("Select Account")}>
                     <TableRow
                         label={account?.globalName || account?.username || t("Select Account")}
-                        icon={avatarOf(account) ? <Image source={{ uri: avatarOf(account) }} style={{ width: 24, height: 24, borderRadius: 12 }} /> : undefined}
+                        icon={accountAvatar ? <Image source={{ uri: accountAvatar }} style={{ width: 24, height: 24, borderRadius: 12 }} /> : undefined}
                         arrow={true}
                         onPress={() => choose(t("Select Account"), accounts.map(a => ({ label: a.globalName || a.username, value: a.id })), setAccountId)}
                     />
@@ -432,50 +501,28 @@ export default function CustomProfileEditor() {
                 <TextInput label={t("Email address (local display)")} value={data.email ?? ""} placeholder={t("exemple@mail.com")} keyboardType="email-address" autoCapitalize="none" onChange={(v: string) => set("email", v)} />
                 <TextInput label={t("Phone (local display)")} value={data.phone ?? ""} placeholder="+33 6 00 00 00 00" keyboardType="phone-pad" onChange={(v: string) => set("phone", v)} />
                 <Divider />
-                <BadgePicker data={data} set={set} />
-                <Divider />
-
-                <Stack spacing={10}>
-                    <SectionLabel>{t("Avatar decoration")}</SectionLabel>
-                    <View style={styles.wrap}>
-                        <Pill label={t("None")} active={!data.decorationAsset} onPress={() => set("decorationAsset", undefined)} />
-                        {AVATAR_DECORATIONS.map(dec => <Pressable
-                            key={`${dec.id}-${dec.label}`}
-                            accessibilityLabel={dec.label}
-                            onPress={() => set("decorationAsset", data.decorationAsset === dec.id ? undefined : dec.id)}
-                            style={[styles.tile, { width: 52, height: 52, borderRadius: 6 }, data.decorationAsset === dec.id && styles.pillOn]}
-                        >
-                            <Image source={{ uri: getDecorationUrl(dec.id) }} style={{ width: 46, height: 46 }} resizeMode="contain" />
-                        </Pressable>)}
-                    </View>
-                </Stack>
-                <Divider />
-
-                <Stack spacing={10}>
-                    <SectionLabel>{t("Profile Effect")}</SectionLabel>
-                    <View style={styles.wrap}>
-                        <Pill label={t("None")} active={!data.profileEffectId} onPress={() => set("profileEffectId", undefined)} />
-                        {shopEffects.effects.map(eff => <Pressable
-                            key={eff.skuId}
-                            accessibilityLabel={eff.name}
-                            onPress={() => set("profileEffectId", data.profileEffectId === eff.skuId ? undefined : eff.skuId)}
-                            style={[styles.tile, { width: 64, height: 86, borderRadius: 8, padding: 2 }, data.profileEffectId === eff.skuId && styles.pillOn]}
-                        >
-                            {eff.thumbnail
-                                ? <Image source={{ uri: eff.thumbnail }} style={{ width: "100%", height: "100%", borderRadius: 6 }} resizeMode="cover" />
-                                : <Text variant="text-xxs/medium" color="text-default" style={{ textAlign: "center" }}>{eff.name}</Text>}
-                        </Pressable>)}
-                    </View>
-                    {shopEffects.loading && <Text variant="text-xs/medium" color="text-muted">{t("Loading effects from the Discord shop…")}</Text>}
-                    {shopEffects.failed && <Text variant="text-xs/medium" color="text-muted">{t("Couldn't load effects from the Discord shop. Close this window and try again.")}</Text>}
-                </Stack>
+                {ready ? <>
+                    <BadgePicker
+                        badgeFlags={data.badgeFlags}
+                        nitroLevel={data.nitroLevel}
+                        boostMonths={data.boostMonths}
+                        customBadgeIds={data.customBadgeIds}
+                        tieredBadges={data.tieredBadges}
+                        oldName={data.oldName}
+                        set={set}
+                    />
+                    <Divider />
+                    <DecorationPicker selected={data.decorationAsset} set={set} />
+                    <Divider />
+                    <EffectPicker selected={data.profileEffectId} set={set} />
+                </> : <ActivityIndicator style={{ marginVertical: 24 }} />}
 
                 <Text variant="text-xs/medium" color="text-muted">{t("Visual and local modifications only — persistent between restarts.")}</Text>
                 <Text variant="text-xs/medium" color="text-muted">{t("Only you see these changes. Clear them before you edit your real profile, so they don't end up in it.")}</Text>
             </Stack>
         </ScrollView>
         <View style={styles.footer}>
-            <Button size="sm" variant="secondary" text={t("Cancel")} onPress={close} grow={true} />
+            <Button size="sm" variant="secondary" text={t("Cancel")} onPress={onClose} grow={true} />
             <Button size="sm" variant="destructive" text={t("Reset")} icon={findAssetId("TrashIcon")} onPress={reset} grow={true} />
             <Button size="sm" variant="secondary" text={t("Repair")} onPress={runRepair} grow={true} />
             <Button size="sm" variant="primary" text={saving ? t("Saving...") : t("Save")} loading={saving} onPress={save} grow={true} />

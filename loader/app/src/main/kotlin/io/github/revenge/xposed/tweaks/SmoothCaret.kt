@@ -3,14 +3,12 @@ package io.github.revenge.xposed.tweaks
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.RectF
-import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
-import android.os.Build
 import android.os.SystemClock
 import android.view.animation.Interpolator
 import android.view.animation.LinearInterpolator
 import android.view.animation.PathInterpolator
 import android.widget.TextView
+import de.robv.android.xposed.XposedBridge
 import io.github.revenge.xposed.api.registerNativeMethod
 import io.github.revenge.xposed.hook
 import io.github.revenge.xposed.method
@@ -45,8 +43,8 @@ private class CaretState {
     var toHeight = 0f
     var movedAt = 0L
     var shown = false
-    /** The view's own cursor drawable, put back when the caret is turned off */
-    var nativeCursor: Drawable? = null
+    /** Whether Discord wants the cursor shown; the view's own is hidden while this caret is drawn */
+    var wanted: Boolean? = null
     var hidNative = false
 }
 
@@ -70,10 +68,9 @@ private object Caret {
     }
 }
 
-val smoothCaret by tweak {
-    // The view's cursor drawable can only be swapped from Android 10, so older phones keep Discord's caret
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) return@tweak
+private val setCursorVisible = TextView::class.java.method("setCursorVisible", Boolean::class.javaPrimitiveType)
 
+val smoothCaret by tweak {
     registerNativeMethod("endcord.smoothType.configure") { args ->
         Caret.enabled = args.getOrNull(0) as? Boolean ?: false
         (args.getOrNull(1) as? Number)?.let { Caret.color = 0xFF000000.toInt() or (it.toInt() and 0xFFFFFF) }
@@ -81,6 +78,17 @@ val smoothCaret by tweak {
         (args.getOrNull(3) as? String)?.let { Caret.interpolator = Caret.easing(it) }
         synchronized(Caret.states) { Caret.states.keys.toList() }.forEach { it.postInvalidate() }
         null
+    }
+
+    // Discord shows and hides the message box's cursor; that is remembered, and the view's own stays hidden while this
+    // caret is drawn
+    setCursorVisible.hook {
+        before {
+            val view = thisObject as? TextView ?: return@before
+            if (view.javaClass.name != CHAT_INPUT_CLASS) return@before
+            stateOf(view).wanted = args[0] as? Boolean ?: true
+            if (Caret.enabled) args[0] = false
+        }
     }
 
     TextView::class.java.method("onDraw", Canvas::class.java).hook {
@@ -93,25 +101,27 @@ val smoothCaret by tweak {
     }
 }
 
+private fun stateOf(view: TextView) = synchronized(Caret.states) { Caret.states.getOrPut(view) { CaretState() } }
+
 private fun draw(view: TextView, canvas: Canvas) {
-    val state = synchronized(Caret.states) { Caret.states.getOrPut(view) { CaretState() } }
+    val state = stateOf(view)
 
     if (!Caret.enabled) {
         if (state.hidNative) {
-            view.textCursorDrawable = state.nativeCursor
+            XposedBridge.invokeOriginalMethod(setCursorVisible, view, arrayOf(state.wanted ?: true))
             state.hidNative = false
         }
         return
     }
     if (!state.hidNative) {
-        state.nativeCursor = view.textCursorDrawable
-        view.textCursorDrawable = ColorDrawable(0)
+        if (state.wanted == null) state.wanted = view.isCursorVisible
+        XposedBridge.invokeOriginalMethod(setCursorVisible, view, arrayOf(false))
         state.hidNative = true
     }
 
     val layout = view.layout
     // Like Endcord PC, only while the box has focus, and at the end of the selection
-    if (layout == null || !view.isFocused || !view.hasWindowFocus() || !view.isCursorVisible || view.selectionEnd < 0) {
+    if (layout == null || !view.isFocused || !view.hasWindowFocus() || state.wanted == false || view.selectionEnd < 0) {
         state.shown = false
         state.toX = Float.NaN
         return

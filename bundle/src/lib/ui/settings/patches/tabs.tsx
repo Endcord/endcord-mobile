@@ -11,6 +11,14 @@ const settingConstants = findByPropsLazy("SETTING_RENDERER_CONFIG");
 const createListModule = findByPropsLazy("createList");
 const SettingsOverviewScreen = findByNameLazy("SettingsOverviewScreen", false);
 
+/** Takes Endcord's sections out of Discord's list of settings sections */
+function removeOurSections(sections: any[]) {
+    const ours = new Set(Object.keys(registeredSections));
+    for (let i = sections.length - 1; i >= 0; i--) {
+        if (ours.has(sections[i]?.label)) sections.splice(i, 1);
+    }
+}
+
 function useIsFirstRender() {
     let firstRender = false;
     React.useEffect(() => void (firstRender = true), []);
@@ -83,6 +91,10 @@ export function patchTabsUI(unpatches: (() => void | boolean)[]) {
             if (config?.sections && Array.isArray(config.sections)) {
                 const { sections } = config;
 
+                // Discord keeps the same list between visits, so sections added before are taken out first: HideEndcord
+                // can hide them, and a section that's gone isn't left behind
+                removeOurSections(sections);
+
                 const accountSectionIndex = sections.findIndex((i: any) => i.settings?.includes("ACCOUNT"));
 
                 if (accountSectionIndex !== -1) {
@@ -91,14 +103,11 @@ export function patchTabsUI(unpatches: (() => void | boolean)[]) {
                     let index = accountSectionIndex + 1;
 
                     getVisibleSections().forEach(sect => {
-                        const alreadyExists = sections.some((s: any) => s.label === sect);
-                        if (!alreadyExists) {
-                            sections.splice(index++, 0, {
-                                label: sect,
-                                title: sect,
-                                settings: registeredSections[sect].map(a => a.key)
-                            });
-                        }
+                        sections.splice(index++, 0, {
+                            label: sect,
+                            title: sect,
+                            settings: registeredSections[sect].map(a => a.key)
+                        });
                     });
                 }
             }
@@ -110,6 +119,7 @@ export function patchTabsUI(unpatches: (() => void | boolean)[]) {
             if (useIsFirstRender()) return; // :shrug:
 
             const { sections } = findInReactTree(ret, i => i.props?.sections).props;
+            removeOurSections(sections);
             // Credit to @palmdevs - https://discord.com/channels/1196075698301968455/1243605828783571024/1307940348378742816
             let index = -~sections.findIndex((i: any) => i.settings.includes("ACCOUNT")) || 1;
 

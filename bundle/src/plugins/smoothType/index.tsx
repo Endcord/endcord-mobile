@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 import { useProxy } from "@core/vendetta/storage";
-import { callLoaderMethod } from "@lib/api/native/modules";
+import { callLoaderMethod, callLoaderMethodAsync } from "@lib/api/native/modules";
 import { Stack, Text, TextInput } from "@metro/common/components";
 import { useState } from "react";
 import { View } from "react-native";
@@ -80,13 +80,22 @@ const plugin = definePlugin({
         },
     },
     SettingsComponent: CaretColor,
-    start({ store, cleanup }) {
+    async start({ store, cleanup, logger }) {
         // Discord's message box is a native view, so the loader draws the caret; see SmoothCaret.kt
-        const apply = (enabled: boolean) => callLoaderMethod("endcord.smoothType.configure", enabled, caretColorOf(store), store.transitionDelay, store.animationType);
+        const args = (enabled: boolean) => ["endcord.smoothType.configure", enabled, caretColorOf(store), store.transitionDelay, store.animationType] as const;
+        let apply: (enabled: boolean) => unknown;
         try {
-            apply(true);
-        } catch {
-            throw new Error(t("This needs a newer Endcord. Install it again with Endcord Installer."));
+            callLoaderMethod(...args(true));
+            apply = enabled => callLoaderMethod(...args(enabled));
+        } catch (syncError) {
+            // The synchronous bridge goes through react-native-svg; without it, the asynchronous one
+            try {
+                await callLoaderMethodAsync(...args(true));
+                apply = enabled => callLoaderMethodAsync(...args(enabled)).catch(e => logger.error("Couldn't set the caret", e));
+            } catch (e) {
+                logger.error("The loader can't draw the caret", syncError, e);
+                throw new Error(t("This needs a newer Endcord. Install it again with Endcord Installer."));
+            }
         }
         cleanup(
             onSettingChange(store, () => apply(true)),
