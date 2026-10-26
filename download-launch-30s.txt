@@ -1,0 +1,34 @@
+plugins
+Search
+13
+0
+Total Plugins
+Enabled Plugins
+Show All
+Show All
+Show Enabled
+Show Enabled
+Show Disabled
+Show Disabled
+Appearance
+Appearance
+Chat
+Chat
+Customisation
+Customisation
+Emotes
+Emotes
+CustomProfile
+POPULAR
+by rootpoi
+Visually customize your Discord profile (username, PFP, banner, badges, bio...) — persistent, only visible to you.
+MessageLogger
+POPULAR
+by rootpoi
+Keeps deleted messages in the chat and shows earlier versions of edited ones.
+WELCOME TO DISCORD
+Hang out, play games, or just talk. Tap below to get started!
+Register
+Register
+Log In
+Log In

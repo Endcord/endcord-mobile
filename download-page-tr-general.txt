@@ -1,0 +1,33 @@
+plugins
+Ara
+13
+0
+Toplam Eklenti
+Etkin Eklentiler
+Tümünü Göster
+Tümünü Göster
+Etkin Olanları Göster
+Etkin Olanları Göster
+Devre Dışı Olanları Göster
+Devre Dışı Olanları Göster
+Appearance
+Appearance
+Chat
+Chat
+Customisation
+Customisation
+Emotes
+Emotes
+CustomProfile
+POPÜLER
+rootpoi tarafından
+Discord profilinizi görsel olarak özelleştirin (kullanıcı adı, profil fotoğrafı, afiş, rozetler, hakkında...) — kalıcıdır, yalnızca size görünür.
+MessageLogger
+POPÜLER
+rootpoi tarafından
+WELCOME TO DISCORD
+Hang out, play games, or just talk. Tap below to get started!
+Register
+Register
+Log In
+Log In
