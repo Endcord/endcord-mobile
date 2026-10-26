@@ -62,6 +62,19 @@ const useStyles = createStyles({
         borderColor: semanticColorOf("BORDER_SUBTLE", "BACKGROUND_MOD_STRONG", "BACKGROUND_MOD_NORMAL"),
         backgroundColor: semanticColorOf("BACKGROUND_MOD_SUBTLE", "BACKGROUND_MOD_NORMAL", "BACKGROUND_BASE_LOW"),
     },
+    effectName: {
+        position: "absolute",
+        left: 3,
+        right: 3,
+        bottom: 3,
+        textAlign: "center",
+        paddingHorizontal: 2,
+        paddingVertical: 1,
+        borderRadius: 4,
+        overflow: "hidden",
+        backgroundColor: "rgba(0, 0, 0, 0.55)",
+        color: "#ffffff",
+    },
     divider: {
         height: 1,
         backgroundColor: semanticColorOf("BORDER_SUBTLE", "BACKGROUND_MOD_NORMAL", "BACKGROUND_MOD_STRONG"),
@@ -89,7 +102,7 @@ function Divider() {
 const Pill = memo(function Pill({ label, icon, active, onPress }: { label: string; icon?: string; active: boolean; onPress: () => void; }) {
     const styles = useStyles();
     return <Pressable onPress={onPress} style={[styles.pill, active && styles.pillOn]} accessibilityRole="button" accessibilityState={{ selected: active }}>
-        {icon ? <Image source={{ uri: icon }} style={{ width: 16, height: 16 }} resizeMode="contain" /> : null}
+        {icon ? <Image source={{ uri: icon }} style={{ width: 16, height: 16 }} resizeMode="contain" resizeMethod="resize" /> : null}
         <Text variant={active ? "text-xs/bold" : "text-xs/medium"} color={active ? "text-default" : "text-muted"}>{label}</Text>
     </Pressable>;
 });
@@ -117,6 +130,7 @@ function ImageField({ label, value, onChange, isAvatar }: { label: string; value
             <Image
                 source={{ uri: value }}
                 resizeMode="cover"
+                resizeMethod="resize"
                 style={isAvatar
                     ? { width: 80, height: 80, borderRadius: 40, borderWidth: 3, borderColor: BRAND }
                     : { width: "100%", height: 100, borderRadius: 8 }}
@@ -309,7 +323,7 @@ const DecorationPicker = memo(function DecorationPicker({ selected, set }: { sel
                 onPress={() => set("decorationAsset", selected === dec.id ? undefined : dec.id)}
                 style={[styles.tile, { width: 52, height: 52, borderRadius: 6 }, selected === dec.id && styles.pillOn]}
             >
-                <Image source={{ uri: getDecorationUrl(dec.id) }} style={{ width: 46, height: 46 }} resizeMode="contain" />
+                <Image source={{ uri: getDecorationUrl(dec.id) }} style={{ width: 46, height: 46 }} resizeMode="contain" resizeMethod="resize" />
             </Pressable>)}
         </View>
     </Stack>;
@@ -345,9 +359,9 @@ const EffectPicker = memo(function EffectPicker({ selected, set }: { selected?: 
                     onPress={() => set("profileEffectId", selected === eff.skuId ? undefined : eff.skuId)}
                     style={[styles.tile, EFFECT_TILE, { borderRadius: 8, padding: 2 }, selected === eff.skuId && styles.pillOn]}
                 >
-                    {eff.thumbnail
-                        ? <Image source={{ uri: eff.thumbnail }} style={{ width: "100%", height: "100%", borderRadius: 6 }} resizeMode="cover" />
-                        : <Text variant="text-xxs/medium" color="text-default" style={{ textAlign: "center" }}>{eff.name}</Text>}
+                    {eff.thumbnail && <Image source={{ uri: eff.thumbnail }} style={{ position: "absolute", top: 2, left: 2, right: 2, bottom: 2, borderRadius: 6 }} resizeMode="cover" resizeMethod="resize" />}
+                    {/* Most effects are transparent overlays whose still frame shows little, so the name says what it is */}
+                    <Text variant="text-xxs/semibold" numberOfLines={2} style={styles.effectName}>{eff.name}</Text>
                 </Pressable>}
             />}
         </View>}
@@ -386,7 +400,8 @@ function useShopProfileEffects() {
             const item = product?.items?.length === 1 ? product.items[0] : null;
             if (item?.type !== COLLECTIBLE_PROFILE_EFFECT || seen.has(product.skuId)) continue;
             seen.add(product.skuId);
-            list.push({ skuId: product.skuId, name: product.name, thumbnail: item.thumbnailPreviewSrc });
+            // A still frame: the animated previews are over a megabyte each, and the list shows dozens at once
+            list.push({ skuId: product.skuId, name: product.name, thumbnail: item.staticFrameSrc ?? item.reducedMotionSrc ?? item.thumbnailPreviewSrc });
         }
         return list;
     }, [fetchedAt]);
@@ -423,12 +438,14 @@ export default function CustomProfileEditor({ onClose }: { onClose: () => void; 
     const [accountId, setAccountId] = useState(me);
     const [data, setData] = useState<CustomProfileData>(() => accountData(me));
     const [saving, setSaving] = useState(false);
-    // The page opens at once; the badges, decorations and effects, with their hundreds of images, follow a moment later
-    const [ready, setReady] = useState(false);
+    // The page opens at once; the badges, then the decorations, then the effects follow one at a time, so drawing their
+    // hundreds of buttons and images never holds the app up for long
+    const [stage, setStage] = useState(0);
     useEffect(() => {
-        const timer = setTimeout(() => setReady(true), 50);
+        if (stage >= 3) return;
+        const timer = setTimeout(() => setStage(s => s + 1), stage ? 16 : 50);
         return () => clearTimeout(timer);
-    }, []);
+    }, [stage]);
     useEffect(() => setData(accountData(accountId)), [accountId]);
 
     const set: Setter = useCallback((key, val) => setData(d => ({ ...d, [key]: val })), []);
@@ -501,21 +518,23 @@ export default function CustomProfileEditor({ onClose }: { onClose: () => void; 
                 <TextInput label={t("Email address (local display)")} value={data.email ?? ""} placeholder={t("exemple@mail.com")} keyboardType="email-address" autoCapitalize="none" onChange={(v: string) => set("email", v)} />
                 <TextInput label={t("Phone (local display)")} value={data.phone ?? ""} placeholder="+33 6 00 00 00 00" keyboardType="phone-pad" onChange={(v: string) => set("phone", v)} />
                 <Divider />
-                {ready ? <>
-                    <BadgePicker
-                        badgeFlags={data.badgeFlags}
-                        nitroLevel={data.nitroLevel}
-                        boostMonths={data.boostMonths}
-                        customBadgeIds={data.customBadgeIds}
-                        tieredBadges={data.tieredBadges}
-                        oldName={data.oldName}
-                        set={set}
-                    />
+                {stage >= 1 ? <BadgePicker
+                    badgeFlags={data.badgeFlags}
+                    nitroLevel={data.nitroLevel}
+                    boostMonths={data.boostMonths}
+                    customBadgeIds={data.customBadgeIds}
+                    tieredBadges={data.tieredBadges}
+                    oldName={data.oldName}
+                    set={set}
+                /> : <ActivityIndicator style={{ marginVertical: 24 }} />}
+                {stage >= 2 && <>
                     <Divider />
                     <DecorationPicker selected={data.decorationAsset} set={set} />
+                </>}
+                {stage >= 3 && <>
                     <Divider />
                     <EffectPicker selected={data.profileEffectId} set={set} />
-                </> : <ActivityIndicator style={{ marginVertical: 24 }} />}
+                </>}
 
                 <Text variant="text-xs/medium" color="text-muted">{t("Visual and local modifications only — persistent between restarts.")}</Text>
                 <Text variant="text-xs/medium" color="text-muted">{t("Only you see these changes. Clear them before you edit your real profile, so they don't end up in it.")}</Text>

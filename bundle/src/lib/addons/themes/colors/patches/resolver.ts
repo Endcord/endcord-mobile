@@ -6,6 +6,8 @@ import { byMutableProp } from "@metro/filters";
 import { createLazyModule } from "@metro/lazy";
 import chroma from "chroma-js";
 
+import { legacyRawColor, legacySemanticColor } from "../legacy";
+
 const tokenReference = findByProps("SemanticColor");
 const isThemeModule = createLazyModule(byMutableProp("isThemeDark"));
 
@@ -30,8 +32,9 @@ export default function patchDefinitionAndResolver() {
             configurable: true,
             enumerable: true,
             get: () => {
-                const ret = _colorRef.current?.raw[key];
-                return ret || _colorRef.origRaw[key];
+                const theme = _colorRef.current;
+                if (!theme) return _colorRef.origRaw[key];
+                return theme.raw[key] || legacyRawColor(theme, key, _colorRef.origRaw) || _colorRef.origRaw[key];
             }
         });
     });
@@ -48,17 +51,19 @@ export default function patchDefinitionAndResolver() {
 
             const [name, colorDef] = extractInfo(_colorRef.current!.reference, args[1]);
 
-            let semanticDef = _colorRef.current.semantic[name];
+            let semanticDef: { value: string; opacity: number; } | undefined = _colorRef.current.semantic[name];
             if (!semanticDef && _colorRef.current.spec === 2 && name in SEMANTIC_FALLBACK_MAP) {
                 semanticDef = _colorRef.current.semantic[SEMANTIC_FALLBACK_MAP[name]];
             }
+            // A theme for older Discord names this color differently
+            semanticDef ??= legacySemanticColor(_colorRef.current, name);
 
             if (semanticDef?.value) {
                 if (semanticDef.opacity === 1) return semanticDef.value;
                 return chroma(semanticDef.value).alpha(semanticDef.opacity).hex();
             }
 
-            const rawValue = _colorRef.current.raw[colorDef.raw];
+            const rawValue = _colorRef.current.raw[colorDef.raw] || legacyRawColor(_colorRef.current, colorDef.raw, _colorRef.origRaw);
             if (rawValue) {
                 // Set opacity if needed
                 return colorDef.opacity === 1 ? rawValue : chroma(rawValue).alpha(colorDef.opacity).hex();

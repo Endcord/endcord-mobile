@@ -1,3 +1,4 @@
+import { awaitStorage } from "@core/vendetta/storage";
 import { getThemeFromLoader, selectTheme, themes } from "@lib/addons/themes";
 import { getLoaderName, getLoaderVersion, isReactDevToolsPreloaded, isThemeSupported } from "@lib/api/native/loader";
 import { BundleUpdaterManager, NativeClientInfoModule, NativeDeviceModule } from "@lib/api/native/modules";
@@ -139,7 +140,9 @@ export function getDebugInfo() {
 /**
  * @internal
  */
-export function initDebugger() {
+export async function initDebugger() {
+    // The settings may still be loading this early at startup
+    await awaitStorage(settings);
     if (!settings.enableAutoDebugger || !settings.debuggerUrl) return;
 
     try {
