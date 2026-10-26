@@ -54,6 +54,8 @@ function statusHold() {
             return applied !== undefined;
         },
         set(status: string) {
+            // Already set; if you changed it yourself since, that's kept
+            if (applied === status) return;
             const setting = statusSetting();
             if (!setting?.updateSetting) throw new Error("Discord's status settings weren't found");
             if (applied === undefined) previous = currentStatus();
@@ -68,12 +70,14 @@ function statusHold() {
     };
 }
 
-/** Whether any of your devices shows you playing a game */
+/**
+ * Whether you're playing a game on another device (a computer or console). Phones don't report games, and the
+ * activities this phone shows are ones you set yourself, such as CustomRPC, so they don't count.
+ */
 function playingAnything(): boolean {
-    const sessions = getStore("SessionsStore")?.getSessions?.() ?? {};
+    const sessions = Object.values<any>(getStore("SessionsStore")?.getSessions?.() ?? {});
     const activities: any[] = [
-        ...Object.values<any>(sessions).flatMap(s => s?.activities ?? []),
-        ...getStore("PresenceStore")?.getActivities?.(currentUserId()) ?? [],
+        ...sessions.filter(s => s?.clientInfo?.client !== "mobile").flatMap(s => s?.activities ?? []),
         ...getStore("RunningGameStore")?.getRunningGames?.() ?? [],
     ];
     return activities.some(a => a && (a.type === 0 || a.type === undefined && a.name));
@@ -309,10 +313,9 @@ const ExitSounds = definePlugin({
             api("post", `/channels/${channelId}/send-soundboard-sound`, { sound_id: store.soundId, ...store.guildId && store.guildId !== "0" ? { source_guild_id: store.guildId } : {} })
                 .catch(() => { })
                 .then(() => new Promise(r => setTimeout(r, store.delay)))
-                .then(() => {
-                    leaving = false;
-                    leave();
-                });
+                // Discord's disconnect can call selectVoiceChannel(null) itself; that call goes straight through
+                .then(() => leave())
+                .finally(() => setTimeout(() => leaving = false, 1000));
         };
         cleanup(instead("selectVoiceChannel", actions, (args, orig) => args[0] == null ? leaveWithSound(() => orig(...args)) : orig(...args)));
         if (typeof actions.disconnect === "function") cleanup(instead("disconnect", actions, (args, orig) => leaveWithSound(() => orig(...args))));

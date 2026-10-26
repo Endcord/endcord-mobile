@@ -402,15 +402,12 @@ const ShowSongName = definePlugin({
     start({ cleanup }) {
         const presences = getStore("PresenceStore");
         if (typeof presences?.getActivities !== "function") throw new Error("Discord's presence store wasn't found");
-        // Kept per activity, so Discord sees the same object until the song changes
-        const renamed = new WeakMap<object, object>();
+        // Kept per list Discord returns, so screens see the same list (and activities) until the song changes
+        const renamed = new WeakMap<object, any[]>();
         cleanup(after("getActivities", presences, (_, result: any[]) => {
             if (!Array.isArray(result) || !result.some(a => a?.type === 2 && a.name === "Spotify" && a.details)) return result;
-            return result.map(a => {
-                if (a?.type !== 2 || a.name !== "Spotify" || !a.details) return a;
-                if (!renamed.has(a)) renamed.set(a, { ...a, name: a.details });
-                return renamed.get(a);
-            });
+            if (!renamed.has(result)) renamed.set(result, result.map(a => a?.type === 2 && a.name === "Spotify" && a.details ? { ...a, name: a.details } : a));
+            return renamed.get(result);
         }));
     },
 });

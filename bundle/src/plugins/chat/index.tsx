@@ -161,6 +161,8 @@ const VibrateOnPing = definePlugin({
         cleanup(subscribe("MESSAGE_CREATE", ({ message, optimistic }) => {
             const me = currentUserId();
             if (optimistic || !message || !me || message.author?.id === me || AppState.currentState !== "active") return;
+            // Do Not Disturb means no nudges
+            if (getStore("PresenceStore")?.getStatus?.(me) === "dnd") return;
             const channel = getStore("ChannelStore")?.getChannel?.(message.channel_id);
             const direct = (message.mentions ?? []).some((u: any) => (u?.id ?? u) === me);
             const dm = store.dms && channel && !channel.guild_id;
