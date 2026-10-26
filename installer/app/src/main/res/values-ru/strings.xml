@@ -181,4 +181,14 @@
     <string name="source_installed_desc">Discord %1$s, уже установленная версия. Он останется установленным как есть.</string>
     <string name="source_download">Скачать Discord</string>
     <string name="source_download_desc">Discord %1$s, последняя версия</string>
+
+    <string name="edition_title">Какой Endcord?</string>
+    <string name="edition_endcord">Endcord</string>
+    <string name="edition_endcord_desc">В текущем приложении Discord, более 300 плагинов Endcord</string>
+    <string name="edition_classic">Endcord Classic</string>
+    <string name="edition_classic_desc">В старой версии Discord от Aliucord: более 230 плагинов Endcord и плагины Aliucord</string>
+    <string name="classic_body">Endcord Classic основан на Aliucord. Он работает на старой версии Discord, которую поддерживает Aliucord, поэтому кроме собственных плагинов Endcord может использовать и плагины Aliucord.</string>
+    <string name="classic_note">Он устанавливается и обновляется собственным приложением, Endcord Classic Installer. Не удаляйте его, чтобы получать обновления.</string>
+    <string name="action_get_classic_installer">Скачать Endcord Classic Installer</string>
+    <string name="action_open_classic_installer">Открыть Endcord Classic Installer</string>
 </resources>

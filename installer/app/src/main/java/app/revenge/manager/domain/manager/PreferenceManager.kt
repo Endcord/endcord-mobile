@@ -59,6 +59,9 @@ class PreferenceManager(context: Context) :
 
     var hasAskedForBatteryOpt by booleanPreference("has_asked_for_battery_opt", false)
 
+    /** Which Endcord the home screen installs */
+    var edition by enumPreference("edition", Edition.ENDCORD)
+
     init {
         if (mirror !in Mirror.entries) {
             mirror = Mirror.DEFAULT
@@ -87,6 +90,13 @@ enum class Mirror(val baseUrl: String) {
     DEFAULT("https://tracker.vendetta.rocks"),
     NEXPID("https://tracker.vd.nexpid.xyz"),
     USHIE("https://proxy.vd.ushie.dev")
+}
+
+enum class Edition {
+    /** Endcord on the current Discord app, installed here */
+    ENDCORD,
+    /** Endcord Classic on Aliucord's older Discord, installed by its own installer */
+    CLASSIC
 }
 
 enum class DiscordSource {

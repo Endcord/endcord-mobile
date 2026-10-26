@@ -181,4 +181,14 @@
     <string name="source_installed_desc">Discord %1$s, zaten yüklü olan sürüm. Olduğu gibi yüklü kalır.</string>
     <string name="source_download">Discord\'u indir</string>
     <string name="source_download_desc">Discord %1$s, en yeni sürüm</string>
+
+    <string name="edition_title">Hangi Endcord?</string>
+    <string name="edition_endcord">Endcord</string>
+    <string name="edition_endcord_desc">Güncel Discord uygulamasında, 300+ Endcord eklentisiyle</string>
+    <string name="edition_classic">Endcord Classic</string>
+    <string name="edition_classic_desc">Aliucord\'un eski Discord sürümünde, 230+ Endcord eklentisi ve Aliucord eklentileriyle</string>
+    <string name="classic_body">Endcord Classic, Aliucord üzerine kurulu. Aliucord\'un desteklediği eski Discord sürümünde çalıştığı için Endcord\'un kendi eklentilerinin yanında Aliucord eklentilerini de kullanabilir.</string>
+    <string name="classic_note">Kendi uygulamasıyla, Endcord Classic Installer ile kurulur ve güncellenir. Güncellemeler için onu telefonda tut.</string>
+    <string name="action_get_classic_installer">Endcord Classic Installer\'ı indir</string>
+    <string name="action_open_classic_installer">Endcord Classic Installer\'ı aç</string>
 </resources>

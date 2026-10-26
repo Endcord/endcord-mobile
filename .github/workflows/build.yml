@@ -102,9 +102,37 @@ jobs:
           name: installer
           path: installer/app/build/outputs/apk/release/*.apk
 
+  classic-installer:
+    # The installer offers Endcord Classic, on Aliucord's older Discord, through its own installer, which lives on the
+    # main branch and is published next to this one
+    name: Endcord Classic Installer
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+      - name: Build
+        working-directory: installer
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon :app:assembleRelease
+      - uses: actions/upload-artifact@v4
+        with:
+          name: classic-installer
+          path: installer/app/build/outputs/apk/release/*.apk
+
   deploy:
     name: Publish to the builds-next branch
-    needs: [bundle, loader, installer]
+    needs: [bundle, loader, installer, classic-installer]
     if: github.event_name == 'push' && github.ref == 'refs/heads/next'
     runs-on: ubuntu-latest
     permissions:
@@ -125,9 +153,15 @@ jobs:
         with:
           name: installer
           path: ${{ runner.temp }}/installer
-      - name: Add the installer
+      - uses: actions/download-artifact@v4
+        with:
+          name: classic-installer
+          path: ${{ runner.temp }}/classic-installer
+      - name: Add the installers
         # Debug-signed until the INSTALLER_KEYSTORE secrets exist; releases come from the Release Installer workflow
-        run: cp "$RUNNER_TEMP"/installer/*.apk "$RUNNER_TEMP"/out/endcord-installer.apk
+        run: |
+          cp "$RUNNER_TEMP"/installer/*.apk "$RUNNER_TEMP"/out/endcord-installer.apk
+          cp "$RUNNER_TEMP"/classic-installer/*.apk "$RUNNER_TEMP"/out/endcord-classic-installer.apk
       - name: Write build info
         run: |
           cat > "$RUNNER_TEMP"/out/data.json <<EOF
@@ -135,6 +169,7 @@ jobs:
             "bundle": "endcord.min.js",
             "loader": "endcord-xposed.apk",
             "installer": "endcord-installer.apk",
+            "classicInstaller": "endcord-classic-installer.apk",
             "loaderVersion": "$(sed -nE 's/^\s*versionName = "(.*)"/\1/p' loader/app/build.gradle.kts)",
             "loaderVersionCode": $(sed -nE 's/^\s*versionCode = ([0-9]+)/\1/p' loader/app/build.gradle.kts),
             "commit": "${{ github.sha }}",

@@ -181,4 +181,14 @@
     <string name="source_installed_desc">Discord %1$s, la versión que ya tienes. Se queda instalado tal como está.</string>
     <string name="source_download">Descargar Discord</string>
     <string name="source_download_desc">Discord %1$s, la versión más reciente</string>
+
+    <string name="edition_title">¿Qué Endcord?</string>
+    <string name="edition_endcord">Endcord</string>
+    <string name="edition_endcord_desc">En la app actual de Discord, con más de 300 plugins de Endcord</string>
+    <string name="edition_classic">Endcord Classic</string>
+    <string name="edition_classic_desc">En la versión antigua de Discord de Aliucord, con más de 230 plugins de Endcord y los plugins de Aliucord</string>
+    <string name="classic_body">Endcord Classic está basado en Aliucord. Funciona en la versión antigua de Discord que admite Aliucord, así que además de los plugins propios de Endcord puede usar los de Aliucord.</string>
+    <string name="classic_note">Se instala y se actualiza con su propia app, Endcord Classic Installer. Mantenla en tu teléfono para recibir actualizaciones.</string>
+    <string name="action_get_classic_installer">Descargar Endcord Classic Installer</string>
+    <string name="action_open_classic_installer">Abrir Endcord Classic Installer</string>
 </resources>

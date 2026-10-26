@@ -18,9 +18,11 @@ import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.Button
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.RadioButton
 import androidx.compose.ui.semantics.Role
 import app.revenge.manager.domain.manager.DiscordSource
+import app.revenge.manager.domain.manager.Edition
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -31,6 +33,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -38,9 +41,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.paging.compose.collectAsLazyPagingItems
 import app.revenge.manager.BuildConfig
 import app.revenge.manager.R
@@ -88,6 +94,20 @@ class HomeScreen : Screen {
         val useInstalled = installedDiscord != null && source == DiscordSource.INSTALLED
         val latestVersion = if (useInstalled) installedDiscord else downloadVersion
 
+        // Endcord on the current Discord is installed here; Endcord Classic, on Aliucord's older Discord, by its own
+        // installer, which this one fetches and opens
+        var edition by remember { mutableStateOf(prefs.edition) }
+
+        // Back from installing Endcord Classic Installer, the button opens it
+        val lifecycleOwner = LocalLifecycleOwner.current
+        DisposableEffect(lifecycleOwner) {
+            val observer = LifecycleEventObserver { _, event ->
+                if (event == Lifecycle.Event.ON_RESUME) viewModel.refreshClassic()
+            }
+            lifecycleOwner.lifecycle.addObserver(observer)
+            onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
+        }
+
         // == Dialogs == //
 
         BatteryOptimizationDialog()
@@ -123,115 +143,202 @@ class HomeScreen : Screen {
                     .padding(16.dp)
                     .fillMaxWidth()
             ) {
-                AppIcon(
-                    customIcon = prefs.patchIcon,
-                    releaseChannel = prefs.channel,
-                    modifier = Modifier.size(60.dp)
+                EditionPicker(
+                    edition = edition,
+                    onChange = {
+                        edition = it
+                        prefs.edition = it
+                    }
                 )
 
-                Text(
-                    text = prefs.appName,
-                    style = MaterialTheme.typography.titleLarge
-                )
-
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    AnimatedVisibility(visible = currentVersion != null) {
-                        Text(
-                            text = stringResource(
-                                R.string.version_current,
-                                currentVersion.toString()
-                            ),
-                            style = MaterialTheme.typography.labelLarge,
-                            color = LocalContentColor.current.copy(alpha = 0.5f),
-                            textAlign = TextAlign.Center
-                        )
-                    }
-
-                    val latestLabel = when {
-                        useInstalled -> R.string.version_on_phone
-                        prefs.discordVersion.isNotBlank() -> R.string.version_target
-                        else -> R.string.version_latest
-                    }
-
-                    AnimatedVisibility(visible = latestVersion != null) {
-                        Text(
-                            text = stringResource(latestLabel, latestVersion.toString()),
-                            style = MaterialTheme.typography.labelLarge,
-                            color = LocalContentColor.current.copy(alpha = 0.5f),
-                            textAlign = TextAlign.Center
-                        )
-                    }
-                }
-
-                if (installedDiscord != null) {
-                    SourcePicker(
-                        source = source,
-                        installed = installedDiscord,
-                        download = downloadVersion,
-                        onChange = {
-                            source = it
-                            prefs.discordSource = it
-                        }
+                if (edition == Edition.CLASSIC) {
+                    ClassicPanel(viewModel)
+                } else {
+                    AppIcon(
+                        customIcon = prefs.patchIcon,
+                        releaseChannel = prefs.channel,
+                        modifier = Modifier.size(60.dp)
                     )
-                }
-
-                Button(
-                    onClick = {
-                        navigator.navigate(InstallerScreen(latestVersion!!, useInstalled))
-                    },
-                    enabled = latestVersion != null && (prefs.allowDowngrade || latestVersion >= (currentVersion ?: Constants.DUMMY_VERSION)),
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    val label = when {
-                        latestVersion == null -> R.string.msg_loading
-                        currentVersion == null -> R.string.action_install
-                        currentVersion == latestVersion -> R.string.action_reinstall
-                        latestVersion > currentVersion -> R.string.action_update
-                        else -> if (prefs.allowDowngrade) R.string.msg_downgrade else R.string.msg_downgrade_disallowed
-                    }
 
                     Text(
-                        text = stringResource(label),
+                        text = prefs.appName,
+                        style = MaterialTheme.typography.titleLarge
+                    )
+
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        AnimatedVisibility(visible = currentVersion != null) {
+                            Text(
+                                text = stringResource(
+                                    R.string.version_current,
+                                    currentVersion.toString()
+                                ),
+                                style = MaterialTheme.typography.labelLarge,
+                                color = LocalContentColor.current.copy(alpha = 0.5f),
+                                textAlign = TextAlign.Center
+                            )
+                        }
+
+                        val latestLabel = when {
+                            useInstalled -> R.string.version_on_phone
+                            prefs.discordVersion.isNotBlank() -> R.string.version_target
+                            else -> R.string.version_latest
+                        }
+
+                        AnimatedVisibility(visible = latestVersion != null) {
+                            Text(
+                                text = stringResource(latestLabel, latestVersion.toString()),
+                                style = MaterialTheme.typography.labelLarge,
+                                color = LocalContentColor.current.copy(alpha = 0.5f),
+                                textAlign = TextAlign.Center
+                            )
+                        }
+                    }
+
+                    if (installedDiscord != null) {
+                        SourcePicker(
+                            source = source,
+                            installed = installedDiscord,
+                            download = downloadVersion,
+                            onChange = {
+                                source = it
+                                prefs.discordSource = it
+                            }
+                        )
+                    }
+
+                    Button(
+                        onClick = {
+                            navigator.navigate(InstallerScreen(latestVersion!!, useInstalled))
+                        },
+                        enabled = latestVersion != null && (prefs.allowDowngrade || latestVersion >= (currentVersion ?: Constants.DUMMY_VERSION)),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        val label = when {
+                            latestVersion == null -> R.string.msg_loading
+                            currentVersion == null -> R.string.action_install
+                            currentVersion == latestVersion -> R.string.action_reinstall
+                            latestVersion > currentVersion -> R.string.action_update
+                            else -> if (prefs.allowDowngrade) R.string.msg_downgrade else R.string.msg_downgrade_disallowed
+                        }
+
+                        Text(
+                            text = stringResource(label),
+                            textAlign = TextAlign.Center,
+                            maxLines = 1,
+                            modifier = Modifier
+                                .basicMarquee()
+                                .fillMaxWidth()
+                        )
+                    }
+
+                    AnimatedVisibility(visible = viewModel.installManager.current != null) {
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(2.dp),
+                            modifier = Modifier.clip(RoundedCornerShape(16.dp))
+                        ) {
+                            SegmentedButton(
+                                icon = Icons.Filled.OpenInNew,
+                                text = stringResource(R.string.action_launch),
+                                onClick = { viewModel.launchMod() }
+                            )
+                            SegmentedButton(
+                                icon = Icons.Filled.Info,
+                                text = stringResource(R.string.action_info),
+                                onClick = { viewModel.launchModInfo() }
+                            )
+                            SegmentedButton(
+                                icon = Icons.Filled.Delete,
+                                text = stringResource(R.string.action_uninstall),
+                                onClick = { viewModel.uninstallMod() }
+                            )
+                        }
+                    }
+
+                    ElevatedCard(
+                        modifier = Modifier
+                            .fillMaxSize()
+                    ) {
+                        CommitList(
+                            commits = viewModel.commits.collectAsLazyPagingItems()
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    @Composable
+    private fun EditionPicker(edition: Edition, onChange: (Edition) -> Unit) {
+        ElevatedCard(modifier = Modifier.fillMaxWidth()) {
+            Column(modifier = Modifier.padding(vertical = 8.dp)) {
+                Text(
+                    text = stringResource(R.string.edition_title),
+                    style = MaterialTheme.typography.labelLarge,
+                    color = LocalContentColor.current.copy(alpha = 0.6f),
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
+                )
+                SourceOption(
+                    selected = edition == Edition.ENDCORD,
+                    title = stringResource(R.string.edition_endcord),
+                    subtitle = stringResource(R.string.edition_endcord_desc),
+                    onClick = { onChange(Edition.ENDCORD) }
+                )
+                SourceOption(
+                    selected = edition == Edition.CLASSIC,
+                    title = stringResource(R.string.edition_classic),
+                    subtitle = stringResource(R.string.edition_classic_desc),
+                    onClick = { onChange(Edition.CLASSIC) }
+                )
+            }
+        }
+    }
+
+    @Composable
+    private fun ClassicPanel(viewModel: HomeViewModel) {
+        ElevatedCard(modifier = Modifier.fillMaxWidth()) {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Text(
+                    text = stringResource(R.string.edition_classic),
+                    style = MaterialTheme.typography.titleMedium
+                )
+                Text(
+                    text = stringResource(R.string.classic_body),
+                    style = MaterialTheme.typography.bodyMedium
+                )
+                Text(
+                    text = stringResource(R.string.classic_note),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = LocalContentColor.current.copy(alpha = 0.6f)
+                )
+                if (viewModel.isGettingClassic) {
+                    val progress = viewModel.classicProgress
+                    if (progress != null) {
+                        LinearProgressIndicator(progress = { progress }, modifier = Modifier.fillMaxWidth())
+                    } else {
+                        LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+                    }
+                }
+                Button(
+                    onClick = { viewModel.openOrGetClassicInstaller() },
+                    enabled = !viewModel.isGettingClassic,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        text = stringResource(
+                            if (viewModel.classicInstallerInstalled) R.string.action_open_classic_installer
+                            else R.string.action_get_classic_installer
+                        ),
                         textAlign = TextAlign.Center,
                         maxLines = 1,
                         modifier = Modifier
                             .basicMarquee()
                             .fillMaxWidth()
-                    )
-                }
-
-                AnimatedVisibility(visible = viewModel.installManager.current != null) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(2.dp),
-                        modifier = Modifier.clip(RoundedCornerShape(16.dp))
-                    ) {
-                        SegmentedButton(
-                            icon = Icons.Filled.OpenInNew,
-                            text = stringResource(R.string.action_launch),
-                            onClick = { viewModel.launchMod() }
-                        )
-                        SegmentedButton(
-                            icon = Icons.Filled.Info,
-                            text = stringResource(R.string.action_info),
-                            onClick = { viewModel.launchModInfo() }
-                        )
-                        SegmentedButton(
-                            icon = Icons.Filled.Delete,
-                            text = stringResource(R.string.action_uninstall),
-                            onClick = { viewModel.uninstallMod() }
-                        )
-                    }
-                }
-
-                ElevatedCard(
-                    modifier = Modifier
-                        .fillMaxSize()
-                ) {
-                    CommitList(
-                        commits = viewModel.commits.collectAsLazyPagingItems()
                     )
                 }
             }
@@ -299,7 +406,10 @@ class HomeScreen : Screen {
         val viewModel: HomeViewModel = getScreenModel()
         val navigator = LocalNavigator.currentOrThrow
 
-        IconButton(onClick = { viewModel.getDiscordVersions() }) {
+        IconButton(onClick = {
+            viewModel.getDiscordVersions()
+            viewModel.refreshClassic()
+        }) {
             Icon(
                 imageVector = Icons.Filled.Refresh,
                 contentDescription = stringResource(R.string.action_reload)
