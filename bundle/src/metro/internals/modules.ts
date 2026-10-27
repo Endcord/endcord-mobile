@@ -159,7 +159,14 @@ function onModuleRequire(moduleExports: any, id: Metro.ModuleID) {
 
     const subs = moduleSubscriptions.get(Number(id));
     if (subs) {
-        subs.forEach(s => s());
+        // Inside the module's require: a subscriber that throws must not fail the module for Discord
+        subs.forEach(s => {
+            try {
+                s();
+            } catch (e) {
+                console.error(`[Endcord] A subscriber to module ${id} failed`, e);
+            }
+        });
         moduleSubscriptions.delete(Number(id));
     }
 }
