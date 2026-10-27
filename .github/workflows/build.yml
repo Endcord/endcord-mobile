@@ -147,7 +147,8 @@ jobs:
   deploy:
     name: Publish to the builds-next branch
     needs: [bundle, loader, installer, classic-installer]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/next'
+    # Also when run by hand on next, to rebuild it without a new commit (after the signing secrets change, say)
+    if: github.ref == 'refs/heads/next' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     permissions:
       contents: write
