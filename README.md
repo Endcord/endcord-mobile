@@ -96,8 +96,9 @@ The GitHub repository that hosts the builds is set once in `gradle.properties` (
   `.assets/changelog.md`), then push to `main`. The Build workflow publishes the new files to the `builds`
   branch, and every running Endcord picks the update up within 15 minutes.
 - **Installer release**: run the *Build Installer* workflow manually with a version number. It needs the
-  signing secrets `SIGNING_STORE_BASE64`, `SIGNING_STORE_PASSWORD`, `SIGNING_KEY_ALIAS` and
-  `SIGNING_KEY_PASSWORD`.
+  signing secrets `INSTALLER_KEYSTORE` (base64 of the keystore), `INSTALLER_KEYSTORE_PASSWORD`,
+  `INSTALLER_KEY_ALIAS` and `INSTALLER_KEY_PASSWORD`: the same key the `next` branch signs its installers with, so
+  the Endcord Classic installer it offers can update to these releases.
 
 ## Contributing
 

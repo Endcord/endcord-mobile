@@ -60,20 +60,21 @@ jobs:
           name: endcord-installer-debug
           path: installer/app/build/outputs/apk/debug/*.apk
 
-      # Releases are signed with the keystore stored in the repository secrets:
-      # SIGNING_STORE_BASE64 (base64 of the .jks), SIGNING_STORE_PASSWORD, SIGNING_KEY_ALIAS, SIGNING_KEY_PASSWORD
+      # Releases are signed with the keystore stored in the repository secrets, the same one the next branch signs its
+      # installers with (so the Classic installer it publishes can update to these releases): INSTALLER_KEYSTORE
+      # (base64 of the .jks), INSTALLER_KEYSTORE_PASSWORD, INSTALLER_KEY_ALIAS, INSTALLER_KEY_PASSWORD
       - name: Build release APK
         if: ${{ github.event_name == 'workflow_dispatch' }}
         env:
           RELEASE: true
           INSTALLER_VERSION: ${{ github.event.inputs.version }}
-          SIGNING_STORE_BASE64: ${{ secrets.SIGNING_STORE_BASE64 }}
-          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
-          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
-          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          SIGNING_STORE_BASE64: ${{ secrets.INSTALLER_KEYSTORE }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.INSTALLER_KEYSTORE_PASSWORD }}
+          SIGNING_KEY_ALIAS: ${{ secrets.INSTALLER_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.INSTALLER_KEY_PASSWORD }}
         run: |
           if [ -z "$SIGNING_STORE_BASE64" ]; then
-            echo "::error::The SIGNING_STORE_BASE64 secret is missing, see the README for how to create a signing key"
+            echo "::error::The INSTALLER_KEYSTORE secret is missing, see the README for how to create a signing key"
             exit 1
           fi
           echo "$SIGNING_STORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
