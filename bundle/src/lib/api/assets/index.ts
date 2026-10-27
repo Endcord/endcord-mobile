@@ -1,4 +1,4 @@
-import { getMetroCache } from "@metro/internals/caches";
+import { getIndexedAssetModule, getMetroCache, indexAssetName } from "@metro/internals/caches";
 import { ModuleFlags } from "@metro/internals/enums";
 import { requireModule } from "@metro/internals/modules";
 
@@ -22,7 +22,9 @@ export function* iterateAssets() {
         if (flagsIndex[id] & ModuleFlags.ASSET) {
             const assetId = requireModule(Number(id));
             if (typeof assetId !== "number" || yielded.has(assetId)) continue;
-            yield getAssetById(assetId);
+            const asset = getAssetById(assetId);
+            if (asset) asset.moduleId = Number(id);
+            yield asset;
             yielded.add(assetId);
         }
     }
@@ -45,13 +47,23 @@ export function findAsset(filter: (a: Asset) => boolean): Asset | undefined;
 export function findAsset(param: number | string | ((a: Asset) => boolean)) {
     if (typeof param === "number") return getAssetById(param);
 
-    if (typeof param === "string" && _nameToAssetCache[param]) {
-        return _nameToAssetCache[param];
+    if (typeof param === "string") {
+        if (_nameToAssetCache[param]) return _nameToAssetCache[param];
+
+        // The module found it before: going through the asset modules in order would load thousands of them on the
+        // way, at every start
+        const moduleId = getIndexedAssetModule(param);
+        if (moduleId !== undefined) {
+            const assetId = requireModule(moduleId);
+            const asset = typeof assetId === "number" ? getAssetById(assetId) : undefined;
+            if (asset?.name === param) return _nameToAssetCache[param] = Object.assign(asset, { moduleId });
+        }
     }
 
     for (const asset of iterateAssets()) {
         if (typeof param === "string" && asset.name === param) {
             _nameToAssetCache[param] = asset;
+            indexAssetName(param, asset.moduleId);
             return asset;
         } else if (typeof param === "function" && param(asset)) {
             return asset;
