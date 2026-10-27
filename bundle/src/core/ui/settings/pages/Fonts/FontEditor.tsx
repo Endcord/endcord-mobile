@@ -388,12 +388,7 @@ export default function FontEditor(props: {
                                 .catch(e => setErrors(e))
                                 .finally(() => setIsImporting(false));
                         } else {
-                            Object.assign(fonts[props.name], {
-                                name: name,
-                                main: fontEntries,
-                            });
-
-                            updateFont(fonts[props.name])
+                            updateFont({ ...fonts[props.name], name, main: fontEntries }, props.name)
                                 .then(() => navigation.goBack())
                                 .catch(e => setErrors(e))
                                 .finally(() => setIsImporting(false));
