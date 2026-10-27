@@ -1,0 +1,20 @@
+Which Endcord?
+Endcord Classic
+Endcord
+On the current Discord app, with 300+ Endcord plugins
+Endcord
+Latest: 351.11 - Stable
+Install
+rootpoi
+•
+eea600b
+10/27/26
+Plugin list in English; no screenshots in the README
+rootpoi
+•
+f805f3c
+10/27/26
+A shorter README for people installing Endcord
+Endcord Installer
+Reload
+Open about
