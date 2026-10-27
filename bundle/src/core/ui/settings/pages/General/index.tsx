@@ -2,6 +2,7 @@ import { isSafeMode, toggleSafeMode } from "@core/debug/safeMode";
 import { getLanguage, LANGUAGES, Strings, t } from "@core/i18n";
 import { PyoncordIcon } from "@core/ui/settings";
 import About from "@core/ui/settings/pages/General/About";
+import Backup from "@core/ui/settings/pages/General/Backup";
 import Updates from "@core/ui/settings/pages/General/Updates";
 import { useProxy } from "@core/vendetta/storage";
 import { findAssetId } from "@lib/api/assets";
@@ -57,6 +58,7 @@ export default function General() {
                     />
                     {LANGUAGES.map(l => <TableRadioRow key={l.code} label={l.nativeName} value={l.code} />)}
                 </TableRadioGroup>
+                <Backup />
                 <TableRowGroup title={t("Support Endcord")}>
                     <TableRow
                         arrow={true}
