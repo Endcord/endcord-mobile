@@ -9,6 +9,8 @@ import io.github.revenge.reloadApp
 import io.github.revenge.xposed.*
 import io.github.revenge.xposed.tweaks.base.withAppActivity
 import io.github.revenge.xposed.tweaks.plugins.internal.showRecoveryAlert
+import io.ktor.client.plugins.ResponseException
+import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.*
 import kotlinx.serialization.Serializable
 import java.io.File
@@ -77,42 +79,82 @@ object RevengeUpdater {
         if (::configFile.isInitialized && configFile.exists()) configFile.delete()
     }
 
+    /** Set by [revengeScriptLoader] just before it runs the downloaded bundle: an update that lands later waits */
+    @Volatile
+    var bundleLoaded = false
+
+    /** Discord's Hermes bytecode version, read once the app's context exists */
+    @Volatile
+    var bytecodeVersion: Int? = null
+
+    fun hasBundle() = ::bundle.isInitialized && bundle.isFile && bundle.length() > 0
+
+    /**
+     * Where to fetch the bundle from, in order: a custom URL alone, or else the bundle precompiled for this Discord's
+     * Hermes bytecode version and then the plain JS one, for versions no precompiled bundle is published for.
+     */
+    private fun bundleUrls(): List<String> {
+        config.customLoadUrl.takeIf { it.enabled }?.url?.let { return listOf(it) }
+        val bytecode = bytecodeVersion?.let { DEFAULT_BUNDLE_URL.substringBeforeLast('/') + "/endcord.v$it.hbc" }
+        return listOfNotNull(bytecode, DEFAULT_BUNDLE_URL)
+    }
+
+    /** The URL the saved bundle came from and its ETag, saved as two lines (one line: an ETag of the default URL) */
+    private fun savedETag(): Pair<String, String>? {
+        if (!etag.exists() || !hasBundle()) return null
+        val lines = etag.readText().lines().filter { it.isNotBlank() }
+        return when (lines.size) {
+            1 -> DEFAULT_BUNDLE_URL to lines[0]
+            2 -> lines[0] to lines[1]
+            else -> null
+        }
+    }
+
     /**
      * Trigger a download. If [userInitiated] is true (retry from the error dialog), the timeout
      * is disabled and a success dialog is shown on the next available activity.
      */
     fun downloadScript(userInitiated: Boolean = false, showDialog: Boolean = true): Job = scope.launch {
         try {
-            val url = config.customLoadUrl.takeIf { it.enabled }?.url ?: DEFAULT_BUNDLE_URL
-            log.i("Fetching JS bundle from: $url")
-
-            val result = httpClient.getWithETag(
-                url = url,
-                etag = if (etag.exists() && bundle.exists()) etag.readText() else null,
-                timeoutMillis = if (userInitiated) null
-                else if (bundle.exists()) TIMEOUT_CACHED.inWholeMilliseconds else TIMEOUT.inWholeMilliseconds,
-            )
-
-            when (result) {
-                is ETagFetchResult.Fetched -> {
-                    AtomicFile(bundle).writeBytes(result.bytes)
-                    result.etag?.let(etag::writeText) ?: etag.delete()
-
-                    log.i("Bundle updated (${result.bytes.size} bytes)")
-
-                    downloadManifest()
-
-                    if (showDialog) {
-                        if (userInitiated) showSuccessDialog() else showUpdateDialog()
-                    }
+            val urls = bundleUrls()
+            val saved = savedETag()
+            for ((index, url) in urls.withIndex()) {
+                log.i("Fetching bundle from: $url")
+                val result = try {
+                    httpClient.getWithETag(
+                        url = url,
+                        etag = saved?.takeIf { it.first == url }?.second,
+                        timeoutMillis = if (userInitiated) null
+                        else if (hasBundle()) TIMEOUT_CACHED.inWholeMilliseconds else TIMEOUT.inWholeMilliseconds,
+                    )
+                } catch (e: ResponseException) {
+                    // No precompiled bundle for this Discord: the plain one is next
+                    if (e.response.status == HttpStatusCode.NotFound && index < urls.lastIndex) continue
+                    throw e
                 }
 
-                ETagFetchResult.NotModified -> log.i("Server responded with 304, no changes")
+                when (result) {
+                    is ETagFetchResult.Fetched -> {
+                        AtomicFile(bundle).writeBytes(result.bytes)
+                        result.etag?.let { etag.writeText("$url\n$it") } ?: etag.delete()
+
+                        log.i("Bundle updated (${result.bytes.size} bytes)")
+
+                        downloadManifest()
+
+                        if (userInitiated) showSuccessDialog()
+                        // Endcord already started from the copy it had: the update applies on a reload
+                        else if (showDialog || bundleLoaded) showUpdateDialog()
+                    }
+
+                    ETagFetchResult.NotModified -> log.i("Server responded with 304, no changes")
+                }
+                break
             }
         } catch (e: Throwable) {
             log.e("Failed to download script", e)
             // With a downloaded copy Endcord still starts, so a failed update check (offline, say) stays quiet
-            if (userInitiated || !bundle.exists()) showErrorDialog(e)
+            if (userInitiated || !hasBundle()) showErrorDialog(e)
         } finally {
             _downloadReady.complete(Unit)
         }
@@ -185,6 +227,7 @@ val revengeUpdater by tweak {
     RevengeUpdater.init(appInfo.dataDir)
 
     withAppContext { ctx ->
+        RevengeUpdater.bytecodeVersion = HermesBytecode.version(ctx)
         RevengeUpdater.downloadScript(userInitiated = false, showDialog = false)
     }
 }
