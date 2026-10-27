@@ -150,6 +150,7 @@
     "endcord.fake-connections": "Add fake connections to your own profile, visible only to you.",
     "endcord.whos-watching": "See who is watching your stream with /viewers",
     "endcord.better-invites": "See where an invite leads, who made it and when it expires, before joining, with /inviteinfo",
+    "endcord.no-track": "Stops Discord from collecting analytics, metrics and crash reports about how you use the app",
     "endcord.keyword-notify": "Sends a notification if a given message matches certain keywords or regexes",
     "endcord.toast-notifications": "Show a pop-up toast notification, configurable for DMs, group, friends, or guild channels.",
     "endcord.voice-join-messages": "Receive client-side ephemeral messages when your friends join voice channels",

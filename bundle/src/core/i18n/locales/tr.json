@@ -1580,6 +1580,7 @@
     "Stop silencing this user": "Bu kullanıcıyı susturmayı bırak",
     "Stopped following {user}": "{user} artık takip edilmiyor",
     "Stopped moving you back, since someone keeps moving you": "Biri seni sürekli taşıdığı için geri taşıma durduruldu",
+    "Stops Discord from collecting analytics, metrics and crash reports about how you use the app": "Discord'un uygulama kullanımına dair analiz verisi, ölçüm ve çökme raporu toplamasını engeller",
     "Stops Discord from marking you idle while the app is in the background": "Uygulama arka plandayken Discord'un seni boşta göstermesini engeller",
     "Streaks shorter than this many days aren't shown": "Bu kadar günden kısa seriler gösterilmez",
     "StreamProof": "StreamProof",

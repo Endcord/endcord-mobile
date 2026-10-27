@@ -51,7 +51,7 @@ function sorted(): PluginInfo[] {
 /** Endcord plugins as core plugins of the plugin manager, which handles enabling and settings storage */
 export function getEndcordCorePlugins(): Record<string, { default: PluginInstanceInternal; preenabled: boolean; }> {
     return Object.fromEntries(sorted().map(info => [info.id, {
-        preenabled: false,
+        preenabled: info.enabledByDefault === true,
         default: {
             manifest: {
                 id: info.id,

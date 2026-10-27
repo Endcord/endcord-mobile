@@ -14,6 +14,7 @@ export interface PluginInfo {
     popular?: number;
     icon?: string;
     tags?: PluginTag[];
+    enabledByDefault?: boolean;
     hasSettings?: boolean;
     group: string;
 }
@@ -171,6 +172,7 @@ export const manifest: PluginInfo[] = [
     { id: "endcord.fake-connections", name: "FakeConnections", icon: "LinkIcon", tags: ["Customisation", "Fun"], hasSettings: true, group: "navigation" },
     { id: "endcord.whos-watching", name: "WhosWatching", icon: "ScreenIcon", tags: ["Voice"], group: "navigation" },
     { id: "endcord.better-invites", name: "BetterInvites", icon: "LinkIcon", tags: ["Servers", "Utility"], group: "navigation" },
+    { id: "endcord.no-track", name: "NoTrack", icon: "AnalyticsIcon", tags: ["Privacy"], enabledByDefault: true, group: "noTrack" },
     { id: "endcord.keyword-notify", name: "KeywordNotify", icon: "BellIcon", tags: ["Notifications"], hasSettings: true, group: "notify" },
     { id: "endcord.toast-notifications", name: "ToastNotifications", icon: "BellIcon", tags: ["Notifications"], hasSettings: true, group: "notify" },
     { id: "endcord.voice-join-messages", name: "VoiceJoinMessages", icon: "VoiceNormalIcon", tags: ["Voice", "Friends", "Notifications"], hasSettings: true, group: "notify" },
@@ -345,6 +347,7 @@ export const groups: Record<string, () => any> = {
     messageLogger: () => require("./messageLogger"),
     messages: () => require("./messages"),
     navigation: () => require("./navigation"),
+    noTrack: () => require("./noTrack"),
     notify: () => require("./notify"),
     oneko: () => require("./oneko"),
     people: () => require("./people"),

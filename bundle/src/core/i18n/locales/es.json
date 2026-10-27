@@ -1580,6 +1580,7 @@
     "Stop silencing this user": "Dejar de silenciar a este usuario",
     "Stopped following {user}": "Dejaste de seguir a {user}",
     "Stopped moving you back, since someone keeps moving you": "Se dejó de devolverte a tu canal, porque alguien te sigue moviendo",
+    "Stops Discord from collecting analytics, metrics and crash reports about how you use the app": "Impide que Discord recopile analíticas, métricas e informes de errores sobre cómo usas la aplicación",
     "Stops Discord from marking you idle while the app is in the background": "Evita que Discord te marque como ausente mientras la app está en segundo plano",
     "Streaks shorter than this many days aren't shown": "No se muestran las rachas de menos días que estos",
     "StreamProof": "StreamProof",
