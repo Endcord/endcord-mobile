@@ -97,7 +97,7 @@ export default function Developer() {
                                 defaultValue={loaderConfig.customLoadUrl.url}
                                 size="md"
                                 onChange={(v: string) => loaderConfig.customLoadUrl.url = v}
-                                placeholder="http://localhost:4040/revenge.js"
+                                placeholder="http://localhost:4040/endcord.js"
                                 label={Strings.BUNNY_URL}
                             />} />}
                             {isReactDevToolsPreloaded() && isVendettaLoader() && <TableSwitchRow

@@ -1,4 +1,4 @@
-import { Strings } from "@core/i18n";
+import { Strings, t } from "@core/i18n";
 import { after } from "@lib/api/patcher";
 import { findInReactTree } from "@lib/utils";
 import { TableRow } from "@metro/common/components";
@@ -12,12 +12,22 @@ const settingConstants = findByPropsLazy("SETTING_RENDERER_CONFIG");
 const createListModule = findByPropsLazy("createList");
 const SettingsOverviewScreen = findByNameLazy("SettingsOverviewScreen", false);
 
+/** Marks the sections Endcord adds, whose titles change with the language */
+const OURS = "__endcordSection";
+
 /** Takes Endcord's sections out of Discord's list of settings sections */
 function removeOurSections(sections: any[]) {
-    const ours = new Set(Object.keys(registeredSections));
+    // And by title, in case Discord copied the sections without the mark
+    const titles = new Set(Object.keys(registeredSections).map(name => sectionOf(name).label));
     for (let i = sections.length - 1; i >= 0; i--) {
-        if (ours.has(sections[i]?.label)) sections.splice(i, 1);
+        if (sections[i]?.[OURS] || titles.has(sections[i]?.label)) sections.splice(i, 1);
     }
+}
+
+/** A section for Discord's list; the ones kept for plugins made for Bunny and Vendetta are titled by what is in them */
+function sectionOf(name: string) {
+    const title = name === "Bunny" || name === "Vendetta" ? t("Community plugins") : name;
+    return { label: title, title, settings: registeredSections[name].map(row => row.key), [OURS]: true };
 }
 
 function useIsFirstRender() {
@@ -68,11 +78,7 @@ export function patchTabsUI(unpatches: (() => void | boolean)[]) {
                     let index = accountSectionIndex + 1;
 
                     getVisibleSections().forEach(sect => {
-                        sections.splice(index++, 0, {
-                            label: sect,
-                            title: sect,
-                            settings: registeredSections[sect].map(a => a.key)
-                        });
+                        sections.splice(index++, 0, sectionOf(sect));
                     });
                 }
             }
@@ -89,11 +95,7 @@ export function patchTabsUI(unpatches: (() => void | boolean)[]) {
             let index = -~sections.findIndex((i: any) => i.settings.includes("ACCOUNT")) || 1;
 
             getVisibleSections().forEach(sect => {
-                sections.splice(index++, 0, {
-                    label: sect,
-                    title: sect,
-                    settings: registeredSections[sect].map(a => a.key)
-                });
+                sections.splice(index++, 0, sectionOf(sect));
             });
         }));
     }
