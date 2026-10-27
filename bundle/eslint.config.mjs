@@ -7,6 +7,8 @@ import tsParser from "@typescript-eslint/parser";
 export default [{
     ignores: ["**/dist", "**/browser"],
 }, {
+    files: ["**/*.{js,jsx,ts,tsx}"],
+
     plugins: {
         "@typescript-eslint": typescriptEslint,
         "simple-import-sort": simpleImportSort,
@@ -101,12 +103,19 @@ export default [{
         "simple-import-sort/exports": "error",
         "unused-imports/no-unused-imports": "error",
 
+        // A module's own folder and its parent by path, anything further by alias
         "import-alias/import-alias": ["error", {
-            relativeDepth: 0,
+            relativeDepth: 1,
 
             aliases: [{
                 alias: "@metro",
-                matcher: "^src/lib/metro",
+                matcher: "^src/metro",
+            }, {
+                alias: "@plugins",
+                matcher: "^src/plugins",
+            }, {
+                alias: "@assets",
+                matcher: "^src/assets",
             }, {
                 alias: "@core",
                 matcher: "^src/core",

@@ -11,7 +11,7 @@
         "build": "node scripts/build.mjs",
         "serve": "node scripts/serve.mjs",
         "serve:adb": "bun run serve --adb",
-        "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
+        "lint": "eslint ./src",
         "i18n": "node scripts/i18n-sync.mjs"
     },
     "license": "BSD-3-Clause",

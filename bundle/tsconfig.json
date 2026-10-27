@@ -1,6 +1,8 @@
 {
     "exclude": [
-        "dist"
+        "dist",
+        // Tooling, whose plugins ship no types
+        "eslint.config.mjs"
     ],
     "compilerOptions": {
         "strict": true,
