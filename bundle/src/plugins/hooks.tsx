@@ -354,7 +354,25 @@ const MESSAGE_ROW = 1;
 // Tells native the row changed, though Discord thinks it's the same message
 const ROW_CHANGED = 2;
 const decorators = new Map<string, RowDecorator>();
+const decoratorOrder = new Map<string, number>();
+/** The decorators in the order they run, sorted again when one is added or removed */
+let ordered: Array<[string, RowDecorator]> = [];
 const needsRedraw = new Set<string>();
+
+/**
+ * When a row decorator runs, lowest first, so decorators combine the same way whatever order their plugins started in
+ * (which is the order their storage happened to load):
+ * - REPLACE sets a field outright, like the whole time or the name, before anything adds to it;
+ * - ADJUST changes what is there, like the time's format or the content's text;
+ * - ADD (the default) adds to a field;
+ * - OVERRIDE must win over the others, like a color the user chose for someone;
+ * - HIDE comes last, so nothing shows what it hid.
+ */
+export const RowOrder = { REPLACE: -20, ADJUST: -10, ADD: 0, OVERRIDE: 10, HIDE: 100 } as const;
+
+function sortDecorators() {
+    ordered = [...decorators].sort(([a], [b]) => (decoratorOrder.get(a) ?? 0) - (decoratorOrder.get(b) ?? 0));
+}
 let unpatchRows: (() => void) | null = null;
 
 /** Draws a message again, so decorators' changes to it show */
@@ -377,8 +395,11 @@ export function redrawChannel() {
     }, 100);
 }
 
-/** Changes every message row Discord generates for the chat (text color, timestamp, content nodes...) */
-export function onMessageRow(key: string, fn: RowDecorator) {
+/**
+ * Changes every message row Discord generates for the chat (text color, timestamp, content nodes...); `order` is when
+ * among the other decorators, see RowOrder
+ */
+export function onMessageRow(key: string, fn: RowDecorator, order: number = RowOrder.ADD) {
     if (!unpatchRows) {
         const RowManager = findByName("RowManager");
         if (typeof RowManager?.prototype?.generate !== "function") throw new Error("Discord's message rows weren't found");
@@ -386,7 +407,7 @@ export function onMessageRow(key: string, fn: RowDecorator) {
             const message = row?.type === MESSAGE_ROW ? row.message : undefined;
             if (!message || !args?.message) return;
             if (needsRedraw.delete(message.id)) row.changeType = ROW_CHANGED;
-            for (const [k, decorate] of decorators) {
+            for (const [k, decorate] of ordered) {
                 try {
                     decorate(message, args.message);
                 } catch (e) {
@@ -396,9 +417,15 @@ export function onMessageRow(key: string, fn: RowDecorator) {
         });
     }
     decorators.set(key, fn);
+    decoratorOrder.set(key, order);
+    sortDecorators();
     redrawChannel();
     return () => {
+        // Not one registered again under the same key since
+        if (decorators.get(key) !== fn) return;
         decorators.delete(key);
+        decoratorOrder.delete(key);
+        sortDecorators();
         // The open chat loses the decoration right away, rather than message by message as it redraws
         redrawChannel();
         // Once those redraws have gone through

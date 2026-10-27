@@ -14,7 +14,7 @@ import { findByProps } from "@metro";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { addChatButton, currentUserId, getChatInputActionButton, getStore, subscribe } from "../common";
-import { addMessageAction, api, botMessage, command, currentChannelId, displayName, generatedIcon, getChannel, getUser, jumpTo, loadedMessages, onIncomingMessage, onMessageRow, playSound, textNode } from "../hooks";
+import { addMessageAction, api, botMessage, command, currentChannelId, displayName, generatedIcon, getChannel, getUser, jumpTo, loadedMessages, onIncomingMessage, onMessageRow, playSound, RowOrder, textNode } from "../hooks";
 import { prompt } from "../ui/dialogs";
 import LogList from "../ui/LogList";
 
@@ -344,7 +344,7 @@ const ImageLink = definePlugin({
             if (!/^https?:\/\/\S+$/.test(content)) return;
             const shown = Array.isArray(row.content) && row.content.some((n: any) => n && (n.type !== "text" || String(n.content ?? "").trim()));
             if (!shown) row.content = [textNode(content)];
-        }));
+        }, RowOrder.REPLACE));
     },
 });
 

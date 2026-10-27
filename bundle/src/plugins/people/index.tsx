@@ -18,7 +18,7 @@ import { useEffect, useState } from "react";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { currentUserId, getStore, subscribe } from "../common";
-import { addMessageAction, api, botMessage, command, copy, describeError, displayName, getChannel, getUser, jumpTo, localDay, onMessageRow, openUrl, redrawChannel, redrawMessage } from "../hooks";
+import { addMessageAction, api, botMessage, command, copy, describeError, displayName, getChannel, getUser, jumpTo, localDay, onMessageRow, openUrl, redrawChannel, redrawMessage, RowOrder } from "../hooks";
 import { avatarUrl } from "../lookup";
 import { choose, prompt, showText } from "../ui/dialogs";
 import LogList from "../ui/LogList";
@@ -246,7 +246,7 @@ const FriendNicknames = definePlugin({
                 if (!nick) return;
                 if (typeof row.username === "string") row.username = nick;
                 else if (typeof row.timestamp === "string" && !row.timestamp.startsWith(`${nick} · `)) row.timestamp = `${nick} · ${row.timestamp}`;
-            }),
+            }, RowOrder.REPLACE),
             addMessageAction({
                 key: "friend-nicknames",
                 icon: "IdIcon",

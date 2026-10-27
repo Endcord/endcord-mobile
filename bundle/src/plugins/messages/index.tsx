@@ -19,7 +19,7 @@ import { fromBase64, open, seal, toBase64 } from "../crypto";
 import {
     addMessageAction, api, botMessage, command, copy, displayName, edit, getChannel, getUser, insertText, jumpTo,
     loadedMessages, localSnowflake, messageLink, onIncomingMessage, onMessageRow, onSend, parseEmoji,
-    parseMessageLink, react, receiveLocalMessage, redrawMessage, textNode
+    parseMessageLink, react, receiveLocalMessage, redrawMessage, RowOrder, textNode
 } from "../hooks";
 import { prompt, showText } from "../ui/dialogs";
 import LogList from "../ui/LogList";
@@ -89,7 +89,7 @@ const RevealAllSpoilers = definePlugin({
             () => revealed.clear(),
             onMessageRow("reveal-all-spoilers", (row, message) => {
                 if (revealed.has(message.id) && Array.isArray(row.content)) row.content = unspoil(row.content);
-            }),
+            }, RowOrder.ADJUST),
             addMessageAction({
                 key: "reveal-all-spoilers",
                 icon: "EyeIcon",

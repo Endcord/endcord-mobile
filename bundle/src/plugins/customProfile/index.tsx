@@ -16,7 +16,7 @@ import { Button } from "@metro/common/components";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { addChatButton, addToolboxAction, getChatInputActionButton, getStore, moduleAt, subscribe } from "../common";
-import { generatedIcon, onMessageRow, redrawChannel, toastError } from "../hooks";
+import { generatedIcon, onMessageRow, redrawChannel, RowOrder, toastError } from "../hooks";
 import { extendProfileBadges, isPluginBadge, linkedBadge } from "../profileBadges";
 import { openPage } from "../ui/pages";
 import { applyLayout, PROFILE_ID_PREFIX, profileBadgeId, setBadgeLayout, setManagedBadges, startBadgeManagement } from "./badges";
@@ -369,7 +369,7 @@ const plugin = definePlugin({
             const name = shownName(real, pd, author.id === myId());
             if (name && typeof row.username === "string" && row.username === (real.globalName || real.username)) row.username = name;
             if (pd.avatar && typeof row.avatarURL === "string") row.avatarURL = pd.avatar;
-        }));
+        }, RowOrder.REPLACE));
 
         // Badges: on the profile, and in Discord's "Customize your badges" panel
         const refreshBadges = () => {
