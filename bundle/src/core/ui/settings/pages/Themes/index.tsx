@@ -9,6 +9,7 @@ import { Author } from "@lib/addons/types";
 import { findAssetId } from "@lib/api/assets";
 import { settings } from "@lib/api/settings";
 import { useObservable } from "@lib/api/storage";
+import compareNames from "@lib/utils/compareNames";
 import { ActionSheet, BottomSheetTitleHeader, Button, TableRadioGroup, TableRadioRow,TableRow, TableRowGroup, TableRowIcon, TableSwitchRow } from "@metro/common/components";
 import { View } from "react-native";
 
@@ -25,8 +26,8 @@ export default function Themes() {
                 p => p.data.authors?.map((a: Author) => a.name).join(", ") ?? ""
             ]}
             sortOptions={{
-                [t("Name (A-Z)")]: (a, b) => a.data.name.localeCompare(b.data.name),
-                [t("Name (Z-A)")]: (a, b) => b.data.name.localeCompare(a.data.name)
+                [t("Name (A-Z)")]: (a, b) => compareNames(a.data.name, b.data.name),
+                [t("Name (Z-A)")]: (a, b) => compareNames(b.data.name, a.data.name)
             }}
             installAction={{
                 label: Strings.INSTALL_THEME,
