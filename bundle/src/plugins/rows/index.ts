@@ -12,7 +12,7 @@ import formatDate from "@lib/utils/formatDate";
 import moment from "moment";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
-import { currentUserId, getStore } from "../common";
+import { currentUserId, getStore, guildRoles } from "../common";
 import { appendToTimestamp, nativeColor, onMessageRow, RowOrder, snowflakeTime } from "../hooks";
 
 /** Puts text before the time, which sits right after the name */
@@ -302,7 +302,7 @@ const CustomUserColors = definePlugin({
 
 function highestRole(guildId: string, userId: string) {
     const member = getStore("GuildMemberStore")?.getMember?.(guildId, userId);
-    const roles = getStore("GuildRoleStore")?.getRoles?.(guildId) ?? getStore("GuildStore")?.getGuild?.(guildId)?.roles ?? {};
+    const roles = guildRoles(guildId);
     return (member?.roles ?? [])
         .map((id: string) => roles[id])
         .filter((r: any) => r && !r.managed)
