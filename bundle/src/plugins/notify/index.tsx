@@ -490,6 +490,21 @@ const AntiDeleteMessage = definePlugin({
         const cache = wrapSync(createStorage<{ messages: Record<string, Protected>; }>(createMMKVBackend("ENDCORD_ANTI_DELETE", { messages: {} })));
         await awaitStorage(cache);
         const deletedByMe = new Set<string>();
+        // A bot or a moderator that deletes the message again each time would get it resent forever, which reads as
+        // spam and can get the account banned: the same text goes out at most twice in ten minutes, and nothing more
+        // than five times a minute
+        const resentTexts = new Map<string, number[]>();
+        const resentAt: number[] = [];
+        const mayResend = (content: string) => {
+            const now = Date.now();
+            const forText = (resentTexts.get(content) ?? []).filter(at => now - at < 600_000);
+            while (resentAt.length && now - resentAt[0] >= 60_000) resentAt.shift();
+            if (forText.length >= 2 || resentAt.length >= 5) return false;
+            forText.push(now);
+            resentAt.push(now);
+            resentTexts.set(content, forText);
+            return true;
+        };
         const actions = MessageActions();
         if (typeof actions?.deleteMessage === "function") {
             cleanup(before("deleteMessage", actions, ([, messageId]: any[]) => void deletedByMe.add(messageId)));
@@ -510,6 +525,10 @@ const AntiDeleteMessage = definePlugin({
                 const { [id]: _, ...rest } = cache.messages;
                 cache.messages = rest;
                 if (deletedByMe.delete(id) || saved.guildId && ids(store.serverBlacklist).has(saved.guildId)) return;
+                if (!mayResend(saved.content)) {
+                    showToast(t("A message of yours keeps being deleted, so it wasn't sent again"), findAssetId("ShieldIcon"));
+                    return;
+                }
                 setTimeout(() => send(channelId ?? saved.channelId, saved.content), 500);
             }, { first: true }),
         );

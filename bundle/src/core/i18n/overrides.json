@@ -197,6 +197,12 @@
         "es": "Un mensaje de {user}",
         "fr": "Un message de {user}"
     },
+    "A message of yours keeps being deleted, so it wasn't sent again": {
+        "tr": "Bir mesajın tekrar tekrar siliniyor, bu yüzden yeniden gönderilmedi",
+        "ru": "Твоё сообщение снова и снова удаляют, поэтому оно не было отправлено повторно",
+        "es": "Un mensaje tuyo sigue siendo eliminado, así que no se ha vuelto a enviar",
+        "fr": "Un de tes messages n'arrête pas d'être supprimé, il n'a donc pas été renvoyé"
+    },
     "A random trivia question to answer": {
         "tr": "Cevaplanacak rastgele bir bilgi yarışması sorusu",
         "ru": "Случайный вопрос викторины",

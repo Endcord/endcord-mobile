@@ -47,6 +47,7 @@
     "A list of user IDs (separate by commas) to ignore displaying notifications for.": "Bildirimleri gösterilmeyecek kullanıcı ID'leri (virgülle ayır).",
     "A little cat that runs to wherever you touch the screen.": "Ekrana nereye dokunursanız oraya koşan küçük bir kedi.",
     "A message from {user}": "{user} kişisinden bir mesaj",
+    "A message of yours keeps being deleted, so it wasn't sent again": "Bir mesajın tekrar tekrar siliniyor, bu yüzden yeniden gönderilmedi",
     "A random trivia question to answer": "Cevaplanacak rastgele bir bilgi yarışması sorusu",
     "A recipe for a dish": "Bir yemeğin tarifi",
     "A reload is required to see the changes. Do you want to reload now?": "Değişiklikleri görmek için yeniden yükleme gerekiyor. Şimdi yeniden yüklensin mi?",

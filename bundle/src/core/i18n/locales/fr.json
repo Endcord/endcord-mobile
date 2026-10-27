@@ -47,6 +47,7 @@
     "A list of user IDs (separate by commas) to ignore displaying notifications for.": "ID d'utilisateurs (séparés par des virgules) dont masquer les notifications.",
     "A little cat that runs to wherever you touch the screen.": "Un petit chat qui court là où vous touchez l'écran.",
     "A message from {user}": "Un message de {user}",
+    "A message of yours keeps being deleted, so it wasn't sent again": "Un de tes messages n'arrête pas d'être supprimé, il n'a donc pas été renvoyé",
     "A random trivia question to answer": "Une question de quiz au hasard à laquelle répondre",
     "A recipe for a dish": "Une recette pour un plat",
     "A reload is required to see the changes. Do you want to reload now?": "Un rechargement est nécessaire pour voir les changements. Recharger maintenant ?",
