@@ -1,513 +1,513 @@
-# Eklentiler (Endcord PC → Endcord for Android)
+# Plugins
 
-Endcord'un mobil eklentileri `bundle/src/plugins/` altında yaşar ve uygulamayla birlikte gelir: **303 eklenti**:
-Endcord PC'den gelen 261, Endcord'un mobil için kendi eklentileri 42 (çoğu bilgi ve eğlence komutları). Hepsi kapalı başlar; kullanıcı **Ayarlar → Endcord → Eklentiler** sayfasından açar. Popüler
-olanlar, Endcord PC'deki sırayla en üstte ve "POPÜLER" etiketiyle görünür; sayfanın üstünde toplam ve açık eklenti
-sayısı, durum ve etiket filtreleri var (Endcord PC'nin eklenti yöneticisi gibi).
+Endcord for Android comes with **303 built-in plugins**: 261 from Endcord PC and 42 made for phones (mostly lookup
+and fun commands). They all start off; turn them on in **Settings → Endcord → Plugins**. Endcord PC's popular plugins
+come first, in Endcord PC's order and with a **POPULAR** badge, and the page shows how many plugins there are and how
+many are on, with filters by status and tag, like Endcord PC's plugin manager.
 
-> **Aliucord eklentileri bu istemcide çalışmaz.** Aliucord eklentileri, Aliucord'un dayandığı eski Discord'a (126.21)
-> göre yazılmış Java/Kotlin kodudur; güncel Discord React Native'dir. Eklentiler sayfası bunu söyler ve Aliucord
-> eklentileri isteyenleri hem Endcord hem Aliucord eklentilerini çalıştıran **Endcord Classic**'e (`main` dalı)
-> yönlendirir. Vendetta ve Revenge eklentileri burada da kurulabilir.
+> **Aliucord plugins don't work in this client.** They are Java and Kotlin code written for the older Discord that
+> Aliucord is built on (126.21), while the current Discord is React Native. The Plugins page says so and points people
+> who want Aliucord plugins to **Endcord Classic** (the `main` branch), which runs both Endcord's and Aliucord's
+> plugins. Vendetta and Revenge plugins can be installed here too.
 
-## Popüler eklentiler (Endcord PC'nin "popüler" listesinin tamamı)
+## Popular plugins (all of Endcord PC's popular list)
 
-| Sıra | Eklenti | Mobilde ne yapıyor | PC'den farkı |
+| # | Plugin | On your phone | Compared with Endcord PC |
 | --- | --- | --- | --- |
-| 1 | CustomProfile | Kendi avatarınız, afişiniz, görünen adınız, hakkımda ve zamirleriniz; yalnızca size görünür | Rozet ve Nitro taklidi yok (yalnızca sahte ekran görüntüsüne yarar); görünen ad şimdilik yalnızca mesajlarda değişiyor |
-| 2 | MessageLogger | Silinen mesajlar kırmızı ve "silindi" etiketiyle sohbette kalır, düzenlenenlerin eski hâlleri üstte görünür; hayalet etiket uyarısı; yok sayılan kullanıcı/kanal/sunucu | Kayıt uygulama kapanınca sıfırlanır (PC'de de varsayılan bu) |
-| 3 | HideEndcord | Endcord'un Discord ayarlarındaki bölümünü gizler; `/hideendcord` geri getirir | PC'deki F8 kısayolu yerine komut ve ayar düğmesi |
-| 4 | FakeNitro | Kullanamadığınız emoji ve çıkartmalar bağlantı olarak gider; izin yoksa önce sorar | Yayın kalitesi kısmı mobilde yok |
-| 5 | SmoothType | Metin kutularında imleç ve seçim rengi | Android'in yerel metin kutusunda imleç animasyonu değiştirilemiyor, yalnızca renkler |
-| 6 | ViewIcons | Avatar, afiş ve sunucu simgesine dokununca tam boyut; uzun basınca sunucu avatarı veya bağlantıyı kopyalama | Bağlam menüsü girdileri yok |
-| 7 | ThemeLibrary | Topluluk tema pazarı ve Catppuccin temalarını uygulama içinden yükleme | PC'deki masaüstü CSS temaları mobilde çalışmadığı için mobil tema kaynakları kullanılıyor |
-| 8 | oneko | Ekrana dokunduğunuz yere koşan kedi | Fare yerine dokunma |
-| 9 | PlatformIndicators | Mesaj saatinin yanında masaüstü/web/mobil simgeleri | Üye listesi ve profil konumları yok |
-| 10 | RelationshipNotifier | Arkadaş, grup ve sunucudan çıkarılma bildirimleri; çevrimdışıyken olanlar açılışta | Bildirimler uygulama içi bildirim ve geçmiş listesi olarak |
-| 11 | SilentTyping | "Yazıyor..." hiç gönderilmez; isteğe bağlı sohbet düğmesi ve `/silenttype` | DM'lerde gösterme seçeneği |
-| 12 | FakeMute | Mikrofon/ses çalışırken susturulmuş veya sağırlaştırılmış görünme; düğmeler ve `/fakemute`, `/fakedeafen` | FakeDeafen ayrı eklenti değil, aynı eklentide |
+| 1 | CustomProfile | Your own avatar, banner, display name, bio and pronouns, only visible to you | No badges or fake Nitro, which would only be good for fake screenshots; for now the display name changes in messages only |
+| 2 | MessageLogger | Deleted messages stay in the chat in red with a "deleted" tag, and earlier versions of edited ones show above them; ghost ping alerts; ignored users, channels and servers | The log is cleared when the app closes (the default on PC too) |
+| 3 | HideEndcord | Hides Endcord's section of Discord's settings; `/hideendcord` brings it back | A command and a settings button instead of PC's F8 shortcut |
+| 4 | FakeNitro | Emojis and stickers you can't use are sent as links; asks first if you don't have the permission | No stream quality part on mobile |
+| 5 | SmoothType | Caret and selection colors for text boxes | Android's native text box can't animate its caret, so only the colors |
+| 6 | ViewIcons | Tap avatars, banners and server icons to see them full size; long-press to copy a server avatar or the link | No context menu entries |
+| 7 | ThemeLibrary | Install themes from the community theme marketplace and Catppuccin without leaving the app | Uses mobile theme sources, since PC's desktop CSS themes don't work on mobile |
+| 8 | oneko | A cat that runs to wherever you touch the screen | Touch instead of the mouse |
+| 9 | PlatformIndicators | Desktop, web and mobile icons next to the time of messages | Not in the member list or on profiles |
+| 10 | RelationshipNotifier | Tells you when a friend, group chat or server removes you; what happened while you were offline shows when you open the app | In-app notices and a history list |
+| 11 | SilentTyping | Your typing indicator is never sent; an optional chat bar button and `/silenttype` | An option to show it in DMs |
+| 12 | FakeMute | Appear muted or deafened while your microphone and sound keep working; buttons, `/fakemute` and `/fakedeafen` | FakeDeafen is part of the same plugin, not a separate one |
 
-## Diğer eklentiler
+## Other plugins
 
-Aşağıdaki açıklamalar uygulamada görünen Türkçe metinlerdir.
+The descriptions below are the ones the app shows.
 
-### Metin komutları (11)
-Yazdığınızı başka bir şeye çevirip gönderen komutlar: `/bold`, `/ship`, `/calc`, `/morse`, `/uwuify`…
+### Text commands (11)
+Commands that turn what you type into something else and send it: `/bold`, `/ship`, `/calc`, `/morse`, `/uwuify`…
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| BoldText | /bold mesajını 𝐮𝐧𝐢𝐜𝐨𝐝𝐞 kalın yazıya çevirir (markdown çalışmayan yerlerde de). |
-| Calculator | /calc ile sohbet kutusunda hızlı hesap yap. |
-| ClapText | /clap ile 👏 kelimelerin 👏 arasına 👏 alkış 👏 koy. |
-| GoogleThat | İnternet arama bağlantısı gönderme komutu ekler |
-| LeetText | /leet mesajını 1337 dilinde yazar. |
-| MoreCommands | Eğlenceli ve faydalı çeşitli komutlar ekler |
-| ReverseText | /reverse mesajını tersten yazar. |
-| ShipCalc | /ship iki kişi arasındaki aşkı puanlar. |
-| SpaceOut | /spaceout h a r f l e r i n arasına boşluk koyar. |
-| Starify | /starify mesajını parıltılarla süsler ｡ﾟ☆. |
-| VibeCheck | /vibe ile sohbete rastgele bir vaporwave havası bırak. |
+| BoldText | /bold turns your message into 𝐮𝐧𝐢𝐜𝐨𝐝𝐞 bold (works where markdown can't). |
+| Calculator | /calc does quick maths right in the chat box. |
+| ClapText | Adds /clap to 👏 put 👏 claps 👏 between 👏 your 👏 words. |
+| GoogleThat | Send a web search link for anything with /googlethat |
+| LeetText | /leet rewrites your message in 1337 5p34k. |
+| MoreCommands | Adds various fun and useful commands |
+| ReverseText | /reverse flips your message backwards. |
+| ShipCalc | /ship rates the love between two people. |
+| SpaceOut | /spaceout p u t s   s p a c e s   between every letter. |
+| Starify | Adds /starify to wrap your message in sparkles ｡ﾟ☆. |
+| VibeCheck | Adds /vibe to drop a random vaporwave mood into chat. |
 
-### Arama ve çeviri (9)
-Discord'da ya da web'de bir şey arayan komutlar; Translate mesaj menüsünden çevirir.
+### Lookup and translation (9)
+Commands that look something up on Discord or the web; Translate also works from the message menu.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| AvatarGrabber | /avatar herhangi birinin (ya da kendinin) avatarını tam çözünürlükte getirir. |
-| FriendInvites | Arkadaş davet bağlantılarını /friendinvites ile oluştur, listele ve iptal et |
-| HypeSquadSwitcher | HypeSquad evleri arasında kolayca geçiş yap veya rozetini kaldır |
-| InRole | Bir role kimlerin sahip olduğunu /inrole ile gör |
-| PauseInvitesForever | Discord'un kaldırdığı davetleri süresiz durdurma seçeneğini geri getirir. |
-| ServerInfo | Sunucu sağ tık menüsüne detaylı sunucu bilgilerini görüntüleme seçeneği ekler. |
-| SpotifyShareCommands | Çalan Spotify şarkısını, albümü veya sanatçıyı komutla paylaş (/track, /album, /artist) |
-| Translate | Mesajları mesaj menüsünden çevir, gönderdiklerini çevir ya da /translate kullan (Google Çeviri) |
-| WikiLookup | /wiki herhangi bir şey için kısa Wikipedia özeti getirir (sadece sana). |
+| AvatarGrabber | /avatar grabs the full-resolution avatar of any user (or yourself). |
+| FriendInvites | Create, list and revoke friend invite links with /friendinvites |
+| HypeSquadSwitcher | Easily switch between HypeSquad houses or remove your badge |
+| InRole | See who has a role with /inrole |
+| PauseInvitesForever | Pause a server's invites with no time limit, which Discord no longer offers, with /pauseinvites |
+| ServerInfo | Allows you to view info about a server |
+| SpotifyShareCommands | Share your current Spotify track, album or artist via slash command (/track, /album, /artist) |
+| Translate | Translate messages from the message menu, translate what you send, or use /translate (Google Translate) |
+| WikiLookup | /wiki pulls a short Wikipedia summary for anything (sent only to you). |
 
-### Mesaj gönderirken (18)
-Mesajı gönderilmeden hemen önce değiştiren eklentiler (`onSend`). Sıraları sabittir: önce metin, sonra biçim, en son imza.
+### While sending (18)
+Plugins that change a message right before it's sent (`onSend`). They run in a fixed order: text first, then formatting, the signature last.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| AnonymiseFileNames | Yüklenen dosyaların adlarını gizler |
-| AtSomeone | Rastgele birinden bahseder |
-| ClearURLs | Gönderdiğin bağlantılardaki izleme parametrelerini siler |
-| AutoVaporwave | Gönderdiğin her mesajı otomatik olarak ｇｅｎｉｓ yazıya çevirir. |
-| BetterPlusReacts | Emojinin önündeki + sayısı, tepkinin ekleneceği mesajı belirler |
-| EmbeddedURLs | Sosyal medya bağlantılarını yerleştirilebilir adreslere çevirir; böylece gönderiler ve videolar dış siteyi açmaya gerek kalmadan Discord'da tam olarak görüntülenir. |
-| MessageBurst | Kimse araya girmezse belirli süre içinde gönderdiğin mesajları öncekiyle birleştirir. |
-| NoReplyMention | Yanıtlarda bahsetmeyi varsayılan olarak kapatır |
-| NormalizeMessageLinks | Mesaj bağlantılarından canary/ptb kısmını siler |
-| PolishWording | Mesajlarını daha düzgün görünmesi ve dilbilgisi için düzenler. Ayarlara bak |
-| SelfDestruct | Ayarlanan süre sonra otomatik silinen mesajlar gönderir. Her mesajda kırmızı sayaç görünür. |
-| Signature | Mesajlarına otomatik imza / son metin ekler |
-| SilentMessageToggle | Mesaj kutusuna sessiz mesaj gönderme düğmesi ekler. |
-| TalkInReverse | Mesajı göndermeden önce tersine çevirir. |
-| TextReplace | Mesajlarındaki metni değiştir. Hazır kurallar Endcord sunucusundaki #textreplace-rules kanalında |
-| Unindent | Kod bloklarındaki baştaki girintiyi kırpar |
-| WriteUpperCase | Mesaj kutusunda her cümlenin ilk harfini büyük yapar |
-| ZeroWidthSanitizer | İz sürme ve parmak izini önlemek için mesajlardaki görünmez sıfır genişlikli karakterleri siler |
+| AnonymiseFileNames | Anonymise uploaded file names |
+| AtSomeone | Mention a random member of the channel |
+| ClearURLs | Automatically removes tracking elements from URLs you send |
+| AutoVaporwave | Turn every message you send into ｆｕｌｌｗｉｄｔｈ text automatically. |
+| BetterPlusReacts | React to an earlier message by typing +:emoji:, with one + per message back |
+| EmbeddedURLs | Turns plain social links into embeddable URLs so posts and videos are fully viewable in Discord instead of forcing users to open the external site. |
+| MessageBurst | Merges messages sent within a time period with your previous sent message if no one else sends a message before you. |
+| NoReplyMention | Disables reply pings by default |
+| NormalizeMessageLinks | Strip canary/ptb from message links |
+| PolishWording | Tweaks your messages to make them look nicer and have better grammar. See settings |
+| SelfDestruct | Sends messages that are automatically deleted after a configurable delay. Red timer visible on each message. |
+| Signature | Adds your signature to the end of every message you send |
+| SilentMessageToggle | Adds a button to the chat bar to toggle sending a silent message. |
+| TalkInReverse | Reverses the message content before sending it. |
+| TextReplace | Replace text in your messages. You can find pre-made rules in the #textreplace-rules channel in Endcord's Server |
+| Unindent | Trims leading indentation from codeblocks |
+| WriteUpperCase | Changes the first Letter of each Sentence in Message Inputs to Uppercase |
+| ZeroWidthSanitizer | Removes invisible zero-width characters from messages to prevent fingerprinting and tracking |
 
-### Gelen mesajlar ve filtreler (11)
-Size ne ulaşacağına karar verenler: mesajlar, bildirimler, çıkartmalar, aramalar (`onIncomingMessage`).
+### Incoming messages and filters (11)
+Plugins that decide what reaches you: messages, notifications, stickers, calls (`onIncomingMessage`).
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| BlockKeywords | Belirlediğin kelimeleri içeren mesajları, gönderen engellenmiş gibi gizler. |
-| ClientSideBlock | Herhangi bir kullanıcının neredeyse tüm içeriğini sadece kendi ekranında gizlemeni sağlar |
-| HideMessages | Mesajları mesaj menüsünden Discord'u yeniden başlatana kadar gizle |
-| IgnoreCalls | Belirli kişilerden veya grup DM'lerinden gelen aramaları görmezden gelmeni sağlar. |
-| iLoveSpam | 'Muhtemel spamcı' mesajlarını gizlemez |
-| NoBlockedMessages | Engellenen/yok sayılan tüm mesajları sohbetten tamamen gizler |
-| NoPendingCount | Gelen arkadaşlık isteklerinin ve mesaj isteklerinin bildirim sayısını kaldırır |
-| NoProfileThemes | Nitro profil temalarını senin dışında herkesten tamamen kaldırır |
-| ReplyPingControl | Yanıtlarda her zaman veya hiç bahsedilmemeyi beyaz ve kara listeyle ayarla |
-| SilenceUsers | Belirli kişilerin @bahsetme bildirimlerini ve sunucu rozet sayılarını susturur. Normal mesaj ve DM'ler etkilenmez. |
-| StickerBlocker | Çıkartmaların gösterilmesini engellemeni sağlar. |
+| BlockKeywords | Blocks messages containing specific user-defined keywords, as if the user sending them was blocked. |
+| ClientSideBlock | Allows you to locally hide almost all content from any user |
+| HideMessages | Hide messages from the message menu until you restart Discord |
+| IgnoreCalls | Allows you to ignore calls from specific users or dm groups. |
+| iLoveSpam | Do not hide messages from 'likely spammers' |
+| NoBlockedMessages | Hides all blocked/ignored messages from chat completely |
+| NoPendingCount | Removes the badge count of incoming friend requests and message requests |
+| NoProfileThemes | Completely removes Nitro profile themes from everyone but yourself |
+| ReplyPingControl | Control whether to always or never get pinged on message replies, with whitelist and blacklist features |
+| SilenceUsers | Silences @mention pings and server badge counts from specific users. Regular messages and DMs are untouched. |
+| StickerBlocker | Allows you to block stickers from being displayed. |
 
-### Bildirimler ve otomatik işler (9)
-Anahtar kelimeler, ses kanalları, yeni sunucular ve takma adlar.
+### Notifications and automation (9)
+Keywords, voice channels, new servers and nicknames.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| AntiDeleteMessage | Mesajların biri tarafından silinirse otomatik yeniden gönderir. Önbellek yeniden başlatmada korunur. |
-| AntiNickname | Sunucuda sana zorla verilen takma adı otomatik sıfırlar. Yönetici izni gerekmez. |
-| AutoReact | Belirli kelimeleri içeren mesajlara otomatik tepki verir. |
-| KeywordNotify | Bir mesaj belirli kelime veya düzenli ifadelerle eşleşince bildirim gönderir |
-| NewGuildSettings | Yeni katıldığın sunucuları otomatik susturur ve çeşitli ayarları değiştirir |
-| ReadAllNotificationsButton | /readall ile tüm sunucuları tek seferde okundu olarak işaretle |
-| ToastNotifications | DM, grup, arkadaş veya sunucu kanalları için ayarlanabilir açılır bildirim gösterir. |
-| VoiceChannelLog | Ses kanalı etkinliğini kaydeder: katılmalar, ayrılmalar, geçişler, sunucu susturmaları, kameralar ve ekran paylaşımları |
-| VoiceJoinMessages | Arkadaşların ses kanalına girince sadece sana görünen geçici mesaj al |
+| AntiDeleteMessage | Automatically resends your messages if someone deletes them. Cache persisted across restarts. |
+| AntiNickname | Automatically resets any nickname forcefully assigned to you in a server. Works even without admin permissions. |
+| AutoReact | Automatically react to messages containing specific keywords. |
+| KeywordNotify | Sends a notification if a given message matches certain keywords or regexes |
+| NewGuildSettings | Automatically mute new servers and change various other settings upon joining |
+| ReadAllNotificationsButton | Mark every server as read at once with /readall |
+| ToastNotifications | Show a pop-up toast notification, configurable for DMs, group, friends, or guild channels. |
+| VoiceChannelLog | Logs voice channel activity: joins, leaves, moves, server mutes, cameras and screen shares |
+| VoiceJoinMessages | Receive client-side ephemeral messages when your friends join voice channels |
 
-### Mesaj menüsü (22)
-Bir mesaja uzun basınca açılan menüye satır ekleyenler (`addMessageAction`).
+### Message menu (22)
+Plugins that add rows to the menu that opens when you long-press a message (`addMessageAction`).
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| CopyEmojiMarkdown | Emojileri biçimli metin olarak kopyalamanı sağlar (<:blobcatcozy:1026533070955872337>) |
-| CopyFileContents | Metin dosyası eklerinin içeriğini mesaj menüsünden kopyala |
-| CopyMediaLink | Bir mesajdaki görsel, video ve dosyaların bağlantısını mesaj menüsünden kopyala |
-| CopyStickerLinks | Çıkartma bağlantılarını kopyalayıp açmanı sağlar |
-| CopyUserMention | Bir mesajın yazarının bahsetmesini mesaj menüsünden kopyala |
-| CopyUserURLs | Bir mesajın yazarının profil bağlantısını mesaj menüsünden kopyala |
-| DecodeBase64 | Herhangi bir mesajdaki base64 içeriği çözüp kopyalar. |
-| DownloadAllAttachments | Bir mesajın tüm eklerini mesaj menüsünden tek seferde indir |
-| ExportMessages | Herhangi bir mesajı mesaj menüsünden metin olarak paylaş |
-| FindReply | Bir mesaja kanaldaki ilk cevaba atlar (eski konuşmaları takip etmeyi kolaylaştırır). |
-| HideMedia | Bir mesajın eklerini ve yerleştirmelerini mesaj menüsünden gizle |
-| Husk | Mesaj menüsünden husk ile tepki ver (emojiyi ayarlardan değiştir) |
-| QuickDelete | Bir kanaldaki son mesajını /deletelast ile, herhangi bir mesajını da mesaj menüsünden onay sormadan sil |
-| QuickMention | Bir mesajın yazarından mesaj menüsüyle bahset |
-| RepeatMessages | Bir mesajı mesaj menüsünden yeniden gönder |
-| ReverseImageSearch | Bir mesajdaki görseli mesaj menüsünden Google Lens, Yandex, SauceNAO ve daha fazlasında ara |
-| SilentDelete | Mesajı 'sessizce' siler: önce yer tutucuyla değiştirip mesaj kaydedicileri atlatır. |
-| SongLink | Şarkı bağlantılarını mesaj menüsünden song.link üzerinden kendi müzik servisinde aç |
-| UnitConverter | Bir mesajdaki metrik ve emperyal birimleri mesaj menüsünden dönüştür |
-| UnsuppressEmbeds | Mesajlarda gizlenmiş önizlemeleri geri açmanı sağlar |
-| ViewRaw | Herhangi bir mesajın ham içeriğini ve verisini görüntüle ve kopyala |
-| VoiceDownload | Sesli mesajları mesaj menüsünden indir |
+| CopyEmojiMarkdown | Allows you to copy emojis as formatted string (<:blobcatcozy:1026533070955872337>) |
+| CopyFileContents | Copy the contents of text file attachments from the message menu |
+| CopyMediaLink | Copy the link of a message's images, videos and files from the message menu |
+| CopyStickerLinks | Adds the ability to copy & open Sticker links |
+| CopyUserMention | Copy the mention of a message's author from the message menu |
+| CopyUserURLs | Copy a link to the profile of a message's author from the message menu |
+| DecodeBase64 | Decode base64 content of any message and copy the decoded content. |
+| DownloadAllAttachments | Download every attachment of a message at once from the message menu |
+| ExportMessages | Share any message as text from the message menu |
+| FindReply | Jumps to the earliest reply to a message in a channel (lets you follow past conversations more easily). |
+| HideMedia | Hide the attachments and embeds of a message from the message menu |
+| Husk | React with husk from the message menu (change the emoji in settings) |
+| QuickDelete | Delete your last message in a channel with /deletelast, or any of yours from the message menu without confirming |
+| QuickMention | Mention a message's author from the message menu |
+| RepeatMessages | Send a message again from the message menu |
+| ReverseImageSearch | Search for a message's image on Google Lens, Yandex, SauceNAO and more from the message menu |
+| SilentDelete | "Silently" deletes a message. Bypass message loggers by replacing the message with a placeholder. |
+| SongLink | Open song links on your streaming service through song.link, from the message menu |
+| UnitConverter | Convert metric and imperial units in a message from the message menu |
+| UnsuppressEmbeds | Allows you to unsuppress embeds in messages |
+| ViewRaw | View and copy the raw content and data of any message |
+| VoiceDownload | Download voice messages from the message menu |
 
-### Hatırlatıcılar, zamanlanmış mesajlar, yer işaretleri (5)
-Cihazda saklanır, yeniden başlatmadan sonra da durur.
+### Reminders, scheduled messages and bookmarks (5)
+Kept on your phone, and still there after a restart.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| Bookmarks | Mesajları mesaj menüsünden gizlice yer işaretine ekle (Discord'un 50 sabitleme sınırının ötesinde), sonra eklentinin ayarlarında ya da /bookmarks ile bulup onlara git |
-| MessageReminders | Bir mesajı mesaj menüsünden daha sonra hatırlatılmak üzere ayarla. Hatırlatıcı seni doğrudan o mesaja götürür. |
-| MessageTags | Mesajları saatlerinin yanında görünen gizli etiketlerle (Yapılacak, Önemli, ...) işaretle ve eklentinin ayarlarında bul |
-| RemindMe | /remindme bir şeyi daha sonra sohbette bir notla hatırlatır. Yeniden başlatmadan sonra da çalışır. |
-| ScheduledMessages | Mesajları belirli bir saatte veya bir süre sonra gönderilecek şekilde zamanla. |
+| Bookmarks | Privately bookmark messages (beyond Discord's 50-pin limit) from the message menu, then find and jump to them in the plugin's settings or with /bookmarks |
+| MessageReminders | Get reminded about a message later from the message menu. The reminder links right back to it. |
+| MessageTags | Tag messages with private labels (TODO, Important, ...) shown next to their time, and find them in the plugin's settings |
+| RemindMe | /remindme reminds you of something later with a notice in the chat. Survives restarts. |
+| ScheduledMessages | Schedule messages to be sent at a specific time or after a delay. |
 
-### Sohbet görünümü (16)
-Discord'un yerel sohbetinin satırlarını değiştirenler (`onMessageRow`): saat yanındaki metin, ad, renkler.
+### How messages look (16)
+Plugins that change the rows of Discord's native chat (`onMessageRow`): the text next to the time, names, colors.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| CustomTimestamps | Mesajlarda ve ipuçlarında özel zaman damgaları |
-| CustomUserColors | Herhangi bir kullanıcıya sohbette özel bir ad rengi ver |
-| FakeTag | Kullanıcı adının yanına sahte klan etiketi ve rozet ekler. Sadece sende görünür. |
-| FriendshipRanks | Biriyle ne kadar süredir arkadaş olduğunu gösteren rozetler ekler |
-| IrcColors | Sohbetteki kullanıcı adı renklerini IRC istemcilerindeki gibi herkese özel yapar |
-| MessageLatency | Gönderilmesi n saniye veya daha fazla süren mesajlar için gösterge ekler |
-| PinIcon | Sabitlenmiş mesajlara iğne ikonu ekler |
-| RealtimeTimestamps | Her mesajın saatinde saniyeleri gösterir (örn. 15:34:21) |
-| ShowMeYourName | Takma adların yanında kullanıcı adlarını gösterir veya takma adları hiç göstermez |
-| ShowRolesInChat | Bir kullanıcının en yüksek rolünü sohbet mesajlarında adının yanında gösterir |
-| ShowTimeoutDuration | Bir kullanıcının zaman aşımının ne kadar süreceğini mesajlarının yanında gösterir |
-| SilentEdit | Kendi düzenlediğin mesajlarda '(düzenlendi)' etiketini gizler. Mesaj kalır, silinmez veya yeniden gönderilmez. |
-| Timezones | Seçtiğin kullanıcıların yerel saatini mesajlarının yanında gösterir |
-| ToneIndicators | Mesajlardaki /srs ve /gen gibi ton göstergelerini yanlarında açıklar |
-| UserMessagesPronouns | Sohbet mesajlarında kullanıcıların zamirlerini gösterir |
-| WordCount | Mesajların kelime sayısını saatlerinin yanında gösterir |
+| CustomTimestamps | Shows message times in a format you choose |
+| CustomUserColors | Give any user a custom name color in chat |
+| FakeTag | Adds a fake clan tag and badge emoji next to your username. Client-side only. |
+| FriendshipRanks | Adds badges showcasing how long you have been friends with a user for |
+| IrcColors | Makes username colors in chat unique, like in IRC clients |
+| MessageLatency | Displays an indicator for messages that took ≥n seconds to send |
+| PinIcon | Adds a pin icon to pinned messages |
+| RealtimeTimestamps | Shows the seconds in every message's time (e.g. 15:34:21) |
+| ShowMeYourName | Display usernames next to nicks, or no nicks at all |
+| ShowRolesInChat | Shows a user's highest role next to their name in chat messages |
+| ShowTimeoutDuration | Shows how much longer a user's timeout will last next to their messages |
+| SilentEdit | Hides the '(edited)' label on your own edited messages. The message stays — nothing is deleted or resent. |
+| Timezones | Shows the local time of the users you choose next to their messages |
+| ToneIndicators | Explains tone indicators like /srs and /gen next to them in messages |
+| UserMessagesPronouns | Shows people's pronouns from their Discord profile next to their messages |
+| WordCount | Shows the word count of messages next to their time |
 
-### Durum ve etkinlik (7)
-Zengin durum, kayıtlı durumlar, boşta görünme.
+### Status and activity (7)
+Rich presence, saved statuses, appearing idle.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| AlwaysTrust | Güvenilmeyen bağlantı ve şüpheli dosya uyarılarını kaldırır |
-| CustomIdle | Uygulama arka plandayken Discord'un seni boşta göstermesini engeller |
-| CustomRPC | Profiline tamamen özelleştirilebilir bir Zengin Durum (oyun durumu) ekle |
-| Experiments | Discord'un gizli geliştirici deneyleri (Experiments) sekmesini etkinleştirir. |
-| LastFMRichPresence | Last.fm için küçük bir zengin durum eklentisi |
-| MusicRichPresence | ListenBrainz'den, dinlediğin şey için Zengin Durum |
-| StatusPresets | Durumlarını kaydedip sonra tekrar kullanmanı sağlar |
+| AlwaysTrust | Removes the annoying untrusted domain and suspicious file popup |
+| CustomIdle | Stops Discord from marking you idle while the app is in the background |
+| CustomRPC | Add a fully customisable Rich Presence (Game status) to your Discord profile |
+| Experiments | Enable Access to Experiments & other dev-only features in Discord! |
+| LastFMRichPresence | Shows what you're listening to on Last.fm as your Rich Presence |
+| MusicRichPresence | Rich Presence for what you're playing, from ListenBrainz |
+| StatusPresets | Allows you to remember your statuses and set them later |
 
-### Ses kanalları (4)
+### Voice channels (4)
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| DisableCallIdle | DM sesli aramasında 3 dakika sonra atılıp AFK kanalına taşınmayı kapatır. |
-| FollowUser | Birini mesaj menüsünden takip et ve her zaman onunla aynı ses kanalına katıl |
-| RandomVoice | /randomvoice ile rastgele bir ses kanalına katıl |
-| VoiceRejoin | Discord yeniden başlayınca DM/sunucu aramasına otomatik geri girer. |
+| DisableCallIdle | Disables automatically getting kicked from a DM voice call after 3 minutes and being moved to an AFK voice channel. |
+| FollowUser | Follow someone from the message menu to always join the same voice channel as them |
+| RandomVoice | Join a random voice channel with /randomvoice |
+| VoiceRejoin | Rejoins DM/Server call automatically when restarting Discord. |
 
-### Aramalar (9)
-Aramada olanlar ve kanaldaki herkese birden işlem.
+### Calls (9)
+What happens in a call, and actions on everyone in a channel at once.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| AntiMoveDeco | Biri seni taşıdığında ya da bağlantını kestiğinde seni ses kanalına geri koyar |
-| CallTimer | Sesli aramalarda ve kanallarda geçen süreyi gösteren bir sayaç ekler. |
-| PullUserIntoVoice | Bir mesajın yazarını mesaj menüsünden ses kanalına çek, istersen çekmeye devam et |
-| VoiceChatUtilities | Ses kanalındaki herkesi /voiceall ile tek seferde at, taşı, sustur veya sağırlaştır |
-| VoiceFakeDetector | Ses kanalındaki biri susturulmuş ya da sağırlaştırılmış görünüp konuşuyorsa sana söyler |
-| VoiceServerInfo | Bağlı olduğun Discord ses sunucusunu ve gecikmesini gösterir |
-| VoiceStats | Her kullanıcıyla seste ne kadar zaman geçirdiğini gösterir |
-| WaitForSlot | Dolu bir ses kanalında yer açılınca otomatik girer. |
-| WebcamStartNotifier | Ses kanalındaki biri kamerasını açtığında ya da kapattığında sana söyler |
+| AntiMoveDeco | Puts you back in your voice channel when someone moves or disconnects you |
+| CallTimer | Shows how long you have been in the current voice call |
+| PullUserIntoVoice | Pull a message's author into your voice channel from the message menu, and keep pulling them if you like |
+| VoiceChatUtilities | Disconnect, move, mute or deafen everyone in your voice channel at once with /voiceall |
+| VoiceFakeDetector | Tells you when someone in your voice channel shows as muted or deafened but is talking |
+| VoiceServerInfo | Shows the Discord voice server you're connected to and its ping |
+| VoiceStats | Shows how long you've spent in voice with each user |
+| WaitForSlot | Automatically join a full voice channel when a slot opens. |
+| WebcamStartNotifier | Tells you when someone in your voice channel turns their camera on or off |
 
-### Sohbetlerde gezinme (9)
-Notlar, atlamalar, yanıt bekleyenler, tablolar ve rozetler.
+### Getting around chats (9)
+Notes, jumps, replies waiting for you, tables and badges.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| AntiSnitch | Seçtiğin kişiler bu kanalda yazmaya başlayınca ses ve bildirimle haber verir. |
-| ChannelNotes | Herhangi bir kanala, DM'e veya gruba özel notlar ekle: kurallar, kim kimdir, hatırlanacaklar. Notlar cihazında kalır. |
-| Ghosted | Henüz yanıtlamadığın DM'lerin listesini her biri için bir hayaletle tutar |
-| ImageLink | Mesajdaki tek içerik olsa bile resim bağlantılarını gizlemez |
-| JumpTo | Bir sohbetin ilk ya da en son mesajına /jumpto ile git |
-| LastActive | Bir sohbette kendinin ya da başkasının son mesajına /lastactive ile git |
-| MarkdownTables | Discord mesajlarında GitHub tarzı markdown tablolarını gösterir. |
-| ShowBadgesInChat | Sohbette mesaj sahibinin rozetlerini adının yanında gösterir. |
-| UserVoiceShow | Ses kanalındaki kişilerin mesajlarında bir gösterge gösterir ve mesaj menüsünden onlara katılmanı sağlar |
+| AntiSnitch | Alerts you with a sound and toast whenever selected users start typing in your current channel. |
+| ChannelNotes | Keep private notes on any channel, DM or group chat: rules, who is who, things to remember. Notes stay on your device. |
+| Ghosted | Keeps a list of the DMs you haven't answered yet, with a ghost for each |
+| ImageLink | Never hide image links in messages, even if it's the only content |
+| JumpTo | Jump to the first or the latest message of a chat with /jumpto |
+| LastActive | Jump to the last message of yourself or someone else in a chat with /lastactive |
+| MarkdownTables | Render GitHub-style markdown tables in Discord messages. |
+| ShowBadgesInChat | Shows the message author's badges beside their name in chat. |
+| UserVoiceShow | Shows an indicator on messages from people in a voice channel, and lets you join them from the message menu |
 
-### Hesap ve uygulama (8)
-Sunucu etiketleri, odak modu, profil ön ayarları, açılış süreleri, kayıtlar.
+### Account and app (8)
+Server tags, focus mode, profile presets, startup times, logs.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| ClanSwitcher | Discord klan etiketlerini otomatik değiştirir |
-| Declutter | Profil efektlerini ve avatar süslemelerini kaldırarak Discord'u sadeleştirir |
-| DiscordDevBanner | Sürüm kimliğini gösteren Discord geliştirici şeridini açar |
-| EventLogs | Kayıtlar: silinen/düzenlenen mesajlar, ses, arkadaşlar, sunucular. |
-| NoTrack | Discord'un analiz olaylarını, ölçümlerini ve çökme raporlarını göndermez; varsayılan olarak açık |
-| FocusMode | Rahatsız Etmeyin için tek düğme: bir süreliğine ya da sen kapatana kadar; bittiğinde önceki durumuna döner |
-| ProfileSets | Farklı profil ön ayarlarını kaydedip yüklemeni sağlar. |
-| StartupTimings | Ayarlar menüsüne başlangıç süreleri ekler |
+| ClanSwitcher | Automatically switches your Discord server tag |
+| Declutter | Cleans up Discord by removing profile effects and avatar decorations |
+| DiscordDevBanner | Enables Discord's developer banner, which shows the build ID |
+| EventLogs | Keeps a log of deleted and edited messages, friends added and removed, and servers you join and leave |
+| NoTrack | Stops Discord from collecting analytics, metrics and crash reports about how you use the app |
+| FocusMode | One switch for Do Not Disturb, for a while or until you turn it off, and back to your previous status when it ends |
+| ProfileSets | Allows you to save and load different profile presets. |
+| StartupTimings | Shows how long Endcord and each of its plugins took to start, in the plugin's settings |
 
-### Profiller (5)
-Endcord PC'nin kullandığı servislerden avatar, afiş, rozet ve tema renkleri.
+### Profiles (5)
+Avatars, banners, badges and theme colors from the services Endcord PC uses.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| CopyProfileColors | Kişilerin profil gradyan renklerini panoya kopyalar. |
-| FakeProfileThemes | Biyografine görünmez 3y3 kodlamayla renk gizleyerek profil teması sağlar |
-| GlobalBadges | Diğer istemci modlarının rozetlerini gösterir |
-| UserPFP | Nitro olmadan hareketli avatar kullanmanı sağlar |
-| USRBG | USRBG'den kullanıcı afişlerini gösterir; Nitro olmadan herkes afiş edinebilir |
+| CopyProfileColors | Copy the profile theme colors of a message's author from the message menu |
+| FakeProfileThemes | Allows profile theming by hiding the colors in your bio thanks to invisible 3y3 encoding |
+| GlobalBadges | Adds global badges from other client mods |
+| UserPFP | Allows you to use an animated avatar without Nitro |
+| USRBG | Displays user banners from USRBG, allowing anyone to get a banner without Nitro |
 
-### Araçlar (13)
-Kendi komutlarınız, dışa aktarma, yedekleme, önizleme.
+### Tools (13)
+Your own commands, exporting, backups, previews.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| AlwaysAnimate | Hareket edebilen her şeyi hareketli gösterir |
-| ClearMyMessages | Bir kanaldaki son mesajlarını /clearmessages ile sil |
-| ContentWarning | Seçtiğin tetikleyici kelimeleri içeren mesajları dokunarak açılan bir spoilerin arkasına gizler |
-| CustomCommands | Kendi eğik çizgi komutlarını / etiketlerini oluşturmanı sağlar |
-| ExportDM | Bir sohbetin mesajlarını, eklerini, çıkartmalarını ve tepkilerini /exportdm ile TXT, Markdown veya JSON olarak dışa aktar |
-| FakeMessage | /fakemsg ile herhangi bir kullanıcıymış gibi sadece senin göreceğin sahte mesaj gönder. |
-| FriendCodes | Kolayca arkadaş eklemek için arkadaş kodu oluştur |
-| HopOn | Hop on! Bu kanaldaki bir mesaj özel düzenli ifadeyle eşleşince ayarlanan bağlantıyı açar. |
-| MemberCount | Bir sunucunun kaç üyesi olduğunu, kaçının çevrimiçi ve kaçının seste olduğunu /membercount ile gör |
-| MessageFetchTimer | Bu kanalın mesajlarının ne kadar sürede yüklendiğini gösterir |
-| PreviewMessage | Mesajını göndermeden önce önizlemeni sağlar. |
-| SendTimestamps | `14:30` gibi yazılan saatler herkesin kendi saat diliminde gördüğü zaman damgalarına dönüşür; sohbet çubuğundaki bir düğme şu anki saati ekler |
-| ServerBackup | Bir sunucunun kanallarını, rollerini ve izinlerini /serverbackup ile bir yedek dosyasına aktar |
+| AlwaysAnimate | Animates anything that can be animated |
+| ClearMyMessages | Delete your recent messages in a channel with /clearmessages |
+| ContentWarning | Hides messages with trigger words you choose behind a spoiler you tap to reveal |
+| CustomCommands | Allows you to create custom slash commands / tags |
+| ExportDM | Export a chat's messages, attachments, stickers and reactions as TXT, Markdown or JSON with /exportdm |
+| FakeMessage | Send a client-side fake message posed as any user via /fakemsg. Only you can see it. |
+| FriendCodes | Create and manage friend invite links in the plugin's settings, to add friends easily |
+| HopOn | Hop on! Opens a configurable URL when a message matches a custom regex in the current channel. |
+| MemberCount | See how many members a server has, how many are online and how many are in voice, with /membercount |
+| MessageFetchTimer | Shows how long it took to fetch messages for the current channel |
+| PreviewMessage | Lets you preview your message before sending it. |
+| SendTimestamps | Times written like `14:30` become timestamps everyone sees in their own time zone; a chat bar button inserts the current time |
+| ServerBackup | Export a server's channels, roles and permissions to a backup file with /serverbackup |
 
-### Kişiler (9)
-Konuştuğunuz kişiler: kim oldukları, izinleri, en son ne zaman çevrimiçi oldukları.
+### People (9)
+The people you talk to: who they are, their permissions, when they were last online.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| BetterSessions | Giriş yapılmış cihazlarını tam zamanları ve onlara verdiğin adlarla gör, yeni girişlerden haberdar ol |
-| CopyStatusUrls | Bir mesajın yazarının durumundaki bağlantıları mesaj menüsünden kopyala |
-| ExpressionCloner | Bir mesajdaki özel emojileri mesaj menüsünden kendi sunucularına kopyala |
-| IRememberYou | Konuştuğun herkesi (sunucular dahil) kaybolmaya karşı yerel olarak kaydeder |
-| LastOnline | Arkadaşlarının en son ne zaman çevrimiçi olduğunu hatırlar; mesaj menüsünde ya da /lastonline ile gör |
-| MessageTranslate | Mesajları önbellekli, kanal bazlı ayarlarla otomatik olarak diline çevirir. |
-| PermissionsViewer | Bir mesajın yazarının rollerini ve izinlerini mesaj menüsünden gör |
-| PingNotifications | Gelişmiş bahsetme biçimiyle özelleştirilebilir bildirimler |
-| ReviewDB | Bir mesajın yazarı hakkındaki ReviewDB değerlendirmelerini mesaj menüsünden oku |
+| BetterSessions | See your logged-in devices with exact times and your own names for them, and get told about new logins |
+| CopyStatusUrls | Copy the links in the status of a message's author from the message menu |
+| ExpressionCloner | Clone custom emojis from a message to your own servers from the message menu |
+| IRememberYou | Remembers everyone you talk to in DMs and servers, on your device, so you can always find them again |
+| LastOnline | Remembers when your friends were last online; see it in the message menu or with /lastonline |
+| MessageTranslate | Auto translate messages to your language with caching, per-channel toggles, and more options. |
+| PermissionsViewer | See the roles and permissions of a message's author from the message menu |
+| PingNotifications | Customizable notifications with improved mention formatting |
+| ReviewDB | Read the ReviewDB reviews of a message's author from the message menu |
 
-### Sohbet (6)
-Uzun mesajları bölme, tepkileri sıralama, yanıtların saati, sizi doğrudan etiketleyen mesajlar, titreşim ve ChatGPT.
+### Chat (6)
+Splitting long messages, sorting reactions, reply times, messages that mention you directly, vibration and ChatGPT.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| ChatGPT | ChatGPT'yi ayarlanabilir şekilde doğrudan Discord'da kullanmanı sağlar |
-| MentionColors | Seni doğrudan etiketleyen mesajları @everyone ve @here bildirimlerinden farklı işaretler |
-| ReplyTimestamp | Bir yanıtın cevapladığı mesajın ne zaman gönderildiğini, yanıtın saatinin yanında gösterir |
-| SortReactions | Sohbette tepkileri sayısına göre sıralar. |
-| SplitLargeMessages | Çok uzun mesajları göndermeden önce Discord sınırına uygun parçalara böler. |
-| VibrateOnPing | Discord açıkken biri seni etiketlediğinde ya da DM attığında telefonunu titretir |
+| ChatGPT | Allows using ChatGPT directly in Discord with configurable settings |
+| MentionColors | Marks messages that mention you directly differently from @everyone and @here pings |
+| ReplyTimestamp | Shows when the message a reply answers was sent, next to the reply's time |
+| SortReactions | Sorts reactions by count in chat. |
+| SplitLargeMessages | Splits oversized messages into Discord-sized chunks before sending. |
+| VibrateOnPing | Vibrates your phone when someone mentions you or DMs you while Discord is open |
 
-### Mesajlar (15)
-Bağlantı önizlemeleri, spoiler'lar, alıntı, sed, şifreli ve görünmez mesajlar, mesaj kasası.
+### Messages (15)
+Link previews, spoilers, quoting, sed, encrypted and invisible messages, a message vault.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| CustomReactionButtons | Mesaj menüsüne kendi tek dokunuşluk tepkilerini ekle |
-| DontRoundMyTimestamps | Göreli zamanları hep aşağı yuvarlar; 7,6 yıl 8 değil 7 yıl olur |
-| EncryptedMessage | /encrypt ile parolayla şifrelenmiş mesajlar gönder; yalnızca parolayı bilenler okuyabilir |
-| FakeDM | /fakedm ile bir DM'e ya da grup DM'ine sahte yerel mesajlar ekler. Discord yeniden başlasa da kalırlar; yalnızca sen görürsün. |
-| GifPaste | GIF seçince hemen göndermek yerine bağlantısını mesaj kutusuna ekler |
-| InvisibleChat | /invisible ile sıradan bir mesajın içine parola korumalı gizli bir mesaj sakla |
-| MessageLinkEmbeds | Başka mesaja bağlantı veren mesajlara önizleme ekler |
-| MessageLoggerEnhanced | Silinen ve düzenlenen mesajları Discord yeniden başladıktan sonra da saklar; göz atmak için bir liste ve /deleted ile |
-| MessageVault | Okuduğun mesajları, kaybolup gitseler bile /vault ile kelimeye ve kişiye göre ara. Yalnızca cihazında dizinlenir. |
-| Quoter | Mesaj menüsünden bir mesajı yazarıyla birlikte mesaj kutuna alıntıla |
-| RevealAllSpoilers | Mesaj menüsünden bir mesajdaki tüm spoiler'ları göster |
-| SedEnhanced | Son mesajını s/bul/değiştir/ ile düzenle; düzenli ifadeler, bayraklar ve s\|a\|b\|g gibi başka ayraçlarla |
-| TenorGifFix | Tenor GIF'lerini video yerine gerçek GIF olarak kaydeder |
-| Translate+ | Endcord'un çeviri eklentisi, sanatsal dil desteğiyle! |
-| WhitelistedEmojis | Beyaz listedekiler dışındaki tüm mesaj emojilerini kapatmanı sağlar. |
+| CustomReactionButtons | Add your own one-tap reactions to the message menu |
+| DontRoundMyTimestamps | Always rounds relative timestamps down, so 7.6y becomes 7y instead of 8y |
+| EncryptedMessage | Send messages encrypted with a password with /encrypt; only people with the password can read them |
+| FakeDM | Injects fake local messages into a DM or group DM with /fakedm. They stay after Discord restarts; only you see them. |
+| GifPaste | Makes picking a gif in the gif picker insert a link into the chatbox instead of instantly sending it |
+| InvisibleChat | Hide a secret, password-protected message inside an ordinary one with /invisible |
+| MessageLinkEmbeds | Adds a preview to messages that link another message |
+| MessageLoggerEnhanced | Keeps deleted and edited messages after Discord restarts, with a list to browse them and /deleted |
+| MessageVault | Search messages you have read by keyword and person with /vault, even after they scroll away. Indexed on your device only. |
+| Quoter | Quote a message into your message box with its author, from the message menu |
+| RevealAllSpoilers | Reveal every spoiler in a message from the message menu |
+| SedEnhanced | Edit your last message with s/find/replace/, with regular expressions, flags and other separators like s\|a\|b\|g |
+| TenorGifFix | Saves Tenor GIFs as real GIFs instead of videos |
+| Translate+ | Rewrite your text in fun styles (small caps, upside down, fraktur, pirate...) with /translateplus |
+| WhitelistedEmojis | Adds the ability to disable all message emojis except for a whitelisted set. |
 
-### Dosyalar ve medya (8)
-Belgeleri ve ZIP'leri indirmeden görüntüleme, favoriler, GIF koleksiyonları ve DeArrow.
+### Files and media (8)
+Viewing documents and ZIPs without downloading them, favorites, GIF collections and DeArrow.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| Dearrow | YouTube yerleştirmelerinin başlıklarını DeArrow ile daha az abartılı yapar |
-| FavoriteAnything | Herhangi bir resmi, videoyu veya dosya ekini favorilere ekle |
-| FileViewer | Word, Excel ve PowerPoint eklerini indirmeden, mesaj menüsünden görüntüle |
-| FixFileExtensions | Mümkünse dosya uzantılarını desteklenen bir biçime çevirerek düzeltir |
-| GifCollections | GIF koleksiyonları oluşturmanı sağlar. |
-| PdfViewer | PDF eklerini önce indirmeden, mesaj menüsünden önizle |
-| SaveFavoriteGIFs | Favori GIF bağlantılarını dışa aktar |
-| ZipPreview | Dosya eklerinde ZIP içeriğini önizler. |
+| Dearrow | Makes YouTube embed titles less sensationalist, powered by Dearrow |
+| FavoriteAnything | Favorite any image, video, or file attachment |
+| FileViewer | View Word, Excel and PowerPoint attachments without downloading them, from the message menu |
+| FixFileExtensions | Fixes file extensions by renaming them to a compatible supported format if possible |
+| GifCollections | Allows you to create collections of gifs. |
+| PdfViewer | Preview PDF attachments without downloading them first, from the message menu |
+| SaveFavoriteGIFs | Export favorited GIF urls |
+| ZipPreview | Previews ZIP contents inside file attachments. |
 
-### Arkadaşlar ve profiller (15)
-Engellenenler, arkadaşlık istekleri, etiketler, takma adlar, bağlantılar, zamirler ve seriler.
+### Friends and profiles (15)
+Blocked users, friend requests, tags, nicknames, connections, pronouns and streaks.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| BetterActivities | Mesaj menüsünden, mesaj sahibinin şu anda yaptığı her şeyi gör |
-| BetterBlockedUsers | Engellediğin kişilerin aranabilir listesi; tek dokunuşla engeli kaldır |
-| CancelFriendRequest | Gönderdiğin arkadaşlık isteklerini gör ve iptal et |
-| CancelFriendRequestNC | Gönderdiğin her arkadaşlık isteğini /cancelrequests ile iptal et |
-| FriendNicknames | İnsanlara sohbette yalnızca senin göreceğin takma adlar ver |
-| FriendTags | Arkadaşlarına kendi etiketlerini ver ve bir etikete sahip herkesi /friendtag ile listele |
-| GitHubRepos | Kullanıcının herkese açık GitHub depolarını profilinde gösterir |
-| MutualGroupDMs | Mesaj menüsünden, mesaj sahibiyle ortak grup DM'lerini gör |
-| ProfileMedia | Mesaj menüsünden mesaj sahibinin avatarını ve afişini tam çözünürlükte aç |
-| PronounDB | İnsanların PronounDB'deki zamirlerini mesajlarının yanında gösterir |
-| ShowConnections | Mesaj menüsünden, mesaj sahibinin bağladığı hesapları (GitHub, Steam, Spotify...) gör |
-| ShowSongName | Spotify etkinliğinde sanatçı yerine şarkı adını gösterir |
-| SortFriendRequests | Arkadaşlık isteklerini geliş tarihine göre sıralar |
-| Streaks | Biriyle art arda günlerde DM'leşince yanında seri gösterir. |
-| WhoReacted | Mesaj menüsünden, bir mesaja hangi emojiyle kimin tepki verdiğini gör |
+| BetterActivities | See everything a message's author is doing right now, from the message menu |
+| BetterBlockedUsers | A searchable list of the people you blocked, to unblock them in one tap |
+| CancelFriendRequest | See the friend requests you sent and cancel them |
+| CancelFriendRequestNC | Cancel every friend request you sent with /cancelrequests |
+| FriendNicknames | Give people your own nicknames that only you see in chat |
+| FriendTags | Give friends your own tags and list everyone with a tag with /friendtag |
+| GitHubRepos | See the public GitHub repositories of a message's author from the message menu |
+| MutualGroupDMs | See the group DMs you share with a message's author, from the message menu |
+| ProfileMedia | Open a message author's avatar and banner in full resolution from the message menu |
+| PronounDB | Shows people's pronouns from PronounDB next to their messages |
+| ShowConnections | See the accounts a message's author has connected (GitHub, Steam, Spotify...) from the message menu |
+| ShowSongName | Shows song name instead of artist for Spotify activity |
+| SortFriendRequests | Your incoming friend requests, newest first, to accept or ignore in the plugin's settings |
+| Streaks | Shows a streak next to a user when you exchange DMs with them on consecutive days. |
+| WhoReacted | See who reacted to a message with each emoji, from the message menu |
 
-### Sunucular (12)
-Yasaklama sebepleri, davetler, roller, sunucu arama ve üye etiketleri.
+### Servers (12)
+Ban reasons, invites, roles, server search and member tags.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| AutoDisconnectAndAutoMute | Seçili kişileri ses kanallarından otomatik çıkarır veya susturur |
-| BetterBanReasons | /ban ile, kaydettiğin kendi sebeplerinden seçerek yasakla |
-| BetterRoleContext | /roleinfo ile bir rolün rengini, simgesini, üyelerini ve izinlerini gör |
-| BlurNSFW | Yaş kısıtlamalı kanallardaki ekleri sen dokunana kadar spoiler arkasında gizler |
-| GreetStickerPicker | /greet ile yeni bir DM'deki birine ya da yeni bir üyeye seçtiğin çıkartmayla el salla |
-| GuildPickerDumper | /dumpemojis ile bir sunucunun tüm emoji ve çıkartmalarının bağlantılarını paylaş |
-| InviteDefaults | Ne kadar süreceği ve kaç kez kullanılabileceği için kendi varsayılanlarınla /invite ile davet oluştur |
-| MoreUserTags | Webhook'lar ve yönetici rolleri (sahip, admin vb.) için etiket ekler |
-| MutualServerMembers | Üye olduğun iki sunucuyu karşılaştır ve ikisinde de olan üyeleri /mutualmembers ile gör |
-| ServerSearch | /servers ile bir sunucuyu adıyla bul ve sonuçtan aç |
-| SurfaceTranslate | /translatechannel ile bir kanalın adını ve konusunu çevir |
-| UrlHighlighter | Kalıplarına uyan bağlantılar içeren mesajları renklendirir |
+| AutoDisconnectAndAutoMute | Automatically disconnect or mute selected users from voice channels |
+| BetterBanReasons | Ban with /ban and your own saved reasons to pick from |
+| BetterRoleContext | See a role's color, icon, members and permissions with /roleinfo |
+| BlurNSFW | Hides attachments in age-restricted channels behind a spoiler until you tap them |
+| GreetStickerPicker | Wave to someone in a new DM or a new member with the sticker you pick, with /greet |
+| GuildPickerDumper | Share the links of every emoji and sticker of a server with /dumpemojis |
+| InviteDefaults | Create invites with your own defaults for how long they last and how many uses they have, with /invite |
+| MoreUserTags | Adds tags for webhooks and moderative roles (owner, admin, etc.) |
+| MutualServerMembers | Compare two servers you're in and see which members are in both, with /mutualmembers |
+| ServerSearch | Find a server by name with /servers and open it from the result |
+| SurfaceTranslate | Translate a channel's name and topic with /translatechannel |
+| UrlHighlighter | Colors messages with links that match your patterns |
 
-### Durum, etkinlik ve sesler (9)
-Ne yaptığınıza göre değişen durum, oyun ve Spotify görünürlüğü, ses düzeyleri ve Discord'un sesleri.
+### Status, activity and sounds (9)
+A status that follows what you're doing, game and Spotify visibility, volumes and Discord's sounds.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| AutoDNDWhilePlaying | Oyun açınca çevrimiçi durumunu (çevrimiçi, boşta, rahatsız etmeyin) otomatik değiştirir |
-| CustomSounds | Discord seslerini özelleştir. |
-| ExitSounds | Sesten ayrılınca ses tablosundan ses çalar. |
-| GameActivityToggle | Ne oynadığını göstermek ya da gizlemek için mesaj kutusunun yanına bir düğme ve /gameactivity ekler |
-| IdleAutoRestart | Discord'u bir süre arka planda bıraktıktan sonra döndüğünde, temiz başlaması için yeniden yükler; ama asla bir arama sırasında değil |
-| NotificationVolume | Kulaklarını koru: bildirimler ve uygulama sesleri için ayrı ses seviyesi ayarla |
-| SpotifyActivityToggle | Spotify etkinliğinin görünürlüğü için açma/kapama butonu ekler. |
-| StatusWhileActive | Ses kanalındayken çevrimiçi durumunu otomatik değiştirir. |
-| UniversalVolume | Ses kanalındaki herkesi aynı ses seviyesine ayarlar; yeni gelenleri de aynı seviyede tutar. |
+| AutoDNDWhilePlaying | Automatically updates your online status (online, idle, dnd) when launching games |
+| CustomSounds | Customize Discord's sounds. |
+| ExitSounds | Play soundboard sounds when you disconnect from voice. |
+| GameActivityToggle | Adds a button beside the message box and /gameactivity to show or hide what you're playing |
+| IdleAutoRestart | Reloads Discord when you come back after leaving it in the background for a while, so it starts fresh, but never during a call |
+| NotificationVolume | Save your ears and set a separate volume for notifications and in-app sounds |
+| SpotifyActivityToggle | Adds a toggle button for Spotify activity visibility. |
+| StatusWhileActive | Automatically updates your online status when in a voice channel. |
+| UniversalVolume | Sets everyone in your voice channel to the same volume, and keeps new people who join at that level too. |
 
-### Uygulamada gezinme (18)
-DM ve sunucu sabitleme ya da gizleme, son kanallar, sayaçlar, temalar, StreamProof ve hızlı işlemler.
+### Getting around the app (18)
+Pinning or hiding DMs and servers, recent channels, counters, themes, StreamProof and quick actions.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| BetterInvites | /inviteinfo ile bir davetin nereye götürdüğünü, kimin oluşturduğunu ve ne zaman sona erdiğini katılmadan önce gör |
-| ConsoleJanitor | Discord'un konsol kayıtlarını kapatır; yavaş telefonlarda iş yükünü azaltır |
-| EndcordToolbox | Mesaj kutusunun yanına Endcord hızlı işlemlerini içeren bir düğme ekler: yeniden yükle, eklenti kapat, hata ayıklama bilgisi ve güvenli mod |
-| FakeConnections | Kendi profiline yalnızca senin görebileceğin sahte bağlantılar ekle. |
-| HideServers | /hideserver ile sunucuları sunucu listenden gizle; eklentinin ayarlarından geri getir |
-| IconViewer | Eklentinin ayarlarında Discord'un tüm simgelerine göz at, ara ve adlarını kopyala |
-| ImplicitRelationships | /implicit ile Discord'un en çok konuştuğunu düşündüğü kişileri, arkadaşın olmasalar bile gör |
-| OpenInApp | Bağlantıları tarayıcı yerine ilgili uygulamada aç |
-| PinDMs | /pindm ile DM'leri DM listenin en üstüne sabitle |
-| QuickThemeSwitcher | /theme ya da mesaj kutusunun yanındaki bir düğmeyle yüklü temaların arasında geçiş yap |
-| RecentChannelSwitcher | /recent ile son açtığın kanallara ve DM'lere geri dön |
-| RecentDMSwitcher | /recentdms ile son açtığın DM'lere geri dön |
-| ServerListIndicators | /indicators ile kaç arkadaşının çevrimiçi olduğunu ve kaç sunucuda olduğunu gör |
-| ServerPinner | /pinserver ile sunucuları, klasörlerini değiştirmeden sunucu listenin en üstüne sabitle |
-| StreamProof | Ekranını paylaşırken ya da kaydederken mesajları ve resimlerini gizler. Sohbet çubuğu düğmesiyle aç/kapat. |
-| UnreadCountBadge | /unread ile bir sunucunun her kanalında kaç okunmamış mesaj olduğunu gör |
-| VoiceCount | /voicecount ile bir sunucunun her sesli kanalında kaç kişi olduğunu gör |
-| WhosWatching | /viewers ile yayınını kimin izlediğini gör |
+| BetterInvites | See where an invite leads, who made it and when it expires, before joining, with /inviteinfo |
+| ConsoleJanitor | Turns off Discord's console logging, which saves work on slower phones |
+| EndcordToolbox | Adds a button beside the message box with Endcord quick actions: reload, turn off plugins, debug info and safe mode |
+| FakeConnections | Add fake connections to your own profile, visible only to you. |
+| HideServers | Hide servers from your server list with /hideserver, and bring them back from the plugin's settings |
+| IconViewer | Browse and search all of Discord's icons in the plugin's settings, and copy their names |
+| ImplicitRelationships | See the people Discord thinks you talk to most, even if they aren't your friends, with /implicit |
+| OpenInApp | Open links in their respective apps instead of your browser |
+| PinDMs | Pin DMs to the top of your DM list with /pindm |
+| QuickThemeSwitcher | Switch between your installed themes with /theme or a button beside the message box |
+| RecentChannelSwitcher | Go back to the channels and DMs you opened recently with /recent |
+| RecentDMSwitcher | Go back to the DMs you opened recently with /recentdms |
+| ServerListIndicators | See how many of your friends are online and how many servers you're in with /indicators |
+| ServerPinner | Pin servers to the top of your server list with /pinserver, without changing your folders |
+| StreamProof | Hides messages and their images while you share your screen or record it. Toggle via chat bar button. |
+| UnreadCountBadge | See how many unread messages each channel of a server has with /unread |
+| VoiceCount | See how many people are in each voice channel of a server with /voicecount |
+| WhosWatching | See who is watching your stream with /viewers |
 
-### Bilgi ve eğlence komutları (38)
-Sözlük, hava durumu, döviz, ülke ve tatil bilgisi, depremler, kod paketleri, oyunlar… Arama sonuçlarını yalnızca siz görürsünüz.
+### Lookup and fun commands (38)
+Dictionary, weather, currencies, country and holiday info, earthquakes, code packages, games… Only you see the results of lookups.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| Advice | /advice ile rastgele bir tavsiye gönder |
-| AnimeLookup | /anime ile bir animenin puanına, bölümlerine ve durumuna bak |
-| BoredActivity | /bored ile yapacak bir şey fikri al |
-| CatFacts | /catfact ile kediler hakkında rastgele bir bilgi gönder |
-| CharInfo | /charinfo ile bir metindeki her karakterin Unicode kod noktasını gör |
-| ColorInfo | /color ile bir rengin RGB ve HSL değerlerini gör ya da rastgele bir renk al |
-| Countdown | /countdown ile bir tarihe ne kadar kaldığını gör |
-| CountryInfo | /country ile bir ülkenin başkentine, nüfusuna, dillerine ve para birimine bak |
-| CryptoPrices | /crypto ile bir kripto paranın fiyatını ve bugünkü değişimini gör |
-| CurrencyConverter | Bugünkü kurlarla /currency ile para birimleri arasında çevir |
-| Dictionary | /define ile İngilizce bir kelimenin anlamına bak |
-| DiscordStatus | Discord'un kendisinde sorun olup olmadığını /discordstatus ile kontrol et |
-| Earthquakes | /earthquakes ile dünyadaki ya da bir yerin yakınındaki son güçlü depremleri gör |
-| Emojify | /emojify ile büyük harf emojileriyle mesaj yaz |
-| GitHubLookup | /github ile bir GitHub kullanıcısına ya da deposuna bak |
-| Hash | /sha256 ile bir metnin SHA-256 özetini al |
-| Holidays | /holidays ile bir ülkenin yaklaşan resmi tatillerini gör |
-| Jokes | /joke ile rastgele bir şaka gönder |
-| LoremIpsum | /lorem ile mesaj kutusuna yer tutucu metin koy |
-| MinecraftSkin | /mcskin ile bir Minecraft oyuncusunun skin'ini gönder |
-| MinecraftStatus | /mcstatus ile bir Minecraft sunucusunun açık olup olmadığını ve kaç kişinin oynadığını gör |
-| NpmLookup | /npm ile bir npm paketinin sürümüne, lisansına ve indirmelerine bak |
-| PasswordGenerator | /passwordgen ile güçlü, rastgele bir parola oluştur; yalnızca sen görürsün ve kopyalanır |
-| Pokedex | /pokemon ile bir Pokémon'un türlerine ve istatistiklerine bak |
-| QRCode | /qr ile herhangi bir metnin ya da bağlantının QR kodunu gönder |
-| Quotes | /quote ile rastgele ünlü bir söz gönder |
-| RandomFacts | /fact ile rastgele bir bilgi gönder |
-| RecipeFinder | /recipe ile bir yemeğin tarifini bul |
-| RockPaperScissors | /rps ile taş, kağıt, makas oyna ve sonucu gönder |
-| ShortenURL | /shorten ile bir bağlantıyı kısalt; kısa bağlantı mesaj kutusuna konur |
-| SnowflakeInfo | /snowflake ile herhangi bir Discord kimliğinin (kullanıcı, mesaj, sunucu...) ne zaman oluşturulduğunu gör |
-| SpaceLaunches | /launches ile yaklaşan roket fırlatmalarını gör |
-| SteamLookup | /steam ile bir oyunun Steam fiyatına bak |
-| Trivia | /trivia ile rastgele bir bilgi sorusunu cevapla |
-| UrbanDictionary | /urban ile Urban Dictionary'de argo ara |
-| UUIDGenerator | /uuid ile rastgele bir UUID oluştur ve kopyala |
-| Weather | /weather ile her yerin hava durumunu gör |
-| Xkcd | /xkcd ile bir xkcd çizgi romanı gönder: en yenisi, rastgele biri ya da bir numara |
+| Advice | Send a random piece of advice with /advice |
+| AnimeLookup | Look up an anime's score, episodes and status with /anime |
+| BoredActivity | Get an idea of something to do with /bored |
+| CatFacts | Send a random fact about cats with /catfact |
+| CharInfo | See the Unicode code points of every character in a text with /charinfo |
+| ColorInfo | See a color's RGB and HSL values, or get a random one, with /color |
+| Countdown | See how long is left until a date with /countdown |
+| CountryInfo | Look up a country's capital, population, languages and currency with /country |
+| CryptoPrices | See a cryptocurrency's price and its change today with /crypto |
+| CurrencyConverter | Convert between currencies at today's rates with /currency |
+| Dictionary | Look up what an English word means with /define |
+| DiscordStatus | Check whether Discord itself is having problems with /discordstatus |
+| Earthquakes | See the latest strong earthquakes around the world, or near a place, with /earthquakes |
+| Emojify | Write a message in big letter emojis with /emojify |
+| GitHubLookup | Look up a GitHub user or repository with /github |
+| Hash | Get the SHA-256 hash of a text with /sha256 |
+| Holidays | See a country's next public holidays with /holidays |
+| Jokes | Send a random joke with /joke |
+| LoremIpsum | Put placeholder text in the message box with /lorem |
+| MinecraftSkin | Send a Minecraft player's skin with /mcskin |
+| MinecraftStatus | See whether a Minecraft server is online and how many are playing with /mcstatus |
+| NpmLookup | Look up an npm package's version, licence and downloads with /npm |
+| PasswordGenerator | Make a strong random password with /passwordgen; only you see it, and it is copied |
+| Pokedex | Look up a Pokémon's types and stats with /pokemon |
+| QRCode | Send a QR code of any text or link with /qr |
+| Quotes | Send a random famous quote with /quote |
+| RandomFacts | Send a random fact with /fact |
+| RecipeFinder | Find a recipe for a dish with /recipe |
+| RockPaperScissors | Play rock, paper, scissors with /rps and send the result |
+| ShortenURL | Shorten a link with /shorten; the short link goes in the message box |
+| SnowflakeInfo | See when any Discord ID (a user, message, server...) was made with /snowflake |
+| SpaceLaunches | See the next rocket launches with /launches |
+| SteamLookup | Look up a game's price on Steam with /steam |
+| Trivia | Answer a random trivia question with /trivia |
+| UrbanDictionary | Look up slang on Urban Dictionary with /urban |
+| UUIDGenerator | Make a random UUID with /uuid and copy it |
+| Weather | See the weather anywhere with /weather |
+| Xkcd | Send an xkcd comic, the latest, a random one or a number, with /xkcd |
 
-### Eğlence ve sağlık (5)
-Endcord'un ekran katmanında çizilenler ve Wellbeing.
+### Fun and wellbeing (5)
+Plugins drawn on Endcord's screen overlay, and Wellbeing.
 
-| Eklenti | Ne yapıyor |
+| Plugin | What it does |
 | --- | --- |
-| ClickSparkles | Dokunduğun her yere küçük neon ışıltılar serper |
-| Jumpscare | Kanal açtığında ayarlanabilir bir ihtimalle seni korkutur. Geometry Dash Mega Hack'ten esinlenildi |
-| Moyai | Açık olan sohbette bir moyai emojisi gönderildiğinde veya tepki olarak eklendiğinde 🗿 ses efekti çalar |
-| Snowfall | Discord'da kar yağsın |
-| Wellbeing | Discord'u nasıl kullandığına dair nazik ve gizli bir pano: ekran süresi, mesajlar ve mola hatırlatıcıları. Her şey telefonunda kalır. |
+| ClickSparkles | Sprinkles little neon sparkles wherever you touch |
+| Jumpscare | Adds a configurable chance of jumpscaring you whenever you open a channel. Inspired by Geometry Dash Mega Hack |
+| Moyai | Plays a 🗿 sound effect whenever a moyai emoji is sent or reacted in the chat you have open |
+| Snowfall | Let it snow on Discord |
+| Wellbeing | A gentle, private dashboard of how you use Discord: screen time, messages and break reminders. Everything stays on your phone. |
 
-## Nasıl yazılır
+## Writing a plugin
 
-Endcord PC'deki gibi her eklentinin kendi klasörü vardır: `bundle/src/plugins/<eklentiAdi>/index.ts(x)`. Birden
-fazla eklentinin kullandığı kod `bundle/src/plugins/shared/` altındadır. Derleme, klasörlerden
-`bundle/src/plugins/manifest.ts`'i üretir; bir klasörde birden fazla eklenti tanımlanırsa derleme durur.
+Like on Endcord PC, every plugin has its own folder: `bundle/src/plugins/<pluginName>/index.ts(x)`. Code that several
+plugins use lives in `bundle/src/plugins/shared/`. The build generates `bundle/src/plugins/manifest.ts` from the
+folders, and stops if a folder defines more than one plugin.
 
-Her eklenti `definePlugin` ile tanımlanır (`bundle/src/plugins/api.ts`). Discord'a dokunan işler
-`bundle/src/plugins/hooks.tsx`'teki ortak uç noktalarla yapılır; her biri Discord'a bir kez yamalanır ve bütün
-eklentiler paylaşır:
+Each plugin is defined with `definePlugin` (`bundle/src/plugins/api.ts`). Anything that touches Discord goes through
+the shared hooks in `bundle/src/plugins/hooks.tsx`; each is patched into Discord once and shared by every plugin:
 
 ```tsx
-// bundle/src/plugins/ornek/index.ts
+// bundle/src/plugins/example/index.ts
 export default definePlugin({
-    id: "endcord.ornek",
-    name: "Ornek",                         // Endcord PC'deki adıyla aynı
-    description: tx("What it does"),       // Endcord PC'deki İngilizce açıklama: çevirisi oradan bedava gelir
+    id: "endcord.example",
+    name: "Example",                       // the same as its name on Endcord PC
+    description: tx("What it does"),       // Endcord PC's English description, so its translations come for free
     settings: { enabled: { type: "boolean", label: tx("Label"), default: true } },
     start({ store, cleanup }) {
         cleanup(
-            onSend("ornek", content => store.enabled ? content.toUpperCase() : undefined),
-            addMessageAction({ key: "ornek", icon: "CopyIcon", label: () => t("Copy"), onPress: m => copy(m.content) }),
-            command({ name: "ornek", description: tx("Does something"), run: () => "hello" }),
+            onSend("example", content => store.enabled ? content.toUpperCase() : undefined),
+            addMessageAction({ key: "example", icon: "CopyIcon", label: () => t("Copy"), onPress: m => copy(m.content) }),
+            command({ name: "example", description: tx("Does something"), run: () => "hello" }),
         );
     },
 });
 ```
 
-- `onSend` mesajı gönderilmeden önce değiştirir ya da `null` döndürüp göndermez; `onIncomingMessage` gelen
-  mesajı gizler veya değiştirir; `onMessageRow` mesajın çizilişini değiştirir; `addMessageAction` mesaj menüsüne
-  satır ekler; `command` çevrilmiş açıklamalı eğik çizgi komutu ekler.
-- Her geri çağırma yalıtılmıştır: biri hata verirse günlüğe yazılır ve atlanır, diğerleri çalışmaya devam eder.
-  Flux araya girenleri de kendi hatalarını yakalar, yani bir eklenti Discord'un bir olayı işlemesini durduramaz.
-- Ayar sayfası şemadan otomatik oluşur; fazlası için `SettingsComponent`. İstem, seçim ve metin pencereleri
-  `ui/dialogs.tsx`'te, kayıt listeleri `ui/LogList.tsx`'te, kalıcı zamanlayıcılar `scheduler.ts`'te.
-- Discord modülleri kaynak yollarıyla da bulunur: `moduleAt("modules/...tsx")`. Yollar ad aramalarından daha kalıcıdır.
-- Bir modül yoksa eklenti `throw` eder; çatı onu kapatır ve kullanıcıya söyler. Discord asla çökmez.
-- Her kullanıcı metni `t()`/`tx()` ile; `bun run i18n` çevirileri Endcord PC'den alır, eksikler `overrides.json`'a.
-  CI `--strict` ile çalışır: çevirisi eksik bir metin derlemeyi durdurur.
-- Emülatör testi (`.github/workflows/emulator.yml`) her eklentiyi gerçek Discord'da açıp kapatır ve uç noktaları
-  gerçek mesajlarla dener.
+- `onSend` changes a message before it's sent, or returns `null` to not send it; `onIncomingMessage` hides or
+  changes incoming messages; `onMessageRow` changes how a message is drawn; `addMessageAction` adds a row to the
+  message menu; `command` adds a slash command with a translated description.
+- Every callback is isolated: if one throws, the error is logged and the callback skipped, and the others keep running.
+  Flux interceptors catch their own errors too, so a plugin can't stop Discord from handling an event.
+- The settings page is generated from the schema; use `SettingsComponent` for anything more. Prompt, choice and text
+  dialogs are in `ui/dialogs.tsx`, log lists in `ui/LogList.tsx` and persistent timers in `scheduler.ts`.
+- Discord's modules can also be found by their source path: `moduleAt("modules/...tsx")`. Paths last longer than
+  name lookups.
+- If a module it needs is missing, the plugin throws; Endcord turns it off and tells the user. Discord never crashes.
+- All user-facing text goes through `t()` or `tx()`. `bun run i18n` takes the translations from Endcord PC, and
+  missing ones go in `overrides.json`. CI runs it with `--strict`: an untranslated string stops the build.
+- The emulator test (`.github/workflows/emulator.yml`) turns every plugin on and off in the real Discord and tries
+  the hooks with real messages.

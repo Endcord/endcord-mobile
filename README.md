@@ -17,10 +17,6 @@
 
 [Website](https://endcord.com) · [Endcord PC](https://github.com/rootpoii/endcord) · [Endcord Classic](https://github.com/rootpoii/endcord-mobile/tree/main) · [Plugin list](docs/PLUGINS.md)
 
-<img src="docs/images/plugins.png" alt="The plugin list" width="250">&nbsp;&nbsp;
-<img src="docs/images/messagelogger.png" alt="A plugin's settings" width="250">&nbsp;&nbsp;
-<img src="docs/images/themelibrary.png" alt="Installing a theme" width="250">
-
 </div>
 
 ## Features
