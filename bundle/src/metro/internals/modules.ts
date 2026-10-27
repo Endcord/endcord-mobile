@@ -201,18 +201,24 @@ export function requireModule(id: Metro.ModuleID) {
 }
 
 export function* getModules(uniq: string, all = false) {
-    yield [-1, require("@metro/polyfills/redesign")];
-
     let cache = getMetroCache().findIndex[uniq];
     if (all && !cache?.[`_${ModulesMapInternal.FULL_LOOKUP}`]) cache = undefined;
     if (cache?.[`_${ModulesMapInternal.NOT_FOUND}`]) return;
 
+    // The modules a search found before come first. The redesign polyfill used to come before them, so the first
+    // search of every start built it: that initializes Discord's whole design system, which was most of Endcord's
+    // startup. When the polyfill is what a search found, it is cached as -1 and still comes first.
+    let polyfillYielded = false;
     for (const id in cache) {
         if (id[0] === "_") continue;
+        if (Number(id) === -1) polyfillYielded = true;
         const exports = requireModule(Number(id));
         if (isBadExports(exports)) continue;
         yield [id, exports];
     }
+
+    // A search that hasn't found anything yet looks at the polyfill before Discord's own modules, as it always did
+    if (!polyfillYielded) yield [-1, require("@metro/polyfills/redesign")];
 
     for (const id in metroModules) {
         const exports = requireModule(Number(id));

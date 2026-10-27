@@ -24,7 +24,6 @@ import {
     AVATAR_DECORATIONS, BOOST_MONTHS, buildBadges, type CustomProfileData, getDecorationUrl, hasCustomBadgesConfigured,
     NITRO_LEVEL_MONTHS, wantsNitroLook
 } from "./data";
-import CustomProfileEditor from "./Editor";
 import { dataVersion, getProfileDataFor, layoutOf, loadSaved, myId, saveAccount, saved, saveLayout, setChangeHandler, syncFromStorage } from "./store";
 
 const BUTTON_OPTIONS = [
@@ -36,7 +35,11 @@ const BUTTON_OPTIONS = [
 const OUR_DECORATIONS = new Set(AVATAR_DECORATIONS.map(d => d.id));
 const DATE_SUFFIX = "T12:00:00Z";
 
-const EditorPage = ({ close }: { close: () => void; }) => <CustomProfileEditor onClose={close} />;
+// The editor is loaded when it first opens, not with the plugin at startup
+const EditorPage = ({ close }: { close: () => void; }) => {
+    const CustomProfileEditor = require("./Editor").default as typeof import("./Editor").default;
+    return <CustomProfileEditor onClose={close} />;
+};
 
 /** Opens the editor: from the plugin's settings, as the next page there; from the chat or EndcordToolbox, as a window */
 const openEditor = (navigation?: any) => openPage(t("Custom Profile"), EditorPage, navigation);
