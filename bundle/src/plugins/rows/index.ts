@@ -9,10 +9,11 @@
 
 import { t, tx } from "@core/i18n";
 import formatDate from "@lib/utils/formatDate";
+import moment from "moment";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { currentUserId, getStore } from "../common";
-import { appendToTimestamp, nativeColor, onMessageRow, snowflakeTime } from "../hooks";
+import { appendToTimestamp, nativeColor, onMessageRow, RowOrder, snowflakeTime } from "../hooks";
 
 /** Puts text before the time, which sits right after the name */
 function prependToTimestamp(row: any, text: string) {
@@ -119,7 +120,7 @@ const RealtimeTimestamps = definePlugin({
             if (typeof row.timestamp !== "string") return;
             const withSeconds = formatDate(timeOf(message), { hour: "2-digit", minute: "2-digit", second: "2-digit" });
             row.timestamp = row.timestamp.replace(/\d{1,2}[:.]\d{2}(?:\s?[AaPp]\.?[Mm]\.?)?/, withSeconds);
-        }));
+        }, RowOrder.ADJUST));
     },
 });
 
@@ -141,13 +142,14 @@ const CustomTimestamps = definePlugin({
     },
     start({ store, cleanup }) {
         cleanup(onMessageRow("custom-timestamps", (row, message) => {
-            if (typeof row.timestamp !== "string" || typeof message.timestamp?.format !== "function" || !store.format.trim()) return;
+            if (typeof row.timestamp !== "string" || !store.format.trim()) return;
             try {
-                row.timestamp = message.timestamp.format(store.format);
+                // From the time itself: Discord's message records have had it as a moment, and now have a Date
+                row.timestamp = moment(timeOf(message)).format(store.format);
             } catch {
                 // An invalid format leaves Discord's time
             }
-        }));
+        }, RowOrder.REPLACE));
     },
 });
 
@@ -231,7 +233,7 @@ const ShowMeYourName = definePlugin({
             if (typeof row.username !== "string" || !username || row.username === username) return;
             const nick = row.username;
             row.username = store.mode === "user" ? username : store.mode === "user-nick" ? `${username} (${nick})` : `${nick} (${username})`;
-        }));
+        }, RowOrder.ADJUST));
     },
 });
 
@@ -294,7 +296,7 @@ const CustomUserColors = definePlugin({
         cleanup(onMessageRow("custom-user-colors", (row, message) => {
             const color = colors(store.colors).get(message.author?.id);
             if (color) setNameColor(row, color);
-        }));
+        }, RowOrder.OVERRIDE));
     },
 });
 
@@ -429,7 +431,7 @@ const ToneIndicators = definePlugin({
             if (!Array.isArray(row.content) || !store.prefix) return;
             const { tones, re } = compiled(JSON.stringify([store.prefix, store.customIndicators]));
             row.content = annotateTones(row.content, tones, re);
-        }));
+        }, RowOrder.ADJUST));
     },
 });
 

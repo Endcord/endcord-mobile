@@ -26,7 +26,7 @@ import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { addChatButton, currentUserId, getChatInputActionButton, getStore, getToolboxActions, subscribe } from "../common";
 import {
     api, botMessage, command, copy, displayName, generatedIcon, getChannel, getGuild, getUser, jumpTo,
-    onMessageRow, redrawChannel, textNode, toastError
+    onMessageRow, redrawChannel, RowOrder, textNode, toastError
 } from "../hooks";
 import { manifest } from "../manifest";
 import { choose, prompt } from "../ui/dialogs";
@@ -580,7 +580,7 @@ const StreamProof = definePlugin({
                 if (!on) return;
                 if (Array.isArray(row.content)) row.content = [textNode("••••••")];
                 for (const key of ["attachments", "embeds", "stickers", "gifts", "codedLinks"]) if (Array.isArray(row[key])) row[key] = [];
-            }),
+            }, RowOrder.HIDE),
             command({ name: "streamproof", description: tx("Hide or show messages"), run: toggle }),
             chatButton("stream-proof", store, "EyeSlashIcon", () => t("StreamProof"), toggle),
         );
