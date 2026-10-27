@@ -1,4 +1,5 @@
-import { Strings, t } from "@core/i18n";
+import { formatString, Strings, t } from "@core/i18n";
+import { showConfirmationAlert } from "@core/vendetta/alerts";
 import { isCorePlugin, refreshPlugin, registeredPlugins, uninstallPlugin } from "@lib/addons/plugins";
 import { findAssetId } from "@lib/api/assets";
 import { hideSheet } from "@lib/ui/sheets";
@@ -68,10 +69,18 @@ export default function PluginInfoActionSheet({ plugin, navigation }: PluginInfo
                     label={Strings.UNINSTALL}
                     variant="destructive"
                     icon={findAssetId("TrashIcon")}
-                    onPress={() => {
-                        uninstallPlugin(plugin.id)
-                            .catch(e => showToast(String(e), findAssetId("CircleXIcon-primary")));
-                    }}
+                    onPress={() => showConfirmationAlert({
+                        title: Strings.HOLD_UP,
+                        content: formatString("ARE_YOU_SURE_TO_DELETE_PLUGIN", { name: plugin.name }),
+                        confirmText: Strings.DELETE,
+                        cancelText: Strings.CANCEL,
+                        confirmColor: "red",
+                        onConfirm: () => {
+                            hideSheet("PluginInfoActionSheet");
+                            uninstallPlugin(plugin.id)
+                                .catch(e => showToast(String(e), findAssetId("CircleXIcon-primary")));
+                        }
+                    })}
                 />}
             </View>
             {!!plugin.description && <Card>

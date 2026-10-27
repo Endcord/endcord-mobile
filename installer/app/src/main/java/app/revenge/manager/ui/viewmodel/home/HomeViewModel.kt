@@ -1,6 +1,5 @@
 package app.revenge.manager.ui.viewmodel.home
 
-import app.revenge.manager.utils.InstalledDiscord
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -29,6 +28,7 @@ import app.revenge.manager.network.dto.Release
 import app.revenge.manager.network.utils.CommitsPagingSource
 import app.revenge.manager.network.utils.dataOrNull
 import app.revenge.manager.utils.DiscordVersion
+import app.revenge.manager.utils.InstalledDiscord
 import app.revenge.manager.utils.isMiui
 import app.revenge.manager.utils.showToast
 import cafe.adriel.voyager.core.model.ScreenModel

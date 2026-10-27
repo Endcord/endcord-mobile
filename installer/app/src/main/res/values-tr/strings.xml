@@ -11,12 +11,12 @@
     <string name="msg_two_left">2 dokunuş kaldı</string>
     <string name="msg_loading">Yükleniyor…</string>
     <string name="msg_downgrade">Sürüm düşür</string>
-    <string name="msg_downgrade_disallowed">Sürüm düşürülemiyor, önce kaldırmayı deneyin</string>
-    <string name="msg_unlocked">Artık geliştiricisiniz</string>
+    <string name="msg_downgrade_disallowed">Sürüm düşürülemiyor, önce kaldırmayı dene</string>
+    <string name="msg_unlocked">Artık geliştiricisin</string>
     <string name="msg_permission_grant">Paylaşılan depolamayı kullanmak için dosya izni gerekiyor.</string>
     <string name="msg_shizuku_denied">Shizuku izni alınamadı</string>
-    <string name="msg_try_again">Tekrar denemek ister misiniz?</string>
-    <string name="msg_invalid_apk">APK bozulmuş, önbelleği temizleyip yeniden kurmayı deneyin</string>
+    <string name="msg_try_again">Tekrar denemek ister misin?</string>
+    <string name="msg_invalid_apk">APK bozulmuş, önbelleği temizleyip yeniden kurmayı dene</string>
     <string name="msg_download_cancelled">İndirme iptal edildi</string>
     <string name="msg_download_failed">İndirme başarısız</string>
     <string name="msg_download_verify_failed">İndirilen dosya doğrulanamadı, ayrıntılar için kayıtlara bakın</string>
@@ -72,7 +72,7 @@
     <string name="action_reload">Yenile</string>
     <string name="action_open_about">Hakkında sayfasını aç</string>
     <string name="action_open_settings">Ayarları aç</string>
-    <string name="action_tap_to_install">Discord %1$s için Endcord\'u kurmak üzere dokunun</string>
+    <string name="action_tap_to_install">Discord %1$s için Endcord\'u kurmak için dokun</string>
     <string name="action_confirm_exit">Yine de çık</string>
     <string name="action_dismiss_nevermind">Vazgeç</string>
     <string name="action_dismiss_no_thanks">Hayır, teşekkürler</string>
@@ -86,7 +86,7 @@
     <string name="action_share_logs">Kayıtları paylaş</string>
     <string name="action_more_options">Diğer seçenekler</string>
 
-    <string name="msg_back_warning">Kurulum bitmeden çıkmak indirilen dosyaları bozabilir, yine de çıkmak istiyor musunuz?</string>
+    <string name="msg_back_warning">Kurulum bitmeden çıkmak indirilen dosyaları bozabilir, yine de çıkmak istiyor musun?</string>
 
     <string name="installer_cached">Önbellekte</string>
 
@@ -117,14 +117,14 @@
     <string name="duration_weekly">Haftada bir</string>
 
     <string name="settings_appearance">Görünüm</string>
-    <string name="settings_appearance_description">Uygulamanın görünümünü değiştirin</string>
+    <string name="settings_appearance_description">Uygulamanın görünümünü değiştir</string>
     <string name="settings_dynamic_color">Dinamik renk</string>
     <string name="settings_dynamic_color_description">Yalnızca Android 12 ve üstünde</string>
     <string name="settings_theme">Tema</string>
     <string name="settings_check_updates">Discord güncellemelerini denetle</string>
 
     <string name="settings_customization">Kişiselleştirme</string>
-    <string name="settings_customization_description">Endcord kurulumunuzu özelleştirin</string>
+    <string name="settings_customization_description">Endcord kurulumunu özelleştir</string>
     <string name="settings_app_name">Uygulama adı</string>
     <string name="settings_app_icon">Uygulama simgesini değiştir</string>
     <string name="settings_app_icon_description">Discord\'un simgesi yerine Endcord\'un simgesini kullanır</string>
@@ -139,14 +139,14 @@
     <string name="settings_developer">Yalnızca geliştiriciler için</string>
     <string name="settings_developer_description">Bu ayarlar yanlış kullanılırsa bir şeyleri bozabilir</string>
     <string name="settings_module_location">Modül konumu</string>
-    <string name="settings_module_location_description">Xposed modülü geliştirirken kullanılır. DİKKATLİ OLUN</string>
+    <string name="settings_module_location_description">Xposed modülü geliştirirken kullanılır. DİKKATLİ OL</string>
     <string name="settings_module_location_reset">Modül konumunu sıfırla</string>
     <string name="settings_package_name">Paket adı</string>
     <string name="settings_version">Discord sürümü</string>
     <string name="settings_debuggable">Hata ayıklanabilir</string>
     <string name="settings_debuggable_description">Hata ayıklama bayrağını açar</string>
     <string name="settings_allow_downgrade">Sürüm düşürmeye izin ver</string>
-    <string name="settings_allow_downgrade_description">Sürüm düşürme denetimini atlar; cihazınız root ile zaten sürüm düşürmeye izin veriyorsa işe yarar</string>
+    <string name="settings_allow_downgrade_description">Sürüm düşürme denetimini atlar; cihazın root ile zaten sürüm düşürmeye izin veriyorsa işe yarar</string>
 
     <string name="settings_logs_alternate_lines">Satırları dönüşümlü renklendir</string>
     <string name="settings_logs_line_wrap">Satırları kaydır</string>

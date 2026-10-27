@@ -292,7 +292,7 @@ export default function FontEditor(props: {
                     />}
                     <TableRow
                         label={t("Import fonts from a link")}
-                        subLabel={"Directly import from a link with a pre-configured JSON file"}
+                        subLabel={t("Imports a font pack from a link to its JSON file")}
                         icon={<TableRow.Icon source={findAssetId("LinkIcon")} />}
                         onPress={() => promptActionSheet(JsonFontImporter, fontEntries, { setName, setSource })}
                     />
@@ -363,7 +363,7 @@ export default function FontEditor(props: {
                 })}
                 <TableRow label={<NewEntryRow fontName={props.name} fontEntry={fontEntries} />} />
             </TableRowGroup>
-            {errors && <Text variant="text-sm/medium" color="text-feedback-critical">Some font entries cannot be imported. Please modify the entries and try again.</Text>}
+            {errors && <Text variant="text-sm/medium" color="text-feedback-critical">{t("Some fonts couldn't be imported. Fix their entries, then try again.")}</Text>}
             <View style={{ flexDirection: "row", justifyContent: "flex-end", bottom: 0, left: 0 }}>
                 <Button
                     size="lg"

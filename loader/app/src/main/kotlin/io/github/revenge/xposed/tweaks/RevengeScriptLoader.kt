@@ -15,7 +15,7 @@ import java.io.File
  *
  * 1. Awaits the bundle download from [revengeUpdater].
  * 2. Runs every file under `files/pyoncord/preloads/`.
- * 3. Loads `cache/revenge/bundle.js` (downloaded copy) if present.
+ * 3. Loads `cache/revenge/bundle.js` (downloaded copy) if present and, when it is bytecode, of this Discord's version.
  * 4. Falls back to the in-APK `assets://revenge.bundle` asset shipped with this module.
  */
 val revengeScriptLoader by tweak {
@@ -35,8 +35,9 @@ private fun runRevengeScripts(scope: InjectorScope, preloadsDir: File, mainScrip
     log.i("Running Endcord custom scripts...")
 
     // Discord's start waits here. With a downloaded copy, Endcord starts from it at once and the update check carries on
-    // in the background (an update that lands asks to reload); only the very first start waits for the download.
-    if (!RevengeUpdater.hasBundle()) runBlocking {
+    // in the background (an update that lands asks to reload); only the very first start waits for the download, and
+    // the first after Discord moved to a Hermes that the saved bytecode doesn't run on.
+    if (!RevengeUpdater.hasUsableBundle()) runBlocking {
         try {
             withTimeout(RevengeUpdater.TIMEOUT) { RevengeUpdater.downloadReady.await() }
         } catch (e: Throwable) {
@@ -50,12 +51,12 @@ private fun runRevengeScripts(scope: InjectorScope, preloadsDir: File, mainScrip
             scope.runFile(f.absolutePath)
         }
 
-        if (mainScript.isFile && mainScript.length() > 0) {
+        if (RevengeUpdater.hasUsableBundle()) {
             log.i("Loading downloaded bundle: ${mainScript.absolutePath}")
             RevengeUpdater.bundleLoaded = true
             scope.runFile(mainScript.absolutePath)
         } else {
-            log.i("Downloaded bundle missing; falling back to ${RevengeConstants.FALLBACK_BUNDLE_ASSET}")
+            log.i("No downloaded bundle that runs on this Discord; falling back to ${RevengeConstants.FALLBACK_BUNDLE_ASSET}")
             scope.runAsset(RevengeConstants.FALLBACK_BUNDLE_ASSET)
         }
     } catch (e: Throwable) {
