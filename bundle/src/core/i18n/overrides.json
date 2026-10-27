@@ -671,6 +671,24 @@
         "es": "Decoraciones de avatar",
         "fr": "Décorations d'avatar"
     },
+    "Back up your settings": {
+        "tr": "Ayarlarını yedekle",
+        "ru": "Создать резервную копию настроек",
+        "es": "Hacer una copia de seguridad de tus ajustes",
+        "fr": "Sauvegarder tes paramètres"
+    },
+    "Backup": {
+        "tr": "Yedek",
+        "ru": "Резервная копия",
+        "es": "Copia de seguridad",
+        "fr": "Sauvegarde"
+    },
+    "Backup saved": {
+        "tr": "Yedek kaydedildi",
+        "ru": "Резервная копия сохранена",
+        "es": "Copia de seguridad guardada",
+        "fr": "Sauvegarde enregistrée"
+    },
     "Badge image": {
         "tr": "Rozet görseli",
         "ru": "Изображение значка",
@@ -5111,6 +5129,12 @@
         "es": "Pon 👏 aplausos 👏 entre 👏 palabras",
         "fr": "Mettre 👏 des 👏 applaudissements 👏 entre 👏 les mots"
     },
+    "Puts back the settings from a backup file": {
+        "tr": "Bir yedek dosyasındaki ayarları geri yükler",
+        "ru": "Возвращает настройки из файла резервной копии",
+        "es": "Recupera los ajustes de un archivo de copia de seguridad",
+        "fr": "Remet les paramètres d'un fichier de sauvegarde"
+    },
     "Puts you back in your voice channel when someone moves or disconnects you": {
         "tr": "Biri seni taşıdığında ya da bağlantını kestiğinde seni ses kanalına geri koyar",
         "ru": "Возвращает вас в голосовой канал, когда кто-то перемещает или отключает вас",
@@ -5447,6 +5471,30 @@
         "es": "Hace falta reiniciar para que surta efecto",
         "fr": "Un redémarrage est nécessaire pour appliquer"
     },
+    "Restore a backup": {
+        "tr": "Yedeği geri yükle",
+        "ru": "Восстановить из резервной копии",
+        "es": "Restaurar una copia de seguridad",
+        "fr": "Restaurer une sauvegarde"
+    },
+    "Restore and reload": {
+        "tr": "Geri yükle ve yeniden başlat",
+        "ru": "Восстановить и перезагрузить",
+        "es": "Restaurar y recargar",
+        "fr": "Restaurer et recharger"
+    },
+    "Restore this backup?": {
+        "tr": "Bu yedek geri yüklensin mi?",
+        "ru": "Восстановить эту резервную копию?",
+        "es": "¿Restaurar esta copia de seguridad?",
+        "fr": "Restaurer cette sauvegarde ?"
+    },
+    "Restoring your backup…": {
+        "tr": "Yedeğin geri yükleniyor…",
+        "ru": "Восстанавливаем резервную копию…",
+        "es": "Restaurando tu copia de seguridad…",
+        "fr": "Restauration de ta sauvegarde…"
+    },
     "Returns the current time": {
         "tr": "Şu anki saati verir",
         "ru": "Показывает текущее время",
@@ -5620,6 +5668,12 @@
         "ru": "Сохраняет GIF из Tenor как настоящие GIF, а не видео",
         "es": "Guarda los GIF de Tenor como GIF reales en lugar de vídeos",
         "fr": "Enregistre les GIF Tenor en vrais GIF plutôt qu'en vidéos"
+    },
+    "Saves a file with your settings, plugins and what you made with them": {
+        "tr": "Ayarlarını, eklentilerini ve onlarla oluşturduklarını bir dosyaya kaydeder",
+        "ru": "Сохраняет в файл твои настройки, плагины и то, что ты создал с их помощью",
+        "es": "Guarda en un archivo tus ajustes, tus plugins y lo que has creado con ellos",
+        "fr": "Enregistre dans un fichier tes paramètres, tes plugins et ce que tu as créé avec"
     },
     "Screen shares": {
         "tr": "Ekran paylaşımları",
@@ -7199,6 +7253,12 @@
         "es": "La expresión, como (2 + 3) * 4",
         "fr": "L'expression, comme (2 + 3) * 4"
     },
+    "The file couldn't be opened": {
+        "tr": "Dosya açılamadı",
+        "ru": "Не удалось открыть файл",
+        "es": "No se pudo abrir el archivo",
+        "fr": "Impossible d'ouvrir le fichier"
+    },
     "The first line under the name": {
         "tr": "Adın altındaki ilk satır",
         "ru": "Первая строка под названием",
@@ -7457,6 +7517,24 @@
         "es": "Pensando…",
         "fr": "Réflexion…"
     },
+    "This backup is damaged and can't be restored": {
+        "tr": "Bu yedek bozuk ve geri yüklenemiyor",
+        "ru": "Эта резервная копия повреждена и не может быть восстановлена",
+        "es": "Esta copia de seguridad está dañada y no se puede restaurar",
+        "fr": "Cette sauvegarde est endommagée et ne peut pas être restaurée"
+    },
+    "This backup is from a newer Endcord. Update Endcord, then try again.": {
+        "tr": "Bu yedek daha yeni bir Endcord'dan. Endcord'u güncelleyip tekrar dene.",
+        "ru": "Эта резервная копия из более новой версии Endcord. Обнови Endcord и попробуй снова.",
+        "es": "Esta copia de seguridad es de un Endcord más reciente. Actualiza Endcord y vuelve a intentarlo.",
+        "fr": "Cette sauvegarde vient d'un Endcord plus récent. Mets Endcord à jour, puis réessaie."
+    },
+    "This backup is from {date}, with {count} plugins on. It replaces your Endcord settings, which plugins are on and their settings, and what you made with plugins, then reloads Discord. Only restore a backup you made yourself: it can turn plugins on and change what they do.": {
+        "tr": "Bu yedek {date} tarihli ve {count} eklenti açık. Endcord ayarlarını, hangi eklentilerin açık olduğunu ve ayarlarını, eklentilerle oluşturduklarını değiştirir, sonra Discord'u yeniden başlatır. Yalnızca kendi oluşturduğun bir yedeği geri yükle: eklentileri açabilir ve ne yaptıklarını değiştirebilir.",
+        "ru": "Эта резервная копия от {date}, включено плагинов: {count}. Она заменит твои настройки Endcord, список включённых плагинов и их настройки, а также то, что ты создал с помощью плагинов, после чего Discord перезагрузится. Восстанавливай только резервную копию, которую сделал сам: она может включать плагины и менять их поведение.",
+        "es": "Esta copia de seguridad es del {date}, con {count} plugins activados. Reemplaza tus ajustes de Endcord, qué plugins están activados y sus ajustes, y lo que has creado con plugins, y luego recarga Discord. Restaura solo una copia de seguridad que hayas hecho tú: puede activar plugins y cambiar lo que hacen.",
+        "fr": "Cette sauvegarde date du {date}, avec {count} plugins activés. Elle remplace tes paramètres Endcord, les plugins activés et leurs paramètres, et ce que tu as créé avec des plugins, puis recharge Discord. Ne restaure qu'une sauvegarde que tu as faite toi-même : elle peut activer des plugins et changer ce qu'ils font."
+    },
     "This channel has no topic.": {
         "tr": "Bu kanalın konusu yok.",
         "ru": "У этого канала нет темы.",
@@ -7486,6 +7564,12 @@
         "ru": "Этот файл слишком большой для просмотра",
         "es": "Este archivo es demasiado grande para mirar dentro",
         "fr": "Ce fichier est trop volumineux pour être exploré"
+    },
+    "This file isn't an Endcord backup": {
+        "tr": "Bu dosya bir Endcord yedeği değil",
+        "ru": "Этот файл не является резервной копией Endcord",
+        "es": "Este archivo no es una copia de seguridad de Endcord",
+        "fr": "Ce fichier n'est pas une sauvegarde Endcord"
     },
     "This font pack is linked to an address. To edit its fonts yourself, detach it from that link first.": {
         "tr": "Bu yazı tipi paketi bir adrese bağlı. Yazı tiplerini kendin düzenlemek için önce onu bu bağlantıdan ayır.",
@@ -7552,6 +7636,12 @@
         "ru": "Только этот сервер",
         "es": "Solo este servidor",
         "fr": "Ce serveur uniquement"
+    },
+    "This version of Discord can't open files": {
+        "tr": "Discord'un bu sürümü dosya açamıyor",
+        "ru": "Эта версия Discord не умеет открывать файлы",
+        "es": "Esta versión de Discord no puede abrir archivos",
+        "fr": "Cette version de Discord ne peut pas ouvrir de fichiers"
     },
     "Threshold (seconds)": {
         "tr": "Eşik (saniye)",
@@ -8992,6 +9082,12 @@
         "ru": "Плагинов: {count}",
         "es": "{count} plugins",
         "fr": "{count} plugins"
+    },
+    "{count} themes or fonts couldn't be installed again": {
+        "tr": "{count} tema veya yazı tipi yeniden yüklenemedi",
+        "ru": "Не удалось заново установить темы или шрифты: {count}",
+        "es": "No se pudieron volver a instalar {count} temas o fuentes",
+        "fr": "{count} thèmes ou polices n'ont pas pu être réinstallés"
     },
     "{count} unread": {
         "tr": "{count} okunmamış",
