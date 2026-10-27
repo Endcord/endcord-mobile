@@ -24,6 +24,9 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.Button
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.RadioButton
+import androidx.compose.material3.SegmentedButtonDefaults
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
+import androidx.compose.material3.SegmentedButton as ChoiceButton
 import androidx.compose.ui.semantics.Role
 import app.revenge.manager.domain.manager.DiscordSource
 import app.revenge.manager.domain.manager.Edition
@@ -45,9 +48,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -144,8 +151,9 @@ class HomeScreen : Screen {
         ) { pv ->
             BoxWithConstraints(modifier = Modifier.padding(pv)) {
                 // A short screen (a phone on its side, a tablet) can't fit the buttons and the change list: the page
-                // scrolls and the list gets a fixed height. A tall one gives the list the room that's left.
-                val compact = maxHeight < COMPACT_HEIGHT
+                // scrolls and the list gets a fixed height. A tall one gives the list the room that's left. Larger text
+                // needs a taller screen, or the buttons at the bottom would be cut off with no way to scroll to them.
+                val compact = maxHeight < COMPACT_HEIGHT * LocalDensity.current.fontScale
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -281,29 +289,43 @@ class HomeScreen : Screen {
         }
     }
 
+    /** One row of two buttons and a line on the chosen one, so the install button below stays in view on a small phone */
     @Composable
+    @OptIn(ExperimentalMaterial3Api::class)
     private fun EditionPicker(edition: Edition, onChange: (Edition) -> Unit) {
-        ElevatedCard(modifier = Modifier.fillMaxWidth()) {
-            Column(modifier = Modifier.padding(vertical = 8.dp)) {
-                Text(
-                    text = stringResource(R.string.edition_title),
-                    style = MaterialTheme.typography.labelLarge,
-                    color = LocalContentColor.current.copy(alpha = 0.6f),
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
-                )
-                SourceOption(
-                    selected = edition == Edition.ENDCORD,
-                    title = stringResource(R.string.edition_endcord),
-                    subtitle = stringResource(R.string.edition_endcord_desc),
-                    onClick = { onChange(Edition.ENDCORD) }
-                )
-                SourceOption(
-                    selected = edition == Edition.CLASSIC,
-                    title = stringResource(R.string.edition_classic),
-                    subtitle = stringResource(R.string.edition_classic_desc),
-                    onClick = { onChange(Edition.CLASSIC) }
-                )
+        val editions = listOf(
+            Edition.ENDCORD to R.string.edition_endcord,
+            Edition.CLASSIC to R.string.edition_classic,
+        )
+        val title = stringResource(R.string.edition_title)
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(6.dp),
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            SingleChoiceSegmentedButtonRow(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .semantics { contentDescription = title }
+            ) {
+                editions.forEachIndexed { index, (value, label) ->
+                    ChoiceButton(
+                        selected = edition == value,
+                        onClick = { onChange(value) },
+                        shape = SegmentedButtonDefaults.itemShape(index, editions.size),
+                        // The fill shows the choice; a checkmark would cut "Endcord Classic" short on a narrow phone
+                        icon = {},
+                        label = { Text(stringResource(label), maxLines = 1, overflow = TextOverflow.Ellipsis) }
+                    )
+                }
             }
+            Text(
+                text = stringResource(if (edition == Edition.CLASSIC) R.string.edition_classic_desc else R.string.edition_endcord_desc),
+                style = MaterialTheme.typography.bodySmall,
+                color = LocalContentColor.current.copy(alpha = 0.6f),
+                textAlign = TextAlign.Center
+            )
         }
     }
 
