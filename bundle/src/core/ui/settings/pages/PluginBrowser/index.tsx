@@ -95,6 +95,7 @@ function useCommunityList() {
     const [failed, setFailed] = useState(false);
     const [loading, setLoading] = useState(true);
     const mounted = useRef(true);
+    const loaded = useRef(false);
     useEffect(() => () => void (mounted.current = false), []);
 
     const load = useCallback(() => {
@@ -105,12 +106,15 @@ function useCommunityList() {
             .then(data => {
                 if (!mounted.current) return;
                 setList(parseList(data));
+                loaded.current = true;
                 setLoading(false);
             })
             .catch(() => {
                 if (!mounted.current) return;
                 setFailed(true);
                 setLoading(false);
+                // The page only says so in place of an empty list; a refresh of one already shown says it here
+                if (loaded.current) showToast(t("Couldn't load the plugin list. Check your connection and try again."), findAssetId("CircleXIcon-primary"));
             });
     }, []);
     useEffect(load, [load]);
