@@ -72,3 +72,24 @@ export function createLazyModule<A extends unknown[]>(filter: FilterFn<A>) {
 
     return proxy;
 }
+
+/**
+ * Patches the module of a lazy find once Discord loads it, rather than loading it now: for modules of screens that
+ * Discord only loads when they first show. Runs at once when the module is loaded already, or when no search found it
+ * before (there's nothing to wait for then). Returns a function that undoes the patch, or cancels it while it's pending.
+ */
+export function patchWhenLoaded<T>(lazyModule: T, patch: (module: T) => (() => unknown) | void): () => void {
+    const context = getLazyContext(lazyModule);
+    if (!context) throw new TypeError("patchWhenLoaded needs the result of a lazy find");
+
+    let cancelled = false;
+    let undo: (() => unknown) | void;
+    const unsubscribe = context.getExports(module => {
+        if (!cancelled) undo = patch(module);
+    });
+    return () => {
+        cancelled = true;
+        unsubscribe();
+        undo?.();
+    };
+}

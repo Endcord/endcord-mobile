@@ -5,6 +5,7 @@ import { useObservable } from "@lib/api/storage";
 import { findInReactTree } from "@lib/utils";
 import { logger } from "@lib/utils/logger";
 import { findByDisplayNameLazy } from "@metro";
+import { patchWhenLoaded } from "@metro/lazy";
 import chroma from "chroma-js";
 import { ImageBackground, StyleSheet } from "react-native";
 
@@ -31,41 +32,39 @@ function ThemeBackground({ children }: { children: React.ReactNode; }) {
 }
 
 export default function patchChatBackground() {
-    try {
-        const patch = (_: any, ret: any) => {
-            if (!_colorRef.current || !_colorRef.current.background?.url) return;
+    const patch = (_: any, ret: any) => {
+        if (!_colorRef.current || !_colorRef.current.background?.url) return;
 
-            const messagesComponent = findInReactTree(
-                ret,
-                x => x && "HACK_fixModalInteraction" in x.props && x?.props?.style
-            );
+        const messagesComponent = findInReactTree(
+            ret,
+            x => x && "HACK_fixModalInteraction" in x.props && x?.props?.style
+        );
 
-            if (messagesComponent) {
-                const flattened = StyleSheet.flatten(messagesComponent.props.style);
-                const backgroundColor = chroma(
-                    flattened.backgroundColor || "black"
-                ).alpha(
-                    1 - (_colorRef.current.background?.opacity ?? 1)
-                ).hex();
+        if (messagesComponent) {
+            const flattened = StyleSheet.flatten(messagesComponent.props.style);
+            const backgroundColor = chroma(
+                flattened.backgroundColor || "black"
+            ).alpha(
+                1 - (_colorRef.current.background?.opacity ?? 1)
+            ).hex();
 
-                messagesComponent.props.style = StyleSheet.flatten([
-                    messagesComponent.props.style,
-                    { backgroundColor }
-                ]);
-            }
+            messagesComponent.props.style = StyleSheet.flatten([
+                messagesComponent.props.style,
+                { backgroundColor }
+            ]);
+        }
 
-            return <ThemeBackground>{ret}</ThemeBackground>;
-        };
+        return <ThemeBackground>{ret}</ThemeBackground>;
+    };
 
-        const patches = [
-            typeof MessagesModule.default === "function"
-                ? after("default", MessagesModule, patch)
-                : after("render", MessagesModule.default, patch)
-        ];
-
-        return () => patches.forEach(x => x());
-    } catch (e) {
-        logger.error("Failed to patch chat background.", e);
-        return () => { };
-    }
+    // Discord loads its chat when a chat first shows, so it's patched then rather than loaded with Endcord
+    return patchWhenLoaded(MessagesModule, module => {
+        try {
+            return typeof module.default === "function"
+                ? after("default", module, patch)
+                : after("render", module.default, patch);
+        } catch (e) {
+            logger.error("Failed to patch chat background.", e);
+        }
+    });
 }

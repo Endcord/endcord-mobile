@@ -2,7 +2,7 @@ import { Strings } from "@core/i18n";
 import { after } from "@lib/api/patcher";
 import { findInReactTree } from "@lib/utils";
 import { TableRow } from "@metro/common/components";
-import { getLazyContext } from "@metro/lazy";
+import { patchWhenLoaded } from "@metro/lazy";
 import { findByNameLazy, findByPropsLazy } from "@metro/wrappers";
 import { getVisibleSections, registeredSections } from "@ui/settings";
 
@@ -47,16 +47,7 @@ export function patchTabsUI(unpatches: (() => void | boolean)[]) {
 
     // Discord loads the module of its settings screens only when settings first open, and a few hundred others with it:
     // patching it once it loads, rather than now, keeps them all out of Discord's startup
-    let cancelled = false;
-    let unpatchConfig: (() => void) | undefined;
-    const unsubscribe = getLazyContext(settingConstants)!.getExports(constants => {
-        if (!cancelled) unpatchConfig = patchRendererConfig(constants, getRows);
-    });
-    unpatches.push(() => {
-        cancelled = true;
-        unsubscribe();
-        unpatchConfig?.();
-    });
+    unpatches.push(patchWhenLoaded(settingConstants, constants => patchRendererConfig(constants, getRows)));
 
     try{
         unpatches.push(after("createList", createListModule, function(args, ret) {
