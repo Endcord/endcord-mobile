@@ -26,7 +26,11 @@ adb shell getprop ro.build.version.release > results/android-version.txt
 adb logcat -G 16M
 
 step "Serve the bundle and loader"
-(cd serve && python3 -m http.server 4040 > ../results/http.log 2>&1 &)
+# Not holding the step's input open, and stopped on the way out: a server left running kept the step from finishing
+# until the job timed out
+python3 -m http.server 4040 --directory serve < /dev/null > results/http.log 2>&1 &
+SERVER=$!
+trap 'kill $SERVER 2> /dev/null' EXIT
 sleep 2
 curl -sf -o /dev/null http://127.0.0.1:4040/endcord.min.js && pass "bundle served" || fail "bundle not served"
 endstep
