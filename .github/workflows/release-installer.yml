@@ -43,7 +43,7 @@ jobs:
           KEYSTORE: ${{ secrets.INSTALLER_KEYSTORE }}
         run: |
           if [ -z "$KEYSTORE" ]; then
-            echo "::error::The INSTALLER_KEYSTORE secret is missing; see README.md"
+            echo "::error::The INSTALLER_KEYSTORE secret is missing; see docs/DEVELOPMENT.md"
             exit 1
           fi
           echo "$KEYSTORE" | base64 -d > installer/app/keystore.jks

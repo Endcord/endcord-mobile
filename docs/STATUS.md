@@ -41,10 +41,12 @@ kurucu). Hangi upstream commit'lerinden alındığı [UPSTREAM.md](../UPSTREAM.m
   Revenge'den gelir. Var olan kurulumların verisi ve Vendetta/Bunny eklentileriyle uyum için değiştirilmedi.
 - Vendetta eklentileriyle uyum için iki depolama sistemi yan yana çalışır.
 
-## Yayın için
+## Yayın
 
-1. **İmza anahtarları:** installer ve loader anahtarlarını README'deki "Releasing" adımlarıyla GitHub Secrets'a ekle ve
-   yedeğini al. Anahtar kaybolursa kullanıcılar Endcord'u silip yeniden kurmak zorunda kalır. Anahtarlar olmadan
-   derlemeler geçici anahtarla imzalanır.
-2. `release-prep` dalını `next`'e gönder; Build iş akışı `builds-next`'i günceller.
-3. Actions → **Release Installer** → sürüm `1.0.0`.
+- **27 Ekim 2026:** Endcord Installer 1.0.0 (`next-installer-v1.0.0`) yayınlandı. Installer ve Endcord Classic kurucusu
+  installer anahtarıyla, loader kendi anahtarıyla imzalı; anahtarlar GitHub Secrets'ta.
+- **Sonraki sürümler:** `next`'e her push `builds-next`'i günceller ve Endcord kullanıcılarda bir sonraki açılışta
+  güncellenir. Yeni bir kurucu için `next-installer-v<sürüm>` etiketi gönderilir ve README'deki indirme bağlantıları
+  güncellenir. Ayrıntılar [DEVELOPMENT.md](DEVELOPMENT.md)'de.
+- **İmza anahtarlarının yedeği** GitHub dışında da saklanmalı: anahtar kaybolursa kullanıcılar Endcord'u silip yeniden
+  kurmak zorunda kalır.
