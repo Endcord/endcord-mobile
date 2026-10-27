@@ -15,7 +15,9 @@ import { openAlert } from "@lib/ui/alerts";
 import { showToast } from "@lib/ui/toasts";
 import { safeFetch } from "@lib/utils";
 import { AlertActionButton, AlertActions, AlertModal, Button, Card, Stack, Text } from "@metro/common/components";
+import { semanticColorOf } from "@ui/color";
 import { Search } from "@ui/components";
+import { createStyles } from "@ui/styles";
 import { memo, useEffect, useMemo, useState } from "react";
 import { ActivityIndicator, Image, ScrollView, View } from "react-native";
 
@@ -23,6 +25,17 @@ import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { addSettingsPage, addToolboxAction } from "../common";
 import { describeError } from "../hooks";
 import { openPage } from "../ui/pages";
+
+const useStyles = createStyles({
+    preview: { width: "100%", aspectRatio: 16 / 9, borderRadius: 8 },
+    // Themes from the marketplace often have no preview; the same space keeps the cards of a row alike
+    noPreview: {
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: semanticColorOf("BACKGROUND_MOD_SUBTLE", "BACKGROUND_MOD_NORMAL", "BACKGROUND_BASE_LOW"),
+    },
+    noPreviewIcon: { width: 40, height: 40, tintColor: semanticColorOf("TEXT_MUTED", "INTERACTIVE_NORMAL") },
+});
 
 interface LibraryTheme {
     name: string;
@@ -79,6 +92,7 @@ function promptReload() {
 }
 
 const ThemeCard = memo(function ThemeCard({ theme, width }: { theme: LibraryTheme; width: number; }) {
+    const styles = useStyles();
     const installed = useProxy(themes);
     const [busy, setBusy] = useState(false);
     const entry = installed[theme.installUrl];
@@ -100,13 +114,15 @@ const ThemeCard = memo(function ThemeCard({ theme, width }: { theme: LibraryThem
 
     return <Card style={{ width, justifyContent: "space-between", gap: 10 }}>
         <Stack spacing={10}>
-            {theme.previewUrl && <Image
+            {theme.previewUrl ? <Image
                 source={{ uri: theme.previewUrl }}
-                style={{ width: "100%", aspectRatio: 16 / 9, borderRadius: 8 }}
+                style={styles.preview}
                 resizeMode="cover"
                 // The previews are full-size screenshots; decoded at the card's size they don't hold up scrolling
                 resizeMethod="resize"
-            />}
+            /> : <View style={[styles.preview, styles.noPreview]}>
+                <Image source={findAssetId("PaintPaletteIcon")!} style={styles.noPreviewIcon} />
+            </View>}
             <View>
                 <Text variant="heading-md/semibold">{theme.name}</Text>
                 {!!theme.authors?.length && <Text variant="text-sm/medium" color="text-muted">
