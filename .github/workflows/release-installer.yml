@@ -7,6 +7,9 @@ on:
         description: Version (e.g. 1.0.0)
         required: true
         type: string
+  # Or by pushing a next-installer-v<version> tag, which the release is made for
+  push:
+    tags: ["next-installer-v*"]
 
 jobs:
   release:
@@ -25,7 +28,16 @@ jobs:
       - uses: gradle/actions/setup-gradle@v5
       - name: Set version
         working-directory: installer
-        run: sed -i -E "s/^version = .*/version = ${{ inputs.version }}/" gradle.properties
+        env:
+          REQUESTED: ${{ inputs.version || github.ref_name }}
+        run: |
+          version="${REQUESTED#next-installer-v}"
+          if ! [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::The version must look like 1.0.0, not $version"
+            exit 1
+          fi
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+          sed -i -E "s/^version = .*/version = $version/" gradle.properties
       - name: Decode keystore
         env:
           KEYSTORE: ${{ secrets.INSTALLER_KEYSTORE }}
@@ -44,9 +56,9 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew --no-daemon :app:assembleRelease
-          cp app/build/outputs/apk/release/*.apk "$RUNNER_TEMP/endcord-installer-v${{ inputs.version }}.apk"
+          cp app/build/outputs/apk/release/*.apk "$RUNNER_TEMP/endcord-installer-v$VERSION.apk"
       - uses: softprops/action-gh-release@v3
         with:
-          tag_name: next-installer-v${{ inputs.version }}
-          name: Endcord Installer (new Discord) ${{ inputs.version }}
-          files: ${{ runner.temp }}/endcord-installer-v${{ inputs.version }}.apk
+          tag_name: next-installer-v${{ env.VERSION }}
+          name: Endcord Installer (new Discord) ${{ env.VERSION }}
+          files: ${{ runner.temp }}/endcord-installer-v${{ env.VERSION }}.apk

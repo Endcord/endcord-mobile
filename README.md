@@ -161,7 +161,8 @@ The same push runs the Build workflow too, which builds everything a release doe
 - Every push to `next` rebuilds the bundle, the loader and the installer and publishes them to `builds-next`. Add the
   `LOADER_KEYSTORE` (base64), `LOADER_KEYSTORE_PASSWORD`, `LOADER_KEY_ALIAS` and `LOADER_KEY_PASSWORD` secrets so the
   loader is release-signed; without them the debug-signed module is published.
-- Installer releases: run **Release Installer** by hand with a version number. It needs `INSTALLER_KEYSTORE`
+- Installer releases: run **Release Installer** by hand with a version number, or push a `next-installer-v<version>`
+  tag (`git tag next-installer-v1.0.1 && git push origin next-installer-v1.0.1`). It needs `INSTALLER_KEYSTORE`
   (base64), `INSTALLER_KEYSTORE_PASSWORD`, `INSTALLER_KEY_ALIAS` and `INSTALLER_KEY_PASSWORD`; with them, every push
   to `next` signs its installer the same way, so one can update the other. The Endcord Classic installer is signed
   with the same key, both in `builds-next` and in `main`'s own releases.
