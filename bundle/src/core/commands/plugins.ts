@@ -1,6 +1,7 @@
 import { Strings } from "@core/i18n";
 import { VdPluginManager, VendettaPlugin } from "@core/vendetta/plugins";
 import { ApplicationCommand, ApplicationCommandOptionType } from "@lib/api/commands/types";
+import compareNames from "@lib/utils/compareNames";
 import { messageUtil } from "@metro/common";
 
 export default () => <ApplicationCommand>{
@@ -16,7 +17,7 @@ export default () => <ApplicationCommand>{
     ],
     execute([ephemeral], ctx) {
         const plugins = Object.values(VdPluginManager.plugins).filter(Boolean) as unknown as VendettaPlugin[];
-        plugins.sort((a, b) => a.manifest.name.localeCompare(b.manifest.name));
+        plugins.sort((a, b) => compareNames(a.manifest.name, b.manifest.name));
 
         const enabled = plugins.filter(p => p.enabled).map(p => p.manifest.name);
         const disabled = plugins.filter(p => !p.enabled).map(p => p.manifest.name);

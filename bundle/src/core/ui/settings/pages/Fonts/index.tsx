@@ -4,6 +4,7 @@ import FontEditor from "@core/ui/settings/pages/Fonts/FontEditor";
 import { useProxy } from "@core/vendetta/storage";
 import { FontDefinition, fonts } from "@lib/addons/fonts";
 import { settings } from "@lib/api/settings";
+import compareNames from "@lib/utils/compareNames";
 import { NavigationNative } from "@metro/common";
 
 import FontCard from "./FontCard";
@@ -19,8 +20,8 @@ export default function Fonts() {
             title={Strings.FONTS}
             searchKeywords={["name", "description"]}
             sortOptions={{
-                [t("Name (A-Z)")]: (a, b) => a.name.localeCompare(b.name),
-                [t("Name (Z-A)")]: (a, b) => b.name.localeCompare(a.name)
+                [t("Name (A-Z)")]: (a, b) => compareNames(a.name, b.name),
+                [t("Name (Z-A)")]: (a, b) => compareNames(b.name, a.name)
             }}
             items={Object.values(fonts)}
             safeModeHint={{ message: Strings.SAFE_MODE_NOTICE_FONTS }}

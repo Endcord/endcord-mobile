@@ -9,6 +9,7 @@ import { findAssetId } from "@lib/api/assets";
 import { settings } from "@lib/api/settings";
 import { useObservable } from "@lib/api/storage";
 import { showToast } from "@lib/ui/toasts";
+import compareNames from "@lib/utils/compareNames";
 import { BUNNY_PROXY_PREFIX, CLASSIC_URL, VD_PROXY_PREFIX } from "@lib/utils/constants";
 import { lazyDestructure } from "@lib/utils/lazy";
 import { findByProps } from "@metro";
@@ -113,8 +114,8 @@ function PluginPage(props: PluginPageProps) {
         ]}
         sortOptions={{
             [t("Popular first")]: byPopularity,
-            [t("Name (A-Z)")]: (a, b) => a.name.localeCompare(b.name),
-            [t("Name (Z-A)")]: (a, b) => b.name.localeCompare(a.name),
+            [t("Name (A-Z)")]: (a, b) => compareNames(a.name, b.name),
+            [t("Name (Z-A)")]: (a, b) => compareNames(b.name, a.name),
             [t("Enabled first")]: (a, b) => Number(b.isEnabled()) - Number(a.isEnabled()) || byPopularity(a, b),
             [t("Disabled first")]: (a, b) => Number(a.isEnabled()) - Number(b.isEnabled()) || byPopularity(a, b)
         }}
@@ -127,7 +128,7 @@ function PluginPage(props: PluginPageProps) {
 /** Endcord's popular plugins first, in Endcord PC's order, then Endcord's others, then installed plugins, by name */
 function byPopularity(a: UnifiedPluginModel, b: UnifiedPluginModel) {
     const rank = (p: UnifiedPluginModel) => p.popular ?? (p.endcord ? 1000 : 2000);
-    return rank(a) - rank(b) || a.name.localeCompare(b.name);
+    return rank(a) - rank(b) || compareNames(a.name, b.name);
 }
 
 export default function Plugins() {

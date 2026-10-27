@@ -8,6 +8,7 @@
  */
 
 import type { PluginInstanceInternal } from "@lib/addons/plugins/types";
+import compareNames from "@lib/utils/compareNames";
 import { createElement } from "react";
 
 import { ENDCORD_AUTHOR, EndcordPlugin, isEndcordPluginRunning, startEndcordPlugin, stopEndcordPlugin } from "./api";
@@ -43,7 +44,7 @@ export function getEndcordPlugins(): EndcordPlugin<any>[] {
 /** Endcord PC's popular plugins first, in its order, then the others by name */
 function sorted(): PluginInfo[] {
     const popular = manifest.filter(p => p.popular != null).sort((a, b) => a.popular! - b.popular!);
-    const others = manifest.filter(p => p.popular == null).sort((a, b) => a.name.localeCompare(b.name, "en", { sensitivity: "base" }));
+    const others = manifest.filter(p => p.popular == null).sort((a, b) => compareNames(a.name, b.name));
     return [...popular, ...others];
 }
 
