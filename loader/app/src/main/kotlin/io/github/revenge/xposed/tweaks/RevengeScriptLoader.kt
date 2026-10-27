@@ -34,7 +34,9 @@ private fun runRevengeScripts(scope: InjectorScope, preloadsDir: File, mainScrip
     val log = scope.tweakLog
     log.i("Running Endcord custom scripts...")
 
-    runBlocking {
+    // Discord's start waits here. With a downloaded copy, Endcord starts from it at once and the update check carries on
+    // in the background (an update that lands asks to reload); only the very first start waits for the download.
+    if (!RevengeUpdater.hasBundle()) runBlocking {
         try {
             withTimeout(RevengeUpdater.TIMEOUT) { RevengeUpdater.downloadReady.await() }
         } catch (e: Throwable) {
@@ -48,8 +50,9 @@ private fun runRevengeScripts(scope: InjectorScope, preloadsDir: File, mainScrip
             scope.runFile(f.absolutePath)
         }
 
-        if (mainScript.exists()) {
+        if (mainScript.isFile && mainScript.length() > 0) {
             log.i("Loading downloaded bundle: ${mainScript.absolutePath}")
+            RevengeUpdater.bundleLoaded = true
             scope.runFile(mainScript.absolutePath)
         } else {
             log.i("Downloaded bundle missing; falling back to ${RevengeConstants.FALLBACK_BUNDLE_ASSET}")
