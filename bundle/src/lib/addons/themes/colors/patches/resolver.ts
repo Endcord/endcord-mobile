@@ -25,7 +25,10 @@ const SEMANTIC_FALLBACK_MAP: Record<string, string> = {
 };
 
 export default function patchDefinitionAndResolver() {
-    const callback = ([theme]: any[]) => theme === _colorRef.key ? [_colorRef.current!.reference] : void 0;
+    // Any of Endcord's theme keys, not only the latest: Discord can still hold one from before the theme last changed
+    const callback = ([theme]: any[]) => _colorRef.current && typeof theme === "string" && theme.startsWith("bn-theme-")
+        ? [_colorRef.current.reference]
+        : void 0;
 
     Object.keys(tokenReference.RawColor).forEach(key => {
         Object.defineProperty(tokenReference.RawColor, key, {
