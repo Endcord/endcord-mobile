@@ -32,6 +32,7 @@ import { ActivityIndicator, Linking, ScrollView, View } from "react-native";
 const { showSimpleActionSheet, hideActionSheet } = lazyDestructure(() => findByProps("showSimpleActionSheet"));
 
 const LIST_URL = "https://raw.githubusercontent.com/Purple-EyeZ/Plugins-List/refs/heads/main/src/plugins-data.json";
+const MAX_PLUGINS = 2000;
 
 type Status = "working" | "warning" | "broken";
 type Filter = "working" | "broken" | "all";
@@ -65,7 +66,8 @@ function parseList(data: unknown): CommunityPlugin[] {
     const builtIns = new Map(manifest.map(p => [nameKey(p.name), { id: p.id, name: p.name }]));
     const seen = new Set<string>();
     const plugins: CommunityPlugin[] = [];
-    data.forEach((item, order) => {
+    // Far more than the list has ever had, so a broken or hostile one can't slow a phone down
+    data.slice(0, MAX_PLUGINS).forEach((item, order) => {
         const name = textOf(item?.name, 80);
         const url = httpsUrl(item?.installUrl);
         if (!name || !url) return;
