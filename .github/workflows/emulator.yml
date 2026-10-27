@@ -36,7 +36,9 @@ jobs:
         run: |
           bun install --frozen-lockfile
           bun run build --build-minify --test
-          mkdir -p ../serve && cp dist/endcord.min.js ../serve/
+          # Precompiled like the published builds, so the emulator runs the bytecode users get
+          node scripts/hermes.mjs
+          mkdir -p ../serve && cp dist/endcord.min.js dist/endcord.v*.hbc ../serve/
 
       - uses: actions/setup-java@v4
         with:
