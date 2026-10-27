@@ -2,7 +2,7 @@ import patchErrorBoundary from "@core/debug/patches/patchErrorBoundary";
 import initFixes from "@core/fixes";
 import { initFetchI18nStrings } from "@core/i18n";
 import { initOverlayHost } from "@core/overlay";
-import { markReady } from "@core/timings";
+import { markReady, step } from "@core/timings";
 import initSettings from "@core/ui/settings";
 import { initVendettaObject } from "@core/vendetta/api";
 import { VdPluginManager } from "@core/vendetta/plugins";
@@ -23,19 +23,19 @@ export default async () => {
     const unpatchOverlay = initOverlayHost();
     if (unpatchOverlay) lib.unload.push(unpatchOverlay);
 
-    // Load everything in parallel
+    // Load everything in parallel; Discord's start waits for all of it, so each step's time is kept for StartupTimings
     await Promise.all([
-        initThemes(),
-        injectFluxInterceptor(),
-        patchSettings(),
-        patchCommands(),
-        patchJsx(),
-        initVendettaObject(),
-        initFetchI18nStrings(),
-        initSettings(),
-        initFixes(),
-        patchErrorBoundary(),
-        updatePlugins()
+        step("themes", initThemes),
+        step("flux", injectFluxInterceptor),
+        step("settings", patchSettings),
+        step("commands", patchCommands),
+        step("jsx", patchJsx),
+        step("vendetta", initVendettaObject),
+        step("i18n", initFetchI18nStrings),
+        step("settingsPages", initSettings),
+        step("fixes", initFixes),
+        step("errorBoundary", patchErrorBoundary),
+        step("plugins", updatePlugins),
     ]).then(
         // Push them all to unloader
         u => u.forEach(f => f && lib.unload.push(f))
