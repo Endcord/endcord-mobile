@@ -9371,6 +9371,12 @@
         "es": "{name} no pudo iniciarse y se ha desactivado",
         "fr": "{name} n'a pas pu démarrer et a été désactivé"
     },
+    "{name} couldn't start and was turned off: {reason}": {
+        "tr": "{name} başlatılamadı ve kapatıldı: {reason}",
+        "ru": "Не удалось запустить {name}, он отключён: {reason}",
+        "es": "{name} no pudo iniciarse y se ha desactivado: {reason}",
+        "fr": "{name} n'a pas pu démarrer et a été désactivé : {reason}"
+    },
     "{name} is on": {
         "tr": "{name} açıldı",
         "ru": "{name} включён",

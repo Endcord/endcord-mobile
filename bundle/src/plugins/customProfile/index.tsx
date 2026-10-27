@@ -250,6 +250,15 @@ const plugin = definePlugin({
         const users = getStore("UserStore");
         if (typeof users?.getCurrentUser !== "function") throw new Error("Discord's user store wasn't found");
 
+        // A part of Discord that's missing turns off only what needs it, not the whole profile
+        const optional = (what: string, fn: () => void) => {
+            try {
+                fn();
+            } catch (e) {
+                logger.warn(`${what} couldn't be set up, the rest of the profile still works`, e);
+            }
+        };
+
         // Your account and the others you're logged in to, as user records
         let lastReal: any, lastFake: any, lastVersion = -1;
         cleanup(after("getCurrentUser", users, (_, raw) => {
@@ -360,7 +369,7 @@ const plugin = definePlugin({
         }
 
         // Your messages in the chat: the name and avatar Discord's native rows draw
-        cleanup(onMessageRow("custom-profile", (row, message) => {
+        optional("Names and avatars in the chat", () => cleanup(onMessageRow("custom-profile", (row, message) => {
             const author = message?.author;
             const pd = author?.id && getProfileDataFor(author.id);
             if (!pd) return;
@@ -368,26 +377,28 @@ const plugin = definePlugin({
             const name = shownName(real, pd, author.id === myId());
             if (name && typeof row.username === "string" && row.username === (real.globalName || real.username)) row.username = name;
             if (pd.avatar && typeof row.avatarURL === "string") row.avatarURL = pd.avatar;
-        }, RowOrder.REPLACE));
+        }, RowOrder.REPLACE)));
 
         // Badges: on the profile, and in Discord's "Customize your badges" panel
-        const refreshBadges = () => {
+        const refreshBadges = () => optional("Badges", () => {
             const id = myId();
             const pd = getProfileDataFor(id);
             setManagedBadges(pd ? buildBadges(pd, t) : []);
-        };
-        cleanup(startBadgeManagement({ currentUser: myId, saveLayout: layout => { const id = myId(); if (id) saveLayout(id, layout); } }));
-        setBadgeLayout(layoutOf(myId()));
-        refreshBadges();
-        cleanup(extendProfileBadges("custom-profile", (userId, badges) => {
-            const pd = getProfileDataFor(userId);
-            if (!pd || !hasCustomBadgesConfigured(pd)) return badges;
-            const isMe = userId === myId();
-            const ours = buildBadges(pd, t).map(b => linkedBadge(isMe ? profileBadgeId(b.key) : `${profileBadgeId(b.key)}_${userId}`, b.label, b.icon));
-            // Discord's own badges give way to the custom ones; other plugins' badges stay
-            const others = badges.filter(b => isPluginBadge(b) && !String(b.id).startsWith(PROFILE_ID_PREFIX));
-            return [...isMe ? applyLayout(ours) : ours, ...others];
-        }));
+        });
+        optional("Badges", () => {
+            cleanup(startBadgeManagement({ currentUser: myId, saveLayout: layout => { const id = myId(); if (id) saveLayout(id, layout); } }));
+            setBadgeLayout(layoutOf(myId()));
+            refreshBadges();
+            cleanup(extendProfileBadges("custom-profile", (userId, badges) => {
+                const pd = getProfileDataFor(userId);
+                if (!pd || !hasCustomBadgesConfigured(pd)) return badges;
+                const isMe = userId === myId();
+                const ours = buildBadges(pd, t).map(b => linkedBadge(isMe ? profileBadgeId(b.key) : `${profileBadgeId(b.key)}_${userId}`, b.label, b.icon));
+                // Discord's own badges give way to the custom ones; other plugins' badges stay
+                const others = badges.filter(b => isPluginBadge(b) && !String(b.id).startsWith(PROFILE_ID_PREFIX));
+                return [...isMe ? applyLayout(ours) : ours, ...others];
+            }));
+        });
 
         // After a save, a reset or an account switch, everything that shows a profile draws it again
         const redraw = () => {
@@ -418,7 +429,7 @@ const plugin = definePlugin({
 
         // Where the editor opens from: a button beside the message box and EndcordToolbox, like Endcord PC's header
         // bar button and toolbox entry
-        cleanup(
+        optional("The chat bar button", () => cleanup(
             addChatButton({
                 key: "custom-profile",
                 side: () => store.button as "left" | "right" | "none",
@@ -435,7 +446,7 @@ const plugin = definePlugin({
                 },
             }),
             addToolboxAction("custom-profile", { label: () => t("Open Custom Profile"), icon: "PencilIcon", run: () => openEditor() }),
-        );
+        ));
     },
 });
 

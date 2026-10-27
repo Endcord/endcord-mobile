@@ -2053,6 +2053,7 @@
     "{members} members, {online} online": "{members} üye, {online} çevrimiçi",
     "{minutes}m": "{minutes}dk",
     "{name} couldn't start and was turned off": "{name} başlatılamadı ve kapatıldı",
+    "{name} couldn't start and was turned off: {reason}": "{name} başlatılamadı ve kapatıldı: {reason}",
     "{name} is on": "{name} açıldı",
     "{online} of your {friends} friends are online · you're in {servers} servers": "{friends} arkadaşından {online} tanesi çevrimiçi · {servers} sunucudasın",
     "{online} of {max} players online": "{max} oyuncudan {online} tanesi çevrimiçi",

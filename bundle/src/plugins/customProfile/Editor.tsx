@@ -130,12 +130,31 @@ const Pill = memo(function Pill({ label, icon, active, onPress }: { label: strin
     </Pressable>;
 });
 
+/**
+ * Every option the native picker reads. It reads each one without a default and crashes the app on any that's missing
+ * (react-native-image-picker's own JS fills them in from its DEFAULT_OPTIONS before calling it).
+ */
+const PICKER_DEFAULTS = {
+    mediaType: "photo",
+    videoQuality: "high",
+    quality: 1,
+    maxWidth: 0,
+    maxHeight: 0,
+    includeBase64: false,
+    cameraType: "back",
+    selectionLimit: 1,
+    saveToPhotos: false,
+    durationLimit: 0,
+    includeExtra: false,
+    presentationStyle: "pageSheet",
+};
+
 /** Asks the photo picker for an image, as a data: link so it doesn't depend on the file staying where it is */
 function pickImage(maxWidth: number, maxHeight: number): Promise<string | undefined> {
     const picker = getNativeModule("ImagePickerManager");
     if (typeof picker?.launchImageLibrary !== "function") return Promise.reject(new Error(t("Couldn't open the photo picker")));
     return new Promise((resolve, reject) => picker.launchImageLibrary(
-        { mediaType: "photo", includeBase64: true, maxWidth, maxHeight, quality: 0.9, selectionLimit: 1 },
+        { ...PICKER_DEFAULTS, includeBase64: true, maxWidth, maxHeight, quality: 0.9 },
         (res: any) => {
             if (res?.didCancel) return resolve(undefined);
             const asset = res?.assets?.[0];

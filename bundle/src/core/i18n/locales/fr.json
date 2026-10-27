@@ -2053,6 +2053,7 @@
     "{members} members, {online} online": "{members} membres, {online} en ligne",
     "{minutes}m": "{minutes} min",
     "{name} couldn't start and was turned off": "{name} n'a pas pu démarrer et a été désactivé",
+    "{name} couldn't start and was turned off: {reason}": "{name} n'a pas pu démarrer et a été désactivé : {reason}",
     "{name} is on": "{name} activé",
     "{online} of your {friends} friends are online · you're in {servers} servers": "{online} de vos {friends} amis sont en ligne · vous êtes dans {servers} serveurs",
     "{online} of {max} players online": "{online} joueurs en ligne sur {max}",

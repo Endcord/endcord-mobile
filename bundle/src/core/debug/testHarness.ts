@@ -69,6 +69,7 @@ const PATHS: string[] = [
     // CustomProfile
     "modules/user_profile/DisplayProfile.tsx",
     "modules/collectibles/CollectiblesActionCreators.tsx",
+    "../discord_common/js/shared/shared-constants/BadgeId.tsx",
 ];
 
 const STORES = [
@@ -119,7 +120,6 @@ const PROPS: string[][] = [
     ["getAvatarDecorationURL"],
     ["extractTimestamp"],
     ["fetchCollectiblesCategories"],
-    ["PREMIUM_TENURE", "GAME_VARIETY", "ACCOUNT_AGE"],
     ["getRootNavigationRef"],
 ];
 

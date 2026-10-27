@@ -200,7 +200,11 @@ export async function startEndcordPlugin(plugin: EndcordPlugin) {
         if (stopped()) return;
         plugin.error = e;
         runCleanups(plugin.id);
-        showToast(t("{name} couldn't start and was turned off", { name: plugin.name }), findAssetId("CircleXIcon-primary"));
+        // The reason, so whoever sees it can tell us what failed
+        const reason = String((e as Error)?.message ?? e).split("\n")[0].slice(0, 120);
+        showToast(reason
+            ? t("{name} couldn't start and was turned off: {reason}", { name: plugin.name, reason })
+            : t("{name} couldn't start and was turned off", { name: plugin.name }), findAssetId("CircleXIcon-primary"));
         throw e;
     }
 }

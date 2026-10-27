@@ -2053,6 +2053,7 @@
     "{members} members, {online} online": "Участников: {members}, в сети: {online}",
     "{minutes}m": "{minutes} мин",
     "{name} couldn't start and was turned off": "Не удалось запустить {name}, он отключён",
+    "{name} couldn't start and was turned off: {reason}": "Не удалось запустить {name}, он отключён: {reason}",
     "{name} is on": "{name} включён",
     "{online} of your {friends} friends are online · you're in {servers} servers": "В сети {online} из {friends} друзей · вы на {servers} серверах",
     "{online} of {max} players online": "В сети {online} из {max} игроков",

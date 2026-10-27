@@ -15,7 +15,7 @@
 import { instead } from "@lib/api/patcher";
 import { findByProps } from "@metro";
 
-import { getStore } from "../common";
+import { getStore, moduleAt } from "../common";
 
 export interface ManagedBadge {
     /** Stable key, lowercase letters, digits and underscores */
@@ -66,10 +66,13 @@ function emitCatalogChange() {
     } catch { }
 }
 
+/** Discord's badge-type enum, name ↔ id both ways. It's a named export, so it isn't found by its keys. */
+const badgeTypes = () => moduleAt<{ BadgeId?: Record<string | number, string | number>; }>("../discord_common/js/shared/shared-constants/BadgeId.tsx")?.BadgeId;
+
 /** Called whenever the user's custom badges change */
 export function setManagedBadges(badges: ManagedBadge[]) {
     active = badges;
-    const types = findByProps("PREMIUM_TENURE", "GAME_VARIETY", "ACCOUNT_AGE") as Record<string | number, string | number> | undefined;
+    const types = badgeTypes();
     for (const b of badges) {
         const id = badgeTypeId(b.key);
         const name = (PROFILE_ID_PREFIX + b.key).toUpperCase();
