@@ -22,6 +22,12 @@ jobs:
       - name: Install dependencies
         working-directory: bundle
         run: bun install --frozen-lockfile
+      - name: Typecheck
+        working-directory: bundle
+        run: node node_modules/typescript/bin/tsc --noEmit -p .
+      - name: Lint
+        working-directory: bundle
+        run: bun run lint
       - name: Check the translations
         working-directory: bundle
         # Without Endcord PC checked out, the shipped translations are checked: every string in all five languages
