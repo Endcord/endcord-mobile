@@ -372,8 +372,7 @@ ${e.stack}` : String(e) });
         }
         const all = builtIn.map((c: any) => c.name);
         const wanted = ["bold", "ship", "calc", "choose", "morse"];
-        const { calculate } = require("@plugins/text");
-        const { toBold, morse } = require("@plugins/text");
+        const { calculate, toBold, morse } = require("@plugins/shared/text");
         return {
             found: wanted.filter(n => all.includes(n)),
             calc: calculate("(2 + 3) * 4 - 10 % 4"),
