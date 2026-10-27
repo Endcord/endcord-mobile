@@ -827,6 +827,12 @@
         "es": "Pino longevo",
         "fr": "Pin de Bristlecone"
     },
+    "Broken": {
+        "tr": "Bozuk",
+        "ru": "Не работает",
+        "es": "Roto",
+        "fr": "Cassé"
+    },
     "Browse and install themes for Discord on your phone without leaving the app.": {
         "tr": "Uygulamadan çıkmadan telefonunuzdaki Discord için temalara göz atın ve yükleyin.",
         "ru": "Просматривайте и устанавливайте темы для Discord на телефоне, не выходя из приложения.",
@@ -839,17 +845,29 @@
         "es": "Explora y busca todos los iconos de Discord en los ajustes del plugin y copia sus nombres",
         "fr": "Parcourez et cherchez toutes les icônes de Discord dans les paramètres du plugin, et copiez leurs noms"
     },
-    "Browse plugins": {
-        "tr": "Eklentilere göz at",
-        "ru": "Обзор плагинов",
-        "es": "Explorar plugins",
-        "fr": "Parcourir les plugins"
+    "Browse community plugins": {
+        "tr": "Topluluk eklentilerine göz at",
+        "ru": "Плагины сообщества",
+        "es": "Explorar plugins de la comunidad",
+        "fr": "Parcourir les plugins de la communauté"
     },
     "Bud": {
         "tr": "Tomurcuk",
         "ru": "Бутон",
         "es": "Capullo",
         "fr": "Bourgeon"
+    },
+    "Built into Endcord as {name}": {
+        "tr": "Endcord'da {name} olarak yerleşik",
+        "ru": "Встроен в Endcord как {name}",
+        "es": "Integrado en Endcord como {name}",
+        "fr": "Intégré à Endcord sous le nom {name}"
+    },
+    "Built-in is on": {
+        "tr": "Yerleşik açık",
+        "ru": "Встроенный включён",
+        "es": "Integrado activo",
+        "fr": "Intégré activé"
     },
     "Burst length (seconds)": {
         "tr": "Birleştirme süresi (saniye)",
@@ -1151,6 +1169,18 @@
         "es": "Comprometido",
         "fr": "Engagé"
     },
+    "Community plugins": {
+        "tr": "Topluluk eklentileri",
+        "ru": "Плагины сообщества",
+        "es": "Plugins de la comunidad",
+        "fr": "Plugins de la communauté"
+    },
+    "Community plugins aren't checked by Endcord. They can read and do anything your Discord account can, so only install ones you trust.": {
+        "tr": "Topluluk eklentileri Endcord tarafından denetlenmez. Discord hesabının yapabildiği her şeyi okuyup yapabilirler, bu yüzden yalnızca güvendiklerini kur.",
+        "ru": "Endcord не проверяет плагины сообщества. Они могут читать и делать всё, что может ваш аккаунт Discord, поэтому устанавливайте только те, которым доверяете.",
+        "es": "Endcord no revisa los plugins de la comunidad. Pueden leer y hacer todo lo que puede tu cuenta de Discord, así que instala solo los que sean de confianza.",
+        "fr": "Endcord ne vérifie pas les plugins de la communauté. Ils peuvent lire et faire tout ce que peut votre compte Discord : n'installez que ceux en qui vous avez confiance."
+    },
     "Compare two servers you're in and see which members are in both, with /mutualmembers": {
         "tr": "Üye olduğun iki sunucuyu karşılaştır ve ikisinde de olan üyeleri /mutualmembers ile gör",
         "ru": "Сравнивайте два своих сервера и смотрите общих участников с /mutualmembers",
@@ -1241,6 +1271,12 @@
         "es": "Convertir a leetspeak",
         "fr": "Convertir en leetspeak"
     },
+    "Copied": {
+        "tr": "Kopyalandı",
+        "ru": "Скопировано",
+        "es": "Copiado",
+        "fr": "Copié"
+    },
     "Copied to clipboard": {
         "tr": "Panoya kopyalandı",
         "ru": "Скопировано в буфер обмена",
@@ -1306,6 +1342,12 @@
         "ru": "Копируйте ссылку на профиль автора сообщения из меню сообщения",
         "es": "Copia un enlace al perfil del autor de un mensaje desde el menú del mensaje",
         "fr": "Copiez un lien vers le profil de l'auteur d'un message depuis le menu du message"
+    },
+    "Copy install link": {
+        "tr": "Kurulum bağlantısını kopyala",
+        "ru": "Копировать ссылку для установки",
+        "es": "Copiar enlace de instalación",
+        "fr": "Copier le lien d'installation"
     },
     "Copy the contents of text file attachments from the message menu": {
         "tr": "Metin dosyası eklerinin içeriğini mesaj menüsünden kopyala",
@@ -1397,6 +1439,18 @@
         "es": "No se pudo instalar el tema: {error}",
         "fr": "Impossible d'installer le thème : {error}"
     },
+    "Couldn't install {name}: {error}": {
+        "tr": "{name} kurulamadı: {error}",
+        "ru": "Не удалось установить {name}: {error}",
+        "es": "No se pudo instalar {name}: {error}",
+        "fr": "Impossible d'installer {name} : {error}"
+    },
+    "Couldn't load the plugin list. Check your connection and try again.": {
+        "tr": "Eklenti listesi yüklenemedi. Bağlantını kontrol edip tekrar dene.",
+        "ru": "Не удалось загрузить список плагинов. Проверьте подключение и повторите попытку.",
+        "es": "No se pudo cargar la lista de plugins. Revisa tu conexión e inténtalo de nuevo.",
+        "fr": "Impossible de charger la liste des plugins. Vérifiez votre connexion et réessayez."
+    },
     "Couldn't load the theme list. Check your connection and try again.": {
         "tr": "Tema listesi yüklenemedi. Bağlantınızı kontrol edip tekrar deneyin.",
         "ru": "Не удалось загрузить список тем. Проверьте подключение и попробуйте снова.",
@@ -1439,11 +1493,23 @@
         "es": "No se pudo reaccionar con ese emoji",
         "fr": "Impossible de réagir avec cet émoji"
     },
+    "Couldn't remove {name}: {error}": {
+        "tr": "{name} kaldırılamadı: {error}",
+        "ru": "Не удалось удалить {name}: {error}",
+        "es": "No se pudo quitar {name}: {error}",
+        "fr": "Impossible de retirer {name} : {error}"
+    },
     "Couldn't translate this ({status})": {
         "tr": "Bu çevrilemedi ({status})",
         "ru": "Не удалось перевести ({status})",
         "es": "No se pudo traducir ({status})",
         "fr": "Impossible de traduire ceci ({status})"
+    },
+    "Couldn't turn on {name}: {error}": {
+        "tr": "{name} açılamadı: {error}",
+        "ru": "Не удалось включить {name}: {error}",
+        "es": "No se pudo activar {name}: {error}",
+        "fr": "Impossible d'activer {name} : {error}"
     },
     "Couldn't understand \"{time}\". Use something like 10m, 2h or 1d.": {
         "tr": "\"{time}\" anlaşılamadı. 10m, 2h veya 1d gibi bir şey yazın.",
@@ -2002,6 +2068,12 @@
         "ru": "Адрес Endcord",
         "es": "URL de Endcord",
         "fr": "URL d'Endcord"
+    },
+    "Endcord has {name} built in. Running both at once can make them get in each other's way.": {
+        "tr": "Endcord'da {name} zaten yerleşik. İkisi aynı anda çalışırsa birbirini bozabilir.",
+        "ru": "В Endcord уже есть встроенный {name}. Если запустить оба сразу, они могут мешать друг другу.",
+        "es": "Endcord ya incluye {name}. Si ambos funcionan a la vez, pueden estorbarse entre sí.",
+        "fr": "Endcord intègre déjà {name}. S'ils tournent tous les deux en même temps, ils peuvent se gêner."
     },
     "Endcord is hidden from settings": {
         "tr": "Endcord ayarlardan gizlendi",
@@ -2681,6 +2753,12 @@
         "es": "Mensajes de grupo",
         "fr": "Messages de groupe"
     },
+    "Has issues": {
+        "tr": "Sorunlu",
+        "ru": "Есть проблемы",
+        "es": "Con problemas",
+        "fr": "Problèmes connus"
+    },
     "Headliner": {
         "tr": "Baş Yıldız",
         "ru": "Хедлайнер",
@@ -3251,11 +3329,29 @@
         "es": "Error al instalar",
         "fr": "Échec de l'installation"
     },
+    "Install the community's version": {
+        "tr": "Topluluk sürümünü kur",
+        "ru": "Установить версию сообщества",
+        "es": "Instalar la versión de la comunidad",
+        "fr": "Installer la version de la communauté"
+    },
+    "Install {name}?": {
+        "tr": "{name} kurulsun mu?",
+        "ru": "Установить {name}?",
+        "es": "¿Instalar {name}?",
+        "fr": "Installer {name} ?"
+    },
     "Installed plugin": {
         "tr": "Eklenti yüklendi",
         "ru": "Плагин установлен",
         "es": "Plugin instalado",
         "fr": "Plugin installé"
+    },
+    "Installed {name}": {
+        "tr": "{name} kuruldu",
+        "ru": "{name} установлен",
+        "es": "{name} instalado",
+        "fr": "{name} installé"
     },
     "Installed. Reload Discord to use it.": {
         "tr": "Yüklendi. Kullanmak için Discord'u yeniden yükle.",
@@ -3322,6 +3418,12 @@
         "ru": "Название, например bitcoin",
         "es": "Su nombre, como bitcoin",
         "fr": "Son nom, comme bitcoin"
+    },
+    "Its settings are deleted with it.": {
+        "tr": "Ayarları da silinir.",
+        "ru": "Его настройки тоже будут удалены.",
+        "es": "Sus ajustes también se borran.",
+        "fr": "Ses paramètres sont supprimés avec lui."
     },
     "Join Them in {channel}": {
         "tr": "{channel} kanalında onlara katıl",
@@ -4157,6 +4259,12 @@
         "es": "Recién llegado",
         "fr": "Nouveau venu"
     },
+    "Newest first": {
+        "tr": "En yeniler önce",
+        "ru": "Сначала новые",
+        "es": "Más recientes primero",
+        "fr": "Plus récents d'abord"
+    },
     "Next to the time of each message": {
         "tr": "Her mesajın saatinin yanında",
         "ru": "Рядом со временем каждого сообщения",
@@ -4402,6 +4510,12 @@
         "ru": "Не появлялся в сети с тех пор, как Endcord начал следить",
         "es": "No se ha visto conectado desde que Endcord empezó a vigilar",
         "fr": "Pas vu en ligne depuis qu'Endcord surveille"
+    },
+    "Not working": {
+        "tr": "Çalışmayanlar",
+        "ru": "Не работают",
+        "es": "No funcionan",
+        "fr": "Non fonctionnels"
     },
     "Not yet aired": {
         "tr": "Henüz yayınlanmadı",
@@ -4757,6 +4871,12 @@
         "es": "Abre enlaces de canciones en tu servicio de streaming a través de song.link, desde el menú del mensaje",
         "fr": "Ouvrez les liens de chansons sur votre service de streaming via song.link, depuis le menu du message"
     },
+    "Open source code": {
+        "tr": "Kaynak kodunu aç",
+        "ru": "Открыть исходный код",
+        "es": "Abrir el código fuente",
+        "fr": "Ouvrir le code source"
+    },
     "Operating System": {
         "tr": "İşletim Sistemi",
         "ru": "Операционная система",
@@ -4991,12 +5111,6 @@
         "es": "Reproduce un efecto de sonido 🗿 cuando se envía o se reacciona con un emoji moyai en el chat que tienes abierto",
         "fr": "Joue un effet sonore 🗿 quand un émoji moyai est envoyé ou ajouté en réaction dans la discussion ouverte"
     },
-    "Plugin browser": {
-        "tr": "Eklenti tarayıcısı",
-        "ru": "Обзор плагинов",
-        "es": "Explorador de plugins",
-        "fr": "Navigateur de plugins"
-    },
     "Plugins installed from unproxied sources may run unverified code in this app without your awareness.": {
         "tr": "Doğrulanmamış kaynaklardan yüklenen eklentiler bu uygulamada haberiniz olmadan denetlenmemiş kod çalıştırabilir.",
         "ru": "Плагины из непроверенных источников могут незаметно выполнять в приложении непроверенный код.",
@@ -5008,6 +5122,12 @@
         "ru": "Плагины загружаются в фоне, поэтому медленный не задерживает Discord. Загружаются только включённые плагины.",
         "es": "Los plugins se cargan en segundo plano, así que uno lento no retrasa Discord. Solo se cargan los que activas.",
         "fr": "Les plugins se chargent en arrière-plan, un plugin lent ne retarde donc pas Discord. Seuls ceux que vous activez sont chargés."
+    },
+    "Plugins made by the community, not by Endcord, from a list its members keep up to date. They run with full access to your Discord account; only install ones you trust.": {
+        "tr": "Endcord'un değil, topluluğun yaptığı eklentiler; listeyi topluluk üyeleri güncel tutuyor. Discord hesabına tam erişimle çalışırlar, yalnızca güvendiklerini kur.",
+        "ru": "Плагины, созданные сообществом, а не Endcord, из списка, который поддерживают его участники. Они работают с полным доступом к вашему аккаунту Discord — устанавливайте только те, которым доверяете.",
+        "es": "Plugins hechos por la comunidad, no por Endcord, de una lista que mantienen sus miembros. Funcionan con acceso total a tu cuenta de Discord; instala solo los que sean de confianza.",
+        "fr": "Des plugins créés par la communauté, pas par Endcord, issus d'une liste tenue à jour par ses membres. Ils ont un accès complet à votre compte Discord : n'installez que ceux en qui vous avez confiance."
     },
     "Plugins on": {
         "tr": "Açık eklentiler",
@@ -5417,11 +5537,23 @@
         "es": "Quitar animaciones de perfil",
         "fr": "Retirer les animations de profil"
     },
+    "Remove {name}?": {
+        "tr": "{name} kaldırılsın mı?",
+        "ru": "Удалить {name}?",
+        "es": "¿Quitar {name}?",
+        "fr": "Retirer {name} ?"
+    },
     "Removed invisible characters from your message": {
         "tr": "Mesajınızdaki görünmez karakterler kaldırıldı",
         "ru": "Из сообщения удалены невидимые символы",
         "es": "Se quitaron caracteres invisibles de tu mensaje",
         "fr": "Des caractères invisibles ont été retirés de votre message"
+    },
+    "Removed {name}": {
+        "tr": "{name} kaldırıldı",
+        "ru": "{name} удалён",
+        "es": "{name} quitado",
+        "fr": "{name} retiré"
     },
     "Removes the badge count of incoming friend requests and message requests": {
         "tr": "Gelen arkadaşlık isteklerinin ve mesaj isteklerinin bildirim sayısını kaldırır",
@@ -5704,6 +5836,12 @@
         "ru": "Ищите прочитанные сообщения по словам и людям с /vault, даже когда они ушли вверх. Индекс хранится только на устройстве.",
         "es": "Busca mensajes que has leído por palabra y persona con /vault, aunque ya hayan quedado atrás. Se indexan solo en tu dispositivo.",
         "fr": "Cherchez les messages que vous avez lus par mot-clé et par personne avec /vault, même après qu'ils ont défilé. Indexés uniquement sur votre appareil."
+    },
+    "Search plugins": {
+        "tr": "Eklenti ara",
+        "ru": "Поиск плагинов",
+        "es": "Buscar plugins",
+        "fr": "Rechercher des plugins"
     },
     "Search the messages you have read (only you see the results)": {
         "tr": "Okuduğun mesajlarda ara (sonuçları yalnızca sen görürsün)",
@@ -7637,6 +7775,18 @@
         "es": "Este plugin no lo han revisado los responsables del repositorio de plugins. Instálalo solo si confías en su autor.",
         "fr": "Ce plugin n'a pas été vérifié par les responsables du dépôt de plugins. Ne l'installez que si vous faites confiance à son auteur."
     },
+    "This plugin is marked as broken on the current Discord.": {
+        "tr": "Bu eklenti güncel Discord'da bozuk olarak işaretli.",
+        "ru": "Этот плагин отмечен как не работающий в текущей версии Discord.",
+        "es": "Este plugin está marcado como roto en el Discord actual.",
+        "fr": "Ce plugin est signalé comme cassé sur la version actuelle de Discord."
+    },
+    "This plugin is marked as having issues on the current Discord.": {
+        "tr": "Bu eklenti güncel Discord'da sorunlu olarak işaretli.",
+        "ru": "Этот плагин отмечен как работающий с проблемами в текущей версии Discord.",
+        "es": "Este plugin está marcado como con problemas en el Discord actual.",
+        "fr": "Ce plugin est signalé comme ayant des problèmes sur la version actuelle de Discord."
+    },
     "This scheduled message wasn't sent because Discord was closed:": {
         "tr": "Bu zamanlanmış mesaj Discord kapalı olduğu için gönderilmedi:",
         "ru": "Это запланированное сообщение не отправлено, потому что Discord был закрыт:",
@@ -8026,6 +8176,12 @@
         "ru": "Используйте любые эмодзи и стикеры без Nitro: недоступные отправляются ссылками.",
         "es": "Usa cualquier emoji y sticker sin Nitro: los que no puedes usar se envían como enlaces.",
         "fr": "Utilisez n'importe quel emoji ou autocollant sans Nitro : ceux que vous ne pouvez pas utiliser sont envoyés en lien."
+    },
+    "Use built-in": {
+        "tr": "Yerleşiği kullan",
+        "ru": "Включить встроенный",
+        "es": "Usar el integrado",
+        "fr": "Utiliser l'intégré"
     },
     "Use it in a DM.": {
         "tr": "Bunu bir DM'de kullan.",
@@ -8446,6 +8602,18 @@
         "ru": "Слова для поиска",
         "es": "Palabras que buscar",
         "fr": "Mots à chercher"
+    },
+    "Working": {
+        "tr": "Çalışanlar",
+        "ru": "Работают",
+        "es": "Funcionan",
+        "fr": "Fonctionnels"
+    },
+    "Works": {
+        "tr": "Çalışıyor",
+        "ru": "Работает",
+        "es": "Funciona",
+        "fr": "Fonctionne"
     },
     "Write a message in big letter emojis with /emojify": {
         "tr": "/emojify ile büyük harf emojileriyle mesaj yaz",
@@ -9166,6 +9334,12 @@
         "ru": "Не удалось запустить {name}, он отключён",
         "es": "{name} no pudo iniciarse y se ha desactivado",
         "fr": "{name} n'a pas pu démarrer et a été désactivé"
+    },
+    "{name} is on": {
+        "tr": "{name} açıldı",
+        "ru": "{name} включён",
+        "es": "{name} activado",
+        "fr": "{name} activé"
     },
     "{online} of your {friends} friends are online · you're in {servers} servers": {
         "tr": "{friends} arkadaşından {online} tanesi çevrimiçi · {servers} sunucudasın",

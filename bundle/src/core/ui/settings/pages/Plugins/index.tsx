@@ -1,8 +1,9 @@
 import { Strings, t } from "@core/i18n";
 import AddonPage from "@core/ui/components/AddonPage";
+import { notices } from "@core/ui/settings/notices";
 import PluginCard from "@core/ui/settings/pages/Plugins/components/PluginCard";
 import { VdPluginManager } from "@core/vendetta/plugins";
-import { createMMKVBackend, createStorage, useProxy, wrapSync } from "@core/vendetta/storage";
+import { useProxy } from "@core/vendetta/storage";
 import { isCorePlugin, isPluginInstalled, pluginSettings, registeredPlugins } from "@lib/addons/plugins";
 import { Author } from "@lib/addons/types";
 import { findAssetId } from "@lib/api/assets";
@@ -49,8 +50,6 @@ function Stat({ label, value, accent }: { label: string; value: number; accent?:
     </Card>;
 }
 
-const notices = wrapSync(createStorage<{ aliucordDismissed?: boolean; }>(createMMKVBackend("ENDCORD_NOTICES", {})));
-
 /** Aliucord plugins are built for Aliucord's older Discord; they can't run on this one */
 function AliucordNotice() {
     useProxy(notices);
@@ -70,6 +69,7 @@ function AliucordNotice() {
 /** Counters and filters, like Endcord PC's plugin manager */
 function FiltersHeader() {
     const f = useContext(FiltersContext);
+    const navigation = NavigationNative.useNavigation();
     const statuses: Array<[Status, string]> = [
         ["all", t("Show All")],
         ["enabled", t("Show Enabled")],
@@ -83,6 +83,18 @@ function FiltersHeader() {
             <Stat label={t("Total Plugins:")} value={f.total} />
             <Stat label={t("Enabled Plugins:")} value={f.enabled} accent />
         </View>
+        <Button
+            size="md"
+            variant="secondary"
+            text={t("Browse community plugins")}
+            icon={findAssetId("CompassIcon")}
+            // Loaded before the page opens: a page that suspends while it loads blanks the whole settings stack, which
+            // Discord's screen animations can't handle
+            onPress={() => import("../PluginBrowser").then(({ default: PluginBrowser }) => navigation.push("BUNNY_CUSTOM_PAGE", {
+                title: t("Community plugins"),
+                render: PluginBrowser,
+            }))}
+        />
         <ScrollView horizontal showsHorizontalScrollIndicator={false} keyboardShouldPersistTaps="handled" contentContainerStyle={{ gap: 6 }}>
             {statuses.map(([status, label]) => <Chip key={status} label={label} selected={f.status === status} onPress={() => f.setStatus(status)} />)}
         </ScrollView>
@@ -208,20 +220,6 @@ export default function Plugins() {
                 <FiltersHeader />
             </View>;
         }}
-        ListFooterComponent={() => __DEV__ && (
-            <View style={{ alignItems: "center", justifyContent: "center", paddingTop: 16, gap: 12 }}><Button
-                size="lg"
-                text={t("Browse plugins")}
-                icon={findAssetId("CompassIcon")}
-                onPress={() => {
-                    navigation.push("BUNNY_CUSTOM_PAGE", {
-                        title: t("Plugin browser"),
-                        render: React.lazy(() => import("../PluginBrowser")),
-                    });
-                }}
-            />
-            </View>
-        )}
         installAction={{
             label: Strings.INSTALL_PLUGIN,
             fetchFn: async (url: string) => {
