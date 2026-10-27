@@ -47,7 +47,7 @@ export default function Developer() {
 
     return (
         <ErrorBoundary>
-            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 38 }}>
+            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 38 }} keyboardShouldPersistTaps="handled">
                 <Stack style={{ paddingVertical: 24, paddingHorizontal: 12 }} spacing={24}>
                     <TextInput
                         label={Strings.DEBUGGER_URL}
