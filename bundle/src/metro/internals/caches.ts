@@ -22,7 +22,9 @@ function buildInitCache() {
         _modulesCount: Object.keys(window.modules).length,
         flagsIndex: {} as Record<string, number>,
         findIndex: {} as Record<string, ModulesMap | undefined>,
-        polyfillIndex: {} as Record<string, ModulesMap | undefined>
+        polyfillIndex: {} as Record<string, ModulesMap | undefined>,
+        /** The module that registers each asset found by name, so finding it again needn't go through the others */
+        assetIndex: {} as Record<string, number>
     } as const;
 
     // Force load all modules so useful modules are pre-cached. Add a minor
@@ -88,6 +90,19 @@ export function indexBlacklistFlag(id: number) {
 /** @internal */
 export function indexAssetModuleFlag(id: number) {
     _metroCache.flagsIndex[id] |= ModuleFlags.ASSET;
+}
+
+/** @internal */
+export function getIndexedAssetModule(name: string): number | undefined {
+    return _metroCache.assetIndex?.[name];
+}
+
+/** @internal */
+export function indexAssetName(name: string, moduleId: number) {
+    // Caches written before the index existed have none
+    (_metroCache as { assetIndex?: Record<string, number>; }).assetIndex ??= {};
+    _metroCache.assetIndex[name] = moduleId;
+    saveCache();
 }
 
 /** @internal */
