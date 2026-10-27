@@ -1,0 +1,8 @@
+PASS: bundle served
+PASS: download: installer finished
+PASS: download: Endcord installed
+PASS: download: Endcord loaded and ran its self-test
+PASS: stock Discord installed
+FAIL: installed: installer didn't finish
+FAIL: installed: Endcord not installed
+PASS: the bytecode bundle was loaded
