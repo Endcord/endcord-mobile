@@ -43,7 +43,8 @@ const UserPFP = definePlugin({
         });
         const custom = (user: any, animated?: boolean) => {
             const url = user?.id && avatars.get()?.[user.id];
-            if (!url) return;
+            // The list is someone else's: anything but an https link is left out rather than given to Discord
+            if (typeof url !== "string" || !url.startsWith("https://")) return;
             return !animated && /\.gif(\?|$)/.test(url) ? url.replace(/\.gif(\?|$)/, ".png$1") : url;
         };
         cleanup(
@@ -86,8 +87,10 @@ const USRBG = definePlugin({
                 if (!id || store.nitroFirst && url) return url;
                 const data = list.get();
                 const etag = data?.users?.[id];
-                if (!etag) return url;
-                return `${data.endpoint}/${data.bucket}/${data.prefix}${id}?${etag}`;
+                if (typeof etag !== "string" || !etag) return url;
+                // The list is someone else's: a banner only comes from an https address it names
+                if (typeof data?.endpoint !== "string" || !data.endpoint.startsWith("https://")) return url;
+                return `${data.endpoint}/${data.bucket ?? ""}/${data.prefix ?? ""}${id}?${encodeURIComponent(etag)}`;
             }),
         );
     },
