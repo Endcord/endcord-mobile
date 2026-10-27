@@ -30,6 +30,18 @@ export const MAX_BACKUP_SIZE = 8 * 1024 * 1024;
 /** The general settings a backup carries */
 const SETTINGS_KEYS = ["language", "enableDiscordDeveloperSettings"] as const;
 
+/**
+ * Plugin settings a backup never carries, and that restoring one leaves as they are: secrets (API keys, passwords),
+ * which a shared backup would give away, and the address ChatGPT sends its key to, which a backup someone else made
+ * could point elsewhere
+ */
+const PRIVATE_SETTING = /^(api_?key|password|token|secret|base_?url)$/i;
+
+const withoutPrivate = (store: JsonObject): JsonObject =>
+    Object.fromEntries(Object.entries(store).filter(([key]) => !PRIVATE_SETTING.test(key)));
+const onlyPrivate = (store: JsonObject | undefined): JsonObject =>
+    Object.fromEntries(Object.entries(store ?? {}).filter(([key]) => PRIVATE_SETTING.test(key)));
+
 /** Storages of what the user made with plugins; the logs and caches plugins keep for themselves aren't in backups */
 const DATA_STORES = [
     "ENDCORD_BOOKMARKS", "ENDCORD_CHANNEL_NOTES", "ENDCORD_CUSTOM_PROFILE", "ENDCORD_CUSTOM_SOUNDS",
@@ -107,7 +119,8 @@ export async function createBackup(): Promise<string> {
     const pluginStores: Record<string, JsonObject> = {};
     await Promise.all(manifest.filter(p => p.hasSettings).map(async p => {
         const store = await readStore(`ENDCORD_PLUGIN_${p.id}`);
-        if (store && Object.keys(store).length) pluginStores[p.id] = store;
+        const shared = store && withoutPrivate(store);
+        if (shared && Object.keys(shared).length) pluginStores[p.id] = shared;
     }));
 
     const data: Record<string, JsonObject> = {};
@@ -163,7 +176,8 @@ export function parseBackup(text: string): Backup {
     const plugins = Object.fromEntries(Object.entries(object(parsed.plugins))
         .filter(([id, on]) => corePluginInstances.has(id) && typeof on === "boolean")) as Record<string, boolean>;
     const pluginStores = Object.fromEntries(Object.entries(object(parsed.pluginSettings))
-        .filter(([id, store]) => manifest.some(p => p.id === id) && isPlainObject(store))) as Record<string, JsonObject>;
+        .filter(([id, store]) => manifest.some(p => p.id === id) && isPlainObject(store))
+        .map(([id, store]) => [id, withoutPrivate(store as JsonObject)])) as Record<string, JsonObject>;
     const data = Object.fromEntries(Object.entries(object(parsed.data))
         .filter(([name, store]) => DATA_STORES.includes(name) && isPlainObject(store))) as Record<string, JsonObject>;
 
@@ -202,7 +216,10 @@ export async function restoreBackup(backup: Backup): Promise<number> {
     }
 
     await Promise.all([
-        ...Object.entries(backup.pluginSettings).map(([id, store]) => writeStore(`ENDCORD_PLUGIN_${id}`, store)),
+        ...Object.entries(backup.pluginSettings).map(async ([id, store]) => {
+            const name = `ENDCORD_PLUGIN_${id}`;
+            await writeStore(name, { ...store, ...onlyPrivate(await readStore(name)) });
+        }),
         ...Object.entries(backup.data).map(([name, store]) => writeStore(name, store)),
     ]);
 
