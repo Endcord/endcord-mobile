@@ -67,11 +67,12 @@ const PALETTES: Array<[newPalette: RegExp, oldPalette: RegExp]> = [
 /**
  * Text and icons on filled, colored controls (buttons, badges, the send button, checked boxes). Old Discord drew them
  * in the raw color WHITE, which themes with pastel accents make dark so they stay readable; the current one draws
- * them in the same near-white as switch thumbs and text over pictures, which must stay light.
+ * them in the same near-white as switch thumbs and text over pictures, which must stay light. Discord 351 renamed
+ * BADGE_TEXT_BRAND to BADGE_PRIMARY_TEXT.
  */
 const ON_COLOR: string[] = [
     "CONTROL_PRIMARY_TEXT_DEFAULT", "CONTROL_CRITICAL_PRIMARY_TEXT_DEFAULT", "CONTROL_CONNECTED_TEXT_DEFAULT",
-    "BADGE_TEXT_BRAND", "CHAT_INPUT_SEND_BUTTON_ICON_ACTIVE_TINT", "CHECKBOX_ICON_ACTIVE",
+    "BADGE_TEXT_BRAND", "BADGE_PRIMARY_TEXT", "CHAT_INPUT_SEND_BUTTON_ICON_ACTIVE_TINT", "CHECKBOX_ICON_ACTIVE",
 ];
 
 /**
