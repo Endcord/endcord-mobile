@@ -159,7 +159,19 @@ The same push runs the Build workflow too, which builds everything a release doe
   `LOADER_KEYSTORE` (base64), `LOADER_KEYSTORE_PASSWORD`, `LOADER_KEY_ALIAS` and `LOADER_KEY_PASSWORD` secrets so the
   loader is release-signed; without them the debug-signed module is published.
 - Installer releases: run **Release Installer** by hand with a version number. It needs `INSTALLER_KEYSTORE`
-  (base64), `INSTALLER_KEYSTORE_PASSWORD`, `INSTALLER_KEY_ALIAS` and `INSTALLER_KEY_PASSWORD`.
+  (base64), `INSTALLER_KEYSTORE_PASSWORD`, `INSTALLER_KEY_ALIAS` and `INSTALLER_KEY_PASSWORD`; with them, every push
+  to `next` signs its installer the same way, so one can update the other.
+- Without the secrets, every build is signed with a new throwaway key, and Android won't install one over another.
+  Make each keystore once, keep it and its passwords somewhere safe (a lost key means everyone reinstalls), and add
+  it under the repository's *Settings → Secrets and variables → Actions*:
+
+  ```sh
+  keytool -genkeypair -keystore installer.jks -alias installer -keyalg RSA -keysize 4096 -validity 36500
+  base64 -w0 installer.jks    # the INSTALLER_KEYSTORE secret
+  ```
+
+  keytool asks for one password, which is both `INSTALLER_KEYSTORE_PASSWORD` and `INSTALLER_KEY_PASSWORD`; the alias
+  (`installer`) is `INSTALLER_KEY_ALIAS`. The same with `loader.jks` for the `LOADER_*` secrets.
 
 ## License and credits
 
