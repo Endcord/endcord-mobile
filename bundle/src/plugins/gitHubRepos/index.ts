@@ -9,7 +9,7 @@ import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 import { safeFetch } from "@lib/utils";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, displayName, openUrl } from "../hooks";
 import { accountsOf, failed, profileOf } from "../shared/people";
 import { choose } from "../ui/dialogs";
@@ -18,7 +18,6 @@ export default definePlugin({
     id: "endcord.github-repos",
     name: "GitHubRepos",
     description: tx("See the public GitHub repositories of a message's author from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "PaperIcon",
     tags: ["Friends"],
     start({ cleanup }) {

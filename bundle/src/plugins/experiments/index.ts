@@ -7,14 +7,13 @@
 import { tx } from "@core/i18n";
 import { holdDiscordDeveloper } from "@lib/api/settings";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 
 export default definePlugin({
     id: "endcord.experiments",
     name: "Experiments",
     description: tx("Enable Access to Experiments & other dev-only features in Discord!"),
-    authors: [ENDCORD_AUTHOR],
     icon: "BeakerIcon",
     tags: ["Utility"],
     start({ cleanup }) {

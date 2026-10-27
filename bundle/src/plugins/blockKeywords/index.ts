@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId } from "../common";
 import { onIncomingMessage } from "../hooks";
 
@@ -34,7 +34,6 @@ export default definePlugin({
     id: "endcord.block-keywords",
     name: "BlockKeywords",
     description: tx("Blocks messages containing specific user-defined keywords, as if the user sending them was blocked."),
-    authors: [ENDCORD_AUTHOR],
     icon: "DenyIcon",
     tags: ["Chat", "Privacy"],
     settings: {

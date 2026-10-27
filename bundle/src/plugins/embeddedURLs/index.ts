@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { onSend } from "../hooks";
 
 const EMBED_HOSTS: Array<[RegExp, string]> = [
@@ -19,7 +19,6 @@ export default definePlugin({
     id: "endcord.embedded-urls",
     name: "EmbeddedURLs",
     description: tx("Turns plain social links into embeddable URLs so posts and videos are fully viewable in Discord instead of forcing users to open the external site."),
-    authors: [ENDCORD_AUTHOR],
     icon: "LinkIcon",
     tags: ["Chat", "Media"],
     start({ cleanup }) {

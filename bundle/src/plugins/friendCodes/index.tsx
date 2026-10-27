@@ -10,7 +10,7 @@ import { findByProps } from "@metro";
 import { Button, Stack } from "@metro/common/components";
 import { useEffect, useState } from "react";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { copy } from "../hooks";
 import LogList from "../ui/LogList";
 
@@ -40,7 +40,6 @@ export default definePlugin({
     id: "endcord.friend-codes",
     name: "FriendCodes",
     description: tx("Create and manage friend invite links in the plugin's settings, to add friends easily"),
-    authors: [ENDCORD_AUTHOR],
     icon: "UserPlusIcon",
     tags: ["Friends"],
     SettingsComponent: FriendCodesPage,

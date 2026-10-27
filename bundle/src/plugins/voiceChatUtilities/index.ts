@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId } from "../common";
 import { api, botMessage, command, getChannel } from "../hooks";
 import { myVoiceChannel, permission, statesIn } from "../shared/calls";
@@ -19,7 +19,6 @@ export default definePlugin({
     id: "endcord.voice-chat-utilities",
     name: "VoiceChatUtilities",
     description: tx("Disconnect, move, mute or deafen everyone in your voice channel at once with /voiceall"),
-    authors: [ENDCORD_AUTHOR],
     icon: "VoiceNormalIcon",
     tags: ["Voice", "Servers"],
     settings: {

@@ -11,7 +11,7 @@ import { Stack, Text, TextInput } from "@metro/common/components";
 import { useState } from "react";
 import { View } from "react-native";
 
-import { definePlugin, ENDCORD_AUTHOR, onSettingChange } from "../api";
+import { definePlugin, onSettingChange } from "../api";
 
 const DEFAULT_COLOR = 0xffffff;
 
@@ -60,7 +60,6 @@ const plugin = definePlugin({
     id: "endcord.smooth-type",
     name: "SmoothType",
     description: tx("Fully customize the cursor caret — transition delay, easing, and color — for a smooth typing animation."),
-    authors: [ENDCORD_AUTHOR],
     popular: 5,
     icon: "PencilIcon",
     tags: ["Appearance", "Customisation"],

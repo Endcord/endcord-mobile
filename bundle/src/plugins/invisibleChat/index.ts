@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { open, seal } from "../crypto";
 import { addMessageAction, botMessage, command, onMessageRow, textNode } from "../hooks";
 import { decryptionCache, INVISIBLE_MARKER, revealPrompt } from "../shared/messages";
@@ -33,7 +33,6 @@ export default definePlugin({
     id: "endcord.invisible-chat",
     name: "InvisibleChat",
     description: tx("Hide a secret, password-protected message inside an ordinary one with /invisible"),
-    authors: [ENDCORD_AUTHOR],
     icon: "EyeSlashIcon",
     tags: ["Privacy", "Fun"],
     settings: {

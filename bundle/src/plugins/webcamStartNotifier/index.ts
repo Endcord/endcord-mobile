@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, subscribe } from "../common";
 import { displayName, getChannel, getUser, playSound } from "../hooks";
 import { myVoiceChannel } from "../shared/calls";
@@ -17,7 +17,6 @@ export default definePlugin({
     id: "endcord.webcam-start-notifier",
     name: "WebcamStartNotifier",
     description: tx("Tells you when someone in your voice channel turns their camera on or off"),
-    authors: [ENDCORD_AUTHOR],
     icon: "VideoIcon",
     tags: ["Voice", "Notifications"],
     settings: {

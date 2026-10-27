@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { command } from "../hooks";
 import { message, toBold } from "../shared/text";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.bold-text",
     name: "BoldText",
     description: tx("/bold turns your message into 𝐮𝐧𝐢𝐜𝐨𝐝𝐞 bold (works where markdown can't)."),
-    authors: [ENDCORD_AUTHOR],
     icon: "LettersIcon",
     tags: ["Chat", "Fun"],
     start({ cleanup }) {

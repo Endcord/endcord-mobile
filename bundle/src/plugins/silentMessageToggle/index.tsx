@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addChatButton } from "../common";
 import { onSend } from "../hooks";
 import { chatButtonSetting, ToggleButton } from "../shared/compose";
@@ -17,7 +17,6 @@ const SilentMessageToggle = definePlugin({
     id: "endcord.silent-message-toggle",
     name: "SilentMessageToggle",
     description: tx("Adds a button to the chat bar to toggle sending a silent message."),
-    authors: [ENDCORD_AUTHOR],
     icon: "BellSlashIcon",
     tags: ["Chat", "Notifications"],
     settings: {

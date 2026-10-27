@@ -8,14 +8,13 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR, onSettingChange } from "../api";
+import { definePlugin, onSettingChange } from "../api";
 import { addMessageAction, parseEmoji, react } from "../hooks";
 
 export default definePlugin({
     id: "endcord.custom-reaction-buttons",
     name: "CustomReactionButtons",
     description: tx("Add your own one-tap reactions to the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ReactionIcon",
     tags: ["Emotes", "Chat"],
     settings: {

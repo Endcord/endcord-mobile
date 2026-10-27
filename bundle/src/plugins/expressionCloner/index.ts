@@ -9,7 +9,7 @@ import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore } from "../common";
 import { addMessageAction, api, describeError, getGuild } from "../hooks";
 import { choose } from "../ui/dialogs";
@@ -29,7 +29,6 @@ export default definePlugin({
     id: "endcord.expression-cloner",
     name: "ExpressionCloner",
     description: tx("Clone custom emojis from a message to your own servers from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ReactionIcon",
     tags: ["Emotes", "Servers"],
     start({ cleanup }) {

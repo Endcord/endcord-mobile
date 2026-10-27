@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { awaitStorage, createMMKVBackend, createStorage, useProxy, wrapSync } from "@core/vendetta/storage";
 import { Stack } from "@metro/common/components";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore } from "../common";
 import { rewriteResult } from "../shared/navigation";
 import { choose, prompt } from "../ui/dialogs";
@@ -64,7 +64,6 @@ export default definePlugin({
     id: "endcord.fake-connections",
     name: "FakeConnections",
     description: tx("Add fake connections to your own profile, visible only to you."),
-    authors: [ENDCORD_AUTHOR],
     icon: "LinkIcon",
     tags: ["Customisation", "Fun"],
     SettingsComponent: ConnectionsPage,

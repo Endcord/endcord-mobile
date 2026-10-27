@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { subscribe } from "../common";
 import { currentChannelId, displayName, getUser, playSound } from "../hooks";
 import { ids } from "../shared/channels";
@@ -17,7 +17,6 @@ export default definePlugin({
     id: "endcord.anti-snitch",
     name: "AntiSnitch",
     description: tx("Alerts you with a sound and toast whenever selected users start typing in your current channel."),
-    authors: [ENDCORD_AUTHOR],
     icon: "KeyboardIcon",
     tags: ["Notifications", "Fun"],
     settings: {

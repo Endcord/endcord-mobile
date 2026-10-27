@@ -8,7 +8,7 @@ import { tx } from "@core/i18n";
 import { after } from "@lib/api/patcher";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { remoteJson } from "../remote";
 import { redrawProfiles } from "../shared/profiles";
 
@@ -16,7 +16,6 @@ export default definePlugin({
     id: "endcord.usrbg",
     name: "USRBG",
     description: tx("Displays user banners from USRBG, allowing anyone to get a banner without Nitro"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ImageIcon",
     tags: ["Customisation", "Appearance"],
     settings: {

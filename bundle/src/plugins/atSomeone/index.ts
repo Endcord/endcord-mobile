@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore } from "../common";
 import { getChannel, onSend } from "../hooks";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.at-someone",
     name: "AtSomeone",
     description: tx("Mention a random member of the channel"),
-    authors: [ENDCORD_AUTHOR],
     tags: ["Chat", "Fun"],
     start({ cleanup }) {
         cleanup(onSend("at-someone", (content, { channelId, editing }) => {

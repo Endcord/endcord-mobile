@@ -6,14 +6,13 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { api, botMessage, command } from "../hooks";
 
 export default definePlugin({
     id: "endcord.better-invites",
     name: "BetterInvites",
     description: tx("See where an invite leads, who made it and when it expires, before joining, with /inviteinfo"),
-    authors: [ENDCORD_AUTHOR],
     icon: "LinkIcon",
     tags: ["Servers", "Utility"],
     start({ cleanup }) {

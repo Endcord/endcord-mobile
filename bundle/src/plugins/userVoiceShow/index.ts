@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore } from "../common";
 import { addMessageAction, onMessageRow } from "../hooks";
 import { channelName } from "../shared/channels";
@@ -18,7 +18,6 @@ export default definePlugin({
     id: "endcord.user-voice-show",
     name: "UserVoiceShow",
     description: tx("Shows an indicator on messages from people in a voice channel, and lets you join them from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "VoiceNormalIcon",
     tags: ["Voice", "Chat"],
     start({ cleanup }) {

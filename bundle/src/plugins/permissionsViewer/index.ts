@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore, guildRoles } from "../common";
 import { addMessageAction, displayName, getGuild } from "../hooks";
 import { showText } from "../ui/dialogs";
@@ -32,7 +32,6 @@ export default definePlugin({
     id: "endcord.permissions-viewer",
     name: "PermissionsViewer",
     description: tx("See the roles and permissions of a message's author from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ShieldIcon",
     tags: ["Servers", "Utility"],
     start({ cleanup }) {

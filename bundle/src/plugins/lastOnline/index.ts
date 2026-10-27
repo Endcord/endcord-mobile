@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { awaitStorage, createMMKVBackend, createStorage, wrapSync } from "@core/vendetta/storage";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore, subscribe } from "../common";
 import { addMessageAction, botMessage, command } from "../hooks";
 
@@ -24,7 +24,6 @@ export default definePlugin({
     id: "endcord.last-online",
     name: "LastOnline",
     description: tx("Remembers when your friends were last online; see it in the message menu or with /lastonline"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ClockIcon",
     tags: ["Friends"],
     async start({ cleanup }) {

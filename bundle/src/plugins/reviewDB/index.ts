@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, displayName } from "../hooks";
 import { showText } from "../ui/dialogs";
 
@@ -16,7 +16,6 @@ export default definePlugin({
     id: "endcord.review-db",
     name: "ReviewDB",
     description: tx("Read the ReviewDB reviews of a message's author from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "StarIcon",
     tags: ["Friends", "Utility"],
     start({ cleanup }) {

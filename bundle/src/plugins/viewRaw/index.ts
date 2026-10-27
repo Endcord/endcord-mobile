@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, copy } from "../hooks";
 import { showText } from "../ui/dialogs";
 
@@ -27,7 +27,6 @@ export default definePlugin({
     id: "endcord.view-raw",
     name: "ViewRaw",
     description: tx("View and copy the raw content and data of any message"),
-    authors: [ENDCORD_AUTHOR],
     icon: "PaperIcon",
     tags: ["Utility"],
     start({ cleanup }) {

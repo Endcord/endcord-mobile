@@ -8,7 +8,7 @@ import { tx } from "@core/i18n";
 import { instead } from "@lib/api/patcher";
 import { findByName } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 
 const SPAM_FLAG = 1 << 20;
 
@@ -16,7 +16,6 @@ export default definePlugin({
     id: "endcord.i-love-spam",
     name: "iLoveSpam",
     description: tx("Do not hide messages from 'likely spammers'"),
-    authors: [ENDCORD_AUTHOR],
     tags: ["Chat"],
     start({ cleanup }) {
         const MessageRecord = findByName("MessageRecord");

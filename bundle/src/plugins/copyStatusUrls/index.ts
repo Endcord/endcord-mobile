@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { addMessageAction, copy } from "../hooks";
 import { choose } from "../ui/dialogs";
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.copy-status-urls",
     name: "CopyStatusUrls",
     description: tx("Copy the links in the status of a message's author from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "LinkIcon",
     tags: ["Utility"],
     start({ cleanup }) {

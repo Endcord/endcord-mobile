@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { safeFetch } from "@lib/utils";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { onMessageRow, redrawMessage } from "../hooks";
 
@@ -17,7 +17,6 @@ export default definePlugin({
     id: "endcord.pronoundb",
     name: "PronounDB",
     description: tx("Shows people's pronouns from PronounDB next to their messages"),
-    authors: [ENDCORD_AUTHOR],
     icon: "IdIcon",
     tags: ["Chat", "Friends"],
     settings: {

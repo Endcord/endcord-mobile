@@ -10,7 +10,7 @@ import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 import { useEffect, useState } from "react";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { api } from "../hooks";
 import { prompt } from "../ui/dialogs";
 import LogList from "../ui/LogList";
@@ -53,7 +53,6 @@ export default definePlugin({
     id: "endcord.better-sessions",
     name: "BetterSessions",
     description: tx("See your logged-in devices with exact times and your own names for them, and get told about new logins"),
-    authors: [ENDCORD_AUTHOR],
     icon: "MobilePhoneIcon",
     tags: ["Privacy", "Utility"],
     settings: {

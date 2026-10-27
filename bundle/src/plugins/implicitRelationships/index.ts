@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore } from "../common";
 import { botMessage, command } from "../hooks";
 
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.implicit-relationships",
     name: "ImplicitRelationships",
     description: tx("See the people Discord thinks you talk to most, even if they aren't your friends, with /implicit"),
-    authors: [ENDCORD_AUTHOR],
     icon: "FriendsIcon",
     tags: ["Friends"],
     start({ cleanup }) {

@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { externalAsset, LASTFM_APP, setActivity } from "../shared/presence";
 
@@ -18,7 +18,6 @@ export default definePlugin({
     id: "endcord.lastfm-rich-presence",
     name: "LastFMRichPresence",
     description: tx("Shows what you're listening to on Last.fm as your Rich Presence"),
-    authors: [ENDCORD_AUTHOR],
     icon: "MusicIcon",
     tags: ["Media", "Customisation"],
     settings: {

@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore, guildRoles } from "../common";
 import { botMessage, command, getGuild } from "../hooks";
 import { CDN, unix } from "../shared/lookup";
@@ -19,7 +19,6 @@ export default definePlugin({
     id: "endcord.server-info",
     name: "ServerInfo",
     description: tx("Allows you to view info about a server"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ServerIcon",
     tags: ["Servers", "Utility"],
     start({ cleanup }) {

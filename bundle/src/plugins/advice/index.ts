@@ -6,14 +6,13 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { json, only } from "../shared/utility";
 
 export default definePlugin({
     id: "endcord.advice",
     name: "Advice",
     description: tx("Send a random piece of advice with /advice"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ChatIcon",
     tags: ["Fun"],
     start: only({

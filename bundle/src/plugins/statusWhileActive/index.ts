@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { subscribe } from "../common";
 import { myVoiceChannel, STATUS_OPTIONS, statusHold } from "../shared/activity";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.status-while-active",
     name: "StatusWhileActive",
     description: tx("Automatically updates your online status when in a voice channel."),
-    authors: [ENDCORD_AUTHOR],
     icon: "VoiceNormalIcon",
     tags: ["Voice", "Notifications"],
     settings: {

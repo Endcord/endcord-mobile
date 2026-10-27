@@ -6,14 +6,13 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getChannel, onIncomingMessage } from "../hooks";
 
 export default definePlugin({
     id: "endcord.blur-nsfw",
     name: "BlurNSFW",
     description: tx("Hides attachments in age-restricted channels behind a spoiler until you tap them"),
-    authors: [ENDCORD_AUTHOR],
     icon: "EyeSlashIcon",
     tags: ["Media", "Privacy"],
     start({ cleanup }) {

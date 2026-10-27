@@ -8,14 +8,13 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, jumpTo, loadedMessages } from "../hooks";
 
 export default definePlugin({
     id: "endcord.find-reply",
     name: "FindReply",
     description: tx("Jumps to the earliest reply to a message in a channel (lets you follow past conversations more easily)."),
-    authors: [ENDCORD_AUTHOR],
     icon: "ArrowAngleLeftUpIcon",
     tags: ["Chat"],
     settings: {

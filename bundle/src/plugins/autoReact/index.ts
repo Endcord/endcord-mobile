@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, subscribe } from "../common";
 import { parseEmoji, react } from "../hooks";
 import { ids } from "../shared/notify";
@@ -26,7 +26,6 @@ export default definePlugin({
     id: "endcord.auto-react",
     name: "AutoReact",
     description: tx("Automatically react to messages containing specific keywords."),
-    authors: [ENDCORD_AUTHOR],
     icon: "ReactionIcon",
     tags: ["Chat", "Emotes", "Fun"],
     settings: {

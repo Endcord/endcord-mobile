@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { hex } from "../crypto";
 import { answer, only, randomBytes } from "../shared/utility";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.color-info",
     name: "ColorInfo",
     description: tx("See a color's RGB and HSL values, or get a random one, with /color"),
-    authors: [ENDCORD_AUTHOR],
     icon: "PaintPaletteIcon",
     tags: ["Utility"],
     start: only({

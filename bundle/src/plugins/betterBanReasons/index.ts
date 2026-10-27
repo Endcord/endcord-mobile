@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR, onSettingChange } from "../api";
+import { definePlugin, onSettingChange } from "../api";
 import { api, botMessage, command } from "../hooks";
 import { canHere } from "../shared/servers";
 
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.better-ban-reasons",
     name: "BetterBanReasons",
     description: tx("Ban with /ban and your own saved reasons to pick from"),
-    authors: [ENDCORD_AUTHOR],
     icon: "HammerIcon",
     tags: ["Servers"],
     settings: {

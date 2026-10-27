@@ -7,7 +7,7 @@
 import { tx } from "@core/i18n";
 import formatDate from "@lib/utils/formatDate";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { appendToTimestamp, onMessageRow } from "../hooks";
 import { cached, lines, timeOf } from "../shared/rows";
 
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.timezones",
     name: "Timezones",
     description: tx("Shows the local time of the users you choose next to their messages"),
-    authors: [ENDCORD_AUTHOR],
     icon: "GlobeEarthIcon",
     tags: ["Utility"],
     settings: {

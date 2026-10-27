@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore, subscribe } from "../common";
 import { addMessageAction, displayName } from "../hooks";
 import { join, myVoiceChannel, voiceActions } from "../shared/voice";
@@ -17,7 +17,6 @@ export default definePlugin({
     id: "endcord.follow-user",
     name: "FollowUser",
     description: tx("Follow someone from the message menu to always join the same voice channel as them"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ArrowAngleRightUpIcon",
     tags: ["Voice", "Friends"],
     settings: {

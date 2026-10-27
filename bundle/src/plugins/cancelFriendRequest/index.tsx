@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { failed, nameOf, OUTGOING, removeRelationship, since, useRelationships } from "../shared/people";
 import { choose } from "../ui/dialogs";
 import LogList from "../ui/LogList";
@@ -29,7 +29,6 @@ export default definePlugin({
     id: "endcord.cancel-friend-request",
     name: "CancelFriendRequest",
     description: tx("See the friend requests you sent and cancel them"),
-    authors: [ENDCORD_AUTHOR],
     icon: "UserPlusIcon",
     tags: ["Friends"],
     SettingsComponent: OutgoingPage,

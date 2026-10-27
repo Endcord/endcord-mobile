@@ -7,14 +7,13 @@
 import { tx } from "@core/i18n";
 import { instead } from "@lib/api/patcher";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { patchSoundManager } from "../shared/activity";
 
 export default definePlugin({
     id: "endcord.notification-volume",
     name: "NotificationVolume",
     description: tx("Save your ears and set a separate volume for notifications and in-app sounds"),
-    authors: [ENDCORD_AUTHOR],
     icon: "BellIcon",
     tags: ["Notifications"],
     settings: {

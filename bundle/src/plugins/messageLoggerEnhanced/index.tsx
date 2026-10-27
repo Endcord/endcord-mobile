@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { awaitStorage, createMMKVBackend, createStorage, useProxy, wrapSync } from "@core/vendetta/storage";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore, onAction } from "../common";
 import { botMessage, command, displayName, getChannel, jumpTo } from "../hooks";
 import { preview } from "../shared/messages";
@@ -46,7 +46,6 @@ export default definePlugin({
     id: "endcord.message-logger-enhanced",
     name: "MessageLoggerEnhanced",
     description: tx("Keeps deleted and edited messages after Discord restarts, with a list to browse them and /deleted"),
-    authors: [ENDCORD_AUTHOR],
     icon: "TrashIcon",
     tags: ["Chat", "Utility"],
     settings: {

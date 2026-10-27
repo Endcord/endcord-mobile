@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { awaitStorage, createMMKVBackend, createStorage, useProxy, wrapSync } from "@core/vendetta/storage";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { addMessageAction, botMessage, command, displayName } from "../hooks";
 import { nameOf } from "../shared/people";
@@ -31,7 +31,6 @@ export default definePlugin({
     id: "endcord.friend-tags",
     name: "FriendTags",
     description: tx("Give friends your own tags and list everyone with a tag with /friendtag"),
-    authors: [ENDCORD_AUTHOR],
     icon: "TagIcon",
     tags: ["Friends"],
     SettingsComponent: FriendTagsPage,

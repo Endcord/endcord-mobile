@@ -1,7 +1,7 @@
 # Eklentiler (Endcord PC → Endcord for Android)
 
-Endcord'un mobil eklentileri `bundle/src/plugins/` altında yaşar ve uygulamayla birlikte gelir: **302 eklenti**:
-Endcord PC'den gelen 260, Endcord'un mobil için kendi eklentileri 42 (çoğu bilgi ve eğlence komutları). Hepsi kapalı başlar; kullanıcı **Ayarlar → Endcord → Eklentiler** sayfasından açar. Popüler
+Endcord'un mobil eklentileri `bundle/src/plugins/` altında yaşar ve uygulamayla birlikte gelir: **303 eklenti**:
+Endcord PC'den gelen 261, Endcord'un mobil için kendi eklentileri 42 (çoğu bilgi ve eğlence komutları). Hepsi kapalı başlar; kullanıcı **Ayarlar → Endcord → Eklentiler** sayfasından açar. Popüler
 olanlar, Endcord PC'deki sırayla en üstte ve "POPÜLER" etiketiyle görünür; sayfanın üstünde toplam ve açık eklenti
 sayısı, durum ve etiket filtreleri var (Endcord PC'nin eklenti yöneticisi gibi).
 
@@ -63,13 +63,14 @@ Discord'da ya da web'de bir şey arayan komutlar; Translate mesaj menüsünden �
 | Translate | Mesajları mesaj menüsünden çevir, gönderdiklerini çevir ya da /translate kullan (Google Çeviri) |
 | WikiLookup | /wiki herhangi bir şey için kısa Wikipedia özeti getirir (sadece sana). |
 
-### Mesaj gönderirken (17)
+### Mesaj gönderirken (18)
 Mesajı gönderilmeden hemen önce değiştiren eklentiler (`onSend`). Sıraları sabittir: önce metin, sonra biçim, en son imza.
 
 | Eklenti | Ne yapıyor |
 | --- | --- |
 | AnonymiseFileNames | Yüklenen dosyaların adlarını gizler |
 | AtSomeone | Rastgele birinden bahseder |
+| ClearURLs | Gönderdiğin bağlantılardaki izleme parametrelerini siler |
 | AutoVaporwave | Gönderdiğin her mesajı otomatik olarak ｇｅｎｉｓ yazıya çevirir. |
 | BetterPlusReacts | Emojinin önündeki + sayısı, tepkinin ekleneceği mesajı belirler |
 | EmbeddedURLs | Sosyal medya bağlantılarını yerleştirilebilir adreslere çevirir; böylece gönderiler ve videolar dış siteyi açmaya gerek kalmadan Discord'da tam olarak görüntülenir. |
@@ -231,7 +232,7 @@ Notlar, atlamalar, yanıt bekleyenler, tablolar ve rozetler.
 | ShowBadgesInChat | Sohbette mesaj sahibinin rozetlerini adının yanında gösterir. |
 | UserVoiceShow | Ses kanalındaki kişilerin mesajlarında bir gösterge gösterir ve mesaj menüsünden onlara katılmanı sağlar |
 
-### Hesap ve uygulama (7)
+### Hesap ve uygulama (8)
 Sunucu etiketleri, odak modu, profil ön ayarları, açılış süreleri, kayıtlar.
 
 | Eklenti | Ne yapıyor |
@@ -240,6 +241,7 @@ Sunucu etiketleri, odak modu, profil ön ayarları, açılış süreleri, kayıt
 | Declutter | Profil efektlerini ve avatar süslemelerini kaldırarak Discord'u sadeleştirir |
 | DiscordDevBanner | Sürüm kimliğini gösteren Discord geliştirici şeridini açar |
 | EventLogs | Kayıtlar: silinen/düzenlenen mesajlar, ses, arkadaşlar, sunucular. |
+| NoTrack | Discord'un analiz olaylarını, ölçümlerini ve çökme raporlarını göndermez; varsayılan olarak açık |
 | FocusMode | Rahatsız Etmeyin için tek düğme: bir süreliğine ya da sen kapatana kadar; bittiğinde önceki durumuna döner |
 | ProfileSets | Farklı profil ön ayarlarını kaydedip yüklemeni sağlar. |
 | StartupTimings | Ayarlar menüsüne başlangıç süreleri ekler |
@@ -485,7 +487,6 @@ export default definePlugin({
     id: "endcord.ornek",
     name: "Ornek",                         // Endcord PC'deki adıyla aynı
     description: tx("What it does"),       // Endcord PC'deki İngilizce açıklama: çevirisi oradan bedava gelir
-    authors: [ENDCORD_AUTHOR],
     settings: { enabled: { type: "boolean", label: tx("Label"), default: true } },
     start({ store, cleanup }) {
         cleanup(

@@ -6,14 +6,13 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { insertText, onSend } from "../hooks";
 
 export default definePlugin({
     id: "endcord.gif-paste",
     name: "GifPaste",
     description: tx("Makes picking a gif in the gif picker insert a link into the chatbox instead of instantly sending it"),
-    authors: [ENDCORD_AUTHOR],
     icon: "GifIcon",
     tags: ["Chat", "Media"],
     start({ cleanup }) {

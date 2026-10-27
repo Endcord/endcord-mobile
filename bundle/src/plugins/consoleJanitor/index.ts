@@ -6,13 +6,12 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 
 export default definePlugin({
     id: "endcord.console-janitor",
     name: "ConsoleJanitor",
     description: tx("Turns off Discord's console logging, which saves work on slower phones"),
-    authors: [ENDCORD_AUTHOR],
     icon: "TrashIcon",
     tags: ["Utility"],
     settings: {

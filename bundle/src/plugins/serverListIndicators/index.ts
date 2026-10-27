@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { botMessage, command } from "../hooks";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.server-list-indicators",
     name: "ServerListIndicators",
     description: tx("See how many of your friends are online and how many servers you're in with /indicators"),
-    authors: [ENDCORD_AUTHOR],
     icon: "FriendsIcon",
     tags: ["Friends", "Servers"],
     start({ cleanup }) {

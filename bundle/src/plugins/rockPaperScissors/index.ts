@@ -6,14 +6,13 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { only, randomBytes } from "../shared/utility";
 
 export default definePlugin({
     id: "endcord.rock-paper-scissors",
     name: "RockPaperScissors",
     description: tx("Play rock, paper, scissors with /rps and send the result"),
-    authors: [ENDCORD_AUTHOR],
     icon: "GameControllerIcon",
     tags: ["Fun"],
     start: only({

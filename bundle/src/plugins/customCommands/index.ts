@@ -6,14 +6,13 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR, onSettingChange } from "../api";
+import { definePlugin, onSettingChange } from "../api";
 import { command } from "../hooks";
 
 export default definePlugin({
     id: "endcord.custom-commands",
     name: "CustomCommands",
     description: tx("Allows you to create custom slash commands / tags"),
-    authors: [ENDCORD_AUTHOR],
     icon: "SlashBoxIcon",
     tags: ["Chat", "Utility"],
     settings: {

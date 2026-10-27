@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, api } from "../hooks";
 import { failed } from "../shared/people";
 import { showText } from "../ui/dialogs";
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.who-reacted",
     name: "WhoReacted",
     description: tx("See who reacted to a message with each emoji, from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ReactionIcon",
     tags: ["Chat"],
     start({ cleanup }) {

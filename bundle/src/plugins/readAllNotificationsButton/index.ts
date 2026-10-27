@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { botMessage, command } from "../hooks";
 import { readAll } from "../shared/notify";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.read-all-notifications",
     name: "ReadAllNotificationsButton",
     description: tx("Mark every server as read at once with /readall"),
-    authors: [ENDCORD_AUTHOR],
     icon: "CheckmarkLargeIcon",
     tags: ["Notifications", "Servers"],
     start({ cleanup }) {

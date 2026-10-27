@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, displayName, openUrl } from "../hooks";
 import { avatarUrl } from "../shared/lookup";
 import { profileOf } from "../shared/people";
@@ -16,7 +16,6 @@ export default definePlugin({
     id: "endcord.profile-media",
     name: "ProfileMedia",
     description: tx("Open a message author's avatar and banner in full resolution from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ImageIcon",
     tags: ["Media", "Friends"],
     start({ cleanup }) {

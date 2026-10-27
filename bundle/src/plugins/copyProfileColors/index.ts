@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { addMessageAction, copy } from "../hooks";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.copy-profile-colors",
     name: "CopyProfileColors",
     description: tx("Copy the profile theme colors of a message's author from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "PaintPaletteIcon",
     tags: ["Utility", "Customisation"],
     start({ cleanup }) {

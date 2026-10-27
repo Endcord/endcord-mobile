@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { api } from "../hooks";
 import { failed, INCOMING, nameOf, removeRelationship, since, useRelationships } from "../shared/people";
 import { choose } from "../ui/dialogs";
@@ -35,7 +35,6 @@ export default definePlugin({
     id: "endcord.sort-friend-requests",
     name: "SortFriendRequests",
     description: tx("Your incoming friend requests, newest first, to accept or ignore in the plugin's settings"),
-    authors: [ENDCORD_AUTHOR],
     icon: "UserPlusIcon",
     tags: ["Friends"],
     SettingsComponent: IncomingPage,

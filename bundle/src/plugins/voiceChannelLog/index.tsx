@@ -9,7 +9,7 @@ import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 import { useEffect, useState } from "react";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore, onAction } from "../common";
 import { displayName, getChannel, getUser } from "../hooks";
 import LogList from "../ui/LogList";
@@ -46,7 +46,6 @@ export default definePlugin({
     id: "endcord.voice-channel-log",
     name: "VoiceChannelLog",
     description: tx("Logs voice channel activity: joins, leaves, moves, server mutes, cameras and screen shares"),
-    authors: [ENDCORD_AUTHOR],
     icon: "VoiceNormalIcon",
     tags: ["Voice"],
     settings: {

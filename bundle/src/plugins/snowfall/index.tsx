@@ -9,7 +9,7 @@ import { addOverlay } from "@core/overlay";
 import { useEffect, useRef, useState } from "react";
 import { Animated, Dimensions, Easing, View } from "react-native";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 
 function Flake({ size, left, duration, delay, drift }: { size: number; left: number; duration: number; delay: number; drift: number; }) {
     const progress = useRef(new Animated.Value(0)).current;
@@ -59,7 +59,6 @@ const Snowfall = definePlugin({
     id: "endcord.snowfall",
     name: "Snowfall",
     description: tx("Let it snow on Discord"),
-    authors: [ENDCORD_AUTHOR],
     icon: "EmojiColdFaceIcon",
     tags: ["Fun", "Appearance"],
     settings: {

@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { botMessage, command } from "../hooks";
 import { calculate, message } from "../shared/text";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.calculator",
     name: "Calculator",
     description: tx("/calc does quick maths right in the chat box."),
-    authors: [ENDCORD_AUTHOR],
     tags: ["Utility"],
     start({ cleanup }) {
         cleanup(command({

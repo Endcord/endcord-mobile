@@ -12,7 +12,7 @@ import { instead } from "@lib/api/patcher";
 import { findByPropsLazy } from "@metro";
 import { patchWhenLoaded } from "@metro/lazy";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { onAction } from "../common";
 
 // Patched when Discord loads them, so this plugin loads nothing early
@@ -44,7 +44,6 @@ export default definePlugin({
     id: "endcord.no-track",
     name: "NoTrack",
     description: tx("Stops Discord from collecting analytics, metrics and crash reports about how you use the app"),
-    authors: [ENDCORD_AUTHOR],
     icon: "AnalyticsIcon",
     tags: ["Privacy"],
     enabledByDefault: true,

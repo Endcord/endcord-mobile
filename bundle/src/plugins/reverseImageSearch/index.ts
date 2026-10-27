@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, openUrl } from "../hooks";
 import { mediaOf, pickOne } from "../shared/actions";
 import { choose } from "../ui/dialogs";
@@ -25,7 +25,6 @@ export default definePlugin({
     id: "endcord.reverse-image-search",
     name: "ReverseImageSearch",
     description: tx("Search for a message's image on Google Lens, Yandex, SauceNAO and more from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "MagnifyingGlassIcon",
     tags: ["Media", "Utility"],
     start({ cleanup }) {

@@ -11,7 +11,7 @@ import type { PluginInstanceInternal } from "@lib/addons/plugins/types";
 import compareNames from "@lib/utils/compareNames";
 import { createElement } from "react";
 
-import { ENDCORD_AUTHOR, EndcordPlugin, isEndcordPluginRunning, startEndcordPlugin, stopEndcordPlugin } from "./api";
+import { EndcordPlugin, isEndcordPluginRunning, startEndcordPlugin, stopEndcordPlugin } from "./api";
 import { loaders, manifest, PluginInfo } from "./manifest";
 
 const loaded = new Map<string, EndcordPlugin<any>>();
@@ -63,7 +63,6 @@ export function getEndcordCorePlugins(): Record<string, { default: PluginInstanc
                     get description() {
                         return descriptionOf(info.id);
                     },
-                    authors: [ENDCORD_AUTHOR],
                 },
                 extras: {
                     endcord: true,

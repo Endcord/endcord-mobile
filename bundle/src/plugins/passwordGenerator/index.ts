@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { copy } from "../hooks";
 import { answer, only, randomBytes } from "../shared/utility";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.password-generator",
     name: "PasswordGenerator",
     description: tx("Make a strong random password with /passwordgen; only you see it, and it is copied"),
-    authors: [ENDCORD_AUTHOR],
     icon: "LockIcon",
     tags: ["Utility", "Privacy"],
     start: only({

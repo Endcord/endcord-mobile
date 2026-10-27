@@ -6,14 +6,13 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { answer, enc, json, number, only } from "../shared/utility";
 
 export default definePlugin({
     id: "endcord.crypto-prices",
     name: "CryptoPrices",
     description: tx("See a cryptocurrency's price and its change today with /crypto"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ShopIcon",
     tags: ["Utility"],
     start: only({

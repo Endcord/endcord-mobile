@@ -9,7 +9,7 @@ import { findAssetId } from "@lib/api/assets";
 import { before } from "@lib/api/patcher";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, subscribe } from "../common";
 import { getChannel } from "../hooks";
 import { myVoiceChannel, voiceActions } from "../shared/calls";
@@ -18,7 +18,6 @@ export default definePlugin({
     id: "endcord.anti-move-deco",
     name: "AntiMoveDeco",
     description: tx("Puts you back in your voice channel when someone moves or disconnects you"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ShieldIcon",
     tags: ["Voice"],
     settings: {

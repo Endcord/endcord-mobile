@@ -8,13 +8,12 @@ import { tx } from "@core/i18n";
 import { before } from "@lib/api/patcher";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 
 export default definePlugin({
     id: "endcord.anonymise-file-names",
     name: "AnonymiseFileNames",
     description: tx("Anonymise uploaded file names"),
-    authors: [ENDCORD_AUTHOR],
     icon: "AttachmentIcon",
     tags: ["Privacy", "Media"],
     settings: {

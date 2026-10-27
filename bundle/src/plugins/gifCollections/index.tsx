@@ -9,7 +9,7 @@ import { awaitStorage, createMMKVBackend, createStorage, useProxy, wrapSync } fr
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, botMessage, command, currentChannelId, send } from "../hooks";
 import { extension } from "../shared/media";
 import { choose, prompt } from "../ui/dialogs";
@@ -63,7 +63,6 @@ export default definePlugin({
     id: "endcord.gif-collections",
     name: "GifCollections",
     description: tx("Allows you to create collections of gifs."),
-    authors: [ENDCORD_AUTHOR],
     icon: "GifIcon",
     tags: ["Media", "Fun"],
     SettingsComponent: CollectionsPage,

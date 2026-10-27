@@ -10,7 +10,7 @@ import { getCurrentTheme, selectTheme, themes } from "@lib/addons/themes";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { command } from "../hooks";
 import { BUTTON_OPTIONS, chatButton, failed } from "../shared/navigation";
 import { choose } from "../ui/dialogs";
@@ -31,7 +31,6 @@ export default definePlugin({
     id: "endcord.quick-theme-switcher",
     name: "QuickThemeSwitcher",
     description: tx("Switch between your installed themes with /theme or a button beside the message box"),
-    authors: [ENDCORD_AUTHOR],
     icon: "PaintPaletteIcon",
     tags: ["Appearance"],
     settings: {

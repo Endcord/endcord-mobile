@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { api, displayName, onMessageRow, parseMessageLink, redrawMessage, textNode } from "../hooks";
 import { preview } from "../shared/messages";
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.message-link-embeds",
     name: "MessageLinkEmbeds",
     description: tx("Adds a preview to messages that link another message"),
-    authors: [ENDCORD_AUTHOR],
     icon: "LinkIcon",
     tags: ["Chat"],
     start({ cleanup }) {

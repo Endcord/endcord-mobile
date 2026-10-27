@@ -9,7 +9,7 @@ import { awaitStorage, createMMKVBackend, createStorage, useProxy, wrapSync } fr
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, subscribe } from "../common";
 import { currentChannelId, displayName, jumpTo } from "../hooks";
 import { placeOf, preview } from "../shared/notify";
@@ -45,7 +45,6 @@ export default definePlugin({
     id: "endcord.keyword-notify",
     name: "KeywordNotify",
     description: tx("Sends a notification if a given message matches certain keywords or regexes"),
-    authors: [ENDCORD_AUTHOR],
     icon: "BellIcon",
     tags: ["Notifications"],
     settings: {

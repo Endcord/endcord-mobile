@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, openUrl } from "../hooks";
 import { extension, pick } from "../shared/media";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.pdf-viewer",
     name: "PdfViewer",
     description: tx("Preview PDF attachments without downloading them first, from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "FileIcon",
     tags: ["Media", "Utility"],
     start({ cleanup }) {

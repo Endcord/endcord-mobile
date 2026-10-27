@@ -6,14 +6,13 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { loadedMessages, onSend, parseEmoji, react } from "../hooks";
 
 export default definePlugin({
     id: "endcord.better-plus-reacts",
     name: "BetterPlusReacts",
     description: tx("React to an earlier message by typing +:emoji:, with one + per message back"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ReactionIcon",
     tags: ["Chat", "Emotes"],
     start({ cleanup }) {

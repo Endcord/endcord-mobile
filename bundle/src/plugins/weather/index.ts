@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { command } from "../hooks";
 import { answer, enc, json } from "../shared/utility";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.weather",
     name: "Weather",
     description: tx("See the weather anywhere with /weather"),
-    authors: [ENDCORD_AUTHOR],
     icon: "CloudIcon",
     tags: ["Utility"],
     settings: {

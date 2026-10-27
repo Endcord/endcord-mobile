@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { command } from "../hooks";
 import { mapChars, message } from "../shared/text";
 
@@ -16,7 +16,6 @@ export default definePlugin({
     id: "endcord.leet-text",
     name: "LeetText",
     description: tx("/leet rewrites your message in 1337 5p34k."),
-    authors: [ENDCORD_AUTHOR],
     tags: ["Chat", "Fun"],
     start({ cleanup }) {
         cleanup(command({

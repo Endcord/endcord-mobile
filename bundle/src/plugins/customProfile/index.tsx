@@ -14,7 +14,7 @@ import { findByProps } from "@metro";
 import { NavigationNative } from "@metro/common";
 import { Button } from "@metro/common/components";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addChatButton, addToolboxAction, getChatInputActionButton, getStore, moduleAt, subscribe } from "../common";
 import { generatedIcon, onMessageRow, redrawChannel, RowOrder, toastError } from "../hooks";
 import { extendProfileBadges, isPluginBadge, linkedBadge } from "../profileBadges";
@@ -223,7 +223,6 @@ const plugin = definePlugin({
     id: "endcord.custom-profile",
     name: "CustomProfile",
     description: tx("Visually customize your Discord profile (username, PFP, banner, badges, bio...) — persistent, only visible to you."),
-    authors: [ENDCORD_AUTHOR],
     popular: 1,
     icon: "UserCircleIcon",
     tags: ["Appearance", "Customisation"],

@@ -9,7 +9,7 @@ import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { addMessageAction, api } from "../hooks";
 import { isMine } from "../shared/actions";
@@ -20,7 +20,6 @@ export default definePlugin({
     id: "endcord.unsuppress-embeds",
     name: "UnsuppressEmbeds",
     description: tx("Allows you to unsuppress embeds in messages"),
-    authors: [ENDCORD_AUTHOR],
     icon: "EmbedIcon",
     tags: ["Chat", "Media"],
     start({ cleanup }) {

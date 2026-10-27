@@ -6,14 +6,13 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { answer, clip, enc, json, number, only } from "../shared/utility";
 
 export default definePlugin({
     id: "endcord.urban-dictionary",
     name: "UrbanDictionary",
     description: tx("Look up slang on Urban Dictionary with /urban"),
-    authors: [ENDCORD_AUTHOR],
     icon: "BookCheckIcon",
     tags: ["Utility", "Fun"],
     start: only({

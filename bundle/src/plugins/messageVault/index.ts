@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { awaitStorage, createMMKVBackend, createStorage, wrapSync } from "@core/vendetta/storage";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { subscribe } from "../common";
 import { botMessage, command, getChannel, messageLink } from "../hooks";
 import { preview } from "../shared/messages";
@@ -27,7 +27,6 @@ export default definePlugin({
     id: "endcord.message-vault",
     name: "MessageVault",
     description: tx("Search messages you have read by keyword and person with /vault, even after they scroll away. Indexed on your device only."),
-    authors: [ENDCORD_AUTHOR],
     icon: "MagnifyingGlassIcon",
     tags: ["Utility", "Chat"],
     settings: {

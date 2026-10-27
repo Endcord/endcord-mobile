@@ -9,7 +9,7 @@ import { addOverlay } from "@core/overlay";
 import { useEffect, useRef, useState } from "react";
 import { Animated, Image } from "react-native";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { subscribe } from "../common";
 import { playSound } from "../hooks";
 
@@ -36,7 +36,6 @@ const Jumpscare = definePlugin({
     id: "endcord.jumpscare",
     name: "Jumpscare",
     description: tx("Adds a configurable chance of jumpscaring you whenever you open a channel. Inspired by Geometry Dash Mega Hack"),
-    authors: [ENDCORD_AUTHOR],
     tags: ["Fun"],
     settings: {
         chance: { type: "number", label: tx("Chance (1 in X)"), description: tx("The chance of a jumpscare happening (1 in X so: 100 = 1/100 or 1%, 50 = 1/50 or 2%, etc.)"), default: 100, min: 1, max: 100000 },

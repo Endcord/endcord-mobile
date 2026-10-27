@@ -8,14 +8,13 @@ import { tx } from "@core/i18n";
 import { before } from "@lib/api/patcher";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { onAction } from "../common";
 
 export default definePlugin({
     id: "endcord.declutter",
     name: "Declutter",
     description: tx("Cleans up Discord by removing profile effects and avatar decorations"),
-    authors: [ENDCORD_AUTHOR],
     icon: "TrashIcon",
     tags: ["Appearance"],
     settings: {

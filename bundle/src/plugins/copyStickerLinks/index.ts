@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, copy, openUrl } from "../hooks";
 import { pickOne } from "../shared/actions";
 
@@ -18,7 +18,6 @@ export default definePlugin({
     id: "endcord.copy-sticker-links",
     name: "CopyStickerLinks",
     description: tx("Adds the ability to copy & open Sticker links"),
-    authors: [ENDCORD_AUTHOR],
     icon: "StickerIcon",
     tags: ["Emotes", "Utility"],
     start({ cleanup }) {

@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { botMessage, command } from "../hooks";
 import { join, myVoiceChannel } from "../shared/voice";
@@ -16,7 +16,6 @@ export default definePlugin({
     id: "endcord.random-voice",
     name: "RandomVoice",
     description: tx("Join a random voice channel with /randomvoice"),
-    authors: [ENDCORD_AUTHOR],
     icon: "VoiceNormalIcon",
     tags: ["Voice", "Fun"],
     settings: {

@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId } from "../common";
 import { api, botMessage, command, deleteMessage } from "../hooks";
 import { sleep } from "../shared/tools";
@@ -31,7 +31,6 @@ export default definePlugin({
     id: "endcord.clear-my-messages",
     name: "ClearMyMessages",
     description: tx("Delete your recent messages in a channel with /clearmessages"),
-    authors: [ENDCORD_AUTHOR],
     icon: "TrashIcon",
     tags: ["Privacy", "Chat"],
     start({ cleanup }) {

@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { Stack, TextInput } from "@metro/common/components";
 import { useState } from "react";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { copy } from "../hooks";
 import { BLOCKED, failed, nameOf, removeRelationship, useRelationships } from "../shared/people";
 import { choose } from "../ui/dialogs";
@@ -39,7 +39,6 @@ export default definePlugin({
     id: "endcord.better-blocked-users",
     name: "BetterBlockedUsers",
     description: tx("A searchable list of the people you blocked, to unblock them in one tap"),
-    authors: [ENDCORD_AUTHOR],
     icon: "DenyIcon",
     tags: ["Friends", "Privacy"],
     SettingsComponent: BlockedPage,

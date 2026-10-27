@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { botMessage, command } from "../hooks";
 import { guildChannels } from "../shared/navigation";
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.voice-count",
     name: "VoiceCount",
     description: tx("See how many people are in each voice channel of a server with /voicecount"),
-    authors: [ENDCORD_AUTHOR],
     icon: "VoiceNormalIcon",
     tags: ["Voice", "Servers"],
     start({ cleanup }) {

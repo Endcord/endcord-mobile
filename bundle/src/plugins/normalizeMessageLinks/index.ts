@@ -6,14 +6,13 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { onSend } from "../hooks";
 
 export default definePlugin({
     id: "endcord.normalize-message-links",
     name: "NormalizeMessageLinks",
     description: tx("Strip canary/ptb from message links"),
-    authors: [ENDCORD_AUTHOR],
     icon: "LinkIcon",
     tags: ["Chat", "Utility"],
     start({ cleanup }) {

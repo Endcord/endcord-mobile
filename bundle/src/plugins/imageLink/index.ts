@@ -6,14 +6,13 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { onMessageRow, RowOrder, textNode } from "../hooks";
 
 export default definePlugin({
     id: "endcord.image-link",
     name: "ImageLink",
     description: tx("Never hide image links in messages, even if it's the only content"),
-    authors: [ENDCORD_AUTHOR],
     icon: "LinkIcon",
     tags: ["Chat", "Media"],
     start({ cleanup }) {

@@ -8,7 +8,7 @@ import { tx } from "@core/i18n";
 import { after } from "@lib/api/patcher";
 import { findByName } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore, subscribe } from "../common";
 
 const MESSAGE_ROW = 1;
@@ -19,7 +19,6 @@ const plugin = definePlugin({
     id: "endcord.platform-indicators",
     name: "PlatformIndicators",
     description: tx("Shows which devices people are online on (desktop, web or mobile) next to their messages."),
-    authors: [ENDCORD_AUTHOR],
     popular: 9,
     icon: "MobilePhoneIcon",
     tags: ["Appearance"],

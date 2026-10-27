@@ -6,14 +6,13 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { answer, clip, enc, json, only } from "../shared/utility";
 
 export default definePlugin({
     id: "endcord.recipe-finder",
     name: "RecipeFinder",
     description: tx("Find a recipe for a dish with /recipe"),
-    authors: [ENDCORD_AUTHOR],
     icon: "BookCheckIcon",
     tags: ["Utility", "Fun"],
     start: only({

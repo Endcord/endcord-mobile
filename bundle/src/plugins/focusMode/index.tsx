@@ -9,7 +9,7 @@ import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addChatButton, currentUserId, getChatInputActionButton, getStore } from "../common";
 import { command, generatedIcon } from "../hooks";
 import { choose } from "../ui/dialogs";
@@ -20,7 +20,6 @@ export default definePlugin({
     id: "endcord.focus-mode",
     name: "FocusMode",
     description: tx("One switch for Do Not Disturb, for a while or until you turn it off, and back to your previous status when it ends"),
-    authors: [ENDCORD_AUTHOR],
     icon: "BellZIcon",
     tags: ["Notifications", "Utility"],
     settings: {

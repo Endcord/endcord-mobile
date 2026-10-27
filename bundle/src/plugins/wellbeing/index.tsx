@@ -11,7 +11,7 @@ import { showToast } from "@lib/ui/toasts";
 import { Stack, TableRow, TableRowGroup } from "@metro/common/components";
 import { AppState } from "react-native";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, subscribe } from "../common";
 import { localDay } from "../hooks";
 
@@ -60,7 +60,6 @@ export default definePlugin({
     id: "endcord.wellbeing",
     name: "Wellbeing",
     description: tx("A gentle, private dashboard of how you use Discord: screen time, messages and break reminders. Everything stays on your phone."),
-    authors: [ENDCORD_AUTHOR],
     icon: "HeartIcon",
     tags: ["Utility"],
     settings: {

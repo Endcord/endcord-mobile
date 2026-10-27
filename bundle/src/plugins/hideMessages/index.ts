@@ -6,14 +6,13 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, hideLocally, onIncomingMessage } from "../hooks";
 
 export default definePlugin({
     id: "endcord.hide-messages",
     name: "HideMessages",
     description: tx("Hide messages from the message menu until you restart Discord"),
-    authors: [ENDCORD_AUTHOR],
     icon: "EyeSlashIcon",
     tags: ["Chat", "Privacy"],
     start({ cleanup }) {

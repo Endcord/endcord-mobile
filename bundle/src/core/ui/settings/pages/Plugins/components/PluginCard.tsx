@@ -57,11 +57,14 @@ function Badge({ text, color }: { text: string; color: string; }) {
     </View>;
 }
 
+/** The NEW and POPULAR badges, and the authors of plugins that have them (Endcord's own don't list any) */
 function Authors() {
     const { plugin, result } = useCardContext();
     const styles = usePluginCardStyles();
 
-    if (!plugin.authors) return null;
+    const authors = plugin.authors ?? [];
+    const badges = plugin.getBadges();
+    if (!authors.length && !badges.length && !plugin.isNew && plugin.popular == null) return null;
 
     // could be empty if the author(s) are irrelevant with the search!
     const highlightedNode = result[2].highlight((m, i) =>
@@ -70,18 +73,17 @@ function Authors() {
         </Text>
     );
 
-    const badges = plugin.getBadges();
     // The names may be highlighted search matches, so they go between the two halves of the sentence
     const [byBefore, byAfter = ""] = t("by {authors}").split("{authors}");
-    const authorText = highlightedNode.length > 0 ? highlightedNode : plugin.authors.map(a => a.name).join(", ");
+    const authorText = highlightedNode.length > 0 ? highlightedNode : authors.map(a => a.name).join(", ");
 
     return (
         <View style={{ flexDirection: "row", flexWrap: "wrap", flexShrink: 1, gap: 4, alignItems: "center" }}>
             {plugin.isNew && <Badge text={t("NEW")} color="#ED4245" />}
             {plugin.popular != null && <Badge text={t("POPULAR")} color="#5865F2" />}
-            <Text variant="text-sm/semibold" color="text-muted">
+            {authors.length > 0 && <Text variant="text-sm/semibold" color="text-muted">
                 {byBefore}{authorText}{byAfter}
-            </Text>
+            </Text>}
             {badges.length > 0 && <View style={styles.badgesContainer}>
                 {badges.map((b, i) => <Image
                     key={i}

@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR, onSettingChange } from "../api";
+import { definePlugin, onSettingChange } from "../api";
 import { api } from "../hooks";
 
 const ids = (text: string) => text.split(/[\s,]+/).filter(Boolean);
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.clan-switcher",
     name: "ClanSwitcher",
     description: tx("Automatically switches your Discord server tag"),
-    authors: [ENDCORD_AUTHOR],
     icon: "TagIcon",
     tags: ["Customisation", "Fun"],
     settings: {

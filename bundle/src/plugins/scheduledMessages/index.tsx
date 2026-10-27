@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { botMessage, command, send } from "../hooks";
 import { createScheduler, parseDuration, type ScheduledItem } from "../scheduler";
 import { preview, when } from "../shared/schedule";
@@ -55,7 +55,6 @@ const ScheduledMessages = definePlugin({
     id: "endcord.scheduled-messages",
     name: "ScheduledMessages",
     description: tx("Schedule messages to be sent at a specific time or after a delay."),
-    authors: [ENDCORD_AUTHOR],
     icon: "ClockIcon",
     tags: ["Chat", "Utility"],
     settings: {

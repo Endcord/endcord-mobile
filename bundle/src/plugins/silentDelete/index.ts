@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, deleteMessage, edit } from "../hooks";
 import { isMine } from "../shared/actions";
 
@@ -16,7 +16,6 @@ export default definePlugin({
     id: "endcord.silent-delete",
     name: "SilentDelete",
     description: tx("\"Silently\" deletes a message. Bypass message loggers by replacing the message with a placeholder."),
-    authors: [ENDCORD_AUTHOR],
     icon: "TrashIcon",
     tags: ["Privacy", "Chat"],
     settings: {

@@ -7,7 +7,7 @@
 import { tx } from "@core/i18n";
 import { AppState, Vibration } from "react-native";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore, subscribe } from "../common";
 
 const PATTERNS: Record<string, number[]> = { short: [0, 60], double: [0, 70, 90, 70], long: [0, 350] };
@@ -16,7 +16,6 @@ export default definePlugin({
     id: "endcord.vibrate-on-ping",
     name: "VibrateOnPing",
     description: tx("Vibrates your phone when someone mentions you or DMs you while Discord is open"),
-    authors: [ENDCORD_AUTHOR],
     icon: "BellIcon",
     tags: ["Notifications"],
     settings: {

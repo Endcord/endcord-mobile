@@ -8,14 +8,13 @@ import { tx } from "@core/i18n";
 import { before } from "@lib/api/patcher";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { splitList } from "../shared/compose";
 
 export default definePlugin({
     id: "endcord.no-reply-mention",
     name: "NoReplyMention",
     description: tx("Disables reply pings by default"),
-    authors: [ENDCORD_AUTHOR],
     icon: "AtIcon",
     tags: ["Chat"],
     settings: {

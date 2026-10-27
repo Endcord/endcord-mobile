@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { MessageActions, onSend, toastError } from "../hooks";
 import { splitMessage } from "../shared/chat";
@@ -17,7 +17,6 @@ export default definePlugin({
     id: "endcord.split-large-messages",
     name: "SplitLargeMessages",
     description: tx("Splits oversized messages into Discord-sized chunks before sending."),
-    authors: [ENDCORD_AUTHOR],
     icon: "ChatIcon",
     tags: ["Chat"],
     settings: {

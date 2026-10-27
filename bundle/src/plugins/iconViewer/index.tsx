@@ -9,7 +9,7 @@ import { iterateAssets } from "@lib/api/assets";
 import { Stack, TextInput } from "@metro/common/components";
 import { useMemo, useState } from "react";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { copy } from "../hooks";
 import LogList from "../ui/LogList";
 
@@ -33,7 +33,6 @@ export default definePlugin({
     id: "endcord.icon-viewer",
     name: "IconViewer",
     description: tx("Browse and search all of Discord's icons in the plugin's settings, and copy their names"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ImageIcon",
     tags: ["Utility"],
     SettingsComponent: IconsPage,

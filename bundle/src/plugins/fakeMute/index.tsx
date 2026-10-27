@@ -13,7 +13,7 @@ import { before } from "@lib/api/patcher";
 import { showToast } from "@lib/ui/toasts";
 import { messageUtil } from "@metro/common";
 
-import { definePlugin, ENDCORD_AUTHOR, onSettingChange } from "../api";
+import { definePlugin, onSettingChange } from "../api";
 import { addChatButton, getChatInputActionButton, getStore, moduleAt } from "../common";
 import { SlashedIcon } from "../silentTyping";
 
@@ -38,7 +38,6 @@ const plugin = definePlugin({
     id: "endcord.fake-mute",
     name: "FakeMute",
     description: tx("Appear muted or deafened to others in voice channels while your microphone and sound keep working."),
-    authors: [ENDCORD_AUTHOR],
     popular: 12,
     icon: "MicrophoneSlashIcon",
     tags: ["Voice", "Utility"],

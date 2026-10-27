@@ -9,7 +9,7 @@ import { awaitStorage, createMMKVBackend, createStorage, useProxy, wrapSync } fr
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, copy, currentChannelId, openUrl, send } from "../hooks";
 import { pick } from "../shared/media";
 import { choose } from "../ui/dialogs";
@@ -55,7 +55,6 @@ export default definePlugin({
     id: "endcord.favorite-anything",
     name: "FavoriteAnything",
     description: tx("Favorite any image, video, or file attachment"),
-    authors: [ENDCORD_AUTHOR],
     icon: "StarIcon",
     tags: ["Media"],
     SettingsComponent: FavoritesPage,

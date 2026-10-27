@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { command, onMessageRow, redrawChannel, RowOrder, textNode } from "../hooks";
 import { BUTTON_OPTIONS, chatButton } from "../shared/navigation";
 
@@ -16,7 +16,6 @@ export default definePlugin({
     id: "endcord.stream-proof",
     name: "StreamProof",
     description: tx("Hides messages and their images while you share your screen or record it. Toggle via chat bar button."),
-    authors: [ENDCORD_AUTHOR],
     icon: "EyeSlashIcon",
     tags: ["Privacy"],
     settings: {

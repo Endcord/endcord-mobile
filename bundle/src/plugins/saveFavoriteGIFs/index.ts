@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { botMessage, command, share } from "../hooks";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.save-favorite-gifs",
     name: "SaveFavoriteGIFs",
     description: tx("Export favorited GIF urls"),
-    authors: [ENDCORD_AUTHOR],
     icon: "GifIcon",
     tags: ["Media"],
     start({ cleanup }) {

@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore, subscribe } from "../common";
 import { currentChannelId, displayName, getChannel } from "../hooks";
 import { ids, placeOf, preview } from "../shared/notify";
@@ -17,7 +17,6 @@ export default definePlugin({
     id: "endcord.toast-notifications",
     name: "ToastNotifications",
     description: tx("Show a pop-up toast notification, configurable for DMs, group, friends, or guild channels."),
-    authors: [ENDCORD_AUTHOR],
     icon: "BellIcon",
     tags: ["Notifications"],
     settings: {

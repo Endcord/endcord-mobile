@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { awaitStorage, createMMKVBackend, createStorage, useProxy, wrapSync } from "@core/vendetta/storage";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId } from "../common";
 import { addMessageAction, displayName, getUser } from "../hooks";
 import { clock, myVoiceChannel, statesIn } from "../shared/calls";
@@ -30,7 +30,6 @@ export default definePlugin({
     id: "endcord.voice-stats",
     name: "VoiceStats",
     description: tx("Shows how long you've spent in voice with each user"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ClockIcon",
     tags: ["Voice", "Friends"],
     SettingsComponent: VoiceStatsPage,

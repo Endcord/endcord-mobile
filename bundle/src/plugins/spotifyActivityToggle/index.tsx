@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addChatButton, getChatInputActionButton } from "../common";
 import { api, command, generatedIcon, toastError } from "../hooks";
 import { BUTTON_OPTIONS } from "../shared/activity";
@@ -29,7 +29,6 @@ export default definePlugin({
     id: "endcord.spotify-activity-toggle",
     name: "SpotifyActivityToggle",
     description: tx("Adds a toggle button for Spotify activity visibility."),
-    authors: [ENDCORD_AUTHOR],
     icon: "MusicIcon",
     tags: ["Privacy", "Media"],
     settings: {

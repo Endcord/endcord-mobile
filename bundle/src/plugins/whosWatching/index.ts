@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { botMessage, command } from "../hooks";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.whos-watching",
     name: "WhosWatching",
     description: tx("See who is watching your stream with /viewers"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ScreenIcon",
     tags: ["Voice"],
     start({ cleanup }) {

@@ -6,14 +6,13 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { json, only } from "../shared/utility";
 
 export default definePlugin({
     id: "endcord.xkcd",
     name: "Xkcd",
     description: tx("Send an xkcd comic, the latest, a random one or a number, with /xkcd"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ImageIcon",
     tags: ["Fun"],
     start: only({

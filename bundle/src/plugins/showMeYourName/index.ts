@@ -6,14 +6,13 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { onMessageRow, RowOrder } from "../hooks";
 
 export default definePlugin({
     id: "endcord.show-me-your-name",
     name: "ShowMeYourName",
     description: tx("Display usernames next to nicks, or no nicks at all"),
-    authors: [ENDCORD_AUTHOR],
     icon: "IdIcon",
     tags: ["Chat"],
     settings: {

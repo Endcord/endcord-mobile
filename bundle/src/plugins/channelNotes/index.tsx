@@ -9,7 +9,7 @@ import { awaitStorage, createMMKVBackend, createStorage, useProxy, wrapSync } fr
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addChatButton, getChatInputActionButton, subscribe } from "../common";
 import { botMessage, command, currentChannelId, generatedIcon } from "../hooks";
 import { channelName, preview } from "../shared/channels";
@@ -47,7 +47,6 @@ export default definePlugin({
     id: "endcord.channel-notes",
     name: "ChannelNotes",
     description: tx("Keep private notes on any channel, DM or group chat: rules, who is who, things to remember. Notes stay on your device."),
-    authors: [ENDCORD_AUTHOR],
     icon: "PencilIcon",
     tags: ["Utility"],
     settings: {

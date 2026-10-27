@@ -7,14 +7,13 @@
 import { tx } from "@core/i18n";
 import { instead } from "@lib/api/patcher";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 
 export default definePlugin({
     id: "endcord.no-pending-count",
     name: "NoPendingCount",
     description: tx("Removes the badge count of incoming friend requests and message requests"),
-    authors: [ENDCORD_AUTHOR],
     icon: "UserPlusIcon",
     tags: ["Notifications"],
     settings: {

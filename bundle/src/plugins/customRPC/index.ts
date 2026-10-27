@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR, onSettingChange } from "../api";
+import { definePlugin, onSettingChange } from "../api";
 import { ASSET_APP, externalAsset, setActivity } from "../shared/presence";
 
 const ACTIVITY_TYPES = [
@@ -22,7 +22,6 @@ export default definePlugin({
     id: "endcord.custom-rpc",
     name: "CustomRPC",
     description: tx("Add a fully customisable Rich Presence (Game status) to your Discord profile"),
-    authors: [ENDCORD_AUTHOR],
     icon: "GameControllerIcon",
     tags: ["Customisation"],
     settings: {

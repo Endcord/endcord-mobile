@@ -7,7 +7,7 @@
 import { tx } from "@core/i18n";
 import { safeFetch } from "@lib/utils";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { dispatchSoon } from "../common";
 import { onIncomingMessage } from "../hooks";
 
@@ -17,7 +17,6 @@ export default definePlugin({
     id: "endcord.dearrow",
     name: "Dearrow",
     description: tx("Makes YouTube embed titles less sensationalist, powered by Dearrow"),
-    authors: [ENDCORD_AUTHOR],
     icon: "VideoIcon",
     tags: ["Media"],
     start({ cleanup }) {

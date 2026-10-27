@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { botMessage, command, getGuild, share } from "../hooks";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.guild-picker-dumper",
     name: "GuildPickerDumper",
     description: tx("Share the links of every emoji and sticker of a server with /dumpemojis"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ReactionIcon",
     tags: ["Emotes", "Servers"],
     start({ cleanup }) {

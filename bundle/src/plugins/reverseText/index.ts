@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { command } from "../hooks";
 import { message } from "../shared/text";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.reverse-text",
     name: "ReverseText",
     description: tx("/reverse flips your message backwards."),
-    authors: [ENDCORD_AUTHOR],
     tags: ["Chat", "Fun"],
     start({ cleanup }) {
         cleanup(command({

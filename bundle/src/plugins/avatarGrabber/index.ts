@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId } from "../common";
 import { botMessage, command, getUser } from "../hooks";
 import { avatarUrl } from "../shared/lookup";
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.avatar-grabber",
     name: "AvatarGrabber",
     description: tx("/avatar grabs the full-resolution avatar of any user (or yourself)."),
-    authors: [ENDCORD_AUTHOR],
     icon: "ImageIcon",
     tags: ["Utility", "Media"],
     start({ cleanup }) {

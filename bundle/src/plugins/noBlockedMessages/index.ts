@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { onIncomingMessage } from "../hooks";
 import { isBlocked } from "../shared/filters";
@@ -17,7 +17,6 @@ export default definePlugin({
     id: "endcord.no-blocked-messages",
     name: "NoBlockedMessages",
     description: tx("Hides all blocked/ignored messages from chat completely"),
-    authors: [ENDCORD_AUTHOR],
     icon: "DenyIcon",
     tags: ["Chat"],
     settings: {

@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { api, botMessage, command, MAX_SHARE_LENGTH, share } from "../hooks";
 import { sleep } from "../shared/tools";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.export-dm",
     name: "ExportDM",
     description: tx("Export a chat's messages, attachments, stickers and reactions as TXT, Markdown or JSON with /exportdm"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ShareIcon",
     tags: ["Utility", "Privacy"],
     settings: {

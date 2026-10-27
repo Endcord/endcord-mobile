@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { awaitStorage, createMMKVBackend, createStorage, useProxy, wrapSync } from "@core/vendetta/storage";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, subscribe } from "../common";
 import { copy, displayName, getChannel, getGuild, getUser } from "../hooks";
 import LogList from "../ui/LogList";
@@ -42,7 +42,6 @@ export default definePlugin({
     id: "endcord.i-remember-you",
     name: "IRememberYou",
     description: tx("Remembers everyone you talk to in DMs and servers, on your device, so you can always find them again"),
-    authors: [ENDCORD_AUTHOR],
     icon: "FriendsIcon",
     tags: ["Friends", "Utility"],
     SettingsComponent: PeopleList,

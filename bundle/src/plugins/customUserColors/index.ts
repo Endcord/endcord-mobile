@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { onMessageRow, RowOrder } from "../hooks";
 import { cached, lines, setNameColor } from "../shared/rows";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.custom-user-colors",
     name: "CustomUserColors",
     description: tx("Give any user a custom name color in chat"),
-    authors: [ENDCORD_AUTHOR],
     icon: "PaintPaletteIcon",
     tags: ["Appearance", "Customisation"],
     settings: {

@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, displayName, messageLink, share } from "../hooks";
 import { mediaOf } from "../shared/actions";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.export-messages",
     name: "ExportMessages",
     description: tx("Share any message as text from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ShareIcon",
     tags: ["Utility"],
     start({ cleanup }) {

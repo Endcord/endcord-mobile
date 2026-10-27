@@ -11,7 +11,7 @@ import { Text } from "@metro/common/components";
 import { version } from "bunny-build-info";
 import { View } from "react-native";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 
 function Banner() {
     const info = NativeClientInfoModule.getConstants();
@@ -26,7 +26,6 @@ export default definePlugin({
     id: "endcord.discord-dev-banner",
     name: "DiscordDevBanner",
     description: tx("Enables Discord's developer banner, which shows the build ID"),
-    authors: [ENDCORD_AUTHOR],
     icon: "WrenchIcon",
     tags: ["Utility"],
     start({ cleanup }) {

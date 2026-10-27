@@ -6,14 +6,13 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, onAction } from "../common";
 
 export default definePlugin({
     id: "endcord.no-profile-themes",
     name: "NoProfileThemes",
     description: tx("Completely removes Nitro profile themes from everyone but yourself"),
-    authors: [ENDCORD_AUTHOR],
     icon: "PaintPaletteIcon",
     tags: ["Appearance"],
     start({ cleanup }) {

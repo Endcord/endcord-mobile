@@ -8,14 +8,13 @@ import { tx } from "@core/i18n";
 import { before } from "@lib/api/patcher";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { onMessageRow } from "../hooks";
 
 export default definePlugin({
     id: "endcord.always-animate",
     name: "AlwaysAnimate",
     description: tx("Animates anything that can be animated"),
-    authors: [ENDCORD_AUTHOR],
     icon: "GifIcon",
     tags: ["Appearance", "Media"],
     start({ cleanup }) {

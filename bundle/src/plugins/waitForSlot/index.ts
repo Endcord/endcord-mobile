@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { subscribe } from "../common";
 import { botMessage, command, getChannel } from "../hooks";
 import { statesIn, voiceActions } from "../shared/calls";
@@ -17,7 +17,6 @@ export default definePlugin({
     id: "endcord.wait-for-slot",
     name: "WaitForSlot",
     description: tx("Automatically join a full voice channel when a slot opens."),
-    authors: [ENDCORD_AUTHOR],
     icon: "VoiceNormalIcon",
     tags: ["Voice"],
     settings: {

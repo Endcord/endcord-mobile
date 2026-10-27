@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { command } from "../hooks";
 import { message } from "../shared/text";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.starify",
     name: "Starify",
     description: tx("Adds /starify to wrap your message in sparkles ｡ﾟ☆."),
-    authors: [ENDCORD_AUTHOR],
     icon: "StarIcon",
     tags: ["Chat", "Fun"],
     start({ cleanup }) {

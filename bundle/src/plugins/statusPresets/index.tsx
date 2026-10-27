@@ -11,7 +11,7 @@ import { showToast } from "@lib/ui/toasts";
 import { findByProps } from "@metro";
 import { Button, Stack } from "@metro/common/components";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { toastError } from "../hooks";
 import { choose, prompt } from "../ui/dialogs";
 import LogList from "../ui/LogList";
@@ -86,7 +86,6 @@ export default definePlugin({
     id: "endcord.status-presets",
     name: "StatusPresets",
     description: tx("Allows you to remember your statuses and set them later"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ReactionIcon",
     tags: ["Customisation", "Utility"],
     SettingsComponent: StatusPresetsPage,

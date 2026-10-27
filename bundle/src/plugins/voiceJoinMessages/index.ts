@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore, onAction } from "../common";
 import { botMessage, displayName, getUser } from "../hooks";
 import { ids } from "../shared/notify";
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.voice-join-messages",
     name: "VoiceJoinMessages",
     description: tx("Receive client-side ephemeral messages when your friends join voice channels"),
-    authors: [ENDCORD_AUTHOR],
     icon: "VoiceNormalIcon",
     tags: ["Voice", "Friends", "Notifications"],
     settings: {

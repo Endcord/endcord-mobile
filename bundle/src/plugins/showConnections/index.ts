@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, displayName } from "../hooks";
 import { accountsOf, failed, profileOf } from "../shared/people";
 import { showText } from "../ui/dialogs";
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.show-connections",
     name: "ShowConnections",
     description: tx("See the accounts a message's author has connected (GitHub, Steam, Spotify...) from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "LinkIcon",
     tags: ["Friends"],
     start({ cleanup }) {

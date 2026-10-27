@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { awaitStorage, createMMKVBackend, createStorage, wrapSync } from "@core/vendetta/storage";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId } from "../common";
 import { addMessageAction, displayName, onMessageRow, redrawChannel, RowOrder } from "../hooks";
 import { prompt } from "../ui/dialogs";
@@ -18,7 +18,6 @@ export default definePlugin({
     id: "endcord.friend-nicknames",
     name: "FriendNicknames",
     description: tx("Give people your own nicknames that only you see in chat"),
-    authors: [ENDCORD_AUTHOR],
     icon: "IdIcon",
     tags: ["Friends", "Customisation"],
     async start({ cleanup }) {

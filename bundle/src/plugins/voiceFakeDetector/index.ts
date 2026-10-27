@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, subscribe } from "../common";
 import { displayName, getUser } from "../hooks";
 import { myVoiceChannel, statesIn } from "../shared/calls";
@@ -17,7 +17,6 @@ export default definePlugin({
     id: "endcord.voice-fake-detector",
     name: "VoiceFakeDetector",
     description: tx("Tells you when someone in your voice channel shows as muted or deafened but is talking"),
-    authors: [ENDCORD_AUTHOR],
     icon: "MicrophoneSlashIcon",
     tags: ["Voice"],
     start({ cleanup }) {

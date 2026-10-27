@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, displayName } from "../hooks";
 import { parseDuration } from "../scheduler";
 import { preview, reminders, RemindersList } from "../shared/schedule";
@@ -20,7 +20,6 @@ export default definePlugin({
     id: "endcord.message-reminders",
     name: "MessageReminders",
     description: tx("Get reminded about a message later from the message menu. The reminder links right back to it."),
-    authors: [ENDCORD_AUTHOR],
     icon: "ClockIcon",
     tags: ["Utility", "Notifications"],
     SettingsComponent: RemindersList,

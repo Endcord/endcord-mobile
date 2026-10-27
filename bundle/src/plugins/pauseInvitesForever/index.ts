@@ -6,14 +6,13 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { api, botMessage, command, describeError, getGuild } from "../hooks";
 
 export default definePlugin({
     id: "endcord.pause-invites-forever",
     name: "PauseInvitesForever",
     description: tx("Pause a server's invites with no time limit, which Discord no longer offers, with /pauseinvites"),
-    authors: [ENDCORD_AUTHOR],
     icon: "LinkIcon",
     tags: ["Servers"],
     start({ cleanup }) {

@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { onMessageRow } from "../hooks";
 import { setNameColor } from "../shared/rows";
 
@@ -21,7 +21,6 @@ export default definePlugin({
     id: "endcord.irc-colors",
     name: "IrcColors",
     description: tx("Makes username colors in chat unique, like in IRC clients"),
-    authors: [ENDCORD_AUTHOR],
     icon: "PaintPaletteIcon",
     tags: ["Appearance", "Chat"],
     settings: {

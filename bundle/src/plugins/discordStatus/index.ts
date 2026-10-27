@@ -6,14 +6,13 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { answer, json, only } from "../shared/utility";
 
 export default definePlugin({
     id: "endcord.discord-status",
     name: "DiscordStatus",
     description: tx("Check whether Discord itself is having problems with /discordstatus"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ServerIcon",
     tags: ["Utility"],
     start: only({

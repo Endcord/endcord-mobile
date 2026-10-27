@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { guildRoles } from "../common";
 import { api, botMessage, command, getGuild, share } from "../hooks";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.server-backup",
     name: "ServerBackup",
     description: tx("Export a server's channels, roles and permissions to a backup file with /serverbackup"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ServerIcon",
     tags: ["Servers", "Utility"],
     start({ cleanup }) {

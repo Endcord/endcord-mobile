@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId } from "../common";
 import { addMessageAction, getChannel, onIncomingMessage } from "../hooks";
 import { ids } from "../shared/filters";
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.silence-users",
     name: "SilenceUsers",
     description: tx("Silences @mention pings and server badge counts from specific users. Regular messages and DMs are untouched."),
-    authors: [ENDCORD_AUTHOR],
     icon: "BellSlashIcon",
     tags: ["Notifications"],
     settings: {

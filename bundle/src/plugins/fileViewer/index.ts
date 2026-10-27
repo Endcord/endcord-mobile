@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, openUrl } from "../hooks";
 import { extension, pick } from "../shared/media";
 
@@ -16,7 +16,6 @@ export default definePlugin({
     id: "endcord.file-viewer",
     name: "FileViewer",
     description: tx("View Word, Excel and PowerPoint attachments without downloading them, from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "FileIcon",
     tags: ["Media", "Utility"],
     start({ cleanup }) {

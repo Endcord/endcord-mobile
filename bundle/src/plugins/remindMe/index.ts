@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { botMessage, command } from "../hooks";
 import { parseDuration } from "../scheduler";
 import { reminders, RemindersList, when } from "../shared/schedule";
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.remind-me",
     name: "RemindMe",
     description: tx("/remindme reminds you of something later with a notice in the chat. Survives restarts."),
-    authors: [ENDCORD_AUTHOR],
     icon: "ClockIcon",
     tags: ["Utility", "Notifications"],
     SettingsComponent: RemindersList,

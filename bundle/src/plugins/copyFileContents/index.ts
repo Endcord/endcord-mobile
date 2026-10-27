@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, copy } from "../hooks";
 import { pickOne } from "../shared/actions";
 
@@ -18,7 +18,6 @@ export default definePlugin({
     id: "endcord.copy-file-contents",
     name: "CopyFileContents",
     description: tx("Copy the contents of text file attachments from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "CopyIcon",
     tags: ["Utility"],
     start({ cleanup }) {

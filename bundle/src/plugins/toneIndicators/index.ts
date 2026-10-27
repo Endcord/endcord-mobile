@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { onMessageRow, RowOrder } from "../hooks";
 import { cached } from "../shared/rows";
 
@@ -43,7 +43,6 @@ export default definePlugin({
     id: "endcord.tone-indicators",
     name: "ToneIndicators",
     description: tx("Explains tone indicators like /srs and /gen next to them in messages"),
-    authors: [ENDCORD_AUTHOR],
     tags: ["Chat"],
     settings: {
         prefix: { type: "string", label: tx("Prefix"), description: tx("Prefix character(s) for tone indicators."), default: "/" },

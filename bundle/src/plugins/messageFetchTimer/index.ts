@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { onAction } from "../common";
 import { currentChannelId } from "../hooks";
 
@@ -16,7 +16,6 @@ export default definePlugin({
     id: "endcord.message-fetch-timer",
     name: "MessageFetchTimer",
     description: tx("Shows how long it took to fetch messages for the current channel"),
-    authors: [ENDCORD_AUTHOR],
     icon: "TimerIcon",
     tags: ["Utility"],
     settings: {

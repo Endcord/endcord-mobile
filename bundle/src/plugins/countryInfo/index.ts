@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { safeFetch } from "@lib/utils";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { answer, Country, enc, findCountry, json, number, only } from "../shared/utility";
 
 let countries: Promise<Country[]> | undefined;
@@ -33,7 +33,6 @@ export default definePlugin({
     id: "endcord.country-info",
     name: "CountryInfo",
     description: tx("Look up a country's capital, population, languages and currency with /country"),
-    authors: [ENDCORD_AUTHOR],
     icon: "GlobeEarthIcon",
     tags: ["Utility"],
     start: only({

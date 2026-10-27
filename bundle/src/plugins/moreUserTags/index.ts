@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getChannel, getGuild, onMessageRow } from "../hooks";
 import { hasPermission, memberPermissions } from "../shared/servers";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.more-user-tags",
     name: "MoreUserTags",
     description: tx("Adds tags for webhooks and moderative roles (owner, admin, etc.)"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ShieldIcon",
     tags: ["Appearance", "Chat"],
     settings: {

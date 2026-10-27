@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { onMessageRow } from "../hooks";
 import { prependToTimestamp } from "../shared/rows";
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.show-timeout-duration",
     name: "ShowTimeoutDuration",
     description: tx("Shows how much longer a user's timeout will last next to their messages"),
-    authors: [ENDCORD_AUTHOR],
     icon: "TimerIcon",
     tags: ["Servers", "Chat"],
     start({ cleanup }) {

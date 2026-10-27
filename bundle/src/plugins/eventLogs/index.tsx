@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { awaitStorage, createMMKVBackend, createStorage, useProxy, wrapSync } from "@core/vendetta/storage";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore, onAction, subscribe } from "../common";
 import { displayName, getChannel, getGuild, getUser, jumpTo } from "../hooks";
 import { preview } from "../shared/account";
@@ -46,7 +46,6 @@ export default definePlugin({
     id: "endcord.event-logs",
     name: "EventLogs",
     description: tx("Keeps a log of deleted and edited messages, friends added and removed, and servers you join and leave"),
-    authors: [ENDCORD_AUTHOR],
     icon: "BookCheckIcon",
     tags: ["Utility"],
     settings: {

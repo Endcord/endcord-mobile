@@ -6,14 +6,13 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { only } from "../shared/utility";
 
 export default definePlugin({
     id: "endcord.emojify",
     name: "Emojify",
     description: tx("Write a message in big letter emojis with /emojify"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ReactionIcon",
     tags: ["Fun", "Chat"],
     start: only({

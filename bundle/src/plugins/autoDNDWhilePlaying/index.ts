@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore, subscribe } from "../common";
 import { STATUS_OPTIONS, statusHold } from "../shared/activity";
 
@@ -27,7 +27,6 @@ export default definePlugin({
     id: "endcord.auto-dnd-while-playing",
     name: "AutoDNDWhilePlaying",
     description: tx("Automatically updates your online status (online, idle, dnd) when launching games"),
-    authors: [ENDCORD_AUTHOR],
     icon: "GameControllerIcon",
     tags: ["Notifications", "Utility"],
     settings: {

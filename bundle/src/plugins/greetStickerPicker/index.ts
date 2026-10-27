@@ -6,14 +6,13 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { api, command } from "../hooks";
 
 export default definePlugin({
     id: "endcord.greet-sticker-picker",
     name: "GreetStickerPicker",
     description: tx("Wave to someone in a new DM or a new member with the sticker you pick, with /greet"),
-    authors: [ENDCORD_AUTHOR],
     icon: "StickerIcon",
     tags: ["Fun", "Emotes"],
     settings: {

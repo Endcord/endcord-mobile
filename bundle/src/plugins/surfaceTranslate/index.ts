@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { botMessage, command, getChannel } from "../hooks";
 import { translate } from "../shared/lookup";
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.surface-translate",
     name: "SurfaceTranslate",
     description: tx("Translate a channel's name and topic with /translatechannel"),
-    authors: [ENDCORD_AUTHOR],
     icon: "LanguageIcon",
     tags: ["Servers", "Utility"],
     start({ cleanup }) {

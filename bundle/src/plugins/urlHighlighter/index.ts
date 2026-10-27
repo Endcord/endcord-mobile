@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { nativeColor, onMessageRow } from "../hooks";
 
 function globToRegex(glob: string) {
@@ -17,7 +17,6 @@ export default definePlugin({
     id: "endcord.url-highlighter",
     name: "UrlHighlighter",
     description: tx("Colors messages with links that match your patterns"),
-    authors: [ENDCORD_AUTHOR],
     icon: "LinkIcon",
     tags: ["Chat"],
     settings: {

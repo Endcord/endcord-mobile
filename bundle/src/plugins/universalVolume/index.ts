@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findByProps } from "@metro";
 import { FluxDispatcher } from "@metro/common";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore, subscribe } from "../common";
 import { botMessage, command } from "../hooks";
 import { myVoiceChannel } from "../shared/activity";
@@ -23,7 +23,6 @@ export default definePlugin({
     id: "endcord.universal-volume",
     name: "UniversalVolume",
     description: tx("Sets everyone in your voice channel to the same volume, and keeps new people who join at that level too."),
-    authors: [ENDCORD_AUTHOR],
     icon: "VoiceNormalIcon",
     tags: ["Voice"],
     settings: {

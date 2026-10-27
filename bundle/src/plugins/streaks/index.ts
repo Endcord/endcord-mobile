@@ -7,7 +7,7 @@
 import { tx } from "@core/i18n";
 import { awaitStorage, createMMKVBackend, createStorage, wrapSync } from "@core/vendetta/storage";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, subscribe } from "../common";
 import { getChannel, localDay, onMessageRow } from "../hooks";
 
@@ -33,7 +33,6 @@ export default definePlugin({
     id: "endcord.streaks",
     name: "Streaks",
     description: tx("Shows a streak next to a user when you exchange DMs with them on consecutive days."),
-    authors: [ENDCORD_AUTHOR],
     icon: "StarIcon",
     tags: ["Friends", "Fun"],
     settings: {

@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { api, botMessage, command, describeError } from "../hooks";
 
 const HOUSES = [tx("Remove Badge"), tx("House Bravery"), tx("House Brilliance"), tx("House Balance")];
@@ -20,7 +20,6 @@ export default definePlugin({
     id: "endcord.hypesquad-switcher",
     name: "HypeSquadSwitcher",
     description: tx("Easily switch between HypeSquad houses or remove your badge"),
-    authors: [ENDCORD_AUTHOR],
     icon: "MedalIcon",
     tags: ["Customisation"],
     start({ cleanup }) {

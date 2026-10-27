@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { botMessage, command } from "../hooks";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.server-search",
     name: "ServerSearch",
     description: tx("Find a server by name with /servers and open it from the result"),
-    authors: [ENDCORD_AUTHOR],
     icon: "MagnifyingGlassIcon",
     tags: ["Servers", "Utility"],
     start({ cleanup }) {

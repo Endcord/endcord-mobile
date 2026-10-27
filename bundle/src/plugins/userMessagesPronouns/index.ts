@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore } from "../common";
 import { onMessageRow } from "../hooks";
 import { prependToTimestamp } from "../shared/rows";
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.user-messages-pronouns",
     name: "UserMessagesPronouns",
     description: tx("Shows people's pronouns from their Discord profile next to their messages"),
-    authors: [ENDCORD_AUTHOR],
     tags: ["Chat"],
     settings: {
         showSelf: { type: "boolean", label: tx("On my messages too"), description: tx("Enable or disable showing pronouns for yourself"), default: true },

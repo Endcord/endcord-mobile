@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore } from "../common";
 import { botMessage, command, onMessageRow, redrawMessage, textNode } from "../hooks";
 import { translate } from "../shared/lookup";
@@ -20,7 +20,6 @@ export default definePlugin({
     id: "endcord.message-translate",
     name: "MessageTranslate",
     description: tx("Auto translate messages to your language with caching, per-channel toggles, and more options."),
-    authors: [ENDCORD_AUTHOR],
     icon: "LanguageIcon",
     tags: ["Chat"],
     settings: {

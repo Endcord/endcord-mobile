@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addChatButton, currentUserId, subscribe } from "../common";
 import { appendToTimestamp, deleteMessage, nativeColor, onMessageRow, onSend, redrawMessage } from "../hooks";
 import { createScheduler, type ScheduledItem } from "../scheduler";
@@ -23,7 +23,6 @@ const SelfDestruct = definePlugin({
     id: "endcord.self-destruct",
     name: "SelfDestruct",
     description: tx("Sends messages that are automatically deleted after a configurable delay. Red timer visible on each message."),
-    authors: [ENDCORD_AUTHOR],
     icon: "TimerIcon",
     tags: ["Chat", "Privacy"],
     settings: {

@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { command, displayName, getUser } from "../hooks";
 import { shipScore } from "../shared/text";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.ship-calc",
     name: "ShipCalc",
     description: tx("/ship rates the love between two people."),
-    authors: [ENDCORD_AUTHOR],
     icon: "HeartIcon",
     tags: ["Fun"],
     start({ cleanup }) {

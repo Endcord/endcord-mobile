@@ -6,14 +6,13 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { answer, json, only } from "../shared/utility";
 
 export default definePlugin({
     id: "endcord.space-launches",
     name: "SpaceLaunches",
     description: tx("See the next rocket launches with /launches"),
-    authors: [ENDCORD_AUTHOR],
     icon: "FlashIcon",
     tags: ["Fun"],
     start: only({

@@ -10,7 +10,7 @@ import { Text } from "@metro/common/components";
 import { useEffect, useState } from "react";
 import { View } from "react-native";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { subscribe } from "../common";
 import { clock, myVoiceChannel } from "../shared/calls";
 
@@ -49,7 +49,6 @@ const CallTimer = definePlugin({
     id: "endcord.call-timer",
     name: "CallTimer",
     description: tx("Shows how long you have been in the current voice call"),
-    authors: [ENDCORD_AUTHOR],
     icon: "TimerIcon",
     tags: ["Voice"],
     settings: {

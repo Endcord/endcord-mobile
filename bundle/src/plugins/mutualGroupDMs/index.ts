@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore } from "../common";
 import { addMessageAction, displayName, getChannel, getUser, jumpTo } from "../hooks";
 import { choose } from "../ui/dialogs";
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.mutual-group-dms",
     name: "MutualGroupDMs",
     description: tx("See the group DMs you share with a message's author, from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "GroupIcon",
     tags: ["Friends"],
     start({ cleanup }) {

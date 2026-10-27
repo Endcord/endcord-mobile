@@ -10,7 +10,7 @@ import { findAssetId } from "@lib/api/assets";
 import { before } from "@lib/api/patcher";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, onAction, subscribe } from "../common";
 import { getChannel, MessageActions, send } from "../hooks";
 import { ids } from "../shared/notify";
@@ -25,7 +25,6 @@ export default definePlugin({
     id: "endcord.anti-delete-message",
     name: "AntiDeleteMessage",
     description: tx("Automatically resends your messages if someone deletes them. Cache persisted across restarts."),
-    authors: [ENDCORD_AUTHOR],
     icon: "ShieldIcon",
     tags: ["Chat", "Utility"],
     settings: {

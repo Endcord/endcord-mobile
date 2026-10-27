@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId } from "../common";
 import { appendToTimestamp, onMessageRow, snowflakeTime } from "../hooks";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.message-latency",
     name: "MessageLatency",
     description: tx("Displays an indicator for messages that took ≥n seconds to send"),
-    authors: [ENDCORD_AUTHOR],
     icon: "TimerIcon",
     tags: ["Chat", "Utility"],
     settings: {

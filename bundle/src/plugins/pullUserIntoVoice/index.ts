@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, subscribe } from "../common";
 import { addMessageAction, api, describeError, getChannel } from "../hooks";
 import { myVoiceChannel, permission } from "../shared/calls";
@@ -21,7 +21,6 @@ export default definePlugin({
     id: "endcord.pull-user-into-voice",
     name: "PullUserIntoVoice",
     description: tx("Pull a message's author into your voice channel from the message menu, and keep pulling them if you like"),
-    authors: [ENDCORD_AUTHOR],
     icon: "VoiceNormalIcon",
     tags: ["Voice", "Servers"],
     settings: {

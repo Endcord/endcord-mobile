@@ -9,7 +9,7 @@ import { awaitStorage } from "@core/vendetta/storage";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { botMessage, command } from "../hooks";
 import { holdServerPatch, pins, refreshServers, serverList, toggleIn } from "../shared/navigation";
 
@@ -17,7 +17,6 @@ export default definePlugin({
     id: "endcord.server-pinner",
     name: "ServerPinner",
     description: tx("Pin servers to the top of your server list with /pinserver, without changing your folders"),
-    authors: [ENDCORD_AUTHOR],
     icon: "PinIcon",
     tags: ["Servers"],
     SettingsComponent: serverList("servers", tx("Pinned servers"), tx("Use /pinserver in a server to pin it"), tx("Unpin")),

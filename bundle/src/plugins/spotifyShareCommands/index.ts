@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore } from "../common";
 import { botMessage, command } from "../hooks";
 
@@ -31,7 +31,6 @@ export default definePlugin({
     id: "endcord.spotify-share-commands",
     name: "SpotifyShareCommands",
     description: tx("Share your current Spotify track, album or artist via slash command (/track, /album, /artist)"),
-    authors: [ENDCORD_AUTHOR],
     icon: "SpotifyNeutralIcon",
     tags: ["Media"],
     start({ cleanup }) {

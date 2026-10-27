@@ -9,7 +9,7 @@ import { awaitStorage, useProxy } from "@core/vendetta/storage";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { botMessage, command } from "../hooks";
 import { channelLabel, listOf, pinnedFirst, pins, rewriteResult, toggleIn } from "../shared/navigation";
@@ -40,7 +40,6 @@ export default definePlugin({
     id: "endcord.pin-dms",
     name: "PinDMs",
     description: tx("Pin DMs to the top of your DM list with /pindm"),
-    authors: [ENDCORD_AUTHOR],
     icon: "PinIcon",
     tags: ["Friends", "Utility"],
     SettingsComponent: PinnedDMsPage,

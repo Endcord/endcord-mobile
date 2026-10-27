@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { onSend } from "../hooks";
 
 const INVISIBLE = /[\u200B-\u200D\u200E\u200F\u202A-\u202E\u2060-\u2064\u206A-\u206F\uFEFF\u00AD]/g;
@@ -17,7 +17,6 @@ export default definePlugin({
     id: "endcord.zero-width-sanitizer",
     name: "ZeroWidthSanitizer",
     description: tx("Removes invisible zero-width characters from messages to prevent fingerprinting and tracking"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ShieldIcon",
     tags: ["Privacy"],
     settings: {

@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { botMessage, command, getChannel } from "../hooks";
 import { channelLabel, guildChannels } from "../shared/navigation";
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.unread-count-badge",
     name: "UnreadCountBadge",
     description: tx("See how many unread messages each channel of a server has with /unread"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ChatIcon",
     tags: ["Utility", "Servers"],
     start({ cleanup }) {

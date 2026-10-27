@@ -6,14 +6,13 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { api, botMessage, command, getChannel, jumpTo, loadedMessages } from "../hooks";
 
 export default definePlugin({
     id: "endcord.jump-to",
     name: "JumpTo",
     description: tx("Jump to the first or the latest message of a chat with /jumpto"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ArrowAngleLeftUpIcon",
     tags: ["Chat"],
     start({ cleanup }) {

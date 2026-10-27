@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, subscribe } from "../common";
 import { botMessage, command } from "../hooks";
 
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.new-guild-settings",
     name: "NewGuildSettings",
     description: tx("Automatically mute new servers and change various other settings upon joining"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ServerIcon",
     tags: ["Servers", "Notifications"],
     settings: {

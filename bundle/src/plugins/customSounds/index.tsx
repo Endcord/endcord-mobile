@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { awaitStorage, createMMKVBackend, createStorage, useProxy, wrapSync } from "@core/vendetta/storage";
 import { instead } from "@lib/api/patcher";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { playSound } from "../hooks";
 import { patchSoundManager } from "../shared/activity";
 import { choose, prompt } from "../ui/dialogs";
@@ -55,7 +55,6 @@ export default definePlugin({
     id: "endcord.custom-sounds",
     name: "CustomSounds",
     description: tx("Customize Discord's sounds."),
-    authors: [ENDCORD_AUTHOR],
     icon: "MusicIcon",
     tags: ["Customisation", "Notifications"],
     SettingsComponent: SoundsPage,

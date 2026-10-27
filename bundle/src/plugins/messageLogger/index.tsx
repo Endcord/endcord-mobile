@@ -16,7 +16,7 @@ import { tokens } from "@metro/common";
 import { Button } from "@metro/common/components";
 import { processColor } from "react-native";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, dispatchSoon, getStore, onAction } from "../common";
 
 interface MessageRecord {
@@ -55,7 +55,6 @@ const plugin = definePlugin({
     id: "endcord.message-logger",
     name: "MessageLogger",
     description: tx("Keeps deleted messages in the chat and shows earlier versions of edited ones."),
-    authors: [ENDCORD_AUTHOR],
     popular: 2,
     icon: "TrashIcon",
     tags: ["Chat", "Utility"],

@@ -9,7 +9,7 @@ import { addOverlay, onTouch } from "@core/overlay";
 import { useEffect, useRef, useState } from "react";
 import { Animated, Easing, View } from "react-native";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 
 const SPARKLE_COLORS = ["#ff4fd8", "#7c5cff", "#2ee6ff", "#fff27a", "#5cff9d"];
 
@@ -58,7 +58,6 @@ export default definePlugin({
     id: "endcord.click-sparkles",
     name: "ClickSparkles",
     description: tx("Sprinkles little neon sparkles wherever you touch"),
-    authors: [ENDCORD_AUTHOR],
     icon: "StarIcon",
     tags: ["Fun", "Appearance"],
     start({ cleanup }) {

@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { hex, sha256, utf8 } from "../crypto";
 import { copy } from "../hooks";
 import { answer, only } from "../shared/utility";
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.hash",
     name: "Hash",
     description: tx("Get the SHA-256 hash of a text with /sha256"),
-    authors: [ENDCORD_AUTHOR],
     icon: "LockIcon",
     tags: ["Utility"],
     start: only({

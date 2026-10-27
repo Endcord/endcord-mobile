@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { botMessage, command, getUser, localSnowflake, receiveLocalMessage } from "../hooks";
 import { rawUser } from "../shared/tools";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.fake-message",
     name: "FakeMessage",
     description: tx("Send a client-side fake message posed as any user via /fakemsg. Only you can see it."),
-    authors: [ENDCORD_AUTHOR],
     icon: "ChatIcon",
     tags: ["Fun"],
     start({ cleanup }) {

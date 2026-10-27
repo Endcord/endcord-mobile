@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore } from "../common";
 import { botMessage, command, getGuild } from "../hooks";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.mutual-server-members",
     name: "MutualServerMembers",
     description: tx("Compare two servers you're in and see which members are in both, with /mutualmembers"),
-    authors: [ENDCORD_AUTHOR],
     icon: "GroupIcon",
     tags: ["Servers"],
     start({ cleanup }) {

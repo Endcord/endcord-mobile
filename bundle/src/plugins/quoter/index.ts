@@ -6,14 +6,13 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, copy, insertText } from "../hooks";
 
 export default definePlugin({
     id: "endcord.quoter",
     name: "Quoter",
     description: tx("Quote a message into your message box with its author, from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ChatIcon",
     tags: ["Chat"],
     start({ cleanup }) {

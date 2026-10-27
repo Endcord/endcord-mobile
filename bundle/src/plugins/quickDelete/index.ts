@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, botMessage, command, deleteMessage, loadedMessages } from "../hooks";
 import { isMine } from "../shared/actions";
 
@@ -16,7 +16,6 @@ export default definePlugin({
     id: "endcord.quick-delete",
     name: "QuickDelete",
     description: tx("Delete your last message in a channel with /deletelast, or any of yours from the message menu without confirming"),
-    authors: [ENDCORD_AUTHOR],
     icon: "TrashIcon",
     tags: ["Chat"],
     settings: {

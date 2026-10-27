@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId } from "../common";
 import { botMessage, command } from "../hooks";
 import { message, morse, pick, uwuify } from "../shared/text";
@@ -25,7 +25,6 @@ export default definePlugin({
     id: "endcord.more-commands",
     name: "MoreCommands",
     description: tx("Adds various fun and useful commands"),
-    authors: [ENDCORD_AUTHOR],
     icon: "SlashBoxIcon",
     tags: ["Fun", "Utility"],
     start({ cleanup }) {

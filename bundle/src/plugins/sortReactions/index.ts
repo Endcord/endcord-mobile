@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { onIncomingMessage, onMessageRow } from "../hooks";
 
 const byCount = (a: any, b: any) => (b?.count ?? 0) - (a?.count ?? 0);
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.sort-reactions",
     name: "SortReactions",
     description: tx("Sorts reactions by count in chat."),
-    authors: [ENDCORD_AUTHOR],
     icon: "ReactionIcon",
     tags: ["Chat"],
     start({ cleanup }) {

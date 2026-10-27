@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore, subscribe } from "../common";
 import { botMessage, command } from "../hooks";
 
@@ -24,7 +24,6 @@ export default definePlugin({
     id: "endcord.voice-server-info",
     name: "VoiceServerInfo",
     description: tx("Shows the Discord voice server you're connected to and its ping"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ServerIcon",
     tags: ["Voice", "Utility"],
     settings: {

@@ -12,7 +12,7 @@ import { getDebugInfo } from "@lib/api/debug";
 import { BundleUpdaterManager } from "@lib/api/native/modules";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getToolboxActions } from "../common";
 import { command, copy } from "../hooks";
 import { manifest } from "../manifest";
@@ -59,7 +59,6 @@ export default definePlugin({
     id: "endcord.endcord-toolbox",
     name: "EndcordToolbox",
     description: tx("Adds a button beside the message box with Endcord quick actions: reload, turn off plugins, debug info and safe mode"),
-    authors: [ENDCORD_AUTHOR],
     icon: "WrenchIcon",
     tags: ["Utility"],
     settings: {

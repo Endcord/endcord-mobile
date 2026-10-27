@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId } from "../common";
 import { onIncomingMessage } from "../hooks";
 import { renderTables } from "../shared/channels";
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.markdown-tables",
     name: "MarkdownTables",
     description: tx("Render GitHub-style markdown tables in Discord messages."),
-    authors: [ENDCORD_AUTHOR],
     icon: "PaperIcon",
     tags: ["Chat"],
     start({ cleanup }) {

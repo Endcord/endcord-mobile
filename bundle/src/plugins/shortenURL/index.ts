@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { safeFetch } from "@lib/utils";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { copy, insertText } from "../hooks";
 import { answer, enc, only } from "../shared/utility";
 
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.shorten-url",
     name: "ShortenURL",
     description: tx("Shorten a link with /shorten; the short link goes in the message box"),
-    authors: [ENDCORD_AUTHOR],
     icon: "LinkIcon",
     tags: ["Utility"],
     start: only({

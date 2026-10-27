@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { extendProfileBadges, linkedBadge } from "../profileBadges";
 import { remoteJson } from "../remote";
 import { redrawProfiles } from "../shared/profiles";
@@ -21,7 +21,6 @@ export default definePlugin({
     id: "endcord.global-badges",
     name: "GlobalBadges",
     description: tx("Adds global badges from other client mods"),
-    authors: [ENDCORD_AUTHOR],
     icon: "MedalIcon",
     tags: ["Appearance"],
     settings: {

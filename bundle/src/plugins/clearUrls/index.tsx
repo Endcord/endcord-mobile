@@ -7,7 +7,7 @@
 import { tx } from "@core/i18n";
 import { safeFetch } from "@lib/utils";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { onSend } from "../hooks";
 
 // The ClearURLs project's rules, as on Endcord PC
@@ -39,7 +39,6 @@ const plugin = definePlugin({
     id: "endcord.clear-urls",
     name: "ClearURLs",
     description: tx("Automatically removes tracking elements from URLs you send"),
-    authors: [ENDCORD_AUTHOR],
     icon: "LinkIcon",
     tags: ["Privacy", "Utility"],
     start({ cleanup, logger }) {

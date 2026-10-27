@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { awaitStorage, createMMKVBackend, createStorage, useProxy, wrapSync } from "@core/vendetta/storage";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, appendToTimestamp, jumpTo, onMessageRow, redrawMessage } from "../hooks";
 import { preview, Saved, savedFrom } from "../shared/schedule";
 import { choose, prompt } from "../ui/dialogs";
@@ -51,7 +51,6 @@ export default definePlugin({
     id: "endcord.message-tags",
     name: "MessageTags",
     description: tx("Tag messages with private labels (TODO, Important, ...) shown next to their time, and find them in the plugin's settings"),
-    authors: [ENDCORD_AUTHOR],
     icon: "TagIcon",
     tags: ["Utility", "Chat"],
     SettingsComponent: TagList,

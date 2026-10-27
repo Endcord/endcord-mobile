@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId } from "../common";
 import { onIncomingMessage } from "../hooks";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.content-warning",
     name: "ContentWarning",
     description: tx("Hides messages with trigger words you choose behind a spoiler you tap to reveal"),
-    authors: [ENDCORD_AUTHOR],
     icon: "EyeSlashIcon",
     tags: ["Chat", "Privacy"],
     settings: {

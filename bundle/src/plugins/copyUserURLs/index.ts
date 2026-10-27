@@ -6,14 +6,13 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, copy } from "../hooks";
 
 export default definePlugin({
     id: "endcord.copy-user-urls",
     name: "CopyUserURLs",
     description: tx("Copy a link to the profile of a message's author from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "LinkIcon",
     tags: ["Utility"],
     start({ cleanup }) {

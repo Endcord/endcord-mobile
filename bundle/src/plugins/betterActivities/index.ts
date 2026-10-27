@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { addMessageAction, displayName } from "../hooks";
 import { showText } from "../ui/dialogs";
@@ -17,7 +17,6 @@ export default definePlugin({
     id: "endcord.better-activities",
     name: "BetterActivities",
     description: tx("See everything a message's author is doing right now, from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "GameControllerIcon",
     tags: ["Friends"],
     start({ cleanup }) {

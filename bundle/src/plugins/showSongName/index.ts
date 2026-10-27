@@ -7,14 +7,13 @@
 import { tx } from "@core/i18n";
 import { after } from "@lib/api/patcher";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 
 export default definePlugin({
     id: "endcord.show-song-name",
     name: "ShowSongName",
     description: tx("Shows song name instead of artist for Spotify activity"),
-    authors: [ENDCORD_AUTHOR],
     icon: "MusicIcon",
     tags: ["Friends", "Media"],
     start({ cleanup }) {

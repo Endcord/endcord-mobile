@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId } from "../common";
 import { onMessageRow } from "../hooks";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.silent-edit",
     name: "SilentEdit",
     description: tx("Hides the '(edited)' label on your own edited messages. The message stays — nothing is deleted or resent."),
-    authors: [ENDCORD_AUTHOR],
     icon: "PencilIcon",
     tags: ["Chat"],
     start({ cleanup }) {

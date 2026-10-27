@@ -6,14 +6,13 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { appendToTimestamp, onMessageRow } from "../hooks";
 
 export default definePlugin({
     id: "endcord.word-count",
     name: "WordCount",
     description: tx("Shows the word count of messages next to their time"),
-    authors: [ENDCORD_AUTHOR],
     tags: ["Chat"],
     settings: {
         minimum: { type: "number", label: tx("Shortest message"), description: tx("Only count messages with at least this many words"), default: 1, min: 1, max: 1000 },

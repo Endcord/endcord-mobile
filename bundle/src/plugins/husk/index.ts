@@ -8,14 +8,13 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, parseEmoji, react } from "../hooks";
 
 export default definePlugin({
     id: "endcord.husk",
     name: "Husk",
     description: tx("React with husk from the message menu (change the emoji in settings)"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ReactionIcon",
     tags: ["Emotes", "Fun"],
     settings: {

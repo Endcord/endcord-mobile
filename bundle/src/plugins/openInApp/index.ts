@@ -9,14 +9,13 @@ import { instead } from "@lib/api/patcher";
 import { findByProps } from "@metro";
 import { Linking } from "react-native";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { appLink } from "../shared/navigation";
 
 export default definePlugin({
     id: "endcord.open-in-app",
     name: "OpenInApp",
     description: tx("Open links in their respective apps instead of your browser"),
-    authors: [ENDCORD_AUTHOR],
     icon: "LinkExternalSmallIcon",
     tags: ["Utility"],
     start({ cleanup }) {

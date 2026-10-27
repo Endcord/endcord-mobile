@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { addMessageAction, command, onMessageRow, onSend, redrawMessage, textNode, toastError } from "../hooks";
 import { translate, Translation } from "../shared/lookup";
@@ -25,7 +25,6 @@ export default definePlugin({
     id: "endcord.translate",
     name: "Translate",
     description: tx("Translate messages from the message menu, translate what you send, or use /translate (Google Translate)"),
-    authors: [ENDCORD_AUTHOR],
     icon: "LanguageIcon",
     tags: ["Chat", "Utility"],
     settings: {

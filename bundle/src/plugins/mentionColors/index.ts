@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore } from "../common";
 import { appendToTimestamp, onMessageRow } from "../hooks";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.mention-colors",
     name: "MentionColors",
     description: tx("Marks messages that mention you directly differently from @everyone and @here pings"),
-    authors: [ENDCORD_AUTHOR],
     icon: "AtIcon",
     tags: ["Chat", "Notifications"],
     start({ cleanup }) {

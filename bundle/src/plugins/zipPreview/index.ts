@@ -9,7 +9,7 @@ import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 import { safeFetch } from "@lib/utils";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { fromBase64 } from "../crypto";
 import { addMessageAction } from "../hooks";
 import { extension, pick, zipEntries } from "../shared/media";
@@ -33,7 +33,6 @@ export default definePlugin({
     id: "endcord.zip-preview",
     name: "ZipPreview",
     description: tx("Previews ZIP contents inside file attachments."),
-    authors: [ENDCORD_AUTHOR],
     icon: "FileIcon",
     tags: ["Media", "Utility"],
     start({ cleanup }) {

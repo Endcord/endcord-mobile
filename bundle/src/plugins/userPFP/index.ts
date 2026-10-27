@@ -8,7 +8,7 @@ import { tx } from "@core/i18n";
 import { after } from "@lib/api/patcher";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { remoteJson } from "../remote";
 import { redrawProfiles } from "../shared/profiles";
 
@@ -16,7 +16,6 @@ export default definePlugin({
     id: "endcord.userpfp",
     name: "UserPFP",
     description: tx("Allows you to use an animated avatar without Nitro"),
-    authors: [ENDCORD_AUTHOR],
     icon: "UserCircleIcon",
     tags: ["Customisation", "Appearance"],
     start({ cleanup, logger }) {

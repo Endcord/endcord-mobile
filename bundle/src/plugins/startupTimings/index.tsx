@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { getTimings } from "@core/timings";
 import { Stack, TableRow, TableRowGroup, Text } from "@metro/common/components";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { manifest } from "../manifest";
 
 function TimingsPage() {
@@ -32,7 +32,6 @@ export default definePlugin({
     id: "endcord.startup-timings",
     name: "StartupTimings",
     description: tx("Shows how long Endcord and each of its plugins took to start, in the plugin's settings"),
-    authors: [ENDCORD_AUTHOR],
     icon: "TimerIcon",
     tags: ["Utility"],
     SettingsComponent: TimingsPage,

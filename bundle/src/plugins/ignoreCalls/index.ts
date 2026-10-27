@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, onAction } from "../common";
 import { getChannel } from "../hooks";
 import { ids } from "../shared/filters";
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.ignore-calls",
     name: "IgnoreCalls",
     description: tx("Allows you to ignore calls from specific users or dm groups."),
-    authors: [ENDCORD_AUTHOR],
     icon: "PhoneHangUpIcon",
     tags: ["Privacy", "Voice"],
     settings: {

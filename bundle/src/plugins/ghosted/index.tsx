@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { awaitStorage, createMMKVBackend, createStorage, useProxy, wrapSync } from "@core/vendetta/storage";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, subscribe } from "../common";
 import { botMessage, command, displayName, getChannel, getUser, jumpTo } from "../hooks";
 import { ids, preview } from "../shared/channels";
@@ -44,7 +44,6 @@ export default definePlugin({
     id: "endcord.ghosted",
     name: "Ghosted",
     description: tx("Keeps a list of the DMs you haven't answered yet, with a ghost for each"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ChatIcon",
     tags: ["Friends", "Chat"],
     settings: {

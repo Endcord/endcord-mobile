@@ -11,13 +11,12 @@ import { showToast } from "@lib/ui/toasts";
 import { Text } from "@metro/common/components";
 import { sectionVisibility } from "@ui/settings";
 
-import { definePlugin, ENDCORD_AUTHOR, onSettingChange } from "../api";
+import { definePlugin, onSettingChange } from "../api";
 
 const plugin = definePlugin({
     id: "endcord.hide-endcord",
     name: "HideEndcord",
     description: tx("Hides Endcord's entries in Discord's settings, for screenshots and screen sharing. Plugins keep working."),
-    authors: [ENDCORD_AUTHOR],
     popular: 3,
     icon: "EyeSlashIcon",
     tags: ["Privacy", "Utility"],

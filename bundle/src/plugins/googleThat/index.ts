@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { command } from "../hooks";
 
 const ENGINES: Record<string, string> = {
@@ -26,7 +26,6 @@ export default definePlugin({
     id: "endcord.google-that",
     name: "GoogleThat",
     description: tx("Send a web search link for anything with /googlethat"),
-    authors: [ENDCORD_AUTHOR],
     icon: "MagnifyingGlassIcon",
     tags: ["Utility"],
     settings: {

@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { dispatchSoon } from "../common";
 import { addMessageAction, api, onIncomingMessage, toastError } from "../hooks";
 import { mediaOf } from "../shared/actions";
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.hide-media",
     name: "HideMedia",
     description: tx("Hide the attachments and embeds of a message from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "EyeSlashIcon",
     tags: ["Media", "Chat"],
     start({ cleanup }) {

@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addChatButton, currentUserId, getChatInputActionButton, getStore } from "../common";
 import { currentChannelId, generatedIcon, localSnowflake, receiveLocalMessage } from "../hooks";
 import { rawUser } from "../shared/tools";
@@ -17,7 +17,6 @@ export default definePlugin({
     id: "endcord.preview-message",
     name: "PreviewMessage",
     description: tx("Lets you preview your message before sending it."),
-    authors: [ENDCORD_AUTHOR],
     icon: "EyeIcon",
     tags: ["Chat"],
     settings: {

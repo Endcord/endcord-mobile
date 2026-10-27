@@ -11,7 +11,7 @@ import { addOverlay, onTouch } from "@core/overlay";
 import { useEffect, useRef, useState } from "react";
 import { AppState, Dimensions, Image, View } from "react-native";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 
 const SPRITE = "https://raw.githubusercontent.com/adryd325/oneko.js/14bab15a755d0e35cd4ae19c931d96d306f99f42/oneko.gif";
 const FRAME = 32;
@@ -37,7 +37,6 @@ const plugin = definePlugin({
     id: "endcord.oneko",
     name: "oneko",
     description: tx("A little cat that runs to wherever you touch the screen."),
-    authors: [ENDCORD_AUTHOR, { name: "adryd" }],
     popular: 8,
     icon: "EmojiSmilingFaceWithHeartsIcon",
     tags: ["Fun", "Appearance"],

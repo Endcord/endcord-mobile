@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId } from "../common";
 import { edit, loadedMessages, onSend } from "../hooks";
 
@@ -18,7 +18,6 @@ export default definePlugin({
     id: "endcord.sed-enhanced",
     name: "SedEnhanced",
     description: tx("Edit your last message with s/find/replace/, with regular expressions, flags and other separators like s|a|b|g"),
-    authors: [ENDCORD_AUTHOR],
     icon: "PencilIcon",
     tags: ["Chat"],
     settings: {

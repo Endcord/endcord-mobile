@@ -10,7 +10,7 @@ import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 import { Button, Stack } from "@metro/common/components";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore } from "../common";
 import { api, describeError, getUser } from "../hooks";
 import { preview } from "../shared/account";
@@ -72,7 +72,6 @@ export default definePlugin({
     id: "endcord.profile-sets",
     name: "ProfileSets",
     description: tx("Allows you to save and load different profile presets."),
-    authors: [ENDCORD_AUTHOR],
     icon: "UserCircleIcon",
     tags: ["Customisation"],
     SettingsComponent: ProfileSetsPage,

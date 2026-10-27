@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { awaitStorage, createMMKVBackend, createStorage, useProxy, wrapSync } from "@core/vendetta/storage";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore, subscribe } from "../common";
 import { botMessage, command, displayName, getChannel, getUser, localSnowflake, receiveLocalMessage } from "../hooks";
 import { preview } from "../shared/messages";
@@ -49,7 +49,6 @@ export default definePlugin({
     id: "endcord.fake-dm",
     name: "FakeDM",
     description: tx("Injects fake local messages into a DM or group DM with /fakedm. They stay after Discord restarts; only you see them."),
-    authors: [ENDCORD_AUTHOR],
     icon: "ChatIcon",
     tags: ["Fun"],
     SettingsComponent: FakeDMPage,

@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { answer, clip, json, only } from "../shared/utility";
 
 const ANIME_STATUS: Record<string, string> = {
@@ -21,7 +21,6 @@ export default definePlugin({
     id: "endcord.anime-lookup",
     name: "AnimeLookup",
     description: tx("Look up an anime's score, episodes and status with /anime"),
-    authors: [ENDCORD_AUTHOR],
     icon: "VideoIcon",
     tags: ["Fun"],
     start: only({

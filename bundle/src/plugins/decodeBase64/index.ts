@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction } from "../hooks";
 import { decodeBase64 } from "../shared/actions";
 import { showText } from "../ui/dialogs";
@@ -17,7 +17,6 @@ export default definePlugin({
     id: "endcord.decode-base64",
     name: "DecodeBase64",
     description: tx("Decode base64 content of any message and copy the decoded content."),
-    authors: [ENDCORD_AUTHOR],
     icon: "PaperIcon",
     tags: ["Utility"],
     start({ cleanup }) {

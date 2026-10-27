@@ -7,14 +7,13 @@
 import { tx } from "@core/i18n";
 import formatDate from "@lib/utils/formatDate";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { appendToTimestamp, onMessageRow, snowflakeTime } from "../hooks";
 
 export default definePlugin({
     id: "endcord.reply-timestamp",
     name: "ReplyTimestamp",
     description: tx("Shows when the message a reply answers was sent, next to the reply's time"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ArrowAngleLeftUpIcon",
     tags: ["Chat"],
     start({ cleanup }) {

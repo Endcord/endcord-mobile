@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore, subscribe } from "../common";
 import { api, getChannel } from "../hooks";
 import { canHere } from "../shared/servers";
@@ -17,7 +17,6 @@ export default definePlugin({
     id: "endcord.auto-disconnect-and-auto-mute",
     name: "AutoDisconnectAndAutoMute",
     description: tx("Automatically disconnect or mute selected users from voice channels"),
-    authors: [ENDCORD_AUTHOR],
     icon: "VoiceNormalIcon",
     tags: ["Voice", "Servers"],
     settings: {

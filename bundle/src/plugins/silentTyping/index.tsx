@@ -13,7 +13,7 @@ import { showToast } from "@lib/ui/toasts";
 import { messageUtil } from "@metro/common";
 import { View } from "react-native";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addChatButton, getChatInputActionButton, getStore, moduleAt, onAction } from "../common";
 
 const KeyboardIcon = () => moduleAt("design/components/Icon/native/redesign/generated/KeyboardIcon.tsx")?.KeyboardIcon;
@@ -22,7 +22,6 @@ const plugin = definePlugin({
     id: "endcord.silent-typing",
     name: "SilentTyping",
     description: tx("Hide that you are typing"),
-    authors: [ENDCORD_AUTHOR],
     popular: 11,
     icon: "KeyboardIcon",
     tags: ["Chat", "Privacy"],

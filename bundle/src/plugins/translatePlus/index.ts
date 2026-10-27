@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { command } from "../hooks";
 import { STYLES } from "../shared/messages";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.translate-plus",
     name: "Translate+",
     description: tx("Rewrite your text in fun styles (small caps, upside down, fraktur, pirate...) with /translateplus"),
-    authors: [ENDCORD_AUTHOR],
     icon: "LanguageIcon",
     tags: ["Fun", "Chat"],
     start({ cleanup }) {

@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { onMessageRow } from "../hooks";
 
 const BADGES: Array<[number, string]> = [
@@ -18,7 +18,6 @@ export default definePlugin({
     id: "endcord.show-badges-in-chat",
     name: "ShowBadgesInChat",
     description: tx("Shows the message author's badges beside their name in chat."),
-    authors: [ENDCORD_AUTHOR],
     icon: "MedalIcon",
     tags: ["Chat", "Appearance"],
     start({ cleanup }) {

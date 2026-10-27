@@ -9,7 +9,7 @@ import { awaitStorage } from "@core/vendetta/storage";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { botMessage, command, getGuild } from "../hooks";
 import { holdServerPatch, listOf, pins, refreshServers, serverList, toggleIn } from "../shared/navigation";
 
@@ -17,7 +17,6 @@ export default definePlugin({
     id: "endcord.hide-servers",
     name: "HideServers",
     description: tx("Hide servers from your server list with /hideserver, and bring them back from the plugin's settings"),
-    authors: [ENDCORD_AUTHOR],
     icon: "EyeSlashIcon",
     tags: ["Servers"],
     SettingsComponent: serverList("hidden", tx("Hidden servers"), tx("Use /hideserver in a server to hide it"), tx("Show again")),

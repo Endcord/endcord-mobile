@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addChatButton, getChatInputActionButton } from "../common";
 import { copy, currentChannelId, generatedIcon, insertText, onSend } from "../hooks";
 import { choose } from "../ui/dialogs";
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.send-timestamps",
     name: "SendTimestamps",
     description: tx("Times written like `14:30` become timestamps everyone sees in their own time zone; a chat bar button inserts the current time"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ClockIcon",
     tags: ["Chat", "Utility"],
     settings: {

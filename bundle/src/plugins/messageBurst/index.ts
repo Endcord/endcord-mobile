@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId } from "../common";
 import { edit, loadedMessages, onSend } from "../hooks";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.message-burst",
     name: "MessageBurst",
     description: tx("Merges messages sent within a time period with your previous sent message if no one else sends a message before you."),
-    authors: [ENDCORD_AUTHOR],
     tags: ["Chat"],
     settings: {
         timePeriod: { type: "number", label: tx("Burst length (seconds)"), description: tx("The duration of bursts (in seconds)."), default: 3, min: 1, max: 60 },

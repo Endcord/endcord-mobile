@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, onMessageRow, redrawMessage, RowOrder, textNode } from "../hooks";
 
 function unspoil(nodes: any[]): any[] {
@@ -21,7 +21,6 @@ export default definePlugin({
     id: "endcord.reveal-all-spoilers",
     name: "RevealAllSpoilers",
     description: tx("Reveal every spoiler in a message from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "EyeIcon",
     tags: ["Chat"],
     start({ cleanup }) {

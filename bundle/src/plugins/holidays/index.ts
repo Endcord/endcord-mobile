@@ -6,14 +6,13 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { answer, enc, json, only } from "../shared/utility";
 
 export default definePlugin({
     id: "endcord.holidays",
     name: "Holidays",
     description: tx("See a country's next public holidays with /holidays"),
-    authors: [ENDCORD_AUTHOR],
     icon: "CalendarIcon",
     tags: ["Utility"],
     start: only({

@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { api, botMessage, command, copy } from "../hooks";
 import { canHere, unix } from "../shared/servers";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.invite-defaults",
     name: "InviteDefaults",
     description: tx("Create invites with your own defaults for how long they last and how many uses they have, with /invite"),
-    authors: [ENDCORD_AUTHOR],
     icon: "LinkIcon",
     tags: ["Servers"],
     settings: {

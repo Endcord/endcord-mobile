@@ -6,14 +6,13 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, send } from "../hooks";
 
 export default definePlugin({
     id: "endcord.repeat-messages",
     name: "RepeatMessages",
     description: tx("Send a message again from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "RetryIcon",
     tags: ["Chat"],
     start({ cleanup }) {

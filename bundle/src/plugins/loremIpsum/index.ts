@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { copy, insertText } from "../hooks";
 import { only } from "../shared/utility";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.lorem-ipsum",
     name: "LoremIpsum",
     description: tx("Put placeholder text in the message box with /lorem"),
-    authors: [ENDCORD_AUTHOR],
     icon: "TextIcon",
     tags: ["Utility"],
     start: only({

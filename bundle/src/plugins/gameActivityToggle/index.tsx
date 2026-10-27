@@ -9,7 +9,7 @@ import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addChatButton, getChatInputActionButton } from "../common";
 import { command, generatedIcon, toastError } from "../hooks";
 import { BUTTON_OPTIONS } from "../shared/activity";
@@ -28,7 +28,6 @@ export default definePlugin({
     id: "endcord.game-activity-toggle",
     name: "GameActivityToggle",
     description: tx("Adds a button beside the message box and /gameactivity to show or hide what you're playing"),
-    authors: [ENDCORD_AUTHOR],
     icon: "GameControllerIcon",
     tags: ["Privacy", "Utility"],
     settings: {

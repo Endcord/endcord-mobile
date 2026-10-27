@@ -10,7 +10,7 @@ import { before } from "@lib/api/patcher";
 import { showToast } from "@lib/ui/toasts";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, subscribe } from "../common";
 import { api } from "../hooks";
 
@@ -18,7 +18,6 @@ export default definePlugin({
     id: "endcord.anti-nickname",
     name: "AntiNickname",
     description: tx("Automatically resets any nickname forcefully assigned to you in a server. Works even without admin permissions."),
-    authors: [ENDCORD_AUTHOR],
     icon: "IdIcon",
     tags: ["Servers", "Customisation"],
     settings: {

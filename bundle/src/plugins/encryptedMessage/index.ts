@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { fromBase64, open, seal, toBase64 } from "../crypto";
 import { addMessageAction, botMessage, command, onMessageRow, textNode } from "../hooks";
 import { decryptionCache, revealPrompt } from "../shared/messages";
@@ -17,7 +17,6 @@ export default definePlugin({
     id: "endcord.encrypted-message",
     name: "EncryptedMessage",
     description: tx("Send messages encrypted with a password with /encrypt; only people with the password can read them"),
-    authors: [ENDCORD_AUTHOR],
     icon: "LockIcon",
     tags: ["Privacy", "Chat"],
     settings: {

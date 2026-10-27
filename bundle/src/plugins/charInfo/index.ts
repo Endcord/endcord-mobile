@@ -6,14 +6,13 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { answer, only } from "../shared/utility";
 
 export default definePlugin({
     id: "endcord.char-info",
     name: "CharInfo",
     description: tx("See the Unicode code points of every character in a text with /charinfo"),
-    authors: [ENDCORD_AUTHOR],
     icon: "TextIcon",
     tags: ["Utility"],
     start: only({

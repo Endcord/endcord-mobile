@@ -6,14 +6,13 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { onAction } from "../common";
 
 export default definePlugin({
     id: "endcord.custom-idle",
     name: "CustomIdle",
     description: tx("Stops Discord from marking you idle while the app is in the background"),
-    authors: [ENDCORD_AUTHOR],
     icon: "BellZIcon",
     tags: ["Utility"],
     start({ cleanup }) {

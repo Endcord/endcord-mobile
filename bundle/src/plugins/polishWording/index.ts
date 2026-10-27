@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { onSend, outsideCode } from "../hooks";
 import { capitalizeSentences, splitList } from "../shared/compose";
 
@@ -49,7 +49,6 @@ export default definePlugin({
     id: "endcord.polish-wording",
     name: "PolishWording",
     description: tx("Tweaks your messages to make them look nicer and have better grammar. See settings"),
-    authors: [ENDCORD_AUTHOR],
     tags: ["Chat"],
     settings: {
         fixApostrophes: { type: "boolean", label: tx("Fix apostrophes"), description: tx("Ensure contractions contain apostrophes."), default: true },

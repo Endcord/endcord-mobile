@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, subscribe } from "../common";
 import { currentChannelId, playSound } from "../hooks";
 
@@ -16,7 +16,6 @@ export default definePlugin({
     id: "endcord.moyai",
     name: "Moyai",
     description: tx("Plays a 🗿 sound effect whenever a moyai emoji is sent or reacted in the chat you have open"),
-    authors: [ENDCORD_AUTHOR],
     tags: ["Fun"],
     settings: {
         volume: { type: "number", label: tx("Volume"), description: tx("From 0 to 100"), default: 50, min: 0, max: 100 },

@@ -7,7 +7,7 @@
 import { tx } from "@core/i18n";
 import formatDate from "@lib/utils/formatDate";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { onMessageRow, RowOrder } from "../hooks";
 import { timeOf } from "../shared/rows";
 
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.realtime-timestamps",
     name: "RealtimeTimestamps",
     description: tx("Shows the seconds in every message's time (e.g. 15:34:21)"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ClockIcon",
     tags: ["Chat", "Appearance"],
     start({ cleanup }) {

@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { externalAsset, LASTFM_APP, setActivity } from "../shared/presence";
 
@@ -16,7 +16,6 @@ export default definePlugin({
     id: "endcord.music-rich-presence",
     name: "MusicRichPresence",
     description: tx("Rich Presence for what you're playing, from ListenBrainz"),
-    authors: [ENDCORD_AUTHOR],
     icon: "MusicIcon",
     tags: ["Media", "Customisation"],
     settings: {

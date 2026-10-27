@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore, guildRoles } from "../common";
 import { onMessageRow } from "../hooks";
 import { prependToTimestamp } from "../shared/rows";
@@ -24,7 +24,6 @@ export default definePlugin({
     id: "endcord.show-roles-in-chat",
     name: "ShowRolesInChat",
     description: tx("Shows a user's highest role next to their name in chat messages"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ShieldIcon",
     tags: ["Chat", "Servers"],
     settings: {

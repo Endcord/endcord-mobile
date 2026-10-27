@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { after } from "@lib/api/patcher";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { botMessage, command, copy } from "../hooks";
 
@@ -29,7 +29,6 @@ export default definePlugin({
     id: "endcord.fake-profile-themes",
     name: "FakeProfileThemes",
     description: tx("Allows profile theming by hiding the colors in your bio thanks to invisible 3y3 encoding"),
-    authors: [ENDCORD_AUTHOR],
     icon: "PaintPaletteIcon",
     tags: ["Customisation", "Appearance"],
     settings: {

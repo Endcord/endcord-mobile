@@ -13,8 +13,7 @@ export default defineCorePlugin({
         version: "1.0.0",
         display: {
             name: "QuickInstall",
-            description: "Quickly install Vendetta plugins and themes",
-            authors: [{ name: "Vendetta Team" }]
+            description: "Quickly install Vendetta plugins and themes"
         }
     },
     start() {

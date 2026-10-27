@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { onSend } from "../hooks";
 import TextReplaceRules, { applyRules } from "./TextReplaceRules";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.text-replace",
     name: "TextReplace",
     description: tx("Replace text in your messages. You can find pre-made rules in the #textreplace-rules channel in Endcord's Server"),
-    authors: [ENDCORD_AUTHOR],
     icon: "PencilIcon",
     tags: ["Chat", "Utility"],
     SettingsComponent: TextReplaceRules,

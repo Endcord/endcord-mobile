@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId } from "../common";
 import { onIncomingMessage } from "../hooks";
 
@@ -16,7 +16,6 @@ export default definePlugin({
     id: "endcord.whitelisted-emojis",
     name: "WhitelistedEmojis",
     description: tx("Adds the ability to disable all message emojis except for a whitelisted set."),
-    authors: [ENDCORD_AUTHOR],
     icon: "ReactionIcon",
     tags: ["Emotes", "Chat"],
     settings: {

@@ -8,13 +8,12 @@ import { tx } from "@core/i18n";
 import { instead } from "@lib/api/patcher";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 
 export default definePlugin({
     id: "endcord.disable-call-idle",
     name: "DisableCallIdle",
     description: tx("Disables automatically getting kicked from a DM voice call after 3 minutes and being moved to an AFK voice channel."),
-    authors: [ENDCORD_AUTHOR],
     icon: "PhoneCallIcon",
     tags: ["Voice"],
     start({ cleanup }) {

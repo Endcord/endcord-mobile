@@ -6,14 +6,13 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { appendToTimestamp, onMessageRow } from "../hooks";
 
 export default definePlugin({
     id: "endcord.pin-icon",
     name: "PinIcon",
     description: tx("Adds a pin icon to pinned messages"),
-    authors: [ENDCORD_AUTHOR],
     icon: "PinIcon",
     tags: ["Chat"],
     start({ cleanup }) {

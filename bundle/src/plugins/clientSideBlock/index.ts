@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, onAction } from "../common";
 import { addMessageAction, getChannel, hideLocally, onIncomingMessage } from "../hooks";
 import { ids, isBlocked } from "../shared/filters";
@@ -17,7 +17,6 @@ export default definePlugin({
     id: "endcord.client-side-block",
     name: "ClientSideBlock",
     description: tx("Allows you to locally hide almost all content from any user"),
-    authors: [ENDCORD_AUTHOR],
     icon: "DenyIcon",
     tags: ["Privacy", "Chat"],
     settings: {

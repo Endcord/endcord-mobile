@@ -13,7 +13,7 @@ import { openAlert } from "@lib/ui/alerts";
 import { findByProps } from "@metro";
 import { AlertActionButton, AlertActions, AlertModal } from "@metro/common/components";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore, moduleAt } from "../common";
 
 interface Emoji { id: string; name: string; animated?: boolean; }
@@ -27,7 +27,6 @@ const plugin = definePlugin({
     id: "endcord.fake-nitro",
     name: "FakeNitro",
     description: tx("Use any emoji and sticker without Nitro: the ones you can't use are sent as links."),
-    authors: [ENDCORD_AUTHOR],
     popular: 4,
     icon: "NitroWheelIcon",
     tags: ["Emotes", "Appearance", "Customisation", "Chat"],

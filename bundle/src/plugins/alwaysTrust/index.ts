@@ -7,14 +7,13 @@
 import { tx } from "@core/i18n";
 import { instead } from "@lib/api/patcher";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 
 export default definePlugin({
     id: "endcord.always-trust",
     name: "AlwaysTrust",
     description: tx("Removes the annoying untrusted domain and suspicious file popup"),
-    authors: [ENDCORD_AUTHOR],
     icon: "LinkIcon",
     tags: ["Utility"],
     start({ cleanup }) {

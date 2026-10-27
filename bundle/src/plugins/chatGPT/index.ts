@@ -6,14 +6,13 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { botMessage, command } from "../hooks";
 
 export default definePlugin({
     id: "endcord.chatgpt",
     name: "ChatGPT",
     description: tx("Allows using ChatGPT directly in Discord with configurable settings"),
-    authors: [ENDCORD_AUTHOR],
     icon: "SparklesIcon",
     tags: ["Utility"],
     settings: {

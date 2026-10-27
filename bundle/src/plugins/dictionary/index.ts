@@ -6,14 +6,13 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { answer, enc, json, only } from "../shared/utility";
 
 export default definePlugin({
     id: "endcord.dictionary",
     name: "Dictionary",
     description: tx("Look up what an English word means with /define"),
-    authors: [ENDCORD_AUTHOR],
     icon: "BookCheckIcon",
     tags: ["Utility"],
     start: only({

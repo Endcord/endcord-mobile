@@ -9,7 +9,7 @@ import { awaitStorage, createMMKVBackend, createStorage, wrapSync } from "@core/
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { subscribe } from "../common";
 import { getChannel } from "../hooks";
 import { join, myVoiceChannel } from "../shared/voice";
@@ -20,7 +20,6 @@ export default definePlugin({
     id: "endcord.voice-rejoin",
     name: "VoiceRejoin",
     description: tx("Rejoins DM/Server call automatically when restarting Discord."),
-    authors: [ENDCORD_AUTHOR],
     icon: "VoiceNormalIcon",
     tags: ["Voice"],
     settings: {

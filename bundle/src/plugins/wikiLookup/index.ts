@@ -6,14 +6,13 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { botMessage, command } from "../hooks";
 
 export default definePlugin({
     id: "endcord.wiki-lookup",
     name: "WikiLookup",
     description: tx("/wiki pulls a short Wikipedia summary for anything (sent only to you)."),
-    authors: [ENDCORD_AUTHOR],
     icon: "BookCheckIcon",
     tags: ["Utility"],
     start({ cleanup }) {

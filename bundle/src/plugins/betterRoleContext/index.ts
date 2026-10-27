@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { botMessage, command, getGuild } from "../hooks";
 import { hasPermission, unix } from "../shared/servers";
@@ -18,7 +18,6 @@ export default definePlugin({
     id: "endcord.better-role-context",
     name: "BetterRoleContext",
     description: tx("See a role's color, icon, members and permissions with /roleinfo"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ShieldIcon",
     tags: ["Servers", "Utility"],
     start({ cleanup }) {

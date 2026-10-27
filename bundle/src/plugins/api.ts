@@ -7,7 +7,6 @@
 import { t, tx } from "@core/i18n";
 import { recordPluginStart } from "@core/timings";
 import { awaitStorage, createMMKVBackend, createStorage, wrapSync } from "@core/vendetta/storage";
-import type { Author } from "@lib/addons/types";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 import { Logger, LoggerClass } from "@lib/utils/logger";
@@ -47,7 +46,6 @@ export interface EndcordPluginDefinition<S extends SettingsSchema = SettingsSche
     name: string;
     /** English, marked with tx() so it is translated where it is shown */
     description: string;
-    authors: Author[];
     /** Position in Endcord PC's list of popular plugins, which are listed first */
     popular?: number;
     /** Named asset shown next to the name */
@@ -68,8 +66,6 @@ export interface EndcordPlugin<S extends SettingsSchema = SettingsSchema> extend
     /** Set when the plugin failed to start, until it is started again */
     error?: unknown;
 }
-
-export const ENDCORD_AUTHOR: Author = { name: "rootpoi" };
 
 export function definePlugin<S extends SettingsSchema>(def: EndcordPluginDefinition<S>): EndcordPlugin<S> {
     const defaults = Object.fromEntries(Object.entries(def.settings ?? {}).map(([k, v]) => [k, v.default]));

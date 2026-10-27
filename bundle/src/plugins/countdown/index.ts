@@ -6,14 +6,13 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { answer, only } from "../shared/utility";
 
 export default definePlugin({
     id: "endcord.countdown",
     name: "Countdown",
     description: tx("See how long is left until a date with /countdown"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ClockIcon",
     tags: ["Utility"],
     start: only({

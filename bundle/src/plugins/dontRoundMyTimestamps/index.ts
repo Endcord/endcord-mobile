@@ -7,13 +7,12 @@
 import { tx } from "@core/i18n";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 
 export default definePlugin({
     id: "endcord.dont-round-my-timestamps",
     name: "DontRoundMyTimestamps",
     description: tx("Always rounds relative timestamps down, so 7.6y becomes 7y instead of 8y"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ClockIcon",
     tags: ["Chat"],
     start({ cleanup }) {

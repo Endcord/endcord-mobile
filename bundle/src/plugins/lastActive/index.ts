@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId } from "../common";
 import { api, botMessage, command, displayName, getUser, jumpTo, loadedMessages } from "../hooks";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.last-active",
     name: "LastActive",
     description: tx("Jump to the last message of yourself or someone else in a chat with /lastactive"),
-    authors: [ENDCORD_AUTHOR],
     icon: "ClockIcon",
     tags: ["Chat"],
     start({ cleanup }) {

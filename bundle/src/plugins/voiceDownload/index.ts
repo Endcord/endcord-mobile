@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, openUrl } from "../hooks";
 
 const IS_VOICE_MESSAGE = 1 << 13;
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.voice-download",
     name: "VoiceDownload",
     description: tx("Download voice messages from the message menu"),
-    authors: [ENDCORD_AUTHOR],
     icon: "DownloadIcon",
     tags: ["Voice", "Media"],
     start({ cleanup }) {

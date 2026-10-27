@@ -21,7 +21,7 @@ import { createStyles } from "@ui/styles";
 import { memo, useEffect, useMemo, useState } from "react";
 import { ActivityIndicator, Image, ScrollView, View } from "react-native";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addSettingsPage, addToolboxAction } from "../common";
 import { describeError } from "../hooks";
 import { openPage } from "../ui/pages";
@@ -67,7 +67,6 @@ const plugin = definePlugin({
     id: "endcord.theme-library",
     name: "ThemeLibrary",
     description: tx("Browse and install themes for Discord on your phone without leaving the app."),
-    authors: [ENDCORD_AUTHOR],
     popular: 7,
     icon: "PaintPaletteIcon",
     tags: ["Appearance", "Customisation"],

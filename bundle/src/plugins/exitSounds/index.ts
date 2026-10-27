@@ -10,7 +10,7 @@ import { instead } from "@lib/api/patcher";
 import { showToast } from "@lib/ui/toasts";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { api, botMessage, command } from "../hooks";
 import { myVoiceChannel } from "../shared/activity";
@@ -64,7 +64,6 @@ export default definePlugin({
     id: "endcord.exit-sounds",
     name: "ExitSounds",
     description: tx("Play soundboard sounds when you disconnect from voice."),
-    authors: [ENDCORD_AUTHOR],
     icon: "SoundboardIcon",
     tags: ["Voice", "Fun"],
     settings: {

@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { onMessageRow } from "../hooks";
 import { prependToTimestamp } from "../shared/rows";
@@ -18,7 +18,6 @@ export default definePlugin({
     id: "endcord.friendship-ranks",
     name: "FriendshipRanks",
     description: tx("Adds badges showcasing how long you have been friends with a user for"),
-    authors: [ENDCORD_AUTHOR],
     icon: "FriendsIcon",
     tags: ["Friends", "Chat"],
     start({ cleanup }) {

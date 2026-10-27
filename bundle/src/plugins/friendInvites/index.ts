@@ -7,7 +7,7 @@
 import { t, tx } from "@core/i18n";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { api, botMessage, command } from "../hooks";
 import { unix } from "../shared/lookup";
 
@@ -15,7 +15,6 @@ export default definePlugin({
     id: "endcord.friend-invites",
     name: "FriendInvites",
     description: tx("Create, list and revoke friend invite links with /friendinvites"),
-    authors: [ENDCORD_AUTHOR],
     icon: "UserPlusIcon",
     tags: ["Friends"],
     start({ cleanup }) {

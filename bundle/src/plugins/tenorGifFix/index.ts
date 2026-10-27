@@ -8,7 +8,7 @@ import { tx } from "@core/i18n";
 import { before } from "@lib/api/patcher";
 import { findByProps } from "@metro";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 
 /** Tenor's video previews to the GIF they come from */
 function tenorGif(url: string): string | undefined {
@@ -24,7 +24,6 @@ export default definePlugin({
     id: "endcord.tenor-gif-fix",
     name: "TenorGifFix",
     description: tx("Saves Tenor GIFs as real GIFs instead of videos"),
-    authors: [ENDCORD_AUTHOR],
     icon: "GifIcon",
     tags: ["Media"],
     start({ cleanup }) {

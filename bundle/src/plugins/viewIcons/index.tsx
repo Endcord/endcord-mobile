@@ -13,7 +13,7 @@ import { clipboard } from "@metro/common";
 import { cloneElement } from "react";
 import { Image, Pressable } from "react-native";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { afterRender, getStore, moduleAt } from "../common";
 
 const { openMediaModal } = lazyDestructure(() => findByProps("openMediaModal"));
@@ -23,7 +23,6 @@ const plugin = definePlugin({
     id: "endcord.view-icons",
     name: "ViewIcons",
     description: tx("Tap avatars, banners and server icons to see them full size."),
-    authors: [ENDCORD_AUTHOR],
     popular: 6,
     icon: "ImageIcon",
     tags: ["Media", "Servers", "Appearance"],

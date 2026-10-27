@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addChatButton } from "../common";
 import { botMessage, command, onSend } from "../hooks";
 import { chatButtonSetting, ToggleButton } from "../shared/compose";
@@ -15,7 +15,6 @@ const Signature = definePlugin({
     id: "endcord.signature",
     name: "Signature",
     description: tx("Adds your signature to the end of every message you send"),
-    authors: [ENDCORD_AUTHOR],
     icon: "PencilIcon",
     tags: ["Chat", "Customisation"],
     settings: {

@@ -8,7 +8,7 @@ import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, hideLocally, onIncomingMessage } from "../hooks";
 import { ids } from "../shared/filters";
 
@@ -16,7 +16,6 @@ export default definePlugin({
     id: "endcord.sticker-blocker",
     name: "StickerBlocker",
     description: tx("Allows you to block stickers from being displayed."),
-    authors: [ENDCORD_AUTHOR],
     icon: "StickerIcon",
     tags: ["Chat", "Emotes"],
     settings: {

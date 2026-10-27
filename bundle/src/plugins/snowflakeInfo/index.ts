@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { snowflakeTime } from "../hooks";
 import { answer, only } from "../shared/utility";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.snowflake-info",
     name: "SnowflakeInfo",
     description: tx("See when any Discord ID (a user, message, server...) was made with /snowflake"),
-    authors: [ENDCORD_AUTHOR],
     icon: "IdIcon",
     tags: ["Utility"],
     start: only({

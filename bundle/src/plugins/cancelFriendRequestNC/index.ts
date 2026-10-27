@@ -6,7 +6,7 @@
 
 import { t, tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { botMessage, command } from "../hooks";
 import { OUTGOING, relationships, removeRelationship } from "../shared/people";
 
@@ -14,7 +14,6 @@ export default definePlugin({
     id: "endcord.cancel-friend-request-nc",
     name: "CancelFriendRequestNC",
     description: tx("Cancel every friend request you sent with /cancelrequests"),
-    authors: [ENDCORD_AUTHOR],
     icon: "UserPlusIcon",
     tags: ["Friends"],
     start({ cleanup }) {

@@ -13,7 +13,7 @@ import { findByProps } from "@metro";
 import { Button, Stack, TableRow, TableRowGroup, Text } from "@metro/common/components";
 import { View } from "react-native";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { currentUserId, getStore, onAction, subscribe } from "../common";
 
 const enum RelationshipType { FRIEND = 1, BLOCKED = 2, INCOMING_REQUEST = 3, OUTGOING_REQUEST = 4 }
@@ -41,7 +41,6 @@ const plugin = definePlugin({
     id: "endcord.relationship-notifier",
     name: "RelationshipNotifier",
     description: tx("Notifies you when a friend, group chat, or server removes you."),
-    authors: [ENDCORD_AUTHOR],
     popular: 10,
     icon: "FriendsIcon",
     tags: ["Friends", "Notifications"],

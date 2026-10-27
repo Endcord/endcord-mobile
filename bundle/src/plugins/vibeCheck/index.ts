@@ -6,7 +6,7 @@
 
 import { tx } from "@core/i18n";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { command } from "../hooks";
 import { pick } from "../shared/text";
 
@@ -27,7 +27,6 @@ export default definePlugin({
     id: "endcord.vibe-check",
     name: "VibeCheck",
     description: tx("Adds /vibe to drop a random vaporwave mood into chat."),
-    authors: [ENDCORD_AUTHOR],
     tags: ["Chat", "Fun"],
     start({ cleanup }) {
         cleanup(command({

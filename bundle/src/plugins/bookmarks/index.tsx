@@ -9,7 +9,7 @@ import { awaitStorage, createMMKVBackend, createStorage, useProxy, wrapSync } fr
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
 
-import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { definePlugin } from "../api";
 import { addMessageAction, botMessage, command, jumpTo, messageLink } from "../hooks";
 import { preview, Saved, savedFrom } from "../shared/schedule";
 import { choose } from "../ui/dialogs";
@@ -44,7 +44,6 @@ export default definePlugin({
     id: "endcord.bookmarks",
     name: "Bookmarks",
     description: tx("Privately bookmark messages (beyond Discord's 50-pin limit) from the message menu, then find and jump to them in the plugin's settings or with /bookmarks"),
-    authors: [ENDCORD_AUTHOR],
     icon: "BookmarkIcon",
     tags: ["Utility", "Chat"],
     SettingsComponent: BookmarkList,
