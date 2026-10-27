@@ -509,8 +509,13 @@ const ImplicitRelationships = definePlugin({
         cleanup(command({
             name: "implicit",
             description: tx("People you talk to a lot who aren't your friends"),
-            run: (_, ctx) => {
-                const affinities: any[] = getStore("UserAffinitiesStore")?.getUserAffinities?.() ?? [];
+            run: async (_, ctx) => {
+                // UserAffinitiesV2Store since Discord 350; Discord fetches them only for some screens
+                const affinityStore = getStore("UserAffinitiesV2Store") ?? getStore("UserAffinitiesStore");
+                if (affinityStore?.shouldFetch?.()) {
+                    await Promise.resolve(findByProps("fetchUserAffinitiesV2")?.fetchUserAffinitiesV2?.()).catch(() => { });
+                }
+                const affinities: any[] = affinityStore?.getUserAffinities?.() ?? [];
                 const relationships = getStore("RelationshipStore");
                 const me = currentUserId();
                 const ids = affinities
