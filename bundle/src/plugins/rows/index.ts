@@ -8,6 +8,7 @@
  */
 
 import { t, tx } from "@core/i18n";
+import formatDate from "@lib/utils/formatDate";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
 import { currentUserId, getStore } from "../common";
@@ -116,8 +117,7 @@ const RealtimeTimestamps = definePlugin({
     start({ cleanup }) {
         cleanup(onMessageRow("realtime-timestamps", (row, message) => {
             if (typeof row.timestamp !== "string") return;
-            const time = new Date(timeOf(message));
-            const withSeconds = time.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+            const withSeconds = formatDate(timeOf(message), { hour: "2-digit", minute: "2-digit", second: "2-digit" });
             row.timestamp = row.timestamp.replace(/\d{1,2}[:.]\d{2}(?:\s?[AaPp]\.?[Mm]\.?)?/, withSeconds);
         }));
     },
@@ -176,7 +176,7 @@ const Timezones = definePlugin({
             const zone = zones(store.timezones).get(message.author?.id);
             if (!zone) return;
             try {
-                const local = new Date(timeOf(message)).toLocaleTimeString(undefined, { timeZone: zone, hour: "2-digit", minute: "2-digit", hour12: !store.twentyFourHourFormat });
+                const local = formatDate(timeOf(message), { timeZone: zone, hour: "2-digit", minute: "2-digit", hour12: !store.twentyFourHourFormat });
                 appendToTimestamp(row, ` · 🕒 ${local}${store.showTimezoneInfo ? ` (${zone})` : ""}`);
             } catch {
                 // Unknown time zone
