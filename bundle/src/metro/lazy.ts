@@ -85,7 +85,13 @@ export function patchWhenLoaded<T>(lazyModule: T, patch: (module: T) => (() => u
     let cancelled = false;
     let undo: (() => unknown) | void;
     const unsubscribe = context.getExports(module => {
-        if (!cancelled) undo = patch(module);
+        if (cancelled) return;
+        // The same whether it runs now or inside Discord's require of the module later, where throwing would fail it
+        try {
+            undo = patch(module);
+        } catch (e) {
+            console.error(`[Endcord] Couldn't patch ${context.filter.uniq}`, e);
+        }
     });
     return () => {
         cancelled = true;

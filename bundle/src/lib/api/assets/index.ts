@@ -22,10 +22,12 @@ export function* iterateAssets() {
         if (flagsIndex[id] & ModuleFlags.ASSET) {
             const assetId = requireModule(Number(id));
             if (typeof assetId !== "number" || yielded.has(assetId)) continue;
-            const asset = getAssetById(assetId);
-            if (asset) asset.moduleId = Number(id);
-            yield asset;
             yielded.add(assetId);
+            const asset = getAssetById(assetId);
+            // An ID the registry doesn't know has nothing to give a search
+            if (!asset) continue;
+            asset.moduleId = Number(id);
+            yield asset;
         }
     }
 }
