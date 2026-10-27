@@ -1,6 +1,6 @@
 {
     "**{query}** is ambiguous — try being more specific.": {
-        "tr": "**{query}** belirsiz — daha net yazmayı deneyin.",
+        "tr": "**{query}** belirsiz — daha net yazmayı dene.",
         "ru": "**{query}** — неоднозначный запрос, попробуйте уточнить.",
         "es": "**{query}** es ambiguo; intenta ser más específico.",
         "fr": "**{query}** est ambigu — essayez d'être plus précis."
@@ -138,7 +138,7 @@
         "fr": "Une ville ou un lieu"
     },
     "A color's values; leave it out for a random color": {
-        "tr": "Bir rengin değerleri; rastgele renk için boş bırakın",
+        "tr": "Bir rengin değerleri; rastgele renk için boş bırak",
         "ru": "Значения цвета; оставьте пустым для случайного цвета",
         "es": "Los valores de un color; omítelo para un color al azar",
         "fr": "Les valeurs d'une couleur ; laissez vide pour une couleur au hasard"
@@ -168,13 +168,13 @@
         "fr": "Un tableau de bord doux et privé de votre usage de Discord : temps d'écran, messages et rappels de pause. Tout reste sur votre téléphone."
     },
     "A language code like en, tr, ru, es or fr. Leave empty for Discord's language.": {
-        "tr": "en, tr, ru, es veya fr gibi bir dil kodu. Discord'un dili için boş bırakın.",
+        "tr": "en, tr, ru, es veya fr gibi bir dil kodu. Discord'un dili için boş bırak.",
         "ru": "Код языка, например en, tr, ru, es или fr. Оставьте пустым, чтобы использовать язык Discord.",
         "es": "Un código de idioma como en, tr, ru, es o fr. Déjalo vacío para usar el idioma de Discord.",
         "fr": "Un code de langue comme en, tr, ru, es ou fr. Laissez vide pour la langue de Discord."
     },
     "A link to a sound to play; leave empty for none": {
-        "tr": "Çalınacak bir sesin bağlantısı; ses istemiyorsanız boş bırakın",
+        "tr": "Çalınacak bir sesin bağlantısı; ses istemiyorsan boş bırak",
         "ru": "Ссылка на звук; оставьте пустым, чтобы без звука",
         "es": "Un enlace a un sonido; déjalo vacío para no reproducir ninguno",
         "fr": "Un lien vers un son à jouer ; laissez vide pour aucun"
@@ -186,7 +186,7 @@
         "fr": "Un lien vers une image"
     },
     "A little cat that runs to wherever you touch the screen.": {
-        "tr": "Ekrana nereye dokunursanız oraya koşan küçük bir kedi.",
+        "tr": "Ekranda nereye dokunursan oraya koşan küçük bir kedi.",
         "ru": "Маленький кот, который бежит туда, где вы касаетесь экрана.",
         "es": "Un gatito que corre hacia donde toques la pantalla.",
         "fr": "Un petit chat qui court là où vous touchez l'écran."
@@ -438,7 +438,7 @@
         "fr": "En cours"
     },
     "Aliucord plugins only work on the older Discord that Aliucord is built on, so they can't run here. This Endcord has Endcord's own plugins for the latest Discord. For Aliucord plugins, use Endcord Classic, which runs both.": {
-        "tr": "Aliucord eklentileri yalnızca Aliucord'un dayandığı eski Discord sürümünde çalışır, bu yüzden burada çalışamaz. Bu Endcord, en yeni Discord için Endcord'un kendi eklentilerini içerir. Aliucord eklentileri için ikisini de çalıştıran Endcord Classic'i kullanın.",
+        "tr": "Aliucord eklentileri yalnızca Aliucord'un dayandığı eski Discord sürümünde çalışır, bu yüzden burada çalışamaz. Bu Endcord, en yeni Discord için Endcord'un kendi eklentilerini içerir. Aliucord eklentileri için ikisini de çalıştıran Endcord Classic'i kullan.",
         "ru": "Плагины Aliucord работают только на старой версии Discord, на которой основан Aliucord, поэтому здесь они не запустятся. В этом Endcord есть собственные плагины Endcord для последней версии Discord. Для плагинов Aliucord используйте Endcord Classic — он поддерживает и те, и другие.",
         "es": "Los plugins de Aliucord solo funcionan en el Discord antiguo en el que se basa Aliucord, así que aquí no pueden ejecutarse. Este Endcord trae los plugins propios de Endcord para el Discord más reciente. Para plugins de Aliucord, usa Endcord Classic, que ejecuta ambos.",
         "fr": "Les plugins Aliucord ne fonctionnent que sur l'ancien Discord sur lequel Aliucord est basé, ils ne peuvent donc pas tourner ici. Cet Endcord propose les plugins d'Endcord pour le Discord le plus récent. Pour les plugins Aliucord, utilisez Endcord Classic, qui gère les deux."
@@ -468,19 +468,19 @@
         "fr": "Emojis autorisés"
     },
     "Already deleting messages; wait for it to finish.": {
-        "tr": "Mesajlar zaten siliniyor; bitmesini bekleyin.",
+        "tr": "Mesajlar zaten siliniyor; bitmesini bekle.",
         "ru": "Сообщения уже удаляются, дождитесь окончания.",
         "es": "Ya se están borrando mensajes; espera a que termine.",
         "fr": "Des messages sont déjà en cours de suppression ; attendez la fin."
     },
     "Also react to the messages you send": {
-        "tr": "Gönderdiğiniz mesajlara da tepki ver",
+        "tr": "Gönderdiğin mesajlara da tepki ver",
         "ru": "Также реагировать на ваши сообщения",
         "es": "Reaccionar también a los mensajes que envías",
         "fr": "Réagir aussi aux messages que vous envoyez"
     },
     "Also show a toast when something happens in the voice channel you're in": {
-        "tr": "Bulunduğunuz ses kanalında bir şey olduğunda bildirim de göster",
+        "tr": "Bulunduğun ses kanalında bir şey olduğunda bildirim de göster",
         "ru": "Также показывать уведомление, когда что-то происходит в вашем голосовом канале",
         "es": "Mostrar también un aviso cuando pase algo en el canal de voz en el que estás",
         "fr": "Afficher aussi une notification quand il se passe quelque chose dans votre salon vocal"
@@ -552,13 +552,13 @@
         "fr": "Paraître en sourdine tout en entendant toujours"
     },
     "Appear muted or deafened to others in voice channels while your microphone and sound keep working.": {
-        "tr": "Mikrofonunuz ve sesiniz çalışmaya devam ederken ses kanallarında başkalarına susturulmuş veya sağırlaştırılmış görünün.",
+        "tr": "Mikrofonun ve sesin çalışmaya devam ederken ses kanallarında başkalarına susturulmuş veya sağırlaştırılmış görün.",
         "ru": "Выглядите в голосовых каналах без микрофона или без звука, хотя микрофон и звук продолжают работать.",
         "es": "Aparece silenciado o ensordecido para los demás en los canales de voz mientras tu micrófono y el sonido siguen funcionando.",
         "fr": "Paraissez muet ou en sourdine pour les autres dans les salons vocaux, alors que votre micro et le son fonctionnent toujours."
     },
     "Appear muted while your microphone keeps working": {
-        "tr": "Mikrofonunuz çalışmaya devam ederken susturulmuş görünün",
+        "tr": "Mikrofonun çalışmaya devam ederken susturulmuş görün",
         "ru": "Выглядеть без микрофона, пока он продолжает работать",
         "es": "Aparecer silenciado mientras tu micrófono sigue funcionando",
         "fr": "Paraître muet alors que votre micro fonctionne toujours"
@@ -588,7 +588,7 @@
         "fr": "Appliquer ou retirer votre badge HypeSquad"
     },
     "Are you sure you wish to clear the data of {name}?": {
-        "tr": "{name} verilerini silmek istediğinize emin misiniz?",
+        "tr": "{name} verilerini silmek istediğine emin misin?",
         "ru": "Вы уверены, что хотите удалить данные {name}?",
         "es": "¿Seguro que quieres borrar los datos de {name}?",
         "fr": "Voulez-vous vraiment effacer les données de {name} ?"
@@ -612,7 +612,7 @@
         "fr": "Demandez quelque chose à ChatGPT"
     },
     "Ask a yes/no question and get an answer": {
-        "tr": "Evet/hayır sorusu sorun ve cevap alın",
+        "tr": "Evet/hayır sorusu sor ve cevap al",
         "ru": "Задайте вопрос «да/нет» и получите ответ",
         "es": "Haz una pregunta de sí o no y obtén una respuesta",
         "fr": "Posez une question fermée et obtenez une réponse"
@@ -780,7 +780,7 @@
         "fr": "Favori supprimé"
     },
     "Bookmarked. Find it in the Bookmarks plugin's settings.": {
-        "tr": "Yer işaretine eklendi. Bookmarks eklentisinin ayarlarında bulabilirsiniz.",
+        "tr": "Yer işaretine eklendi. Bookmarks eklentisinin ayarlarında bulabilirsin.",
         "ru": "Добавлено в закладки. Найти можно в настройках плагина Bookmarks.",
         "es": "Guardado. Lo encontrarás en los ajustes del plugin Bookmarks.",
         "fr": "Ajouté aux favoris. Retrouvez-le dans les paramètres du plugin Bookmarks."
@@ -834,7 +834,7 @@
         "fr": "Cassé"
     },
     "Browse and install themes for Discord on your phone without leaving the app.": {
-        "tr": "Uygulamadan çıkmadan telefonunuzdaki Discord için temalara göz atın ve yükleyin.",
+        "tr": "Uygulamadan çıkmadan telefonundaki Discord için temalara göz at ve yükle.",
         "ru": "Просматривайте и устанавливайте темы для Discord на телефоне, не выходя из приложения.",
         "es": "Explora e instala temas para Discord en tu teléfono sin salir de la aplicación.",
         "fr": "Parcourez et installez des thèmes pour Discord sur votre téléphone sans quitter l'application."
@@ -996,7 +996,7 @@
         "fr": "ID de salons séparés par des virgules ; vide signifie partout"
     },
     "Channel IDs to translate, separated by commas. /autotranslate adds or removes the one you're in.": {
-        "tr": "Çevrilecek kanal kimlikleri, virgülle ayrılmış. /autotranslate bulunduğunuz kanalı ekler veya kaldırır.",
+        "tr": "Çevrilecek kanal kimlikleri, virgülle ayrılmış. /autotranslate bulunduğun kanalı ekler veya kaldırır.",
         "ru": "ID каналов для перевода через запятую. /autotranslate добавляет или убирает текущий канал.",
         "es": "ID de canales que se traducen, separados por comas. /autotranslate añade o quita el canal en el que estás.",
         "fr": "ID des salons à traduire, séparés par des virgules. /autotranslate ajoute ou retire celui où vous êtes."
@@ -1049,6 +1049,12 @@
         "es": "Comprueba si el propio Discord tiene problemas con /discordstatus",
         "fr": "Vérifiez si Discord lui-même a des problèmes avec /discordstatus"
     },
+    "Choose a file": {
+        "tr": "Bir dosya seç",
+        "ru": "Выбрать файл",
+        "es": "Elegir archivo",
+        "fr": "Choisir un fichier"
+    },
     "Choose the sound played when you leave voice": {
         "tr": "Sesli kanaldan ayrılırken çalınacak sesi seç",
         "ru": "Выберите звук, который играет, когда вы выходите из голосового канала",
@@ -1056,13 +1062,13 @@
         "fr": "Choisissez le son joué quand vous quittez le vocal"
     },
     "Clean your edits": {
-        "tr": "Düzenlemelerinizi temizle",
+        "tr": "Düzenlemelerini temizle",
         "ru": "Очищать правки",
         "es": "Limpiar tus ediciones",
         "fr": "Nettoyer vos modifications"
     },
     "Clean your messages": {
-        "tr": "Mesajlarınızı temizle",
+        "tr": "Mesajlarını temizle",
         "ru": "Очищать ваши сообщения",
         "es": "Limpiar tus mensajes",
         "fr": "Nettoyer vos messages"
@@ -1096,6 +1102,12 @@
         "ru": "Данные {name} очищены",
         "es": "Se borraron los datos de {name}",
         "fr": "Données de {name} effacées"
+    },
+    "Click to load": {
+        "tr": "Yüklemek için dokun",
+        "ru": "Нажмите для загрузки",
+        "es": "Clic para cargar",
+        "fr": "Cliquer pour charger"
     },
     "Clone Emoji": {
         "tr": "Emojiyi Kopyala",
@@ -1284,7 +1296,7 @@
         "fr": "Copié dans le presse-papiers"
     },
     "Copied. Paste it at the end of your About Me.": {
-        "tr": "Kopyalandı. Hakkımda bölümünüzün sonuna yapıştırın.",
+        "tr": "Kopyalandı. Hakkımda bölümünün sonuna yapıştır.",
         "ru": "Скопировано. Вставьте это в конец раздела «Обо мне».",
         "es": "Copiado. Pégalo al final de tu Acerca de mí.",
         "fr": "Copié. Collez-le à la fin de votre section À propos de moi."
@@ -1392,7 +1404,7 @@
         "fr": "Impossible de modifier les intégrations"
     },
     "Couldn't check for updates. Check your connection and try again.": {
-        "tr": "Güncellemeler denetlenemedi. Bağlantınızı kontrol edip tekrar deneyin.",
+        "tr": "Güncellemeler denetlenemedi. Bağlantını kontrol edip tekrar dene.",
         "ru": "Не удалось проверить обновления. Проверьте подключение и попробуйте снова.",
         "es": "No se pudieron buscar actualizaciones. Comprueba tu conexión e inténtalo de nuevo.",
         "fr": "Impossible de vérifier les mises à jour. Vérifiez votre connexion et réessayez."
@@ -1452,7 +1464,7 @@
         "fr": "Impossible de charger la liste des plugins. Vérifiez votre connexion et réessayez."
     },
     "Couldn't load the theme list. Check your connection and try again.": {
-        "tr": "Tema listesi yüklenemedi. Bağlantınızı kontrol edip tekrar deneyin.",
+        "tr": "Tema listesi yüklenemedi. Bağlantını kontrol edip tekrar dene.",
         "ru": "Не удалось загрузить список тем. Проверьте подключение и попробуйте снова.",
         "es": "No se pudo cargar la lista de temas. Comprueba tu conexión e inténtalo de nuevo.",
         "fr": "Impossible de charger la liste des thèmes. Vérifiez votre connexion et réessayez."
@@ -1512,7 +1524,7 @@
         "fr": "Impossible d'activer {name} : {error}"
     },
     "Couldn't understand \"{time}\". Use something like 10m, 2h or 1d.": {
-        "tr": "\"{time}\" anlaşılamadı. 10m, 2h veya 1d gibi bir şey yazın.",
+        "tr": "\"{time}\" anlaşılamadı. 10m, 2h veya 1d gibi bir şey yaz.",
         "ru": "Не удалось понять «{time}». Используйте, например, 10m, 2h или 1d.",
         "es": "No se entendió \"{time}\". Usa algo como 10m, 2h o 1d.",
         "fr": "« {time} » n'a pas été compris. Utilisez par exemple 10m, 2h ou 1d."
@@ -1560,7 +1572,7 @@
         "fr": "Créez, listez et révoquez vos liens d'invitation d'ami avec /friendinvites"
     },
     "Create, list or revoke your friend invite links": {
-        "tr": "Arkadaş davet bağlantılarınızı oluşturun, listeleyin veya iptal edin",
+        "tr": "Arkadaş davet bağlantılarını oluştur, listele veya iptal et",
         "ru": "Создать, показать или отозвать ссылки-приглашения в друзья",
         "es": "Crea, consulta o revoca tus enlaces de invitación de amistad",
         "fr": "Créer, lister ou révoquer vos liens d'invitation d'ami"
@@ -1644,7 +1656,7 @@
         "fr": "Base64 décodé"
     },
     "Decorate your message with sparkles": {
-        "tr": "Mesajınızı ışıltılarla süsleyin",
+        "tr": "Mesajını ışıltılarla süsle",
         "ru": "Украсить сообщение блёстками",
         "es": "Decora tu mensaje con destellos",
         "fr": "Décorer votre message de paillettes"
@@ -1734,7 +1746,7 @@
         "fr": "Supprimez votre dernier message d'un salon avec /deletelast, ou n'importe lequel des vôtres depuis le menu du message sans confirmation"
     },
     "Delete your last message in this channel": {
-        "tr": "Bu kanaldaki son mesajınızı silin",
+        "tr": "Bu kanaldaki son mesajını sil",
         "ru": "Удалить ваше последнее сообщение в этом канале",
         "es": "Borra tu último mensaje en este canal",
         "fr": "Supprimer votre dernier message dans ce salon"
@@ -1746,7 +1758,7 @@
         "fr": "Supprimez vos messages récents d'un salon avec /clearmessages"
     },
     "Delete your recent messages in this channel": {
-        "tr": "Bu kanaldaki son mesajlarınızı silin",
+        "tr": "Bu kanaldaki son mesajlarını sil",
         "ru": "Удалить ваши недавние сообщения в этом канале",
         "es": "Borra tus mensajes recientes en este canal",
         "fr": "Supprimer vos messages récents dans ce salon"
@@ -1770,7 +1782,7 @@
         "fr": "Les messages supprimés et modifiés, les amis et les serveurs seront enregistrés ici"
     },
     "Deleted your last message": {
-        "tr": "Son mesajınız silindi",
+        "tr": "Son mesajın silindi",
         "ru": "Ваше последнее сообщение удалено",
         "es": "Se borró tu último mensaje",
         "fr": "Votre dernier message a été supprimé"
@@ -1788,7 +1800,7 @@
         "fr": "Supprime l'Endcord téléchargé : la dernière version sera téléchargée au prochain démarrage."
     },
     "Deleting {count} of your messages…": {
-        "tr": "{count} mesajınız siliniyor…",
+        "tr": "{count} mesajın siliniyor…",
         "ru": "Удаление ваших сообщений: {count}…",
         "es": "Borrando {count} de tus mensajes…",
         "fr": "Suppression de {count} de vos messages…"
@@ -1914,7 +1926,7 @@
         "fr": "Le son d'origine de Discord"
     },
     "Do not translate your own messages": {
-        "tr": "Kendi mesajlarınızı çevirmeyin",
+        "tr": "Kendi mesajlarını çevirme",
         "ru": "Не переводить ваши сообщения",
         "es": "No traducir tus propios mensajes",
         "fr": "Ne pas traduire vos propres messages"
@@ -1926,7 +1938,7 @@
         "fr": "Ne pas enregistrer les messages des bots"
     },
     "Don't log your own messages": {
-        "tr": "Kendi mesajlarınızı kaydetme",
+        "tr": "Kendi mesajlarını kaydetme",
         "ru": "Не записывать свои сообщения",
         "es": "No registrar tus propios mensajes",
         "fr": "Ne pas enregistrer vos propres messages"
@@ -1938,7 +1950,7 @@
         "fr": "Ne pas jouer le son pour les utilisateurs bloqués"
     },
     "Don't rejoin a call you left longer ago than this": {
-        "tr": "Bundan daha uzun süre önce ayrıldığınız bir aramaya yeniden katılma",
+        "tr": "Bundan daha uzun süre önce ayrıldığın bir aramaya yeniden katılma",
         "ru": "Не возвращаться в звонок, который вы покинули раньше этого",
         "es": "No volver a una llamada que dejaste hace más tiempo que esto",
         "fr": "Ne pas rejoindre un appel quitté il y a plus longtemps que ça"
@@ -2112,13 +2124,13 @@
         "fr": "Saisissez un nom"
     },
     "Enter a number from {min} to {max}": {
-        "tr": "{min} ile {max} arasında bir sayı girin",
+        "tr": "{min} ile {max} arasında bir sayı gir",
         "ru": "Введите число от {min} до {max}",
         "es": "Introduce un número entre {min} y {max}",
         "fr": "Saisissez un nombre entre {min} et {max}"
     },
     "Enter the link to install from:": {
-        "tr": "Yüklenecek bağlantıyı girin:",
+        "tr": "Yüklenecek bağlantıyı gir:",
         "ru": "Введите ссылку для установки:",
         "es": "Introduce el enlace desde el que instalar:",
         "fr": "Saisissez le lien à partir duquel installer :"
@@ -2646,7 +2658,7 @@
         "fr": "Obtenir une photo aléatoire de chat ou de chien"
     },
     "Get a reminder later (only you see it)": {
-        "tr": "Daha sonra hatırlatma al (yalnızca siz görürsünüz)",
+        "tr": "Daha sonra hatırlatma al (yalnızca sen görürsün)",
         "ru": "Получить напоминание позже (видите только вы)",
         "es": "Recibe un recordatorio más tarde (solo lo ves tú)",
         "fr": "Recevoir un rappel plus tard (vous seul le voyez)"
@@ -2862,19 +2874,19 @@
         "fr": "Masquez des messages depuis le menu du message jusqu'au redémarrage de Discord"
     },
     "Hide messages from users you blocked": {
-        "tr": "Engellediğiniz kullanıcıların mesajlarını gizle",
+        "tr": "Engellediğin kullanıcıların mesajlarını gizle",
         "ru": "Скрывать сообщения заблокированных вами пользователей",
         "es": "Oculta los mensajes de los usuarios que bloqueaste",
         "fr": "Masquer les messages des utilisateurs que vous avez bloqués"
     },
     "Hide messages from users you ignored": {
-        "tr": "Yok saydığınız kullanıcıların mesajlarını gizle",
+        "tr": "Yok saydığın kullanıcıların mesajlarını gizle",
         "ru": "Скрывать сообщения игнорируемых вами пользователей",
         "es": "Oculta los mensajes de los usuarios que ignoraste",
         "fr": "Masquer les messages des utilisateurs que vous ignorez"
     },
     "Hide messages that reply to someone you have hidden": {
-        "tr": "Gizlediğiniz birine yanıt veren mesajları gizle",
+        "tr": "Gizlediğin birine yanıt veren mesajları gizle",
         "ru": "Скрывать ответы тем, кого вы скрыли",
         "es": "Oculta los mensajes que responden a alguien que ocultaste",
         "fr": "Masquer les messages qui répondent à quelqu'un que vous avez masqué"
@@ -3000,7 +3012,7 @@
         "fr": "Nombre de messages récents à exporter"
     },
     "How many of your messages (up to 200)": {
-        "tr": "Kaç mesajınız (en fazla 200)",
+        "tr": "Kaç mesajın (en fazla 200)",
         "ru": "Сколько ваших сообщений (до 200)",
         "es": "Cuántos de tus mensajes (hasta 200)",
         "fr": "Combien de vos messages (jusqu'à 200)"
@@ -3042,7 +3054,7 @@
         "fr": "Fréquence de changement du tag ; Discord limite la vitesse possible"
     },
     "How the link looks in the message you send": {
-        "tr": "Gönderdiğiniz mesajda bağlantının nasıl görüneceği",
+        "tr": "Gönderdiğin mesajda bağlantının nasıl görüneceği",
         "ru": "Как ссылка выглядит в отправленном сообщении",
         "es": "Cómo se ve el enlace en el mensaje que envías",
         "fr": "L'apparence du lien dans le message envoyé"
@@ -3084,7 +3096,7 @@
         "fr": "J'ai gagné !"
     },
     "I'll remind you {when}.": {
-        "tr": "Size {when} hatırlatacağım.",
+        "tr": "Sana {when} hatırlatacağım.",
         "ru": "Я напомню {when}.",
         "es": "Te lo recordaré {when}.",
         "fr": "Je vous le rappellerai {when}."
@@ -3360,7 +3372,7 @@
         "fr": "Installé. Rechargez Discord pour l'utiliser."
     },
     "Installs the fonts that your current theme uses.": {
-        "tr": "Geçerli temanızın kullandığı yazı tiplerini yükler.",
+        "tr": "Geçerli temanın kullandığı yazı tiplerini yükler.",
         "ru": "Устанавливает шрифты, которые использует текущая тема.",
         "es": "Instala las fuentes que usa tu tema actual.",
         "fr": "Installe les polices utilisées par votre thème actuel."
@@ -3378,7 +3390,7 @@
         "fr": "Les invitations pour {server} sont de nouveau ouvertes."
     },
     "Invites to {server} are paused until you resume them.": {
-        "tr": "{server} davetleri siz yeniden açana kadar duraklatıldı.",
+        "tr": "{server} davetleri sen yeniden açana kadar duraklatıldı.",
         "ru": "Приглашения на {server} приостановлены, пока вы их не возобновите.",
         "es": "Las invitaciones a {server} están en pausa hasta que las reanudes.",
         "fr": "Les invitations pour {server} sont suspendues jusqu'à ce que vous les réactiviez."
@@ -3654,7 +3666,7 @@
         "fr": "Style du lien"
     },
     "Links don't show as images in channels where you can't embed links": {
-        "tr": "Bağlantı yerleştiremediğiniz kanallarda bağlantılar görsel olarak görünmez",
+        "tr": "Bağlantı yerleştiremediğin kanallarda bağlantılar görsel olarak görünmez",
         "ru": "В каналах, где нельзя встраивать ссылки, ссылки не отображаются как изображения",
         "es": "Los enlaces no se muestran como imágenes en los canales donde no puedes insertar enlaces",
         "fr": "Les liens ne s'affichent pas en images dans les salons où vous ne pouvez pas intégrer de liens"
@@ -3678,7 +3690,7 @@
         "fr": "Lister les salons de ce serveur avec des messages non lus"
     },
     "List your bookmarks (only you see it)": {
-        "tr": "Yer işaretlerinizi listeleyin (yalnızca siz görürsünüz)",
+        "tr": "Yer işaretlerini listele (yalnızca sen görürsün)",
         "ru": "Показать ваши закладки (видите только вы)",
         "es": "Muestra tus marcadores (solo los ves tú)",
         "fr": "Lister vos favoris (vous seul les voyez)"
@@ -3786,13 +3798,13 @@
         "fr": "Appuyez longuement sur un message d'un ami et choisissez Étiqueter l'ami"
     },
     "Long-press a message and choose Bookmark to save it here": {
-        "tr": "Buraya kaydetmek için bir mesaja uzun basın ve Yer İşaretine Ekle'yi seçin",
+        "tr": "Buraya kaydetmek için bir mesaja uzun bas ve Yer İşaretine Ekle'yi seç",
         "ru": "Нажмите на сообщение и удерживайте, затем выберите «В закладки», чтобы сохранить его здесь",
         "es": "Mantén pulsado un mensaje y elige Guardar en marcadores para guardarlo aquí",
         "fr": "Appuyez longuement sur un message et choisissez Ajouter aux favoris pour l'enregistrer ici"
     },
     "Long-press a message and choose Tag Message to label it": {
-        "tr": "Etiketlemek için bir mesaja uzun basın ve Mesajı Etiketle'yi seçin",
+        "tr": "Etiketlemek için bir mesaja uzun bas ve Mesajı Etiketle'yi seç",
         "ru": "Нажмите на сообщение и удерживайте, затем выберите «Пометить сообщение»",
         "es": "Mantén pulsado un mensaje y elige Etiquetar mensaje para etiquetarlo",
         "fr": "Appuyez longuement sur un message et choisissez Étiqueter le message"
@@ -3870,7 +3882,7 @@
         "fr": "Cherchez le sens d'un mot anglais avec /define"
     },
     "Looking for Aliucord plugins?": {
-        "tr": "Aliucord eklentileri mi arıyorsunuz?",
+        "tr": "Aliucord eklentileri mi arıyorsun?",
         "ru": "Ищете плагины Aliucord?",
         "es": "¿Buscas plugins de Aliucord?",
         "fr": "Vous cherchez des plugins Aliucord ?"
@@ -3936,13 +3948,13 @@
         "fr": "Générez un mot de passe robuste avec /passwordgen ; vous seul le voyez, et il est copié"
     },
     "Make the hidden text that gives your profile theme colors": {
-        "tr": "Profilinize tema renkleri veren gizli metni oluşturun",
+        "tr": "Profiline tema renkleri veren gizli metni oluştur",
         "ru": "Создать скрытый текст, задающий цвета темы профиля",
         "es": "Crea el texto oculto que da colores de tema a tu perfil",
         "fr": "Créer le texte caché qui donne des couleurs de thème à votre profil"
     },
     "Make your text unicode-bold": {
-        "tr": "Metninizi unicode kalın yapın",
+        "tr": "Metnini unicode kalın yap",
         "ru": "Сделать текст жирным с помощью Unicode",
         "es": "Pon tu texto en negrita Unicode",
         "fr": "Mettre votre texte en gras Unicode"
@@ -4074,7 +4086,7 @@
         "fr": "Les messages chiffrés avec lui s'affichent déchiffrés en dessous ; laissez vide pour toujours demander"
     },
     "Messages from {user} are hidden. Reopen chats to hide older ones.": {
-        "tr": "{user} kişisinin mesajları gizlendi. Eskilerini gizlemek için sohbetleri yeniden açın.",
+        "tr": "{user} kişisinin mesajları gizlendi. Eskilerini gizlemek için sohbetleri yeniden aç.",
         "ru": "Сообщения {user} скрыты. Откройте чаты заново, чтобы скрыть старые.",
         "es": "Los mensajes de {user} están ocultos. Vuelve a abrir los chats para ocultar los anteriores.",
         "fr": "Les messages de {user} sont masqués. Rouvrez les discussions pour masquer les anciens."
@@ -4560,7 +4572,7 @@
         "fr": "Rien ici pour l'instant"
     },
     "Notifies you when a friend, group chat, or server removes you.": {
-        "tr": "Bir arkadaşınız, grup sohbeti veya sunucu sizi çıkardığında bildirim gönderir.",
+        "tr": "Bir arkadaşın, grup sohbeti veya sunucu seni çıkardığında bildirim gönderir.",
         "ru": "Уведомляет, когда вас удаляют из друзей, группового чата или с сервера.",
         "es": "Te avisa cuando un amigo, un chat de grupo o un servidor te elimina.",
         "fr": "Vous avertit lorsqu'un ami, une discussion de groupe ou un serveur vous retire."
@@ -4572,7 +4584,7 @@
         "fr": "Notifier pour @everyone et @here"
     },
     "Notify when one of your roles is mentioned": {
-        "tr": "Rollerinizden birinden bahsedildiğinde bildir",
+        "tr": "Rollerinden birinden bahsedildiğinde bildir",
         "ru": "Уведомлять, когда упоминают одну из ваших ролей",
         "es": "Notificar cuando se mencione uno de tus roles",
         "fr": "Notifier quand un de vos rôles est mentionné"
@@ -4758,7 +4770,7 @@
         "fr": "Seulement les personnes sans couleur de rôle"
     },
     "Only pick channels in the server you're in": {
-        "tr": "Yalnızca bulunduğunuz sunucudaki kanalları seç",
+        "tr": "Yalnızca bulunduğun sunucudaki kanalları seç",
         "ru": "Выбирать только каналы текущего сервера",
         "es": "Elegir solo canales del servidor en el que estás",
         "fr": "Ne choisir que des salons du serveur où vous êtes"
@@ -4794,7 +4806,7 @@
         "fr": "Vous seul le voyez. Laissez vide pour le retirer."
     },
     "Only you see these changes. Clear them before you edit your real profile, so they don't end up in it.": {
-        "tr": "Bu değişiklikleri yalnızca siz görürsünüz. Gerçek profilinizi düzenlemeden önce bunları temizleyin, yoksa profilinize geçebilirler.",
+        "tr": "Bu değişiklikleri yalnızca sen görürsün. Gerçek profilini düzenlemeden önce bunları temizle, yoksa profiline geçebilirler.",
         "ru": "Эти изменения видите только вы. Очистите их перед редактированием настоящего профиля, чтобы они туда не попали.",
         "es": "Solo tú ves estos cambios. Bórralos antes de editar tu perfil real para que no terminen en él.",
         "fr": "Vous seul voyez ces changements. Effacez-les avant de modifier votre vrai profil, pour qu'ils n'y finissent pas."
@@ -4902,13 +4914,13 @@
         "fr": "Autre"
     },
     "Others see you as deafened, but you still hear them": {
-        "tr": "Başkaları sizi sağırlaştırılmış görür, ama siz onları duymaya devam edersiniz",
+        "tr": "Başkaları seni sağırlaştırılmış görür ama sen onları duymaya devam edersin",
         "ru": "Другие видят, что у вас отключён звук, но вы их слышите",
         "es": "Los demás te ven ensordecido, pero tú los sigues oyendo",
         "fr": "Les autres vous voient en sourdine, mais vous les entendez toujours"
     },
     "Others see you as muted, but still hear you": {
-        "tr": "Başkaları sizi susturulmuş görür, ama sizi duymaya devam eder",
+        "tr": "Başkaları seni susturulmuş görür ama seni duymaya devam eder",
         "ru": "Другие видят, что у вас выключен микрофон, но продолжают вас слышать",
         "es": "Los demás te ven silenciado, pero te siguen oyendo",
         "fr": "Les autres vous voient muet, mais vous entendent toujours"
@@ -4980,7 +4992,7 @@
         "fr": "Suspendre ou réactiver les invitations de ce serveur sans limite de temps"
     },
     "People You've Talked To": {
-        "tr": "Konuştuğunuz Kişiler",
+        "tr": "Konuştuğun Kişiler",
         "ru": "Люди, с которыми вы общались",
         "es": "Personas con las que has hablado",
         "fr": "Personnes avec qui vous avez parlé"
@@ -4992,7 +5004,7 @@
         "fr": "Les personnes qui rejoignent avec elle sont expulsées en se déconnectant, sauf si elles reçoivent un rôle"
     },
     "People you message and who message you will be listed here": {
-        "tr": "Mesajlaştığınız kişiler burada listelenecek",
+        "tr": "Mesajlaştığın kişiler burada listelenecek",
         "ru": "Здесь появятся те, кому вы пишете и кто пишет вам",
         "es": "Aquí aparecerán las personas a las que escribes y que te escriben",
         "fr": "Les personnes à qui vous écrivez et qui vous écrivent apparaîtront ici"
@@ -5028,7 +5040,7 @@
         "fr": "Choisissez-en un avec /exitsound"
     },
     "Pick your animal": {
-        "tr": "Hayvanınızı seçin",
+        "tr": "Hayvanını seç",
         "ru": "Выберите животное",
         "es": "Elige tu animal",
         "fr": "Choisissez votre animal"
@@ -5112,7 +5124,7 @@
         "fr": "Joue un effet sonore 🗿 quand un émoji moyai est envoyé ou ajouté en réaction dans la discussion ouverte"
     },
     "Plugins installed from unproxied sources may run unverified code in this app without your awareness.": {
-        "tr": "Doğrulanmamış kaynaklardan yüklenen eklentiler bu uygulamada haberiniz olmadan denetlenmemiş kod çalıştırabilir.",
+        "tr": "Doğrulanmamış kaynaklardan yüklenen eklentiler bu uygulamada haberin olmadan denetlenmemiş kod çalıştırabilir.",
         "ru": "Плагины из непроверенных источников могут незаметно выполнять в приложении непроверенный код.",
         "es": "Los plugins de fuentes no verificadas pueden ejecutar código sin revisar en esta app sin que lo sepas.",
         "fr": "Les plugins installés depuis des sources non vérifiées peuvent exécuter du code non contrôlé dans l'application à votre insu."
@@ -5339,6 +5351,12 @@
         "es": "Lee las reseñas de ReviewDB del autor de un mensaje desde el menú del mensaje",
         "fr": "Lisez les avis ReviewDB sur l'auteur d'un message depuis le menu du message"
     },
+    "Receive notifications in your friends' DMs even if you are in the same voice channel as them": {
+        "tr": "Aynı ses kanalında olsan bile arkadaşlarının DM'lerinde bildirim al",
+        "ru": "Уведомления в ЛС друзей, даже если вы с ними в одном голосовом",
+        "es": "Recibir avisos en privados de amigos aunque estés en su mismo canal de voz",
+        "fr": "Recevoir les notifications dans les MP d'amis même dans le même vocal"
+    },
     "Recent DMs": {
         "tr": "Son DM'ler",
         "ru": "Недавние ЛС",
@@ -5466,7 +5484,7 @@
         "fr": "Recharger maintenant"
     },
     "Reload the app to fully apply changes": {
-        "tr": "Değişikliklerin tamamen uygulanması için uygulamayı yeniden yükleyin",
+        "tr": "Değişikliklerin tamamen uygulanması için uygulamayı yeniden yükle",
         "ru": "Перезагрузите приложение, чтобы полностью применить изменения",
         "es": "Recarga la app para aplicar todos los cambios",
         "fr": "Rechargez l'application pour appliquer entièrement les changements"
@@ -5508,7 +5526,7 @@
         "fr": "Rappel prévu pour {time}"
     },
     "Removals you make yourself are never reported.": {
-        "tr": "Kendi yaptığınız çıkarmalar asla bildirilmez.",
+        "tr": "Kendi yaptığın çıkarmalar asla bildirilmez.",
         "ru": "О ваших собственных удалениях уведомлений не бывает.",
         "es": "Nunca se avisa de las eliminaciones que haces tú.",
         "fr": "Les retraits que vous faites vous-même ne sont jamais signalés."
@@ -5562,7 +5580,7 @@
         "fr": "Retire le compteur des demandes d'ami et des demandes de messages reçues"
     },
     "Reopen Discord's settings after switching for the change to show.": {
-        "tr": "Değişikliğin görünmesi için değiştirdikten sonra Discord ayarlarını yeniden açın.",
+        "tr": "Değişikliğin görünmesi için değiştirdikten sonra Discord ayarlarını yeniden aç.",
         "ru": "После переключения откройте настройки Discord заново, чтобы увидеть изменение.",
         "es": "Vuelve a abrir los ajustes de Discord después de cambiarlo para ver el cambio.",
         "fr": "Rouvrez les paramètres de Discord après le changement pour le voir."
@@ -5664,7 +5682,7 @@
         "fr": "Révélez tous les spoilers d'un message depuis le menu du message"
     },
     "Reverse your text": {
-        "tr": "Metninizi ters çevirin",
+        "tr": "Metnini ters çevir",
         "ru": "Перевернуть текст",
         "es": "Invierte tu texto",
         "fr": "Inverser votre texte"
@@ -5724,7 +5742,7 @@
         "fr": "Règle {number}"
     },
     "Runs JavaScript from a slash command. Only turn this on if you know exactly what the code does.": {
-        "tr": "Eğik çizgi komutuyla JavaScript çalıştırır. Yalnızca kodun ne yaptığını tam olarak biliyorsanız açın.",
+        "tr": "Eğik çizgi komutuyla JavaScript çalıştırır. Yalnızca kodun ne yaptığını tam olarak biliyorsan aç.",
         "ru": "Выполняет JavaScript из слэш-команды. Включайте, только если точно знаете, что делает код.",
         "es": "Ejecuta JavaScript desde un comando de barra. Actívalo solo si sabes exactamente lo que hace el código.",
         "fr": "Exécute du JavaScript depuis une commande slash. N'activez ceci que si vous savez exactement ce que fait le code."
@@ -5736,7 +5754,7 @@
         "fr": "Mode sans échec"
     },
     "Safe mode is on. Turn it off to load your add-ons again": {
-        "tr": "Güvenli mod açık. Eklentilerinizi yeniden yüklemek için kapatın",
+        "tr": "Güvenli mod açık. Eklentilerini yeniden yüklemek için kapat",
         "ru": "Безопасный режим включён. Выключите его, чтобы снова загрузить дополнения",
         "es": "El modo seguro está activado. Desactívalo para volver a cargar tus complementos",
         "fr": "Le mode sans échec est activé. Désactivez-le pour recharger vos modules"
@@ -5778,7 +5796,7 @@
         "fr": "Enregistrer dans une collection"
     },
     "Save your current status to set it again later in one tap": {
-        "tr": "Daha sonra tek dokunuşla tekrar ayarlamak için şu anki durumunuzu kaydedin",
+        "tr": "Daha sonra tek dokunuşla tekrar ayarlamak için şu anki durumunu kaydet",
         "ru": "Сохраните текущий статус, чтобы потом установить его в одно касание",
         "es": "Guarda tu estado actual para volver a ponerlo luego con un toque",
         "fr": "Enregistrez votre statut actuel pour le remettre plus tard d'un seul geste"
@@ -5796,7 +5814,7 @@
         "fr": "Mot de passe enregistré"
     },
     "Saved your current status": {
-        "tr": "Şu anki durumunuz kaydedildi",
+        "tr": "Şu anki durumun kaydedildi",
         "ru": "Текущий статус сохранён",
         "es": "Se guardó tu estado actual",
         "fr": "Votre statut actuel a été enregistré"
@@ -6114,7 +6132,7 @@
         "fr": "Renvoyez un message depuis le menu du message"
     },
     "Send a message later, while Discord is open": {
-        "tr": "Discord açıkken daha sonra bir mesaj gönderin",
+        "tr": "Discord açıkken daha sonra bir mesaj gönder",
         "ru": "Отправить сообщение позже, пока Discord открыт",
         "es": "Envía un mensaje más tarde, mientras Discord esté abierto",
         "fr": "Envoyer un message plus tard, tant que Discord est ouvert"
@@ -6234,7 +6252,7 @@
         "fr": "Envoyer les informations de débogage"
     },
     "Send emojis you can't use as links": {
-        "tr": "Kullanamadığınız emojileri bağlantı olarak gönder",
+        "tr": "Kullanamadığın emojileri bağlantı olarak gönder",
         "ru": "Отправлять недоступные эмодзи ссылками",
         "es": "Enviar como enlace los emojis que no puedes usar",
         "fr": "Envoyer en lien les emojis que vous ne pouvez pas utiliser"
@@ -6258,7 +6276,7 @@
         "fr": "Envoyer silencieusement"
     },
     "Send stickers you can't use as links": {
-        "tr": "Kullanamadığınız çıkartmaları bağlantı olarak gönder",
+        "tr": "Kullanamadığın çıkartmaları bağlantı olarak gönder",
         "ru": "Отправлять недоступные стикеры ссылками",
         "es": "Enviar como enlace los stickers que no puedes usar",
         "fr": "Envoyer en lien les autocollants que vous ne pouvez pas utiliser"
@@ -6276,7 +6294,7 @@
         "fr": "Envoyer la réponse dans le chat au lieu de vous la montrer seulement"
     },
     "Send the message ephemerally": {
-        "tr": "Mesajı yalnızca size görünür gönder",
+        "tr": "Mesajı yalnızca sana görünür gönder",
         "ru": "Отправить сообщение, видимое только вам",
         "es": "Enviar el mensaje solo visible para ti",
         "fr": "Envoyer le message visible uniquement par vous"
@@ -6294,7 +6312,7 @@
         "fr": "Envoi en {count} parties"
     },
     "Sends a message as Clyde (locally)": {
-        "tr": "Clyde olarak bir mesaj gönderir (yalnızca sizde)",
+        "tr": "Clyde olarak bir mesaj gönderir (yalnızca sende)",
         "ru": "Отправляет сообщение от имени Clyde (локально)",
         "es": "Envía un mensaje como Clyde (solo en tu dispositivo)",
         "fr": "Envoie un message en tant que Clyde (localement)"
@@ -6324,7 +6342,7 @@
         "fr": "A envoyé une pièce jointe"
     },
     "Sent your scheduled message": {
-        "tr": "Zamanlanmış mesajınız gönderildi",
+        "tr": "Zamanlanmış mesajın gönderildi",
         "ru": "Запланированное сообщение отправлено",
         "es": "Se envió tu mensaje programado",
         "fr": "Votre message programmé a été envoyé"
@@ -6432,19 +6450,19 @@
         "fr": "Partager les emojis et autocollants de ce serveur sous forme de liste de liens"
     },
     "Share your current Spotify album in chat": {
-        "tr": "Şu anki Spotify albümünüzü sohbette paylaşın",
+        "tr": "Şu anki Spotify albümünü sohbette paylaş",
         "ru": "Поделиться текущим альбомом Spotify в чате",
         "es": "Comparte en el chat el álbum de Spotify que escuchas",
         "fr": "Partager votre album Spotify actuel dans la discussion"
     },
     "Share your current Spotify artist in chat": {
-        "tr": "Şu anki Spotify sanatçınızı sohbette paylaşın",
+        "tr": "Şu anki Spotify sanatçını sohbette paylaş",
         "ru": "Поделиться текущим исполнителем Spotify в чате",
         "es": "Comparte en el chat el artista de Spotify que escuchas",
         "fr": "Partager votre artiste Spotify actuel dans la discussion"
     },
     "Share your current Spotify track in chat": {
-        "tr": "Şu anki Spotify parçanızı sohbette paylaşın",
+        "tr": "Şu anki Spotify parçanı sohbette paylaş",
         "ru": "Поделиться текущим треком Spotify в чате",
         "es": "Comparte en el chat la canción de Spotify que escuchas",
         "fr": "Partager votre morceau Spotify actuel dans la discussion"
@@ -6480,7 +6498,7 @@
         "fr": "Afficher les médias"
     },
     "Show a message from someone that only you can see": {
-        "tr": "Birinden gelmiş gibi yalnızca sizin görebileceğiniz bir mesaj gösterin",
+        "tr": "Birinden gelmiş gibi yalnızca senin görebileceğin bir mesaj göster",
         "ru": "Показать сообщение от кого-то, которое видите только вы",
         "es": "Muestra un mensaje de alguien que solo tú puedes ver",
         "fr": "Afficher un message de quelqu'un que vous seul pouvez voir"
@@ -6492,7 +6510,7 @@
         "fr": "Afficher une note"
     },
     "Show a notice when someone deletes a message that mentioned you": {
-        "tr": "Biri sizi etiketlediği bir mesajı sildiğinde bildirim göster",
+        "tr": "Biri seni etiketlediği bir mesajı sildiğinde bildirim göster",
         "ru": "Показывать уведомление, когда кто-то удаляет сообщение с упоминанием вас",
         "es": "Mostrar un aviso cuando alguien elimine un mensaje que te mencionaba",
         "fr": "Afficher une alerte quand quelqu'un supprime un message qui vous mentionnait"
@@ -6534,7 +6552,7 @@
         "fr": "Afficher depuis combien de temps l'activité dure"
     },
     "Show how many members this server has (only you see it)": {
-        "tr": "Bu sunucunun kaç üyesi olduğunu göster (yalnızca siz görürsünüz)",
+        "tr": "Bu sunucunun kaç üyesi olduğunu göster (yalnızca sen görürsün)",
         "ru": "Показать количество участников сервера (видите только вы)",
         "es": "Muestra cuántos miembros tiene este servidor (solo lo ves tú)",
         "fr": "Afficher le nombre de membres de ce serveur (vous seul le voyez)"
@@ -6546,7 +6564,7 @@
         "fr": "Afficher des informations sur un rôle (vous seul le voyez)"
     },
     "Show information about this server (only you see it)": {
-        "tr": "Bu sunucu hakkında bilgi göster (yalnızca siz görürsünüz)",
+        "tr": "Bu sunucu hakkında bilgi göster (yalnızca sen görürsün)",
         "ru": "Показать информацию о сервере (видите только вы)",
         "es": "Muestra información de este servidor (solo la ves tú)",
         "fr": "Afficher des informations sur ce serveur (vous seul les voyez)"
@@ -6636,7 +6654,7 @@
         "fr": "Afficher quand j'ouvre la discussion"
     },
     "Show your own devices too": {
-        "tr": "Kendi cihazlarınızı da göster",
+        "tr": "Kendi cihazlarını da göster",
         "ru": "Показывать и ваши устройства",
         "es": "Mostrar también tus dispositivos",
         "fr": "Afficher aussi vos appareils"
@@ -7002,7 +7020,7 @@
         "fr": "Continuer à journaliser les avertissements, utiles pour signaler un problème"
     },
     "Still show that you are typing in direct messages and group DMs": {
-        "tr": "Direkt mesajlarda ve grup sohbetlerinde yazdığınızı yine de göster",
+        "tr": "Direkt mesajlarda ve grup sohbetlerinde yazdığını yine de göster",
         "ru": "Всё равно показывать набор в личных сообщениях и группах",
         "es": "Seguir mostrando que escribes en mensajes directos y grupos",
         "fr": "Continuer à montrer votre saisie dans les messages privés et les groupes"
@@ -7740,7 +7758,7 @@
         "fr": "Ce n'est pas un lien web, il n'a donc pas été ouvert"
     },
     "This link is a **{urlType, select, plugin {Plugin} theme {Theme} other {Add-on}}**, would you like to install it?": {
-        "tr": "Bu bağlantı bir **{urlType, select, plugin {eklenti} theme {tema} other {eklenti}}**. Yüklemek ister misiniz?",
+        "tr": "Bu bağlantı bir **{urlType, select, plugin {eklenti} theme {tema} other {eklenti}}**. Yüklemek ister misin?",
         "ru": "Это ссылка на **{urlType, select, plugin {плагин} theme {тему} other {дополнение}}**. Установить?",
         "es": "Este enlace es un **{urlType, select, plugin {plugin} theme {tema} other {complemento}}**. ¿Quieres instalarlo?",
         "fr": "Ce lien est un **{urlType, select, plugin {plugin} theme {thème} other {module}}**. Voulez-vous l'installer ?"
@@ -7770,7 +7788,7 @@
         "fr": "Ce pack remplace les éléments suivants : {fonts}"
     },
     "This plugin hasn't been checked by the plugin repository's maintainers. Only install it if you trust its author.": {
-        "tr": "Bu eklenti, eklenti deposunun yöneticileri tarafından incelenmedi. Yalnızca yazarına güveniyorsanız yükleyin.",
+        "tr": "Bu eklenti, eklenti deposunun yöneticileri tarafından incelenmedi. Yalnızca yazarına güveniyorsan yükle.",
         "ru": "Этот плагин не проверен владельцами репозитория плагинов. Устанавливайте его, только если доверяете автору.",
         "es": "Este plugin no lo han revisado los responsables del repositorio de plugins. Instálalo solo si confías en su autor.",
         "fr": "Ce plugin n'a pas été vérifié par les responsables du dépôt de plugins. Ne l'installez que si vous faites confiance à son auteur."
@@ -7872,7 +7890,7 @@
         "fr": "Activer ou désactiver la saisie silencieuse"
     },
     "Toggle whether you're hiding that you're typing or not.": {
-        "tr": "Yazdığınızı gizlemeyi açar veya kapatır.",
+        "tr": "Yazdığını gizlemeyi açar veya kapatır.",
         "ru": "Включает или выключает скрытие набора текста.",
         "es": "Activa o desactiva ocultar que estás escribiendo.",
         "fr": "Active ou désactive le masquage de votre saisie."
@@ -7932,13 +7950,13 @@
         "fr": "Traduire vers ou depuis le morse"
     },
     "Translate what you send": {
-        "tr": "Gönderdiklerinizi çevir",
+        "tr": "Gönderdiklerini çevir",
         "ru": "Переводить то, что вы отправляете",
         "es": "Traducir lo que envías",
         "fr": "Traduire ce que vous envoyez"
     },
     "Translate your messages to": {
-        "tr": "Mesajlarınızı şu dile çevir",
+        "tr": "Mesajlarını şu dile çevir",
         "ru": "Переводить ваши сообщения на",
         "es": "Traducir tus mensajes a",
         "fr": "Traduire vos messages en"
@@ -7992,19 +8010,19 @@
         "fr": "Désactiver après un message"
     },
     "Turn this off to show your typing again without turning the plugin off": {
-        "tr": "Eklentiyi kapatmadan yazdığınızı yeniden göstermek için bunu kapatın",
+        "tr": "Eklentiyi kapatmadan yazdığını yeniden göstermek için bunu kapat",
         "ru": "Выключите, чтобы снова показывать набор, не отключая плагин",
         "es": "Desactívalo para volver a mostrar que escribes sin desactivar el plugin",
         "fr": "Désactivez ceci pour montrer à nouveau votre saisie sans désactiver le plugin"
     },
     "Turn this off to stop adding it without turning the plugin off": {
-        "tr": "Eklentiyi kapatmadan eklemeyi durdurmak için bunu kapatın",
+        "tr": "Eklentiyi kapatmadan eklemeyi durdurmak için bunu kapat",
         "ru": "Выключите, чтобы перестать добавлять её, не выключая плагин",
         "es": "Desactívalo para dejar de añadirla sin desactivar el plugin",
         "fr": "Désactivez ceci pour arrêter de l'ajouter sans désactiver le plugin"
     },
     "Turn your signature on or off": {
-        "tr": "İmzanızı açın veya kapatın",
+        "tr": "İmzanı aç veya kapat",
         "ru": "Включить или выключить подпись",
         "es": "Activa o desactiva tu firma",
         "fr": "Activer ou désactiver votre signature"
@@ -8028,13 +8046,13 @@
         "fr": "Code pays à deux lettres, comme TR ou US"
     },
     "Type /hideendcord in any chat to show Endcord's settings again": {
-        "tr": "Endcord ayarlarını yeniden göstermek için herhangi bir sohbette /hideendcord yazın",
+        "tr": "Endcord ayarlarını yeniden göstermek için herhangi bir sohbette /hideendcord yaz",
         "ru": "Введите /hideendcord в любом чате, чтобы снова показать настройки Endcord",
         "es": "Escribe /hideendcord en cualquier chat para volver a mostrar los ajustes de Endcord",
         "fr": "Tapez /hideendcord dans n'importe quelle discussion pour réafficher les paramètres d'Endcord"
     },
     "Type a message to preview it": {
-        "tr": "Önizlemek için bir mesaj yazın",
+        "tr": "Önizlemek için bir mesaj yaz",
         "ru": "Напишите сообщение, чтобы увидеть предпросмотр",
         "es": "Escribe un mensaje para previsualizarlo",
         "fr": "Écrivez un message pour le prévisualiser"
@@ -8076,7 +8094,7 @@
         "fr": "Appareil inconnu"
     },
     "Unlocks Discord's internal experiments menu. Changing experiments can break the app; use it at your own risk.": {
-        "tr": "Discord'un dahili deneyler menüsünü açar. Deneyleri değiştirmek uygulamayı bozabilir; kullanım riski size aittir.",
+        "tr": "Discord'un dahili deneyler menüsünü açar. Deneyleri değiştirmek uygulamayı bozabilir; kullanım riski sana aittir.",
         "ru": "Открывает внутреннее меню экспериментов Discord. Изменение экспериментов может сломать приложение; используйте на свой риск.",
         "es": "Desbloquea el menú interno de experimentos de Discord. Cambiar experimentos puede romper la app; úsalo bajo tu responsabilidad.",
         "fr": "Débloque le menu interne des expériences de Discord. Modifier les expériences peut casser l'application ; à vos risques et périls."
@@ -8172,7 +8190,7 @@
         "fr": "Utiliser le thème Nitro du profil s'il en a un"
     },
     "Use any emoji and sticker without Nitro: the ones you can't use are sent as links.": {
-        "tr": "Nitro olmadan her emojiyi ve çıkartmayı kullanın: kullanamadıklarınız bağlantı olarak gönderilir.",
+        "tr": "Nitro olmadan her emojiyi ve çıkartmayı kullan: kullanamadıkların bağlantı olarak gönderilir.",
         "ru": "Используйте любые эмодзи и стикеры без Nitro: недоступные отправляются ссылками.",
         "es": "Usa cualquier emoji y sticker sin Nitro: los que no puedes usar se envían como enlaces.",
         "fr": "Utilisez n'importe quel emoji ou autocollant sans Nitro : ceux que vous ne pouvez pas utiliser sont envoyés en lien."
@@ -8196,7 +8214,7 @@
         "fr": "Utilisez-le dans un serveur."
     },
     "Use something like 10m, 2h or 1d.": {
-        "tr": "10m, 2h veya 1d gibi bir şey kullanın.",
+        "tr": "10m, 2h veya 1d gibi bir şey kullan.",
         "ru": "Используйте, например, 10m, 2h или 1d.",
         "es": "Usa algo como 10m, 2h o 1d.",
         "fr": "Utilisez par exemple 10m, 2h ou 1d."
@@ -8214,7 +8232,7 @@
         "fr": "Utilisez ceci dans un serveur, avec l'ID d'un autre serveur dont vous êtes membre."
     },
     "Used when \"Translate what you send\" is on": {
-        "tr": "\"Gönderdiklerinizi çevir\" açıkken kullanılır",
+        "tr": "\"Gönderdiklerini çevir\" açıkken kullanılır",
         "ru": "Используется, когда включено «Переводить то, что вы отправляете»",
         "es": "Se usa cuando \"Traducir lo que envías\" está activado",
         "fr": "Utilisé quand « Traduire ce que vous envoyez » est activé"
@@ -8351,6 +8369,12 @@
         "es": "Visionario",
         "fr": "Visionnaire"
     },
+    "Visually customize your Discord profile (username, PFP, banner, badges, bio...) — persistent, only visible to you.": {
+        "tr": "Discord profilini görsel olarak özelleştir (kullanıcı adı, profil fotoğrafı, afiş, rozetler, hakkında...) — kalıcıdır, yalnızca sana görünür.",
+        "ru": "Визуальная настройка вашего профиля Discord (имя, аватар, баннер, значки, о себе...) — сохраняется между перезапусками, видна только вам.",
+        "es": "Personaliza visualmente tu perfil de Discord (usuario, foto, banner, insignias, biografía...) — persistente y solo visible para ti.",
+        "fr": "Personnalisez visuellement votre profil Discord (pseudo, photo, bannière, badges, bio...) — persistant, visible uniquement par vous."
+    },
     "Volume (%)": {
         "tr": "Ses düzeyi (%)",
         "ru": "Громкость (%)",
@@ -8460,7 +8484,7 @@
         "fr": "Ce qu'il faut rechercher"
     },
     "What to remind you of": {
-        "tr": "Size neyin hatırlatılacağı",
+        "tr": "Sana neyin hatırlatılacağı",
         "ru": "О чём напомнить",
         "es": "Qué recordarte",
         "fr": "Ce qu'il faut vous rappeler"
@@ -8478,7 +8502,7 @@
         "fr": "Ce qu'il faut traduire"
     },
     "What's on your mind?": {
-        "tr": "Aklınızda ne var?",
+        "tr": "Aklında ne var?",
         "ru": "О чём думаете?",
         "es": "¿Qué tienes en mente?",
         "fr": "À quoi pensez-vous ?"
@@ -8532,7 +8556,7 @@
         "fr": "Si Discord a des problèmes"
     },
     "Whether to hide or not that you're typing (default is toggle)": {
-        "tr": "Yazdığınızın gizlenip gizlenmeyeceği (varsayılan: değiştir)",
+        "tr": "Yazdığının gizlenip gizlenmeyeceği (varsayılan: değiştir)",
         "ru": "Скрывать ли, что вы печатаете (по умолчанию: переключить)",
         "es": "Si ocultar o no que estás escribiendo (por defecto: alternar)",
         "fr": "Masquer ou non votre saisie (par défaut : basculer)"
@@ -8580,7 +8604,7 @@
         "fr": "Qui bannir"
     },
     "Whose avatar (defaults to you)": {
-        "tr": "Kimin avatarı (varsayılan olarak siz)",
+        "tr": "Kimin avatarı (varsayılan olarak sen)",
         "ru": "Чей аватар (по умолчанию ваш)",
         "es": "De quién es el avatar (por defecto, el tuyo)",
         "fr": "L'avatar de qui (vous par défaut)"
@@ -8652,13 +8676,13 @@
         "fr": "Vous n'êtes plus ami avec {user}."
     },
     "You are no longer in the group {group}.": {
-        "tr": "Artık {group} grubunda değilsiniz.",
+        "tr": "Artık {group} grubunda değilsin.",
         "ru": "Вы больше не в группе {group}.",
         "es": "Ya no estás en el grupo {group}.",
         "fr": "Vous n'êtes plus dans le groupe {group}."
     },
     "You are no longer in the server {server}.": {
-        "tr": "Artık {server} sunucusunda değilsiniz.",
+        "tr": "Artık {server} sunucusunda değilsin.",
         "ru": "Вы больше не на сервере {server}.",
         "es": "Ya no estás en el servidor {server}.",
         "fr": "Vous n'êtes plus sur le serveur {server}."
@@ -8670,13 +8694,13 @@
         "fr": "Vous ne streamez pas."
     },
     "You can't add emojis to any of your servers": {
-        "tr": "Hiçbir sunucunuza emoji ekleyemezsiniz",
+        "tr": "Hiçbir sunucuna emoji ekleyemezsin",
         "ru": "Вы не можете добавлять эмодзи ни на один свой сервер",
         "es": "No puedes añadir emojis a ninguno de tus servidores",
         "fr": "Vous ne pouvez ajouter d'émojis à aucun de vos serveurs"
     },
     "You can't embed links in this channel, so the emoji or sticker will be sent as a plain link. Send it anyway?": {
-        "tr": "Bu kanalda bağlantı yerleştiremiyorsunuz, bu yüzden emoji veya çıkartma düz bağlantı olarak gönderilecek. Yine de gönderilsin mi?",
+        "tr": "Bu kanalda bağlantı yerleştiremiyorsun, bu yüzden emoji veya çıkartma düz bağlantı olarak gönderilecek. Yine de gönderilsin mi?",
         "ru": "В этом канале нельзя встраивать ссылки, поэтому эмодзи или стикер будет отправлен обычной ссылкой. Всё равно отправить?",
         "es": "No puedes insertar enlaces en este canal, así que el emoji o sticker se enviará como enlace normal. ¿Enviarlo de todos modos?",
         "fr": "Vous ne pouvez pas intégrer de liens dans ce salon : l'emoji ou l'autocollant sera envoyé sous forme de lien simple. L'envoyer quand même ?"
@@ -8712,7 +8736,7 @@
         "fr": "Vous n'avez aucune demande d'ami"
     },
     "You have no messages loaded in this channel.": {
-        "tr": "Bu kanalda yüklenmiş mesajınız yok.",
+        "tr": "Bu kanalda yüklenmiş mesajın yok.",
         "ru": "В этом канале нет ваших загруженных сообщений.",
         "es": "No tienes mensajes cargados en este canal.",
         "fr": "Vous n'avez aucun message chargé dans ce salon."
@@ -8724,13 +8748,13 @@
         "fr": "Vous n'avez aucune demande d'ami en attente"
     },
     "You have no reminders": {
-        "tr": "Hatırlatıcınız yok",
+        "tr": "Hatırlatıcın yok",
         "ru": "У вас нет напоминаний",
         "es": "No tienes recordatorios",
         "fr": "Vous n'avez aucun rappel"
     },
     "You have no scheduled messages": {
-        "tr": "Zamanlanmış mesajınız yok",
+        "tr": "Zamanlanmış mesajın yok",
         "ru": "У вас нет запланированных сообщений",
         "es": "No tienes mensajes programados",
         "fr": "Vous n'avez aucun message programmé"
@@ -8766,37 +8790,37 @@
         "fr": "Vous avez quitté {server}"
     },
     "You rolled a {roll}!": {
-        "tr": "{roll} attınız!",
+        "tr": "{roll} attın!",
         "ru": "Выпало {roll}!",
         "es": "¡Sacaste un {roll}!",
         "fr": "Vous avez fait {roll} !"
     },
     "You were removed from the group {group}.": {
-        "tr": "{group} grubundan çıkarıldınız.",
+        "tr": "{group} grubundan çıkarıldın.",
         "ru": "Вас удалили из группы {group}.",
         "es": "Te han eliminado del grupo {group}.",
         "fr": "Vous avez été retiré du groupe {group}."
     },
     "You were removed from the server {server}.": {
-        "tr": "{server} sunucusundan çıkarıldınız.",
+        "tr": "{server} sunucusundan çıkarıldın.",
         "ru": "Вас удалили с сервера {server}.",
         "es": "Te han expulsado del servidor {server}.",
         "fr": "Vous avez été retiré du serveur {server}."
     },
     "You're in safe mode, so fonts are turned off for now. {enabled, select, true {If a font causes the problem, you can turn it off below.} other {}}": {
-        "tr": "Güvenli moddasınız, bu yüzden yazı tipleri şimdilik kapalı. {enabled, select, true {Soruna bir yazı tipi neden oluyorsa aşağıdan kapatabilirsiniz.} other {}}",
+        "tr": "Güvenli moddasın, bu yüzden yazı tipleri şimdilik kapalı. {enabled, select, true {Soruna bir yazı tipi neden oluyorsa aşağıdan kapatabilirsin.} other {}}",
         "ru": "Вы в безопасном режиме, поэтому шрифты пока отключены. {enabled, select, true {Если проблему вызывает шрифт, его можно отключить ниже.} other {}}",
         "es": "Estás en modo seguro, así que las fuentes están desactivadas por ahora. {enabled, select, true {Si una fuente causa el problema, puedes desactivarla abajo.} other {}}",
         "fr": "Vous êtes en mode sans échec, les polices sont donc désactivées pour l'instant. {enabled, select, true {Si une police cause le problème, vous pouvez la désactiver ci-dessous.} other {}}"
     },
     "You're in safe mode, so plugins aren't loaded. Turn off any plugin that misbehaves, then leave safe mode from the General page.": {
-        "tr": "Güvenli moddasınız, bu yüzden eklentiler yüklenmedi. Sorun çıkaran eklentileri kapatın, ardından Genel sayfasından güvenli moddan çıkın.",
+        "tr": "Güvenli moddasın, bu yüzden eklentiler yüklenmedi. Sorun çıkaran eklentileri kapat, ardından Genel sayfasından güvenli moddan çık.",
         "ru": "Вы в безопасном режиме, поэтому плагины не загружены. Отключите плагин, вызывающий проблемы, затем выйдите из безопасного режима на странице «Общие».",
         "es": "Estás en modo seguro, así que los plugins no se cargan. Desactiva el plugin que falle y luego sal del modo seguro desde la página General.",
         "fr": "Vous êtes en mode sans échec, les plugins ne sont donc pas chargés. Désactivez le plugin qui pose problème, puis quittez le mode sans échec depuis la page Général."
     },
     "You're in safe mode, so themes are turned off for now. {enabled, select, true {If a theme causes the problem, you can turn it off below.} other {}}": {
-        "tr": "Güvenli moddasınız, bu yüzden temalar şimdilik kapalı. {enabled, select, true {Soruna bir tema neden oluyorsa aşağıdan kapatabilirsiniz.} other {}}",
+        "tr": "Güvenli moddasın, bu yüzden temalar şimdilik kapalı. {enabled, select, true {Soruna bir tema neden oluyorsa aşağıdan kapatabilirsin.} other {}}",
         "ru": "Вы в безопасном режиме, поэтому темы пока отключены. {enabled, select, true {Если проблему вызывает тема, её можно отключить ниже.} other {}}",
         "es": "Estás en modo seguro, así que los temas están desactivados por ahora. {enabled, select, true {Si un tema causa el problema, puedes desactivarlo abajo.} other {}}",
         "fr": "Vous êtes en mode sans échec, les thèmes sont donc désactivés pour l'instant. {enabled, select, true {Si un thème cause le problème, vous pouvez le désactiver ci-dessous.} other {}}"
@@ -8808,13 +8832,13 @@
         "fr": "Vous n'êtes connecté à aucun salon vocal."
     },
     "You're not listening to any music.": {
-        "tr": "Şu anda müzik dinlemiyorsunuz.",
+        "tr": "Şu anda müzik dinlemiyorsun.",
         "ru": "Вы сейчас не слушаете музыку.",
         "es": "No estás escuchando música.",
         "fr": "Vous n'écoutez pas de musique."
     },
     "You've been on Discord for {time}. Time for a break?": {
-        "tr": "{time} süredir Discord'dasınız. Mola zamanı?",
+        "tr": "{time} süredir Discord'dasın. Mola zamanı?",
         "ru": "Вы в Discord уже {time}. Может, перерыв?",
         "es": "Llevas {time} en Discord. ¿Un descanso?",
         "fr": "Vous êtes sur Discord depuis {time}. Une petite pause ?"
@@ -8850,31 +8874,31 @@
         "fr": "Vos demandes d'ami reçues, les plus récentes d'abord, à accepter ou ignorer dans les paramètres du plugin"
     },
     "Your message": {
-        "tr": "Mesajınız",
+        "tr": "Mesajın",
         "ru": "Ваше сообщение",
         "es": "Tu mensaje",
         "fr": "Votre message"
     },
     "Your message will be sent {when}. Discord has to be open then; see the plugin's settings to cancel it.": {
-        "tr": "Mesajınız {when} gönderilecek. O sırada Discord açık olmalı; iptal etmek için eklentinin ayarlarına bakın.",
+        "tr": "Mesajın {when} gönderilecek. O sırada Discord açık olmalı; iptal etmek için eklentinin ayarlarına bak.",
         "ru": "Сообщение будет отправлено {when}. В это время Discord должен быть открыт; отменить можно в настройках плагина.",
         "es": "Tu mensaje se enviará {when}. Discord tiene que estar abierto entonces; cancélalo en los ajustes del plugin.",
         "fr": "Votre message sera envoyé {when}. Discord doit être ouvert à ce moment-là ; annulez-le dans les paramètres du plugin."
     },
     "Your messages are translated before they're sent": {
-        "tr": "Mesajlarınız gönderilmeden önce çevrilir",
+        "tr": "Mesajların gönderilmeden önce çevrilir",
         "ru": "Ваши сообщения переводятся перед отправкой",
         "es": "Tus mensajes se traducen antes de enviarse",
         "fr": "Vos messages sont traduits avant d'être envoyés"
     },
     "Your messages don't send push notifications": {
-        "tr": "Mesajlarınız anlık bildirim göndermez",
+        "tr": "Mesajların anlık bildirim göndermez",
         "ru": "Ваши сообщения не отправляют push-уведомления",
         "es": "Tus mensajes no envían notificaciones push",
         "fr": "Vos messages n'envoient pas de notifications push"
     },
     "Your messages will self-destruct": {
-        "tr": "Mesajlarınız kendini imha edecek",
+        "tr": "Mesajların kendini imha edecek",
         "ru": "Ваши сообщения самоуничтожатся",
         "es": "Tus mensajes se autodestruirán",
         "fr": "Vos messages s'autodétruiront"
@@ -8904,19 +8928,19 @@
         "fr": "Votre propre clé de platform.openai.com ; elle reste sur ce téléphone"
     },
     "Your own messages": {
-        "tr": "Kendi mesajlarınız",
+        "tr": "Kendi mesajların",
         "ru": "Ваши сообщения",
         "es": "Tus propios mensajes",
         "fr": "Vos propres messages"
     },
     "Your own messages are always shown": {
-        "tr": "Kendi mesajlarınız her zaman gösterilir",
+        "tr": "Kendi mesajların her zaman gösterilir",
         "ru": "Ваши сообщения всегда показываются",
         "es": "Tus propios mensajes siempre se muestran",
         "fr": "Vos propres messages sont toujours affichés"
     },
     "Your question": {
-        "tr": "Sorunuz",
+        "tr": "Soru",
         "ru": "Ваш вопрос",
         "es": "Tu pregunta",
         "fr": "Votre question"
@@ -9180,7 +9204,7 @@
         "fr": "utilisez mon prénom"
     },
     "uwuifies your messages": {
-        "tr": "mesajlarınızı uwu'laştırır",
+        "tr": "mesajlarını uwu'laştırır",
         "ru": "превращает сообщения в uwu",
         "es": "uwuifica tus mensajes",
         "fr": "uwuifie vos messages"
@@ -9444,7 +9468,7 @@
         "fr": "{user} a quitté {channel}"
     },
     "{user} mentioned you and deleted the message": {
-        "tr": "{user} sizi etiketleyip mesajı sildi",
+        "tr": "{user} seni etiketleyip mesajı sildi",
         "ru": "{user} упомянул(а) вас и удалил(а) сообщение",
         "es": "{user} te mencionó y eliminó el mensaje",
         "fr": "{user} vous a mentionné puis a supprimé le message"
@@ -9462,7 +9486,7 @@
         "fr": "{user} est passé dans {channel}"
     },
     "{user} removed you as a friend.": {
-        "tr": "{user} sizi arkadaşlıktan çıkardı.",
+        "tr": "{user} seni arkadaşlıktan çıkardı.",
         "ru": "{user} удалил(а) вас из друзей.",
         "es": "{user} te eliminó de sus amigos.",
         "fr": "{user} vous a retiré de ses amis."
