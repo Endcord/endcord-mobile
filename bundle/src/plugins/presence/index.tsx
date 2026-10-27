@@ -10,7 +10,7 @@ import { t, tx } from "@core/i18n";
 import { createMMKVBackend, createStorage, useProxy, wrapSync } from "@core/vendetta/storage";
 import { findAssetId } from "@lib/api/assets";
 import { instead } from "@lib/api/patcher";
-import { settings as bunnySettings } from "@lib/api/settings";
+import { holdDiscordDeveloper } from "@lib/api/settings";
 import { showToast } from "@lib/ui/toasts";
 import { findByProps } from "@metro";
 import { FluxDispatcher } from "@metro/common";
@@ -326,11 +326,12 @@ const Experiments = definePlugin({
     icon: "BeakerIcon",
     tags: ["Utility"],
     start({ cleanup }) {
-        const before = bunnySettings.enableDiscordDeveloperSettings;
-        bunnySettings.enableDiscordDeveloperSettings = true;
+        // Held on while the plugin runs rather than written to the user's setting, which a restart in between would
+        // otherwise leave on for good
+        const release = holdDiscordDeveloper();
         getStore("DeveloperExperimentStore")?.emitChange?.();
         cleanup(() => {
-            bunnySettings.enableDiscordDeveloperSettings = before ?? false;
+            release();
             getStore("DeveloperExperimentStore")?.emitChange?.();
         });
     },
