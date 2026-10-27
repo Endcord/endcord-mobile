@@ -10,7 +10,7 @@ import { t, tx } from "@core/i18n";
 import { findByProps } from "@metro";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
-import { currentUserId, getStore } from "../common";
+import { currentUserId, getStore, guildRoles } from "../common";
 import {
     addMessageAction, api, botMessage, command, describeError, getGuild, getUser, onMessageRow, onSend,
     redrawMessage, textNode, toastError
@@ -115,7 +115,7 @@ const ServerInfo = definePlugin({
                 const created = snowflakeMs(guild.id);
                 const members = getStore("GuildMemberCountStore")?.getMemberCount?.(guild.id);
                 const channels = Object.values(getStore("ChannelStore")?.getMutableGuildChannelsForGuild?.(guild.id) ?? {}).length;
-                const roles = Object.keys(getStore("GuildRoleStore")?.getRoles?.(guild.id) ?? guild.roles ?? {}).length;
+                const roles = Object.keys(guildRoles(guild.id)).length;
                 const icon = guild.icon ? `${CDN}/icons/${guild.id}/${guild.icon}.${guild.icon.startsWith("a_") ? "gif" : "png"}?size=1024` : null;
                 const lines = [
                     `**${guild.name}**`,

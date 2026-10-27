@@ -14,7 +14,7 @@ import { findByProps } from "@metro";
 import { useEffect, useState } from "react";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
-import { currentUserId, getStore, subscribe } from "../common";
+import { currentUserId, getStore, guildRoles, subscribe } from "../common";
 import {
     addMessageAction, api, botMessage, command, copy, currentChannelId, describeError, displayName, getChannel,
     getGuild, getUser, onMessageRow, redrawMessage, textNode
@@ -131,7 +131,7 @@ const PermissionsViewer = definePlugin({
                 const guildId = channel.guild_id;
                 const guild = getGuild(guildId);
                 const member = getStore("GuildMemberStore")?.getMember?.(guildId, message.author.id);
-                const roles = getStore("GuildRoleStore")?.getRoles?.(guildId) ?? guild?.roles ?? {};
+                const roles = guildRoles(guildId);
                 const memberRoles = [roles[guildId], ...(member?.roles ?? []).map((id: string) => roles[id])].filter(Boolean).sort((a: any, b: any) => b.position - a.position);
                 const owner = guild?.ownerId === message.author.id;
                 let bits: any = memberRoles[0]?.permissions;

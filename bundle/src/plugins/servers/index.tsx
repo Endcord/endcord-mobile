@@ -10,7 +10,7 @@ import { t, tx } from "@core/i18n";
 import { findByProps } from "@metro";
 
 import { definePlugin, ENDCORD_AUTHOR, onSettingChange } from "../api";
-import { currentUserId, getStore, subscribe } from "../common";
+import { currentUserId, getStore, guildRoles, subscribe } from "../common";
 import { api, botMessage, command, copy, getChannel, getGuild, nativeColor, onIncomingMessage, onMessageRow, share } from "../hooks";
 import { translate } from "../lookup";
 
@@ -20,8 +20,7 @@ const snowflakeMs = (id: string) => Math.floor(Number(id) / 4194304) + 142007040
 
 /** A member's permissions in a server, from their roles; undefined when Discord's tables aren't there */
 export function memberPermissions(guildId: string, userId: string): any {
-    const guild = getGuild(guildId);
-    const roles = getStore("GuildRoleStore")?.getRoles?.(guildId) ?? guild?.roles ?? {};
+    const roles = guildRoles(guildId);
     const member = getStore("GuildMemberStore")?.getMember?.(guildId, userId);
     let bits: any = roles[guildId]?.permissions;
     for (const id of member?.roles ?? []) {

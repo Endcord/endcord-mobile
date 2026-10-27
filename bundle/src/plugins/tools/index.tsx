@@ -15,7 +15,7 @@ import { Button, Stack } from "@metro/common/components";
 import { useEffect, useState } from "react";
 
 import { definePlugin, ENDCORD_AUTHOR, onSettingChange } from "../api";
-import { addChatButton, currentUserId, getChatInputActionButton, getStore, onAction, subscribe } from "../common";
+import { addChatButton, currentUserId, getChatInputActionButton, getStore, guildRoles, onAction, subscribe } from "../common";
 import {
     api, botMessage, command, copy, currentChannelId, deleteMessage, generatedIcon, getGuild, getUser, insertText,
     localSnowflake, MAX_SHARE_LENGTH, onIncomingMessage, onMessageRow, onSend, openUrl, receiveLocalMessage, share
@@ -296,7 +296,7 @@ const ServerBackup = definePlugin({
                 }
                 const [channels, roles] = await Promise.all([
                     api("get", `/guilds/${guild.id}/channels`),
-                    api("get", `/guilds/${guild.id}/roles`).catch(() => Object.values(getStore("GuildRoleStore")?.getRoles?.(guild.id) ?? {})),
+                    api("get", `/guilds/${guild.id}/roles`).catch(() => Object.values(guildRoles(guild.id))),
                 ]);
                 const backup = {
                     format: "endcord-server-backup",

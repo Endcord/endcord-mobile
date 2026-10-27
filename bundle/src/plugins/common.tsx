@@ -32,6 +32,18 @@ export function getStore<T = any>(name: string): T | undefined {
 export const currentUserId = (): string | undefined => getStore("UserStore")?.getCurrentUser?.()?.id;
 
 /**
+ * A server's roles by ID. Discord has kept them on the guild, then behind GuildRoleStore.getRoles, and now (350) behind
+ * getUnsafeMutableRoles; the guild's own roles are empty there.
+ */
+export function guildRoles(guildId: string): Record<string, any> {
+    const roleStore = getStore("GuildRoleStore");
+    return roleStore?.getRoles?.(guildId)
+        ?? roleStore?.getUnsafeMutableRoles?.(guildId)
+        ?? getStore("GuildStore")?.getGuild?.(guildId)?.roles
+        ?? {};
+}
+
+/**
  * Sees every Flux action of a type before Discord does. Return undefined to let it through, false to drop it, or an
  * object to merge into it.
  */
