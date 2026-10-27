@@ -29,37 +29,43 @@ for (const key in metroModules) {
         continue;
     }
 
-    if (metroModule!.factory) {
-        instead("factory", metroModule, ((args: Parameters<Metro.FactoryFn>, origFunc: Metro.FactoryFn) => {
+    const { factory } = metroModule!;
+    if (factory) {
+        // A plain wrapper, not a spitroast patch: this runs for each of Discord's ~18,000 modules, where a patch would
+        // cost a Proxy and three Maps apiece, in memory and again on each module's first require
+        metroModule!.factory = function (this: unknown, ...args: Parameters<Metro.FactoryFn>) {
             const originalImportingId = _importingModuleId;
             _importingModuleId = id;
 
-            const { 1: metroRequire, 4: moduleObject } = args;
+            try {
+                const { 1: metroRequire, 4: moduleObject } = args;
 
-            args[2 /* metroImportDefault */] = id => {
-                const exps = metroRequire(id);
-                return exps && exps.__esModule ? exps.default : exps;
-            };
+                args[2 /* metroImportDefault */] = id => {
+                    const exps = metroRequire(id);
+                    return exps && exps.__esModule ? exps.default : exps;
+                };
 
-            args[3 /* metroImportAll */] = id => {
-                const exps = metroRequire(id);
-                if (exps && exps.__esModule) return exps;
+                args[3 /* metroImportAll */] = id => {
+                    const exps = metroRequire(id);
+                    if (exps && exps.__esModule) return exps;
 
-                const importAll: Record<string, any> = {};
-                if (exps) Object.assign(importAll, exps);
-                importAll.default = exps;
-                return importAll;
-            };
+                    const importAll: Record<string, any> = {};
+                    if (exps) Object.assign(importAll, exps);
+                    importAll.default = exps;
+                    return importAll;
+                };
 
-            origFunc(...args);
-            if (!isBadExports(moduleObject.exports)) {
-                onModuleRequire(moduleObject.exports, id);
-            } else {
-                blacklistModule(id);
+                factory.apply(this, args);
+                if (!isBadExports(moduleObject.exports)) {
+                    onModuleRequire(moduleObject.exports, id);
+                } else {
+                    blacklistModule(id);
+                }
+            } finally {
+                // Also when the module throws, or every module required after it would count as imported by it
+                _importingModuleId = originalImportingId;
             }
-
-            _importingModuleId = originalImportingId;
-        }) as any); // If only spitroast had better types
+        };
     }
 }
 
