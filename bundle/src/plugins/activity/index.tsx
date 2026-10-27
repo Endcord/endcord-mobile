@@ -283,11 +283,33 @@ function soundboardSounds(): Sound[] {
     const add = (sounds: any) => {
         for (const s of sounds ?? []) if (s?.soundId) all.push({ soundId: String(s.soundId), name: s.name, guildId: s.guildId, emojiName: s.emojiName });
     };
+    // Older Discord kept its own sounds apart; 350 has them in getSounds under the server ID "0"
     add(store?.getDefaultSounds?.());
     const byGuild = store?.getSounds?.();
     if (byGuild instanceof Map) byGuild.forEach(add);
     else if (byGuild) Object.values(byGuild).forEach(add);
     return all;
+}
+
+/** The soundboard's sounds, asking Discord for them first when it hasn't loaded them (it does when the soundboard opens) */
+async function loadSoundboardSounds(): Promise<Sound[]> {
+    if (soundboardSounds().length) return soundboardSounds();
+    findByProps("maybeFetchSoundboardSounds")?.maybeFetchSoundboardSounds?.();
+    const store = getStore("SoundboardStore");
+    await new Promise<void>(resolve => {
+        const check = () => {
+            if (!soundboardSounds().length) return;
+            done();
+        };
+        const done = () => {
+            clearTimeout(timer);
+            store?.removeChangeListener?.(check);
+            resolve();
+        };
+        const timer = setTimeout(done, 8000);
+        store?.addChangeListener?.(check);
+    });
+    return soundboardSounds();
 }
 
 const ExitSounds = definePlugin({
@@ -322,15 +344,15 @@ const ExitSounds = definePlugin({
         cleanup(command({
             name: "exitsound",
             description: tx("Choose the sound played when you leave voice"),
-            run: (_, ctx) => {
-                const sounds = soundboardSounds();
+            run: async (_, ctx) => {
+                const sounds = await loadSoundboardSounds();
                 if (!sounds.length) {
                     botMessage(ctx.channel.id, t("No soundboard sounds are loaded yet; open the soundboard once in a voice channel, then try again."));
                     return;
                 }
                 choose(t("Exit sound"), sounds.map(s => ({ label: `${s.emojiName ? `${s.emojiName} ` : ""}${s.name}`, value: s })), s => {
                     store.soundId = s.soundId;
-                    store.guildId = s.guildId && s.guildId !== "DEFAULT" ? String(s.guildId) : "";
+                    store.guildId = s.guildId && s.guildId !== "DEFAULT" && s.guildId !== "0" ? String(s.guildId) : "";
                     showToast(t("{sound} plays when you leave voice", { sound: s.name }), findAssetId("SoundboardIcon"));
                 });
             },
