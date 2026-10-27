@@ -471,12 +471,17 @@ Endcord'un ekran katmanında çizilenler ve Wellbeing.
 
 ## Nasıl yazılır
 
+Endcord PC'deki gibi her eklentinin kendi klasörü vardır: `bundle/src/plugins/<eklentiAdi>/index.ts(x)`. Birden
+fazla eklentinin kullandığı kod `bundle/src/plugins/shared/` altındadır. Derleme, klasörlerden
+`bundle/src/plugins/manifest.ts`'i üretir; bir klasörde birden fazla eklenti tanımlanırsa derleme durur.
+
 Her eklenti `definePlugin` ile tanımlanır (`bundle/src/plugins/api.ts`). Discord'a dokunan işler
 `bundle/src/plugins/hooks.tsx`'teki ortak uç noktalarla yapılır; her biri Discord'a bir kez yamalanır ve bütün
 eklentiler paylaşır:
 
 ```tsx
-const Ornek = definePlugin({
+// bundle/src/plugins/ornek/index.ts
+export default definePlugin({
     id: "endcord.ornek",
     name: "Ornek",                         // Endcord PC'deki adıyla aynı
     description: tx("What it does"),       // Endcord PC'deki İngilizce açıklama: çevirisi oradan bedava gelir

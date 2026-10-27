@@ -12,7 +12,7 @@ import compareNames from "@lib/utils/compareNames";
 import { createElement } from "react";
 
 import { ENDCORD_AUTHOR, EndcordPlugin, isEndcordPluginRunning, startEndcordPlugin, stopEndcordPlugin } from "./api";
-import { groups, manifest, PluginInfo } from "./manifest";
+import { loaders, manifest, PluginInfo } from "./manifest";
 
 const loaded = new Map<string, EndcordPlugin<any>>();
 
@@ -20,16 +20,15 @@ let descriptions: Record<string, string> | undefined;
 /** English descriptions, read the first time the plugin list shows one */
 const descriptionOf = (id: string) => (descriptions ??= require("./descriptions.json") as Record<string, string>)[id] ?? "";
 
-/** A plugin's code, loaded with the rest of its group the first time it's needed */
+/** A plugin's code, loaded the first time it's needed */
 export function loadEndcordPlugin(id: string): EndcordPlugin<any> {
     const cached = loaded.get(id);
     if (cached) return cached;
-    const info = manifest.find(p => p.id === id);
-    if (!info) throw new Error(`No Endcord plugin is called ${id}`);
-    const exported = groups[info.group]().default;
-    for (const plugin of Array.isArray(exported) ? exported : [exported]) loaded.set(plugin.id, plugin);
-    const plugin = loaded.get(id);
-    if (!plugin) throw new Error(`${info.group} doesn't define ${id}; regenerate the plugin manifest`);
+    const load = loaders[id];
+    if (!load) throw new Error(`No Endcord plugin is called ${id}`);
+    const plugin = load().default;
+    if (plugin?.id !== id) throw new Error(`The module of ${id} defines ${plugin?.id}; regenerate the plugin manifest`);
+    loaded.set(id, plugin);
     return plugin;
 }
 

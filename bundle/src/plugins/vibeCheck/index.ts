@@ -1,0 +1,39 @@
+/*
+ * Endcord for Android
+ * Copyright (c) 2026 rootpoi and contributors
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+import { tx } from "@core/i18n";
+
+import { definePlugin, ENDCORD_AUTHOR } from "../api";
+import { command } from "../hooks";
+import { pick } from "../shared/text";
+
+const VIBES = [
+    "✦ the vibes are immaculate ✦",
+    "🌴 endless summer, endless mall 🌴",
+    "📼 rewinding to a time that never was 📼",
+    "🛍️ welcome to the mall, population: you 🛍️",
+    "🌅 chasing a sunset that never sets 🌅",
+    "💾 saving your aesthetic... done 💾",
+    "🪩 disco ball energy detected 🪩",
+    "🌊 floating on a sea of neon 🌊",
+    "☎️ this call is being routed through 1987 ☎️",
+    "🍹 sipping something pink by the fountain 🍹",
+];
+
+export default definePlugin({
+    id: "endcord.vibe-check",
+    name: "VibeCheck",
+    description: tx("Adds /vibe to drop a random vaporwave mood into chat."),
+    authors: [ENDCORD_AUTHOR],
+    tags: ["Chat", "Fun"],
+    start({ cleanup }) {
+        cleanup(command({
+            name: "vibe",
+            description: tx("Send a random vaporwave vibe"),
+            run: () => pick(VIBES),
+        }));
+    },
+});

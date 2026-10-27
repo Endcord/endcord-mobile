@@ -131,13 +131,16 @@ classic-app Endcord uses `com.endcord`, so both can be installed at once), the l
 
 ### Plugins
 
-Endcord's plugins live in `bundle/src/plugins/<name>/` and are defined with `definePlugin` from
+Endcord's plugins live one per folder, like Endcord PC's: `bundle/src/plugins/<pluginName>/index.ts(x)`, with what
+several plugins share in `bundle/src/plugins/shared/`. Each is defined with `definePlugin` from
 `bundle/src/plugins/api.ts`: a settings schema (the settings page is generated from it), `start` with a `cleanup`
 helper for every patch, and an optional extra settings component. Plugins find Discord's modules by their source path
 (`moduleAt("modules/...")`), which survives the renames that break name lookups, and must tolerate a module being
 missing: a plugin that throws while starting is turned off with a notice, never crashing Discord. Most plugins use the
 shared hooks in `bundle/src/plugins/hooks.tsx` (`onSend`, `onIncomingMessage`, `onMessageRow`, `addMessageAction`,
-`command`), each patched into Discord once. The full list and how to write one are in [docs/PLUGINS.md](docs/PLUGINS.md).
+`command`), each patched into Discord once. The build generates `bundle/src/plugins/manifest.ts` from the plugin
+folders, so Endcord starts knowing every plugin's name and description but loads a plugin's code only when it is
+turned on. The full list and how to write one are in [docs/PLUGINS.md](docs/PLUGINS.md).
 
 ### Translations
 
