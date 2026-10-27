@@ -1,5 +1,5 @@
 import { Strings } from "@core/i18n";
-import { PyoncordIcon } from "@core/ui/settings";
+import { EndcordIcon } from "@core/ui/settings";
 import Version from "@core/ui/settings/pages/General/Version";
 import { useProxy } from "@core/vendetta/storage";
 import { getDebugInfo } from "@lib/api/debug";
@@ -15,7 +15,7 @@ export default function About() {
         {
             label: Strings.BUNNY,
             version: debugInfo.bunny.version,
-            icon: { uri: PyoncordIcon },
+            icon: { uri: EndcordIcon },
         },
         {
             label: "Discord",

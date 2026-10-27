@@ -1,5 +1,5 @@
 import { t } from "@core/i18n";
-import { PyoncordIcon } from "@core/ui/settings";
+import { EndcordIcon } from "@core/ui/settings";
 import { disablePlugin, enablePlugin, getPluginSettingsComponent, isPluginEnabled, pluginSettings } from "@lib/addons/plugins";
 import { BunnyPluginManifest } from "@lib/addons/plugins/types";
 import { findAssetId } from "@lib/api/assets";
@@ -22,7 +22,7 @@ export default function unifyBunnyPlugin(manifest: BunnyPluginManifest): Unified
 
         getBadges() {
             // Endcord's own plugins don't need a badge saying where they come from
-            return manifest.extras?.endcord ? [] : [{ source: { uri: PyoncordIcon } }];
+            return manifest.extras?.endcord ? [] : [{ source: { uri: EndcordIcon } }];
         },
         isEnabled: () => isPluginEnabled(manifest.id),
         isInstalled: () => manifest.id in pluginSettings,

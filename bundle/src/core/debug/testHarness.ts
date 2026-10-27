@@ -418,6 +418,71 @@ ${e.stack}` : String(e) });
         const timestamp = String(row?.message?.timestamp ?? "");
         return { type: row?.type, fields, pass: row?.type === 1 && /words?/.test(timestamp) && /\d{1,2}[:.]\d{2}[:.]\d{2}/.test(timestamp) };
     }));
+
+    // Endcord PC's popular plugins, each by what it does
+    const { instead } = require("@lib/api/patcher");
+
+    await check("fake-nitro sends emojis you can't use as links", async () => {
+        const messages = findByProps("sendMessage", "editMessage");
+        // Caught under the plugin's own patch, so nothing reaches Discord's API
+        let sent: any;
+        const unstub = instead("sendMessage", messages, (args: any[]) => void (sent = args[1]));
+        try {
+            return await withPlugins(["FakeNitro"], async () => {
+                await messages.sendMessage("1111111111111111111", { content: "hi <:endcord:123456789012345678>", invalidEmojis: [{ id: "123456789012345678", name: "endcord" }], validNonShortcutEmojis: [], tts: false });
+                const content = String(sent?.content ?? "");
+                return { content, pass: content.startsWith("hi https://cdn.discordapp.com/emojis/123456789012345678.webp") && sent.invalidEmojis?.length === 0 };
+            });
+        } finally {
+            unstub();
+        }
+    });
+
+    await check("hide-endcord hides Endcord's settings sections", async () => {
+        const { getVisibleSections } = require("@ui/settings");
+        const plugin = byName("HideEndcord");
+        await startEndcordPlugin(plugin);
+        const store = plugin.store as any;
+        const previous = store.hidden;
+        store.hidden = true;
+        const hidden = getVisibleSections().length === 0;
+        store.hidden = false;
+        const shown = getVisibleSections().length > 0;
+        store.hidden = previous;
+        stopEndcordPlugin(plugin);
+        const shownAfterStop = getVisibleSections().length > 0;
+        return { hidden, shown, shownAfterStop, pass: hidden && shown && shownAfterStop };
+    });
+
+    await check("relationship-notifier tells you when a friend removes you", async () => {
+        const { toasts } = require("@metro/common");
+        const shown: string[] = [];
+        const unstub = instead("open", toasts, (args: any[], original: Function) => {
+            shown.push(String(args[1]?.text ?? ""));
+            return original(...args);
+        });
+        try {
+            return await withPlugins(["RelationshipNotifier"], async () => {
+                FluxDispatcher.dispatch({ type: "RELATIONSHIP_REMOVE", relationship: { id: "6666666666666666666", type: 1, nickname: null } });
+                await wait(100);
+                const notice = shown.find(text => text.includes("6666666666666666666"));
+                return { notice, pass: !!notice };
+            });
+        } finally {
+            unstub();
+        }
+    });
+
+    await check("oneko adds its overlay and takes it away", async () => {
+        const { overlayCount } = require("@core/overlay");
+        const before = overlayCount();
+        const plugin = byName("oneko");
+        await startEndcordPlugin(plugin);
+        const whileOn = overlayCount();
+        stopEndcordPlugin(plugin);
+        const after = overlayCount();
+        return { before, whileOn, after, pass: whileOn === before + 1 && after === before };
+    });
 }
 
 /** Shows Endcord's pages one at a time; the workflow takes a screenshot of each when it sees the "shot" line */

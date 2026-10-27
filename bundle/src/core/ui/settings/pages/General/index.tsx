@@ -1,6 +1,6 @@
 import { isSafeMode, toggleSafeMode } from "@core/debug/safeMode";
 import { getLanguage, LANGUAGES, Strings, t } from "@core/i18n";
-import { PyoncordIcon } from "@core/ui/settings";
+import { EndcordIcon } from "@core/ui/settings";
 import About from "@core/ui/settings/pages/General/About";
 import Backup from "@core/ui/settings/pages/General/Backup";
 import Updates from "@core/ui/settings/pages/General/Updates";
@@ -27,7 +27,7 @@ export default function General() {
                 <TableRowGroup title={Strings.INFO}>
                     <TableRow
                         label={Strings.BUNNY}
-                        icon={<TableRow.Icon source={{ uri: PyoncordIcon }} />}
+                        icon={<TableRow.Icon source={{ uri: EndcordIcon }} />}
                         trailing={<TableRow.TrailingText text={debugInfo.bunny.version} />}
                     />
                     <TableRow

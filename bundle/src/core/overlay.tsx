@@ -26,6 +26,9 @@ export function addOverlay(key: string, component: ComponentType) {
     };
 }
 
+/** How many overlays are shown, for leak checks */
+export const overlayCount = () => overlays.size;
+
 /** Called with the screen position of every touch, without taking the touch from what is under it */
 export function onTouch(listener: (x: number, y: number) => void) {
     touchListeners.add(listener);

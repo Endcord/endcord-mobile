@@ -1,4 +1,4 @@
-import PyoncordIcon from "@assets/icons/endcord.png";
+import EndcordIcon from "@assets/icons/endcord.png";
 import { Strings } from "@core/i18n";
 import { useProxy } from "@core/vendetta/storage";
 import { findAssetId } from "@lib/api/assets";
@@ -7,7 +7,7 @@ import { settings } from "@lib/api/settings";
 import { registerSection } from "@ui/settings";
 import { version } from "bunny-build-info";
 
-export { PyoncordIcon };
+export { EndcordIcon };
 
 export default function initSettings() {
 
@@ -17,7 +17,7 @@ export default function initSettings() {
             {
                 key: "BUNNY",
                 title: () => Strings.BUNNY,
-                icon: { uri: PyoncordIcon },
+                icon: { uri: EndcordIcon },
                 render: () => import("@core/ui/settings/pages/General"),
                 useTrailing: () => `(${version})`
             },

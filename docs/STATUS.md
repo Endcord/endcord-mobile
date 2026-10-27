@@ -1,131 +1,50 @@
-# Durum (26 Ekim 2026, sabah)
+# Durum (27 Ekim 2026)
 
 Endcord for Android (yeni Discord), Revenge'in üç parçasının fork'udur: `bundle/` (Discord'un içinde çalışan
 JavaScript), `loader/` (bundle'ı Discord'a yükleyen Xposed modülü) ve `installer/` (Discord'u alıp Endcord'u ekleyen
-kurucu). Hangi upstream commit'lerinden alındığı `UPSTREAM.md` içinde.
+kurucu). Hangi upstream commit'lerinden alındığı [UPSTREAM.md](../UPSTREAM.md) içinde.
 
-## Bu gece yapılanlar
+## Bu sürümde
 
-### Eklentiler
-- Endcord PC'deki **"popüler" etiketli 12 eklentinin hepsi** mobile yazıldı (`bundle/src/plugins/`): CustomProfile,
-  MessageLogger, HideEndcord, FakeNitro, SmoothType, ViewIcons, ThemeLibrary, oneko, PlatformIndicators,
-  RelationshipNotifier, SilentTyping, FakeMute. Ek olarak ClearURLs. Ayrıntılar ve PC'den farkları:
-  [PLUGINS.md](PLUGINS.md).
-- Eklenti sayfası: Endcord eklentileri listede, popülerler en üstte ve "POPÜLER" etiketli (PC'deki gibi); her
-  eklentinin şemadan üretilen ayar sayfası var ve eklenti açılmadan da ayarlanabiliyor.
-- Eklenti çatısı (`api.ts`): başlarken hata veren eklenti kendini kapatır ve kullanıcıya söyler, Discord çökmez; her
-  yama `cleanup` ile kaydedilir, kapatınca hepsi geri alınır.
-- Bütün eklentilerin kullandığı Discord tanımlayıcıları ve modül yolları Discord 350.8'in (en yeni kararlı sürüm)
-  bytecode'unda tek tek doğrulandı.
+- **303 yerleşik eklenti**, Endcord PC'deki gibi her biri kendi klasöründe (`bundle/src/plugins/<eklenti>/`); Endcord
+  PC'nin "popüler" 12 eklentisi dahil. Bir eklentinin kodu ancak açılınca yüklenir. Liste: [PLUGINS.md](PLUGINS.md).
+- **Topluluk eklentileri:** topluluğun güncel tuttuğu listeden (Purple-EyeZ/Plugins-List) arama, kurma ve kaldırma;
+  her eklentinin çalışıp çalışmadığı ve Endcord'da yerleşik karşılığı gösterilir.
+- **NoTrack** varsayılan olarak açık: Discord'un analiz olayları, ölçümleri ve çökme raporları gönderilmez.
+- **5 dil:** 2086 metnin tamamı Türkçe, Rusça, İspanyolca ve Fransızca; CI eksik çeviriyle derlemeyi durdurur.
+- **Ayarlar:** yedekleme ve geri yükleme (sırlar yedeğe girmez), güncelleme denetimi, dil seçimi, `/reload`.
+- **Temalar:** eski Discord için yazılmış temalar yeni renk adlarına eşlenir; durum çubuğu temanın açık/koyu oluşuna
+  uyar.
+- **Installer:** telefondaki Discord'dan ya da indirerek kurulum (orijinal Discord yerinde kalır), Endcord Classic
+  seçeneği, küçük ekranlarda ve büyük yazıda kaydırma.
+- **Loader:** Discord'un Hermes sürümüne göre önceden derlenmiş bayt kodu (v98, v99) yoksa düz JS; indirilmiş sürümle
+  beklemeden açılış, güncelleme arka planda; Discord yeni bir Hermes'e geçince eski bayt kodu çalıştırılmaz; 5 dilli
+  pencereler ve art arda çökmede kurtarma modu.
 
-### Diller
-- Endcord PC'nin çevirileri `bun run i18n` ile bundle'a alınıyor; PC'de olmayan mobil metinler
-  `bundle/src/core/i18n/overrides.json` içinde. **321 metnin hepsi Türkçe, Rusça, İspanyolca ve Fransızca'da var**;
-  CI eksik çeviri olursa derlemeyi durdurur.
-- Endcord Discord'un dilini izler; Endcord → Genel'den elle de seçilebilir.
-- Önemli düzeltme: eski çeviri sistemi Discord'un artık göndermediği bir olaya (`I18N_LOAD_SUCCESS`) bağlıydı ve
-  Bunny'nin deposundan çeviri indiriyordu; yani bu Discord sürümünde hiç çalışmıyordu.
-- Loader'ın kendi pencereleri (güncelleme, kurtarma, hata) de 5 dilde.
+## Nasıl doğrulandı
 
-### Installer: telefondaki Discord'dan kurulum
-- Discord telefonda yüklüyse installer **"Bu telefondaki Discord'u kullan"** seçeneğiyle açılır: yüklü Discord'un
-  APK'ları kopyalanır, Endcord eklenir ve "Endcord" olarak yanına kurulur. İstenirse "Discord'u indir" de seçilebilir.
-- Neden Discord'un kendisi değiştirilemiyor: Android bir uygulamayı yalnızca onu imzalayanın güncellemesine izin
-  verir, Discord'un imza anahtarı da Discord'da. Masaüstündeki gibi gerçek Discord'un içine kurulum yalnızca root ile
-  (LSPosed) mümkün; bu mod da destekleniyor (README).
-- Play Store Discord'u güncellediğinde installer bildirim gösterir ve Endcord'u yeni sürümden yeniden kurar.
+- **CI** (her `ci/**` push'unda): tür denetimi, lint, çeviri denetimi, derleme ve bayt kodu.
+- **Emülatör testi** (Android 14, Discord 351.11): installer iki yoldan da kullanıcı gibi kurar; Endcord'un öz-testi
+  303 eklentinin her birini başlatıp durdurur, modül yollarını denetler, davranış testlerini çalıştırır ve Endcord
+  sayfalarını İngilizce ve Türkçe çizer. Davranış testleri: MessageLogger, SilentTyping, ClearURLs, gönderim
+  dönüşümlerinin sırası, SilentMessageToggle, metin komutları, gelen mesaj süzgeçleri, mesaj satırları, FakeNitro,
+  HideEndcord, RelationshipNotifier ve oneko.
+- **BlueStacks** (Android 9, Discord 350.8, giriş yapılmış test hesabı): eklenti denetimi (303 eklenti açılıp kapanır,
+  sızıntı yok), açılış süresi, temalar ve durum çubuğu, Türkçe harfli düğmeler, topluluk eklentisi kurma ve kaldırma,
+  NoTrack'in olayları gerçekten durdurduğu, HideEndcord.
 
-### Düzeltilen hatalar ve amatör görünen şeyler
-- CI: `builds-next` dalına yayın adımı her seferinde başarısız oluyordu (yeni sürüm hiç yayınlanmıyordu). Düzeltildi.
-- Installer açılışta kapatılamayan bir **"Tüm dosyalara erişim"** izni istiyordu ve bu izinle `/sdcard/Endcord`
-  içindeki imza anahtarını kendi klasörüne taşıyordu; klasik Endcord'un anahtarı oradaysa iki uygulamanın da
-  güncellemeleri bozulurdu. İzin, pencere ve taşıma kaldırıldı.
-- Installer'ın güncelleme denetçisi kurulu Endcord sürümünü bir kez okuyup hep onu kullanıyordu; düzeltildi.
-- Installer'ın ana ekranındaki commit listesi klasik istemcinin commit'lerini gösteriyordu; artık `next`.
-- Yayın derlemeleri geliştirici modunda (`__DEV__`) derleniyordu; düzeltildi.
-- Loader, internet yokken her açılışta engelleyici bir hata penceresi gösteriyordu (önbellekte çalışan sürüm olsa
-  bile) ve pencerede "Revenge" yazıyordu; artık yalnızca hiç indirilmiş sürüm yoksa gösteriyor.
-- Endcord ayarlarındaki simge Revenge'in logosuydu; Endcord'un logosu konuldu. Bağlantılar Revenge'in GitHub'ına ve
-  Discord sunucusuna gidiyordu; Endcord'unkilere çevrildi.
-- Eklenti bilgi sayfasında hiçbir şey yapmayan menü öğeleri ve düğmeler vardı; gerçek işlemlerle yeniden yazıldı.
-  Yazarı olmayan eklentilerde çökme riski taşıyan yazar listesi düzeltildi.
-- Discord ayarlarında boş "Bunny" ve "Vendetta" bölüm başlıkları çıkabiliyordu; boş bölümler artık gösterilmiyor.
-- Çökme ekranı, sıralama, boş liste, tema ve yazı tipi sayfalarındaki İngilizce ve "Oops!/Uh Oh" gibi metinler
-  düzgün ifadelerle değiştirilip çevrildi.
+## Bilinen sınırlamalar
 
-### Test altyapısı
-- `Emulator test` iş akışı (`.github/workflows/emulator.yml`): GitHub'ın KVM'li Android 14 emülatöründe installer'ı
-  kurar, düğmelere kullanıcı gibi basarak iki senaryoyu dener (Discord'u indirerek ve önceden yüklü Discord'dan),
-  Endcord'u açar, bundle'ın içindeki öz-testi çalıştırır (her eklentiyi Discord 350.8'de başlatıp durdurur, modül
-  yollarını kontrol eder, Endcord sayfalarını İngilizce ve Türkçe çizer) ve ekran görüntülerini, logları
-  `test-results/<dal>` dalına yükler.
-- Bu bilgisayarda emülatör çalışamıyor: işlemcide sanallaştırma açık ama Windows'un hipervizörü (WHPX) kapalı ve
-  açmak yönetici izni ile yeniden başlatma istiyor. Testler bu yüzden GitHub'da koşuyor.
+- Eklentilerin çoğu giriş yapılmış bir hesapla tek tek denenmedi; açılıp kapanmaları ve kullandıkları Discord
+  modülleri her sürümde doğrulanıyor. Sorun çıkaran eklenti kendini kapatır ve söyler; Discord çökmez.
+- Paket adları (`app.revenge.manager`, `io.github.revenge.xposed`), `pyoncord/` veri klasörü ve `bunny.*` kimlikleri
+  Revenge'den gelir. Var olan kurulumların verisi ve Vendetta/Bunny eklentileriyle uyum için değiştirilmedi.
+- Vendetta eklentileriyle uyum için iki depolama sistemi yan yana çalışır.
 
-## Test sonuçları
+## Yayın için
 
-Emülatör testleri (GitHub Actions, Android 11 / 14 / 15, Discord 350.8 Stable) şunları buldu ve düzeltti:
-
-1. **Android 14 ve üstünde Endcord açılır açılmaz çöküyordu.** Installer'daki LSPatch, 2025 başından kalma bir
-   kopyaydı (Revenge Manager'da da aynısı var) ve Discord 350.8'in yeni `TTIComponentFactory` sınıfıyla, Android 14'ün
-   kod yükleme kısıtlamalarıyla baş edemiyordu. LSPatch, bakımı süren JingMatrix çatalının güncel sürümüne
-   (v1.2, canary 492) yükseltildi; installer'ın yamalama kodu yeni API'ye taşındı.
-2. **Installer, LSPatch'in yerel kütüphanelerini kendi `assets` klasöründen alıyordu**; yeni LSPatch'in Java kısmıyla eski
-   yerel kütüphaneler karışınca kanca altyapısı başlamıyordu. Kütüphaneler yeni sürümden alındı ve
-   `convert-lspatch.sh` artık ikisini birlikte günceller.
-3. **Kurulum iki yoldan da çalışıyor:** Discord'u indirerek ve telefondaki Discord'dan (orijinal Discord yerinde kalıyor).
-   Android 15'te sistemin "bilinmeyen kaynaklar" izni bir kez soruluyor; bu Android'in normal akışı.
-
-4. **Herhangi bir bildirim (toast) bütün Discord arayüzünü çökertiyordu.** Discord'un toast API'si `open(anahtar,
-   { text, icon })` biçimine geçmiş; Revenge'den gelen kod eski tek nesne biçimini kullanıyordu ve Discord'un
-   bildirim kabı "Cannot read property 'position' of undefined" ile çöküyordu ("Panoya kopyalandı" bile). Düzeltildi.
-5. SmoothType (React Native'in yeni `TextInput`'u) ve ViewIcons (memo bileşen olarak dışa aktarılan sunucu simgesi)
-   bu Discord'da başlamıyordu; ikisi de güncel yapıya göre düzeltildi.
-
-Son doğrulanan durum (Android 14 ve 11, Discord 350.8):
-- Installer iki yoldan da Endcord'u kuruyor; telefondaki orijinal Discord yerinde kalıyor.
-- Endcord, Discord'un içinde yükleniyor ve öz-test çalışıyor; dil tabloları yüklü, Discord'un dili doğru okunuyor.
-- **13 eklentinin 13'ü** gerçek Discord 350.8'de, Android 11 ve 14'te, iki kurulum yolunda da hatasız başlayıp duruyor.
-- Toast düzeltmesinden sonra Discord'un arayüzü test boyunca çökmedi.
-- Davranış testleri geçti: MessageLogger silinen mesajı Discord'un mağazasında tutuyor ve kapatılınca gerçekten
-  siliyor; SilentTyping "yazıyor" olayını engelliyor ve kapatılınca bırakıyor; ClearURLs izleme parametrelerini siliyor.
-- Eklentilerin kullandığı bütün modül yolları, store'lar ve fonksiyonlar Discord 350.8'de bulundu.
-
-- Android 15 emülatöründe kurulum testi, sistemin "bilinmeyen kaynaklar" ayar ekranındaki anahtara test betiği
-  basamadığı için tamamlanamadı; bu bir ürün hatası değil (gerçek kullanıcı anahtarı bir kez açıyor).
-- Uygulamanın üstüne çizim yapan katman (oneko'nun kedisi) Discord 350'de bağlanmıyordu; React Native'in kök
-  sarmalayıcısı üzerinden de bağlanacak şekilde düzeltildi (`test-results/ci/emulator-10` testi bunu doğruluyor).
-
-Test sonuçları (ekran görüntüleri, loglar, öz-test raporu): GitHub'da `test-results/ci/emulator-9/*` ve
-`test-results/ci/emulator-10/*` dalları.
-
-## Doğrulanamayanlar (giriş yapmak gerekiyor)
-
-Emülatörde Discord hesabıyla giriş yapılamıyor (hesap açmak ve şifre/token girmek benim yapamayacağım şeyler).
-Bu yüzden sohbet ekranına bağlı davranışlar gerçek kullanımda denenmedi: silinen mesajın kırmızı görünmesi,
-düzenleme geçmişi, FakeNitro'nun gönderdiği bağlantılar, profil görsellerine dokunma, platform simgeleri, sohbet
-çubuğu düğmeleri, sahte susturmanın sesli kanalda karşı tarafa nasıl göründüğü. Bunların hepsinin kullandığı
-Discord modülleri ve alanları 350.8'de doğrulandı ve her eklenti emülatörde hatasız başlayıp duruyor; ama son
-kontrolü telefonda giriş yapıp senin yapman gerekiyor (aşağıdaki liste).
-
-## Senin yapman gerekenler
-
-1. **İmza anahtarları:** `C:\Users\qwe\Documents\Endcord-signing\` klasöründe installer ve loader için anahtarlar
-   hazır. `github-secrets.txt` dosyasındaki 8 değeri GitHub'da **Settings → Secrets and variables → Actions**
-   altına ekle (`*_KEYSTORE` değerleri için `.base64.txt` dosyalarının içeriğini yapıştır). Klasörün yedeğini al:
-   anahtar kaybolursa kullanıcılar Endcord'u silip yeniden kurmak zorunda kalır.
-2. **Yayına alma:** Çalışma `overnight` dalında, `next`'e henüz gönderilmedi. Gözden geçirdikten sonra:
-   `git push origin overnight:next`. Build iş akışı `builds-next` dalını günceller.
-3. **İlk installer sürümü:** Actions → **Release Installer** → Run workflow, sürüm `1.0.0`.
-4. **Telefonda deneme listesi** (giriş yaptıktan sonra, Ayarlar → Endcord → Eklentiler):
-   - MessageLogger'ı aç; bir arkadaşından mesaj atıp silmesini iste: mesaj kırmızı ve "silindi" yazısıyla kalmalı.
-     Düzenlenen mesajda eski hâli üstte görünmeli.
-   - FakeNitro: kullanamadığın bir sunucu emojisini gönder; bağlantı olarak gitmeli ve görsel olarak görünmeli.
-   - ViewIcons: bir profilde avatara ve afişe dokun; tam boyut açılmalı.
-   - SilentTyping: başka bir hesaptan bakınca "yazıyor..." görünmemeli. Sohbet düğmesi ayarını dene.
-   - FakeMute: sesli kanalda sahte susturmayı aç; diğerleri seni susturulmuş görmeli ama duymalı.
-   - PlatformIndicators: mesaj saatinin yanında 🖥️📱🌐 simgeleri.
-   - CustomProfile, oneko, ThemeLibrary (bir tema yükle), HideEndcord (`/hideendcord`), RelationshipNotifier.
-   - Dil: Endcord → Genel → Dil; Türkçe seçince bütün Endcord ekranları Türkçe olmalı.
-5. Bir şey çalışmazsa: eklenti kendini kapatıp bildirir. Kurtarma menüsü için telefonu salla veya Endcord açılır açılmaz ekrana iki parmakla 3 saniye bas (
-   yeniden yükleme, kurtarma modu); ayrıntı için logcat'te `Endcord` satırları.
+1. **İmza anahtarları:** installer ve loader anahtarlarını README'deki "Releasing" adımlarıyla GitHub Secrets'a ekle ve
+   yedeğini al. Anahtar kaybolursa kullanıcılar Endcord'u silip yeniden kurmak zorunda kalır. Anahtarlar olmadan
+   derlemeler geçici anahtarla imzalanır.
+2. `release-prep` dalını `next`'e gönder; Build iş akışı `builds-next`'i günceller.
+3. Actions → **Release Installer** → sürüm `1.0.0`.

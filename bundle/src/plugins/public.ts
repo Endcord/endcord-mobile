@@ -33,6 +33,7 @@ export function registrations() {
         ...require("./common").registryCounts(),
         fluxInterceptors: require("@lib/api/flux").interceptorCount(),
         commands: require("@lib/api/commands").registeredCommandCount(),
+        overlays: require("@core/overlay").overlayCount(),
         settingsRows: Object.values(registeredSections as Record<string, unknown[]>).reduce((n, rows) => n + rows.length, 0),
     };
 }
