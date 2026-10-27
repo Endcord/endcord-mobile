@@ -227,10 +227,14 @@ async function run() {
     const { semanticColors } = require("@ui/color");
     const tokenNames = ["ICON_DEFAULT", "INTERACTIVE_ICON_DEFAULT", "INTERACTIVE_NORMAL", "TEXT_DEFAULT", "TEXT_NORMAL", "TEXT_MUTED", "LOGO_PRIMARY",
         "BACKGROUND_BASE_LOWER", "BG_BASE_SECONDARY", "BG_BASE_PRIMARY", "BACKGROUND_SECONDARY", "BACKGROUND_PRIMARY", "TEXT_FEEDBACK_CRITICAL", "TEXT_DANGER"];
+    // The colors Discord draws in raw white: those on filled controls and those on its own surfaces are what themes for
+    // older Discord get wrong, so Endcord's legacy color map must name them as this Discord does
+    const definitions = findByProps("SemanticColor")?.SemanticColor ?? {};
     report("tokens", {
         present: tokenNames.filter(n => semanticColors?.[n]),
         missing: tokenNames.filter(n => !semanticColors?.[n]),
         sample: Object.keys(semanticColors ?? {}).filter(k => /^(ICON|BACKGROUND|BG)_/.test(k)).slice(0, 40),
+        white: Object.keys(definitions).filter(k => /^WHITE(_500)?$/.test(definitions[k]?.dark?.raw)),
     });
     report("native", {
         soundManager: typeof soundManager,
