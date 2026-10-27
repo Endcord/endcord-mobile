@@ -1,0 +1,16 @@
+Which Endcord?
+Endcord
+On the current Discord app, with 300+ Endcord plugins
+Endcord Classic
+On Aliucord's older Discord app, with 230+ Endcord plugins and Aliucord's plugins
+Endcord
+Latest: 351.11 - Stable
+Install
+ewlle
+•
+b525426
+10/25/26
+Publish the shrunk release installer and raise git's post buffer for the builds-next push
+Endcord Installer
+Reload
+Open about
