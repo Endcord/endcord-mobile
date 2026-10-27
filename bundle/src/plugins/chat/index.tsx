@@ -9,6 +9,7 @@
 import { t, tx } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
+import formatDate from "@lib/utils/formatDate";
 import { AppState, Vibration } from "react-native";
 
 import { definePlugin, ENDCORD_AUTHOR } from "../api";
@@ -105,8 +106,8 @@ const ReplyTimestamp = definePlugin({
             const time = new Date(snowflakeTime(id));
             const today = time.toDateString() === new Date().toDateString();
             const text = today
-                ? time.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" })
-                : time.toLocaleString(undefined, { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+                ? formatDate(time, { hour: "2-digit", minute: "2-digit" })
+                : formatDate(time, { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
             appendToTimestamp(row, ` · ↩ ${text}`);
         }));
     },
