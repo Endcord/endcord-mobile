@@ -117,7 +117,7 @@ def dismiss_dialogs():
         all_nodes = nodes()
         for pattern in [r"Later", r"No thanks", r"Nevermind", r"Allow", r"While using the app", r"OK"]:
             n = find(pattern, all_nodes)
-            if n and n["clickable"] is not None:
+            if n:
                 log(f"dismiss '{n['text']}'")
                 tap(n)
                 time.sleep(1.5)

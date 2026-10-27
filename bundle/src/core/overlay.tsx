@@ -45,23 +45,27 @@ function track(e: GestureResponderEvent) {
 }
 
 let nextHostId = 0;
-let activeHost: number | null = null;
+/**
+ * The hosts that are mounted, oldest first. The root can be wrapped twice (registerComponent and the wrapper
+ * provider), and only the oldest host draws; when it unmounts, the next one takes over.
+ */
+const hosts: number[] = [];
 
 function OverlayHost() {
     const [, update] = useReducer(n => n + 1, 0);
     const [id] = useState(() => nextHostId++);
     useEffect(() => {
-        // The root can be wrapped twice (registerComponent and the wrapper provider); only one host draws
-        activeHost ??= id;
+        hosts.push(id);
         overlayListeners.add(update);
         update();
         return () => {
+            hosts.splice(hosts.indexOf(id), 1);
             overlayListeners.delete(update);
-            if (activeHost === id) activeHost = null;
+            overlayListeners.forEach(l => l());
         };
     }, []);
 
-    if (!overlays.size || activeHost !== id) return null;
+    if (!overlays.size || hosts[0] !== id) return null;
     return <View pointerEvents="box-none" style={StyleSheet.absoluteFill}>
         {[...overlays].map(([key, Overlay]) => <ErrorBoundary key={key}><Overlay /></ErrorBoundary>)}
     </View>;

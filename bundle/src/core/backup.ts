@@ -18,7 +18,7 @@ import { fetchTheme, getCurrentTheme, selectTheme, themes } from "@lib/addons/th
 import { writeDocument } from "@lib/api/native/fs";
 import { NativeFileModule } from "@lib/api/native/modules";
 import { settings } from "@lib/api/settings";
-import { awaitStorage } from "@lib/api/storage";
+import { awaitStorage, flushStorages } from "@lib/api/storage";
 import { manifest } from "@plugins/manifest";
 import { version } from "bunny-build-info";
 
@@ -236,7 +236,7 @@ export async function restoreBackup(backup: Backup): Promise<number> {
     if (backup.themes.selected === null) await selectTheme(null);
     if (backup.fonts.selected === null && fonts.__selected) await selectFont(null);
 
-    // The plugin manager saves what's on half a second after a change
-    await new Promise(resolve => setTimeout(resolve, 800));
+    // The plugin manager saves which plugins are on a moment after a change; the reload must not come first
+    await flushStorages();
     return installed.filter(r => r.status === "rejected").length;
 }

@@ -37,7 +37,7 @@ object Strings {
         "tr" to mapOf(
             "update_downloaded_title" to "Endcord güncellemesi indirildi",
             "update_success_title" to "Endcord güncellendi",
-            "reload_required" to "Değişikliklerin uygulanması için uygulamayı yeniden yükleyin.",
+            "reload_required" to "Değişikliklerin uygulanması için uygulamayı yeniden yükle.",
             "reload" to "Yeniden yükle",
             "later" to "Daha sonra",
             "update_failed_title" to "Endcord indirilemedi",
@@ -57,7 +57,7 @@ object Strings {
             "recovery_booted_title" to "Kurtarma modunda açıldı",
             "recovery_booted_message" to "Endcord art arda birkaç kez çöktüğü için eklentiler ve temalar kapalı olarak kurtarma modunda açıldı.",
             "recovery_exit" to "Kurtarma modundan çık",
-            "recovery_hold" to "Kurtarma seçenekleri için basılı tutmaya devam edin…",
+            "recovery_hold" to "Kurtarma seçenekleri için basılı tutmaya devam et…",
         ),
         "ru" to mapOf(
             "update_downloaded_title" to "Обновление Endcord загружено",

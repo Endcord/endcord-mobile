@@ -8,10 +8,21 @@ const storagePromiseSymbol = Symbol.for("bunny.storage.promise");
 
 const _loadedStorage = {} as Record<string, any>;
 
+type Flush = () => Promise<void>;
+
+/** Finishes a storage's pending write, by path: the last backend that saved it holds it */
+const flushers = new Map<string, Flush>();
+
 function createFileBackend<T extends object>(filePath: string) {
+    let writing: Promise<void> = Promise.resolve();
     const write = debounce((data: T) => {
-        writeFile(filePath, JSON.stringify(data));
+        writing = writeFile(filePath, JSON.stringify(data))
+            .catch(e => console.error(`[Endcord] Couldn't save ${filePath}`, e));
     }, 500);
+    const flush = () => {
+        write.flush();
+        return writing;
+    };
 
     return {
         get: async () => {
@@ -27,6 +38,7 @@ function createFileBackend<T extends object>(filePath: string) {
             }
 
             write(data);
+            flushers.set(filePath, flush);
         },
         exists: async () => {
             return await fileExists(filePath);
@@ -178,6 +190,11 @@ export async function preloadStorageIfExists(path: string): Promise<boolean> {
 export async function purgeStorage(path: string) {
     await removeFile(path);
     delete _loadedStorage[path];
+}
+
+/** Saves now what storages would save in a moment, for a reload that must not lose the latest changes */
+export async function flushStorages() {
+    await Promise.all([...flushers.values()].map(flush => flush()));
 }
 
 export function awaitStorage(...proxies: any[]) {

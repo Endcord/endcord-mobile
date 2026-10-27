@@ -11,14 +11,14 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import app.revenge.manager.domain.manager.DiscordSource
 import app.revenge.manager.domain.manager.PreferenceManager
 import app.revenge.manager.ui.screen.home.HomeScreen
-import app.revenge.manager.utils.InstalledDiscord
-import org.koin.android.ext.android.get
 import app.revenge.manager.ui.screen.installer.InstallerScreen
 import app.revenge.manager.ui.theme.RevengeManagerTheme
 import app.revenge.manager.utils.DiscordVersion
+import app.revenge.manager.utils.InstalledDiscord
 import app.revenge.manager.utils.Intents
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.transitions.SlideTransition
+import org.koin.android.ext.android.get
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

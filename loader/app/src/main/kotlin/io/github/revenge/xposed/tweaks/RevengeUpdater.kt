@@ -87,7 +87,17 @@ object RevengeUpdater {
     @Volatile
     var bytecodeVersion: Int? = null
 
-    fun hasBundle() = ::bundle.isInitialized && bundle.isFile && bundle.length() > 0
+    private fun hasBundle() = ::bundle.isInitialized && bundle.isFile && bundle.length() > 0
+
+    /**
+     * Whether the saved bundle can run in this Discord: plain JS always can, bytecode only on the version it was
+     * compiled for. After Discord moves to a newer Hermes, the bytecode saved for the old one is as good as missing.
+     */
+    fun hasUsableBundle(): Boolean {
+        if (!hasBundle()) return false
+        val saved = HermesBytecode.versionOf(bundle) ?: return true
+        return saved == bytecodeVersion
+    }
 
     /**
      * Where to fetch the bundle from, in order: a custom URL alone, or else the bundle precompiled for this Discord's
@@ -125,7 +135,7 @@ object RevengeUpdater {
                         url = url,
                         etag = saved?.takeIf { it.first == url }?.second,
                         timeoutMillis = if (userInitiated) null
-                        else if (hasBundle()) TIMEOUT_CACHED.inWholeMilliseconds else TIMEOUT.inWholeMilliseconds,
+                        else if (hasUsableBundle()) TIMEOUT_CACHED.inWholeMilliseconds else TIMEOUT.inWholeMilliseconds,
                     )
                 } catch (e: ResponseException) {
                     // No precompiled bundle for this Discord: the plain one is next
@@ -154,7 +164,7 @@ object RevengeUpdater {
         } catch (e: Throwable) {
             log.e("Failed to download script", e)
             // With a downloaded copy Endcord still starts, so a failed update check (offline, say) stays quiet
-            if (userInitiated || !hasBundle()) showErrorDialog(e)
+            if (userInitiated || !hasUsableBundle()) showErrorDialog(e)
         } finally {
             _downloadReady.complete(Unit)
         }

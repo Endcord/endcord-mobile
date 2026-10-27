@@ -3215,6 +3215,12 @@
         "es": "Importante",
         "fr": "Important"
     },
+    "Imports a font pack from a link to its JSON file": {
+        "tr": "Bir yazı tipi paketini JSON dosyasının bağlantısından içe aktarır",
+        "ru": "Импортирует набор шрифтов по ссылке на его JSON-файл",
+        "es": "Importa un paquete de fuentes desde un enlace a su archivo JSON",
+        "fr": "Importe un pack de polices depuis un lien vers son fichier JSON"
+    },
     "In 1 hour": {
         "tr": "1 saat içinde",
         "ru": "Через 1 час",
@@ -6868,6 +6874,12 @@
         "ru": "Чтобы они приходили по порядку и не упирались в лимит",
         "es": "Para que lleguen en orden y no salte el límite de frecuencia",
         "fr": "Pour qu'ils arrivent dans l'ordre sans déclencher la limite de débit"
+    },
+    "Some fonts couldn't be imported. Fix their entries, then try again.": {
+        "tr": "Bazı yazı tipleri içe aktarılamadı. Girdilerini düzeltip tekrar dene.",
+        "ru": "Не удалось импортировать некоторые шрифты. Исправьте их записи и попробуйте снова.",
+        "es": "Algunas fuentes no se pudieron importar. Corrige sus entradas y vuelve a intentarlo.",
+        "fr": "Certaines polices n'ont pas pu être importées. Corrigez leurs entrées, puis réessayez."
     },
     "Something went wrong": {
         "tr": "Bir şeyler ters gitti",

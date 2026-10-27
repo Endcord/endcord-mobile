@@ -23,7 +23,7 @@ export function remoteJson<T>(url: string, options: { parse: (json: any) => T; r
     const refreshMs = options.refreshMs ?? 6 * HOUR;
     let value: T | undefined;
     let etag: string | undefined;
-    let length: string | undefined;
+    let lastModified: string | undefined;
     let checkedAt = 0;
     let loading: Promise<void> | undefined;
     // Bumped by clear(), so a load that finishes after its plugin stopped is dropped
@@ -35,19 +35,12 @@ export function remoteJson<T>(url: string, options: { parse: (json: any) => T; r
         const controller = new AbortController();
         const timer = setTimeout(() => controller.abort(), options.timeoutMs ?? 30_000);
         try {
-            // A server without ETags may still say how big the file is: the same size is taken as unchanged
-            if (!etag && length && value !== undefined) {
-                const head = await fetch(url, { method: "HEAD", signal: controller.signal }).catch(() => undefined);
-                if (started !== generation) return;
-                if (head?.ok && head.headers.get("content-length") === length) {
-                    checkedAt = Date.now();
-                    return;
-                }
-            }
-            const res = await fetch(url, {
-                headers: etag ? { "If-None-Match": etag } : {},
-                signal: controller.signal,
-            });
+            // Asked only for a newer copy: by its ETag, or else by when it last changed, which servers without
+            // ETags may still say
+            const headers: Record<string, string> = {};
+            if (value !== undefined && etag) headers["If-None-Match"] = etag;
+            else if (value !== undefined && lastModified) headers["If-Modified-Since"] = lastModified;
+            const res = await fetch(url, { headers, signal: controller.signal });
             if (started !== generation) return;
             checkedAt = Date.now();
             if (res.status === 304) return;
@@ -56,7 +49,7 @@ export function remoteJson<T>(url: string, options: { parse: (json: any) => T; r
             if (started !== generation) return;
             value = parsed;
             etag = res.headers.get("etag") ?? undefined;
-            length = res.headers.get("content-length") ?? undefined;
+            lastModified = res.headers.get("last-modified") ?? undefined;
             for (const cb of listeners) {
                 try {
                     cb();
@@ -90,7 +83,7 @@ export function remoteJson<T>(url: string, options: { parse: (json: any) => T; r
             generation++;
             value = undefined;
             etag = undefined;
-            length = undefined;
+            lastModified = undefined;
             checkedAt = 0;
             listeners.clear();
         },

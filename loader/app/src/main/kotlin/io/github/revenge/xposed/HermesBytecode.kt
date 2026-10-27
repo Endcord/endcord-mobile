@@ -1,6 +1,8 @@
 package io.github.revenge.xposed
 
 import android.content.Context
+import java.io.File
+import java.io.InputStream
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
@@ -24,15 +26,18 @@ object HermesBytecode {
     /** The version, or null when the bundle isn't bytecode or couldn't be read */
     fun version(context: Context): Int? {
         if (read) return cached
-        cached = runCatching {
-            context.assets.open(DISCORD_BUNDLE).use { input ->
-                val header = ByteArray(12)
-                if (input.read(header) != header.size) return@use null
-                val buffer = ByteBuffer.wrap(header).order(ByteOrder.LITTLE_ENDIAN)
-                if (buffer.getLong(0) != MAGIC) null else buffer.getInt(8)
-            }
-        }.getOrNull()
+        cached = runCatching { context.assets.open(DISCORD_BUNDLE).use(::readVersion) }.getOrNull()
         read = true
         return cached
+    }
+
+    /** The bytecode version of a file, or null when it is plain JS (or couldn't be read) */
+    fun versionOf(file: File): Int? = runCatching { file.inputStream().use(::readVersion) }.getOrNull()
+
+    private fun readVersion(input: InputStream): Int? {
+        val header = ByteArray(12)
+        if (input.read(header) != header.size) return null
+        val buffer = ByteBuffer.wrap(header).order(ByteOrder.LITTLE_ENDIAN)
+        return if (buffer.getLong(0) != MAGIC) null else buffer.getInt(8)
     }
 }
