@@ -206,9 +206,15 @@ export async function restoreBackup(backup: Backup): Promise<number> {
         ...Object.entries(backup.data).map(([name, store]) => writeStore(name, store)),
     ]);
 
+    const installedFonts = Object.entries(fonts).filter(([name]) => name !== "__selected") as [string, any][];
     const installed = await Promise.allSettled([
         ...backup.themes.urls.map(url => fetchTheme(url, url === backup.themes.selected)),
-        ...backup.fonts.urls.map(url => installFont(url, url === backup.fonts.selected)),
+        ...backup.fonts.urls.map(async url => {
+            // A font already here stays as it is, only selected if the backup had it selected
+            const name = installedFonts.find(([, font]) => font?.source === url)?.[0];
+            if (name === undefined) return installFont(url, url === backup.fonts.selected);
+            if (url === backup.fonts.selected) await selectFont(name);
+        }),
     ]);
     if (backup.themes.selected === null) await selectTheme(null);
     if (backup.fonts.selected === null && fonts.__selected) await selectFont(null);
