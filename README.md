@@ -1,3 +1,5 @@
+we're still working on it so don't use it ok?
+
 <div align="center">
     <img src=".github/assets/endcord-banner.png" alt="Endcord" width="500" />
     <h1>Endcord for Android</h1>
