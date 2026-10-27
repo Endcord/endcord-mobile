@@ -2,6 +2,7 @@
 import { lazyDestructure, proxyLazy } from "@lib/utils/lazy";
 import { createFilterDefinition } from "@metro/factories";
 import { findExports } from "@metro/finders";
+import { createLazyModule } from "@metro/lazy";
 import { findByDisplayNameLazy, findByNameLazy, findByProps, findByPropsLazy } from "@metro/wrappers";
 
 import * as t from "./types/components";
@@ -27,6 +28,8 @@ export const ActionSheetRow = findProp("ActionSheetRow");
 
 // Buttons
 export const Button = findSingular("Button") as t.Button;
+/** The module of Discord's button, for patching it as it loads, before others take it */
+export const ButtonModule = createLazyModule(bySingularProp("Button"));
 export const TwinButtons = findProp("TwinButtons") as t.TwinButtons;
 export const IconButton = findSingular("IconButton") as t.IconButton;
 export const RowButton = findProp("RowButton") as t.RowButton;
