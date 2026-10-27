@@ -110,8 +110,7 @@ function onModuleRequire(moduleExports: any, id: Metro.ModuleID) {
             get(target, property, receiver) {
                 if (property === "isDeveloper") {
                     // Hopefully won't explode accessing it here :3
-                    const { settings } = require("@lib/api/settings");
-                    return settings.enableDiscordDeveloperSettings ?? false;
+                    return require("@lib/api/settings").isDiscordDeveloper();
                 }
 
                 return Reflect.get(target, property, receiver);

@@ -33,3 +33,16 @@ export const loaderConfig = wrapSync(createStorage<LoaderConfig>(
         }
     })
 ));
+
+/** Holds on Discord's developer-only features (Experiments) other than the user's own setting */
+const developerHolds = new Set<symbol>();
+
+/** Turns Discord's developer-only features on until the returned function is called, leaving the user's setting as is */
+export function holdDiscordDeveloper(): () => void {
+    const hold = Symbol("developer");
+    developerHolds.add(hold);
+    return () => void developerHolds.delete(hold);
+}
+
+/** Whether Discord's developer-only features are on: by the user's setting or while something holds them on */
+export const isDiscordDeveloper = () => Boolean(settings.enableDiscordDeveloperSettings) || developerHolds.size > 0;
