@@ -2,6 +2,7 @@ import { Strings } from "@core/i18n";
 import { after } from "@lib/api/patcher";
 import { findInReactTree } from "@lib/utils";
 import { TableRow } from "@metro/common/components";
+import { getLazyContext } from "@metro/lazy";
 import { findByNameLazy, findByPropsLazy } from "@metro/wrappers";
 import { getVisibleSections, registeredSections } from "@ui/settings";
 
@@ -44,44 +45,17 @@ export function patchTabsUI(unpatches: (() => void | boolean)[]) {
         })))
         .reduce((a, c) => Object.assign(a, c), {});
 
-    const origRendererConfig = settingConstants.SETTING_RENDERER_CONFIG;
-    let rendererConfigValue = settingConstants.SETTING_RENDERER_CONFIG;
-
-    Object.defineProperty(settingConstants, "SETTING_RENDERER_CONFIG", {
-        enumerable: true,
-        configurable: true,
-        get: () => ({
-            ...rendererConfigValue,
-            VendettaCustomPage: {
-                type: "route",
-                useTitle: () => Strings.BUNNY,
-                title: () => Strings.BUNNY,
-                screen: {
-                    route: "VendettaCustomPage",
-                    getComponent: () => CustomPageRenderer
-                }
-            },
-            BUNNY_CUSTOM_PAGE: {
-                type: "route",
-                useTitle: () => Strings.BUNNY,
-                title: () => Strings.BUNNY,
-                screen: {
-                    route: "BUNNY_CUSTOM_PAGE",
-                    getComponent: () => CustomPageRenderer
-                }
-            },
-            ...getRows()
-        }),
-        set: v => rendererConfigValue = v,
+    // Discord loads the module of its settings screens only when settings first open, and a few hundred others with it:
+    // patching it once it loads, rather than now, keeps them all out of Discord's startup
+    let cancelled = false;
+    let unpatchConfig: (() => void) | undefined;
+    const unsubscribe = getLazyContext(settingConstants)!.getExports(constants => {
+        if (!cancelled) unpatchConfig = patchRendererConfig(constants, getRows);
     });
-
     unpatches.push(() => {
-        Object.defineProperty(settingConstants, "SETTING_RENDERER_CONFIG", {
-            value: origRendererConfig,
-            writable: true,
-            get: undefined,
-            set: undefined
-        });
+        cancelled = true;
+        unsubscribe();
+        unpatchConfig?.();
     });
 
     try{
@@ -132,4 +106,46 @@ export function patchTabsUI(unpatches: (() => void | boolean)[]) {
             });
         }));
     }
+}
+
+/** Adds Endcord's pages and rows to the renderer config of `constants`, Discord's module of its settings screens */
+function patchRendererConfig(constants: any, getRows: () => Record<string, unknown>) {
+    let rendererConfigValue = constants.SETTING_RENDERER_CONFIG;
+
+    Object.defineProperty(constants, "SETTING_RENDERER_CONFIG", {
+        enumerable: true,
+        configurable: true,
+        get: () => ({
+            ...rendererConfigValue,
+            VendettaCustomPage: {
+                type: "route",
+                useTitle: () => Strings.BUNNY,
+                title: () => Strings.BUNNY,
+                screen: {
+                    route: "VendettaCustomPage",
+                    getComponent: () => CustomPageRenderer
+                }
+            },
+            BUNNY_CUSTOM_PAGE: {
+                type: "route",
+                useTitle: () => Strings.BUNNY,
+                title: () => Strings.BUNNY,
+                screen: {
+                    route: "BUNNY_CUSTOM_PAGE",
+                    getComponent: () => CustomPageRenderer
+                }
+            },
+            ...getRows()
+        }),
+        set: v => rendererConfigValue = v,
+    });
+
+    return () => {
+        Object.defineProperty(constants, "SETTING_RENDERER_CONFIG", {
+            value: rendererConfigValue,
+            writable: true,
+            configurable: true,
+            enumerable: true
+        });
+    };
 }
