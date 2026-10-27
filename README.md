@@ -151,6 +151,7 @@ The [Emulator test workflow](.github/workflows/emulator.yml) runs on every push 
 Endcord Installer on an Android emulator, installs Endcord both by downloading Discord and from a pre-installed
 Discord (tapping through the installer like a user), launches Endcord and runs the bundle's self-test (built with
 `--test`) inside Discord. Screenshots, logs and the self-test report are pushed to the `test-results/<branch>` branch.
+The same push runs the Build workflow too, which builds everything a release does without publishing it.
 
 ### Releasing
 
