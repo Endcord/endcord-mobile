@@ -1,0 +1,27 @@
+General
+Info
+Endcord, 01e8317-local, Discord, 351.11 (351011)
+Endcord
+01e8317-local
+Discord
+351.11 (351011)
+About
+About
+Updates
+Check for Updates, Endcord updates itself every time the app starts.
+Check for Updates
+Endcord updates itself every time the app starts.
+Language
+Русский, , Español, , Français, 
+Same as Discord, English
+Same as Discord
+English
+English, 
+English
+Türkçe, 
+WELCOME TO DISCORD
+Hang out, play games, or just talk. Tap below to get started!
+Register
+Register
+Log In
+Log In
