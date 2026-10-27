@@ -1715,6 +1715,7 @@
     "This file isn't an Endcord backup": "Этот файл не является резервной копией Endcord",
     "This font pack is linked to an address. To edit its fonts yourself, detach it from that link first.": "Этот набор шрифтов привязан к адресу. Чтобы редактировать его шрифты самостоятельно, сначала отвяжите его от этой ссылки.",
     "This is too long to share at once ({size} characters)": "Это слишком длинно, чтобы поделиться за раз ({size} символов)",
+    "This isn't a web link, so it wasn't opened": "Это не веб-ссылка, поэтому она не открыта",
     "This link is a **{urlType, select, plugin {Plugin} theme {Theme} other {Add-on}}**, would you like to install it?": "Это ссылка на **{urlType, select, plugin {плагин} theme {тему} other {дополнение}}**. Установить?",
     "This needs a newer Endcord. Install it again with Endcord Installer.": "Для этого нужен более новый Endcord. Установите его заново через Endcord Installer.",
     "This only works in DMs and group DMs.": "Это работает только в ЛС и групповых чатах.",

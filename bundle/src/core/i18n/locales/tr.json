@@ -1715,6 +1715,7 @@
     "This file isn't an Endcord backup": "Bu dosya bir Endcord yedeği değil",
     "This font pack is linked to an address. To edit its fonts yourself, detach it from that link first.": "Bu yazı tipi paketi bir adrese bağlı. Yazı tiplerini kendin düzenlemek için önce onu bu bağlantıdan ayır.",
     "This is too long to share at once ({size} characters)": "Bu, tek seferde paylaşmak için çok uzun ({size} karakter)",
+    "This isn't a web link, so it wasn't opened": "Bu bir web bağlantısı değil, bu yüzden açılmadı",
     "This link is a **{urlType, select, plugin {Plugin} theme {Theme} other {Add-on}}**, would you like to install it?": "Bu bağlantı bir **{urlType, select, plugin {eklenti} theme {tema} other {eklenti}}**. Yüklemek ister misiniz?",
     "This needs a newer Endcord. Install it again with Endcord Installer.": "Bunun için daha yeni bir Endcord gerekiyor. Endcord Installer ile yeniden kur.",
     "This only works in DMs and group DMs.": "Bu yalnızca DM'lerde ve grup DM'lerinde çalışır.",

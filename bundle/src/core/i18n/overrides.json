@@ -7583,6 +7583,12 @@
         "es": "Esto es demasiado largo para compartirlo de una vez ({size} caracteres)",
         "fr": "C'est trop long pour être partagé d'un coup ({size} caractères)"
     },
+    "This isn't a web link, so it wasn't opened": {
+        "tr": "Bu bir web bağlantısı değil, bu yüzden açılmadı",
+        "ru": "Это не веб-ссылка, поэтому она не открыта",
+        "es": "Esto no es un enlace web, así que no se ha abierto",
+        "fr": "Ce n'est pas un lien web, il n'a donc pas été ouvert"
+    },
     "This link is a **{urlType, select, plugin {Plugin} theme {Theme} other {Add-on}}**, would you like to install it?": {
         "tr": "Bu bağlantı bir **{urlType, select, plugin {eklenti} theme {tema} other {eklenti}}**. Yüklemek ister misiniz?",
         "ru": "Это ссылка на **{urlType, select, plugin {плагин} theme {тему} other {дополнение}}**. Установить?",
