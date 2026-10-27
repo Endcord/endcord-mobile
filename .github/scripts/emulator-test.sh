@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Runs inside the Android emulator job of .github/workflows/emulator.yml. Expects in the working directory:
-#   serve/        endcord.min.js (built with --test) and endcord-xposed.apk, served on port 4040 (10.0.2.2 in the emulator)
+#   serve/        endcord.min.js (built with --test), its endcord.v*.hbc and endcord-xposed.apk, served on port 4040
+#                 (10.0.2.2 in the emulator)
 #   installer.apk the debug installer, built to fetch the loader from serve/
 # Writes screenshots, logs and the self-test report to results/.
 set -uo pipefail
@@ -109,6 +110,14 @@ if [ -d discord ]; then
     fi
 fi
 endstep
+
+# The loader asks for the bundle precompiled for this Discord's bytecode version first, and the plain one without it
+grep -oE '"GET /endcord[^ ]* HTTP/1\.[01]" [0-9]+' results/http.log | sort | uniq -c > results/bundle-requests.txt
+if grep -qE '"GET /endcord\.v[0-9]+\.hbc HTTP/1\.[01]" 200' results/http.log; then
+    pass "the bytecode bundle was loaded"
+else
+    fail "no bytecode bundle for this Discord: it ran the plain one"
+fi
 
 adb shell pm dump $ENDCORD_PKG | grep -E "versionName|versionCode" | head -4 > results/endcord-package.txt
 cat results/summary.txt
