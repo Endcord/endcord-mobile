@@ -69,12 +69,22 @@ def screen_text():
     return [n["text"] or n["desc"] for n in nodes() if n["text"] or n["desc"]]
 
 
-def wait_for(pattern, timeout=60, interval=2):
+def scroll_down():
+    """Swipes the page up by half a screen, as a user does to reach what's below it."""
+    size = re.search(rb"(\d+)x(\d+)", adb("shell", "wm", "size"))
+    width, height = int(size.group(1)), int(size.group(2))
+    adb("shell", "input", "swipe", str(width // 2), str(height * 3 // 4), str(width // 2), str(height // 4), "400")
+
+
+def wait_for(pattern, timeout=60, interval=2, scroll=False):
+    """The first node matching the pattern, waiting for it to appear; with scroll, also looking further down the page."""
     deadline = time.time() + timeout
     while time.time() < deadline:
         n = find(pattern)
         if n:
             return n
+        if scroll:
+            scroll_down()
         time.sleep(interval)
     return None
 
@@ -83,8 +93,8 @@ def tap(node):
     adb("shell", "input", "tap", str(node["x"]), str(node["y"]))
 
 
-def tap_text(pattern, timeout=60):
-    n = wait_for(pattern, timeout)
+def tap_text(pattern, timeout=60, scroll=False):
+    n = wait_for(pattern, timeout, scroll=scroll)
     if not n:
         log(f"not found: {pattern}; on screen: {screen_text()[:40]}")
         return False
@@ -126,7 +136,8 @@ def install_flow(source):
     elif source == "download":
         tap_text(r".*Download Discord.*", 10)
     screenshot(f"installer-{source}-1-source")
-    if not tap_text(r"(Install|Reinstall|Update)", 120):
+    # On a short screen the button is further down the page
+    if not tap_text(r"(Install|Reinstall|Update)", 120, scroll=True):
         return False
     deadline = time.time() + 900
     shot = 2
