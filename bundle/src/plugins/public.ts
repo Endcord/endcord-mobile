@@ -7,17 +7,23 @@
  * Only the manifest is loaded with it; everything else is required when used, so it costs nothing at startup.
  */
 
+import type { EndcordPlugin } from "./api";
 import { manifest } from "./manifest";
 
 export { manifest };
 
 /** A plugin by ID, loading its code */
-export const getPlugin = (id: string) => require("./index").loadEndcordPlugin(id);
+export const getPlugin = (id: string): EndcordPlugin => require("./index").loadEndcordPlugin(id);
 /** Every plugin, loading all of their code */
-export const getPlugins = () => require("./index").getEndcordPlugins();
-export const start = (plugin: any) => require("./api").startEndcordPlugin(plugin);
-export const stop = (plugin: any) => require("./api").stopEndcordPlugin(plugin);
-export const isRunning = (id: string) => require("./api").isEndcordPluginRunning(id);
+export const getPlugins = (): EndcordPlugin[] => require("./index").getEndcordPlugins();
+
+const resolve = (plugin: string | EndcordPlugin) => typeof plugin === "string" ? getPlugin(plugin) : plugin;
+
+/** Starts a plugin, by ID or as returned by getPlugin, without turning it on in the settings */
+export const start = (plugin: string | EndcordPlugin): Promise<void> => require("./api").startEndcordPlugin(resolve(plugin));
+/** Stops a plugin, by ID or as returned by getPlugin, without turning it off in the settings */
+export const stop = (plugin: string | EndcordPlugin): void => require("./api").stopEndcordPlugin(resolve(plugin));
+export const isRunning = (id: string): boolean => require("./api").isEndcordPluginRunning(id);
 
 /** What the running plugins have registered, by kind: a plugin that leaves any of these behind when it stops leaks */
 export function registrations() {
