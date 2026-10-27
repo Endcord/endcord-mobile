@@ -47,6 +47,7 @@
     "A list of user IDs (separate by commas) to ignore displaying notifications for.": "ID пользователей (через запятую), уведомления от которых не показывать.",
     "A little cat that runs to wherever you touch the screen.": "Маленький кот, который бежит туда, где вы касаетесь экрана.",
     "A message from {user}": "Сообщение от {user}",
+    "A message of yours keeps being deleted, so it wasn't sent again": "Твоё сообщение снова и снова удаляют, поэтому оно не было отправлено повторно",
     "A random trivia question to answer": "Случайный вопрос викторины",
     "A recipe for a dish": "Рецепт блюда",
     "A reload is required to see the changes. Do you want to reload now?": "Чтобы увидеть изменения, нужна перезагрузка. Перезагрузить сейчас?",
