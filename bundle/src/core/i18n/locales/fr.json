@@ -1715,6 +1715,7 @@
     "This file isn't an Endcord backup": "Ce fichier n'est pas une sauvegarde Endcord",
     "This font pack is linked to an address. To edit its fonts yourself, detach it from that link first.": "Ce pack de polices est lié à une adresse. Pour modifier ses polices vous-même, détachez-le d'abord de ce lien.",
     "This is too long to share at once ({size} characters)": "C'est trop long pour être partagé d'un coup ({size} caractères)",
+    "This isn't a web link, so it wasn't opened": "Ce n'est pas un lien web, il n'a donc pas été ouvert",
     "This link is a **{urlType, select, plugin {Plugin} theme {Theme} other {Add-on}}**, would you like to install it?": "Ce lien est un **{urlType, select, plugin {plugin} theme {thème} other {module}}**. Voulez-vous l'installer ?",
     "This needs a newer Endcord. Install it again with Endcord Installer.": "Cela nécessite un Endcord plus récent. Réinstallez-le avec Endcord Installer.",
     "This only works in DMs and group DMs.": "Cela ne fonctionne que dans les MP et les MP de groupe.",

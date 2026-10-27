@@ -79,7 +79,17 @@ export function copy(text: string, message?: string) {
     showToast(message ?? t("Copied to clipboard"), findAssetId("CopyIcon") ?? findAssetId("LinkIcon"));
 }
 
-export const openUrl = (url: string) => Linking.openURL(url);
+/**
+ * Opens a web link in the browser, or the app that handles it. Only web links: the links plugins open come from
+ * messages and embeds, and another kind (intent:, file:...) could start any app or open the app's own files.
+ */
+export function openUrl(url: string) {
+    if (!/^https?:\/\//i.test(url)) {
+        showToast(t("This isn't a web link, so it wasn't opened"), findAssetId("CircleXIcon-primary"));
+        return Promise.resolve();
+    }
+    return Linking.openURL(url);
+}
 
 /**
  * The longest text Android's share sheet takes: it travels in one binder transaction, which fails past about 1 MB, at
