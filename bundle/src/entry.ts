@@ -13,8 +13,10 @@ async function initializeRevenge() {
         // Make 'freeze' and 'seal' do nothing
         Object.freeze = Object.seal = Object;
 
-        await require("@metro/internals/caches").initMetroCache();
-        await require(".").default();
+        const { step } = require("@core/timings");
+        await step("metroCache", () => require("@metro/internals/caches").initMetroCache());
+        const main = step("modules", () => require("."));
+        await step("init", () => main.default());
     } catch (e) {
         const { NativeClientInfoModule } = require("@lib/api/native/modules");
         const stack = e instanceof Error ? e.stack : undefined;

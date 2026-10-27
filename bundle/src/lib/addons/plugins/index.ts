@@ -361,6 +361,25 @@ export async function updateAllRepository() {
     }));
 }
 
+/** The plugins already downloaded from repositories, registered from storage without asking the network */
+async function registerStoredPlugins() {
+    for (const repoUrl of Object.keys(pluginRepositories)) {
+        const ids = Object.keys(pluginRepositories[repoUrl] ?? {}).filter(id => !id.startsWith("$"));
+        await Promise.all(ids.map(id => preloadStorageIfExists(`plugins/manifests/${id}.json`)));
+        for (const id of ids) {
+            const manifest = getPreloadedStorage<t.BunnyPluginManifest>(`plugins/manifests/${id}.json`);
+            if (manifest && !registeredPlugins.has(id)) registeredPlugins.set(id, manifest);
+        }
+    }
+}
+
+/** Starts the enabled plugins a repository update registered, the ones not among `before` */
+async function startNewlyRegistered(before: Set<string>) {
+    await Promise.allSettled([...registeredPlugins.keys()].map(async id => {
+        if (!before.has(id) && isPluginEnabled(id) && !pluginInstances.has(id)) await startPlugin(id);
+    }));
+}
+
 export async function updatePlugins() {
     await awaitStorage(pluginRepositories, pluginSettings);
 
@@ -381,7 +400,16 @@ export async function updatePlugins() {
         corePluginInstances.set(id, instance);
     }
 
-    await updateAllRepository();
+    await registerStoredPlugins();
+
+    // Discord's start waits for this function, so the repositories are checked in the background: a slow or missing
+    // connection used to hold up the app for as long as the request took. Updated plugins apply from the next start;
+    // ones new to a repository start as soon as it answers.
+    // initPlugins starts the ones registered by now
+    const registeredBefore = new Set(registeredPlugins.keys());
+    updateAllRepository()
+        .then(() => startNewlyRegistered(registeredBefore))
+        .catch(e => console.error("[Endcord] Couldn't update the plugin repositories", e));
 }
 
 /**

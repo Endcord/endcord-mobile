@@ -13,9 +13,21 @@ export interface Timings {
     ready?: number;
     /** How long each Endcord plugin took to start, in milliseconds */
     plugins: Record<string, number>;
+    /** How long each step of Endcord's startup took, in milliseconds, until what it returned settled */
+    steps?: Record<string, number>;
 }
 
 const timings: Timings = (globalThis as any).__ENDCORD_TIMINGS__ ??= { loaded: Date.now(), plugins: {} };
+
+/** Runs a startup step and records how long it took, including the work it waits for */
+export function step<T>(name: string, run: () => T): T {
+    const started = Date.now();
+    const record = () => void ((timings.steps ??= {})[name] = Date.now() - started);
+    const result = run();
+    if (result instanceof Promise) result.then(record, record);
+    else record();
+    return result;
+}
 
 export const getTimings = (): Timings => timings;
 
