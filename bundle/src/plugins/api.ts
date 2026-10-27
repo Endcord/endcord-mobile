@@ -54,6 +54,8 @@ export interface EndcordPluginDefinition<S extends SettingsSchema = SettingsSche
     icon?: string;
     /** Endcord PC's tags, for the plugin page's filters */
     tags?: PluginTag[];
+    /** On until the user turns it off, also for those who had Endcord before the plugin was added */
+    enabledByDefault?: boolean;
     settings?: S;
     start(ctx: PluginContext<S>): void | Promise<void>;
     stop?(ctx: PluginContext<S>): void;

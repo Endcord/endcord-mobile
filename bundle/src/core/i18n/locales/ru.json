@@ -1580,6 +1580,7 @@
     "Stop silencing this user": "Больше не заглушать этого пользователя",
     "Stopped following {user}": "Вы больше не следуете за {user}",
     "Stopped moving you back, since someone keeps moving you": "Больше не возвращаю вас: кто-то постоянно вас перемещает",
+    "Stops Discord from collecting analytics, metrics and crash reports about how you use the app": "Не даёт Discord собирать аналитику, метрики и отчёты о сбоях о том, как вы пользуетесь приложением",
     "Stops Discord from marking you idle while the app is in the background": "Не даёт Discord ставить вам статус «Неактивен», пока приложение в фоне",
     "Streaks shorter than this many days aren't shown": "Серии короче этого числа дней не показываются",
     "StreamProof": "StreamProof",

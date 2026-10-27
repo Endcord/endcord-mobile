@@ -37,6 +37,7 @@ function pluginsIn(file) {
                 popular: value("popular") && ts.isNumericLiteral(value("popular")) ? Number(value("popular").text) : undefined,
                 icon: text(value("icon")),
                 tags: value("tags") && ts.isArrayLiteralExpression(value("tags")) ? value("tags").elements.map(text).filter(Boolean) : [],
+                enabledByDefault: value("enabledByDefault")?.kind === ts.SyntaxKind.TrueKeyword,
                 hasSettings: !!(props.settings || props.SettingsComponent),
             };
             for (const key of ["id", "name", "description"]) {
@@ -73,6 +74,7 @@ const entry = p => `    { ${[
     p.popular != null && `popular: ${p.popular}`,
     p.icon && `icon: ${JSON.stringify(p.icon)}`,
     p.tags.length && `tags: [${p.tags.map(t => JSON.stringify(t)).join(", ")}]`,
+    p.enabledByDefault && "enabledByDefault: true",
     p.hasSettings && "hasSettings: true",
     `group: ${JSON.stringify(p.group)}`,
 ].filter(Boolean).join(", ")} },`;
@@ -93,6 +95,7 @@ export interface PluginInfo {
     popular?: number;
     icon?: string;
     tags?: PluginTag[];
+    enabledByDefault?: boolean;
     hasSettings?: boolean;
     group: string;
 }

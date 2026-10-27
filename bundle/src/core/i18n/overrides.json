@@ -6899,6 +6899,12 @@
         "es": "Se dejó de devolverte a tu canal, porque alguien te sigue moviendo",
         "fr": "Retour arrêté, car quelqu'un continue de vous déplacer"
     },
+    "Stops Discord from collecting analytics, metrics and crash reports about how you use the app": {
+        "tr": "Discord'un uygulama kullanımına dair analiz verisi, ölçüm ve çökme raporu toplamasını engeller",
+        "ru": "Не даёт Discord собирать аналитику, метрики и отчёты о сбоях о том, как вы пользуетесь приложением",
+        "es": "Impide que Discord recopile analíticas, métricas e informes de errores sobre cómo usas la aplicación",
+        "fr": "Empêche Discord de collecter des statistiques, des métriques et des rapports de plantage sur votre utilisation de l'application"
+    },
     "Stops Discord from marking you idle while the app is in the background": {
         "tr": "Uygulama arka plandayken Discord'un seni boşta göstermesini engeller",
         "ru": "Не даёт Discord ставить вам статус «Неактивен», пока приложение в фоне",
