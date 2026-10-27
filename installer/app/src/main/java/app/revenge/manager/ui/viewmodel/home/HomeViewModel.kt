@@ -28,7 +28,6 @@ import app.revenge.manager.installer.shizuku.ShizukuPermissions
 import app.revenge.manager.network.dto.Release
 import app.revenge.manager.network.utils.CommitsPagingSource
 import app.revenge.manager.network.utils.dataOrNull
-import app.revenge.manager.network.utils.ifSuccessful
 import app.revenge.manager.utils.DiscordVersion
 import app.revenge.manager.utils.isMiui
 import app.revenge.manager.utils.showToast
@@ -127,15 +126,6 @@ class HomeViewModel(
             release?.let {
                 updateDownloadUrl = it.assets.firstOrNull { asset -> asset.name.endsWith(".apk") }?.browserDownloadUrl
                 showUpdateDialog = it.tagName.removePrefix(RELEASE_TAG_PREFIX) != BuildConfig.VERSION_NAME
-            }
-            // The loader comes from the builds branch; a new build invalidates the cached module
-            repo.getBuildInfo().ifSuccessful {
-                val version = "${it.loaderVersion}-${it.commit.take(7)}"
-                if (prefs.moduleVersion != version) {
-                    prefs.moduleVersion = version
-                    val module = File(cacheDir, "xposed.apk")
-                    if (module.exists()) module.delete()
-                }
             }
         }
     }
