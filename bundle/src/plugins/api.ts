@@ -189,8 +189,9 @@ export async function startEndcordPlugin(plugin: EndcordPlugin) {
     };
 
     try {
-        const started = Date.now();
         await loadStore(plugin);
+        // From after its storage loaded: all plugins load theirs at once, so that wait is shared, not this plugin's
+        const started = Date.now();
         await plugin.start(ctx);
         if (stopped()) return;
         recordPluginStart(plugin.id, Date.now() - started);

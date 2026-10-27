@@ -279,7 +279,7 @@ export default function FontEditor(props: {
 
     const [, forceUpdate] = React.useReducer(() => ({}), 0);
 
-    return <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 38 }}>
+    return <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 38 }} keyboardShouldPersistTaps="handled">
         <Stack style={{ paddingVertical: 24, paddingHorizontal: 12 }} spacing={12}>
             {!props.name
                 ? <TableRowGroup title={t("Import")}>

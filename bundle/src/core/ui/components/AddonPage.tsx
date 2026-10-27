@@ -82,6 +82,7 @@ function InputAlert(props: { label: string, fetchFn: (url: string) => Promise<vo
                 <ScrollView
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
+                    keyboardShouldPersistTaps="handled"
                     style={{ gap: 8 }}
                 >
                     <Button
