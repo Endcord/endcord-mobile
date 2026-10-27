@@ -163,7 +163,8 @@ The same push runs the Build workflow too, which builds everything a release doe
   loader is release-signed; without them the debug-signed module is published.
 - Installer releases: run **Release Installer** by hand with a version number. It needs `INSTALLER_KEYSTORE`
   (base64), `INSTALLER_KEYSTORE_PASSWORD`, `INSTALLER_KEY_ALIAS` and `INSTALLER_KEY_PASSWORD`; with them, every push
-  to `next` signs its installer the same way, so one can update the other.
+  to `next` signs its installer the same way, so one can update the other. The Endcord Classic installer is signed
+  with the same key, both in `builds-next` and in `main`'s own releases.
 - Without the secrets, every build is signed with a new throwaway key, and Android won't install one over another.
   Make each keystore once, keep it and its passwords somewhere safe (a lost key means everyone reinstalls), and add
   it under the repository's *Settings → Secrets and variables → Actions*:

@@ -121,6 +121,12 @@ jobs:
     # main branch and is published next to this one
     name: Endcord Classic Installer
     runs-on: ubuntu-latest
+    # Signed with the installer key, like main's own Endcord Classic installer releases, so either can update the other
+    env:
+      SIGNING_STORE_BASE64: ${{ secrets.INSTALLER_KEYSTORE }}
+      SIGNING_STORE_PASSWORD: ${{ secrets.INSTALLER_KEYSTORE_PASSWORD }}
+      SIGNING_KEY_ALIAS: ${{ secrets.INSTALLER_KEY_ALIAS }}
+      SIGNING_KEY_PASSWORD: ${{ secrets.INSTALLER_KEY_PASSWORD }}
     steps:
       - uses: actions/checkout@v5
         with:
@@ -138,6 +144,12 @@ jobs:
         working-directory: installer
         run: |
           chmod +x gradlew
+          if [ -n "$SIGNING_STORE_BASE64" ]; then
+            echo "$SIGNING_STORE_BASE64" | base64 -d > "$RUNNER_TEMP/classic.jks"
+            export SIGNING_STORE_FILE="$RUNNER_TEMP/classic.jks"
+          else
+            echo "::warning::No INSTALLER_KEYSTORE secret: publishing a debug-signed Classic installer"
+          fi
           ./gradlew --no-daemon :app:assembleRelease
       - uses: actions/upload-artifact@v6
         with:
