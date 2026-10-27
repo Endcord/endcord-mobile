@@ -139,7 +139,11 @@ function current(): Snapshot | null {
 
     const groups: Record<string, string> = {};
     const channelStore = getStore("ChannelStore");
-    for (const id of channelStore?.getPrivateChannelIds?.() ?? []) {
+    // ChannelStore lost getPrivateChannelIds; PrivateChannelSortStore has the same list
+    const privateIds: string[] = getStore("PrivateChannelSortStore")?.getPrivateChannelIds?.()
+        ?? channelStore?.getPrivateChannelIds?.()
+        ?? Object.keys(channelStore?.getMutablePrivateChannels?.() ?? {});
+    for (const id of privateIds) {
         const channel = channelStore.getChannel(id);
         if (channel?.type === GROUP_DM) groups[id] = groupName(id) ?? id;
     }
