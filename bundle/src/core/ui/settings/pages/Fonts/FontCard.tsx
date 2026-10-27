@@ -48,7 +48,9 @@ function FontPreview({ font }: { font: FontDefinition; }) {
         <WebView
             onMessage={() => setLoaded(true)}
             source={{
-                html: previewHtml.replace("$$props", JSON.stringify(props))
+                // As a function, so "$" patterns in a font's link aren't replaced as well, and with "<" escaped, so a
+                // link with "</script>" in it can't end the script
+                html: previewHtml.replace("$$props", () => JSON.stringify(props).replace(/</g, "\\u003c"))
             }}
             javaScriptEnabled
             scrollEnabled={false}
