@@ -87,7 +87,10 @@ jobs:
       - name: Inject the tweak
         id: inject
         if: steps.source.outputs.skip != 'true'
+        shell: bash
         run: |
+          # Also into a log the ios-ci/ report carries, as Actions logs can't be read without signing in
+          exec > >(tee -a "$GITHUB_WORKSPACE/ipa.log") 2>&1
           pip install "https://github.com/asdfzxcvbn/pyzule-rw/archive/740d3716dcd98c20c000f12cdb88f1f0b2a533a4.zip" Pillow
           curl -fsSL --retry 3 -o "$RUNNER_TEMP/discord.ipa" "$IPA_URL"
           unzip -p "$RUNNER_TEMP/discord.ipa" "Payload/Discord.app/Info.plist" > "$RUNNER_TEMP/Info.plist"
@@ -109,12 +112,50 @@ jobs:
           cyan -i "$RUNNER_TEMP/discord.ipa" -o Endcord.ipa -f "$RUNNER_TEMP"/tweak/*.deb \
             -n Endcord -k "$RUNNER_TEMP/icon.png" -uwsgq
           ls -l Endcord.ipa
+
+          # What the AltStore source has to declare: AltStore refuses an app whose entitlements (of the app and its
+          # extensions) and privacy usage descriptions differ from its source's, and the build number has to match
+          mkdir "$RUNNER_TEMP/endcord" && unzip -q Endcord.ipa -d "$RUNNER_TEMP/endcord"
+          python - "$RUNNER_TEMP/endcord" app.json <<'EOF'
+          import glob, json, plistlib, subprocess, sys
+          app = glob.glob(f"{sys.argv[1]}/Payload/*.app")[0]
+          entitlements, privacy = set(), {}
+          for bundle in [app, *glob.glob(f"{app}/PlugIns/*.appex"), *glob.glob(f"{app}/Extensions/*.appex")]:
+              signed = subprocess.run(["codesign", "-d", "--entitlements", "-", "--xml", bundle], capture_output=True).stdout
+              if signed.strip():
+                  entitlements.update(plistlib.loads(signed))
+              with open(f"{bundle}/Info.plist", "rb") as f:
+                  for key, value in plistlib.load(f).items():
+                      if key.endswith("UsageDescription") and isinstance(value, str):
+                          privacy.setdefault(key, value)
+          # Every app has these, so sources leave them out
+          entitlements -= {"application-identifier", "com.apple.developer.team-identifier"}
+          with open(f"{app}/Info.plist", "rb") as f:
+              info = plistlib.load(f)
+          with open(sys.argv[2], "w") as f:
+              json.dump({
+                  "buildVersion": info["CFBundleVersion"],
+                  "minOSVersion": info.get("MinimumOSVersion", "15.0"),
+                  "appPermissions": {"entitlements": sorted(entitlements), "privacy": privacy},
+              }, f, indent=2)
+          EOF
+          cat app.json
       - uses: actions/upload-artifact@v6
         if: steps.source.outputs.skip != 'true'
         with:
           name: ipa
-          path: Endcord.ipa
+          path: |
+            Endcord.ipa
+            app.json
           compression-level: 0
+      - uses: actions/upload-artifact@v6
+        if: always() && steps.source.outputs.skip != 'true'
+        with:
+          name: ipa-log
+          path: |
+            ipa.log
+            app.json
+          if-no-files-found: ignore
 
   report:
     name: Publish the test build
@@ -127,6 +168,12 @@ jobs:
       - uses: actions/download-artifact@v7
         with:
           name: tweak
+          path: results
+      - uses: actions/download-artifact@v7
+        # Only when there was a Discord IPA to build from
+        continue-on-error: true
+        with:
+          name: ipa-log
           path: results
       - name: Push
         # Only the tweak and a report: the IPA is Discord's app and never goes into this repository
@@ -196,7 +243,9 @@ jobs:
           cd source
           node - <<'EOF'
           const fs = require("fs");
-          const { DISCORD_VERSION, SIZE, TAG, GITHUB_REPOSITORY } = process.env;
+          const { DISCORD_VERSION, SIZE, TAG, GITHUB_REPOSITORY, RUNNER_TEMP } = process.env;
+          // The build number, minimum iOS and permissions read from the IPA by the IPA job
+          const app = JSON.parse(fs.readFileSync(`${RUNNER_TEMP}/out/app.json`, "utf8"));
           const icon = `https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/next/bundle/src/assets/icons/endcord.png`;
           const source = {
             name: "Endcord",
@@ -213,12 +262,14 @@ jobs:
               iconURL: icon,
               tintColor: "#7AB8F5",
               category: "social",
+              appPermissions: app.appPermissions,
               versions: [{
                 version: DISCORD_VERSION,
+                buildVersion: app.buildVersion,
                 date: new Date().toISOString(),
                 size: Number(SIZE),
                 downloadURL: `https://github.com/${GITHUB_REPOSITORY}/releases/download/${TAG}/Endcord.ipa`,
-                minOSVersion: "15.0",
+                minOSVersion: app.minOSVersion,
               }],
             }],
             news: [],
