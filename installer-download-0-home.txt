@@ -1,0 +1,20 @@
+Which Endcord?
+Endcord Classic
+Endcord
+On the current Discord app, with 300+ Endcord plugins
+Endcord
+Latest: 351.11 - Stable
+Install
+rootpoi
+•
+6926fa5
+10/28/26
+iOS: check the tweak against the Discord it's injected into
+rootpoi
+•
+689f372
+10/28/26
+iOS: declare the IPA's permissions and build number in the AltStore source
+Endcord Installer
+Reload
+Open about
