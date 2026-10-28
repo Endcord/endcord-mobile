@@ -3,10 +3,9 @@ name: iOS
 # Builds the iOS tweak (ios/) and, given a decrypted Discord IPA, Discord with the tweak injected. The tweak downloads
 # the same bundle as Android from builds-next, so the IPA only needs a new build when the tweak or Discord changes.
 #
-# The IPA is Discord's own app, so it's published to a separate repository (Endcord/endcord-ios), never here: a
-# takedown of it can't touch this repository or the Android builds. ios-ci/ branches (not ci/, which run the Android
-# build and the emulator test) build everything without publishing and put the tweak, the build log and a report on
-# test-results/<branch>.
+# On next it's published as this repository's ios-v<tweak version> release, with an AltStore source on builds-ios.
+# ios-ci/ branches (not ci/, which run the Android build and the emulator test) build everything without publishing
+# and put the tweak, the build log and a report on test-results/<branch>.
 on:
   push:
     branches: [next, "ios-ci/**"]
@@ -20,7 +19,7 @@ on:
         required: false
         type: string
       release:
-        description: Publish to Endcord/endcord-ios (on next)
+        description: Publish the release (on next)
         required: false
         type: boolean
         default: true
@@ -148,68 +147,58 @@ jobs:
           git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/test-results/${{ github.ref_name }}"
 
   publish:
-    name: Publish to Endcord/endcord-ios
+    name: Publish the release
     needs: [tweak, ipa]
-    # Releases hold Endcord.ipa, Endcord.dylib and the .deb; the .deb and .dylib alone are no use without the IPA there
     if: >-
       github.ref == 'refs/heads/next' && needs.ipa.outputs.discord-version != '' &&
       (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.release))
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
-      GH_TOKEN: ${{ secrets.IOS_RELEASES_TOKEN }}
-      REPO: Endcord/endcord-ios
+      GH_TOKEN: ${{ github.token }}
       DISCORD_VERSION: ${{ needs.ipa.outputs.discord-version }}
       TWEAK_VERSION: ${{ needs.tweak.outputs.version }}
     steps:
-      - name: Check for the token
-        id: token
-        run: |
-          if [ -z "$GH_TOKEN" ]; then
-            echo "::warning::No IOS_RELEASES_TOKEN secret: not publishing"
-            echo "skip=true" >> "$GITHUB_OUTPUT"
-          fi
       - uses: actions/download-artifact@v7
-        if: steps.token.outputs.skip != 'true'
         with:
           path: ${{ runner.temp }}/out
           merge-multiple: true
       - name: Release
-        if: steps.token.outputs.skip != 'true'
+        # One release per tweak version, whose files a new Discord replaces: a release every Discord update would push
+        # the installer's own out of the 20 newest releases it looks through for updates. Never marked as the latest.
         run: |
-          tag="v$DISCORD_VERSION-$TWEAK_VERSION"
+          tag="ios-v$TWEAK_VERSION"
+          title="Endcord for iOS $TWEAK_VERSION (Discord $DISCORD_VERSION)"
+          notes="Endcord $TWEAK_VERSION in Discord $DISCORD_VERSION, built from ${{ github.sha }}.
+
+          - **Endcord.ipa**: install it with AltStore, SideStore, Feather, ESign, KSign, Sideloadly or TrollStore
+          - **Endcord.dylib**: to inject into your own decrypted Discord IPA
+          - **.deb**: for jailbroken devices (rootless)
+
+          AltStore and SideStore source: https://raw.githubusercontent.com/${{ github.repository }}/builds-ios/apps.json"
           cd "$RUNNER_TEMP/out"
           ls -l
-          notes="Endcord $TWEAK_VERSION in Discord $DISCORD_VERSION, built from ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}"
-          # A rebuild of the same versions replaces the files of its release
-          if gh release view "$tag" --repo "$REPO" > /dev/null 2>&1; then
-            gh release upload "$tag" --repo "$REPO" --clobber Endcord.ipa Endcord.dylib *.deb
+          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            gh release upload "$tag" --repo "$GITHUB_REPOSITORY" --clobber Endcord.ipa Endcord.dylib *.deb
+            gh release edit "$tag" --repo "$GITHUB_REPOSITORY" --title "$title" --notes "$notes"
           else
-            gh release create "$tag" --repo "$REPO" --title "Endcord $TWEAK_VERSION (Discord $DISCORD_VERSION)" \
-              --notes "$notes" Endcord.ipa Endcord.dylib *.deb
+            gh release create "$tag" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --latest=false \
+              --title "$title" --notes "$notes" Endcord.ipa Endcord.dylib *.deb
           fi
           echo "SIZE=$(stat -c %s Endcord.ipa)" >> "$GITHUB_ENV"
           echo "TAG=$tag" >> "$GITHUB_ENV"
       - name: Update the AltStore source
-        if: steps.token.outputs.skip != 'true'
-        # apps.json at the root of Endcord/endcord-ios: AltStore and SideStore add it as a source and update from it
+        # builds-ios holds only apps.json, which AltStore and SideStore add as a source and update Endcord from. Its one
+        # version is the release's current IPA, which every rebuild replaces at the same URL.
         run: |
-          git clone -q --depth 1 "https://x-access-token:$GH_TOKEN@github.com/$REPO.git" source
+          mkdir source
           cd source
-          [ -f apps.json ] || echo '{}' > apps.json
           node - <<'EOF'
           const fs = require("fs");
-          const { DISCORD_VERSION, SIZE, TAG, REPO } = process.env;
-          const icon = "https://raw.githubusercontent.com/Endcord/endcord-mobile/next/bundle/src/assets/icons/endcord.png";
-          const source = JSON.parse(fs.readFileSync("apps.json", "utf8"));
-          const old = source.apps?.[0]?.versions ?? [];
-          const version = {
-            version: DISCORD_VERSION,
-            date: new Date().toISOString(),
-            size: Number(SIZE),
-            downloadURL: `https://github.com/${REPO}/releases/download/${TAG}/Endcord.ipa`,
-            minOSVersion: "15.0",
-          };
-          const out = {
+          const { DISCORD_VERSION, SIZE, TAG, GITHUB_REPOSITORY } = process.env;
+          const icon = `https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/next/bundle/src/assets/icons/endcord.png`;
+          const source = {
             name: "Endcord",
             identifier: "com.endcord.source",
             subtitle: "Plugins, themes and privacy for Discord",
@@ -224,15 +213,21 @@ jobs:
               iconURL: icon,
               tintColor: "#7AB8F5",
               category: "social",
-              // The newest first; a rebuild of the same Discord replaces its entry
-              versions: [version, ...old.filter(v => v.version !== DISCORD_VERSION)].slice(0, 5),
+              versions: [{
+                version: DISCORD_VERSION,
+                date: new Date().toISOString(),
+                size: Number(SIZE),
+                downloadURL: `https://github.com/${GITHUB_REPOSITORY}/releases/download/${TAG}/Endcord.ipa`,
+                minOSVersion: "15.0",
+              }],
             }],
-            news: source.news ?? [],
+            news: [],
           };
-          fs.writeFileSync("apps.json", JSON.stringify(out, null, 2) + "\n");
+          fs.writeFileSync("apps.json", JSON.stringify(source, null, 2) + "\n");
           EOF
+          git init -q -b builds-ios
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add apps.json
-          git commit -qm "Endcord $TWEAK_VERSION in Discord $DISCORD_VERSION" || exit 0
-          git push -q
+          git commit -qm "Endcord $TWEAK_VERSION in Discord $DISCORD_VERSION"
+          git push -qf "https://x-access-token:$GH_TOKEN@github.com/$GITHUB_REPOSITORY.git" builds-ios

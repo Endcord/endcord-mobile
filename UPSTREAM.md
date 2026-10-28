@@ -14,7 +14,8 @@ changed).
 | `ios/` | https://codeberg.org/raincord/RainTweak | `c2fa89a` (1.2.0, 2026-09-14) | OSL-3.0 |
 
 Discord itself is downloaded by the installer from the Vendetta tracker mirrors that Revenge Manager uses. On iOS the
-tweak is injected into a decrypted Discord IPA by the iOS workflow, which publishes it to Endcord/endcord-ios.
+tweak is injected into a decrypted Discord IPA by the iOS workflow, which publishes it as this repository's
+`ios-v<version>` release.
 
 Revenge's own iOS tweak (revenge-mod/revenge-tweak) and BunnyTweak are archived, and KettuTweak stays on Discord 305.1;
 RainTweak is the one that loads into Discord 332 and newer, where React Native runs bridgeless.

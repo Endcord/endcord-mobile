@@ -8,11 +8,17 @@ Based on [RainTweak](https://codeberg.org/raincord/RainTweak) (OSL-3.0); see `..
 
 ## Builds
 
-The iOS workflow builds it on macOS with [Theos](https://theos.dev):
+The iOS workflow (`.github/workflows/ios.yml`) builds it on macOS with [Theos](https://theos.dev):
 
-- `Endcord_<version>_iphoneos-arm64.deb` for jailbroken devices (rootless)
+- `com.endcord.tweak_<version>_iphoneos-arm64.deb` for jailbroken devices (rootless)
 - `Endcord.dylib` to inject into a Discord IPA with Feather, ESign, KSign or Sideloadly
-- `Endcord.ipa`, Discord with the tweak injected, when the workflow is given a decrypted Discord IPA
+- `Endcord.ipa`, Discord with the tweak injected, from the decrypted Discord IPA linked in the `DISCORD_IPA_URL`
+  secret
+
+On `next` they're published as the `ios-v<version>` release, whose files each new Discord replaces, and
+`builds-ios/apps.json` is the source AltStore and SideStore install and update Endcord from:
+`https://raw.githubusercontent.com/Endcord/endcord-mobile/builds-ios/apps.json`. For a new Discord, change the secret
+and re-run the latest iOS run on `next`.
 
 Shake the device for the recovery menu (safe mode, a custom bundle URL, deleting plugins or themes).
 
