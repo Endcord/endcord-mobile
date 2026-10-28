@@ -1,0 +1,20 @@
+Which Endcord?
+Endcord Classic
+Endcord
+On the current Discord app, with 300+ Endcord plugins
+Endcord
+Latest: 351.11 - Stable
+Install
+rootpoi
+•
+90e5360
+10/27/26
+CustomProfile: fix the photo picker crash and badges in the new badge panel
+rootpoi
+•
+eea600b
+10/27/26
+Plugin list in English; no screenshots in the README
+Endcord Installer
+Reload
+Open about
