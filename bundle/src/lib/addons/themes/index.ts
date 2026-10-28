@@ -1,8 +1,8 @@
+import { t } from "@core/i18n";
 import { awaitStorage, createFileBackend, createMMKVBackend, createStorage, wrapSync } from "@core/vendetta/storage";
 import { writeFile } from "@lib/api/native/fs";
 import { getStoredTheme, getThemeFilePath, isPyonLoader, isThemeSupported } from "@lib/api/native/loader";
 import { awaitStorage as newAwaitStorage } from "@lib/api/storage";
-import { safeFetch } from "@lib/utils";
 import { Platform } from "react-native";
 
 import initColors from "./colors";
@@ -68,17 +68,61 @@ function validateTheme(themeJSON: any): boolean {
     return true;
 }
 
-export async function fetchTheme(url: string, selected = false) {
-    let themeJSON: any;
+/** Why a theme couldn't be downloaded: its site couldn't be reached, the file is gone, the site refused, or it isn't a theme */
+export class ThemeDownloadError extends Error {
+    constructor(readonly kind: "unreachable" | "gone" | "refused" | "invalid", message: string) {
+        super(message);
+    }
+}
 
+const hostOf = (url: string) => url.match(/^\w+:\/\/([^/?#]+)/)?.[1] ?? url;
+
+/** A GitHub file page (github.com/<owner>/<repo>/blob/...) as its raw file, which is what people often paste */
+const rawFileUrl = (url: string) => url.replace(/^https:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\//, "https://raw.githubusercontent.com/$1/$2/");
+
+async function fetchOnce(url: string, timeout: number) {
+    const abort = new AbortController();
+    const timer = setTimeout(() => abort.abort(), timeout);
     try {
-        themeJSON = await (await safeFetch(url, { cache: "no-store" })).json();
+        return await fetch(url, { cache: "no-store", signal: abort.signal });
+    } finally {
+        clearTimeout(timer);
+    }
+}
+
+/** Downloads a theme and checks it is one, with a reason people can act on when it isn't */
+export async function downloadTheme(url: string): Promise<VendettaThemeManifest> {
+    const source = rawFileUrl(url);
+    let res: Response;
+    try {
+        res = await fetchOnce(source, 20000);
     } catch {
-        throw new Error(`Failed to fetch theme at ${url}`);
+        // Once more, for a connection that dropped on the way
+        try {
+            res = await fetchOnce(source, 20000);
+        } catch {
+            throw new ThemeDownloadError("unreachable", t("Couldn't reach {host}. Check your connection; if it keeps happening, the site the theme is on may be down.", { host: hostOf(source) }));
+        }
     }
 
-    // Validate theme
-    if (!validateTheme(themeJSON)) throw new Error(`Invalid theme at ${url}`);
+    if (res.status === 404 || res.status === 410) {
+        throw new ThemeDownloadError("gone", t("The theme isn't at this link anymore ({status}). Its author may have moved or deleted it.", { status: res.status }));
+    }
+    if (!res.ok) throw new ThemeDownloadError("refused", t("{host} didn't send the theme ({status}).", { host: hostOf(source), status: res.status }));
+
+    let themeJSON: any;
+    try {
+        // trimStart also drops the byte order mark some Windows editors write, which JSON.parse doesn't accept
+        themeJSON = JSON.parse((await res.text()).trimStart());
+    } catch {
+        throw new ThemeDownloadError("invalid", t("This link doesn't lead to a theme file."));
+    }
+    if (!validateTheme(themeJSON)) throw new ThemeDownloadError("invalid", t("This file isn't a theme Endcord can use."));
+    return themeJSON;
+}
+
+export async function fetchTheme(url: string, selected = false) {
+    const themeJSON = await downloadTheme(url);
 
     themes[url] = {
         id: url,

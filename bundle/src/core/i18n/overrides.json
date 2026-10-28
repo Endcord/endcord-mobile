@@ -1499,6 +1499,12 @@
         "es": "Ahora mismo no se puede conectar con Wikipedia.",
         "fr": "Impossible de joindre Wikipédia pour le moment."
     },
+    "Couldn't reach {host}. Check your connection; if it keeps happening, the site the theme is on may be down.": {
+        "tr": "{host} adresine ulaşılamadı. Bağlantını kontrol et; sorun sürerse temanın bulunduğu site kapalı olabilir.",
+        "ru": "Не удалось подключиться к {host}. Проверьте подключение; если ошибка повторяется, сайт с темой может быть недоступен.",
+        "es": "No se pudo conectar con {host}. Revisa tu conexión; si sigue pasando, puede que el sitio del tema esté caído.",
+        "fr": "Impossible de joindre {host}. Vérifiez votre connexion ; si le problème persiste, le site du thème est peut-être hors service."
+    },
     "Couldn't react with that emoji": {
         "tr": "Bu emojiyle tepki verilemedi",
         "ru": "Не удалось поставить эту реакцию",
@@ -7619,6 +7625,12 @@
         "es": "El texto que reemplazar",
         "fr": "Le texte à remplacer"
     },
+    "The theme isn't at this link anymore ({status}). Its author may have moved or deleted it.": {
+        "tr": "Tema artık bu bağlantıda değil ({status}). Yapımcısı taşımış ya da silmiş olabilir.",
+        "ru": "Темы больше нет по этой ссылке ({status}). Возможно, автор переместил или удалил её.",
+        "es": "El tema ya no está en este enlace ({status}). Puede que su autor lo haya movido o borrado.",
+        "fr": "Le thème n'est plus à ce lien ({status}). Son auteur l'a peut-être déplacé ou supprimé."
+    },
     "The voice channel": {
         "tr": "Ses kanalı",
         "ru": "Голосовой канал",
@@ -7745,6 +7757,12 @@
         "es": "Este archivo es demasiado grande para mirar dentro",
         "fr": "Ce fichier est trop volumineux pour être exploré"
     },
+    "This file isn't a theme Endcord can use.": {
+        "tr": "Bu dosya Endcord'un kullanabileceği bir tema değil.",
+        "ru": "Этот файл не является темой, которую может использовать Endcord.",
+        "es": "Este archivo no es un tema que Endcord pueda usar.",
+        "fr": "Ce fichier n'est pas un thème utilisable par Endcord."
+    },
     "This file isn't an Endcord backup": {
         "tr": "Bu dosya bir Endcord yedeği değil",
         "ru": "Этот файл не является резервной копией Endcord",
@@ -7768,6 +7786,12 @@
         "ru": "Это не веб-ссылка, поэтому она не открыта",
         "es": "Esto no es un enlace web, así que no se ha abierto",
         "fr": "Ce n'est pas un lien web, il n'a donc pas été ouvert"
+    },
+    "This link doesn't lead to a theme file.": {
+        "tr": "Bu bağlantı bir tema dosyasına gitmiyor.",
+        "ru": "Эта ссылка не ведёт на файл темы.",
+        "es": "Este enlace no lleva a un archivo de tema.",
+        "fr": "Ce lien ne mène pas à un fichier de thème."
     },
     "This link is a **{urlType, select, plugin {Plugin} theme {Theme} other {Add-on}}**, would you like to install it?": {
         "tr": "Bu bağlantı bir **{urlType, select, plugin {eklenti} theme {tema} other {eklenti}}**. Yüklemek ister misin?",
@@ -9346,6 +9370,12 @@
         "ru": "{days} дн., {hours} ч, {minutes} мин",
         "es": "{days} días, {hours} horas, {minutes} minutos",
         "fr": "{days} jours, {hours} heures, {minutes} minutes"
+    },
+    "{host} didn't send the theme ({status}).": {
+        "tr": "{host} temayı göndermedi ({status}).",
+        "ru": "{host} не отдал тему ({status}).",
+        "es": "{host} no envió el tema ({status}).",
+        "fr": "{host} n'a pas envoyé le thème ({status})."
     },
     "{hours}h {minutes}m": {
         "tr": "{hours}sa {minutes}dk",

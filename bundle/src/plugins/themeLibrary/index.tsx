@@ -8,7 +8,7 @@
 
 import { t, tx } from "@core/i18n";
 import { useProxy } from "@core/vendetta/storage";
-import { installTheme, selectTheme, themes } from "@lib/addons/themes";
+import { downloadTheme, installTheme, selectTheme, ThemeDownloadError, themes } from "@lib/addons/themes";
 import { findAssetId } from "@lib/api/assets";
 import { BundleUpdaterManager } from "@lib/api/native/modules";
 import { openAlert } from "@lib/ui/alerts";
@@ -166,21 +166,71 @@ function useMarketplace() {
     return { list, failed };
 }
 
+type CheckResult = "ok" | ThemeDownloadError["kind"];
+
+// Marketplace links go stale when authors move or delete a theme. Each one is tried once per app start, a few at a
+// time, so the library can leave out the themes that can't be installed
+const MAX_CHECKS = 6;
+const checks = new Map<string, Promise<CheckResult>>();
+const waiting: Array<() => void> = [];
+let checking = 0;
+
+function checkTheme(url: string) {
+    let result = checks.get(url);
+    if (!result) {
+        checks.set(url, result = new Promise<CheckResult>(resolve => {
+            const run = () => {
+                checking++;
+                downloadTheme(url)
+                    .then(() => resolve("ok"), e => resolve(e instanceof ThemeDownloadError ? e.kind : "invalid"))
+                    .finally(() => {
+                        checking--;
+                        waiting.shift()?.();
+                    });
+            };
+            if (checking < MAX_CHECKS) run();
+            else waiting.push(run);
+        }));
+    }
+    return result;
+}
+
+/** The links that don't lead to an installable theme */
+function useUnavailable(urls: string[]) {
+    const [results, setResults] = useState<Record<string, CheckResult>>({});
+
+    useEffect(() => {
+        let live = true;
+        for (const url of urls) checkTheme(url).then(result => live && setResults(r => ({ ...r, [url]: result })));
+        return () => void (live = false);
+    }, [urls]);
+
+    return useMemo(() => {
+        // A site that couldn't be reached only counts once another theme came through, so being offline hides nothing
+        const online = Object.values(results).includes("ok");
+        return new Set(Object.keys(results).filter(url => results[url] !== "ok" && (results[url] !== "unreachable" || online)));
+    }, [results]);
+}
+
 /** The library: Catppuccin's themes, then the marketplace's, searchable by name, author and description */
 function Library() {
     const { list, failed } = useMarketplace();
+    const installed = useProxy(themes);
     const [query, setQuery] = useState("");
     const [width, setWidth] = useState(0);
     const columns = Math.max(1, Math.floor((width + GAP) / (MIN_CARD_WIDTH + GAP)));
     const cardWidth = (width - GAP * (columns - 1)) / columns;
 
-    const shown = useMemo(() => {
-        const all = [...catppuccin, ...list ?? []];
-        const q = query.trim().toLowerCase();
-        if (!q) return all;
-        return all.filter(theme => [theme.name, theme.description && t(theme.description), ...theme.authors ?? []]
-            .some(text => text?.toLowerCase().includes(q)));
-    }, [list, query]);
+    const listed = useMemo(() => [...catppuccin, ...list ?? []], [list]);
+    const unavailable = useUnavailable(useMemo(() => listed.map(theme => theme.installUrl), [listed]));
+
+    // Not memoized: `installed` is the same object as it changes, and the list is a few dozen themes
+    const q = query.trim().toLowerCase();
+    const shown = listed.filter(theme =>
+        // Installed themes stay, since they apply from what was saved when they were installed
+        (!unavailable.has(theme.installUrl) || installed[theme.installUrl])
+        && (!q || [theme.name, theme.description && t(theme.description), ...theme.authors ?? []]
+            .some(text => text?.toLowerCase().includes(q))));
 
     return <Stack spacing={12}>
         <Text variant="text-sm/medium" color="text-muted">
