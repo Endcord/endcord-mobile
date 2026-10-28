@@ -1,0 +1,11 @@
+Package: dev.raincord.tweak
+Name: RainTweak
+Version: 1.2.0
+Architecture: iphoneos-arm
+Description: A tweak to inject Rain into Discord
+Maintainer: cocobo1
+Author: cocobo1, Bwlok
+Icon: <https://codeberg.org/raincord/rain/raw/branch/main/src/assets/rain.png>
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000)
+Conflicts: app.enmity, mod.vendetta, app.unbound, com.cloudysnow.btloader, app.pyoncord
