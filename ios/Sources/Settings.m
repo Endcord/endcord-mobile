@@ -9,7 +9,7 @@
 - (instancetype)initWithVersion:(NSString *)version {
     self = [super init];
     if (self) {
-        self.title = [NSString stringWithFormat:@"RainTweak v%@ Recovery Menu", version];
+        self.title = [NSString stringWithFormat:@"Endcord v%@ Recovery Menu", version];
     }
     return self;
 }
@@ -38,7 +38,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return 9;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -53,11 +53,6 @@
         @{@"title" : @"Toggle Safe Mode", @"icon" : @"shield", @"destructive" : @NO}, @{
             @"title" : @"Refetch Bundle",
             @"icon" : @"arrow.triangle.2.circlepath",
-            @"destructive" : @NO
-        },
-        @{
-            @"title" : @"Switch Bundle Version",
-            @"icon" : @"arrow.triangle.2.circlepath.circle",
             @"destructive" : @NO
         },
         @{@"title" : @"Load Custom Bundle", @"icon" : @"link.badge.plus", @"destructive" : @NO},
@@ -98,56 +93,51 @@
         return;
     }
 
-    if (indexPath.row == 2) {
-        showBundleSelector(self);
-        return;
-    }
-
     void (^performAction)(void) = ^{
         switch (indexPath.row) {
         case 1:
             refetchBundle(self);
             break;
-        case 3:
+        case 2:
             [self loadCustomBundle];
             break;
-        case 4:
+        case 3:
             resetCustomBundleURL(self);
             break;
-        case 5:
+        case 4:
             deletePluginsAndReload(self);
             break;
-        case 6:
+        case 5:
             deleteThemesAndReload(self);
             break;
-        case 7:
+        case 6:
             deleteAllData(self);
             break;
-        case 8:
+        case 7:
             [self openDocumentsDirectory];
             break;
-        case 9:
+        case 8:
             [self openGitHub];
             break;
         }
     };
 
-    if (indexPath.row != 3 && indexPath.row != 8 && indexPath.row != 9) {
+    if (indexPath.row != 2 && indexPath.row != 7 && indexPath.row != 8) {
         NSString *actionText;
         switch (indexPath.row) {
         case 1:
             actionText = @"refetch the bundle";
             break;
-        case 4:
+        case 3:
             actionText = @"reset the bundle";
             break;
-        case 5:
+        case 4:
             actionText = @"delete all plugins";
             break;
-        case 6:
+        case 5:
             actionText = @"delete all themes";
             break;
-        case 7:
+        case 6:
             actionText = @"delete all mod data";
             break;
         default:
@@ -177,7 +167,7 @@
 
 - (void)openDocumentsDirectory {
     if (isJailbroken) {
-        NSString *filzaPath = [NSString stringWithFormat:@"filza://view%@", getRainDirectory().path];
+        NSString *filzaPath = [NSString stringWithFormat:@"filza://view%@", getPyoncordDirectory().path];
         NSURL *filzaURL = [NSURL URLWithString:[filzaPath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
         
         if ([[UIApplication sharedApplication] canOpenURL:filzaURL]) {
@@ -226,8 +216,9 @@
         [body stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet
                                                                      URLQueryAllowedCharacterSet]];
 
-NSString *urlString = [NSString stringWithFormat:@"https://codeberg.org/raincord/RainTweak/issues/new?title=%@&body=%@",
-                     encodedTitle, encodedBody];
+    NSString *urlString = [NSString
+        stringWithFormat:@"https://github.com/Endcord/endcord-mobile/issues/new?title=%@&body=%@",
+                         encodedTitle, encodedBody];
 
     NSURL *url          = [NSURL URLWithString:urlString];
     [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
@@ -305,16 +296,6 @@ NSString *urlString = [NSString stringWithFormat:@"https://codeberg.org/raincord
                                         [NSString stringWithFormat:@"Server returned error %ld",
                                                                    (long)httpResponse.statusCode],
                                         nil);
-                                    return;
-                                }
-
-                                NSString *contentType =
-                                    httpResponse.allHeaderFields[@"Content-Type"];
-                                if (![contentType containsString:@"javascript"] &&
-                                    ![contentType containsString:@"text"]) {
-                                    [self presentViewController:alert animated:YES completion:nil];
-                                    showErrorAlert(@"Invalid Content",
-                                                   @"URL must point to a JavaScript file", nil);
                                     return;
                                 }
 

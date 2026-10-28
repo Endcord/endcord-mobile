@@ -1,5 +1,4 @@
 #import <Foundation/Foundation.h>
-#import <MediaPlayer/MediaPlayer.h>
 #import <UIKit/UIKit.h>
 #import <jsi/jsi.h>
 #import <functional>
@@ -13,172 +12,174 @@
 #import "RCTInstance.h"
 #import "Fonts.h"
 #import "Settings.h"
+#import "Themes.h"
 
 using namespace facebook;
 
-static jsi::Runtime *gRuntime = NULL;
-NSString *bunnyPatchesBundlePath;
+#define LOADER_NAME @"EndcordTweak"
+// The published bundle; endcord.v<version>.hbc next to it is the same bundle precompiled for that Hermes bytecode version
+#define BUNDLE_URL  @"https://raw.githubusercontent.com/Endcord/endcord-mobile/builds-next/endcord.min.js"
+
 static LoaderConfig  *loaderConfig;
 static NSTimeInterval shakeStartTime = 0;
 static BOOL           isShaking      = NO;
-
-static NSURL *resolveDownloadURL(void)
-{
-    LoaderConfig *fresh = [LoaderConfig getLoaderConfig];
-    if (fresh.customLoadUrlEnabled && fresh.customLoadUrl)
-    {
-        return fresh.customLoadUrl;
-    }
-    return [NSURL URLWithString:@"https://codeberg.org/raincord/rain/releases/download/latest/rain.98.hbc"];
-}
 
 static dispatch_queue_t fsQueue(void)
 {
     static dispatch_queue_t queue;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        queue = dispatch_queue_create("app.rain.fsQueue", DISPATCH_QUEUE_SERIAL);
+        queue = dispatch_queue_create("com.endcord.tweak.fsQueue", DISPATCH_QUEUE_SERIAL);
     });
     return queue;
 }
 
-static void downloadBundleForNextLaunch(NSURL *rainDir)
+/** The bytecode version of Discord's own bundle, which a precompiled bundle has to match; 0 when it isn't bytecode */
+static uint32_t discordBytecodeVersion(void)
 {
-    NSURL *bundleFileURL = [rainDir URLByAppendingPathComponent:@"bundle.js"];
-    NSURL *targetURL = resolveDownloadURL();
-
-    if (!targetURL) return;
-
-    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:targetURL
-                                                       cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
-                                                   timeoutInterval:15.0];
-
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSURL *etagFileURL = [rainDir URLByAppendingPathComponent:@"etag.txt"];
-
-    __block NSString *etag = nil;
-    dispatch_sync(fsQueue(), ^{
-        if ([fm fileExistsAtPath:bundleFileURL.path])
-            etag = [NSString stringWithContentsOfURL:etagFileURL encoding:NSUTF8StringEncoding error:nil];
+    static uint32_t version;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"main" ofType:@"jsbundle"];
+        NSFileHandle *file = path ? [NSFileHandle fileHandleForReadingAtPath:path] : nil;
+        version = hermesBytecodeVersion([file readDataOfLength:12]);
+        [file closeFile];
+        BunnyLog(@"Discord's bundle has bytecode version %u", version);
     });
-    if (etag)
-        [req setValue:etag forHTTPHeaderField:@"If-None-Match"];
+    return version;
+}
 
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    [[session dataTaskWithRequest:req
-                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if ([response isKindOfClass:[NSHTTPURLResponse class]])
+/**
+ * Where to fetch the bundle from, in order: a custom URL alone, or else the bundle precompiled for this Discord's
+ * bytecode version and then the plain JS one, for versions no precompiled bundle is published for
+ */
+static NSArray<NSURL *> *bundleURLs(void)
+{
+    LoaderConfig *config = [LoaderConfig getLoaderConfig];
+    if (config.customLoadUrlEnabled && config.customLoadUrl)
+    {
+        return @[ config.customLoadUrl ];
+    }
+
+    NSURL *plain = [NSURL URLWithString:BUNDLE_URL];
+    uint32_t version = discordBytecodeVersion();
+    if (!version) return @[ plain ];
+
+    NSString *name = [NSString stringWithFormat:@"endcord.v%u.hbc", version];
+    return @[ [[plain URLByDeletingLastPathComponent] URLByAppendingPathComponent:name], plain ];
+}
+
+/**
+ * The saved bundle, if it can run in this Discord: plain JS always can, bytecode only on the version it was compiled
+ * for. After Discord moves to a newer Hermes, the bytecode saved for the old one is as good as missing.
+ */
+static NSData *usableSavedBundle(void)
+{
+    __block NSData *bundle;
+    dispatch_sync(fsQueue(), ^{ bundle = [NSData dataWithContentsOfURL:getBundleURL()]; });
+    if (bundle.length == 0) return nil;
+
+    uint32_t version = hermesBytecodeVersion(bundle);
+    if (version && version != discordBytecodeVersion())
+    {
+        BunnyLog(@"The saved bundle is bytecode version %u, Discord's is %u", version, discordBytecodeVersion());
+        return nil;
+    }
+    return bundle;
+}
+
+/** The URL the saved bundle came from and its ETag, saved as two lines */
+static NSArray<NSString *> *savedETag(void)
+{
+    __block NSString *saved;
+    dispatch_sync(fsQueue(), ^{
+        saved = [NSString stringWithContentsOfURL:getBundleETagURL() encoding:NSUTF8StringEncoding error:nil];
+    });
+    NSArray<NSString *> *lines = [saved componentsSeparatedByCharactersInSet:NSCharacterSet.newlineCharacterSet];
+    return lines.count >= 2 && lines[0].length && lines[1].length ? @[ lines[0], lines[1] ] : nil;
+}
+
+/**
+ * Downloads the bundle and saves it, trying each of bundleURLs() until one has it. Returns the bundle to run: the
+ * new one, the saved one when the server says it's unchanged, or nil when none could be fetched.
+ */
+static NSData *fetchBundle(NSTimeInterval timeout)
+{
+    NSData *saved = usableSavedBundle();
+    NSArray<NSString *> *etag = saved ? savedETag() : nil;
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:NSURLSessionConfiguration.ephemeralSessionConfiguration];
+    NSData *result = nil;
+
+    for (NSURL *url in bundleURLs())
+    {
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                               cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                                           timeoutInterval:timeout];
+        if (etag && [etag[0] isEqualToString:url.absoluteString])
         {
-            NSHTTPURLResponse *http = (NSHTTPURLResponse *)response;
-            if (http.statusCode == 200 && data.length > 0)
-            {
-                dispatch_sync(fsQueue(), ^{
-                    [data writeToURL:bundleFileURL atomically:YES];
-                    NSString *newEtag = [http valueForHTTPHeaderField:@"Etag"];
-                    if (newEtag)
-                        [newEtag writeToURL:etagFileURL atomically:YES encoding:NSUTF8StringEncoding error:nil];
-                    else
-                        [fm removeItemAtURL:etagFileURL error:nil];
-                });
-            }
+            [request setValue:etag[1] forHTTPHeaderField:@"If-None-Match"];
         }
-        else if (error)
+
+        __block NSData *data;
+        __block NSHTTPURLResponse *response;
+        __block NSError *error;
+        dispatch_semaphore_t done = dispatch_semaphore_create(0);
+        [[session dataTaskWithRequest:request
+                    completionHandler:^(NSData *d, NSURLResponse *r, NSError *e) {
+            data = d;
+            response = [r isKindOfClass:NSHTTPURLResponse.class] ? (NSHTTPURLResponse *)r : nil;
+            error = e;
+            dispatch_semaphore_signal(done);
+        }] resume];
+        dispatch_semaphore_wait(done, DISPATCH_TIME_FOREVER);
+
+        if (response.statusCode == 304)
         {
-            BunnyLog(@"downloadBundleForNextLaunch: Error: %@", error.localizedDescription);
+            BunnyLog(@"The bundle at %@ hasn't changed", url);
+            result = saved;
+            break;
         }
-        [session finishTasksAndInvalidate];
-    }] resume];
+        if (response.statusCode == 200 && data.length > 0)
+        {
+            BunnyLog(@"Downloaded the bundle from %@ (%lu bytes)", url, (unsigned long)data.length);
+            NSString *newETag = [response valueForHTTPHeaderField:@"ETag"];
+            dispatch_sync(fsQueue(), ^{
+                [data writeToURL:getBundleURL() atomically:YES];
+                if (newETag)
+                {
+                    NSString *lines = [NSString stringWithFormat:@"%@\n%@", url.absoluteString, newETag];
+                    [lines writeToURL:getBundleETagURL() atomically:YES encoding:NSUTF8StringEncoding error:nil];
+                }
+                else
+                {
+                    [[NSFileManager defaultManager] removeItemAtURL:getBundleETagURL() error:nil];
+                }
+            });
+            cleanupBundleBackup();
+            result = data;
+            break;
+        }
+        // A missing precompiled bundle falls back to the plain one; so does any other failure, which it may not have
+        BunnyLog(@"Couldn't download the bundle from %@: %@", url,
+                 error ? error.localizedDescription : [NSString stringWithFormat:@"HTTP %ld", (long)response.statusCode]);
+    }
+
+    [session finishTasksAndInvalidate];
+    return result;
 }
 
 typedef id (^BridgeHandler)(NSArray *args);
 
+/** The methods the bundle calls through callLoaderMethod(), as on the Android loader */
 static NSDictionary<NSString *, BridgeHandler> *bridgeHandlers(void)
 {
     static NSDictionary<NSString *, BridgeHandler> *handlers;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         handlers = @{
-            @"applemusic.get": ^id(NSArray *args) {
-                MPMediaLibraryAuthorizationStatus authorization = [MPMediaLibrary authorizationStatus];
-
-                switch (authorization) {
-                    case MPMediaLibraryAuthorizationStatusNotDetermined:
-                        return @{
-                            @"authorization": @"notDetermined"
-                        };
-                    case MPMediaLibraryAuthorizationStatusDenied:
-                        return @{
-                            @"authorization": @"denied"
-                        };
-                    case MPMediaLibraryAuthorizationStatusRestricted:
-                        return @{
-                            @"authorization": @"restricted"
-                        };
-                    case MPMediaLibraryAuthorizationStatusAuthorized: {
-                        MPMusicPlayerController *player = [MPMusicPlayerController systemMusicPlayer];
-                        MPMediaItem *song = player.nowPlayingItem;
-
-                        if (player.playbackState == MPMusicPlaybackStatePlaying && song) {
-                            return @{
-                                @"authorization": @"authorized",
-                                @"playing": @YES,
-                                @"song": @{
-                                    @"title": song.title,
-                                    @"artist": song.artist,
-                                    @"album": song.albumTitle,
-                                    @"duration": @{
-                                        @"elapsed": @(player.currentPlaybackTime),
-                                        @"total": @(song.playbackDuration)
-                                    }
-                                }
-                            };
-                        } else {
-                            return @{
-                                @"authorization": @"authorized",
-                                @"playing": @NO
-                            };
-                        }
-                    }
-                }
+            @"revenge.info": ^id(NSArray *args) {
+                return @{ @"name": LOADER_NAME, @"version": PACKAGE_VERSION };
             },
-
-            @"applemusic.request": ^id(NSArray *args) {
-                [MPMediaLibrary requestAuthorization:^(MPMediaLibraryAuthorizationStatus status) {}];
-                return [NSNull null];
-            },
-
-            @"updater.clear": ^id(NSArray *args) {
-                NSURL *rainDirectory = getRainDirectory();
-                NSFileManager *fm = [NSFileManager defaultManager];
-                [fm removeItemAtURL:[rainDirectory URLByAppendingPathComponent:@"bundle.js"] error:nil];
-                [fm removeItemAtURL:[rainDirectory URLByAppendingPathComponent:@"etag.txt"] error:nil];
-                BunnyLog(@"[Updater] Cache cleared via JSI bridge");
-                return [NSNull null];
-            },
-
-            @"updater.download": ^id(NSArray *args) {
-                BunnyLog(@"[Updater] updater.download JSI bridge method called");
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSURL *rainDirectory = getRainDirectory();
-                    downloadBundleForNextLaunch(rainDirectory);
-                });
-                return [NSNull null];
-            },
-
-            @"updater.reload": ^id(NSArray *args) {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    BunnyLog(@"[Updater] Explicit JSI download + reload started");
-                    NSURL *rainDirectory = getRainDirectory();
-                    downloadBundleForNextLaunch(rainDirectory);
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        UIWindow *w = [UIApplication sharedApplication].windows.firstObject;
-                        if (w.rootViewController) {
-                            reloadApp(w.rootViewController);
-                        }
-                    });
-                });
-                return [NSNull null];
-            }
         };
     });
     return handlers;
@@ -206,34 +207,54 @@ static NSDictionary *callBridgeMethodHelper(NSString *methodName, NSArray *args)
     }
 }
 
+/** The theme the bundle saved for the next start, applied to Discord's native colors before any view is drawn */
+static jsi::Value loadStoredTheme(jsi::Runtime &runtime)
+{
+    NSData *themeData = [NSData dataWithContentsOfURL:[getPyoncordDirectory() URLByAppendingPathComponent:@"current-theme.json"]];
+    if (!themeData) return jsi::Value::null();
+
+    NSDictionary *theme = [NSJSONSerialization JSONObjectWithData:themeData options:0 error:nil];
+    if (![theme isKindOfClass:NSDictionary.class]) return jsi::Value::null();
+
+    NSDictionary *data = theme[@"data"];
+    if ([data isKindOfClass:NSDictionary.class] && [data[@"semanticColors"] isKindOfClass:NSDictionary.class])
+    {
+        NSDictionary *rawColors = [data[@"rawColors"] isKindOfClass:NSDictionary.class] ? data[@"rawColors"] : @{};
+        initializeThemeColors(data[@"semanticColors"], rawColors);
+    }
+    return [JSI fromObjC:theme runtime:runtime];
+}
+
 static void injectPreBundle(jsi::Runtime &runtime)
 {
     try
     {
+        // What the bundle reads in lib/api/native/loader.ts, as the Android loader sets it
         jsi::Object loaderObj(runtime);
-        loaderObj.setProperty(runtime, "loaderName", jsi::String::createFromUtf8(runtime, "RainTweak"));
+        loaderObj.setProperty(runtime, "loaderName", jsi::String::createFromUtf8(runtime, [LOADER_NAME UTF8String]));
         loaderObj.setProperty(runtime, "loaderVersion", jsi::String::createFromUtf8(runtime, [PACKAGE_VERSION UTF8String]));
         loaderObj.setProperty(runtime, "hasThemeSupport", true);
-        loaderObj.setProperty(runtime, "storedTheme", jsi::Value::null());
+        loaderObj.setProperty(runtime, "storedTheme", loadStoredTheme(runtime));
         loaderObj.setProperty(runtime, "fontPatch", 2);
-        runtime.global().setProperty(runtime, "__RAIN_LOADER__", loaderObj);
+        runtime.global().setProperty(runtime, "__PYON_LOADER__", loaderObj);
 
+        // The payload is { revenge: { method, args } }, the same as the Android loader takes
         auto parsePayload = [](jsi::Runtime &rt, const jsi::Value *args, size_t count, NSString **methodOut, NSArray **argsOut) {
             if (count < 1 || !args[0].isObject()) {
                 throw jsi::JSError(rt, "Expected a single payload object as argument.");
             }
             jsi::Object payload = args[0].asObject(rt);
 
-            jsi::Value rainVal = payload.getProperty(rt, "rain");
-            if (!rainVal.isObject()) throw jsi::JSError(rt, "Payload missing 'rain' object.");
-            jsi::Object rain = rainVal.asObject(rt);
+            jsi::Value callVal = payload.getProperty(rt, "revenge");
+            if (!callVal.isObject()) throw jsi::JSError(rt, "Payload missing 'revenge' object.");
+            jsi::Object call = callVal.asObject(rt);
 
-            jsi::Value methodVal = rain.getProperty(rt, "method");
+            jsi::Value methodVal = call.getProperty(rt, "method");
             if (!methodVal.isString()) throw jsi::JSError(rt, "'method' property must be a string.");
             *methodOut = [JSI toNSString:methodVal runtime:rt];
 
             *argsOut = @[];
-            jsi::Value argsVal = rain.getProperty(rt, "args");
+            jsi::Value argsVal = call.getProperty(rt, "args");
             if (argsVal.isObject() && argsVal.asObject(rt).isArray(rt)) {
                 *argsOut = [JSI toObjC:argsVal runtime:rt];
             }
@@ -241,22 +262,21 @@ static void injectPreBundle(jsi::Runtime &runtime)
 
         auto syncCall = jsi::Function::createFromHostFunction(
             runtime,
-            jsi::PropNameID::forUtf8(runtime, "__RAIN_BRIDGE_CALL_SYNC__"),
+            jsi::PropNameID::forUtf8(runtime, "__ENDCORD_LOADER_CALL__"),
             1,
             [parsePayload](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
                 NSString *methodName;
                 NSArray *objcArgs;
                 parsePayload(rt, args, count, &methodName, &objcArgs);
-
                 NSDictionary *res = callBridgeMethodHelper(methodName, objcArgs);
                 return [JSI fromObjC:res runtime:rt];
             }
         );
-        runtime.global().setProperty(runtime, "__RAIN_BRIDGE_CALL_SYNC__", syncCall);
+        runtime.global().setProperty(runtime, "__ENDCORD_LOADER_CALL__", syncCall);
 
         auto asyncCall = jsi::Function::createFromHostFunction(
             runtime,
-            jsi::PropNameID::forUtf8(runtime, "__RAIN_BRIDGE_CALL_ASYNC__"),
+            jsi::PropNameID::forUtf8(runtime, "__ENDCORD_LOADER_CALL_ASYNC__"),
             1,
             [parsePayload](jsi::Runtime &rt, const jsi::Value &thisVal, const jsi::Value *args, size_t count) -> jsi::Value {
                 NSString *methodName;
@@ -274,16 +294,16 @@ static void injectPreBundle(jsi::Runtime &runtime)
                 return promiseCtor.callAsConstructor(rt, executor);
             }
         );
-        runtime.global().setProperty(runtime, "__RAIN_BRIDGE_CALL_ASYNC__", asyncCall);
+        runtime.global().setProperty(runtime, "__ENDCORD_LOADER_CALL_ASYNC__", asyncCall);
 
     }
     catch (const jsi::JSError &e) { BunnyLog(@"injectPreBundle: JSError: %s", e.what()); }
     catch (const std::exception &e) { BunnyLog(@"injectPreBundle: exception: %s", e.what()); }
 }
 
-static void executePreloads(jsi::Runtime &runtime, NSURL *rainDir)
+static void executePreloads(jsi::Runtime &runtime, NSURL *pyoncordDir)
 {
-    NSURL *preloadsDirectory = [rainDir URLByAppendingPathComponent:@"preloads"];
+    NSURL *preloadsDirectory = [pyoncordDir URLByAppendingPathComponent:@"preloads"];
     if ([[NSFileManager defaultManager] fileExistsAtPath:preloadsDirectory.path])
     {
         NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtURL:preloadsDirectory
@@ -293,7 +313,7 @@ static void executePreloads(jsi::Runtime &runtime, NSURL *rainDir)
             if ([[fileURL pathExtension] isEqualToString:@"js"])
             {
                 NSData *data = [NSData dataWithContentsOfURL:fileURL];
-                if (data) [JSI evaluate:data tag:@"rain:preload" runtime:runtime];
+                if (data) [JSI evaluate:data tag:@"endcord:preload" runtime:runtime];
             }
         }
     }
@@ -303,24 +323,33 @@ static void executePreloads(jsi::Runtime &runtime, NSURL *rainDir)
 
 - (void)instance:(id)instance didInitializeRuntime:(facebook::jsi::Runtime &)runtime
 {
-    gRuntime = &runtime;
     %orig;
 
     [loaderConfig loadConfig];
-    NSURL *rainDir = getRainDirectory();
     injectPreBundle(runtime);
 
-    NSURL *bundleFileURL = [rainDir URLByAppendingPathComponent:@"bundle.js"];
-    NSData *bundle = [NSData dataWithContentsOfURL:bundleFileURL];
-
-    if (bundle && bundle.length > 0)
+    // Starts with the saved bundle and updates it for the next start. Without one (the first start, or Discord moved
+    // to a newer Hermes) this start waits for the download, so Endcord is there from the first time Discord opens.
+    NSData *bundle = usableSavedBundle();
+    if (bundle)
     {
-        [JSI evaluate:bundle tag:@"rain:bundle" runtime:runtime];
-        executePreloads(runtime, rainDir);
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{ fetchBundle(30.0); });
     }
     else
     {
-        downloadBundleForNextLaunch(rainDir);
+        bundle = fetchBundle(15.0);
+        if (!bundle && restoreBundleFromBackup()) bundle = usableSavedBundle();
+    }
+
+    if (bundle)
+    {
+        [JSI evaluate:bundle tag:@"endcord:bundle" runtime:runtime];
+        executePreloads(runtime, getPyoncordDirectory());
+    }
+    else
+    {
+        showErrorAlert(@"Endcord couldn't load",
+                       @"Endcord couldn't be downloaded. Check your connection and open Discord again.", nil);
     }
 }
 
@@ -356,37 +385,17 @@ static void executePreloads(jsi::Runtime &runtime, NSURL *rainDir)
 {
     @autoreleasepool
     {
-        BOOL newArchEnabled = YES;
-        @try {
-            id rawVal = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"RCTNewArchEnabled"];
-            if (rawVal) newArchEnabled = [rawVal boolValue];
-        }
-        @catch (...) {
-        }
-
-        if (!newArchEnabled)
+        if (!isRNNewArchEnabled())
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-                showErrorAlert(@"Incompatible Discord Version",
-                              @"This version of Discord is not using bridgeless "
-                              @"Please update Discord to v332 or above",
+                showErrorAlert(@"Discord is too old for Endcord",
+                              @"Endcord needs Discord 332 or newer.",
                               nil);
             });
             return;
         }
 
-        NSString *install_prefix = @"/var/jb";
-        isJailbroken = [[NSFileManager defaultManager] fileExistsAtPath:install_prefix];
-        BOOL jbPathExists = isJailbroken;
-
-        NSString *bundlePath = [NSString stringWithFormat:@"%@/Library/Application Support/BunnyResources.bundle", install_prefix];
-        NSString *jailedPath = [[NSBundle mainBundle].bundleURL.path stringByAppendingPathComponent:@"BunnyResources.bundle"];
-
-        if (jbPathExists && [[NSFileManager defaultManager] fileExistsAtPath:bundlePath]) {
-            bunnyPatchesBundlePath = bundlePath;
-        } else {
-            bunnyPatchesBundlePath = jailedPath;
-        }
+        isJailbroken = [[NSFileManager defaultManager] fileExistsAtPath:@"/var/jb"];
 
         loaderConfig = [[LoaderConfig alloc] init];
         [loaderConfig loadConfig];

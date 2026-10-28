@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class RainTweakSettingsViewController;
+@class BunnySettingsViewController;
 
 extern BOOL isJailbroken;
 
@@ -11,7 +11,9 @@ extern "C" {
 
 BOOL        isSafeModeEnabled(void);
 BOOL        restoreBundleFromBackup(void);
-NSURL      *getRainDirectory(void);
+NSURL      *getPyoncordDirectory(void);
+NSURL      *getBundleURL(void);
+NSURL      *getBundleETagURL(void);
 NSURL      *getBundleBackupURL(void);
 UIColor    *hexToUIColor(NSString *hex);
 NSString   *getDeviceIdentifier(void);
@@ -24,7 +26,6 @@ void        refetchBundle(UIViewController *presenter);
 void        toggleSafeMode(void);
 void        setCustomBundleURL(NSURL *url, UIViewController *presenter);
 void        resetCustomBundleURL(UIViewController *presenter);
-void        showBundleSelector(UIViewController *presenter);
 void        removeCachedBundle(void);
 void        gracefulExit(UIViewController *presenter);
 void        deletePluginsAndReload(UIViewController *presenter);
@@ -33,6 +34,7 @@ void        moveCachedBundleToBackup(void);
 void        cleanupBundleBackup(void);
 BOOL        isRNNewArchEnabled(void);
 BOOL        isHermesBytecode(NSData *data);
+uint32_t    hermesBytecodeVersion(NSData *data);
 
 #ifdef __cplusplus
 }

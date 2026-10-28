@@ -4,6 +4,14 @@
 #import "Logger.h"
 #import "Utils.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void initializeThemeColors(NSDictionary *semanticColors, NSDictionary *rawColors);
 
-#define CURRENT_THEME [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), @"Documents/rain/current-theme.json"]
+#ifdef __cplusplus
+}
+#endif
+
+#define CURRENT_THEME [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), @"Documents/pyoncord/current-theme.json"]

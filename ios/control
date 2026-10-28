@@ -1,11 +1,11 @@
-Package: dev.raincord.tweak
-Name: RainTweak
-Version: 1.2.0
+Package: com.endcord.tweak
+Name: Endcord
+Version: 1.0.0
 Architecture: iphoneos-arm
-Description: A tweak to inject Rain into Discord
-Maintainer: cocobo1
-Author: cocobo1, Bwlok
-Icon: <https://codeberg.org/raincord/rain/raw/branch/main/src/assets/rain.png>
+Description: Endcord for Discord on iOS: plugins, themes and privacy
+Maintainer: rootpoi
+Author: rootpoi and contributors, based on RainTweak by cocobo1 and Bwlok
+Icon: <https://raw.githubusercontent.com/Endcord/endcord-mobile/next/bundle/src/assets/icons/endcord.png>
 Section: Tweaks
 Depends: mobilesubstrate (>= 0.9.5000)
-Conflicts: app.enmity, mod.vendetta, app.unbound, com.cloudysnow.btloader, app.pyoncord
+Conflicts: app.enmity, mod.vendetta, app.unbound, com.cloudysnow.btloader, app.pyoncord, cocobo1.kettu.tweak, dev.raincord.tweak

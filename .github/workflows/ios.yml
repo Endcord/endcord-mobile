@@ -1,0 +1,238 @@
+name: iOS
+
+# Builds the iOS tweak (ios/) and, given a decrypted Discord IPA, Discord with the tweak injected. The tweak downloads
+# the same bundle as Android from builds-next, so the IPA only needs a new build when the tweak or Discord changes.
+#
+# The IPA is Discord's own app, so it's published to a separate repository (Endcord/endcord-ios), never here: a
+# takedown of it can't touch this repository or the Android builds. ios-ci/ branches (not ci/, which run the Android
+# build and the emulator test) build everything without publishing and put the tweak, the build log and a report on
+# test-results/<branch>.
+on:
+  push:
+    branches: [next, "ios-ci/**"]
+    paths: ["ios/**", ".github/workflows/ios.yml"]
+  pull_request:
+    paths: ["ios/**", ".github/workflows/ios.yml"]
+  workflow_dispatch:
+    inputs:
+      ipa_url:
+        description: Direct link to a decrypted Discord IPA (otherwise the DISCORD_IPA_URL secret)
+        required: false
+        type: string
+      release:
+        description: Publish to Endcord/endcord-ios (on next)
+        required: false
+        type: boolean
+        default: true
+
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tweak:
+    name: Tweak
+    runs-on: macos-15
+    outputs:
+      version: ${{ steps.build.outputs.version }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: Randomblock1/theos-action@v1
+      - name: Build
+        id: build
+        working-directory: ios
+        shell: bash
+        run: |
+          mkdir -p out
+          # Theos needs GNU make 4; macOS has 3.81
+          export PATH="$(brew --prefix make)/libexec/gnubin:$PATH"
+          make package 2>&1 | tee out/build.log
+          cp packages/*.deb out/
+          cp "$(find .theos/_ -name Endcord.dylib | head -n 1)" out/Endcord.dylib
+          echo "version=$(sed -n 's/^Version: //p' control)" >> "$GITHUB_OUTPUT"
+          ls -l out
+      - uses: actions/upload-artifact@v6
+        # With the build log alone when the build fails
+        if: always()
+        with:
+          name: tweak
+          path: ios/out/
+
+  ipa:
+    name: IPA
+    needs: tweak
+    runs-on: macos-15
+    outputs:
+      discord-version: ${{ steps.inject.outputs.discord-version }}
+    env:
+      IPA_URL: ${{ inputs.ipa_url || secrets.DISCORD_IPA_URL }}
+    steps:
+      - name: Check for a Discord IPA
+        id: source
+        run: |
+          if [ -z "$IPA_URL" ]; then
+            echo "::notice::No Discord IPA: set the DISCORD_IPA_URL secret, or run this workflow with a link to one"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@v5
+        if: steps.source.outputs.skip != 'true'
+      - uses: actions/download-artifact@v7
+        if: steps.source.outputs.skip != 'true'
+        with:
+          name: tweak
+          path: ${{ runner.temp }}/tweak
+      - uses: actions/setup-python@v5
+        if: steps.source.outputs.skip != 'true'
+        with:
+          python-version: "3.12"
+      - name: Inject the tweak
+        id: inject
+        if: steps.source.outputs.skip != 'true'
+        run: |
+          pip install "https://github.com/asdfzxcvbn/pyzule-rw/archive/740d3716dcd98c20c000f12cdb88f1f0b2a533a4.zip" Pillow
+          curl -fsSL --retry 3 -o "$RUNNER_TEMP/discord.ipa" "$IPA_URL"
+          unzip -p "$RUNNER_TEMP/discord.ipa" "Payload/Discord.app/Info.plist" > "$RUNNER_TEMP/Info.plist"
+          version=$(plutil -extract CFBundleShortVersionString raw "$RUNNER_TEMP/Info.plist")
+          echo "Discord $version"
+          echo "discord-version=$version" >> "$GITHUB_OUTPUT"
+
+          # The Android launcher icon: its foreground's visible middle (72 of 108 dp) over the brand background
+          python - "$RUNNER_TEMP/icon.png" <<'EOF'
+          import sys
+          from PIL import Image
+          foreground = Image.open("installer/app/src/main/res/drawable-xxxhdpi/ic_launcher_foreground.png").convert("RGBA")
+          icon = Image.new("RGBA", (1024, 1024), (0x10, 0x18, 0x2A, 255))
+          icon.alpha_composite(foreground.resize((1536, 1536), Image.LANCZOS), (-256, -256))
+          icon.convert("RGB").save(sys.argv[1])
+          EOF
+
+          # -u: any device, -w: no watch app, -s: fakesigned for TrollStore, -g: without encrypted extensions, -q: arm64 only
+          cyan -i "$RUNNER_TEMP/discord.ipa" -o Endcord.ipa -f "$RUNNER_TEMP"/tweak/*.deb \
+            -n Endcord -k "$RUNNER_TEMP/icon.png" -uwsgq
+          ls -l Endcord.ipa
+      - uses: actions/upload-artifact@v6
+        if: steps.source.outputs.skip != 'true'
+        with:
+          name: ipa
+          path: Endcord.ipa
+          compression-level: 0
+
+  report:
+    name: Publish the test build
+    needs: [tweak, ipa]
+    if: always() && startsWith(github.ref, 'refs/heads/ios-ci/')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v7
+        with:
+          name: tweak
+          path: results
+      - name: Push
+        # Only the tweak and a report: the IPA is Discord's app and never goes into this repository
+        run: |
+          cd results
+          {
+            echo "run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            echo "commit: ${{ github.sha }}"
+            echo "tweak: ${{ needs.tweak.result }} ${{ needs.tweak.outputs.version }}"
+            echo "ipa: ${{ needs.ipa.result }}"
+            echo "discord: ${{ needs.ipa.outputs.discord-version }}"
+          } > report.txt
+          git init -q -b results
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -qm "iOS build ${{ github.run_id }} on ${{ github.sha }}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" "results:refs/heads/test-results/${{ github.ref_name }}"
+
+  publish:
+    name: Publish to Endcord/endcord-ios
+    needs: [tweak, ipa]
+    # Releases hold Endcord.ipa, Endcord.dylib and the .deb; the .deb and .dylib alone are no use without the IPA there
+    if: >-
+      github.ref == 'refs/heads/next' && needs.ipa.outputs.discord-version != '' &&
+      (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.release))
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.IOS_RELEASES_TOKEN }}
+      REPO: Endcord/endcord-ios
+      DISCORD_VERSION: ${{ needs.ipa.outputs.discord-version }}
+      TWEAK_VERSION: ${{ needs.tweak.outputs.version }}
+    steps:
+      - name: Check for the token
+        id: token
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::warning::No IOS_RELEASES_TOKEN secret: not publishing"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/download-artifact@v7
+        if: steps.token.outputs.skip != 'true'
+        with:
+          path: ${{ runner.temp }}/out
+          merge-multiple: true
+      - name: Release
+        if: steps.token.outputs.skip != 'true'
+        run: |
+          tag="v$DISCORD_VERSION-$TWEAK_VERSION"
+          cd "$RUNNER_TEMP/out"
+          ls -l
+          notes="Endcord $TWEAK_VERSION in Discord $DISCORD_VERSION, built from ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}"
+          # A rebuild of the same versions replaces the files of its release
+          if gh release view "$tag" --repo "$REPO" > /dev/null 2>&1; then
+            gh release upload "$tag" --repo "$REPO" --clobber Endcord.ipa Endcord.dylib *.deb
+          else
+            gh release create "$tag" --repo "$REPO" --title "Endcord $TWEAK_VERSION (Discord $DISCORD_VERSION)" \
+              --notes "$notes" Endcord.ipa Endcord.dylib *.deb
+          fi
+          echo "SIZE=$(stat -c %s Endcord.ipa)" >> "$GITHUB_ENV"
+          echo "TAG=$tag" >> "$GITHUB_ENV"
+      - name: Update the AltStore source
+        if: steps.token.outputs.skip != 'true'
+        # apps.json at the root of Endcord/endcord-ios: AltStore and SideStore add it as a source and update from it
+        run: |
+          git clone -q --depth 1 "https://x-access-token:$GH_TOKEN@github.com/$REPO.git" source
+          cd source
+          [ -f apps.json ] || echo '{}' > apps.json
+          node - <<'EOF'
+          const fs = require("fs");
+          const { DISCORD_VERSION, SIZE, TAG, REPO } = process.env;
+          const icon = "https://raw.githubusercontent.com/Endcord/endcord-mobile/next/bundle/src/assets/icons/endcord.png";
+          const source = JSON.parse(fs.readFileSync("apps.json", "utf8"));
+          const old = source.apps?.[0]?.versions ?? [];
+          const version = {
+            version: DISCORD_VERSION,
+            date: new Date().toISOString(),
+            size: Number(SIZE),
+            downloadURL: `https://github.com/${REPO}/releases/download/${TAG}/Endcord.ipa`,
+            minOSVersion: "15.0",
+          };
+          const out = {
+            name: "Endcord",
+            identifier: "com.endcord.source",
+            subtitle: "Plugins, themes and privacy for Discord",
+            iconURL: icon,
+            website: "https://endcord.com",
+            apps: [{
+              name: "Endcord",
+              bundleIdentifier: "com.hammerandchisel.discord",
+              developerName: "Endcord",
+              subtitle: "Plugins, themes and privacy for Discord",
+              localizedDescription: "Discord with Endcord: 300+ plugins, themes and five languages.",
+              iconURL: icon,
+              tintColor: "#7AB8F5",
+              category: "social",
+              // The newest first; a rebuild of the same Discord replaces its entry
+              versions: [version, ...old.filter(v => v.version !== DISCORD_VERSION)].slice(0, 5),
+            }],
+            news: source.news ?? [],
+          };
+          fs.writeFileSync("apps.json", JSON.stringify(out, null, 2) + "\n");
+          EOF
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps.json
+          git commit -qm "Endcord $TWEAK_VERSION in Discord $DISCORD_VERSION" || exit 0
+          git push -q

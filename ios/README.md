@@ -1,37 +1,25 @@
-# RainTweak
+# Endcord for iOS
 
-Tweak to inject Rain into discord
+The tweak that loads Endcord into Discord on iPhone and iPad: the same bundle as on Android
+(`../bundle`), which it downloads from the `builds-next` branch. It needs Discord 332 or newer, where React Native
+runs bridgeless; the tweak starts the bundle from `RCTHost`'s `instance:didInitializeRuntime:` through JSI.
 
-## Installation
+Based on [RainTweak](https://codeberg.org/raincord/RainTweak) (OSL-3.0); see `../UPSTREAM.md`.
 
-The latest builds can be found in the [Releases](https://codeberg.org/raincord/RainTweak/releases) tab.
-**iOS 27 is NOT officially supported, you will encounter bugs**
+## Builds
 
-<details>
-<summary>Issues & Workaround</summary>
-<br/>
-To resolve the fixable issue, you need to match the app's bundle ID with your provisioning profile's App ID (excluding the team ID prefix):
-<table>
-<tr>
-    <th>Issue</th>
-    <th>Fixable</th>
-    <th>Example</th>
-</tr>
-<tr>
-    <td>Cannot change app icons</td>
-    <td>✓</td>
-    <td rowspan="5"><img src="https://adriancastro.dev/e0hbonxknepw.jpg" width="300"></td>
-</tr>
-<tr>
-    <td>Cannot share items to Discord</td>
-    <td>✗</td>
-</tr>
-<tr>
-    <td>Cannot use passkeys</td>
-    <td>✗</td>
-</tr>
-</table>
+The iOS workflow builds it on macOS with [Theos](https://theos.dev):
 
-## Doing this will break notifications if the app is backgrounded or closed
+- `Endcord_<version>_iphoneos-arm64.deb` for jailbroken devices (rootless)
+- `Endcord.dylib` to inject into a Discord IPA with Feather, ESign, KSign or Sideloadly
+- `Endcord.ipa`, Discord with the tweak injected, when the workflow is given a decrypted Discord IPA
 
-</details>
+Shake the device for the recovery menu (safe mode, a custom bundle URL, deleting plugins or themes).
+
+## What sideloading can't do
+
+These hold for every modded Discord installed with a sideloading app:
+
+- Notifications don't arrive while Discord is closed or in the background
+- Passkeys and sharing to Discord from other apps don't work
+- Changing the app icon only works when the bundle ID matches the provisioning profile's App ID

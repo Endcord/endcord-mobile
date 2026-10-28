@@ -8,13 +8,13 @@
     self = [super init];
     if (self) {
         self.customLoadUrlEnabled = NO;
-        self.customLoadUrl        = [NSURL URLWithString:@"http://localhost:4040/Rain.js"];
+        self.customLoadUrl        = [NSURL URLWithString:@"http://localhost:4040/endcord.min.js"];
     }
     return self;
 }
 
 - (BOOL)loadConfig {
-    NSURL *loaderConfigUrl = [getRainDirectory() URLByAppendingPathComponent:@"loader.json"];
+    NSURL *loaderConfigUrl = [getPyoncordDirectory() URLByAppendingPathComponent:@"loader.json"];
     BunnyLog(@"Attempting to load config from: %@", loaderConfigUrl.path);
 
     if ([[NSFileManager defaultManager] fileExistsAtPath:loaderConfigUrl.path]) {
@@ -51,14 +51,14 @@
 + (instancetype)defaultConfig {
     LoaderConfig *config        = [[LoaderConfig alloc] init];
     config.customLoadUrlEnabled = NO;
-    config.customLoadUrl        = [NSURL URLWithString:@"http://localhost:4040/Rain.js"];
+    config.customLoadUrl        = [NSURL URLWithString:@"http://localhost:4040/endcord.min.js"];
     return config;
 }
 
 + (instancetype)getLoaderConfig {
     BunnyLog(@"Getting loader config");
 
-    NSURL *loaderConfigUrl = [getRainDirectory() URLByAppendingPathComponent:@"loader.json"];
+    NSURL *loaderConfigUrl = [getPyoncordDirectory() URLByAppendingPathComponent:@"loader.json"];
 
     if ([[NSFileManager defaultManager] fileExistsAtPath:loaderConfigUrl.path]) {
         NSError *error     = nil;
@@ -84,7 +84,7 @@
 }
 
 - (BOOL)saveConfig {
-    NSURL *loaderConfigUrl = [getRainDirectory() URLByAppendingPathComponent:@"loader.json"];
+    NSURL *loaderConfigUrl = [getPyoncordDirectory() URLByAppendingPathComponent:@"loader.json"];
     NSDictionary *json     = @{
         @"customLoadUrl" :
             @{@"enabled" : @(self.customLoadUrlEnabled), @"url" : self.customLoadUrl.absoluteString}

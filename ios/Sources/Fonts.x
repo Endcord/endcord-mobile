@@ -81,7 +81,7 @@ void patchFonts(NSDictionary<NSString *, NSString *> *mainFonts, NSString *fontD
     }
 
     NSString *fontJson = [NSString
-        stringWithContentsOfURL:[getRainDirectory() URLByAppendingPathComponent:@"fonts.json"]
+        stringWithContentsOfURL:[getPyoncordDirectory() URLByAppendingPathComponent:@"fonts.json"]
                        encoding:NSUTF8StringEncoding
                           error:nil];
     if (fontJson)
@@ -97,7 +97,7 @@ void patchFonts(NSDictionary<NSString *, NSString *> *mainFonts, NSString *fontD
         NSURL    *fontURL       = [NSURL URLWithString:url];
         NSString *fontExtension = fontURL.pathExtension;
 
-        NSURL *fontCachePath = [[[getRainDirectory() URLByAppendingPathComponent:@"downloads"
+        NSURL *fontCachePath = [[[getPyoncordDirectory() URLByAppendingPathComponent:@"downloads"
                                                                          isDirectory:YES]
             URLByAppendingPathComponent:@"fonts"
                             isDirectory:YES] URLByAppendingPathComponent:fontDefName
@@ -170,7 +170,7 @@ void patchFonts(NSDictionary<NSString *, NSString *> *mainFonts, NSString *fontD
                                                                          error:&jsonError];
                     if (!jsonError)
                     {
-                        [jsonData writeToURL:[getRainDirectory()
+                        [jsonData writeToURL:[getPyoncordDirectory()
                                                  URLByAppendingPathComponent:@"fontMap.json"]
                                   atomically:YES];
                     }
@@ -200,7 +200,7 @@ void patchFonts(NSDictionary<NSString *, NSString *> *mainFonts, NSString *fontD
         fontMap = [NSMutableDictionary dictionary];
 
         NSData *fontData = [NSData
-            dataWithContentsOfURL:[getRainDirectory() URLByAppendingPathComponent:@"fonts.json"]];
+            dataWithContentsOfURL:[getPyoncordDirectory() URLByAppendingPathComponent:@"fonts.json"]];
         if (fontData)
         {
             NSError      *jsonError;

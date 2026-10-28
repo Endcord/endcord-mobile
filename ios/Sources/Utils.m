@@ -8,28 +8,41 @@
 
 BOOL isJailbroken = NO;
 
-NSURL *getRainDirectory(void) {
-    BunnyLog(@"getRainDirectory: start");
+NSURL *getPyoncordDirectory(void) {
+    BunnyLog(@"getPyoncordDirectory: start");
     NSFileManager *fileManager  = [NSFileManager defaultManager];
-    BunnyLog(@"getRainDirectory: got fileManager");
+    BunnyLog(@"getPyoncordDirectory: got fileManager");
     NSURL *documentDirectoryURL = [[fileManager URLsForDirectory:NSDocumentDirectory
                                                    inDomains:NSUserDomainMask] lastObject];
-    BunnyLog(@"getRainDirectory: documentDirectoryURL = %@", documentDirectoryURL);
+    BunnyLog(@"getPyoncordDirectory: documentDirectoryURL = %@", documentDirectoryURL);
 
-    NSURL *rainFolderURL = [documentDirectoryURL URLByAppendingPathComponent:@"rain"];
-    BunnyLog(@"getRainDirectory: rainFolderURL = %@", rainFolderURL);
+    NSURL *pyoncordFolderURL = [documentDirectoryURL URLByAppendingPathComponent:@"pyoncord"];
+    BunnyLog(@"getPyoncordDirectory: pyoncordFolderURL = %@", pyoncordFolderURL);
 
-    if (![fileManager fileExistsAtPath:rainFolderURL.path]) {
-        BunnyLog(@"getRainDirectory: creating directory...");
-        [fileManager createDirectoryAtURL:rainFolderURL
+    if (![fileManager fileExistsAtPath:pyoncordFolderURL.path]) {
+        BunnyLog(@"getPyoncordDirectory: creating directory...");
+        [fileManager createDirectoryAtURL:pyoncordFolderURL
                   withIntermediateDirectories:YES
                                    attributes:nil
                                        error:nil];
-        BunnyLog(@"getRainDirectory: directory created");
+        BunnyLog(@"getPyoncordDirectory: directory created");
     }
 
-    BunnyLog(@"getRainDirectory: returning %@", rainFolderURL);
-    return rainFolderURL;
+    BunnyLog(@"getPyoncordDirectory: returning %@", pyoncordFolderURL);
+    return pyoncordFolderURL;
+}
+
+// In Caches/pyoncord, where the bundle's clearBundle() removes it from
+NSURL *getBundleURL(void) {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *cachesURL = [[fileManager URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
+    NSURL *folderURL = [cachesURL URLByAppendingPathComponent:@"pyoncord"];
+    [fileManager createDirectoryAtURL:folderURL withIntermediateDirectories:YES attributes:nil error:nil];
+    return [folderURL URLByAppendingPathComponent:@"bundle.js"];
+}
+
+NSURL *getBundleETagURL(void) {
+    return [[getBundleURL() URLByDeletingLastPathComponent] URLByAppendingPathComponent:@"etag.txt"];
 }
 
 UIColor *hexToUIColor(NSString *hex) {
@@ -118,18 +131,18 @@ void loadCustomBundleFromURL(NSURL *url, UIViewController *viewController) {
 
 void deletePlugins(void) {
     [[NSFileManager defaultManager]
-        removeItemAtURL:[getRainDirectory() URLByAppendingPathComponent:@"plugins"]
+        removeItemAtURL:[getPyoncordDirectory() URLByAppendingPathComponent:@"plugins"]
                   error:nil];
 }
 
 void deleteThemes(void) {
     [[NSFileManager defaultManager]
-        removeItemAtURL:[getRainDirectory() URLByAppendingPathComponent:@"themes"]
+        removeItemAtURL:[getPyoncordDirectory() URLByAppendingPathComponent:@"themes"]
                   error:nil];
 }
 
 void deleteAllData(UIViewController *presenter) {
-    [[NSFileManager defaultManager] removeItemAtURL:getRainDirectory() error:nil];
+    [[NSFileManager defaultManager] removeItemAtURL:getPyoncordDirectory() error:nil];
     gracefulExit(presenter);
 }
 
@@ -153,7 +166,7 @@ void setCustomBundleURL(NSURL *url, UIViewController *presenter) {
 void resetCustomBundleURL(UIViewController *presenter) {
     LoaderConfig *config        = [LoaderConfig getLoaderConfig];
     config.customLoadUrlEnabled = NO;
-    config.customLoadUrl        = [NSURL URLWithString:@"http://localhost:4040/Rain.js"];
+    config.customLoadUrl        = [NSURL URLWithString:@"http://localhost:4040/endcord.min.js"];
     [config saveConfig];
     removeCachedBundle();
     gracefulExit(presenter);
@@ -231,195 +244,13 @@ void toggleSafeMode(void) {
                    });
 }
 
-static void showCommitsForBranch(NSString *branch, UIViewController *presenter,
-                                 NSURLSession *session);
-
-void showBundleSelector(UIViewController *presenter) {
-    BunnyLog(@"Starting bundle selector...");
-
-    UIAlertController *loadingAlert =
-        [UIAlertController alertControllerWithTitle:@"Loading"
-                                            message:@"Fetching branches..."
-                                     preferredStyle:UIAlertControllerStyleAlert];
-    [presenter presentViewController:loadingAlert animated:YES completion:nil];
-
-    NSURL *url = [NSURL URLWithString:@"https://codeberg.org/api/v1/repos/raincord/RainTweak/branches"];
-    NSURLSession *session = [NSURLSession
-        sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-
-    BunnyLog(@"Fetching branches from: %@", url);
-
-    [[session
-          dataTaskWithURL:url
-        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [loadingAlert
-                    dismissViewControllerAnimated:YES
-                                       completion:^{
-                                           if (error || !data) {
-                                               showErrorAlert(@"Error", @"Failed to fetch branches",
-                                                              nil);
-                                               return;
-                                           }
-
-                                           NSError *jsonError;
-                                           NSArray *branches =
-                                               [NSJSONSerialization JSONObjectWithData:data
-                                                                               options:0
-                                                                                 error:&jsonError];
-                                           if (jsonError || !branches.count) {
-                                               showErrorAlert(@"Error", @"No branches available",
-                                                              nil);
-                                               return;
-                                           }
-
-                                           UIAlertController *branchAlert = [UIAlertController
-                                               alertControllerWithTitle:@"Select Branch"
-                                                                message:nil
-                                                         preferredStyle:
-                                                             UIAlertControllerStyleAlert];
-
-                                           for (NSDictionary *branch in branches) {
-                                               NSString *branchName = branch[@"name"];
-                                               [branchAlert
-                                                   addAction:
-                                                       [UIAlertAction
-                                                           actionWithTitle:branchName
-                                                                     style:UIAlertActionStyleDefault
-                                                                   handler:^(
-                                                                       UIAlertAction *action) {
-                                                                       showCommitsForBranch(
-                                                                           branchName, presenter,
-                                                                           session);
-                                                                   }]];
-                                           }
-
-                                           [branchAlert
-                                               addAction:
-                                                   [UIAlertAction
-                                                       actionWithTitle:@"Cancel"
-                                                                 style:UIAlertActionStyleCancel
-                                                               handler:nil]];
-
-                                           [presenter presentViewController:branchAlert
-                                                                   animated:YES
-                                                                 completion:nil];
-                                       }];
-            });
-        }] resume];
-}
-
-static void showCommitsForBranch(NSString *branch, UIViewController *presenter,
-                                 NSURLSession *session) {
-    BunnyLog(@"Fetching commits for branch: %@", branch);
-
-    UIAlertController *loadingCommits =
-        [UIAlertController alertControllerWithTitle:@"Loading"
-                                            message:@"Fetching commits..."
-                                     preferredStyle:UIAlertControllerStyleAlert];
-    [presenter presentViewController:loadingCommits animated:YES completion:nil];
-
-    NSString *commitsUrl = [NSString
-        stringWithFormat:
-            @"https://codeberg.org/api/v1/repos/raincord/RainTweak/commits?sha=%@&limit=10", branch];
-    NSURL *commitsURL    = [NSURL URLWithString:commitsUrl];
-
-    [[session
-          dataTaskWithURL:commitsURL
-        completionHandler:^(NSData *commitsData, NSURLResponse *commitsResponse,
-                            NSError *commitsError) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [loadingCommits
-                    dismissViewControllerAnimated:YES
-                                       completion:^{
-                                           if (commitsError || !commitsData) {
-                                               showErrorAlert(@"Error", @"Failed to fetch commits",
-                                                              nil);
-                                               return;
-                                           }
-
-                                           NSError *jsonError;
-                                           NSDictionary *commitsResponse =
-                                               [NSJSONSerialization JSONObjectWithData:commitsData
-                                                                               options:0
-                                                                                 error:&jsonError];
-                                           NSArray *commits = commitsResponse[@"commits"];
-                                           if (jsonError || !commits.count) {
-                                               showErrorAlert(@"Error", @"No commits available",
-                                                              nil);
-                                               return;
-                                           }
-
-                                           UIAlertController *commitAlert = [UIAlertController
-                                               alertControllerWithTitle:@"Select Version"
-                                                                message:nil
-                                                         preferredStyle:
-                                                             UIAlertControllerStyleAlert];
-
-                                           for (NSDictionary *commit in commits) {
-                                               NSString *sha = commit[@"sha"];
-                                               NSString *dateStr =
-                                                   commit[@"commit"][@"author"][@"date"];
-
-                                               NSDateFormatter *iso8601Formatter =
-                                                   [[NSDateFormatter alloc] init];
-                                               iso8601Formatter.dateFormat =
-                                                   @"yyyy-MM-dd'T'HH:mm:ssZ";
-                                               NSDate *date =
-                                                   [iso8601Formatter dateFromString:dateStr];
-
-                                               NSDateFormatter *formatter =
-                                                   [[NSDateFormatter alloc] init];
-                                               formatter.dateFormat = @"MMM d, yyyy";
-
-                                               NSString *title = [NSString
-                                                   stringWithFormat:@"%@ (%@)",
-                                                                    [sha substringToIndex:7],
-                                                                    [formatter
-                                                                        stringFromDate:date]];
-
-                                               [commitAlert
-                                                   addAction:
-                                                       [UIAlertAction
-                                                           actionWithTitle:title
-                                                                     style:UIAlertActionStyleDefault
-                                                                   handler:^(
-                                                                       UIAlertAction *action) {
-                                                                       NSString *bundleUrl =
-                                                                           [NSString
-                                                                               stringWithFormat:
-                                                                                   @"https://codeberg.org/raincord/RainTweak/raw/commit/%@/bundle.js",
-                                                                                   sha];
-                                                                       NSURL *url = [NSURL
-                                                                           URLWithString:bundleUrl];
-                                                                       setCustomBundleURL(
-                                                                           url, presenter);
-                                                                       reloadApp(presenter);
-                                                                   }]];
-                                           }
-
-                                           [commitAlert
-                                               addAction:
-                                                   [UIAlertAction
-                                                       actionWithTitle:@"Cancel"
-                                                                 style:UIAlertActionStyleCancel
-                                                               handler:nil]];
-
-                                           [presenter presentViewController:commitAlert
-                                                                   animated:YES
-                                                                 completion:nil];
-                                       }];
-            });
-        }] resume];
-}
-
 NSURL *getBundleBackupURL(void) {
-    return [getRainDirectory() URLByAppendingPathComponent:@"bundle.js.backup"];
+    return [getBundleURL() URLByAppendingPathExtension:@"backup"];
 }
 
 void moveCachedBundleToBackup(void) {
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSURL *bundleURL = [getRainDirectory() URLByAppendingPathComponent:@"bundle.js"];
+    NSURL *bundleURL = getBundleURL();
     NSURL *backupURL = getBundleBackupURL();
 
     if ([fm fileExistsAtPath:backupURL.path]) {
@@ -445,7 +276,7 @@ void moveCachedBundleToBackup(void) {
 
 BOOL restoreBundleFromBackup(void) {
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSURL *bundleURL = [getRainDirectory() URLByAppendingPathComponent:@"bundle.js"];
+    NSURL *bundleURL = getBundleURL();
     NSURL *backupURL = getBundleBackupURL();
 
     if ([fm fileExistsAtPath:backupURL.path]) {
@@ -500,9 +331,8 @@ void refetchBundle(UIViewController *presenter) {
 
 void removeCachedBundle(void) {
     NSError *error = nil;
-    [[NSFileManager defaultManager]
-        removeItemAtURL:[getRainDirectory() URLByAppendingPathComponent:@"bundle.js"]
-                  error:&error];
+    [[NSFileManager defaultManager] removeItemAtURL:getBundleURL() error:&error];
+    [[NSFileManager defaultManager] removeItemAtURL:getBundleETagURL() error:nil];
     if (error) {
         BunnyLog(@"Failed to remove cached bundle: %@", error);
     }
@@ -534,4 +364,15 @@ BOOL isHermesBytecode(NSData *data) {
         }
     }
     return NO;
+}
+
+uint32_t hermesBytecodeVersion(NSData *data) {
+    // An 8-byte magic number and then the version, both little-endian, as in bundle/scripts/hermes.mjs
+    static const uint8_t magic[] = {0xC6, 0x1F, 0xBC, 0x03, 0xC1, 0x03, 0x19, 0x1F};
+    if (data.length < 12 || memcmp(data.bytes, magic, sizeof(magic)) != 0) {
+        return 0;
+    }
+    uint32_t version;
+    memcpy(&version, (const uint8_t *)data.bytes + 8, sizeof(version));
+    return CFSwapInt32LittleToHost(version);
 }
