@@ -56,8 +56,7 @@ static CAMediaTimingFunction *timingNamed(NSString *name)
 @implementation EndcordCaretView
 {
     BOOL _moving;
-    /** Whether the move being made glides: not when the caret appears, which it does where it is */
-    BOOL _glide;
+    /** Whether it's been shown somewhere: a caret that appears does so where it is, without gliding there */
     BOOL _placed;
 }
 
@@ -104,6 +103,20 @@ static CAMediaTimingFunction *timingNamed(NSString *name)
     [self.layer addAnimation:blink forKey:@"endcordBlink"];
 }
 
+/** Glides a property of the layer from where it is on screen, mid-glide too, to where it now is */
+- (void)glide:(NSString *)keyPath from:(id)from
+{
+    id to = [self.layer valueForKey:keyPath];
+    if ([from isEqual:to]) return;
+    CABasicAnimation *glide = [CABasicAnimation animationWithKeyPath:keyPath];
+    glide.fromValue         = from;
+    glide.toValue           = to;
+    glide.duration          = gDuration;
+    glide.timingFunction    = gTiming;
+    [self.layer addAnimation:glide forKey:[@"endcordGlide." stringByAppendingString:keyPath]];
+}
+
+// UIKit moves its cursor with actions turned off, so the glide is added here rather than as the layer's action
 - (void)endcordMove:(void (^)(void))change
 {
     if (_moving)
@@ -111,10 +124,17 @@ static CAMediaTimingFunction *timingNamed(NSString *name)
         change();
         return;
     }
-    _moving = YES;
-    _glide  = _placed && !self.hidden && self.window && gDuration > 0;
+    _moving    = YES;
+    BOOL glide = _placed && !self.hidden && self.window && gDuration > 0;
+    CALayer *shown   = self.layer.presentationLayer ?: self.layer;
+    id fromPosition  = [shown valueForKey:@"position"];
+    id fromBounds    = [shown valueForKey:@"bounds"];
     change();
-    _glide  = NO;
+    if (glide)
+    {
+        [self glide:@"position" from:fromPosition];
+        [self glide:@"bounds" from:fromBounds];
+    }
     _moving = NO;
     _placed = self.window && !self.hidden;
     if (_blinking) [self resetBlinkAnimation];
@@ -154,21 +174,6 @@ static CAMediaTimingFunction *timingNamed(NSString *name)
 {
     [super didMoveToWindow];
     if (!self.window) _placed = NO;
-}
-
-// A move glides from wherever the caret is on screen, mid-glide too, to the new place
-- (id<CAAction>)actionForLayer:(CALayer *)layer forKey:(NSString *)event
-{
-    if (_glide && layer == self.layer && ([event isEqualToString:@"position"] || [event isEqualToString:@"bounds"]))
-    {
-        CABasicAnimation *glide = [CABasicAnimation animationWithKeyPath:event];
-        CALayer *shown          = layer.presentationLayer ?: layer;
-        glide.fromValue         = [shown valueForKey:event];
-        glide.duration          = gDuration;
-        glide.timingFunction    = gTiming;
-        return glide;
-    }
-    return [super actionForLayer:layer forKey:event];
 }
 
 @end
