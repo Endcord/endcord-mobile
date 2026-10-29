@@ -86,16 +86,26 @@ EOF
 cp "$WORK/main.jsbundle" "$APP/"
 cp -R "$FRAMEWORK" "$APP/Frameworks/"
 cp "$DYLIB" "$APP/Frameworks/Endcord.dylib"
+# In an app group, as a sideloaded Discord signed with one is: the simulator reads the entitlements linked into the app
+cat > "$WORK/host.entitlements" <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+<key>com.apple.security.application-groups</key><array><string>group.com.endcord.test</string></array>
+</dict></plist>
+EOF
 SDK=$(xcrun --sdk iphonesimulator --show-sdk-path)
 xcrun --sdk iphonesimulator clang++ -target arm64-apple-ios15.0-simulator -isysroot "$SDK" -std=c++17 -fobjc-arc \
     -I "$WORK/hermes/destroot/include" -F "$(dirname "$FRAMEWORK")" -framework "$(basename "$FRAMEWORK" .framework)" \
-    -framework UIKit -framework Foundation -Wl,-rpath,@executable_path/Frameworks \
+    -framework UIKit -framework Foundation -framework ReplayKit -Wl,-rpath,@executable_path/Frameworks \
+    -Wl,-sectcreate,__TEXT,__entitlements,"$WORK/host.entitlements" \
     -o "$APP/Host" "$HERE/Host.mm" 2>&1 | tee "$RESULTS/host-build.log"
 if [ ! -x "$APP/Host" ]; then
     fail "the host app didn't build"
     exit 1
 fi
-codesign -f -s - "$APP/Frameworks/"* "$APP"
+codesign -f -s - "$APP/Frameworks/"*
+codesign -f -s - --entitlements "$WORK/host.entitlements" "$APP"
 echo "::endgroup::"
 
 echo "::group::Simulator"
@@ -220,6 +230,13 @@ mode normal
 
 clean_documents
 launch menu
+
+clean_documents
+launch smooth-caret
+clean_documents
+launch app-group
+[ -e "$DOCS/AppGroup/marker.txt" ] && fail "the stand-in app group folder's files stayed" \
+    || pass "the stand-in app group folder's files moved to the signed group"
 
 clean_documents
 json "$DOCS/pyoncord/plugins/settings.json" '{"x":{"enabled":true}}'

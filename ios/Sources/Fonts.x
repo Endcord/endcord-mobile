@@ -186,6 +186,8 @@ void patchFonts(NSDictionary<NSString *, NSString *> *mainFonts, NSString *fontD
 {
     @autoreleasepool
     {
+        if (isAppExtension()) return;
+
         fontMap = [NSMutableDictionary dictionary];
 
         // Safe mode turns fonts off, as the bundle's fonts page says

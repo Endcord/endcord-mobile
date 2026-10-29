@@ -14,6 +14,7 @@
 #import "RCTInstance.h"
 #import "Fonts.h"
 #import "Settings.h"
+#import "SmoothCaret.h"
 #import "Themes.h"
 
 using namespace facebook;
@@ -197,6 +198,10 @@ static NSDictionary<NSString *, BridgeHandler> *bridgeHandlers(void)
         handlers = @{
             @"revenge.info": ^id(NSArray *args) {
                 return @{ @"name": LOADER_NAME, @"version": PACKAGE_VERSION };
+            },
+            @"endcord.smoothType.configure": ^id(NSArray *args) {
+                configureSmoothCaret(args);
+                return nil;
             },
         };
     });
@@ -454,6 +459,8 @@ static void loadEndcord(jsi::Runtime &runtime)
 {
     @autoreleasepool
     {
+        if (isAppExtension()) return;
+
         // Older Discord runs React Native with the bridge, which this tweak doesn't load into
         Class host = objc_getClass("RCTHost");
         if (!isRNNewArchEnabled() || !host || !class_getInstanceMethod(host, @selector(instance:didInitializeRuntime:)))

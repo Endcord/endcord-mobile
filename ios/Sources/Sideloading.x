@@ -1,9 +1,11 @@
 #import <AuthenticationServices/AuthenticationServices.h>
 #import <Foundation/Foundation.h>
+#import <ReplayKit/ReplayKit.h>
 #import <Security/Security.h>
 #import <UIKit/UIKit.h>
 #import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 #import <dlfcn.h>
+#import <objc/runtime.h>
 
 #import "Logger.h"
 #import "Utils.h"
@@ -107,6 +109,99 @@ static BOOL isSelfCall(void *returnAddress)
 
 #define CALLED_FROM_DISCORD isSelfCall(__builtin_return_address(0))
 
+typedef struct __SecTask *SecTaskRef;
+
+/** The app group the app and its extensions were signed with: a signer names it after its own App ID, if it gives one */
+static NSString *signedAppGroup(void)
+{
+    static NSString *group;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        // Security has SecTask on iOS too, but the SDK only declares it for macOS
+        SecTaskRef (*create)(CFAllocatorRef) = (SecTaskRef(*)(CFAllocatorRef))dlsym(RTLD_DEFAULT, "SecTaskCreateFromSelf");
+        CFTypeRef (*copyValue)(SecTaskRef, CFStringRef, CFErrorRef *) =
+            (CFTypeRef(*)(SecTaskRef, CFStringRef, CFErrorRef *))dlsym(RTLD_DEFAULT, "SecTaskCopyValueForEntitlement");
+        if (!create || !copyValue) return;
+        SecTaskRef task = create(kCFAllocatorDefault);
+        if (!task) return;
+        id groups = CFBridgingRelease(copyValue(task, CFSTR("com.apple.security.application-groups"), NULL));
+        CFRelease(task);
+        if (![groups isKindOfClass:NSArray.class]) return;
+        for (id name in groups)
+        {
+            if ([name isKindOfClass:NSString.class] && [name length])
+            {
+                group = name;
+                break;
+            }
+        }
+        BunnyLog(@"Signed with app group %@", group ?: @"none");
+    });
+    return group;
+}
+
+/** What Discord kept in the folder that stood in for its app group, before there was a signed one, moves to it */
+static void moveStandInAppGroup(NSFileManager *fileManager, NSURL *shared)
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSURL *standIn = [getDocumentsDirectory() URLByAppendingPathComponent:@"AppGroup"];
+        NSArray<NSURL *> *items = [fileManager contentsOfDirectoryAtURL:standIn
+                                             includingPropertiesForKeys:nil
+                                                                options:0
+                                                                  error:nil];
+        for (NSURL *item in items)
+        {
+            NSURL *target = [shared URLByAppendingPathComponent:item.lastPathComponent];
+            if (![fileManager fileExistsAtPath:target.path]) [fileManager moveItemAtURL:item toURL:target error:nil];
+        }
+    });
+}
+
+// In the app and in its extensions
+%group AppGroup
+
+%hook NSFileManager
+- (NSURL *)containerURLForSecurityApplicationGroupIdentifier:(NSString *)groupIdentifier
+{
+    // A sideloaded Discord isn't in Discord's app group. The group it was signed with stands in for it, which its
+    // extensions share too: the screen share extension sends the screen to the app through it.
+    NSString *signedGroup = signedAppGroup();
+    NSURL *shared = signedGroup ? %orig(signedGroup) : nil;
+    if (shared)
+    {
+        moveStandInAppGroup(self, shared);
+        return shared;
+    }
+
+    // Without one, a folder of the app's own, which has to exist to be written to
+    NSURL *appGroup = [getDocumentsDirectory() URLByAppendingPathComponent:@"AppGroup"];
+    [self createDirectoryAtURL:appGroup withIntermediateDirectories:YES attributes:nil error:nil];
+    return appGroup;
+}
+%end
+
+%end
+
+%group Broadcast
+
+%hook RPSystemBroadcastPickerView
+- (void)setPreferredExtension:(NSString *)preferredExtension
+{
+    // Discord names its screen share extension after the bundle ID it's told, which is Discord's: that would pick the
+    // App Store Discord's extension when it's installed too, or none
+    NSString *real = (__bridge NSString *)CFBundleGetIdentifier(CFBundleGetMainBundle());
+    if ([preferredExtension hasPrefix:DISCORD_BUNDLE_ID] && real.length && ![real isEqualToString:DISCORD_BUNDLE_ID])
+    {
+        preferredExtension =
+            [real stringByAppendingString:[preferredExtension substringFromIndex:DISCORD_BUNDLE_ID.length]];
+    }
+    %orig(preferredExtension);
+}
+%end
+
+%end
+
 %group Sideloading
 
 %hook NSBundle
@@ -139,20 +234,6 @@ static BOOL isSelfCall(void *returnAddress)
     if ([key isEqualToString:@"CFBundleDisplayName"] || [key isEqualToString:@"CFBundleName"])
         return DISCORD_NAME;
     return %orig;
-}
-%end
-
-%hook NSFileManager
-- (NSURL *)containerURLForSecurityApplicationGroupIdentifier:(NSString *)groupIdentifier
-{
-    BunnyLog(@"containerURLForSecurityApplicationGroupIdentifier called! %@",
-             groupIdentifier ?: @"nil");
-
-    // A sideloaded app has no app group: a folder of its own stands in for it, which has to exist to be written to
-    NSArray *paths    = [self URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
-    NSURL   *appGroup = [[paths lastObject] URLByAppendingPathComponent:@"AppGroup"];
-    [self createDirectoryAtURL:appGroup withIntermediateDirectories:YES attributes:nil error:nil];
-    return appGroup;
 }
 %end
 
@@ -267,8 +348,10 @@ static BOOL isSelfCall(void *returnAddress)
 {
     BOOL isAppStoreApp = [[NSFileManager defaultManager]
         fileExistsAtPath:[[NSBundle mainBundle] appStoreReceiptURL].path];
-    if (!isAppStoreApp)
-    {
-        %init(Sideloading);
-    }
+    if (isAppStoreApp) return;
+
+    %init(AppGroup);
+    if (isAppExtension()) return;
+    %init(Sideloading);
+    if (objc_getClass("RPSystemBroadcastPickerView")) %init(Broadcast);
 }

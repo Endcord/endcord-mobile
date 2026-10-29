@@ -3,6 +3,7 @@
 // Each launch runs one scenario (--scenario=<name>, which run.sh prepares the app's files and the server for) and
 // prints "RESULT PASS|FAIL <scenario> <check>: <detail>" lines, then "DONE <scenario>".
 
+#import <ReplayKit/ReplayKit.h>
 #import <UIKit/UIKit.h>
 #import <dlfcn.h>
 #import <objc/message.h>
@@ -158,6 +159,16 @@ static void checkLoaderAndBridge(jsi::Runtime &rt)
         check(@"bridge-unknown-method", [stringProperty(rt, missing, "error") hasPrefix:@"Method not implemented"],
               stringProperty(rt, missing, "error"));
 
+        // SmoothType's, with the arguments the plugin gives
+        jsi::Array caretArgs(rt, 4);
+        caretArgs.setValueAtIndex(rt, 0, false);
+        caretArgs.setValueAtIndex(rt, 1, 0xffffff);
+        caretArgs.setValueAtIndex(rt, 2, 60);
+        caretArgs.setValueAtIndex(rt, 3, jsi::String::createFromAscii(rt, "ease"));
+        jsi::Object caret = call.call(rt, loaderPayload(rt, "endcord.smoothType.configure", std::move(caretArgs))).asObject(rt);
+        check(@"bridge-smooth-type", !caret.hasProperty(rt, "error") && caret.hasProperty(rt, "result"),
+              stringProperty(rt, caret, "error"));
+
         BOOL threw = NO;
         try { call.call(rt); } catch (const jsi::JSError &e) { threw = YES; }
         check(@"bridge-no-payload-throws", threw, @"");
@@ -217,6 +228,124 @@ static void checkSideloading(void)
     BOOL isFolder = NO;
     check(@"sideloading-app-group", [NSFileManager.defaultManager fileExistsAtPath:group.path isDirectory:&isFolder] && isFolder,
           group.path);
+
+    // Discord picks its screen share extension by the bundle ID it's told; the picker gets this app's own
+    RPSystemBroadcastPickerView *picker = [[RPSystemBroadcastPickerView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    picker.preferredExtension = [seen stringByAppendingString:@".BroadcastUpload"];
+    NSString *real = (__bridge NSString *)CFBundleGetIdentifier(CFBundleGetMainBundle());
+    check(@"broadcast-extension", [picker.preferredExtension isEqualToString:[real stringByAppendingString:@".BroadcastUpload"]],
+          picker.preferredExtension);
+}
+
+// What Discord has around its message box: DCDChatInputComponentView, the native component, holds the text view
+@interface DCDChatInputComponentView : UIView
+@end
+@implementation DCDChatInputComponentView
+@end
+
+static void findViews(UIView *view, NSString *className, NSMutableArray *found)
+{
+    if ([NSStringFromClass(view.class) isEqualToString:className]) [found addObject:view];
+    for (UIView *subview in view.subviews) findViews(subview, className, found);
+}
+
+static NSString *describeInteractions(UIView *view, NSInteger depth)
+{
+    NSMutableArray *parts = [NSMutableArray array];
+    for (id interaction in view.interactions) [parts addObject:NSStringFromClass([interaction class])];
+    if (depth > 0)
+        for (UIView *subview in view.subviews) [parts addObject:describeInteractions(subview, depth - 1)];
+    return [NSString stringWithFormat:@"%@[%@]", NSStringFromClass(view.class), [parts componentsJoinedByString:@" "]];
+}
+
+/** SmoothType's caret, on a message box and not on another text view */
+static void checkSmoothCaret(UIViewController *root)
+{
+    void (*configure)(NSArray *) = (void (*)(NSArray *))dlsym(RTLD_DEFAULT, "configureSmoothCaret");
+    check(@"caret-configure", configure != NULL, @"");
+    if (!configure) return finish();
+
+    DCDChatInputComponentView *box = [[DCDChatInputComponentView alloc] initWithFrame:CGRectMake(16, 120, 340, 120)];
+    UITextView *input = [[UITextView alloc] initWithFrame:box.bounds];
+    input.font = [UIFont systemFontOfSize:22];
+    input.text = @"Hello";
+    [box addSubview:input];
+    [root.view addSubview:box];
+    UITextView *other = [[UITextView alloc] initWithFrame:CGRectMake(16, 300, 340, 120)];
+    other.font = [UIFont systemFontOfSize:22];
+    other.text = @"Not the message box";
+    [root.view addSubview:other];
+
+    configure(@[ @YES, @0xff0000, @400, @"linear" ]);
+    [input becomeFirstResponder];
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        printf("INFO interactions %s\n", describeInteractions(input, 3).UTF8String);
+        NSMutableArray *carets = [NSMutableArray array];
+        findViews(root.view, @"EndcordCaretView", carets);
+        UIView *caret = carets.firstObject;
+        check(@"caret-in-message-box", caret && caret.window && [caret isDescendantOfView:input],
+              caret ? [NSString stringWithFormat:@"%@ in %@", NSStringFromCGRect(caret.frame), NSStringFromClass(caret.superview.class)]
+                    : describeInteractions(input, 3));
+        check(@"caret-color", caret && [hexOf(caret.backgroundColor) isEqualToString:@"#ff0000ff"],
+              caret ? hexOf(caret.backgroundColor) : @"no caret");
+        check(@"caret-is-cursor", caret && [caret conformsToProtocol:objc_getProtocol("UITextCursorView")], @"");
+
+        // Typing moves it: it glides there over the transition delay
+        CGPoint before = caret.layer.position;
+        [input insertText:@" world, and more"];
+        [input layoutIfNeeded];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            CALayer *shown = caret.layer.presentationLayer;
+            CGPoint target = caret.layer.position;
+            BOOL moved = !CGPointEqualToPoint(before, target);
+            BOOL midway = shown && fabs(shown.position.x - target.x) > 1 && fabs(shown.position.x - before.x) > 1;
+            check(@"caret-glides", moved && midway,
+                  [NSString stringWithFormat:@"from %@ to %@, on screen %@, animations %@", NSStringFromCGPoint(before),
+                                             NSStringFromCGPoint(target), NSStringFromCGPoint(shown.position),
+                                             caret.layer.animationKeys]);
+            printf("SCREENSHOT %s\n", scenario.UTF8String);
+            fflush(stdout);
+
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                // Another text view keeps the system's cursor
+                [other becomeFirstResponder];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    NSMutableArray *otherCarets = [NSMutableArray array];
+                    findViews(other, @"EndcordCaretView", otherCarets);
+                    check(@"caret-only-message-box", otherCarets.count == 0, @"");
+
+                    // Turned off, the message box gets the system's back
+                    configure(@[ @NO, @0xff0000, @400, @"linear" ]);
+                    [input becomeFirstResponder];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        NSMutableArray *left = [NSMutableArray array];
+                        findViews(root.view, @"EndcordCaretView", left);
+                        BOOL gone = YES;
+                        for (UIView *view in left) if (view.window) gone = NO;
+                        check(@"caret-off", gone, [NSString stringWithFormat:@"%lu left", (unsigned long)left.count]);
+                        finish();
+                    });
+                });
+            });
+        });
+    });
+}
+
+/** The app group: the signed one, with what the stand-in folder had moved into it */
+static void checkAppGroup(void)
+{
+    NSFileManager *fm = NSFileManager.defaultManager;
+    NSURL *standIn = [documents() URLByAppendingPathComponent:@"AppGroup"];
+    [fm createDirectoryAtURL:standIn withIntermediateDirectories:YES attributes:nil error:nil];
+    [@"kept" writeToURL:[standIn URLByAppendingPathComponent:@"marker.txt"] atomically:YES encoding:NSUTF8StringEncoding error:nil];
+
+    NSURL *group = [fm containerURLForSecurityApplicationGroupIdentifier:@"group.com.hammerandchisel.discord"];
+    check(@"app-group-signed", group && ![group.path hasPrefix:documents().path], group.path ?: @"nil");
+    NSString *marker = [NSString stringWithContentsOfURL:[group URLByAppendingPathComponent:@"marker.txt"]
+                                                encoding:NSUTF8StringEncoding error:nil];
+    check(@"app-group-moved", [marker isEqualToString:@"kept"], marker ?: @"not moved");
+    finish();
 }
 
 static void checkTheme(jsi::Runtime &rt)
@@ -400,6 +529,16 @@ static void runScenario(jsi::Runtime &rt)
         if (deleteThemes) deleteThemes();
         check(@"delete-functions", deletePlugins && deleteThemes, @"");
         finish();
+    }
+    if ([scenario isEqualToString:@"smooth-caret"])
+    {
+        checkSmoothCaret(root);
+        return YES;
+    }
+    if ([scenario isEqualToString:@"app-group"])
+    {
+        checkAppGroup();
+        return YES;
     }
     if ([scenario isEqualToString:@"menu"])
     {

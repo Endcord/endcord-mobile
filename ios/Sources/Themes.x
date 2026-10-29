@@ -312,6 +312,7 @@ void initializeThemeColors(NSDictionary *semanticColors, NSDictionary *rawColors
 }
 
 %ctor {
+    if (isAppExtension()) return;
 
     NSBundle* bundle = [NSBundle bundleWithPath:@"/System/Library/PrivateFrameworks/TextInputUI.framework"];
 	if (!bundle.loaded) [bundle load];

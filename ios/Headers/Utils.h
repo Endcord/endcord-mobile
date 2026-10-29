@@ -35,6 +35,7 @@ void        deleteThemesAndReload(UIViewController *presenter);
 void        moveCachedBundleToBackup(void);
 void        cleanupBundleBackup(void);
 BOOL        isRNNewArchEnabled(void);
+BOOL        isAppExtension(void);
 BOOL        isHermesBytecode(NSData *data);
 uint32_t    hermesBytecodeVersion(NSData *data);
 BOOL        isSafeFileName(id name);

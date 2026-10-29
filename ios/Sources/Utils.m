@@ -390,6 +390,11 @@ BOOL isRNNewArchEnabled(void) {
     return YES;
 }
 
+// The tweak is loaded into Discord's screen share extension too, for its app group (Sideloading.x)
+BOOL isAppExtension(void) {
+    return [NSBundle.mainBundle.bundlePath.pathExtension isEqualToString:@"appex"];
+}
+
 BOOL isHermesBytecode(NSData *data) {
     if (!data || data.length < 4) {
         return NO;
