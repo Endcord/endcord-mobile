@@ -1,0 +1,20 @@
+Which Endcord?
+Endcord Classic
+Endcord
+On the current Discord app, with 300+ Endcord plugins
+Endcord
+Latest: 351.11 - Stable
+Install
+rootpoi
+•
+a6a5c35
+10/29/26
+iOS test: wait for the server to start, and check what deleting plugins and themes removes
+rootpoi
+•
+9ef4c7a
+10/29/26
+iOS: publish the dylib and the .deb without a Discord IPA too
+Endcord Installer
+Reload
+Open about
