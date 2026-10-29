@@ -231,79 +231,57 @@
                                      preferredStyle:UIAlertControllerStyleAlert];
 
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder            = @"https://example.com/bundle.js";
+        textField.placeholder            = @"https://example.com/endcord.min.js";
         textField.keyboardType           = UIKeyboardTypeURL;
         textField.autocorrectionType     = UITextAutocorrectionTypeNo;
         textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     }];
 
+    // An error is shown on its own; the recovery menu stays open to try again
+    __weak UIAlertController *weakAlert = alert;
     UIAlertAction *loadAction = [UIAlertAction
         actionWithTitle:@"Load"
                   style:UIAlertActionStyleDefault
                 handler:^(UIAlertAction *action) {
-                    NSString *urlString = alert.textFields.firstObject.text;
-                    if (urlString.length == 0) {
-                        [self presentViewController:alert animated:YES completion:nil];
-                        showErrorAlert(@"Invalid URL", @"Please enter a URL", nil);
-                        return;
-                    }
-
-                    NSURL *url = [NSURL URLWithString:urlString];
-                    if (!url || !url.scheme || !url.host) {
-                        [self presentViewController:alert animated:YES completion:nil];
-                        showErrorAlert(
-                            @"Invalid URL",
-                            @"Please enter a valid URL (e.g., https://example.com/bundle.js)", nil);
-                        return;
-                    }
-
-                    if (![url.scheme isEqualToString:@"http"] &&
-                        ![url.scheme isEqualToString:@"https"]) {
-                        [self presentViewController:alert animated:YES completion:nil];
-                        showErrorAlert(@"Invalid URL", @"URL must start with http:// or https://",
+                    NSString *urlString = [weakAlert.textFields.firstObject.text
+                        stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet];
+                    NSURL *url = urlString.length ? [NSURL URLWithString:urlString] : nil;
+                    NSString *scheme = url.scheme.lowercaseString;
+                    if (!url.host || !([scheme isEqualToString:@"http"] || [scheme isEqualToString:@"https"])) {
+                        showErrorAlert(@"Invalid URL",
+                                       @"Enter a link that starts with http:// or https://, like "
+                                       @"https://example.com/endcord.min.js",
                                        nil);
                         return;
                     }
 
-                    NSURLSession *session =
-                        [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration
-                                                                   defaultSessionConfiguration]];
+                    NSURLSession *session = [NSURLSession
+                        sessionWithConfiguration:NSURLSessionConfiguration.ephemeralSessionConfiguration];
                     [[session
                           dataTaskWithURL:url
                         completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                             dispatch_async(dispatch_get_main_queue(), ^{
+                                NSInteger status = [response isKindOfClass:NSHTTPURLResponse.class]
+                                                       ? ((NSHTTPURLResponse *)response).statusCode
+                                                       : 0;
                                 if (error) {
-                                    [self presentViewController:alert animated:YES completion:nil];
                                     showErrorAlert(
                                         @"Connection Error",
-                                        [NSString stringWithFormat:@"Could not reach URL: %@",
+                                        [NSString stringWithFormat:@"Could not reach the URL: %@",
                                                                    error.localizedDescription],
                                         nil);
-                                    return;
-                                }
-
-                                if (!data) {
-                                    [self presentViewController:alert animated:YES completion:nil];
-                                    showErrorAlert(@"Error", @"No data received from URL", nil);
-                                    return;
-                                }
-
-                                NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-                                if (httpResponse.statusCode != 200) {
-                                    [self presentViewController:alert animated:YES completion:nil];
+                                } else if (status != 200 || data.length == 0) {
                                     showErrorAlert(
                                         @"Error",
-                                        [NSString stringWithFormat:@"Server returned error %ld",
-                                                                   (long)httpResponse.statusCode],
+                                        [NSString stringWithFormat:@"The server answered with HTTP %ld",
+                                                                   (long)status],
                                         nil);
-                                    return;
+                                } else {
+                                    setCustomBundleURL(url, self);
                                 }
-
-                                setCustomBundleURL(url, self);
-                                removeCachedBundle();
-                                gracefulExit(self);
                             });
                         }] resume];
+                    [session finishTasksAndInvalidate];
                 }];
 
     [alert addAction:[UIAlertAction actionWithTitle:@"Cancel"
@@ -332,22 +310,13 @@ void showSettingsSheet(void) {
                                                       action:@selector(dismiss)];
     settingsVC.navigationItem.rightBarButtonItem = doneButton;
 
-    UIWindow *window = nil;
-    NSSet *scenes    = [[UIApplication sharedApplication] connectedScenes];
-    for (UIScene *scene in scenes) {
-        if (scene.activationState == UISceneActivationStateForegroundActive) {
-            window = ((UIWindowScene *)scene).windows.firstObject;
-            break;
-        }
+    // Over whatever Discord shows; not twice
+    UIViewController *top = topViewController();
+    if ([top isKindOfClass:UINavigationController.class] &&
+        [((UINavigationController *)top).viewControllers.firstObject isKindOfClass:BunnySettingsViewController.class]) {
+        return;
     }
-
-    if (!window) {
-        window = [[UIApplication sharedApplication] windows].firstObject;
-    }
-
-    if (window && window.rootViewController) {
-        [window.rootViewController presentViewController:navController animated:YES completion:nil];
-    }
+    [top presentViewController:navController animated:YES completion:nil];
 }
 
 @end

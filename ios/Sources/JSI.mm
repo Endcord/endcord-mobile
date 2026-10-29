@@ -85,7 +85,7 @@ private:
                 continue;
             }
 
-            out.setProperty(runtime, ((NSString *) key).UTF8String,
+            out.setProperty(runtime, jsi::PropNameID::forUtf8(runtime, nsStringToStd((NSString *) key)),
                             [JSI fromObjC:dict[key] runtime:runtime]);
         }
 
@@ -97,6 +97,16 @@ private:
 
 + (id)toObjC:(const jsi::Value &)value runtime:(jsi::Runtime &)runtime
 {
+    return [JSI toObjC:value runtime:runtime depth:0];
+}
+
+// A depth limit for objects that hold themselves, which would otherwise recurse until the stack runs out
++ (id)toObjC:(const jsi::Value &)value runtime:(jsi::Runtime &)runtime depth:(int)depth
+{
+    if (depth > 32)
+    {
+        throw jsi::JSError(runtime, "The value is nested too deeply to pass to the loader");
+    }
     if (value.isUndefined() || value.isNull())
     {
         return [NSNull null];
@@ -124,7 +134,7 @@ private:
             for (size_t i = 0; i < size; ++i)
             {
                 jsi::Value val = arr.getValueAtIndex(runtime, i);
-                [res addObject:[JSI toObjC:val runtime:runtime]];
+                [res addObject:[JSI toObjC:val runtime:runtime depth:depth + 1]];
             }
             return res;
         }
@@ -142,7 +152,8 @@ private:
                 jsi::String propName = propNames.getValueAtIndex(runtime, i).asString(runtime);
                 std::string nameStr = propName.utf8(runtime);
                 jsi::Value val = obj.getProperty(runtime, propName);
-                res[[NSString stringWithUTF8String:nameStr.c_str()]] = [JSI toObjC:val runtime:runtime];
+                NSString *key = [NSString stringWithUTF8String:nameStr.c_str()];
+                if (key) res[key] = [JSI toObjC:val runtime:runtime depth:depth + 1];
             }
             return res;
         }
@@ -155,7 +166,7 @@ private:
     if (value.isString())
     {
         std::string utf8 = value.asString(runtime).utf8(runtime);
-        return [NSString stringWithUTF8String:utf8.c_str() ?: ""];
+        return [[NSString alloc] initWithBytes:utf8.data() length:utf8.size() encoding:NSUTF8StringEncoding] ?: @"";
     }
 
     return nil;
@@ -204,11 +215,11 @@ private:
                                                  argCount, handler);
 }
 
-+ (void)evaluate:(NSData *)scriptData tag:(NSString *)tag runtime:(jsi::Runtime &)runtime
++ (NSString *)evaluate:(NSData *)scriptData tag:(NSString *)tag runtime:(jsi::Runtime &)runtime
 {
     if (scriptData.length == 0)
     {
-        return;
+        return @"The script is empty";
     }
 
     try
@@ -229,11 +240,14 @@ private:
     catch (const jsi::JSError &e)
     {
         BunnyLog(@"[JSI] evaluate error: JSError for '%@': %s", tag, e.what());
+        return [NSString stringWithUTF8String:e.getMessage().c_str()] ?: @"JavaScript error";
     }
     catch (const std::exception &e)
     {
         BunnyLog(@"[JSI] evaluate error: exception for '%@': %s", tag, e.what());
+        return [NSString stringWithUTF8String:e.what()] ?: @"Error";
     }
+    return nil;
 }
 
 @end

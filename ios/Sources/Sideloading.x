@@ -28,7 +28,6 @@ static void showBundleIDError(BundleIDError error)
 {
     NSString *message;
     NSString *title;
-    void (^completion)(void) = nil;
 
     switch (error)
     {
@@ -41,14 +40,24 @@ static void showBundleIDError(BundleIDError error)
             message    = @"Passkeys are not supported when sideloading Discord. "
                          @"Please use a different login method.";
             title      = @"Cannot Use Passkey";
-            completion = ^{ exit(0); };
             break;
     }
 
-    showErrorAlert(title, message, completion);
+    showErrorAlert(title, message, nil);
 }
 
+static NSString *queryAccessGroupID(void);
+
+// Asked for on every use of the pasteboard; it can't change while Discord runs
 static NSString *getAccessGroupID(void)
+{
+    static NSString *cached;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{ cached = queryAccessGroupID(); });
+    return cached;
+}
+
+static NSString *queryAccessGroupID(void)
 {
     NSDictionary *query = @{
         (__bridge NSString *) kSecClass : (__bridge NSString *) kSecClassGenericPassword,
@@ -76,27 +85,39 @@ static NSString *getAccessGroupID(void)
     return accessGroup;
 }
 
-static BOOL isSelfCall(void)
+/**
+ * Whether code in Discord's app (not the system's) made the call the hook is in, from the hook's return address. The
+ * App ID a sideloaded Discord is signed with is told to Discord's code only.
+ */
+static BOOL isSelfCall(void *returnAddress)
 {
-    NSArray *address = [NSThread callStackReturnAddresses];
-    Dl_info  info    = {0};
-    if (dladdr((void *) [address[2] longLongValue], &info) == 0)
+    Dl_info info = {0};
+    if (!returnAddress || dladdr(returnAddress, &info) == 0 || !info.dli_fname)
         return NO;
-    NSString *path = [NSString stringWithUTF8String:info.dli_fname];
-    return [path hasPrefix:NSBundle.mainBundle.bundlePath];
+
+    static const char *appPath;
+    static size_t appPathLength;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        appPath       = strdup(NSBundle.mainBundle.bundlePath.fileSystemRepresentation);
+        appPathLength = strlen(appPath);
+    });
+    return strncmp(info.dli_fname, appPath, appPathLength) == 0;
 }
+
+#define CALLED_FROM_DISCORD isSelfCall(__builtin_return_address(0))
 
 %group Sideloading
 
 %hook NSBundle
 - (NSString *)bundleIdentifier
 {
-    return isSelfCall() ? DISCORD_BUNDLE_ID : %orig;
+    return CALLED_FROM_DISCORD ? DISCORD_BUNDLE_ID : %orig;
 }
 
 - (NSDictionary *)infoDictionary
 {
-    if (!isSelfCall())
+    if (!CALLED_FROM_DISCORD)
         return %orig;
 
     NSDictionary *origResult = %orig;
@@ -110,7 +131,7 @@ static BOOL isSelfCall(void)
 
 - (id)objectForInfoDictionaryKey:(NSString *)key
 {
-    if (!isSelfCall())
+    if (!CALLED_FROM_DISCORD)
         return %orig;
 
     if ([key isEqualToString:@"CFBundleIdentifier"])
@@ -127,9 +148,11 @@ static BOOL isSelfCall(void)
     BunnyLog(@"containerURLForSecurityApplicationGroupIdentifier called! %@",
              groupIdentifier ?: @"nil");
 
+    // A sideloaded app has no app group: a folder of its own stands in for it, which has to exist to be written to
     NSArray *paths    = [self URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
-    NSURL   *lastPath = [paths lastObject];
-    return [lastPath URLByAppendingPathComponent:@"AppGroup"];
+    NSURL   *appGroup = [[paths lastObject] URLByAppendingPathComponent:@"AppGroup"];
+    [self createDirectoryAtURL:appGroup withIntermediateDirectories:YES attributes:nil error:nil];
+    return appGroup;
 }
 %end
 
@@ -216,11 +239,24 @@ static BOOL isSelfCall(void)
 
 %end
 
+// Passkeys need the app's associated domains, which a sideloaded app isn't signed with. Discord is told the request
+// was canceled, so its login screen carries on, instead of waiting for an answer that never comes.
 %hook ASAuthorizationController
 
 - (void)performRequests
 {
     showBundleIDError(BundleIDErrorPasskey);
+
+    id<ASAuthorizationControllerDelegate> delegate = self.delegate;
+    if ([delegate respondsToSelector:@selector(authorizationController:didCompleteWithError:)])
+    {
+        NSError *canceled = [NSError errorWithDomain:ASAuthorizationErrorDomain
+                                                code:ASAuthorizationErrorCanceled
+                                            userInfo:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [delegate authorizationController:self didCompleteWithError:canceled];
+        });
+    }
 }
 
 %end

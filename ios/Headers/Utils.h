@@ -11,12 +11,14 @@ extern "C" {
 
 BOOL        isSafeModeEnabled(void);
 BOOL        restoreBundleFromBackup(void);
+NSURL      *getDocumentsDirectory(void);
 NSURL      *getPyoncordDirectory(void);
 NSURL      *getBundleURL(void);
 NSURL      *getBundleETagURL(void);
 NSURL      *getBundleBackupURL(void);
-UIColor    *hexToUIColor(NSString *hex);
+UIColor    *hexToUIColor(id hex);
 NSString   *getDeviceIdentifier(void);
+UIViewController *topViewController(void);
 void        showErrorAlert(NSString *title, NSString *message, void (^completion)(void));
 void        reloadApp(UIViewController *viewController);
 void        deletePlugins(void);
@@ -35,6 +37,9 @@ void        cleanupBundleBackup(void);
 BOOL        isRNNewArchEnabled(void);
 BOOL        isHermesBytecode(NSData *data);
 uint32_t    hermesBytecodeVersion(NSData *data);
+BOOL        isSafeFileName(id name);
+NSString   *fontFileExtension(NSString *url);
+id          readJSONFile(NSURL *url);
 
 #ifdef __cplusplus
 }

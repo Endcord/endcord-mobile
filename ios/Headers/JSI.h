@@ -23,6 +23,7 @@
                              runtime:(facebook::jsi::Runtime &)runtime
                              handler:(const facebook::jsi::HostFunctionType &)handler;
 
-+ (void)evaluate:(NSData *)scriptData tag:(NSString *)tag runtime:(facebook::jsi::Runtime &)runtime;
+/** Runs a script, plain JS or Hermes bytecode; returns why it failed, or nil */
++ (NSString *)evaluate:(NSData *)scriptData tag:(NSString *)tag runtime:(facebook::jsi::Runtime &)runtime;
 
 @end

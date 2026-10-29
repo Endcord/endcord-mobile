@@ -57,6 +57,38 @@ jobs:
           name: tweak
           path: ios/out/
 
+  simulator:
+    # The tweak in a stand-in for Discord with Discord's Hermes, on the iOS simulator: loading the bundle (bytecode, the
+    # fallback, updates, the cache, offline), the bridge, themes, fonts, safe mode and the recovery menu
+    # (ios/Tests/run.sh). Publishing waits for it.
+    name: Simulator test (bytecode ${{ matrix.bytecode }})
+    runs-on: macos-15
+    strategy:
+      fail-fast: false
+      matrix:
+        bytecode: [98, 99]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: Randomblock1/theos-action@v1
+      - name: Build the tweak for the simulator
+        working-directory: ios
+        shell: bash
+        run: |
+          mkdir -p ../results
+          export PATH="$(brew --prefix make)/libexec/gnubin:$PATH"
+          make TARGET=simulator:clang:latest:15.0 ARCHS=arm64 Endcord_USE_SUBSTRATE=0 \
+            ENDCORD_BUNDLE_URL=http://127.0.0.1:4040/endcord.min.js 2>&1 | tee ../results/tweak-build.log
+          find .theos/obj -name "*.dylib"
+          cp "$(find .theos/obj -name Endcord.dylib | head -n 1)" ../Endcord-simulator.dylib
+      - name: Test
+        shell: bash
+        run: bash ios/Tests/run.sh Endcord-simulator.dylib ${{ matrix.bytecode }} results
+      - uses: actions/upload-artifact@v6
+        if: always()
+        with:
+          name: simulator-${{ matrix.bytecode }}
+          path: results/
+
   ipa:
     name: IPA
     needs: tweak
@@ -192,7 +224,7 @@ jobs:
 
   report:
     name: Publish the test build
-    needs: [tweak, ipa]
+    needs: [tweak, simulator, ipa]
     if: always() && startsWith(github.ref, 'refs/heads/ios-ci/')
     runs-on: ubuntu-latest
     permissions:
@@ -208,6 +240,11 @@ jobs:
         with:
           name: ipa-log
           path: results
+      - uses: actions/download-artifact@v7
+        continue-on-error: true
+        with:
+          pattern: simulator-*
+          path: results
       - name: Push
         # Only the tweak and a report: the IPA is Discord's app and never goes into this repository
         run: |
@@ -216,6 +253,7 @@ jobs:
             echo "run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             echo "commit: ${{ github.sha }}"
             echo "tweak: ${{ needs.tweak.result }} ${{ needs.tweak.outputs.version }}"
+            echo "simulator: ${{ needs.simulator.result }}"
             echo "ipa: ${{ needs.ipa.result }}"
             echo "discord: ${{ needs.ipa.outputs.discord-version }}"
           } > report.txt
@@ -228,7 +266,7 @@ jobs:
 
   publish:
     name: Publish the release
-    needs: [tweak, ipa]
+    needs: [tweak, simulator, ipa]
     if: >-
       github.ref == 'refs/heads/next' && needs.ipa.outputs.discord-version != '' &&
       (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.release))

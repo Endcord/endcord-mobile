@@ -8,28 +8,24 @@
 
 BOOL isJailbroken = NO;
 
+NSURL *getDocumentsDirectory(void) {
+    return [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask]
+        .lastObject;
+}
+
+// Documents/pyoncord, where the bundle keeps the loader's files (lib/api/native/fs.ts)
 NSURL *getPyoncordDirectory(void) {
-    BunnyLog(@"getPyoncordDirectory: start");
-    NSFileManager *fileManager  = [NSFileManager defaultManager];
-    BunnyLog(@"getPyoncordDirectory: got fileManager");
-    NSURL *documentDirectoryURL = [[fileManager URLsForDirectory:NSDocumentDirectory
-                                                   inDomains:NSUserDomainMask] lastObject];
-    BunnyLog(@"getPyoncordDirectory: documentDirectoryURL = %@", documentDirectoryURL);
-
-    NSURL *pyoncordFolderURL = [documentDirectoryURL URLByAppendingPathComponent:@"pyoncord"];
-    BunnyLog(@"getPyoncordDirectory: pyoncordFolderURL = %@", pyoncordFolderURL);
-
-    if (![fileManager fileExistsAtPath:pyoncordFolderURL.path]) {
-        BunnyLog(@"getPyoncordDirectory: creating directory...");
-        [fileManager createDirectoryAtURL:pyoncordFolderURL
-                  withIntermediateDirectories:YES
-                                   attributes:nil
-                                       error:nil];
-        BunnyLog(@"getPyoncordDirectory: directory created");
-    }
-
-    BunnyLog(@"getPyoncordDirectory: returning %@", pyoncordFolderURL);
+    NSURL *pyoncordFolderURL = [getDocumentsDirectory() URLByAppendingPathComponent:@"pyoncord"];
+    [[NSFileManager defaultManager] createDirectoryAtURL:pyoncordFolderURL
+                             withIntermediateDirectories:YES
+                                              attributes:nil
+                                                   error:nil];
     return pyoncordFolderURL;
+}
+
+/** Documents/vd_mmkv, where the bundle keeps its storages (core/vendetta/storage.ts) */
+static NSURL *getStorageDirectory(void) {
+    return [getDocumentsDirectory() URLByAppendingPathComponent:@"vd_mmkv"];
 }
 
 // In Caches/pyoncord, where the bundle's clearBundle() removes it from
@@ -41,37 +37,122 @@ NSURL *getBundleURL(void) {
     return [folderURL URLByAppendingPathComponent:@"bundle.js"];
 }
 
+// Where the saved bundle was downloaded from, and its ETag on a second line when the server sent one
 NSURL *getBundleETagURL(void) {
     return [[getBundleURL() URLByDeletingLastPathComponent] URLByAppendingPathComponent:@"etag.txt"];
 }
 
-UIColor *hexToUIColor(NSString *hex) {
-    if (![hex hasPrefix:@"#"]) {
+id readJSONFile(NSURL *url) {
+    NSData *data = url ? [NSData dataWithContentsOfURL:url] : nil;
+    return data ? [NSJSONSerialization JSONObjectWithData:data options:0 error:nil] : nil;
+}
+
+/** Writes a JSON object to a file, creating its folder */
+static BOOL writeJSONFile(id object, NSURL *url) {
+    NSData *data = [NSJSONSerialization isValidJSONObject:object]
+                       ? [NSJSONSerialization dataWithJSONObject:object options:0 error:nil]
+                       : nil;
+    if (!data) return NO;
+    [[NSFileManager defaultManager] createDirectoryAtURL:[url URLByDeletingLastPathComponent]
+                             withIntermediateDirectories:YES
+                                              attributes:nil
+                                                   error:nil];
+    return [data writeToURL:url atomically:YES];
+}
+
+// "#RGB", "#RGBA", "#RRGGBB" or "#RRGGBBAA"; anything else, a theme's false for a color it leaves out among them, is nil
+UIColor *hexToUIColor(id hex) {
+    if (![hex isKindOfClass:[NSString class]] || ![hex hasPrefix:@"#"]) {
         return nil;
     }
 
+    // Theme colors are looked up every time Discord draws one
+    static NSCache<NSString *, UIColor *> *cache;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{ cache = [NSCache new]; });
+    UIColor *cached = [cache objectForKey:hex];
+    if (cached) {
+        return cached;
+    }
+
     NSString *hexColor = [hex substringFromIndex:1];
+    if (hexColor.length == 3 || hexColor.length == 4) {
+        NSMutableString *expanded = [NSMutableString string];
+        for (NSUInteger i = 0; i < hexColor.length; i++) {
+            unichar c = [hexColor characterAtIndex:i];
+            [expanded appendFormat:@"%C%C", c, c];
+        }
+        hexColor = expanded;
+    }
     if (hexColor.length == 6) {
         hexColor = [hexColor stringByAppendingString:@"ff"];
     }
 
-    if (hexColor.length == 8) {
-        unsigned int hexNumber;
-        NSScanner *scanner = [NSScanner scannerWithString:hexColor];
-        if ([scanner scanHexInt:&hexNumber]) {
-            CGFloat r = ((hexNumber & 0xFF000000) >> 24) / 255.0;
-            CGFloat g = ((hexNumber & 0x00FF0000) >> 16) / 255.0;
-            CGFloat b = ((hexNumber & 0x0000FF00) >> 8) / 255.0;
-            CGFloat a = (hexNumber & 0x000000FF) / 255.0;
-
-            return [UIColor colorWithRed:r green:g blue:b alpha:a];
-        }
+    NSCharacterSet *notHex =
+        [[NSCharacterSet characterSetWithCharactersInString:@"0123456789abcdefABCDEF"] invertedSet];
+    if (hexColor.length != 8 || [hexColor rangeOfCharacterFromSet:notHex].location != NSNotFound) {
+        return nil;
     }
 
-    return nil;
+    unsigned int hexNumber = 0;
+    [[NSScanner scannerWithString:hexColor] scanHexInt:&hexNumber];
+    CGFloat r = ((hexNumber & 0xFF000000) >> 24) / 255.0;
+    CGFloat g = ((hexNumber & 0x00FF0000) >> 16) / 255.0;
+    CGFloat b = ((hexNumber & 0x0000FF00) >> 8) / 255.0;
+    CGFloat a = (hexNumber & 0x000000FF) / 255.0;
+
+    UIColor *color = [UIColor colorWithRed:r green:g blue:b alpha:a];
+    [cache setObject:color forKey:hex];
+    return color;
+}
+
+/** The window the user sees: the key window of the active scene, or else any key or visible window */
+static UIWindow *visibleWindow(void) {
+    UIWindow *fallback = nil;
+    for (UIScene *scene in [UIApplication sharedApplication].connectedScenes) {
+        if (![scene isKindOfClass:[UIWindowScene class]]) continue;
+        BOOL active = scene.activationState == UISceneActivationStateForegroundActive;
+        for (UIWindow *window in ((UIWindowScene *)scene).windows) {
+            if (window.isKeyWindow && active) return window;
+            if (!fallback && (window.isKeyWindow || !window.hidden) && window.rootViewController) fallback = window;
+        }
+    }
+    // An app without scenes
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    for (UIWindow *window in [UIApplication sharedApplication].windows) {
+        if (!fallback && (window.isKeyWindow || !window.hidden) && window.rootViewController) fallback = window;
+    }
+#pragma clang diagnostic pop
+    return fallback;
+}
+
+// The view controller on top, which a new one has to be presented from: presenting from one that already presents fails
+UIViewController *topViewController(void) {
+    UIViewController *top = visibleWindow().rootViewController;
+    while (top.presentedViewController && !top.presentedViewController.isBeingDismissed) {
+        top = top.presentedViewController;
+    }
+    return top;
+}
+
+/** Presents an alert once there's a window to show it in: at launch Discord has none yet for a while */
+static void presentWhenPossible(UIAlertController *alert, int attemptsLeft) {
+    UIViewController *top = topViewController();
+    if (top && top.view.window && !top.isBeingPresented && !top.isBeingDismissed) {
+        [top presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    if (attemptsLeft <= 0) {
+        BunnyLog(@"No window to show \"%@\" in", alert.title);
+        return;
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(),
+                   ^{ presentWhenPossible(alert, attemptsLeft - 1); });
 }
 
 void showErrorAlert(NSString *title, NSString *message, void (^completion)(void)) {
+    BunnyLog(@"%@: %@", title, message);
     dispatch_async(dispatch_get_main_queue(), ^{
         UIAlertController *alert =
             [UIAlertController alertControllerWithTitle:title
@@ -87,17 +168,7 @@ void showErrorAlert(NSString *title, NSString *message, void (^completion)(void)
                                                          }];
 
         [alert addAction:okAction];
-
-        UIWindow *window = nil;
-        NSArray *windows = [[UIApplication sharedApplication] windows];
-        for (UIWindow *w in windows) {
-            if (w.isKeyWindow) {
-                window = w;
-                break;
-            }
-        }
-
-        [window.rootViewController presentViewController:alert animated:YES completion:nil];
+        presentWhenPossible(alert, 60);
     });
 }
 
@@ -107,42 +178,38 @@ NSString *getDeviceIdentifier(void) {
     return [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
 }
 
+// iOS apps can't restart themselves: Discord is closed, to start with the change when it's opened again
 void reloadApp(UIViewController *viewController) {
-    [viewController
-        dismissViewControllerAnimated:NO
-                           completion:^{
-                               UIApplication *app = [UIApplication sharedApplication];
-                               ((void (*)(id, SEL))objc_msgSend)(app, @selector(suspend));
-                               dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC),
-                                              dispatch_get_main_queue(), ^{ exit(0); });
-                           }];
-}
-
-void loadCustomBundleFromURL(NSURL *url, UIViewController *viewController) {
-    LoaderConfig *config        = [LoaderConfig getLoaderConfig];
-    config.customLoadUrlEnabled = YES;
-    config.customLoadUrl        = url;
-    if ([config saveConfig]) {
-        reloadApp(viewController);
+    void (^quit)(void) = ^{
+        UIApplication *app = [UIApplication sharedApplication];
+        ((void (*)(id, SEL))objc_msgSend)(app, @selector(suspend));
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)),
+                       dispatch_get_main_queue(), ^{ exit(0); });
+    };
+    if (viewController) {
+        [viewController dismissViewControllerAnimated:NO completion:quit];
     } else {
-        showErrorAlert(@"Error", @"Failed to save custom bundle configuration", nil);
+        quit();
     }
 }
 
 void deletePlugins(void) {
-    [[NSFileManager defaultManager]
-        removeItemAtURL:[getPyoncordDirectory() URLByAppendingPathComponent:@"plugins"]
-                  error:nil];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    // Endcord's plugin settings and installed plugins, and the Vendetta plugins'
+    [fm removeItemAtURL:[getPyoncordDirectory() URLByAppendingPathComponent:@"plugins"] error:nil];
+    [fm removeItemAtURL:[getStorageDirectory() URLByAppendingPathComponent:@"VENDETTA_PLUGINS"] error:nil];
 }
 
 void deleteThemes(void) {
-    [[NSFileManager defaultManager]
-        removeItemAtURL:[getPyoncordDirectory() URLByAppendingPathComponent:@"themes"]
-                  error:nil];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    [fm removeItemAtURL:[getStorageDirectory() URLByAppendingPathComponent:@"VENDETTA_THEMES"] error:nil];
+    [fm removeItemAtURL:[getPyoncordDirectory() URLByAppendingPathComponent:@"current-theme.json"] error:nil];
+    [fm removeItemAtURL:[getPyoncordDirectory() URLByAppendingPathComponent:@"themes"] error:nil];
 }
 
 void deleteAllData(UIViewController *presenter) {
     [[NSFileManager defaultManager] removeItemAtURL:getPyoncordDirectory() error:nil];
+    [[NSFileManager defaultManager] removeItemAtURL:getStorageDirectory() error:nil];
     gracefulExit(presenter);
 }
 
@@ -150,7 +217,7 @@ void gracefulExit(UIViewController *presenter) {
     UIApplication *app = [UIApplication sharedApplication];
     [app performSelector:@selector(suspend)];
 
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(),
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(),
                    ^{ [app performSelector:@selector(terminateWithSuccess)]; });
 }
 
@@ -166,82 +233,58 @@ void setCustomBundleURL(NSURL *url, UIViewController *presenter) {
 void resetCustomBundleURL(UIViewController *presenter) {
     LoaderConfig *config        = [LoaderConfig getLoaderConfig];
     config.customLoadUrlEnabled = NO;
-    config.customLoadUrl        = [NSURL URLWithString:@"http://localhost:4040/endcord.min.js"];
     [config saveConfig];
     removeCachedBundle();
     gracefulExit(presenter);
 }
 
 BOOL isSafeModeEnabled(void) {
-    NSURL *documentDirectoryURL =
-        [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
-                                               inDomains:NSUserDomainMask]
-            .lastObject;
-    NSURL *settingsURL =
-        [documentDirectoryURL URLByAppendingPathComponent:@"vd_mmkv/VENDETTA_SETTINGS"];
-
-    NSData *data = [NSData dataWithContentsOfURL:settingsURL];
-    if (!data)
-        return NO;
-
-    NSError *error         = nil;
-    NSDictionary *settings = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-    if (error)
-        return NO;
-
-    return [settings[@"safeMode"][@"enabled"] boolValue];
+    NSDictionary *settings = readJSONFile([getStorageDirectory() URLByAppendingPathComponent:@"VENDETTA_SETTINGS"]);
+    if (![settings isKindOfClass:[NSDictionary class]]) return NO;
+    NSDictionary *safeMode = settings[@"safeMode"];
+    if (![safeMode isKindOfClass:[NSDictionary class]]) return NO;
+    id enabled = safeMode[@"enabled"];
+    return [enabled isKindOfClass:[NSNumber class]] && [enabled boolValue];
 }
 
+// As the bundle's own toggle (lib/api/debug): safe mode has no theme, and the one that was on comes back after it
 void toggleSafeMode(void) {
-    NSURL *documentDirectoryURL =
-        [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
-                                               inDomains:NSUserDomainMask]
-            .lastObject;
-    NSURL *settingsURL =
-        [documentDirectoryURL URLByAppendingPathComponent:@"vd_mmkv/VENDETTA_SETTINGS"];
-    NSURL *themeURL = [documentDirectoryURL URLByAppendingPathComponent:@"vd_mmkv/VENDETTA_THEMES"];
+    NSURL *settingsURL = [getStorageDirectory() URLByAppendingPathComponent:@"VENDETTA_SETTINGS"];
+    NSURL *themeURL    = [getPyoncordDirectory() URLByAppendingPathComponent:@"current-theme.json"];
 
-    NSData *data                  = [NSData dataWithContentsOfURL:settingsURL];
-    NSMutableDictionary *settings = nil;
+    id saved = readJSONFile(settingsURL);
+    NSMutableDictionary *settings =
+        [saved isKindOfClass:[NSDictionary class]] ? [saved mutableCopy] : [NSMutableDictionary dictionary];
+    NSMutableDictionary *safeMode = [settings[@"safeMode"] isKindOfClass:[NSDictionary class]]
+                                        ? [settings[@"safeMode"] mutableCopy]
+                                        : [NSMutableDictionary dictionary];
+    BOOL enable = !isSafeModeEnabled();
 
-    if (data) {
-        settings = [[NSJSONSerialization JSONObjectWithData:data
-                                                    options:NSJSONReadingMutableContainers
-                                                      error:nil] mutableCopy];
+    if (enable) {
+        NSDictionary *current = readJSONFile(themeURL);
+        if ([current isKindOfClass:[NSDictionary class]] && [current[@"id"] isKindOfClass:[NSString class]]) {
+            safeMode[@"currentThemeId"] = current[@"id"];
+        }
+        writeJSONFile(@{}, themeURL);
     } else {
-        settings = [NSMutableDictionary dictionary];
-    }
-
-    if (!settings[@"safeMode"]) {
-        settings[@"safeMode"] = [NSMutableDictionary dictionary];
-    }
-
-    BOOL currentState                 = [settings[@"safeMode"][@"enabled"] boolValue];
-    BOOL newState                     = !currentState;
-    settings[@"safeMode"][@"enabled"] = @(newState);
-
-    NSData *themeData = [NSData dataWithContentsOfURL:themeURL];
-    if (themeData) {
-        NSDictionary *theme = [NSJSONSerialization JSONObjectWithData:themeData
-                                                              options:0
-                                                                error:nil];
-        if (theme && theme[@"id"]) {
-            if (newState) {
-                settings[@"safeMode"][@"currentThemeId"] = theme[@"id"];
-                [[NSFileManager defaultManager] removeItemAtURL:themeURL error:nil];
-            }
+        NSDictionary *themes = readJSONFile([getStorageDirectory() URLByAppendingPathComponent:@"VENDETTA_THEMES"]);
+        id themeId           = safeMode[@"currentThemeId"];
+        NSDictionary *theme  = [themes isKindOfClass:[NSDictionary class]] && [themeId isKindOfClass:[NSString class]]
+                                   ? themes[themeId]
+                                   : nil;
+        if ([theme isKindOfClass:[NSDictionary class]]) {
+            NSMutableDictionary *selected = [theme mutableCopy];
+            selected[@"selected"]         = @YES;
+            writeJSONFile(selected, themeURL);
         }
     }
 
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:settings options:0 error:nil];
-    [jsonData writeToURL:settingsURL atomically:YES];
+    safeMode[@"enabled"]  = @(enable);
+    settings[@"safeMode"] = safeMode;
+    writeJSONFile(settings, settingsURL);
 
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.4 * NSEC_PER_SEC), dispatch_get_main_queue(),
-                   ^{
-                       UIViewController *rootVC =
-                           [UIApplication sharedApplication].windows.firstObject.rootViewController;
-                       reloadApp(rootVC);
-                   });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(),
+                   ^{ reloadApp(topViewController()); });
 }
 
 NSURL *getBundleBackupURL(void) {
@@ -339,13 +382,11 @@ void removeCachedBundle(void) {
 }
 
 BOOL isRNNewArchEnabled(void) {
-    BunnyLog(@"isRNNewArchEnabled: start");
     id raw = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"RCTNewArchEnabled"];
-    BunnyLog(@"isRNNewArchEnabled: raw = %@", raw);
-    if (raw) {
+    if ([raw respondsToSelector:@selector(boolValue)]) {
         return [raw boolValue];
     }
-    BunnyLog(@"isRNNewArchEnabled: assuming YES (bridgeless)");
+    // Discord leaves it out since the new architecture is the only one
     return YES;
 }
 
@@ -375,4 +416,21 @@ uint32_t hermesBytecodeVersion(NSData *data) {
     uint32_t version;
     memcpy(&version, (const uint8_t *)data.bytes + 8, sizeof(version));
     return CFSwapInt32LittleToHost(version);
+}
+
+// The bundle's rule for font names (lib/addons/fonts): they make the paths fonts are saved at, so "../.." would write
+// outside the fonts folder
+BOOL isSafeFileName(id name) {
+    if (![name isKindOfClass:[NSString class]]) return NO;
+    NSString *string = name;
+    if (string.length == 0 || string.length > 100 || [string hasPrefix:@"."]) return NO;
+    NSMutableCharacterSet *forbidden = [NSMutableCharacterSet characterSetWithRange:NSMakeRange(0, 0x20)];
+    [forbidden addCharactersInString:@"/\\"];
+    return [string rangeOfCharacterFromSet:forbidden].location == NSNotFound;
+}
+
+// The extension the bundle saves a font file with: the link's, when it's ttf or otf
+NSString *fontFileExtension(NSString *url) {
+    NSString *extension = [url componentsSeparatedByString:@"."].lastObject;
+    return [extension isEqualToString:@"otf"] ? @"otf" : @"ttf";
 }
