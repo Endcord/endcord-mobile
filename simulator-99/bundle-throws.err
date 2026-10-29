@@ -1,0 +1,14 @@
+2026-10-29 01:40:07.737684+0000 Host[33611:92512] [Endcord] Using the default loader config
+2026-10-29 01:40:07.796515+0000 Host[33611:92512] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-10-29 01:40:07.844221+0000 Host[33611:92592] [Endcord] Using the default loader config
+2026-10-29 01:40:07.849239+0000 Host[33611:92592] [Endcord] Using the default loader config
+2026-10-29 01:40:07.850049+0000 Host[33611:92592] [Endcord] Discord's bundle has bytecode version 99
+2026-10-29 01:40:07.924546+0000 Host[33611:92592] [Endcord] Couldn't download the bundle from http://127.0.0.1:4040/endcord.v99.hbc: HTTP 404
+2026-10-29 01:40:07.935628+0000 Host[33611:92592] [Endcord] Downloaded the bundle from http://127.0.0.1:4040/endcord.min.js (64 bytes)
+2026-10-29 01:40:07.948225+0000 Host[33611:92592] [Endcord] [JSI] evaluate error: JSError for 'endcord:bundle': boom
+
+Error: boom
+    at global (endcord:bundle:1:55)
+2026-10-29 01:40:07.948683+0000 Host[33611:92592] [Endcord] Endcord couldn't start: boom
+
+Shake your device for the recovery menu.

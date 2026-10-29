@@ -1,0 +1,17 @@
+2026-10-29 01:35:49.504120+0000 Host[18367:55344] [Endcord] Using the default loader config
+2026-10-29 01:35:49.580141+0000 Host[18367:55344] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-10-29 01:35:49.634706+0000 Host[18367:55364] [Endcord] Using the default loader config
+2026-10-29 01:35:49.635610+0000 Host[18367:55364] [Endcord] Initializing theme (4 semantic colors, 6 raw colors)
+2026-10-29 01:35:49.636992+0000 Host[18367:55364] [Endcord] Processing 6 raw color methods
+2026-10-29 01:35:49.639088+0000 Host[18367:55364] [Endcord] Skipping raw color new: it isn't a color name
+2026-10-29 01:35:49.639244+0000 Host[18367:55364] [Endcord] Skipping raw color colorWithRed:green:blue:alpha:: it isn't a color name
+2026-10-29 01:35:49.639326+0000 Host[18367:55364] [Endcord] Skipping raw color alloc: it isn't a color name
+2026-10-29 01:35:49.639381+0000 Host[18367:55364] [Endcord] Skipping raw color blackColor: it isn't a color name
+2026-10-29 01:35:49.640936+0000 Host[18367:55364] [Endcord] Using the default loader config
+2026-10-29 01:35:49.641244+0000 Host[18367:55364] [Endcord] Discord's bundle has bytecode version 98
+2026-10-29 01:35:49.642440+0000 Host[18367:55364] [Endcord] Applied theme color: backgroundPrimary
+2026-10-29 01:35:49.643019+0000 Host[18367:55364] [Endcord] Applied theme color: headerPrimary
+2026-10-29 01:35:49.650115+0000 Host[18367:55364] [Endcord] Applied raw color: PRIMARY_500
+2026-10-29 01:35:49.721925+0000 Host[18367:55361] [Endcord] Using the default loader config
+2026-10-29 01:35:49.730020+0000 Host[18367:55361] [Endcord] Using the default loader config
+2026-10-29 01:35:49.771251+0000 Host[18367:55361] [Endcord] The bundle at http://127.0.0.1:4040/endcord.v98.hbc hasn't changed

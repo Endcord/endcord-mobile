@@ -1,0 +1,9 @@
+2026-10-29 01:36:52.164974+0000 Host[24939:70746] [Endcord] Using the default loader config
+2026-10-29 01:36:52.802543+0000 Host[24939:70746] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-10-29 01:36:52.948617+0000 Host[24939:70811] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+2026-10-29 01:36:52.989505+0000 Host[24939:70908] [Endcord] Using the default loader config
+2026-10-29 01:36:52.996600+0000 Host[24939:70810] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+2026-10-29 01:36:52.999598+0000 Host[24939:70908] [Endcord] Using the default loader config
+2026-10-29 01:36:53.000139+0000 Host[24939:70908] [Endcord] Discord's bundle has bytecode version 99
+2026-10-29 01:36:54.394295+0000 Host[24939:70908] [Endcord] Downloaded the bundle from http://127.0.0.1:4040/endcord.v99.hbc (397 bytes)
+2026-10-29 01:36:54.399801+0000 Host[24939:70908] [Endcord] containerURLForSecurityApplicationGroupIdentifier called! group.test

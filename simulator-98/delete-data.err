@@ -1,0 +1,2 @@
+2026-10-29 01:36:57.249027+0000 Host[21222:62561] [Endcord] Using the default loader config
+2026-10-29 01:36:57.320880+0000 Host[21222:62561] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
