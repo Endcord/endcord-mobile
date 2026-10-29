@@ -1752,6 +1752,7 @@
     "This needs a newer Endcord. Install it again with Endcord Installer.": "Esto necesita un Endcord más reciente. Vuelve a instalarlo con Endcord Installer.",
     "This only works in DMs and group DMs.": "Esto solo funciona en MD y MD grupales.",
     "This only works in a server.": "Esto solo funciona en un servidor.",
+    "This only works on Android for now.": "Por ahora esto solo funciona en Android.",
     "This pack overrides the following: {fonts}": "Este paquete sustituye lo siguiente: {fonts}",
     "This plugin hasn't been checked by the plugin repository's maintainers. Only install it if you trust its author.": "Este plugin no lo han revisado los responsables del repositorio de plugins. Instálalo solo si confías en su autor.",
     "This plugin is marked as broken on the current Discord.": "Este plugin está marcado como roto en el Discord actual.",

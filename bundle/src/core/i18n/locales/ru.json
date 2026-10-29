@@ -1752,6 +1752,7 @@
     "This needs a newer Endcord. Install it again with Endcord Installer.": "Для этого нужен более новый Endcord. Установите его заново через Endcord Installer.",
     "This only works in DMs and group DMs.": "Это работает только в ЛС и групповых чатах.",
     "This only works in a server.": "Это работает только на сервере.",
+    "This only works on Android for now.": "Пока это работает только на Android.",
     "This pack overrides the following: {fonts}": "Этот набор заменяет: {fonts}",
     "This plugin hasn't been checked by the plugin repository's maintainers. Only install it if you trust its author.": "Этот плагин не проверен владельцами репозитория плагинов. Устанавливайте его, только если доверяете автору.",
     "This plugin is marked as broken on the current Discord.": "Этот плагин отмечен как не работающий в текущей версии Discord.",

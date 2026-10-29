@@ -7799,6 +7799,12 @@
         "es": "Este enlace es un **{urlType, select, plugin {plugin} theme {tema} other {complemento}}**. ¿Quieres instalarlo?",
         "fr": "Ce lien est un **{urlType, select, plugin {plugin} theme {thème} other {module}}**. Voulez-vous l'installer ?"
     },
+    "This only works on Android for now.": {
+        "tr": "Bu şimdilik yalnızca Android'de çalışıyor.",
+        "ru": "Пока это работает только на Android.",
+        "es": "Por ahora esto solo funciona en Android.",
+        "fr": "Pour l'instant, cela ne fonctionne que sur Android."
+    },
     "This needs a newer Endcord. Install it again with Endcord Installer.": {
         "tr": "Bunun için daha yeni bir Endcord gerekiyor. Endcord Installer ile yeniden kur.",
         "ru": "Для этого нужен более новый Endcord. Установите его заново через Endcord Installer.",

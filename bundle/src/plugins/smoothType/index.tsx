@@ -9,7 +9,7 @@ import { useProxy } from "@core/vendetta/storage";
 import { callLoaderMethod, callLoaderMethodAsync } from "@lib/api/native/modules";
 import { Stack, Text, TextInput } from "@metro/common/components";
 import { useState } from "react";
-import { View } from "react-native";
+import { Platform, View } from "react-native";
 
 import { definePlugin, onSettingChange } from "../api";
 
@@ -93,7 +93,10 @@ const plugin = definePlugin({
                 apply = enabled => callLoaderMethodAsync(...args(enabled)).catch(e => logger.error("Couldn't set the caret", e));
             } catch (e) {
                 logger.error("The loader can't draw the caret", syncError, e);
-                throw new Error(t("This needs a newer Endcord. Install it again with Endcord Installer."));
+                // The iOS loader has no caret of its own yet; reinstalling is the Android installer's
+                throw new Error(Platform.OS === "ios"
+                    ? t("This only works on Android for now.")
+                    : t("This needs a newer Endcord. Install it again with Endcord Installer."));
             }
         }
         cleanup(
