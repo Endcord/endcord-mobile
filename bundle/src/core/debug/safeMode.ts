@@ -11,7 +11,9 @@ export async function toggleSafeMode({
     reload = true
 } = {}) {
     const enabled = (settings.safeMode ??= { enabled: to }).enabled = to;
+    // The loaders read the theme as it's stored ({ id, selected, data }): its data alone reads as no theme, which left
+    // the theme off after safe mode until it was chosen again
     const currentColor = getCurrentTheme();
-    await writeThemeToNative(enabled ? {} : currentColor?.data ?? {});
+    await writeThemeToNative(enabled ? {} : currentColor ?? {});
     if (reload) setTimeout(() => BundleUpdaterManager.reload(), 500);
 }
