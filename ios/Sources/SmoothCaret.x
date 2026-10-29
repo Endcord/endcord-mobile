@@ -204,11 +204,35 @@ static id<EndcordSelectionDisplay> selectionDisplay(UIView *view, NSInteger dept
     return nil;
 }
 
+/**
+ * Gives the selection display another cursor view. Where it takes the new one without putting it where the old one
+ * was, it goes there.
+ */
+static void swapCursor(id<EndcordSelectionDisplay> display, UIView *from, UIView *to)
+{
+    UIView *container = from.superview;
+    NSUInteger index  = container ? [container.subviews indexOfObject:from] : NSNotFound;
+    display.cursorView = to;
+    BOOL taken = display.cursorView == to;
+    if (taken && !to.superview && container)
+    {
+        if (index == NSNotFound) index = container.subviews.count;
+        [container insertSubview:to atIndex:MIN(index, container.subviews.count)];
+        [from removeFromSuperview];
+    }
+    BunnyLog(@"SmoothType: %@ -> %@, taken %d, in %@", NSStringFromClass(from.class), NSStringFromClass(to.class), taken,
+             NSStringFromClass(to.superview.class));
+}
+
 /** Puts in or takes out the caret, as SmoothType is now */
 static void applyCaret(UITextView *textView)
 {
     id<EndcordSelectionDisplay> display = selectionDisplay(textView, 3);
-    if (!display) return;
+    if (!display)
+    {
+        BunnyLog(@"SmoothType: no selection display in %@", NSStringFromClass(textView.class));
+        return;
+    }
 
     @try
     {
@@ -218,8 +242,9 @@ static void applyCaret(UITextView *textView)
             if (![cursor isKindOfClass:EndcordCaretView.class])
             {
                 if (cursor) objc_setAssociatedObject(textView, kSystemCursorKey, cursor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-                cursor = [[EndcordCaretView alloc] initWithFrame:cursor ? cursor.frame : CGRectZero];
-                display.cursorView = cursor;
+                UIView *caret = [[EndcordCaretView alloc] initWithFrame:cursor ? cursor.frame : CGRectZero];
+                swapCursor(display, cursor, caret);
+                cursor = caret;
             }
             [(EndcordCaretView *)cursor applySettings];
         }
@@ -227,7 +252,7 @@ static void applyCaret(UITextView *textView)
         {
             UIView *system = objc_getAssociatedObject(textView, kSystemCursorKey);
             if (!system) return;
-            display.cursorView = system;
+            swapCursor(display, cursor, system);
             objc_setAssociatedObject(textView, kSystemCursorKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         }
         if ([display respondsToSelector:@selector(setNeedsSelectionUpdate)]) [display setNeedsSelectionUpdate];
@@ -258,6 +283,8 @@ void configureSmoothCaret(NSArray *args)
         if ([delay isKindOfClass:NSNumber.class]) gDuration = MIN(MAX([delay doubleValue], 0), 2000) / 1000;
         if ([easing isKindOfClass:NSString.class]) gTiming = timingNamed(easing);
 
+        BunnyLog(@"SmoothType: caret %@, %lu message boxes seen", gEnabled ? @"on" : @"off",
+                 (unsigned long)gTextViews.allObjects.count);
         for (UITextView *textView in gTextViews.allObjects) applyCaret(textView);
     });
 }
@@ -270,6 +297,7 @@ void configureSmoothCaret(NSArray *args)
     BOOL became = %orig;
     if (became && isChatInput(self))
     {
+        BunnyLog(@"SmoothType: message box focused (%@), caret %@", NSStringFromClass(self.class), gEnabled ? @"on" : @"off");
         [gTextViews addObject:self];
         if (gEnabled)
         {

@@ -228,13 +228,20 @@ static void checkSideloading(void)
     BOOL isFolder = NO;
     check(@"sideloading-app-group", [NSFileManager.defaultManager fileExistsAtPath:group.path isDirectory:&isFolder] && isFolder,
           group.path);
+}
 
-    // Discord picks its screen share extension by the bundle ID it's told; the picker gets this app's own
+/** Discord picks its screen share extension by the bundle ID it's told; the picker gets this app's own */
+static void checkBroadcast(void)
+{
+    NSString *seen = NSBundle.mainBundle.bundleIdentifier;
     RPSystemBroadcastPickerView *picker = [[RPSystemBroadcastPickerView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     picker.preferredExtension = [seen stringByAppendingString:@".BroadcastUpload"];
     NSString *real = (__bridge NSString *)CFBundleGetIdentifier(CFBundleGetMainBundle());
     check(@"broadcast-extension", [picker.preferredExtension isEqualToString:[real stringByAppendingString:@".BroadcastUpload"]],
-          picker.preferredExtension);
+          [NSString stringWithFormat:@"told %@, picks %@", seen, picker.preferredExtension]);
+    picker.preferredExtension = @"com.example.Other";
+    check(@"broadcast-other-untouched", [picker.preferredExtension isEqualToString:@"com.example.Other"], picker.preferredExtension);
+    finish();
 }
 
 // What Discord has around its message box: DCDChatInputComponentView, the native component, holds the text view
@@ -276,11 +283,17 @@ static void checkSmoothCaret(UIViewController *root)
     other.text = @"Not the message box";
     [root.view addSubview:other];
 
+    // On before the box is focused, as when Discord starts with SmoothType on
     configure(@[ @YES, @0xff0000, @400, @"linear" ]);
-    [input becomeFirstResponder];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [input becomeFirstResponder];
+    });
 
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         printf("INFO interactions %s\n", describeInteractions(input, 3).UTF8String);
+        for (id interaction in input.interactions)
+            if ([NSStringFromClass([interaction class]) isEqualToString:@"UITextSelectionDisplayInteraction"])
+                printf("INFO cursorView %s\n", NSStringFromClass([[interaction valueForKey:@"cursorView"] class]).UTF8String);
         NSMutableArray *carets = [NSMutableArray array];
         findViews(root.view, @"EndcordCaretView", carets);
         UIView *caret = carets.firstObject;
@@ -538,6 +551,11 @@ static void runScenario(jsi::Runtime &rt)
     if ([scenario isEqualToString:@"app-group"])
     {
         checkAppGroup();
+        return YES;
+    }
+    if ([scenario isEqualToString:@"broadcast"])
+    {
+        checkBroadcast();
         return YES;
     }
     if ([scenario isEqualToString:@"menu"])
