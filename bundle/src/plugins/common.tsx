@@ -124,27 +124,27 @@ function patchChatInput() {
     if (unpatchChatInput) return;
     const unpatches: Array<() => unknown> = [];
     for (const side of ["left", "right"] as const) {
-        const actions = moduleAt(ACTION_PATHS[side])?.default;
-        if (!actions) {
-            console.warn(`[Endcord] chat input ${side} actions not found; plugin buttons won't show there`);
-            continue;
-        }
-        // A memo component: its render function is `type`
-        if (typeof actions.type === "function") unpatches.push(after("type", actions, (_, tree) => insertButtons(tree, side)));
-        else if (typeof actions === "function") console.warn("[Endcord] chat input actions aren't a memo component");
+        const actions = moduleAt(ACTION_PATHS[side]);
+        // A memo on Android, a memo of a forwardRef on iOS
+        const unpatch = actions?.default && afterRender(actions, "default", (_, tree) => insertButtons(tree, side));
+        if (unpatch) unpatches.push(unpatch);
+        else console.warn(`[Endcord] chat input ${side} actions not found; plugin buttons won't show there`);
     }
     unpatchChatInput = () => unpatches.forEach(u => u());
 }
 
 /**
- * Runs after a component renders, whatever form its module exports it in: a function, a memo (`type`) or a
- * forwardRef (`render`). Returns the unpatch, or null when the export isn't a component.
+ * Runs after a component renders, whatever form its module exports it in: a function, a memo (`type`), a forwardRef
+ * (`render`) or a memo of a forwardRef (`type.render`, which Discord's iOS components often are where Android's are
+ * memos). Returns the unpatch, or null when the export isn't a component.
  */
 export function afterRender(module: any, key: string, cb: (props: any, rendered: any) => any) {
     const component = module?.[key];
-    if (typeof component === "function") return after(key, module, ([props], res) => cb(props, res));
-    if (typeof component?.type === "function") return after("type", component, ([props], res) => cb(props, res));
-    if (typeof component?.render === "function") return after("render", component, ([props], res) => cb(props, res));
+    const patch = (holder: any, name: string) => after(name, holder, ([props], res) => cb(props, res));
+    if (typeof component === "function") return patch(module, key);
+    if (typeof component?.type === "function") return patch(component, "type");
+    if (typeof component?.type?.render === "function") return patch(component.type, "render");
+    if (typeof component?.render === "function") return patch(component, "render");
     return null;
 }
 

@@ -16,7 +16,7 @@ export interface SearchProps {
 /** Discord's own magnifying glass, which takes the theme's icon color; the plain asset image is the fallback */
 function SearchIcon(props: Record<string, unknown>) {
     const Icon = findByFilePath("design/components/Icon/native/redesign/generated/MagnifyingGlassIcon.tsx")?.MagnifyingGlassIcon;
-    if (typeof Icon === "function" || typeof Icon?.type === "function" || typeof Icon?.render === "function") return <Icon size="sm" {...props} />;
+    if (typeof Icon === "function" || typeof Icon?.type === "function" || typeof Icon?.type?.render === "function" || typeof Icon?.render === "function") return <Icon size="sm" {...props} />;
     const color = semanticColorOf("ICON_DEFAULT", "INTERACTIVE_NORMAL", "TEXT_DEFAULT");
     return <Image style={{ width: 16, height: 16, tintColor: color ? resolveSemanticColor(color) : undefined }} source={findAssetId("MagnifyingGlassIcon")!} />;
 }

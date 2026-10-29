@@ -7799,11 +7799,11 @@
         "es": "Este enlace es un **{urlType, select, plugin {plugin} theme {tema} other {complemento}}**. ¿Quieres instalarlo?",
         "fr": "Ce lien est un **{urlType, select, plugin {plugin} theme {thème} other {module}}**. Voulez-vous l'installer ?"
     },
-    "This only works on Android for now.": {
-        "tr": "Bu şimdilik yalnızca Android'de çalışıyor.",
-        "ru": "Пока это работает только на Android.",
-        "es": "Por ahora esto solo funciona en Android.",
-        "fr": "Pour l'instant, cela ne fonctionne que sur Android."
+    "This needs a newer Endcord. Install the latest Endcord IPA.": {
+        "tr": "Bunun için daha yeni bir Endcord gerekiyor. En son Endcord IPA'sını kur.",
+        "ru": "Для этого нужна более новая версия Endcord. Установите последний IPA Endcord.",
+        "es": "Esto necesita un Endcord más reciente. Instala el IPA de Endcord más reciente.",
+        "fr": "Cela nécessite une version plus récente d'Endcord. Installez le dernier IPA d'Endcord."
     },
     "This needs a newer Endcord. Install it again with Endcord Installer.": {
         "tr": "Bunun için daha yeni bir Endcord gerekiyor. Endcord Installer ile yeniden kur.",

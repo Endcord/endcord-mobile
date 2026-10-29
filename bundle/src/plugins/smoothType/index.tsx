@@ -80,7 +80,8 @@ const plugin = definePlugin({
     },
     SettingsComponent: CaretColor,
     async start({ store, cleanup, logger }) {
-        // Discord's message box is a native view, so the loader draws the caret; see SmoothCaret.kt
+        // Discord's message box is a native view, so the loader draws the caret; see SmoothCaret.kt and the iOS
+        // tweak's SmoothCaret.x
         const args = (enabled: boolean) => ["endcord.smoothType.configure", enabled, caretColorOf(store), store.transitionDelay, store.animationType] as const;
         let apply: (enabled: boolean) => unknown;
         try {
@@ -93,9 +94,9 @@ const plugin = definePlugin({
                 apply = enabled => callLoaderMethodAsync(...args(enabled)).catch(e => logger.error("Couldn't set the caret", e));
             } catch (e) {
                 logger.error("The loader can't draw the caret", syncError, e);
-                // The iOS loader has no caret of its own yet; reinstalling is the Android installer's
+                // The iOS tweak draws it since 1.0.1; reinstalling is the Android installer's
                 throw new Error(Platform.OS === "ios"
-                    ? t("This only works on Android for now.")
+                    ? t("This needs a newer Endcord. Install the latest Endcord IPA.")
                     : t("This needs a newer Endcord. Install it again with Endcord Installer."));
             }
         }
