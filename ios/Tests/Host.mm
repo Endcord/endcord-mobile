@@ -414,7 +414,9 @@ static void runScenario(jsi::Runtime &rt)
 
     // React Native's JavaScript thread, with a stack as big
     NSThread *js = [[NSThread alloc] initWithBlock:^{
-        static std::unique_ptr<jsi::Runtime> runtime = hermes::makeHermesRuntime();
+        // With the microtask queue, as React Native makes it
+        static std::unique_ptr<jsi::Runtime> runtime =
+            facebook::hermes::makeHermesRuntime(::hermes::vm::RuntimeConfig::Builder().withMicrotaskQueue(true).build());
         try
         {
             runScenario(*runtime);
