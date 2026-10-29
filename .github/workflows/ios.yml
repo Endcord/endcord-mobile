@@ -76,7 +76,8 @@ jobs:
         run: |
           mkdir -p ../results
           export PATH="$(brew --prefix make)/libexec/gnubin:$PATH"
-          make TARGET=simulator:clang:latest:15.0 ARCHS=arm64 Endcord_USE_SUBSTRATE=0 \
+          # Signed ad hoc: the simulator needs a signature, not a developer's
+          make TARGET=simulator:clang:latest:15.0 ARCHS=arm64 Endcord_USE_SUBSTRATE=0 TARGET_CODESIGN_FLAGS="-f -s -" \
             ENDCORD_BUNDLE_URL=http://127.0.0.1:4040/endcord.min.js 2>&1 | tee ../results/tweak-build.log
           find .theos/obj -name "*.dylib"
           cp "$(find .theos/obj -name Endcord.dylib | head -n 1)" ../Endcord-simulator.dylib
@@ -140,9 +141,10 @@ jobs:
           icon.convert("RGB").save(sys.argv[1])
           EOF
 
-          # -u: any device, -w: no watch app, -s: fakesigned for TrollStore, -g: without encrypted extensions, -q: arm64 only
+          # -u: any device, -w: no watch app, -s: fakesigned for TrollStore, -g: without encrypted extensions, -q: arm64 only,
+          # -d: Endcord's files in the Files app, which the recovery menu's Open App Folder opens
           cyan -i "$RUNNER_TEMP/discord.ipa" -o Endcord.ipa -f "$RUNNER_TEMP"/tweak/*.deb \
-            -n Endcord -k "$RUNNER_TEMP/icon.png" -uwsgq
+            -n Endcord -k "$RUNNER_TEMP/icon.png" -uwsgqd
           ls -l Endcord.ipa
 
           mkdir "$RUNNER_TEMP/endcord" && unzip -q Endcord.ipa -d "$RUNNER_TEMP/endcord"

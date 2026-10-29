@@ -20,7 +20,17 @@ On `next` they're published as the `ios-v<version>` release, whose files each ne
 `https://raw.githubusercontent.com/Endcord/endcord-mobile/builds-ios/apps.json`. For a new Discord, change the secret
 and re-run the latest iOS run on `next`.
 
-Shake the device for the recovery menu (safe mode, a custom bundle URL, deleting plugins or themes).
+Shake the device for the recovery menu (safe mode, a custom bundle URL, deleting plugins or themes). Endcord's files
+are in the Files app too with `Endcord.ipa` (On My iPhone → Endcord: `pyoncord`, and its settings in `vd_mmkv`).
+
+## Tests
+
+The workflow's simulator job (`Tests/run.sh`) builds the tweak for the iOS simulator and loads it into `Tests/Host.mm`,
+a stand-in for Discord with the Hermes runtime Discord ships (bytecode 98 and 99), which downloads its bundle from
+`Tests/server.py`. Each scenario is one launch: the first start, the cache and its ETag, updates, the plain bundle
+when there's no bytecode one, bytecode for another Hermes, offline starts, custom URLs, broken files, themes, fonts,
+a bundle that throws, the published bundle, the recovery menu and safe mode. The release is only published when it
+passes.
 
 ## What sideloading can't do
 
