@@ -120,7 +120,8 @@ echo "::endgroup::"
 python3 "$HERE/server.py" "$PORT" "$SERVE" "$RESULTS/server.log" < /dev/null > "$RESULTS/server-out.log" 2>&1 &
 SERVER=$!
 trap 'kill $SERVER 2> /dev/null; xcrun simctl shutdown "$UDID" 2> /dev/null' EXIT
-sleep 1
+# Python can take a few seconds to start on a busy runner
+for _ in $(seq 1 30); do curl -fs "http://127.0.0.1:$PORT/__mode/normal" > /dev/null && break; sleep 1; done
 mode() { curl -fs "http://127.0.0.1:$PORT/__mode/$1" > /dev/null || fail "the server didn't switch to $1"; }
 clean_caches() { rm -rf "$CACHE"; }
 clean_documents() { rm -rf "$DOCS"/*; }
@@ -219,6 +220,21 @@ mode normal
 
 clean_documents
 launch menu
+
+clean_documents
+json "$DOCS/pyoncord/plugins/settings.json" '{"x":{"enabled":true}}'
+json "$DOCS/vd_mmkv/VENDETTA_PLUGINS" '{}'
+json "$DOCS/vd_mmkv/VENDETTA_THEMES" "{\"test-theme\":$THEME}"
+json "$DOCS/pyoncord/current-theme.json" "$THEME"
+json "$DOCS/vd_mmkv/VENDETTA_SETTINGS" '{"developerSettings":true}'
+launch delete-data
+left=""
+for f in pyoncord/plugins vd_mmkv/VENDETTA_PLUGINS vd_mmkv/VENDETTA_THEMES pyoncord/current-theme.json; do
+    [ -e "$DOCS/$f" ] && left="$left $f"
+done
+[ -z "$left" ] && [ -f "$DOCS/vd_mmkv/VENDETTA_SETTINGS" ] \
+    && pass "deleting plugins and themes removes what the bundle keeps them in, and only that" \
+    || fail "deleting plugins and themes left:$left"
 
 clean_documents
 json "$DOCS/pyoncord/current-theme.json" "$THEME"

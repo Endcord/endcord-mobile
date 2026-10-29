@@ -391,6 +391,16 @@ static void runScenario(jsi::Runtime &rt)
         if (toggle) toggle();
         return YES;
     }
+    if ([scenario isEqualToString:@"delete-data"])
+    {
+        // The recovery menu's Delete All Plugins and Delete All Themes, without the app closing after them
+        void (*deletePlugins)(void) = (void (*)(void))dlsym(RTLD_DEFAULT, "deletePlugins");
+        void (*deleteThemes)(void) = (void (*)(void))dlsym(RTLD_DEFAULT, "deleteThemes");
+        if (deletePlugins) deletePlugins();
+        if (deleteThemes) deleteThemes();
+        check(@"delete-functions", deletePlugins && deleteThemes, @"");
+        finish();
+    }
     if ([scenario isEqualToString:@"menu"])
     {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
