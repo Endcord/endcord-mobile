@@ -269,8 +269,9 @@ jobs:
   publish:
     name: Publish the release
     needs: [tweak, simulator, ipa]
+    # Without a Discord IPA (no DISCORD_IPA_URL secret), the dylib and the .deb alone, for people's own IPAs
     if: >-
-      github.ref == 'refs/heads/next' && needs.ipa.outputs.discord-version != '' &&
+      github.ref == 'refs/heads/next' &&
       (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.release))
     runs-on: ubuntu-latest
     permissions:
@@ -282,33 +283,49 @@ jobs:
     steps:
       - uses: actions/download-artifact@v7
         with:
+          name: tweak
           path: ${{ runner.temp }}/out
-          merge-multiple: true
+      - uses: actions/download-artifact@v7
+        if: needs.ipa.outputs.discord-version != ''
+        with:
+          name: ipa
+          path: ${{ runner.temp }}/out
       - name: Release
         # One release per tweak version, whose files a new Discord replaces: a release every Discord update would push
         # the installer's own out of the 20 newest releases it looks through for updates. Never marked as the latest.
         run: |
           tag="ios-v$TWEAK_VERSION"
-          title="Endcord for iOS $TWEAK_VERSION (Discord $DISCORD_VERSION)"
-          notes="Endcord $TWEAK_VERSION in Discord $DISCORD_VERSION, built from ${{ github.sha }}.
+          cd "$RUNNER_TEMP/out"
+          ls -l
+          files=(Endcord.dylib *.deb)
+          if [ -n "$DISCORD_VERSION" ]; then
+            files=(Endcord.ipa "${files[@]}")
+            title="Endcord for iOS $TWEAK_VERSION (Discord $DISCORD_VERSION)"
+            notes="Endcord $TWEAK_VERSION in Discord $DISCORD_VERSION, built from ${{ github.sha }}.
 
           - **Endcord.ipa**: install it with AltStore, SideStore, Feather, ESign, KSign, Sideloadly or TrollStore
-          - **Endcord.dylib**: to inject into your own decrypted Discord IPA
+          - **Endcord.dylib**: to inject into your own decrypted Discord IPA (332 or newer)
           - **.deb**: for jailbroken devices (rootless)
 
           AltStore and SideStore source: https://raw.githubusercontent.com/${{ github.repository }}/builds-ios/apps.json"
-          cd "$RUNNER_TEMP/out"
-          ls -l
+          else
+            title="Endcord for iOS $TWEAK_VERSION"
+            notes="Endcord $TWEAK_VERSION, built from ${{ github.sha }}.
+
+          - **Endcord.dylib**: to inject into your own decrypted Discord IPA (332 or newer) with Feather, ESign, KSign or Sideloadly
+          - **.deb**: for jailbroken devices (rootless)"
+          fi
           if gh release view "$tag" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
-            gh release upload "$tag" --repo "$GITHUB_REPOSITORY" --clobber Endcord.ipa Endcord.dylib *.deb
+            gh release upload "$tag" --repo "$GITHUB_REPOSITORY" --clobber "${files[@]}"
             gh release edit "$tag" --repo "$GITHUB_REPOSITORY" --title "$title" --notes "$notes"
           else
             gh release create "$tag" --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --latest=false \
-              --title "$title" --notes "$notes" Endcord.ipa Endcord.dylib *.deb
+              --title "$title" --notes "$notes" "${files[@]}"
           fi
-          echo "SIZE=$(stat -c %s Endcord.ipa)" >> "$GITHUB_ENV"
+          [ -f Endcord.ipa ] && echo "SIZE=$(stat -c %s Endcord.ipa)" >> "$GITHUB_ENV"
           echo "TAG=$tag" >> "$GITHUB_ENV"
       - name: Update the AltStore source
+        if: needs.ipa.outputs.discord-version != ''
         # builds-ios holds only apps.json, which AltStore and SideStore add as a source and update Endcord from. Its one
         # version is the release's current IPA, which every rebuild replaces at the same URL.
         run: |
