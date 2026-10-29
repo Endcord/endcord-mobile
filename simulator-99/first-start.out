@@ -1,0 +1,7 @@
+RESULT PASS first-start bundle: ran hbc, saved from http://127.0.0.1:4040/endcord.v99.hbc | "8f1d7b7647ac7bd854120cd10c91a380ed60e5c1"
+RESULT PASS first-start saved-source: http://127.0.0.1:4040/endcord.v99.hbc
+"8f1d7b7647ac7bd854120cd10c91a380ed60e5c1"
+RESULT PASS first-start loader-identity: EndcordTweak 1.0.0 themes=true fontPatch=2 storedTheme=null
+RESULT PASS first-start bridge-sync: revenge.info = EndcordTweak 1.0.0
+RESULT PASS first-start bridge-unknown-method: Method not implemented: revenge.nope
+RESULT PASS first-start bridge-no-payload-throws: 

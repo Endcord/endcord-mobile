@@ -1,0 +1,4 @@
+RESULT PASS bundle-throws bundle: ran throws, saved from http://127.0.0.1:4040/endcord.min.js | "3e6eee77e6b047a9ddad987d4d30c90329913eba"
+RESULT FAIL bundle-throws alert: (null): (null)
+SCREENSHOT bundle-throws
+DONE bundle-throws failures=1

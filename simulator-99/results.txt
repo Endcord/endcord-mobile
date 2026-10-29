@@ -1,0 +1,44 @@
+PASS first-start bundle: ran hbc, saved from http://127.0.0.1:4040/endcord.v99.hbc | "8f1d7b7647ac7bd854120cd10c91a380ed60e5c1"
+PASS first-start saved-source: http://127.0.0.1:4040/endcord.v99.hbc
+PASS first-start loader-identity: EndcordTweak 1.0.0 themes=true fontPatch=2 storedTheme=null
+PASS first-start bridge-sync: revenge.info = EndcordTweak 1.0.0
+PASS first-start bridge-unknown-method: Method not implemented: revenge.nope
+PASS first-start bridge-no-payload-throws: 
+FAIL first-start finished: no DONE (it crashed or hung); see first-start.err
+PASS cached-start bundle: ran hbc, saved from http://127.0.0.1:4040/endcord.v99.hbc | "8f1d7b7647ac7bd854120cd10c91a380ed60e5c1"
+PASS cached-start no-alert: 
+PASS update-old bundle: ran hbc, saved from http://127.0.0.1:4040/endcord.v99.hbc | "8f1d7b7647ac7bd854120cd10c91a380ed60e5c1"
+PASS update-old no-alert: 
+PASS update-old background-update: the new bundle is saved for the next start
+PASS update-new bundle: ran hbc2, saved from http://127.0.0.1:4040/endcord.v99.hbc | "cd0e9dad29c5b28b3a1bdc14a2bd91efa8c1288a"
+PASS update-new no-alert: 
+PASS fallback-js bundle: ran js, saved from http://127.0.0.1:4040/endcord.min.js | "e539301e8b30ed13bfe228992caeb96a956fc6c0"
+PASS fallback-js saved-source: http://127.0.0.1:4040/endcord.min.js
+PASS fallback-js no-alert: 
+FAIL wrong-bytecode bundle: ran none, saved from http://127.0.0.1:4040/endcord.v99.hbc | "47d353311f8e6950cf68cd6f7d03c424aabf0698"
+PASS wrong-bytecode no-alert: 
+PASS saved-wrong-version bundle: ran hbc2, saved from http://127.0.0.1:4040/endcord.v99.hbc | "cd0e9dad29c5b28b3a1bdc14a2bd91efa8c1288a"
+PASS saved-wrong-version no-alert: 
+PASS offline-backup bundle: ran hbc2, saved from 
+PASS offline-backup backup-restored: 
+PASS offline-backup no-alert: 
+PASS offline-nothing bundle: ran none, saved from 
+PASS offline-nothing alert: Endcord couldn't load
+PASS custom-url bundle: ran custom, saved from http://127.0.0.1:4040/custom.js | "1cbf302221a18c602db7c897f1f9824fa012efac"
+PASS custom-url saved-source: http://127.0.0.1:4040/custom.js
+PASS custom-url no-alert: 
+FAIL custom-off bundle: ran custom, saved from http://127.0.0.1:4040/custom.js | "1cbf302221a18c602db7c897f1f9824fa012efac"
+PASS custom-off no-alert: 
+FAIL broken-files finished: no DONE (it crashed or hung); see broken-files.err
+FAIL broken-files-2 finished: no DONE (it crashed or hung); see broken-files-2.err
+FAIL theme finished: no DONE (it crashed or hung); see theme.err
+PASS fonts bundle: ran hbc2, saved from http://127.0.0.1:4040/endcord.v99.hbc | "cd0e9dad29c5b28b3a1bdc14a2bd91efa8c1288a"
+PASS fonts font-replaced: Herculanum (Herculanum), expected Herculanum
+PASS fonts no-alert: 
+PASS bundle-throws bundle: ran throws, saved from http://127.0.0.1:4040/endcord.min.js | "3e6eee77e6b047a9ddad987d4d30c90329913eba"
+FAIL bundle-throws alert: (null): (null)
+PASS real-bundle real-bundle-ran: the published bytecode ran its top level
+PASS real-bundle real-bundle-waits-for-discord: it set up the hook for Discord's modules
+PASS real-bundle no-alert: 
+PASS menu recovery-menu: Endcord v1.0.0 Recovery Menu
+PASS delete-data delete-functions: 

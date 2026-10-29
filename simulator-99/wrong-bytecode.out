@@ -1,0 +1,4 @@
+RESULT FAIL wrong-bytecode bundle: ran none, saved from http://127.0.0.1:4040/endcord.v99.hbc | "47d353311f8e6950cf68cd6f7d03c424aabf0698"
+RESULT PASS wrong-bytecode no-alert: 
+SCREENSHOT wrong-bytecode
+DONE wrong-bytecode failures=1

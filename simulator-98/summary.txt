@@ -1,0 +1,13 @@
+PASS: the saved bundle is checked with its ETag (304)
+PASS: font names with .. are refused
+FAIL: deleting plugins and themes left: vd_mmkv/VENDETTA_PLUGINS vd_mmkv/VENDETTA_THEMES pyoncord/current-theme.json
+FAIL: safe mode on left the wrong files
+PASS: safe mode off: theme back
+Host checks: 37 passed, 7 failed
+FAIL first-start finished: no DONE (it crashed or hung); see first-start.err
+FAIL wrong-bytecode bundle: ran none, saved from http://127.0.0.1:4040/endcord.v98.hbc | "4b991349a0c0e8fcede193764d5c8933955f4f3d"
+FAIL custom-off bundle: ran custom, saved from http://127.0.0.1:4040/custom.js | "1cbf302221a18c602db7c897f1f9824fa012efac"
+FAIL broken-files finished: no DONE (it crashed or hung); see broken-files.err
+FAIL broken-files-2 finished: no DONE (it crashed or hung); see broken-files-2.err
+FAIL theme finished: no DONE (it crashed or hung); see theme.err
+FAIL bundle-throws alert: (null): (null)

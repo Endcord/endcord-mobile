@@ -1,0 +1,24 @@
+2026-10-29 02:07:20.913228+0000 Host[21776:64105] [Endcord] getPyoncordDirectory: start
+2026-10-29 02:07:20.914876+0000 Host[21776:64105] [Endcord] getPyoncordDirectory: got fileManager
+2026-10-29 02:07:20.916596+0000 Host[21776:64105] [Endcord] getPyoncordDirectory: documentDirectoryURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/ED5EB885-2B1B-4EBC-97E6-A8030A7555B9/Documents/
+2026-10-29 02:07:20.917468+0000 Host[21776:64105] [Endcord] getPyoncordDirectory: pyoncordFolderURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/ED5EB885-2B1B-4EBC-97E6-A8030A7555B9/Documents/pyoncord/
+2026-10-29 02:07:20.917608+0000 Host[21776:64105] [Endcord] getPyoncordDirectory: returning file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/ED5EB885-2B1B-4EBC-97E6-A8030A7555B9/Documents/pyoncord/
+2026-10-29 02:07:20.917836+0000 Host[21776:64105] [Endcord] Applying fonts before hooks...
+2026-10-29 02:07:20.917957+0000 Host[21776:64105] [Endcord] patchFonts called with fonts: {
+    "../../../evil" = "http://127.0.0.1:4040/evil.ttf";
+} and def name: ../../x
+2026-10-29 02:07:20.918036+0000 Host[21776:64105] [Endcord] getPyoncordDirectory: start
+2026-10-29 02:07:20.918079+0000 Host[21776:64105] [Endcord] getPyoncordDirectory: got fileManager
+2026-10-29 02:07:20.918209+0000 Host[21776:64105] [Endcord] getPyoncordDirectory: documentDirectoryURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/ED5EB885-2B1B-4EBC-97E6-A8030A7555B9/Documents/
+2026-10-29 02:07:20.918306+0000 Host[21776:64105] [Endcord] getPyoncordDirectory: pyoncordFolderURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/ED5EB885-2B1B-4EBC-97E6-A8030A7555B9/Documents/pyoncord/
+2026-10-29 02:07:20.918362+0000 Host[21776:64105] [Endcord] getPyoncordDirectory: returning file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/ED5EB885-2B1B-4EBC-97E6-A8030A7555B9/Documents/pyoncord/
+2026-10-29 02:07:20.918467+0000 Host[21776:64105] [Endcord] Found existing fonts.json: {"name":"../../x","main":{"../../../evil":"http://127.0.0.1:4040/evil.ttf"}}
+2026-10-29 02:07:20.918559+0000 Host[21776:64105] [Endcord] Replacing font ../../../evil with URL: http://127.0.0.1:4040/evil.ttf
+2026-10-29 02:07:20.918999+0000 Host[21776:64105] [Endcord] getPyoncordDirectory: start
+2026-10-29 02:07:20.919065+0000 Host[21776:64105] [Endcord] getPyoncordDirectory: got fileManager
+2026-10-29 02:07:20.919133+0000 Host[21776:64105] [Endcord] getPyoncordDirectory: documentDirectoryURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/ED5EB885-2B1B-4EBC-97E6-A8030A7555B9/Documents/
+2026-10-29 02:07:20.919238+0000 Host[21776:64105] [Endcord] getPyoncordDirectory: pyoncordFolderURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/ED5EB885-2B1B-4EBC-97E6-A8030A7555B9/Documents/pyoncord/
+2026-10-29 02:07:20.919297+0000 Host[21776:64105] [Endcord] getPyoncordDirectory: returning file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/ED5EB885-2B1B-4EBC-97E6-A8030A7555B9/Documents/pyoncord/
+2026-10-29 02:07:20.919583+0000 Host[21776:64105] [Endcord] Creating parent directory: /Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/ED5EB885-2B1B-4EBC-97E6-A8030A7555B9/Documents/pyoncord/downloads/fonts/../../x/../../..
+2026-10-29 02:07:20.920016+0000 Host[21776:64105] [Endcord] Downloading font ../../../evil from http://127.0.0.1:4040/evil.ttf
+2026-10-29 02:07:20.924115+0000 Host[21776:64105] [CFNetwork Performance Diagnostic] __delegate_identifier__:Performance Diagnostics__:::____message__:Synchronous URL loading of http://127.0.0.1:4040/evil.ttf should not occur on this application's main thread as it may lead to UI unresponsiveness. Please switch to an asynchronous networking API such as URLSession.

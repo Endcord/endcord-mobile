@@ -1,0 +1,42 @@
+2026-10-29 02:04:27.822144+0000 Host[14465:45591] [Endcord] getPyoncordDirectory: start
+2026-10-29 02:04:27.824086+0000 Host[14465:45591] [Endcord] getPyoncordDirectory: got fileManager
+2026-10-29 02:04:27.825543+0000 Host[14465:45591] [Endcord] getPyoncordDirectory: documentDirectoryURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/E4A3C4B6-439C-46A8-A7D4-A8984362C012/Documents/
+2026-10-29 02:04:27.827374+0000 Host[14465:45591] [Endcord] getPyoncordDirectory: pyoncordFolderURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/E4A3C4B6-439C-46A8-A7D4-A8984362C012/Documents/pyoncord/
+2026-10-29 02:04:27.827572+0000 Host[14465:45591] [Endcord] getPyoncordDirectory: returning file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/E4A3C4B6-439C-46A8-A7D4-A8984362C012/Documents/pyoncord/
+2026-10-29 02:04:27.828107+0000 Host[14465:45591] [Endcord] Font hooks initialized
+2026-10-29 02:04:27.863575+0000 Host[14465:45591] [Endcord] isRNNewArchEnabled: start
+2026-10-29 02:04:27.869267+0000 Host[14465:45591] [Endcord] isRNNewArchEnabled: raw = 1
+2026-10-29 02:04:27.869580+0000 Host[14465:45591] [Endcord] getPyoncordDirectory: start
+2026-10-29 02:04:27.869655+0000 Host[14465:45591] [Endcord] getPyoncordDirectory: got fileManager
+2026-10-29 02:04:27.869786+0000 Host[14465:45591] [Endcord] getPyoncordDirectory: documentDirectoryURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/E4A3C4B6-439C-46A8-A7D4-A8984362C012/Documents/
+2026-10-29 02:04:27.869919+0000 Host[14465:45591] [Endcord] getPyoncordDirectory: pyoncordFolderURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/E4A3C4B6-439C-46A8-A7D4-A8984362C012/Documents/pyoncord/
+2026-10-29 02:04:27.869981+0000 Host[14465:45591] [Endcord] getPyoncordDirectory: returning file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/E4A3C4B6-439C-46A8-A7D4-A8984362C012/Documents/pyoncord/
+2026-10-29 02:04:27.870057+0000 Host[14465:45591] [Endcord] Attempting to load config from: /Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/E4A3C4B6-439C-46A8-A7D4-A8984362C012/Documents/pyoncord/loader.json
+2026-10-29 02:04:27.870112+0000 Host[14465:45591] [Endcord] Using default loader config: http://localhost:4040/endcord.min.js
+2026-10-29 02:04:27.935435+0000 Host[14465:45591] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-10-29 02:04:28.032654+0000 Host[14465:45633] [Endcord] getPyoncordDirectory: start
+2026-10-29 02:04:28.037075+0000 Host[14465:45633] [Endcord] getPyoncordDirectory: got fileManager
+2026-10-29 02:04:28.037709+0000 Host[14465:45633] [Endcord] getPyoncordDirectory: documentDirectoryURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/E4A3C4B6-439C-46A8-A7D4-A8984362C012/Documents/
+2026-10-29 02:04:28.038095+0000 Host[14465:45633] [Endcord] getPyoncordDirectory: pyoncordFolderURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/E4A3C4B6-439C-46A8-A7D4-A8984362C012/Documents/pyoncord/
+2026-10-29 02:04:28.038665+0000 Host[14465:45633] [Endcord] getPyoncordDirectory: returning file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/E4A3C4B6-439C-46A8-A7D4-A8984362C012/Documents/pyoncord/
+2026-10-29 02:04:28.039357+0000 Host[14465:45633] [Endcord] Attempting to load config from: /Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/E4A3C4B6-439C-46A8-A7D4-A8984362C012/Documents/pyoncord/loader.json
+2026-10-29 02:04:28.039934+0000 Host[14465:45633] [Endcord] Using default loader config: http://localhost:4040/endcord.min.js
+2026-10-29 02:04:28.041171+0000 Host[14465:45633] [Endcord] getPyoncordDirectory: start
+2026-10-29 02:04:28.042478+0000 Host[14465:45633] [Endcord] getPyoncordDirectory: got fileManager
+2026-10-29 02:04:28.043874+0000 Host[14465:45633] [Endcord] getPyoncordDirectory: documentDirectoryURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/E4A3C4B6-439C-46A8-A7D4-A8984362C012/Documents/
+2026-10-29 02:04:28.044317+0000 Host[14465:45633] [Endcord] getPyoncordDirectory: pyoncordFolderURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/E4A3C4B6-439C-46A8-A7D4-A8984362C012/Documents/pyoncord/
+2026-10-29 02:04:28.044413+0000 Host[14465:45633] [Endcord] getPyoncordDirectory: returning file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/E4A3C4B6-439C-46A8-A7D4-A8984362C012/Documents/pyoncord/
+2026-10-29 02:04:28.046848+0000 Host[14465:45633] [Endcord] Discord's bundle has bytecode version 98
+2026-10-29 02:04:28.047457+0000 Host[14465:45633] [Endcord] getPyoncordDirectory: start
+2026-10-29 02:04:28.047780+0000 Host[14465:45633] [Endcord] getPyoncordDirectory: got fileManager
+2026-10-29 02:04:28.047885+0000 Host[14465:45633] [Endcord] getPyoncordDirectory: documentDirectoryURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/E4A3C4B6-439C-46A8-A7D4-A8984362C012/Documents/
+2026-10-29 02:04:28.048179+0000 Host[14465:45633] [Endcord] getPyoncordDirectory: pyoncordFolderURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/E4A3C4B6-439C-46A8-A7D4-A8984362C012/Documents/pyoncord/
+2026-10-29 02:04:28.048388+0000 Host[14465:45633] [Endcord] getPyoncordDirectory: returning file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/E4A3C4B6-439C-46A8-A7D4-A8984362C012/Documents/pyoncord/
+2026-10-29 02:04:28.072754+0000 Host[14465:45623] [Endcord] Getting loader config
+2026-10-29 02:04:28.073026+0000 Host[14465:45623] [Endcord] getPyoncordDirectory: start
+2026-10-29 02:04:28.073171+0000 Host[14465:45623] [Endcord] getPyoncordDirectory: got fileManager
+2026-10-29 02:04:28.073386+0000 Host[14465:45623] [Endcord] getPyoncordDirectory: documentDirectoryURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/E4A3C4B6-439C-46A8-A7D4-A8984362C012/Documents/
+2026-10-29 02:04:28.073609+0000 Host[14465:45623] [Endcord] getPyoncordDirectory: pyoncordFolderURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/E4A3C4B6-439C-46A8-A7D4-A8984362C012/Documents/pyoncord/
+2026-10-29 02:04:28.073691+0000 Host[14465:45623] [Endcord] getPyoncordDirectory: returning file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/E4A3C4B6-439C-46A8-A7D4-A8984362C012/Documents/pyoncord/
+2026-10-29 02:04:28.074082+0000 Host[14465:45623] [Endcord] Couldn't get loader config
+2026-10-29 02:04:28.128237+0000 Host[14465:45623] [Endcord] The bundle at http://127.0.0.1:4040/endcord.v98.hbc hasn't changed

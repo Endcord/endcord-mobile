@@ -1,0 +1,25 @@
+2026-10-29 02:09:10.223872+0000 Host[27762:78415] [Endcord] getPyoncordDirectory: start
+2026-10-29 02:09:10.228081+0000 Host[27762:78415] [Endcord] getPyoncordDirectory: got fileManager
+2026-10-29 02:09:10.231023+0000 Host[27762:78415] [Endcord] getPyoncordDirectory: documentDirectoryURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/ED5EB885-2B1B-4EBC-97E6-A8030A7555B9/Documents/
+2026-10-29 02:09:10.233645+0000 Host[27762:78415] [Endcord] getPyoncordDirectory: pyoncordFolderURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/ED5EB885-2B1B-4EBC-97E6-A8030A7555B9/Documents/pyoncord/
+2026-10-29 02:09:10.233835+0000 Host[27762:78415] [Endcord] getPyoncordDirectory: returning file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/ED5EB885-2B1B-4EBC-97E6-A8030A7555B9/Documents/pyoncord/
+2026-10-29 02:09:10.234820+0000 Host[27762:78415] [Endcord] Applying fonts before hooks...
+2026-10-29 02:09:10.235191+0000 Host[27762:78415] [Endcord] patchFonts called with fonts: {
+    "../evil" = "http://127.0.0.1:4040/evil.ttf";
+    "ggsans-Normal" = "http://127.0.0.1:4040/evil.ttf";
+} and def name: Bad
+2026-10-29 02:09:10.235319+0000 Host[27762:78415] [Endcord] getPyoncordDirectory: start
+2026-10-29 02:09:10.235368+0000 Host[27762:78415] [Endcord] getPyoncordDirectory: got fileManager
+2026-10-29 02:09:10.235476+0000 Host[27762:78415] [Endcord] getPyoncordDirectory: documentDirectoryURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/ED5EB885-2B1B-4EBC-97E6-A8030A7555B9/Documents/
+2026-10-29 02:09:10.235605+0000 Host[27762:78415] [Endcord] getPyoncordDirectory: pyoncordFolderURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/ED5EB885-2B1B-4EBC-97E6-A8030A7555B9/Documents/pyoncord/
+2026-10-29 02:09:10.235821+0000 Host[27762:78415] [Endcord] getPyoncordDirectory: returning file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/ED5EB885-2B1B-4EBC-97E6-A8030A7555B9/Documents/pyoncord/
+2026-10-29 02:09:10.236022+0000 Host[27762:78415] [Endcord] Found existing fonts.json: {"name":"Bad","main":{"ggsans-Normal":"http://127.0.0.1:4040/evil.ttf","../evil":"http://127.0.0.1:4040/evil.ttf"}}
+2026-10-29 02:09:10.236069+0000 Host[27762:78415] [Endcord] Replacing font ggsans-Normal with URL: http://127.0.0.1:4040/evil.ttf
+2026-10-29 02:09:10.236545+0000 Host[27762:78415] [Endcord] getPyoncordDirectory: start
+2026-10-29 02:09:10.236684+0000 Host[27762:78415] [Endcord] getPyoncordDirectory: got fileManager
+2026-10-29 02:09:10.236793+0000 Host[27762:78415] [Endcord] getPyoncordDirectory: documentDirectoryURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/ED5EB885-2B1B-4EBC-97E6-A8030A7555B9/Documents/
+2026-10-29 02:09:10.236880+0000 Host[27762:78415] [Endcord] getPyoncordDirectory: pyoncordFolderURL = file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/ED5EB885-2B1B-4EBC-97E6-A8030A7555B9/Documents/pyoncord/
+2026-10-29 02:09:10.236937+0000 Host[27762:78415] [Endcord] getPyoncordDirectory: returning file:///Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/ED5EB885-2B1B-4EBC-97E6-A8030A7555B9/Documents/pyoncord/
+2026-10-29 02:09:10.237120+0000 Host[27762:78415] [Endcord] Creating parent directory: /Users/runner/Library/Developer/CoreSimulator/Devices/E952A9B0-CC78-435C-BF08-06AD47FE1076/data/Containers/Data/Application/ED5EB885-2B1B-4EBC-97E6-A8030A7555B9/Documents/pyoncord/downloads/fonts/Bad
+2026-10-29 02:09:10.237369+0000 Host[27762:78415] [Endcord] Downloading font ggsans-Normal from http://127.0.0.1:4040/evil.ttf
+2026-10-29 02:09:10.245303+0000 Host[27762:78415] [CFNetwork Performance Diagnostic] __delegate_identifier__:Performance Diagnostics__:::____message__:Synchronous URL loading of http://127.0.0.1:4040/evil.ttf should not occur on this application's main thread as it may lead to UI unresponsiveness. Please switch to an asynchronous networking API such as URLSession.
