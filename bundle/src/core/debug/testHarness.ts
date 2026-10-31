@@ -305,8 +305,8 @@ ${e.stack}` : String(e) });
 
     await check("a selected theme changes Discord's colors", async () => {
         const { selectTheme } = require("@lib/addons/themes");
+        const { _colorRef } = require("@lib/addons/themes/colors/updater");
         const { resolveSemanticColor, semanticColorOf } = require("@lib/ui/color");
-        const ThemeStore = findByStoreName("ThemeStore");
         const token = semanticColorOf("TEXT_DEFAULT");
         const before = resolveSemanticColor(token);
         const theme = {
@@ -315,8 +315,9 @@ ${e.stack}` : String(e) });
         };
         await selectTheme(theme);
         await wait(500);
-        const during = resolveSemanticColor(token);
-        const key = ThemeStore.theme;
+        // Logged out, Discord's ThemeStore doesn't take the new theme, so its key is asked for by name
+        const key = _colorRef.key;
+        const during = resolveSemanticColor(token, key);
         await selectTheme(null);
         await wait(500);
         const after = resolveSemanticColor(token);

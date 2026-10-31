@@ -15,7 +15,8 @@ export default function patchStorage() {
 
     const patches = [
         after("get", mmkvStorage, ([key], ret) => {
-            if (!_colorRef.current || !patchedKeys.has(key)) return;
+            // Nothing is stored yet on a new install
+            if (!_colorRef.current || !patchedKeys.has(key) || !ret?._state) return;
 
             const state = findInTree(ret._state, s => typeof s.theme === "string");
             if (state) state.theme = _colorRef.key;
