@@ -1,0 +1,5 @@
+RESULT PASS fonts bundle: ran hbc2, saved from http://127.0.0.1:4040/endcord.v99.hbc | "11bd3e074be1f8ddb853a03745bf25462e407957"
+RESULT PASS fonts font-replaced: Herculanum (Herculanum), expected Herculanum
+RESULT PASS fonts no-alert: 
+SCREENSHOT fonts
+DONE fonts failures=0

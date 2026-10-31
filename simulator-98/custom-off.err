@@ -1,0 +1,11 @@
+2026-10-31 21:14:16.346173+0000 Host[15487:48547] [Endcord] Loader config loaded - Custom URL disabled: http://127.0.0.1:4040/custom.js
+2026-10-31 21:14:16.429529+0000 Host[15487:48547] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-10-31 21:14:16.503344+0000 Host[15487:48578] [Endcord] Loader config loaded - Custom URL disabled: http://127.0.0.1:4040/custom.js
+2026-10-31 21:14:16.508488+0000 Host[15487:48578] [Endcord] Loader config loaded - Custom URL disabled: http://127.0.0.1:4040/custom.js
+2026-10-31 21:14:16.509053+0000 Host[15487:48578] [Endcord] Discord's bundle has bytecode version 98
+2026-10-31 21:14:16.509204+0000 Host[15487:48578] [Endcord] The saved bundle is from http://127.0.0.1:4040/custom.js, which Endcord doesn't load from now
+2026-10-31 21:14:16.509766+0000 Host[15487:48578] [Endcord] Loader config loaded - Custom URL disabled: http://127.0.0.1:4040/custom.js
+2026-10-31 21:14:16.509838+0000 Host[15487:48578] [Endcord] The saved bundle is from http://127.0.0.1:4040/custom.js, which Endcord doesn't load from now
+2026-10-31 21:14:16.529906+0000 Host[15487:48578] [Endcord] Loader config loaded - Custom URL disabled: http://127.0.0.1:4040/custom.js
+2026-10-31 21:14:16.671234+0000 Host[15487:48578] [Endcord] Loader config loaded - Custom URL disabled: http://127.0.0.1:4040/custom.js
+2026-10-31 21:14:16.810862+0000 Host[15487:48578] [Endcord] Downloaded the bundle from http://127.0.0.1:4040/endcord.v98.hbc (406 bytes)

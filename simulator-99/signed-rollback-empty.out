@@ -1,0 +1,4 @@
+RESULT PASS signed-rollback-empty bundle: ran none, saved from 
+RESULT PASS signed-rollback-empty alert: The download didn't pass Endcord's security check, so it wasn't run.
+SCREENSHOT signed-rollback-empty
+DONE signed-rollback-empty failures=0
