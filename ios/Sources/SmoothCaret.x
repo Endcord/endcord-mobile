@@ -46,7 +46,17 @@ static CAMediaTimingFunction *timingNamed(NSString *name)
     return [CAMediaTimingFunction functionWithControlPoints:0.25 :0.1 :0.25 :1];
 }
 
-/** The cursor, as UIKit's UITextCursorView: UIKit places it, tells it when to blink, and it glides to each place */
+/** What's seen of the caret: a view beside the cursor view, which UIKit knows nothing about and so leaves alone */
+@interface EndcordCaretGlyph : UIView
+@end
+
+@implementation EndcordCaretGlyph
+@end
+
+/**
+ * The cursor, as UIKit's UITextCursorView. UIKit moves, hides and blinks it as it likes, with animations of its own
+ * turned off, so it's only where the caret should be: it stays clear, and each frame the glyph glides to it.
+ */
 @interface EndcordCaretView : UIView
 @property (nonatomic, assign, getter=isBlinking) BOOL blinking;
 - (void)resetBlinkAnimation;
@@ -55,8 +65,10 @@ static CAMediaTimingFunction *timingNamed(NSString *name)
 
 @implementation EndcordCaretView
 {
-    BOOL _moving;
-    /** Whether it's been shown somewhere: a caret that appears does so where it is, without gliding there */
+    EndcordCaretGlyph *_glyph;
+    CADisplayLink *_link;
+    /** Where the glyph was last sent; a caret that appears does so where it is, without gliding there */
+    CGRect _target;
     BOOL _placed;
 }
 
@@ -64,7 +76,10 @@ static CAMediaTimingFunction *timingNamed(NSString *name)
 {
     if ((self = [super initWithFrame:frame]))
     {
-        self.userInteractionEnabled = NO;
+        self.userInteractionEnabled  = NO;
+        self.backgroundColor         = UIColor.clearColor;
+        _glyph                       = [EndcordCaretGlyph new];
+        _glyph.userInteractionEnabled = NO;
         [self applySettings];
     }
     return self;
@@ -72,13 +87,7 @@ static CAMediaTimingFunction *timingNamed(NSString *name)
 
 - (void)applySettings
 {
-    self.backgroundColor = gColor;
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    self.layer.cornerRadius = MIN(self.bounds.size.width, self.bounds.size.height) / 2;
+    _glyph.backgroundColor = gColor;
 }
 
 - (void)setBlinking:(BOOL)blinking
@@ -89,7 +98,7 @@ static CAMediaTimingFunction *timingNamed(NSString *name)
 
 - (void)resetBlinkAnimation
 {
-    [self.layer removeAnimationForKey:@"endcordBlink"];
+    [_glyph.layer removeAnimationForKey:@"endcordBlink"];
     if (!_blinking) return;
     // Solid for a second, then fades out and in once a second
     CAKeyframeAnimation *blink = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
@@ -99,81 +108,89 @@ static CAMediaTimingFunction *timingNamed(NSString *name)
     blink.timingFunctions = @[ fade, fade ];
     blink.duration        = kBlinkPeriod;
     blink.repeatCount     = HUGE_VALF;
-    blink.beginTime       = [self.layer convertTime:CACurrentMediaTime() fromLayer:nil] + kBlinkAfter;
-    [self.layer addAnimation:blink forKey:@"endcordBlink"];
+    blink.beginTime       = [_glyph.layer convertTime:CACurrentMediaTime() fromLayer:nil] + kBlinkAfter;
+    [_glyph.layer addAnimation:blink forKey:@"endcordBlink"];
 }
 
-/** Glides a property of the layer from where it is on screen, mid-glide too, to where it now is */
 - (void)glide:(NSString *)keyPath from:(id)from
 {
-    id to = [self.layer valueForKey:keyPath];
+    id to = [_glyph.layer valueForKey:keyPath];
     if ([from isEqual:to]) return;
     CABasicAnimation *glide = [CABasicAnimation animationWithKeyPath:keyPath];
     glide.fromValue         = from;
     glide.toValue           = to;
     glide.duration          = gDuration;
     glide.timingFunction    = gTiming;
-    [self.layer addAnimation:glide forKey:[@"endcordGlide." stringByAppendingString:keyPath]];
+    [_glyph.layer addAnimation:glide forKey:[@"endcordGlide." stringByAppendingString:keyPath]];
 }
 
-// UIKit moves its cursor with actions turned off, so the glide is added here rather than as the layer's action
-- (void)endcordMove:(void (^)(void))change
+- (void)follow
 {
-    if (_moving)
-    {
-        change();
-        return;
-    }
-    _moving    = YES;
-    BOOL glide = _placed && !self.hidden && self.window && gDuration > 0;
-    CALayer *shown   = self.layer.presentationLayer ?: self.layer;
-    id fromPosition  = [shown valueForKey:@"position"];
-    id fromBounds    = [shown valueForKey:@"bounds"];
-    change();
+    CGRect target = self.frame;
+    if (_placed && CGRectEqualToRect(target, _target)) return;
+
+    // From where it is on screen, mid-glide too
+    CALayer *layer  = _glyph.layer;
+    CALayer *shown  = layer.presentationLayer ?: layer;
+    id fromPosition = [shown valueForKey:@"position"];
+    id fromBounds   = [shown valueForKey:@"bounds"];
+    BOOL glide      = _placed && gDuration > 0;
+
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
+    layer.bounds       = CGRectMake(0, 0, target.size.width, target.size.height);
+    layer.position     = CGPointMake(CGRectGetMidX(target), CGRectGetMidY(target));
+    layer.cornerRadius = MIN(target.size.width, target.size.height) / 2;
     if (glide)
     {
         [self glide:@"position" from:fromPosition];
         [self glide:@"bounds" from:fromBounds];
     }
-    _moving = NO;
-    _placed = self.window && !self.hidden;
+    [CATransaction commit];
+
+    _target = target;
+    _placed = YES;
     if (_blinking) [self resetBlinkAnimation];
 }
 
-- (void)setFrame:(CGRect)frame
+/** Follows while it can be seen */
+- (void)updateLink
 {
-    if (CGRectEqualToRect(frame, self.frame))
-        [super setFrame:frame];
-    else
-        [self endcordMove:^{ [super setFrame:frame]; }];
-}
-
-- (void)setCenter:(CGPoint)center
-{
-    if (CGPointEqualToPoint(center, self.center))
-        [super setCenter:center];
-    else
-        [self endcordMove:^{ [super setCenter:center]; }];
-}
-
-- (void)setBounds:(CGRect)bounds
-{
-    if (CGRectEqualToRect(bounds, self.bounds))
-        [super setBounds:bounds];
-    else
-        [self endcordMove:^{ [super setBounds:bounds]; }];
+    BOOL shown = self.window && !self.hidden;
+    _glyph.hidden = !shown;
+    if (shown && !_link)
+    {
+        [self follow];
+        _link = [CADisplayLink displayLinkWithTarget:self selector:@selector(follow)];
+        [_link addToRunLoop:NSRunLoop.mainRunLoop forMode:NSRunLoopCommonModes];
+    }
+    else if (!shown && _link)
+    {
+        [_link invalidate];
+        _link   = nil;
+        _placed = NO;
+    }
 }
 
 - (void)setHidden:(BOOL)hidden
 {
     [super setHidden:hidden];
-    if (hidden) _placed = NO;
+    [self updateLink];
+}
+
+- (void)didMoveToSuperview
+{
+    [super didMoveToSuperview];
+    if (self.superview)
+        [self.superview insertSubview:_glyph aboveSubview:self];
+    else
+        [_glyph removeFromSuperview];
 }
 
 - (void)didMoveToWindow
 {
     [super didMoveToWindow];
-    if (!self.window) _placed = NO;
+    [self updateLink];
 }
 
 @end

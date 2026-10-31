@@ -297,26 +297,31 @@ static void checkSmoothCaret(UIViewController *root)
         NSMutableArray *carets = [NSMutableArray array];
         findViews(root.view, @"EndcordCaretView", carets);
         UIView *caret = carets.firstObject;
+        NSMutableArray *glyphs = [NSMutableArray array];
+        findViews(root.view, @"EndcordCaretGlyph", glyphs);
+        UIView *glyph = glyphs.firstObject;
         check(@"caret-in-message-box", caret && caret.window && [caret isDescendantOfView:input],
               caret ? [NSString stringWithFormat:@"%@ in %@", NSStringFromCGRect(caret.frame), NSStringFromClass(caret.superview.class)]
                     : describeInteractions(input, 3));
-        check(@"caret-color", caret && [hexOf(caret.backgroundColor) isEqualToString:@"#ff0000ff"],
-              caret ? hexOf(caret.backgroundColor) : @"no caret");
+        check(@"caret-color", glyph && [hexOf(glyph.backgroundColor) isEqualToString:@"#ff0000ff"],
+              glyph ? hexOf(glyph.backgroundColor) : @"no glyph");
+        check(@"caret-where-cursor-is", glyph && !glyph.hidden && CGRectEqualToRect(glyph.frame, caret.frame),
+              [NSString stringWithFormat:@"%@, cursor %@", NSStringFromCGRect(glyph.frame), NSStringFromCGRect(caret.frame)]);
         check(@"caret-is-cursor", caret && [caret conformsToProtocol:objc_getProtocol("UITextCursorView")], @"");
 
         // Typing moves it: it glides there over the transition delay
-        CGPoint before = caret.layer.position;
+        CGPoint before = glyph.layer.position;
         [input insertText:@" world, and more"];
         [input layoutIfNeeded];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            CALayer *shown = caret.layer.presentationLayer;
-            CGPoint target = caret.layer.position;
+            CALayer *shown = glyph.layer.presentationLayer;
+            CGPoint target = glyph.layer.position;
             BOOL moved = !CGPointEqualToPoint(before, target);
             BOOL midway = shown && fabs(shown.position.x - target.x) > 1 && fabs(shown.position.x - before.x) > 1;
             check(@"caret-glides", moved && midway,
                   [NSString stringWithFormat:@"from %@ to %@, on screen %@, animations %@", NSStringFromCGPoint(before),
                                              NSStringFromCGPoint(target), NSStringFromCGPoint(shown.position),
-                                             caret.layer.animationKeys]);
+                                             [glyph.layer.animationKeys componentsJoinedByString:@" "]]);
             printf("SCREENSHOT %s\n", scenario.UTF8String);
             fflush(stdout);
 
@@ -334,6 +339,7 @@ static void checkSmoothCaret(UIViewController *root)
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         NSMutableArray *left = [NSMutableArray array];
                         findViews(root.view, @"EndcordCaretView", left);
+                        findViews(root.view, @"EndcordCaretGlyph", left);
                         BOOL gone = YES;
                         for (UIView *view in left) if (view.window) gone = NO;
                         check(@"caret-off", gone, [NSString stringWithFormat:@"%lu left", (unsigned long)left.count]);
