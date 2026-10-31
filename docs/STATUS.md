@@ -1,7 +1,7 @@
 # Durum (27 Ekim 2026)
 
 Endcord for Android (yeni Discord), Revenge'in üç parçasının fork'udur: `bundle/` (Discord'un içinde çalışan
-JavaScript), `loader/` (bundle'ı Discord'a yükleyen Xposed modülü) ve `installer/` (Discord'u alıp Endcord'u ekleyen
+JavaScript), `android/loader/` (bundle'ı Discord'a yükleyen Xposed modülü) ve `android/installer/` (Discord'u alıp Endcord'u ekleyen
 kurucu). Hangi upstream commit'lerinden alındığı [UPSTREAM.md](../UPSTREAM.md) içinde.
 
 ## Bu sürümde

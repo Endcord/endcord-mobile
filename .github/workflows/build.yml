@@ -66,7 +66,7 @@ jobs:
           java-version: 25
       - uses: gradle/actions/setup-gradle@v5
       - name: Build
-        working-directory: loader
+        working-directory: android/loader
         run: |
           chmod +x gradlew
           if [ -n "$LOADER_KEYSTORE" ]; then
@@ -87,7 +87,7 @@ jobs:
       - uses: actions/upload-artifact@v6
         with:
           name: loader
-          path: loader/endcord-xposed.apk
+          path: android/loader/endcord-xposed.apk
 
   installer:
     name: Installer
@@ -107,7 +107,7 @@ jobs:
           java-version: 17
       - uses: gradle/actions/setup-gradle@v5
       - name: Build
-        working-directory: installer
+        working-directory: android/installer
         run: |
           chmod +x gradlew
           # Signed like the releases when the INSTALLER_KEYSTORE secrets exist, so either can update the other;
@@ -121,7 +121,7 @@ jobs:
       - uses: actions/upload-artifact@v6
         with:
           name: installer
-          path: installer/app/build/outputs/apk/release/*.apk
+          path: android/installer/app/build/outputs/apk/release/*.apk
 
   classic-installer:
     # The installer offers Endcord Classic, on Aliucord's older Discord, through its own installer, which lives on the
@@ -205,8 +205,8 @@ jobs:
             "loader": "endcord-xposed.apk",
             "installer": "endcord-installer.apk",
             "classicInstaller": "endcord-classic-installer.apk",
-            "loaderVersion": "$(sed -nE 's/^\s*versionName = "(.*)"/\1/p' loader/app/build.gradle.kts)",
-            "loaderVersionCode": $(sed -nE 's/^\s*versionCode = ([0-9]+)/\1/p' loader/app/build.gradle.kts),
+            "loaderVersion": "$(sed -nE 's/^\s*versionName = "(.*)"/\1/p' android/loader/app/build.gradle.kts)",
+            "loaderVersionCode": $(sed -nE 's/^\s*versionCode = ([0-9]+)/\1/p' android/loader/app/build.gradle.kts),
             "commit": "${{ github.sha }}",
             "builtAt": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
           }

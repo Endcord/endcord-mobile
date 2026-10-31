@@ -27,7 +27,7 @@ android {
         // The key signed bundle releases are checked with (bundle/scripts/sign-release.mjs). With requireSigned, a
         // published bundle without a signed release is refused too.
         val releaseKey = providers.gradleProperty("endcord.releaseKey")
-            .orElse(providers.fileContents(rootProject.layout.projectDirectory.file("../bundle/release-key.pub")).asText)
+            .orElse(providers.fileContents(rootProject.layout.projectDirectory.file("../../bundle/release-key.pub")).asText)
             .get().trim()
         buildConfigField("String", "RELEASE_KEY", "\"$releaseKey\"")
         val requireSigned = providers.gradleProperty("endcord.requireSigned").orElse("false").get().toBoolean()

@@ -2,22 +2,38 @@
 
 <img src="docs/images/banner.png" alt="Endcord" width="420">
 
-# Endcord for Android
+# Endcord Mobile
 
-**Plugins, themes and privacy for the Discord app on your phone.**
+**Plugins, themes and privacy for the Discord app on your Android phone, iPhone and iPad.**
 
-[![Download for Android](https://img.shields.io/badge/Download-Android%20APK-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/rootpoii/endcord-mobile/releases/download/next-installer-v1.0.0/endcord-installer-v1.0.0.apk)
+[![Download for Android](https://img.shields.io/badge/Download-Android%20APK-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/Endcord/endcord-mobile/releases/download/next-installer-v1.0.0/endcord-installer-v1.0.0.apk)
+[![Download for iOS](https://img.shields.io/badge/Download-iOS%20IPA-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/Endcord/endcord-mobile/releases/download/ios-v1.0.3/Endcord.ipa)
 [![Join the Discord](https://img.shields.io/badge/Discord-Join%20us-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/endcord)
 
 ![Plugins](https://img.shields.io/badge/plugins-303-5865F2)
 ![Android](https://img.shields.io/badge/Android-9%2B-3DDC84?logo=android&logoColor=white)
-![No root](https://img.shields.io/badge/root-not%20needed-3DDC84)
+![iOS](https://img.shields.io/badge/iOS-16%2B-000000?logo=apple&logoColor=white)
+![No root or jailbreak](https://img.shields.io/badge/root%20or%20jailbreak-not%20needed-3DDC84)
 ![Languages](https://img.shields.io/badge/languages-5-F59E0B)
 ![License](https://img.shields.io/badge/license-GPL--3.0-blue)
 
-[Website](https://endcord.com) · [Endcord PC](https://github.com/rootpoii/endcord) · [Endcord Classic](https://github.com/rootpoii/endcord-mobile/tree/main) · [Plugin list](docs/PLUGINS.md)
+[Website](https://endcord.com) · [Endcord PC](https://github.com/rootpoii/endcord) · [Endcord Classic](https://github.com/Endcord/endcord-mobile/tree/main) · [Plugin list](docs/PLUGINS.md)
 
 </div>
+
+Endcord is on every platform: this repository is the mobile app for **Android** and **iOS / iPadOS**, and
+[Endcord PC](https://github.com/rootpoii/endcord) covers **Windows, macOS, Linux and the web**.
+
+| | Android | iOS and iPadOS |
+| --- | --- | --- |
+| **Version** | Android 9 or newer | iOS 16 or newer, Discord 332 or newer |
+| **Install with** | Endcord Installer | An IPA, with Sideloadly, AltStore, SideStore, Feather, KSign or ESign |
+| **Root or jailbreak** | Not needed | Not needed |
+| **Plugins, themes, fonts** | Yes | Yes |
+| **Signed updates** | Yes | Yes |
+| **Code** | [`android/`](android) | [`ios/`](ios) |
+
+Both run the same Endcord, from [`bundle/`](bundle), so plugins and themes work the same on each.
 
 ## Features
 
@@ -31,17 +47,19 @@
 - **Your language.** English, Türkçe, Русский, Español and Français, following Discord's language or the one you pick.
 - **Light on older phones.** Only a list of plugins loads when Discord starts. A plugin's code loads the first time you
   turn it on.
-- **Always up to date.** Endcord updates itself every time the app starts, and the installer rebuilds it when Discord
-  updates.
+- **Always up to date.** Endcord updates itself every time the app starts. On Android, the installer rebuilds it when
+  Discord updates.
+- **Signed updates.** Every update is signed, and the app checks that signature and refuses older versions, so changing
+  the files on the server isn't enough to run code on your phone.
 - **Hard to break.** A plugin that fails turns itself off and tells you why, instead of crashing Discord. Safe Mode
   and a recovery menu are always one step away.
 - **Compatible.** Vendetta and Revenge plugins and themes work too, and you can browse community plugins in the app.
 
-## Install
+## Install on Android
 
 No root needed. Endcord installs next to Discord as a separate app, and your Discord stays exactly as it is.
 
-1. Download **[Endcord Installer](https://github.com/rootpoii/endcord-mobile/releases/download/next-installer-v1.0.0/endcord-installer-v1.0.0.apk)**
+1. Download **[Endcord Installer](https://github.com/Endcord/endcord-mobile/releases/download/next-installer-v1.0.0/endcord-installer-v1.0.0.apk)**
    and open it. If Android asks, allow your browser to install apps.
 2. In **Endcord Installer**, tap **Install**. It uses the Discord on your phone, or downloads the latest one.
 3. Open **Endcord** and sign in. Endcord's settings are in Discord's settings, under **Endcord**.
@@ -57,10 +75,47 @@ it warns about every app that doesn't come from the Play Store.
 Nothing is reinstalled: the Play Store Discord runs Endcord.
 
 1. Install [LSPosed](https://github.com/JingMatrix/LSPosed) or another Xposed framework.
-2. Download `endcord-xposed.apk` from the [`builds-next` branch](https://github.com/rootpoii/endcord-mobile/tree/builds-next)
+2. Download `endcord-xposed.apk` from the [`builds-next` branch](https://github.com/Endcord/endcord-mobile/tree/builds-next)
    and install it.
 3. In LSPosed, enable the **Endcord Xposed** module for **Discord** (`com.discord`).
 4. Force-stop Discord and open it again.
+
+</details>
+
+## Install on iPhone and iPad
+
+No jailbreak needed. iOS 16 or newer.
+
+1. Download **[Endcord.ipa](https://github.com/Endcord/endcord-mobile/releases/download/ios-v1.0.3/Endcord.ipa)**.
+2. Install it with one of these:
+   - **[Sideloadly](https://sideloadly.io)** on a computer, with your own Apple ID. Change the bundle ID in its advanced
+     options if you want to keep the App Store Discord too.
+   - **AltStore or SideStore**, adding this source:
+     `https://raw.githubusercontent.com/Endcord/endcord-mobile/builds-ios/apps.json`
+   - **Feather, KSign or ESign**, with a certificate of your own.
+3. Open **Endcord** and sign in. Endcord's settings are in Discord's settings, under **Endcord**.
+
+With a free Apple ID the app has to be signed again every 7 days. Shared free certificates can be revoked by Apple at
+any time, and everything signed with one then stops opening until it's signed with another.
+
+<details>
+<summary><b>Jailbroken, or using your own Discord IPA?</b></summary>
+
+<br>
+
+The [iOS release](https://github.com/Endcord/endcord-mobile/releases/tag/ios-v1.0.3) also has a rootless `.deb` and
+`Endcord.dylib`, to inject into your own decrypted Discord IPA (Discord 332 or newer) with Substrate or ElleKit included.
+
+</details>
+
+<details>
+<summary><b>What doesn't work on iOS?</b></summary>
+
+<br>
+
+Apple limits sideloaded apps, whichever mod you use: notifications don't arrive while the app is closed or in the
+background, and passkeys and sharing to Discord from other apps don't work. Screen share depends on the certificate:
+it needs an app group, which free Apple IDs may not get. SmoothType needs iOS 17 or newer.
 
 </details>
 
@@ -72,7 +127,7 @@ Nothing is reinstalled: the Play Store Discord runs Endcord.
 <br>
 
 Not in this app. Aliucord plugins are written for the older Discord that Aliucord is built on and can't run on the
-current one. [Endcord Classic](https://github.com/rootpoii/endcord-mobile/tree/main) runs both Endcord's and
+current one. [Endcord Classic](https://github.com/Endcord/endcord-mobile/tree/main) runs both Endcord's and
 Aliucord's plugins, and Endcord Installer can set it up for you.
 
 </details>
@@ -82,9 +137,10 @@ Aliucord's plugins, and Endcord Installer can set it up for you.
 
 <br>
 
-You don't need to do anything. Endcord downloads its newest version every time the app starts. When Discord updates,
-Endcord Installer sends a notification: tap it to rebuild Endcord. The installer also tells you when a new version of
-itself is out.
+You don't need to do anything for Endcord itself: it downloads its newest version every time the app starts. On
+Android, when Discord updates, Endcord Installer sends a notification: tap it to rebuild Endcord. The installer also
+tells you when a new version of itself is out. On iOS, a new Discord comes as a new IPA, which AltStore and SideStore
+update for you.
 
 </details>
 
@@ -93,8 +149,8 @@ itself is out.
 
 <br>
 
-- Shake the phone, or hold two fingers on the screen for 3 seconds right after Endcord opens, for the recovery menu:
-  reload, recovery mode (plugins and themes off), delete the downloaded Endcord, or reset the loader settings.
+- Shake the phone for the recovery menu, or on Android hold two fingers on the screen for 3 seconds right after Endcord
+  opens: reload, recovery mode (plugins and themes off), delete the downloaded Endcord, or reset the loader settings.
 - Endcord → General → **Safe Mode** reloads without plugins and themes.
 - A plugin that fails to start turns itself off and says so. Turn it back on after the next update.
 
@@ -110,6 +166,15 @@ at your own risk. Plugins that act for you, like scheduled messages, stay off un
 
 </details>
 
+## What's in this repository
+
+| Directory | What it is |
+| --- | --- |
+| [`bundle/`](bundle) | The Endcord that runs inside Discord on both platforms: plugins, themes and settings |
+| [`android/`](android) | The Android loader and Endcord Installer |
+| [`ios/`](ios) | The iOS tweak, and its tests |
+| [`docs/`](docs) | Development, the plugin list and how to write a plugin |
+
 ## Contributing
 
 Bug reports, translations and plugins are welcome: open an issue or come to our
@@ -119,8 +184,9 @@ plugin.
 
 ## Credits and license
 
-Endcord for Android is a fork of [Revenge](https://github.com/revenge-mod), which continues Bunny and Vendetta; see
-[UPSTREAM.md](UPSTREAM.md) for the exact upstream commits. It would not exist without them,
+Endcord Mobile is a fork of [Revenge](https://github.com/revenge-mod), which continues Bunny and Vendetta, and its iOS
+tweak of [RainTweak](https://codeberg.org/raincord/RainTweak); see [UPSTREAM.md](UPSTREAM.md) for the exact upstream
+commits. It would not exist without them,
 [LSPatch](https://github.com/LSPosed/LSPatch) and the Vendetta tracker mirrors that serve the Discord APKs.
 MessageLogger and FakeNitro follow the approaches of the
 [Revenge community plugins](https://github.com/revenge-mod/revenge-community-plugins) (GPL-3.0); oneko's cat is
@@ -128,9 +194,9 @@ MessageLogger and FakeNitro follow the approaches of the
 and the community [theme marketplace](https://github.com/kmmiio99o/theme-marketplace).
 
 © 2026 rootpoi and contributors. Each directory keeps the license of the project it was forked from: `bundle/`
-BSD-3-Clause, `loader/` GPL-3.0, `installer/` OSL-3.0. Endcord's plugins (`bundle/src/plugins`) and the other files
+BSD-3-Clause, `android/loader/` GPL-3.0, `android/installer/` and `ios/` OSL-3.0. Endcord's plugins (`bundle/src/plugins`) and the other files
 marked `SPDX-License-Identifier: GPL-3.0-or-later` are GPL-3.0-or-later, like Endcord PC, so the built bundle as a
 whole is distributed under the GPL-3.0. The original copyright notices of Team Vendetta, pylixonly and Team Revenge
 are kept in the source files and shown in the installer's About screen.
 
-<sub>Endcord is not affiliated with or endorsed by Discord Inc. or the Revenge team.</sub>
+<sub>Endcord is not affiliated with or endorsed by Discord Inc., Apple or the Revenge and Rain teams.</sub>

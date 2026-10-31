@@ -104,7 +104,9 @@ jobs:
     outputs:
       discord-version: ${{ steps.inject.outputs.discord-version }}
     env:
-      IPA_URL: ${{ inputs.ipa_url || secrets.DISCORD_IPA_URL }}
+      # Without one of its own, RainTweak's public release, which is the Discord this was tested with; pinned by hash
+      IPA_URL: ${{ inputs.ipa_url || secrets.DISCORD_IPA_URL || 'https://github.com/ra1ncord/RainTweak/releases/download/v1.2.0/RainTweak.ipa' }}
+      IPA_SHA256: ${{ (inputs.ipa_url || secrets.DISCORD_IPA_URL) && '' || '98225b128f99c0ac0ffe810ddcb781c73f01da4ce56dbf640a52cf84df0d6549' }}
     steps:
       - name: Check for a Discord IPA
         id: source
@@ -133,6 +135,19 @@ jobs:
           exec > >(tee -a "$GITHUB_WORKSPACE/ipa.log") 2>&1
           pip install "https://github.com/asdfzxcvbn/pyzule-rw/archive/740d3716dcd98c20c000f12cdb88f1f0b2a533a4.zip" Pillow
           curl -fsSL --retry 3 -o "$RUNNER_TEMP/discord.ipa" "$IPA_URL"
+          if [ -n "$IPA_SHA256" ]; then
+            echo "$IPA_SHA256  $RUNNER_TEMP/discord.ipa" | shasum -a 256 -c -
+          fi
+
+          # Discord alone goes in: a tweak the IPA came with would run next to Endcord
+          mkdir "$RUNNER_TEMP/source"
+          unzip -q "$RUNNER_TEMP/discord.ipa" -d "$RUNNER_TEMP/source"
+          if [ -f "$RUNNER_TEMP/source/Payload/Discord.app/Frameworks/RainTweak.dylib" ]; then
+            node ios/scripts/remove-dylib.cjs "$RUNNER_TEMP/source/Payload/Discord.app/Discord" "@rpath/RainTweak.dylib"
+            rm "$RUNNER_TEMP/source/Payload/Discord.app/Frameworks/RainTweak.dylib"
+            rm "$RUNNER_TEMP/discord.ipa"
+            (cd "$RUNNER_TEMP/source" && zip -qry "$RUNNER_TEMP/discord.ipa" Payload)
+          fi
           unzip -p "$RUNNER_TEMP/discord.ipa" "Payload/Discord.app/Info.plist" > "$RUNNER_TEMP/Info.plist"
           version=$(plutil -extract CFBundleShortVersionString raw "$RUNNER_TEMP/Info.plist")
           echo "Discord $version"
@@ -142,7 +157,7 @@ jobs:
           python - "$RUNNER_TEMP/icon.png" <<'EOF'
           import sys
           from PIL import Image
-          foreground = Image.open("installer/app/src/main/res/drawable-xxxhdpi/ic_launcher_foreground.png").convert("RGBA")
+          foreground = Image.open("android/installer/app/src/main/res/drawable-xxxhdpi/ic_launcher_foreground.png").convert("RGBA")
           icon = Image.new("RGBA", (1024, 1024), (0x10, 0x18, 0x2A, 255))
           icon.alpha_composite(foreground.resize((1536, 1536), Image.LANCZOS), (-256, -256))
           icon.convert("RGB").save(sys.argv[1])
@@ -171,6 +186,15 @@ jobs:
             ls -l Endcord.ipa
           else
             echo "::warning::No decrypted BroadcastUpload extension: screen share won't work in this IPA"
+          fi
+
+          if [ -e "$app/Frameworks/RainTweak.dylib" ] || otool -L "$app/Discord" | grep -q RainTweak; then
+            echo "::error::The IPA still has RainTweak in it"
+            exit 1
+          fi
+          if ! otool -L "$app/Discord" | grep -q Endcord.dylib; then
+            echo "::error::Discord doesn't load Endcord"
+            exit 1
           fi
 
           # What can be checked without a device. The tweak takes JSI from Discord's Hermes at run time (linked with

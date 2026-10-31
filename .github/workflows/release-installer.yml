@@ -27,7 +27,7 @@ jobs:
           java-version: 17
       - uses: gradle/actions/setup-gradle@v5
       - name: Set version
-        working-directory: installer
+        working-directory: android/installer
         env:
           REQUESTED: ${{ inputs.version || github.ref_name }}
         run: |
@@ -46,9 +46,9 @@ jobs:
             echo "::error::The INSTALLER_KEYSTORE secret is missing; see docs/DEVELOPMENT.md"
             exit 1
           fi
-          echo "$KEYSTORE" | base64 -d > installer/app/keystore.jks
+          echo "$KEYSTORE" | base64 -d > android/installer/app/keystore.jks
       - name: Build
-        working-directory: installer
+        working-directory: android/installer
         env:
           KEYSTORE_PASSWORD: ${{ secrets.INSTALLER_KEYSTORE_PASSWORD }}
           KEYSTORE_ENTRY_ALIAS: ${{ secrets.INSTALLER_KEY_ALIAS }}

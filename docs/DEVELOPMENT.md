@@ -1,6 +1,6 @@
-# Developing Endcord for Android
+# Developing Endcord Mobile
 
-Endcord for Android is a fork of [Revenge](https://github.com/revenge-mod) and lives on the `next` branch of
+Endcord Mobile, for Android and iOS, is a fork of [Revenge](https://github.com/revenge-mod) and lives on the `next` branch of
 `endcord-mobile`, next to the classic-app Endcord on `main`; the two are separate apps and separate code.
 [UPSTREAM.md](../UPSTREAM.md) lists the exact upstream commits.
 
@@ -9,8 +9,9 @@ Endcord for Android is a fork of [Revenge](https://github.com/revenge-mod) and l
 | Directory | What it is | Upstream |
 | --- | --- | --- |
 | `bundle/` | The JavaScript that runs inside Discord: Endcord's plugins (`src/plugins`), the plugin system, settings UI, themes, fonts and translations (`src/core/i18n`). Built with Bun into `endcord.min.js`. | revenge-bundle (BSD-3) |
-| `loader/` | The Xposed module that loads the bundle into Discord. Works both embedded by the installer (no root) and as a regular LSPosed module (root). | revenge-xposed (GPL-3) |
-| `installer/` | Endcord Installer: takes the installed or the latest Discord, embeds the loader with LSPatch, re-signs and installs it as a separate app. | revenge-manager (OSL-3) |
+| `android/loader/` | The Xposed module that loads the bundle into Discord. Works both embedded by the installer (no root) and as a regular LSPosed module (root). | revenge-xposed (GPL-3) |
+| `android/installer/` | Endcord Installer: takes the installed or the latest Discord, embeds the loader with LSPatch, re-signs and installs it as a separate app. | revenge-manager (OSL-3) |
+| `ios/` | The tweak that loads the same bundle into Discord on iOS and iPadOS, with its tests. See [ios/README.md](../ios/README.md) | [RainTweak](https://codeberg.org/raincord/RainTweak) |
 
 Every push to `next` is built by the [Build workflow](../.github/workflows/build.yml) and published to the
 `builds-next` branch: `endcord.min.js` (bundle), `endcord.v*.hbc` (the bundle as Hermes bytecode), `endcord-xposed.apk`
@@ -24,13 +25,13 @@ Requirements: [Bun](https://bun.sh) for the bundle, JDK 25 for the loader, JDK 1
 # Bundle → bundle/dist/endcord.min.js
 cd bundle && bun install && bun run build --build-minify
 
-# Loader → loader/app/build/outputs/apk/debug/app-debug.apk
+# Loader → android/loader/app/build/outputs/apk/debug/app-debug.apk
 # -Pendcord.bundleUrl points the debug build at a bundle you serve yourself (bun run serve in bundle/ serves
 # it on port 4040; from the Android emulator the host is 10.0.2.2)
-cd loader && ./gradlew :app:assembleDebug -Pendcord.bundleUrl=http://10.0.2.2:4040/endcord.min.js
+cd android/loader && ./gradlew :app:assembleDebug -Pendcord.bundleUrl=http://10.0.2.2:4040/endcord.min.js
 
-# Installer → installer/app/build/outputs/apk/debug/endcord-installer-*.apk
-cd installer && ./gradlew :app:assembleDebug
+# Installer → android/installer/app/build/outputs/apk/debug/endcord-installer-*.apk
+cd android/installer && ./gradlew :app:assembleDebug
 ```
 
 Package names: the installer is `com.endcord.installer.next`, the patched Discord is `com.endcord.next` (the

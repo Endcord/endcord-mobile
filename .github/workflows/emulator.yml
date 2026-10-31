@@ -52,23 +52,23 @@ jobs:
           java-version: 25
       - uses: gradle/actions/setup-gradle@v5
       - name: Build the loader
-        working-directory: loader
+        working-directory: android/loader
         run: |
           chmod +x gradlew
           ./gradlew --no-daemon :app:assembleDebug -Pendcord.bundleUrl=http://10.0.2.2:4040/endcord.min.js \
-            -Pendcord.releaseKey="$(cat ../release-test.pub)" -Pendcord.requireSigned=true
-          cp app/build/outputs/apk/debug/app-debug.apk ../serve/endcord-xposed.apk
+            -Pendcord.releaseKey="$(cat ../../release-test.pub)" -Pendcord.requireSigned=true
+          cp app/build/outputs/apk/debug/app-debug.apk ../../serve/endcord-xposed.apk
 
       - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: 21
       - name: Build the installer
-        working-directory: installer
+        working-directory: android/installer
         run: |
           chmod +x gradlew
           ./gradlew --no-daemon :app:assembleDebug -Pendcord.loaderUrl=http://10.0.2.2:4040/endcord-xposed.apk
-          cp app/build/outputs/apk/debug/*.apk ../installer.apk
+          cp app/build/outputs/apk/debug/*.apk ../../installer.apk
 
       - name: Download the latest stable Discord (for the "already installed" scenario)
         run: |

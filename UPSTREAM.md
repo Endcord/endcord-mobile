@@ -9,8 +9,8 @@ changed).
 | Directory | Upstream | Imported commit | License |
 | --- | --- | --- | --- |
 | `bundle/` | https://github.com/revenge-mod/revenge-bundle | `577c7f2` (1.11.7, 2026-10-23) | BSD-3-Clause |
-| `loader/` | https://github.com/revenge-mod/revenge-xposed | `38a1e69` (1.9.4 / 1904, 2026-10-24) | GPL-3.0 |
-| `installer/` | https://github.com/revenge-mod/revenge-manager | `af6377d` (1.3.2, 2026-10-24) | OSL-3.0 |
+| `android/loader/` | https://github.com/revenge-mod/revenge-xposed | `38a1e69` (1.9.4 / 1904, 2026-10-24) | GPL-3.0 |
+| `android/installer/` | https://github.com/revenge-mod/revenge-manager | `af6377d` (1.3.2, 2026-10-24) | OSL-3.0 |
 | `ios/` | https://codeberg.org/raincord/RainTweak | `c2fa89a` (1.2.0, 2026-09-14) | OSL-3.0 |
 
 Discord itself is downloaded by the installer from the Vendetta tracker mirrors that Revenge Manager uses. On iOS the

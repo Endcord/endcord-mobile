@@ -13,7 +13,7 @@ The iOS workflow (`.github/workflows/ios.yml`) builds it on macOS with [Theos](h
 - `com.endcord.tweak_<version>_iphoneos-arm64.deb` for jailbroken devices (rootless)
 - `Endcord.dylib` to inject into a Discord IPA with Feather, ESign, KSign or Sideloadly
 - `Endcord.ipa`, Discord with the tweak injected, from the decrypted Discord IPA linked in the `DISCORD_IPA_URL`
-  secret
+  secret, or else RainTweak's public IPA, pinned by hash, with RainTweak taken out of it (`scripts/remove-dylib.cjs`)
 
 On `next` they're published as the `ios-v<version>` release, whose files each new Discord replaces, and
 `builds-ios/apps.json` is the source AltStore and SideStore install and update Endcord from:
