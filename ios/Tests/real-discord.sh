@@ -130,6 +130,6 @@ for i in $(seq 1 300); do
     fi
     pgrep -x Discord > /dev/null || { fail "Discord stopped on the second start after ${i}s"; break; }
 done
-grep -q ' 304 "$RESULTS/server.log" && pass "the second start checked the saved bundle with its ETag (304)"     || fail "no 304 on the second start"
-grep -q 'test-theme' "$RESULTS/discord2.err" && echo "theme mentioned in the log" >> "$RESULTS/summary.txt"
-grep -E '[Endcord]' "$RESULTS/discord2.err" | tail -n 30 > "$RESULTS/second-start.txt"
+grep -q ' 304$' "$RESULTS/server.log" && pass "the second start checked the saved bundle with its ETag (304)" \
+    || fail "no 304 on the second start"
+grep -E '\[Endcord\]' "$RESULTS/discord2.err" | tail -n 30 > "$RESULTS/second-start.txt"

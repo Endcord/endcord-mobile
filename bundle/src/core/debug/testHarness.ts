@@ -303,6 +303,29 @@ ${e.stack}` : String(e) });
         return { forms, button: !!button?.default, pass: pass && !!button?.default };
     });
 
+    await check("a selected theme changes Discord's colors", async () => {
+        const { selectTheme } = require("@lib/addons/themes");
+        const { resolveSemanticColor, semanticColorOf } = require("@lib/ui/color");
+        const ThemeStore = findByStoreName("ThemeStore");
+        const token = semanticColorOf("TEXT_DEFAULT");
+        const before = resolveSemanticColor(token);
+        const theme = {
+            id: "endcord-test-theme", selected: false,
+            data: { name: "Test", spec: 2, semanticColors: { TEXT_DEFAULT: ["#ffeb3b", "#ffeb3b"] }, rawColors: {} },
+        };
+        await selectTheme(theme);
+        await wait(500);
+        const during = resolveSemanticColor(token);
+        const key = ThemeStore.theme;
+        await selectTheme(null);
+        await wait(500);
+        const after = resolveSemanticColor(token);
+        return {
+            before, during, key, after,
+            pass: String(during).toLowerCase().startsWith("#ffeb3b") && String(key).startsWith("bn-theme-") && after === before,
+        };
+    });
+
     await check("message-logger keeps a deleted message", async () => {
         const MessageStore = findByStoreName("MessageStore");
         const channelId = "1111111111111111111";
