@@ -1,0 +1,13 @@
+RESULT PASS broken-files bundle: ran hbc2, saved from http://127.0.0.1:4040/endcord.v98.hbc | "addcc1ea9499f43724ab09f51635d45a7df7a97b"
+RESULT PASS broken-files font-paths-contained: 
+RESULT PASS broken-files loader-identity: EndcordTweak 1.0.2 themes=true fontPatch=2 storedTheme=null
+RESULT PASS broken-files bridge-sync: revenge.info = EndcordTweak 1.0.2
+RESULT PASS broken-files bridge-unknown-method: Method not implemented: revenge.nope
+RESULT PASS broken-files bridge-smooth-type: undefined
+RESULT PASS broken-files bridge-no-payload-throws: 
+RESULT PASS broken-files bridge-cyclic-args: The value is nested too deeply to pass to the loader
+RESULT PASS broken-files bridge-async: EndcordTweak
+RESULT PASS broken-files discord-init-ran: %orig before Endcord
+RESULT PASS broken-files no-alert: 
+SCREENSHOT broken-files
+DONE broken-files failures=0

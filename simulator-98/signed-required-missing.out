@@ -1,0 +1,4 @@
+RESULT PASS signed-required-missing bundle: ran none, saved from 
+RESULT PASS signed-required-missing alert: Endcord couldn't load
+SCREENSHOT signed-required-missing
+DONE signed-required-missing failures=0

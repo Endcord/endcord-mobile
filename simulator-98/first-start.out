@@ -1,0 +1,17 @@
+RESULT PASS first-start bundle: ran hbc, saved from http://127.0.0.1:4040/endcord.v98.hbc | "79a69fc613a92d212e2ecd8280c97733d2b911e3"
+RESULT PASS first-start saved-source: http://127.0.0.1:4040/endcord.v98.hbc
+"79a69fc613a92d212e2ecd8280c97733d2b911e3"
+RESULT PASS first-start loader-identity: EndcordTweak 1.0.2 themes=true fontPatch=2 storedTheme=null
+RESULT PASS first-start bridge-sync: revenge.info = EndcordTweak 1.0.2
+RESULT PASS first-start bridge-unknown-method: Method not implemented: revenge.nope
+RESULT PASS first-start bridge-smooth-type: undefined
+RESULT PASS first-start bridge-no-payload-throws: 
+RESULT PASS first-start bridge-cyclic-args: The value is nested too deeply to pass to the loader
+RESULT PASS first-start bridge-async: EndcordTweak
+RESULT PASS first-start discord-init-ran: %orig before Endcord
+RESULT PASS first-start sideloading-bundle-id: Discord's code sees com.hammerandchisel.discord
+RESULT PASS first-start sideloading-info: com.hammerandchisel.discord
+RESULT PASS first-start sideloading-app-group: /Users/runner/Library/Developer/CoreSimulator/Devices/B7CD7ED2-0DFF-42FE-A30F-21CD2E3D3D2C/data/Containers/Shared/AppGroup/689301E6-0BFF-4851-83D0-C2371AD6F1F1
+RESULT PASS first-start no-alert: 
+SCREENSHOT first-start
+DONE first-start failures=0

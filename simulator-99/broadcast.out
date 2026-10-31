@@ -1,0 +1,3 @@
+RESULT PASS broadcast broadcast-extension: told com.hammerandchisel.discord, picks com.endcord.testhost.BroadcastUpload
+RESULT PASS broadcast broadcast-other-untouched: com.example.Other
+DONE broadcast failures=0

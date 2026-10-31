@@ -1,0 +1,7 @@
+PASS: the saved bundle is checked with its ETag (304)
+PASS: font names with .. are refused
+PASS: the stand-in app group folder's files moved to the signed group
+PASS: deleting plugins and themes removes what the bundle keeps them in, and only that
+PASS: safe mode on: settings saved, theme off
+PASS: safe mode off: theme back
+Host checks: 103 passed, 0 failed

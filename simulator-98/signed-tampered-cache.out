@@ -1,0 +1,4 @@
+RESULT PASS signed-tampered-cache bundle: ran hbc2, saved from http://127.0.0.1:4040/endcord.v98.hbc | "addcc1ea9499f43724ab09f51635d45a7df7a97b"
+RESULT PASS signed-tampered-cache no-alert: 
+SCREENSHOT signed-tampered-cache
+DONE signed-tampered-cache failures=0

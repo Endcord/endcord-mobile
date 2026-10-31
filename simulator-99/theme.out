@@ -1,0 +1,12 @@
+RESULT PASS theme bundle: ran hbc2, saved from http://127.0.0.1:4040/endcord.v99.hbc | "1fc43dc170f1bb44a34bb1512693aa62449b27d3"
+RESULT PASS theme theme-semantic: #112233ff
+RESULT PASS theme theme-semantic-false: #00ff00ff
+RESULT PASS theme theme-semantic-short: #aabbccff
+RESULT PASS theme theme-raw: #abcdefff
+RESULT PASS theme theme-raw-alloc-untouched: NSObject
+RESULT PASS theme theme-raw-args-untouched: #0000ffff
+RESULT PASS theme theme-raw-lowercase-untouched: #000000ff
+RESULT PASS theme theme-stored: test-theme
+RESULT PASS theme no-alert: 
+SCREENSHOT theme
+DONE theme failures=0
