@@ -1,0 +1,20 @@
+Which Endcord?
+Endcord Classic
+Endcord
+On the current Discord app, with 300+ Endcord plugins
+Endcord
+Latest: 351.11 - Stable
+Install
+rootpoi
+•
+7c638d5
+10/31/26
+SmoothType says it needs iOS 17 on older iOS, and the README covers the real Discord test
+rootpoi
+•
+5119943
+10/31/26
+iOS test: screenshots of the pages the self-test opens in the real Discord
+Endcord Installer
+Reload
+Open about
