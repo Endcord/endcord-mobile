@@ -1,0 +1,6 @@
+RESULT PASS fallback-js bundle: ran js, saved from http://127.0.0.1:4040/endcord.min.js | "e539301e8b30ed13bfe228992caeb96a956fc6c0"
+RESULT PASS fallback-js saved-source: http://127.0.0.1:4040/endcord.min.js
+"e539301e8b30ed13bfe228992caeb96a956fc6c0"
+RESULT PASS fallback-js no-alert: 
+SCREENSHOT fallback-js
+DONE fallback-js failures=0
