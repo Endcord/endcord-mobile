@@ -1,0 +1,16 @@
+TextReplace
+Replace text in your messages. You can find pre-made rules in the #textreplace-rules channel in Endcord's Server
+Text Replace Rules
+Simple find and replace rules. For example, find 'brb' and replace it with 'be right back'
+Add Rule
+Add Rule
+Regex Replace Rules
+More powerful replacements using Regular Expressions. This section is for advanced users. If you don't understand it, just ignore it
+Add Rule
+Add Rule
+WELCOME TO DISCORD
+Hang out, play games, or just talk. Tap below to get started!
+Register
+Register
+Log In
+Log In
