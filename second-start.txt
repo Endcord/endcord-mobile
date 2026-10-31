@@ -1,0 +1,17 @@
+2026-10-31 04:51:46.022369+0000 Discord[34568:95479] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 04:52:04.304351+0000 Discord[34568:99223] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 04:52:04.305043+0000 Discord[34568:99223] [Endcord] Initializing theme (5 semantic colors, 0 raw colors)
+2026-10-31 04:52:04.322199+0000 Discord[34568:99223] [Endcord] Processing 0 raw color methods
+2026-10-31 04:52:04.325486+0000 Discord[34568:99223] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 04:52:04.326283+0000 Discord[34568:99223] [Endcord] Discord's bundle has bytecode version 98
+2026-10-31 04:52:04.433249+0000 Discord[34568:95870] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 04:52:04.433652+0000 Discord[34568:95870] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 04:52:04.544943+0000 Discord[34568:95870] [Endcord] The bundle at http://127.0.0.1:4040/endcord.v98.hbc hasn't changed
+2026-10-31 04:52:19.692851+0000 Discord[34568:95479] [Endcord] SmoothType: caret on, 0 message boxes seen
+2026-10-31 04:52:19.692948+0000 Discord[34568:95479] [Endcord] SmoothType: caret off, 0 message boxes seen
+2026-10-31 04:52:19.866320+0000 Discord[34568:95479] [Endcord] SmoothType: caret off, 0 message boxes seen
+2026-10-31 04:52:19.866368+0000 Discord[34568:95479] [Endcord] SmoothType: caret off, 0 message boxes seen
+2026-10-31 04:52:21.355529+0000 Discord[34568:95479] [Endcord] SmoothType: caret on, 0 message boxes seen
+2026-10-31 04:52:21.373251+0000 Discord[34568:99223] [Endcord JS] '[Endcord] NotificationVolume failed to start', [Error: Discord's sound player can't be changed on this device]
+2026-10-31 04:52:21.373373+0000 Discord[34568:99223] [javascript] '[Endcord] NotificationVolume failed to start', [Error: Discord's sound player can't be changed on this device]
+2026-10-31 04:52:41.399501+0000 Discord[34568:95479] [Endcord] SmoothType: caret off, 0 message boxes seen
