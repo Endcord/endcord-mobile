@@ -1,0 +1,20 @@
+Which Endcord?
+Endcord Classic
+Endcord
+On the current Discord app, with 300+ Endcord plugins
+Endcord
+Latest: 351.11 - Stable
+Install
+rootpoi
+•
+940f00a
+10/31/26
+MessageLogger: Remove Message History, in a message's menu
+rootpoi
+•
+de637aa
+10/31/26
+Self-test: the pickers open with the test pages out of the way
+Endcord Installer
+Reload
+Open about
