@@ -37,6 +37,15 @@ Discord` workflow): a decrypted device build runs on an Apple silicon simulator 
 so the bundle's self-test starts and stops every plugin inside Discord itself, logged out, and screenshots Endcord's
 pages. Nothing from it is published.
 
+## Bundle signing
+
+CI signs every published bundle (`bundle/scripts/sign-release.mjs`, the `ENDCORD_RELEASE_KEY` secret), and the tweak
+and the Android loader are built with its public key, `bundle/release-key.pub`. They take a bundle only when its size
+and SHA-256 are in a release with a valid signature, refuse a release older than one they've accepted, and check the
+saved bundle again on each start. The key isn't on the server, so changing the files there isn't enough to run code
+in anyone's Discord. Builds are strict, refusing unsigned bundles too, once the secret is set. A custom URL is the
+user's own choice and isn't checked.
+
 ## What sideloading can't do
 
 These hold for every modded Discord installed with a sideloading app:

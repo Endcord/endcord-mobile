@@ -63,7 +63,7 @@ SERVER=$!
 trap 'kill $SERVER 2> /dev/null; xcrun simctl shutdown "$UDID" 2> /dev/null' EXIT
 for _ in $(seq 1 30); do curl -fs "http://127.0.0.1:$PORT/__mode/normal" > /dev/null && break; sleep 1; done
 
-SIMCTL_CHILD_ENDCORD_LOG_JS=1 SIMCTL_CHILD_OS_ACTIVITY_DT_MODE=1 xcrun simctl launch \
+SIMCTL_CHILD_ENDCORD_TEST_REQUIRE_SIGNED=1 SIMCTL_CHILD_ENDCORD_LOG_JS=1 SIMCTL_CHILD_OS_ACTIVITY_DT_MODE=1 xcrun simctl launch \
     --stdout="$RESULTS/discord.out" --stderr="$RESULTS/discord.err" "$UDID" "$APP_ID" 2>&1 | tee "$RESULTS/launch.log"
 
 # The self-test asks for a screenshot of each Endcord page it opens
@@ -121,7 +121,8 @@ mkdir -p "$DOCS/pyoncord"
 cat > "$DOCS/pyoncord/current-theme.json" <<'THEME'
 {"id":"test-theme","selected":true,"data":{"name":"Test","spec":2,"semanticColors":{"BACKGROUND_BASE_LOWER":["#4a148c","#4a148c"],"BACKGROUND_BASE_LOW":["#4a148c","#4a148c"],"BACKGROUND_SURFACE_HIGH":["#6a1b9a","#6a1b9a"],"TEXT_DEFAULT":["#ffeb3b","#ffeb3b"],"TEXT_STRONG":["#ffeb3b","#ffeb3b"]},"rawColors":{}}}
 THEME
-SIMCTL_CHILD_ENDCORD_LOG_JS=1 SIMCTL_CHILD_OS_ACTIVITY_DT_MODE=1 xcrun simctl launch     --stdout="$RESULTS/discord2.out" --stderr="$RESULTS/discord2.err" "$UDID" "$APP_ID" 2>&1 | tee "$RESULTS/launch2.log"
+SIMCTL_CHILD_ENDCORD_TEST_REQUIRE_SIGNED=1 SIMCTL_CHILD_ENDCORD_LOG_JS=1 SIMCTL_CHILD_OS_ACTIVITY_DT_MODE=1 xcrun simctl launch \
+    --stdout="$RESULTS/discord2.out" --stderr="$RESULTS/discord2.err" "$UDID" "$APP_ID" 2>&1 | tee "$RESULTS/launch2.log"
 for i in $(seq 1 300); do
     sleep 1
     if grep -q '"name":"en-general"' "$RESULTS/discord2.err" 2> /dev/null; then
@@ -130,6 +131,7 @@ for i in $(seq 1 300); do
     fi
     pgrep -x Discord > /dev/null || { fail "Discord stopped on the second start after ${i}s"; break; }
 done
-grep -q ' 304$' "$RESULTS/server.log" && pass "the second start checked the saved bundle with its ETag (304)" \
-    || fail "no 304 on the second start"
+grep -q 'The saved bundle is the latest release' "$RESULTS/discord2.err" \
+    && pass "the second start ran the saved bundle after checking it against the signed release" \
+    || fail "the second start didn't check the saved bundle against the signed release"
 grep -E '\[Endcord\]' "$RESULTS/discord2.err" | tail -n 30 > "$RESULTS/second-start.txt"

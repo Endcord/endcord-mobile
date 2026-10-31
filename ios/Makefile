@@ -15,6 +15,14 @@ Endcord_CCFLAGS = -std=c++17 -Wno-c++11-narrowing -I$(THEOS_PROJECT_DIR)/Headers
 Endcord_FRAMEWORKS = Foundation UIKit CoreGraphics CoreText CoreFoundation QuartzCore UniformTypeIdentifiers Security AuthenticationServices
 Endcord_LDFLAGS = -undefined dynamic_lookup
 
+# The key signed bundle releases are checked with (bundle/scripts/sign-release.mjs). ENDCORD_REQUIRE_SIGNED=1 also refuses
+# a published bundle that has no signed release.
+ENDCORD_RELEASE_KEY ?= $(shell cat $(THEOS_PROJECT_DIR)/../bundle/release-key.pub)
+Endcord_CFLAGS += -DENDCORD_RELEASE_KEY='@"$(ENDCORD_RELEASE_KEY)"'
+ifdef ENDCORD_REQUIRE_SIGNED
+Endcord_CFLAGS += -DENDCORD_REQUIRE_SIGNED=1
+endif
+
 # The simulator test's build (Tests/run.sh) downloads the bundle from its own server
 ifdef ENDCORD_BUNDLE_URL
 Endcord_CFLAGS += -DENDCORD_BUNDLE_URL='@"$(ENDCORD_BUNDLE_URL)"'

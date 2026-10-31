@@ -56,6 +56,8 @@ jobs:
       KEYSTORE_PASSWORD: ${{ secrets.LOADER_KEYSTORE_PASSWORD }}
       KEY_ALIAS: ${{ secrets.LOADER_KEY_ALIAS }}
       KEY_PASSWORD: ${{ secrets.LOADER_KEY_PASSWORD }}
+      # Strict once releases are signed: until the key is there, a strict loader would refuse every bundle
+      REQUIRE_SIGNED: ${{ secrets.ENDCORD_RELEASE_KEY != '' }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-java@v5
@@ -70,11 +72,11 @@ jobs:
           if [ -n "$LOADER_KEYSTORE" ]; then
             echo "$LOADER_KEYSTORE" | base64 -d > "$RUNNER_TEMP/loader.jks"
             export KEYSTORE_FILE="$RUNNER_TEMP/loader.jks"
-            ./gradlew --no-daemon :app:assembleRelease
+            ./gradlew --no-daemon :app:assembleRelease -Pendcord.requireSigned=$REQUIRE_SIGNED
             cp app/build/outputs/apk/release/app-release.apk endcord-xposed.apk
           else
             echo "::warning::No LOADER_KEYSTORE secret: publishing the debug-signed module instead"
-            ./gradlew --no-daemon :app:assembleDebug
+            ./gradlew --no-daemon :app:assembleDebug -Pendcord.requireSigned=$REQUIRE_SIGNED
             cp app/build/outputs/apk/debug/app-debug.apk endcord-xposed.apk
           fi
       - uses: actions/upload-artifact@v6
@@ -189,6 +191,16 @@ jobs:
         run: |
           cp "$RUNNER_TEMP"/installer/*.apk "$RUNNER_TEMP"/out/endcord-installer.apk
           cp "$RUNNER_TEMP"/classic-installer/*.apk "$RUNNER_TEMP"/out/endcord-classic-installer.apk
+      - name: Sign the bundle
+        # The loaders check what the server serves against this signature; the key is never on the server
+        env:
+          ENDCORD_RELEASE_KEY: ${{ secrets.ENDCORD_RELEASE_KEY }}
+        run: |
+          if [ -n "$ENDCORD_RELEASE_KEY" ]; then
+            node bundle/scripts/sign-release.mjs "$RUNNER_TEMP/out"
+          else
+            echo "::warning::No ENDCORD_RELEASE_KEY secret: this bundle isn't signed"
+          fi
       - name: Write build info
         run: |
           cat > "$RUNNER_TEMP"/out/data.json <<EOF

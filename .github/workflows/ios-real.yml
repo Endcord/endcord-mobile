@@ -41,11 +41,15 @@ jobs:
         run: |
           export PATH="$(brew --prefix make)/libexec/gnubin:$PATH"
           make TARGET=simulator:clang:latest:15.0 ARCHS=arm64 Endcord_USE_SUBSTRATE=0 TARGET_CODESIGN_FLAGS="-f -s -" \
-            ENDCORD_BUNDLE_URL=http://127.0.0.1:4040/endcord.min.js 2>&1 | tee ../results/tweak-build.log
+            ENDCORD_BUNDLE_URL=http://127.0.0.1:4040/endcord.min.js ENDCORD_RELEASE_KEY="$(cat Tests/release-test-key.pub)" \
+            2>&1 | tee ../results/tweak-build.log
           cp "$(find .theos/obj -name Endcord.dylib | head -n 1)" ../Endcord-simulator.dylib
       - name: Run Discord
         shell: bash
         run: |
+          # Signed with the test key, and required: Discord starts the way a release build does
+          ENDCORD_RELEASE_KEY="$(cat ios/Tests/release-test-key.pem)" ENDCORD_RELEASE_PUBLIC_KEY_FILE=ios/Tests/release-test-key.pub \
+            node bundle/scripts/sign-release.mjs serve
           curl -fsSL --retry 3 -o discord.ipa "$IPA_URL"
           bash ios/Tests/real-discord.sh discord.ipa Endcord-simulator.dylib serve results
       - name: Save the results

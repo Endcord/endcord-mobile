@@ -39,6 +39,11 @@ jobs:
           # Precompiled like the published builds, so the emulator runs the bytecode users get
           node scripts/hermes.mjs
           mkdir -p ../serve && cp dist/endcord.min.js dist/endcord.v*.hbc ../serve/
+          # Signed with a key of this run's own, which the loader below requires, as a release build does
+          openssl ecparam -name prime256v1 -genkey -noout | openssl pkcs8 -topk8 -nocrypt -out ../release-test.pem
+          openssl pkey -in ../release-test.pem -pubout -outform DER | base64 -w0 > ../release-test.pub
+          ENDCORD_RELEASE_KEY="$(cat ../release-test.pem)" ENDCORD_RELEASE_PUBLIC_KEY_FILE=../release-test.pub \
+            node scripts/sign-release.mjs ../serve
 
       - uses: actions/setup-java@v5
         with:
@@ -49,7 +54,8 @@ jobs:
         working-directory: loader
         run: |
           chmod +x gradlew
-          ./gradlew --no-daemon :app:assembleDebug -Pendcord.bundleUrl=http://10.0.2.2:4040/endcord.min.js
+          ./gradlew --no-daemon :app:assembleDebug -Pendcord.bundleUrl=http://10.0.2.2:4040/endcord.min.js \
+            -Pendcord.releaseKey="$(cat ../release-test.pub)" -Pendcord.requireSigned=true
           cp app/build/outputs/apk/debug/app-debug.apk ../serve/endcord-xposed.apk
 
       - uses: actions/setup-java@v5

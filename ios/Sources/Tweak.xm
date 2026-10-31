@@ -6,6 +6,7 @@
 #import <objc/runtime.h>
 #import <stdlib.h>
 
+#import "BundleRelease.h"
 #import "LoaderConfig.h"
 #import "Logger.h"
 #import "Utils.h"
@@ -31,6 +32,24 @@ using namespace facebook;
 static LoaderConfig  *loaderConfig;
 static NSTimeInterval shakeStartTime = 0;
 static BOOL           isShaking      = NO;
+
+/**
+ * Whether a published bundle has to be signed. Builds are made strict once releases are signed; until then a manifest
+ * that's there is still checked, and only one that's missing is let through. A custom URL is the user's own choice.
+ */
+static BOOL requiresSignedBundle(void)
+{
+#ifdef ENDCORD_REQUIRE_SIGNED
+    return YES;
+#elif defined(ENDCORD_BUNDLE_URL)
+    return getenv("ENDCORD_TEST_REQUIRE_SIGNED") != NULL;
+#else
+    return NO;
+#endif
+}
+
+/** Set when a download was refused, so the user is told that rather than to check their connection */
+static BOOL releaseRefused = NO;
 
 static dispatch_queue_t fsQueue(void)
 {
@@ -101,10 +120,40 @@ static NSArray<NSString *> *savedBundleSource(void)
     return @[ lines[0], lines.count >= 2 ? lines[1] : @"" ];
 }
 
+static NSURL *savedReleaseFile(NSString *name)
+{
+    return [[getBundleURL() URLByDeletingLastPathComponent] URLByAppendingPathComponent:name];
+}
+
+static BOOL loadsPublishedBundle(void)
+{
+    LoaderConfig *config = [LoaderConfig getLoaderConfig];
+    return !(config.customLoadUrlEnabled && config.customLoadUrl);
+}
+
+/** The highest release sequence this install has accepted: outside the caches, so clearing them doesn't reset it */
+static NSString *const kReleaseSequenceKey = @"EndcordReleaseSequence";
+
+/**
+ * Whether a published bundle read from the disk is one a signed release listed. The check on download doesn't cover a
+ * file that's changed afterwards.
+ */
+static BOOL savedBundleIsSigned(NSData *bundle)
+{
+    __block NSData *manifest, *signature;
+    dispatch_sync(fsQueue(), ^{
+        manifest  = [NSData dataWithContentsOfURL:savedReleaseFile(@"endcord-release.json")];
+        signature = [NSData dataWithContentsOfURL:savedReleaseFile(@"endcord-release.sig")];
+    });
+    if (!manifest || !signature) return !requiresSignedBundle();
+    BundleRelease *release = [BundleRelease releaseWithManifest:manifest signature:signature];
+    return [release contains:bundle];
+}
+
 /**
  * The saved bundle, if this Discord can run it and it came from where Endcord loads from now. After Discord moves to a
  * newer Hermes, the bytecode saved for the old one is as good as missing; so is a bundle from a custom URL that has
- * been turned off since, or the other way around.
+ * been turned off since, or the other way around. A published one has to match its signed release too.
  */
 static NSData *usableSavedBundle(void)
 {
@@ -118,7 +167,29 @@ static NSData *usableSavedBundle(void)
         BunnyLog(@"The saved bundle is from %@, which Endcord doesn't load from now", source);
         return nil;
     }
-    return canRunBundle(bundle, source ?: @"the saved bundle") ? bundle : nil;
+    if (!canRunBundle(bundle, source ?: @"the saved bundle")) return nil;
+    if (loadsPublishedBundle() && !savedBundleIsSigned(bundle))
+    {
+        BunnyLog(@"The saved bundle doesn't match its signed release");
+        return nil;
+    }
+    return bundle;
+}
+
+/** A URL's body, or nil when it can't be had */
+static NSData *fetchData(NSURLSession *session, NSURL *url, NSTimeInterval timeout)
+{
+    __block NSData *data;
+    dispatch_semaphore_t done = dispatch_semaphore_create(0);
+    NSURLRequest *request = [NSURLRequest requestWithURL:url
+                                             cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                         timeoutInterval:timeout];
+    [[session dataTaskWithRequest:request completionHandler:^(NSData *d, NSURLResponse *r, NSError *e) {
+        if (!e && [r isKindOfClass:NSHTTPURLResponse.class] && ((NSHTTPURLResponse *) r).statusCode == 200) data = d;
+        dispatch_semaphore_signal(done);
+    }] resume];
+    dispatch_semaphore_wait(done, DISPATCH_TIME_FOREVER);
+    return data.length ? data : nil;
 }
 
 /**
@@ -132,12 +203,57 @@ static NSData *fetchBundle(NSTimeInterval timeout)
     NSURLSession *session = [NSURLSession sessionWithConfiguration:NSURLSessionConfiguration.ephemeralSessionConfiguration];
     NSData *result = nil;
 
+    // Checked before any bundle is taken: a release that's forged, or older than one already accepted, ends it here
+    BundleRelease *release = nil;
+    NSData *manifest = nil, *signature = nil;
+    if (loadsPublishedBundle())
+    {
+        NSURL *folder = [[NSURL URLWithString:BUNDLE_URL] URLByDeletingLastPathComponent];
+        manifest  = fetchData(session, [folder URLByAppendingPathComponent:@"endcord-release.json"], timeout);
+        signature = fetchData(session, [folder URLByAppendingPathComponent:@"endcord-release.sig"], timeout);
+
+        unsigned long long accepted = [[NSUserDefaults.standardUserDefaults objectForKey:kReleaseSequenceKey] unsignedLongLongValue];
+        if (manifest && signature) release = [BundleRelease releaseWithManifest:manifest signature:signature];
+        if ((manifest && signature && !release) || (release && release.sequence < accepted))
+        {
+            BunnyLog(@"Refused a release: %@", release ? @"it's older than one already accepted" : @"its signature isn't valid");
+            releaseRefused = YES;
+            [session finishTasksAndInvalidate];
+            return saved;
+        }
+        if (!release && requiresSignedBundle())
+        {
+            BunnyLog(@"No signed release could be fetched, so no bundle is taken");
+            [session finishTasksAndInvalidate];
+            return saved;
+        }
+    }
+
+    // What a release lets through is remembered, along with the release, for the checks on later starts
+    void (^keepRelease)(void) = ^{
+        if (!release) return;
+        dispatch_sync(fsQueue(), ^{
+            [manifest writeToURL:savedReleaseFile(@"endcord-release.json") atomically:YES];
+            [signature writeToURL:savedReleaseFile(@"endcord-release.sig") atomically:YES];
+        });
+        [NSUserDefaults.standardUserDefaults setObject:@(release.sequence) forKey:kReleaseSequenceKey];
+    };
+
+    if (release && [release contains:saved ?: NSData.data])
+    {
+        BunnyLog(@"The saved bundle is the latest release");
+        keepRelease();
+        [session finishTasksAndInvalidate];
+        return saved;
+    }
+
     for (NSURL *url in bundleURLs())
     {
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
                                                                cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                                            timeoutInterval:timeout];
-        if (etag[1].length && [etag[0] isEqualToString:url.absoluteString])
+        // A release says for itself whether the saved bundle is current
+        if (!release && etag[1].length && [etag[0] isEqualToString:url.absoluteString])
         {
             [request setValue:etag[1] forHTTPHeaderField:@"If-None-Match"];
         }
@@ -164,6 +280,12 @@ static NSData *fetchBundle(NSTimeInterval timeout)
         // A custom URL can serve bytecode for another Hermes, which is as good as nothing
         if (response.statusCode == 200 && data.length > 0 && canRunBundle(data, url.absoluteString))
         {
+            if (release && ![release contains:data])
+            {
+                BunnyLog(@"Refused the bundle from %@: it isn't the signed release's", url);
+                releaseRefused = YES;
+                continue;
+            }
             BunnyLog(@"Downloaded the bundle from %@ (%lu bytes)", url, (unsigned long)data.length);
             NSString *newETag = [response valueForHTTPHeaderField:@"ETag"] ?: @"";
             dispatch_sync(fsQueue(), ^{
@@ -171,6 +293,7 @@ static NSData *fetchBundle(NSTimeInterval timeout)
                 NSString *lines = [NSString stringWithFormat:@"%@\n%@", url.absoluteString, newETag];
                 [lines writeToURL:getBundleETagURL() atomically:YES encoding:NSUTF8StringEncoding error:nil];
             });
+            keepRelease();
             cleanupBundleBackup();
             result = data;
             break;
@@ -387,7 +510,9 @@ static void loadEndcord(jsi::Runtime &runtime)
     if (!bundle)
     {
         showErrorAlert(@"Endcord couldn't load",
-                       @"Endcord couldn't be downloaded. Check your connection and open Discord again.", nil);
+                       releaseRefused ? @"The download didn't pass Endcord's security check, so it wasn't run."
+                                      : @"Endcord couldn't be downloaded. Check your connection and open Discord again.",
+                       nil);
         return;
     }
 

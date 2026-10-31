@@ -428,6 +428,16 @@ static void runScenario(jsi::Runtime &rt)
         @"theme" : @"hbc2",
         @"fonts" : @"hbc2",
         @"bundle-throws" : @"throws",
+        @"signed-start" : @"hbc2",
+        @"signed-tampered-cache" : @"hbc2",
+        @"signed-tampered-download" : @"none",
+        @"signed-forged" : @"none",
+        @"signed-newer" : @"hbc2",
+        @"signed-rollback" : @"hbc2",
+        @"signed-rollback-empty" : @"none",
+        @"signed-required-missing" : @"none",
+        @"signed-required" : @"hbc2",
+        @"signed-required-unsigned-cache" : @"hbc2",
     };
     if (expected[scenario])
     {
@@ -492,7 +502,12 @@ static void runScenario(jsi::Runtime &rt)
     // What happens a moment later: the background update, an alert
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         UIAlertController *alert = shownAlert();
-        if ([scenario isEqualToString:@"offline-nothing"])
+        NSArray *refused = @[ @"signed-tampered-download", @"signed-forged", @"signed-rollback-empty" ];
+        if ([refused containsObject:scenario])
+        {
+            check(@"alert", [alert.message containsString:@"security check"], alert.message ?: @"no alert");
+        }
+        else if ([scenario isEqualToString:@"offline-nothing"] || [scenario isEqualToString:@"signed-required-missing"])
         {
             check(@"alert", [alert.title isEqualToString:@"Endcord couldn't load"], alert.title ?: @"no alert");
         }
@@ -505,6 +520,10 @@ static void runScenario(jsi::Runtime &rt)
         else
         {
             check(@"no-alert", alert == nil, alert ? [NSString stringWithFormat:@"%@: %@", alert.title, alert.message] : @"");
+        }
+        if ([scenario isEqualToString:@"signed-rollback"])
+        {
+            check(@"rollback-refused", savedBundleContains(@"hbc2"), @"the older release didn't replace the saved bundle");
         }
         if ([scenario isEqualToString:@"update-old"])
         {

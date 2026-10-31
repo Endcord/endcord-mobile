@@ -143,6 +143,9 @@ launch() {
     echo "::group::$name"
     xcrun simctl terminate "$UDID" "$APP_ID" 2> /dev/null
     : > "$out"
+    # Only the test build reads this: a release build is strict when it's built to be
+    if [ -n "${REQUIRE_SIGNED:-}" ]; then export SIMCTL_CHILD_ENDCORD_TEST_REQUIRE_SIGNED=1
+    else unset SIMCTL_CHILD_ENDCORD_TEST_REQUIRE_SIGNED; fi
     SIMCTL_CHILD_ENDCORD_LOG_JS=1 SIMCTL_CHILD_OS_ACTIVITY_DT_MODE=1 xcrun simctl launch \
         --stdout="$out" --stderr="$err" "$UDID" "$APP_ID" "--scenario=$name" > /dev/null
     local shot=""
@@ -227,6 +230,58 @@ launch bundle-throws
 mode real; clean_caches
 launch real-bundle
 mode normal
+
+# Signed releases, with the key only the test build trusts: <sequence> <the bundle the release lists>
+sign_release() {
+    python3 - "$SERVE/endcord-release.json" "$1" "$2" "endcord.v$VERSION.hbc" <<'EOF'
+import hashlib, json, sys
+out, sequence, bundle, name = sys.argv[1:]
+data = open(bundle, "rb").read()
+manifest = {"format": 1, "sequence": int(sequence), "files": {name: {"size": len(data), "sha256": hashlib.sha256(data).hexdigest()}}}
+open(out, "w").write(json.dumps(manifest))
+EOF
+    openssl dgst -sha256 -sign "$HERE/release-test-key.pem" -out "$SERVE/endcord-release.sig" "$SERVE/endcord-release.json"
+}
+SERVED="$SERVE/endcord.v$VERSION.hbc"
+
+clean_documents
+cp "$WORK/hbc2.hbc" "$SERVED"
+sign_release 100 "$WORK/hbc2.hbc"
+clean_caches
+launch signed-start
+# A saved bundle that was changed on the disk is thrown away, and the signed one fetched
+cp "$WORK/hbc.hbc" "$CACHE/bundle.js"
+launch signed-tampered-cache
+# The server serves another bundle than the release lists
+cp "$WORK/hbc.hbc" "$SERVED"
+clean_caches
+launch signed-tampered-download
+cp "$WORK/hbc2.hbc" "$SERVED"
+# A release changed after it was signed
+sign_release 150 "$WORK/hbc2.hbc"
+printf ' ' >> "$SERVE/endcord-release.json"
+clean_caches
+launch signed-forged
+# Rolling back: a properly signed release, older than one already accepted
+sign_release 200 "$WORK/hbc2.hbc"
+clean_caches
+launch signed-newer
+cp "$WORK/hbc.hbc" "$SERVED"
+sign_release 150 "$WORK/hbc.hbc"
+launch signed-rollback
+clean_caches
+launch signed-rollback-empty
+# Taking the signature away: a strict build refuses that, and takes a signed release
+cp "$WORK/hbc2.hbc" "$SERVED"
+rm "$SERVE/endcord-release.json" "$SERVE/endcord-release.sig"
+clean_caches
+REQUIRE_SIGNED=1 launch signed-required-missing
+sign_release 300 "$WORK/hbc2.hbc"
+REQUIRE_SIGNED=1 launch signed-required
+rm "$CACHE/endcord-release.json" "$CACHE/endcord-release.sig"
+REQUIRE_SIGNED=1 launch signed-required-unsigned-cache
+rm "$SERVE/endcord-release.json" "$SERVE/endcord-release.sig"
+clean_caches
 
 clean_documents
 launch menu

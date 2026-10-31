@@ -14,6 +14,7 @@ import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.*
 import kotlinx.serialization.Serializable
 import java.io.File
+import java.io.IOException
 import kotlin.time.Duration.Companion.seconds
 
 @Serializable
@@ -39,6 +40,9 @@ object RevengeUpdater {
     private val TIMEOUT_CACHED = 5.seconds
     private const val ETAG_PATH = "etag.txt"
     private const val CONFIG_PATH = "loader.json"
+    private const val RELEASE_MANIFEST = "endcord-release.json"
+    private const val RELEASE_SIGNATURE = "endcord-release.sig"
+    private const val RELEASE_SEQUENCE = "release-sequence"
     /** Where the Endcord bundle is published; overridable at build time with `-Pendcord.bundleUrl=...` for testing. */
     private const val DEFAULT_BUNDLE_URL = BuildConfig.BUNDLE_URL
 
@@ -51,6 +55,10 @@ object RevengeUpdater {
     private lateinit var manifest: File
     private lateinit var etag: File
     private lateinit var configFile: File
+    private lateinit var releaseManifest: File
+    private lateinit var releaseSignature: File
+    /** The highest release sequence this install has accepted: outside the cache, so clearing it doesn't reset it */
+    private lateinit var releaseSequence: File
 
     private val _downloadReady = CompletableDeferred<Unit>()
 
@@ -68,6 +76,9 @@ object RevengeUpdater {
         manifest = File(cacheDir, RevengeConstants.BUNDLE_MANIFEST_FILE)
         etag = File(cacheDir, ETAG_PATH)
         configFile = File(filesDir, CONFIG_PATH)
+        releaseManifest = File(cacheDir, RELEASE_MANIFEST)
+        releaseSignature = File(cacheDir, RELEASE_SIGNATURE)
+        releaseSequence = File(filesDir, RELEASE_SEQUENCE)
 
         config = runCatching {
             if (configFile.exists()) RevengeJson.decodeFromString<LoaderConfig>(configFile.readText())
@@ -95,8 +106,55 @@ object RevengeUpdater {
      */
     fun hasUsableBundle(): Boolean {
         if (!hasBundle()) return false
-        val saved = HermesBytecode.versionOf(bundle) ?: return true
-        return saved == bytecodeVersion
+        val saved = HermesBytecode.versionOf(bundle)
+        if (saved != null && saved != bytecodeVersion) return false
+        return !loadsPublishedBundle() || savedBundleIsSigned()
+    }
+
+    private fun loadsPublishedBundle() = !config.customLoadUrl.enabled
+
+    /**
+     * Whether the saved bundle is one a signed release listed. The check on download doesn't cover a file that's changed
+     * afterwards. Until builds are made strict ([BuildConfig.REQUIRE_SIGNED]) a bundle without a release is let through.
+     */
+    private fun savedBundleIsSigned(): Boolean {
+        if (!releaseManifest.isFile || !releaseSignature.isFile) return !BuildConfig.REQUIRE_SIGNED
+        val release = BundleRelease.parse(releaseManifest.readBytes(), releaseSignature.readBytes())
+        return release != null && bundle.readBytes() in release
+    }
+
+    private class SignedRelease(val release: BundleRelease, val manifest: ByteArray, val signature: ByteArray)
+
+    /** The server's release, checked before any bundle is taken; null when it has none and that's allowed */
+    private suspend fun fetchRelease(timeoutMillis: Long?): SignedRelease? {
+        val folder = DEFAULT_BUNDLE_URL.substringBeforeLast('/')
+        val manifest = fetchOptional("$folder/$RELEASE_MANIFEST", timeoutMillis)
+        val signature = fetchOptional("$folder/$RELEASE_SIGNATURE", timeoutMillis)
+        if (manifest == null || signature == null) {
+            if (BuildConfig.REQUIRE_SIGNED) throw SecurityException("No signed release could be fetched")
+            return null
+        }
+
+        val release = BundleRelease.parse(manifest, signature)
+            ?: throw SecurityException("The release's signature isn't valid")
+        val accepted = runCatching { releaseSequence.readText().trim().toLong() }.getOrDefault(0)
+        if (release.sequence < accepted) throw SecurityException("The release is older than one already accepted")
+        return SignedRelease(release, manifest, signature)
+    }
+
+    private suspend fun fetchOptional(url: String, timeoutMillis: Long?): ByteArray? = try {
+        (httpClient.getWithETag(url = url, etag = null, timeoutMillis = timeoutMillis) as? ETagFetchResult.Fetched)?.bytes
+    } catch (e: ResponseException) {
+        null
+    } catch (e: IOException) {
+        null
+    }
+
+    /** What a release let through is remembered, along with the release, for the checks on later starts */
+    private fun keepRelease(signed: SignedRelease) {
+        AtomicFile(releaseManifest).writeBytes(signed.manifest)
+        AtomicFile(releaseSignature).writeBytes(signed.signature)
+        releaseSequence.writeText(signed.release.sequence.toString())
     }
 
     /**
@@ -128,14 +186,23 @@ object RevengeUpdater {
         try {
             val urls = bundleUrls()
             val saved = savedETag()
+            val timeout = if (userInitiated) null
+            else if (hasUsableBundle()) TIMEOUT_CACHED.inWholeMilliseconds else TIMEOUT.inWholeMilliseconds
+            val signed = if (loadsPublishedBundle()) fetchRelease(timeout) else null
+            if (signed != null && hasUsableBundle() && bundle.readBytes() in signed.release) {
+                log.i("The saved bundle is the latest release")
+                keepRelease(signed)
+                return@launch
+            }
+
             for ((index, url) in urls.withIndex()) {
                 log.i("Fetching bundle from: $url")
                 val result = try {
                     httpClient.getWithETag(
                         url = url,
-                        etag = saved?.takeIf { it.first == url }?.second,
-                        timeoutMillis = if (userInitiated) null
-                        else if (hasUsableBundle()) TIMEOUT_CACHED.inWholeMilliseconds else TIMEOUT.inWholeMilliseconds,
+                        // A release says for itself whether the saved bundle is current
+                        etag = saved?.takeIf { signed == null && it.first == url }?.second,
+                        timeoutMillis = timeout,
                     )
                 } catch (e: ResponseException) {
                     // No precompiled bundle for this Discord: the plain one is next
@@ -145,7 +212,12 @@ object RevengeUpdater {
 
                 when (result) {
                     is ETagFetchResult.Fetched -> {
+                        if (signed != null && result.bytes !in signed.release) {
+                            if (index < urls.lastIndex) continue
+                            throw SecurityException("The bundle isn't the signed release's")
+                        }
                         AtomicFile(bundle).writeBytes(result.bytes)
+                        signed?.let(::keepRelease)
                         result.etag?.let { etag.writeText("$url\n$it") } ?: etag.delete()
 
                         log.i("Bundle updated (${result.bytes.size} bytes)")

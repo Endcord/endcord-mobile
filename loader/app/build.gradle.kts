@@ -20,9 +20,18 @@ android {
 
         // The published bundle. Pass -Pendcord.bundleUrl=http://10.0.2.2:4040/endcord.min.js to test a local build.
         val bundleUrl = providers.gradleProperty("endcord.bundleUrl")
-            .orElse("https://raw.githubusercontent.com/rootpoii/endcord-mobile/builds-next/endcord.min.js")
+            .orElse("https://raw.githubusercontent.com/Endcord/endcord-mobile/builds-next/endcord.min.js")
             .get()
         buildConfigField("String", "BUNDLE_URL", "\"$bundleUrl\"")
+
+        // The key signed bundle releases are checked with (bundle/scripts/sign-release.mjs). With requireSigned, a
+        // published bundle without a signed release is refused too.
+        val releaseKey = providers.gradleProperty("endcord.releaseKey")
+            .orElse(providers.fileContents(rootProject.layout.projectDirectory.file("../bundle/release-key.pub")).asText)
+            .get().trim()
+        buildConfigField("String", "RELEASE_KEY", "\"$releaseKey\"")
+        val requireSigned = providers.gradleProperty("endcord.requireSigned").orElse("false").get().toBoolean()
+        buildConfigField("boolean", "REQUIRE_SIGNED", requireSigned.toString())
     }
 
     sourceSets {

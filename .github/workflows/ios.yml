@@ -45,7 +45,8 @@ jobs:
           mkdir -p out
           # Theos needs GNU make 4; macOS has 3.81
           export PATH="$(brew --prefix make)/libexec/gnubin:$PATH"
-          make package 2>&1 | tee out/build.log
+          # Strict once releases are signed: until the key is there, a strict tweak would refuse every bundle
+          make package ENDCORD_REQUIRE_SIGNED=${{ secrets.ENDCORD_RELEASE_KEY != '' && '1' || '' }} 2>&1 | tee out/build.log
           cp packages/*.deb out/
           cp "$(find .theos/_ -name Endcord.dylib | head -n 1)" out/Endcord.dylib
           echo "version=$(sed -n 's/^Version: //p' control)" >> "$GITHUB_OUTPUT"
@@ -78,7 +79,8 @@ jobs:
           export PATH="$(brew --prefix make)/libexec/gnubin:$PATH"
           # Signed ad hoc: the simulator needs a signature, not a developer's
           make TARGET=simulator:clang:latest:15.0 ARCHS=arm64 Endcord_USE_SUBSTRATE=0 TARGET_CODESIGN_FLAGS="-f -s -" \
-            ENDCORD_BUNDLE_URL=http://127.0.0.1:4040/endcord.min.js 2>&1 | tee ../results/tweak-build.log
+            ENDCORD_BUNDLE_URL=http://127.0.0.1:4040/endcord.min.js ENDCORD_RELEASE_KEY="$(cat Tests/release-test-key.pub)" \
+            2>&1 | tee ../results/tweak-build.log
           find .theos/obj -name "*.dylib"
           cp "$(find .theos/obj -name Endcord.dylib | head -n 1)" ../Endcord-simulator.dylib
       - name: Test
