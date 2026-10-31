@@ -6,8 +6,12 @@
 #import <ReplayKit/ReplayKit.h>
 #import <UIKit/UIKit.h>
 #import <dlfcn.h>
+#import <netinet/in.h>
 #import <objc/message.h>
 #import <objc/runtime.h>
+#import <sys/socket.h>
+#import <sys/un.h>
+#import <unistd.h>
 
 #include <hermes/hermes.h>
 #include <jsi/jsi.h>
@@ -242,6 +246,164 @@ static void checkBroadcast(void)
     picker.preferredExtension = @"com.example.Other";
     check(@"broadcast-other-untouched", [picker.preferredExtension isEqualToString:@"com.example.Other"], picker.preferredExtension);
     finish();
+}
+
+// Discord's two ends of the screen share socket, as they are in its binary: a Unix socket in the app group, and no way
+// in for anything else
+@interface DCDBroadcastSocketConnection : NSObject
+@property (nonatomic, assign) int fd;
+@end
+@implementation DCDBroadcastSocketConnection
++ (instancetype)connectToPath:(NSString *)path delegate:(id)delegate
+{
+    int fd = socket(AF_UNIX, SOCK_STREAM, 0);
+    struct sockaddr_un address = {.sun_family = AF_UNIX};
+    snprintf(address.sun_path, sizeof(address.sun_path), "%s", path.UTF8String);
+    if (connect(fd, (struct sockaddr *)&address, sizeof(address)) < 0)
+    {
+        close(fd);
+        return nil;
+    }
+    return [[self alloc] initWithFd:fd delegate:delegate];
+}
+- (instancetype)initWithFd:(int)fd delegate:(id)delegate
+{
+    if ((self = [super init])) _fd = fd;
+    return self;
+}
+@end
+
+@interface DCDBroadcastSocketServer : NSObject
+{
+    NSMutableArray *_connections;
+    dispatch_queue_t _queue;
+}
+@property (nonatomic, weak) id delegate;
+@end
+@implementation DCDBroadcastSocketServer
+- (instancetype)init
+{
+    if ((self = [super init]))
+    {
+        _connections = [NSMutableArray array];
+        _queue       = dispatch_queue_create("host.broadcast", DISPATCH_QUEUE_SERIAL);
+    }
+    return self;
+}
+- (NSArray *)connections
+{
+    return _connections;
+}
+- (BOOL)startWithError:(NSError **)error
+{
+    return NO;
+}
+- (void)stop
+{
+}
+@end
+
+@interface BroadcastDelegate : NSObject
+@property (nonatomic, strong) id connection;
+@end
+@implementation BroadcastDelegate
+- (void)broadcastSocketServer:(id)server newConnection:(id)connection
+{
+    self.connection = connection;
+}
+@end
+
+static int socketFamily(int fd)
+{
+    struct sockaddr_storage address;
+    socklen_t length = sizeof(address);
+    return getsockname(fd, (struct sockaddr *)&address, &length) == 0 ? address.ss_family : -1;
+}
+
+static void whenConnected(BroadcastDelegate *delegate, int tries, void (^then)(void))
+{
+    if (delegate.connection || tries <= 0)
+    {
+        then();
+        return;
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        whenConnected(delegate, tries - 1, then);
+    });
+}
+
+/** The extension and the app with no app group between them, and the Unix socket still first when there is one */
+static void checkBroadcastLink(void)
+{
+    // Where the tweak looks for what both sides derive the link from. The simulator lets an app write to its bundle.
+    NSString *extension = [NSBundle.mainBundle.bundlePath stringByAppendingPathComponent:@"PlugIns/BroadcastUpload.appex"];
+    [NSFileManager.defaultManager createDirectoryAtPath:extension withIntermediateDirectories:YES attributes:nil error:nil];
+    [@"profile" writeToFile:[extension stringByAppendingPathComponent:@"embedded.mobileprovision"]
+                 atomically:YES encoding:NSUTF8StringEncoding error:nil];
+
+    NSString *noGroup = @"/nonexistent/bcast_tx.sock";
+    static BroadcastDelegate *delegate;
+    static DCDBroadcastSocketServer *server;
+    delegate        = [BroadcastDelegate new];
+    server          = [DCDBroadcastSocketServer new];
+    server.delegate = delegate;
+    BOOL started = [server startWithError:nil];
+    check(@"link-starts-without-group", started, started ? @"listening" : @"the app's socket failed and nothing replaced it");
+
+    DCDBroadcastSocketConnection *client = [DCDBroadcastSocketConnection connectToPath:noGroup delegate:nil];
+    check(@"link-connects-without-group", client != nil, client ? @"connected" : @"no connection");
+    if (!client) return finish();
+    check(@"link-is-loopback", socketFamily(client.fd) == AF_INET, @(socketFamily(client.fd)).stringValue);
+
+    struct sockaddr_in peer;
+    socklen_t peerLength = sizeof(peer);
+    getpeername(client.fd, (struct sockaddr *)&peer, &peerLength);
+
+    whenConnected(delegate, 60, ^{
+        DCDBroadcastSocketConnection *accepted = delegate.connection;
+        check(@"link-reaches-server", accepted != nil, accepted ? @"new connection" : @"the delegate wasn't told");
+        check(@"link-kept-by-server", [server connections].count == 1, @([server connections].count).stringValue);
+        if (!accepted) return finish();
+
+        char message[5] = {0};
+        write(client.fd, "ping", 4);
+        ssize_t got = recv(accepted.fd, message, 4, MSG_WAITALL);
+        check(@"link-carries-data", got == 4 && strcmp(message, "ping") == 0, @(got).stringValue);
+        write(accepted.fd, "pong", 4);
+        got = recv(client.fd, message, 4, MSG_WAITALL);
+        check(@"link-carries-data-back", got == 4 && strcmp(message, "pong") == 0, @(got).stringValue);
+
+        // Another app that finds the port
+        int rogue = socket(AF_INET, SOCK_STREAM, 0);
+        connect(rogue, (struct sockaddr *)&peer, sizeof(peer));
+        char wrong[32] = {1};
+        write(rogue, wrong, sizeof(wrong));
+        struct timeval timeout = {.tv_sec = 4};
+        setsockopt(rogue, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
+        char answer;
+        ssize_t refused = recv(rogue, &answer, 1, 0);
+        check(@"link-refuses-wrong-proof", refused == 0, @(refused).stringValue);
+        check(@"link-adds-no-stranger", [server connections].count == 1, @([server connections].count).stringValue);
+        close(rogue);
+
+        // The Unix socket is what a shared group gives, and it stays first
+        NSString *shared = @"/tmp/endcord-host-link.sock";
+        unlink(shared.UTF8String);
+        int unixServer = socket(AF_UNIX, SOCK_STREAM, 0);
+        struct sockaddr_un address = {.sun_family = AF_UNIX};
+        snprintf(address.sun_path, sizeof(address.sun_path), "%s", shared.UTF8String);
+        bind(unixServer, (struct sockaddr *)&address, sizeof(address));
+        listen(unixServer, 1);
+        DCDBroadcastSocketConnection *grouped = [DCDBroadcastSocketConnection connectToPath:shared delegate:nil];
+        check(@"link-prefers-group", grouped && socketFamily(grouped.fd) == AF_UNIX, @(grouped ? socketFamily(grouped.fd) : -1).stringValue);
+        close(unixServer);
+        unlink(shared.UTF8String);
+
+        [server stop];
+        DCDBroadcastSocketConnection *late = [DCDBroadcastSocketConnection connectToPath:noGroup delegate:nil];
+        check(@"link-stops", late == nil, late ? @"still connects" : @"closed");
+        finish();
+    });
 }
 
 // Discord's message box: a text view, and its native component a subclass of it. It gives no caret rect while its
@@ -607,6 +769,11 @@ static void runScenario(jsi::Runtime &rt)
     if ([scenario isEqualToString:@"broadcast"])
     {
         checkBroadcast();
+        return YES;
+    }
+    if ([scenario isEqualToString:@"broadcast-link"])
+    {
+        checkBroadcastLink();
         return YES;
     }
     if ([scenario isEqualToString:@"menu"])

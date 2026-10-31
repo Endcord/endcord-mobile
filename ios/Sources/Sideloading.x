@@ -7,6 +7,7 @@
 #import <dlfcn.h>
 #import <objc/runtime.h>
 
+#import "BroadcastLink.h"
 #import "Logger.h"
 #import "Utils.h"
 
@@ -193,8 +194,12 @@ static void moveStandInAppGroup(NSFileManager *fileManager, NSURL *shared)
     NSString *real = (__bridge NSString *)CFBundleGetIdentifier(CFBundleGetMainBundle());
     if ([preferredExtension hasPrefix:DISCORD_BUNDLE_ID] && real.length && ![real isEqualToString:DISCORD_BUNDLE_ID])
     {
-        preferredExtension =
-            [real stringByAppendingString:[preferredExtension substringFromIndex:DISCORD_BUNDLE_ID.length]];
+        // The signer's ID for it is in its Info.plist; NSBundle would tell this code Discord's
+        NSString *plist = [NSBundle.mainBundle.builtInPlugInsPath
+            stringByAppendingPathComponent:@"BroadcastUpload.appex/Info.plist"];
+        NSString *signedID = [NSDictionary dictionaryWithContentsOfFile:plist][@"CFBundleIdentifier"];
+        preferredExtension = signedID
+            ?: [real stringByAppendingString:[preferredExtension substringFromIndex:DISCORD_BUNDLE_ID.length]];
     }
     %orig(preferredExtension);
 }
@@ -351,6 +356,7 @@ static void moveStandInAppGroup(NSFileManager *fileManager, NSURL *shared)
     if (isAppStoreApp) return;
 
     %init(AppGroup);
+    initBroadcastLink();
     if (isAppExtension()) return;
     %init(Sideloading);
     if (objc_getClass("RPSystemBroadcastPickerView")) %init(Broadcast);

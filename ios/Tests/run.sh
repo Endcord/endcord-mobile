@@ -303,6 +303,7 @@ launch menu
 clean_documents
 launch smooth-caret
 launch broadcast
+launch broadcast-link
 clean_documents
 launch app-group
 [ -e "$DOCS/AppGroup/marker.txt" ] && fail "the stand-in app group folder's files stayed" \
