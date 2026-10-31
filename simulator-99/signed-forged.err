@@ -1,0 +1,8 @@
+2026-10-31 22:34:21.974559+0000 Host[20088:58971] [Endcord] Using the default loader config
+2026-10-31 22:34:22.064838+0000 Host[20088:58971] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-10-31 22:34:22.184987+0000 Host[20088:58988] [Endcord] Using the default loader config
+2026-10-31 22:34:22.191186+0000 Host[20088:58988] [Endcord] Using the default loader config
+2026-10-31 22:34:22.366176+0000 Host[20088:58988] [seckey] SecKeyVerifySignature failed: Error Domain=NSOSStatusErrorDomain Code=-67808 "EC signature verification failed, no match" UserInfo={numberOfErrorsDeep=0, NSDescription=EC signature verification failed, no match}
+2026-10-31 22:34:22.366374+0000 Host[20088:58988] [Endcord] Refused a release: its signature isn't valid
+2026-10-31 22:34:22.367684+0000 Host[20088:58988] [Endcord] No backup bundle found to restore
+2026-10-31 22:34:22.370260+0000 Host[20088:58988] [Endcord] Endcord couldn't load: The download didn't pass Endcord's security check, so it wasn't run.

@@ -1,0 +1,4 @@
+RESULT PASS signed-required-unsigned-cache bundle: ran hbc2, saved from http://127.0.0.1:4040/endcord.v99.hbc | "5d16ac5d158b1c9eb29c6375396cb4f11094959b"
+RESULT PASS signed-required-unsigned-cache no-alert: 
+SCREENSHOT signed-required-unsigned-cache
+DONE signed-required-unsigned-cache failures=0

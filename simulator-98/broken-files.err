@@ -1,0 +1,14 @@
+2026-10-31 22:33:04.790146+0000 Host[15264:47572] [Endcord] Applying fonts before hooks...
+2026-10-31 22:33:04.792723+0000 Host[15264:47572] [Endcord] fonts.json has no font Endcord can use
+2026-10-31 22:33:04.837861+0000 Host[15264:47572] [Endcord] Using the default loader config
+2026-10-31 22:33:04.905535+0000 Host[15264:47572] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-10-31 22:33:04.951846+0000 Host[15264:47611] [Endcord] Using the default loader config
+2026-10-31 22:33:04.963010+0000 Host[15264:47611] [Endcord] Using the default loader config
+2026-10-31 22:33:04.964106+0000 Host[15264:47611] [Endcord] Discord's bundle has bytecode version 98
+2026-10-31 22:33:04.964485+0000 Host[15264:47611] [Endcord] Using the default loader config
+2026-10-31 22:33:04.990729+0000 Host[15264:47572] [Endcord] SmoothType: caret off, 0 message boxes seen
+2026-10-31 22:33:05.024949+0000 Host[15264:47608] [Endcord] Using the default loader config
+2026-10-31 22:33:05.026120+0000 Host[15264:47608] [Endcord] Using the default loader config
+2026-10-31 22:33:05.033130+0000 Host[15264:47608] [Endcord] Using the default loader config
+2026-10-31 22:33:05.104709+0000 Host[15264:47608] [Endcord] Using the default loader config
+2026-10-31 22:33:05.113135+0000 Host[15264:47608] [Endcord] The bundle at http://127.0.0.1:4040/endcord.v98.hbc hasn't changed

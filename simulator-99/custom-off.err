@@ -1,0 +1,13 @@
+2026-10-31 22:32:13.453435+0000 Host[13474:42699] [Endcord] Loader config loaded - Custom URL disabled: http://127.0.0.1:4040/custom.js
+2026-10-31 22:32:13.514343+0000 Host[13474:42699] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-10-31 22:32:13.563441+0000 Host[13474:42762] [Endcord] Loader config loaded - Custom URL disabled: http://127.0.0.1:4040/custom.js
+2026-10-31 22:32:13.598413+0000 Host[13474:42730] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+2026-10-31 22:32:13.610357+0000 Host[13474:42762] [Endcord] Loader config loaded - Custom URL disabled: http://127.0.0.1:4040/custom.js
+2026-10-31 22:32:13.612524+0000 Host[13474:42762] [Endcord] Discord's bundle has bytecode version 99
+2026-10-31 22:32:13.613691+0000 Host[13474:42762] [Endcord] The saved bundle is from http://127.0.0.1:4040/custom.js, which Endcord doesn't load from now
+2026-10-31 22:32:13.616530+0000 Host[13474:42762] [Endcord] Loader config loaded - Custom URL disabled: http://127.0.0.1:4040/custom.js
+2026-10-31 22:32:13.621407+0000 Host[13474:42762] [Endcord] The saved bundle is from http://127.0.0.1:4040/custom.js, which Endcord doesn't load from now
+2026-10-31 22:32:13.632355+0000 Host[13474:42762] [Endcord] Loader config loaded - Custom URL disabled: http://127.0.0.1:4040/custom.js
+2026-10-31 22:32:13.648678+0000 Host[13474:42748] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+2026-10-31 22:32:13.682312+0000 Host[13474:42762] [Endcord] Loader config loaded - Custom URL disabled: http://127.0.0.1:4040/custom.js
+2026-10-31 22:32:13.691663+0000 Host[13474:42762] [Endcord] Downloaded the bundle from http://127.0.0.1:4040/endcord.v99.hbc (402 bytes)
