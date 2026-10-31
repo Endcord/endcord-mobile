@@ -135,3 +135,19 @@ grep -q 'The saved bundle is the latest release' "$RESULTS/discord2.err" \
     && pass "the second start ran the saved bundle after checking it against the signed release" \
     || fail "the second start didn't check the saved bundle against the signed release"
 grep -E '\[Endcord\]' "$RESULTS/discord2.err" | tail -n 30 > "$RESULTS/second-start.txt"
+
+# Discord's own screen share socket classes over the tweak's link, as there's no extension to run here
+xcrun simctl terminate "$UDID" "$APP_ID" 2> /dev/null
+PROBE="$WORK/BroadcastProbe.dylib"
+xcrun --sdk iphonesimulator clang -target arm64-apple-ios15.0-simulator -fobjc-arc -dynamiclib -framework Foundation \
+    -o "$PROBE" "$HERE/BroadcastProbe.m" 2>&1 | tee "$RESULTS/probe-build.log"
+codesign -f -s - "$PROBE"
+SIMCTL_CHILD_DYLD_INSERT_LIBRARIES="$PROBE" SIMCTL_CHILD_ENDCORD_LOG_JS=1 xcrun simctl launch \
+    --stdout="$RESULTS/probe.out" --stderr="$RESULTS/probe.err" "$UDID" "$APP_ID" 2>&1 | tee "$RESULTS/launch3.log"
+for _ in $(seq 1 60); do
+    sleep 1
+    grep -q 'PROBE DONE' "$RESULTS/probe.out" 2> /dev/null && break
+done
+grep -E '^PROBE' "$RESULTS/probe.out" | tee -a "$RESULTS/summary.txt"
+grep -q 'PROBE DONE' "$RESULTS/probe.out" && ! grep -q 'PROBE FAIL' "$RESULTS/probe.out" \
+    && pass "Discord's socket classes work over the link" || fail "Discord's socket classes over the link"
