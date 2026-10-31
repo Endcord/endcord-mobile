@@ -1,0 +1,57 @@
+name: iOS real Discord
+
+# The real iOS Discord on the simulator, with Endcord's self-test (ios/Tests/real-discord.sh). On ios-real/ branches
+# only; nothing is published, and the IPA stays in the run. Results land on test-results/<branch>.
+on:
+  push:
+    branches:
+      - "ios-real/**"
+
+env:
+  IPA_URL: https://github.com/ra1ncord/RainTweak/releases/download/v1.2.0/RainTweak.ipa
+
+jobs:
+  real:
+    name: Real Discord
+    runs-on: macos-15
+    timeout-minutes: 60
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+      - uses: oven-sh/setup-bun@v2
+      - name: Build the test bundle
+        working-directory: bundle
+        shell: bash
+        run: |
+          bun install --frozen-lockfile
+          bun run build --build-minify --test
+          mkdir -p ../serve && cp dist/endcord.min.js dist/endcord.v*.hbc ../serve/
+      - uses: Randomblock1/theos-action@v1
+      - name: Build the tweak for the simulator
+        working-directory: ios
+        shell: bash
+        run: |
+          mkdir -p ../results
+          export PATH="$(brew --prefix make)/libexec/gnubin:$PATH"
+          make TARGET=simulator:clang:latest:15.0 ARCHS=arm64 Endcord_USE_SUBSTRATE=0 TARGET_CODESIGN_FLAGS="-f -s -" \
+            ENDCORD_BUNDLE_URL=http://127.0.0.1:4040/endcord.min.js 2>&1 | tee ../results/tweak-build.log
+          cp "$(find .theos/obj -name Endcord.dylib | head -n 1)" ../Endcord-simulator.dylib
+      - name: Run Discord
+        shell: bash
+        run: |
+          curl -fsSL --retry 3 -o discord.ipa "$IPA_URL"
+          bash ios/Tests/real-discord.sh discord.ipa Endcord-simulator.dylib serve results
+      - name: Save the results
+        if: always()
+        shell: bash
+        run: |
+          rm -f discord.ipa
+          branch="test-results/$GITHUB_REF_NAME"
+          cd results
+          git init -q
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -qm "Results of $GITHUB_SHA"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/$GITHUB_REPOSITORY" "HEAD:refs/heads/$branch"
