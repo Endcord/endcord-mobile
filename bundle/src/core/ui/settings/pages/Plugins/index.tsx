@@ -17,7 +17,7 @@ import { findByProps } from "@metro";
 import { NavigationNative } from "@metro/common";
 import { Button, Card, FlashList, IconButton, Text } from "@metro/common/components";
 import { ComponentProps, createContext, useContext, useState } from "react";
-import { Linking, ScrollView, View } from "react-native";
+import { Linking, Platform, ScrollView, View } from "react-native";
 
 import { UnifiedPluginModel } from "./models";
 import unifyBunnyPlugin from "./models/bunny";
@@ -78,7 +78,7 @@ function FiltersHeader() {
     ];
 
     return <View style={{ gap: 10, marginTop: 12 }}>
-        <AliucordNotice />
+        {Platform.OS === "android" && <AliucordNotice />}
         <View style={{ flexDirection: "row", gap: 8 }}>
             <Stat label={t("Total Plugins:")} value={f.total} />
             <Stat label={t("Enabled Plugins:")} value={f.enabled} accent />

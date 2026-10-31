@@ -325,7 +325,8 @@ static void checkSmoothCaret(UIViewController *root)
             printf("SCREENSHOT %s\n", scenario.UTF8String);
             fflush(stdout);
 
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            // Long enough for run.sh's screenshot, which is slow on a busy runner
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 // Another text view keeps the system's cursor
                 [other becomeFirstResponder];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
