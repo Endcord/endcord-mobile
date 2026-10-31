@@ -113,3 +113,23 @@ print(f"Plugins: {started} started, {stopped} stopped, {len(failed)} failed, sel
 print("\n".join(failed))
 EOF
 [ -s "$RESULTS/selftest.jsonl" ] && pass "Endcord ran inside the real Discord" || fail "no self-test output"
+
+# A second start: the saved bundle, checked with its ETag, and a theme, on Endcord's pages and in Discord's native colors
+xcrun simctl terminate "$UDID" "$APP_ID" 2> /dev/null
+DOCS="$(xcrun simctl get_app_container "$UDID" "$APP_ID" data)/Documents"
+mkdir -p "$DOCS/pyoncord"
+cat > "$DOCS/pyoncord/current-theme.json" <<'THEME'
+{"id":"test-theme","selected":true,"data":{"name":"Test","spec":2,"semanticColors":{"BACKGROUND_BASE_LOWER":["#4a148c","#4a148c"],"BACKGROUND_BASE_LOW":["#4a148c","#4a148c"],"BACKGROUND_SURFACE_HIGH":["#6a1b9a","#6a1b9a"],"TEXT_DEFAULT":["#ffeb3b","#ffeb3b"],"TEXT_STRONG":["#ffeb3b","#ffeb3b"]},"rawColors":{}}}
+THEME
+SIMCTL_CHILD_ENDCORD_LOG_JS=1 SIMCTL_CHILD_OS_ACTIVITY_DT_MODE=1 xcrun simctl launch     --stdout="$RESULTS/discord2.out" --stderr="$RESULTS/discord2.err" "$UDID" "$APP_ID" 2>&1 | tee "$RESULTS/launch2.log"
+for i in $(seq 1 300); do
+    sleep 1
+    if grep -q '"name":"en-general"' "$RESULTS/discord2.err" 2> /dev/null; then
+        xcrun simctl io "$UDID" screenshot "$RESULTS/theme-general.png" > /dev/null 2>&1
+        break
+    fi
+    pgrep -x Discord > /dev/null || { fail "Discord stopped on the second start after ${i}s"; break; }
+done
+grep -q ' 304 "$RESULTS/server.log" && pass "the second start checked the saved bundle with its ETag (304)"     || fail "no 304 on the second start"
+grep -q 'test-theme' "$RESULTS/discord2.err" && echo "theme mentioned in the log" >> "$RESULTS/summary.txt"
+grep -E '[Endcord]' "$RESULTS/discord2.err" | tail -n 30 > "$RESULTS/second-start.txt"
