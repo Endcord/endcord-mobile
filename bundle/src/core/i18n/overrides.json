@@ -1049,6 +1049,30 @@
         "es": "Comprueba si el propio Discord tiene problemas con /discordstatus",
         "fr": "Vérifiez si Discord lui-même a des problèmes avec /discordstatus"
     },
+    "Choose a date": {
+        "tr": "Bir tarih seç",
+        "ru": "Выбрать дату",
+        "es": "Elegir fecha",
+        "fr": "Choisir une date"
+    },
+    "Choose a color": {
+        "tr": "Bir renk seç",
+        "ru": "Выбрать цвет",
+        "es": "Elegir color",
+        "fr": "Choisir une couleur"
+    },
+    "Discord's date picker wasn't found": {
+        "tr": "Discord'un tarih seçicisi bulunamadı",
+        "ru": "Выбор даты Discord не найден",
+        "es": "No se encontró el selector de fecha de Discord",
+        "fr": "Le sélecteur de date de Discord est introuvable"
+    },
+    "Discord's color picker wasn't found": {
+        "tr": "Discord'un renk seçicisi bulunamadı",
+        "ru": "Выбор цвета Discord не найден",
+        "es": "No se encontró el selector de color de Discord",
+        "fr": "Le sélecteur de couleur de Discord est introuvable"
+    },
     "Choose a file": {
         "tr": "Bir dosya seç",
         "ru": "Выбрать файл",

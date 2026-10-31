@@ -20,7 +20,7 @@ import { ActivityIndicator, FlatList, Image, PixelRatio, Pressable, ScrollView, 
 
 import { getStore } from "../common";
 import { toastError } from "../hooks";
-import { choose, prompt } from "../ui/dialogs";
+import { choose, pickColor, pickDate, prompt } from "../ui/dialogs";
 import {
     AVATAR_DECORATIONS, BADGES, BOOST_ICONS, BOOST_LABELS, COLLECTIBLE_PROFILE_EFFECT, type CustomProfileData, getDecorationUrl,
     GIFT_IDS, GIFT_TIER_NAMES, NITRO_LEVELS, OLD_NAME_BADGE_ICON, type SavedPreset, shopThumbnail, SPECIAL_BADGES, TIERED_BADGES
@@ -203,7 +203,20 @@ function ColorField({ label, value, placeholder, onChange }: { label: string; va
     const valid = !text || text === "#" || /^[0-9a-f]{6}$/i.test(hex);
     return <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
         <Text variant="text-xs/medium" color="text-muted" style={{ width: 56 }}>{label}</Text>
-        <View style={{ width: 32, height: 32, borderRadius: 6, backgroundColor: toHex(value) || placeholder.split(" ")[0] }} />
+        <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={t("Choose a color")}
+            onPress={() => {
+                try {
+                    pickColor(value ?? parseInt(placeholder.slice(1, 7), 16), onChange);
+                } catch (e) {
+                    toastError(e);
+                }
+            }}
+            style={{ width: 44, height: 44, borderRadius: 8, alignItems: "center", justifyContent: "center", backgroundColor: toHex(value) || placeholder.split(" ")[0] }}
+        >
+            <Image source={findAssetId("PencilIcon")} style={{ width: 18, height: 18, tintColor: "#ffffff" }} />
+        </Pressable>
         <View style={{ flex: 1 }}>
             <TextInput
                 value={text}
@@ -226,23 +239,20 @@ function ColorField({ label, value, placeholder, onChange }: { label: string; va
 }
 
 function DateField({ value, onChange }: { value: string; onChange: (v?: string) => void; }) {
-    const [text, setText] = useState(value);
-    useEffect(() => setText(value), [value]);
-    const valid = !text || /^\d{4}-\d{2}-\d{2}$/.test(text) && !Number.isNaN(Date.parse(`${text}T12:00:00Z`));
-    return <TextInput
-        label={t("Account creation date")}
-        value={text}
-        placeholder="2010-06-29"
-        keyboardType="numbers-and-punctuation"
-        maxLength={10}
-        isClearable={true}
-        state={valid ? undefined : "error"}
-        onChange={(v: string) => {
-            setText(v);
-            if (!v) onChange(undefined);
-            else if (/^\d{4}-\d{2}-\d{2}$/.test(v) && !Number.isNaN(Date.parse(`${v}T12:00:00Z`))) onChange(v);
-        }}
-    />;
+    const pick = () => {
+        try {
+            pickDate({ title: t("Account creation date"), value, min: "2000-01-01", onPick: onChange });
+        } catch (e) {
+            toastError(e);
+        }
+    };
+    return <Stack spacing={8}>
+        <SectionLabel>{t("Account creation date")}</SectionLabel>
+        <View style={{ flexDirection: "row", gap: 8 }}>
+            <Button size="md" variant="secondary" text={value || t("Choose a date")} icon={findAssetId("CalendarIcon")} onPress={pick} grow={true} />
+            {value ? <Button size="md" variant="destructive" text={t("Delete")} icon={findAssetId("TrashIcon")} onPress={() => onChange(undefined)} /> : null}
+        </View>
+    </Stack>;
 }
 
 function PresetsBar({ accountId, currentData, onLoad }: { accountId: string; currentData: CustomProfileData; onLoad: (data: CustomProfileData) => void; }) {

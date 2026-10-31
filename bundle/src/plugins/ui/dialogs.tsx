@@ -11,6 +11,7 @@ import { t } from "@core/i18n";
 import { findAssetId } from "@lib/api/assets";
 import { dismissAlert, openAlert } from "@lib/ui/alerts";
 import { hideSheet, showSheet } from "@lib/ui/sheets";
+import { findByFilePath } from "@metro";
 import { ActionSheet, ActionSheetRow, AlertActionButton, AlertModal, BottomSheetTitleHeader, Button, Stack, Text, TextInput } from "@metro/common/components";
 import { useState } from "react";
 import { ScrollView } from "react-native";
@@ -142,3 +143,35 @@ export function showText(title: string, text: string) {
         </Stack>}
     />);
 }
+
+/** The key an open picker's sheet has, for closing it */
+export const DATE_PICKER_SHEET = "endcord-date-picker";
+export const COLOR_PICKER_SHEET = "endcord-color-picker";
+
+/** Discord's date picker sheet, on Android and iOS. Dates are YYYY-MM-DD, in the device's time zone. */
+export function pickDate({ title, value, min, max, onPick }: { title: string; value?: string; min?: string; max?: string; onPick: (date: string) => void; }) {
+    const Sheet = findByFilePath("components_native/DatePickerActionSheet.tsx", true) as any;
+    if (!Sheet) throw new Error(t("Discord's date picker wasn't found"));
+    const toDate = (date?: string) => date ? new Date(`${date}T12:00:00`) : undefined;
+    showSheet(DATE_PICKER_SHEET, Sheet, {
+        mode: "date",
+        title,
+        startDate: toDate(value) ?? new Date(),
+        minimumDate: toDate(min),
+        maximumDate: toDate(max) ?? new Date(),
+        // A moment, or a Date, depending on the Discord
+        onSubmit: (picked: any) => {
+            const date: Date = picked?.toDate?.() ?? new Date(picked);
+            const pad = (n: number) => String(n).padStart(2, "0");
+            onPick(`${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`);
+        },
+    });
+}
+
+/** Discord's color picker sheet with its color field and hue bar, on Android and iOS. Colors are 0xRRGGBB numbers. */
+export function pickColor(color: number, onPick: (color: number) => void) {
+    const show = findByFilePath("modules/color_picker/native/showCustomColorPickerActionSheet.tsx", true) as any;
+    if (typeof show !== "function") throw new Error(t("Discord's color picker wasn't found"));
+    show({ color, suggestedColors: [], onSelect: onPick });
+}
+

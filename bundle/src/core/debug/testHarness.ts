@@ -600,6 +600,25 @@ async function screens() {
         }
     } finally {
         settings.language = previous;
+        // Discord's own pickers, as CustomProfile opens them
+        const { COLOR_PICKER_SHEET, DATE_PICKER_SHEET, pickColor, pickDate } = require("@plugins/ui/dialogs");
+        const { hideSheet } = require("@lib/ui/sheets");
+        const sheets: Array<[string, string, () => void]> = [
+            ["sheet-date", DATE_PICKER_SHEET, () => pickDate({ title: "Account creation date", value: "2016-05-13", min: "2000-01-01", onPick: () => { } })],
+            ["sheet-color", COLOR_PICKER_SHEET, () => pickColor(0x5865f2, () => { })],
+        ];
+        for (const [name, key, open] of sheets) {
+            try {
+                open();
+                await wait(5000);
+                report("shot", { name });
+                await wait(7000);
+                hideSheet(key);
+                await wait(1000);
+            } catch (e) {
+                report("screen-error", { name, error: String(e) });
+            }
+        }
         showTestScreen(null);
     }
 }
