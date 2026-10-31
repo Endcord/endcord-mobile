@@ -1,0 +1,82 @@
+PASS first-start bundle: ran hbc, saved from http://127.0.0.1:4040/endcord.v98.hbc | "d6b7df2c5e6e573c3c99ed00f5636d11a952bf4e"
+PASS first-start saved-source: http://127.0.0.1:4040/endcord.v98.hbc
+PASS first-start loader-identity: EndcordTweak 1.0.1 themes=true fontPatch=2 storedTheme=null
+PASS first-start bridge-sync: revenge.info = EndcordTweak 1.0.1
+PASS first-start bridge-unknown-method: Method not implemented: revenge.nope
+PASS first-start bridge-smooth-type: undefined
+PASS first-start bridge-no-payload-throws: 
+PASS first-start bridge-cyclic-args: The value is nested too deeply to pass to the loader
+PASS first-start bridge-async: EndcordTweak
+PASS first-start discord-init-ran: %orig before Endcord
+PASS first-start sideloading-bundle-id: Discord's code sees com.hammerandchisel.discord
+PASS first-start sideloading-info: com.hammerandchisel.discord
+PASS first-start sideloading-app-group: /Users/runner/Library/Developer/CoreSimulator/Devices/B7CD7ED2-0DFF-42FE-A30F-21CD2E3D3D2C/data/Containers/Shared/AppGroup/4E64BACF-783F-4C7D-B2E2-E705769592CF
+PASS first-start no-alert: 
+PASS cached-start bundle: ran hbc, saved from http://127.0.0.1:4040/endcord.v98.hbc | "d6b7df2c5e6e573c3c99ed00f5636d11a952bf4e"
+PASS cached-start no-alert: 
+PASS update-old bundle: ran hbc, saved from http://127.0.0.1:4040/endcord.v98.hbc | "d6b7df2c5e6e573c3c99ed00f5636d11a952bf4e"
+PASS update-old no-alert: 
+PASS update-old background-update: the new bundle is saved for the next start
+PASS update-new bundle: ran hbc2, saved from http://127.0.0.1:4040/endcord.v98.hbc | "08db66f8be7c7c7058ad6504d0876ff76d00d01b"
+PASS update-new no-alert: 
+PASS fallback-js bundle: ran js, saved from http://127.0.0.1:4040/endcord.min.js | "e539301e8b30ed13bfe228992caeb96a956fc6c0"
+PASS fallback-js saved-source: http://127.0.0.1:4040/endcord.min.js
+PASS fallback-js no-alert: 
+PASS wrong-bytecode bundle: ran js, saved from http://127.0.0.1:4040/endcord.min.js | "e539301e8b30ed13bfe228992caeb96a956fc6c0"
+PASS wrong-bytecode no-alert: 
+PASS saved-wrong-version bundle: ran hbc2, saved from http://127.0.0.1:4040/endcord.v98.hbc | "08db66f8be7c7c7058ad6504d0876ff76d00d01b"
+PASS saved-wrong-version no-alert: 
+PASS offline-backup bundle: ran hbc2, saved from 
+PASS offline-backup backup-restored: 
+PASS offline-backup no-alert: 
+PASS offline-nothing bundle: ran none, saved from 
+PASS offline-nothing alert: Endcord couldn't load
+PASS custom-url bundle: ran custom, saved from http://127.0.0.1:4040/custom.js | "1cbf302221a18c602db7c897f1f9824fa012efac"
+PASS custom-url saved-source: http://127.0.0.1:4040/custom.js
+PASS custom-url no-alert: 
+PASS custom-off bundle: ran hbc2, saved from http://127.0.0.1:4040/endcord.v98.hbc | "08db66f8be7c7c7058ad6504d0876ff76d00d01b"
+PASS custom-off no-alert: 
+PASS broken-files bundle: ran hbc2, saved from http://127.0.0.1:4040/endcord.v98.hbc | "08db66f8be7c7c7058ad6504d0876ff76d00d01b"
+PASS broken-files font-paths-contained: 
+PASS broken-files loader-identity: EndcordTweak 1.0.1 themes=true fontPatch=2 storedTheme=null
+PASS broken-files bridge-sync: revenge.info = EndcordTweak 1.0.1
+PASS broken-files bridge-unknown-method: Method not implemented: revenge.nope
+PASS broken-files bridge-smooth-type: undefined
+PASS broken-files bridge-no-payload-throws: 
+PASS broken-files bridge-cyclic-args: The value is nested too deeply to pass to the loader
+PASS broken-files bridge-async: EndcordTweak
+PASS broken-files discord-init-ran: %orig before Endcord
+PASS broken-files no-alert: 
+PASS broken-files-2 no-alert: 
+PASS theme bundle: ran hbc2, saved from http://127.0.0.1:4040/endcord.v98.hbc | "08db66f8be7c7c7058ad6504d0876ff76d00d01b"
+PASS theme theme-semantic: #112233ff
+PASS theme theme-semantic-false: #00ff00ff
+PASS theme theme-semantic-short: #aabbccff
+PASS theme theme-raw: #abcdefff
+PASS theme theme-raw-alloc-untouched: NSObject
+PASS theme theme-raw-args-untouched: #0000ffff
+PASS theme theme-raw-lowercase-untouched: #000000ff
+PASS theme theme-stored: test-theme
+PASS theme no-alert: 
+PASS fonts bundle: ran hbc2, saved from http://127.0.0.1:4040/endcord.v98.hbc | "08db66f8be7c7c7058ad6504d0876ff76d00d01b"
+PASS fonts font-replaced: Herculanum (Herculanum), expected Herculanum
+PASS fonts no-alert: 
+PASS bundle-throws bundle: ran throws, saved from http://127.0.0.1:4040/endcord.min.js | "3e6eee77e6b047a9ddad987d4d30c90329913eba"
+PASS bundle-throws alert: Endcord couldn't start: boom
+PASS real-bundle real-bundle-ran: the published bytecode ran its top level
+PASS real-bundle real-bundle-waits-for-discord: it set up the hook for Discord's modules
+PASS real-bundle no-alert: 
+PASS menu recovery-menu: Endcord v1.0.1 Recovery Menu
+PASS smooth-caret caret-configure: 
+PASS smooth-caret caret-in-message-box: {{52, 7}, {3, 28}} in UITextView
+PASS smooth-caret caret-color: #ff0000ff
+PASS smooth-caret caret-where-cursor-is: {{52, 7}, {3, 28}}, cursor {{52, 7}, {3, 28}}
+PASS smooth-caret caret-is-cursor: 
+PASS smooth-caret caret-glides: from {53.5, 21} to {210.5, 21}, on screen {93.033334702253342, 21}, animations endcordGlide.position endcordBlink
+PASS smooth-caret caret-only-message-box: 
+PASS smooth-caret caret-off: 0 left
+PASS broadcast broadcast-extension: told com.hammerandchisel.discord, picks com.endcord.testhost.BroadcastUpload
+PASS broadcast broadcast-other-untouched: com.example.Other
+PASS app-group app-group-signed: /Users/runner/Library/Developer/CoreSimulator/Devices/B7CD7ED2-0DFF-42FE-A30F-21CD2E3D3D2C/data/Containers/Shared/AppGroup/4E64BACF-783F-4C7D-B2E2-E705769592CF
+PASS app-group app-group-moved: kept
+PASS delete-data delete-functions: 

@@ -1,0 +1,12 @@
+RESULT PASS smooth-caret caret-configure: 
+INFO interactions UITextView[_UIZoomEdgeFeedbackGenerator _UIScrollEdgeEffectViewInteraction _UIScrollPocketRegistrationInteraction UIDragInteraction UIDropInteraction _UITextMenuLinkInteraction UITextContextMenuInteraction UIContextMenuInteraction _UIClickPresentationInteraction _UIClickPresentationFeedbackGenerator UIEditMenuInteraction _UIEditMenuBridgedContextMenuInteraction _UIClickPresentationInteraction _UIClickPresentationFeedbackGenerator UITextSelectionDisplayInteraction _UIKeyboardBasedTextSelectionInteraction UITextInteraction UITextRangeAdjustmentInteraction UITextRefinementInteraction UITextSelectionInteraction UITextIndirectKeyboardInteraction UITextIndirectEditableInteraction _UITextLayoutView[] _UITextContainerView[_UITextLayoutCanvasView[UIView[] _UITextLayoutFragmentView[]]] _UIScrollViewScrollIndicator[UIPointerInteraction UIView[]] _UIScrollViewScrollIndicator[UIPointerInteraction UIView[]] EndcordCaretView[] EndcordCaretGlyph[] _UITextSelectionRangeAdjustmentContainerView[_UITextSelectionLollipopView[UIView[] UIView[]] _UITextSelectionLollipopView[UIView[] UIView[]]] _UICursorAccessoryHostView[_UICursorAccessoryView[_UIContainerWindowPortalInteraction _UIVisualEffectBackdropView[] _UIVisualEffectContentView[]]]]
+INFO cursorView EndcordCaretView
+RESULT PASS smooth-caret caret-in-message-box: {{52, 7}, {3, 28}} in UITextView
+RESULT PASS smooth-caret caret-color: #ff0000ff
+RESULT PASS smooth-caret caret-where-cursor-is: {{52, 7}, {3, 28}}, cursor {{52, 7}, {3, 28}}
+RESULT PASS smooth-caret caret-is-cursor: 
+RESULT PASS smooth-caret caret-glides: from {53.5, 21} to {210.5, 21}, on screen {87.082122176885605, 21}, animations endcordGlide.position endcordBlink
+SCREENSHOT smooth-caret
+RESULT PASS smooth-caret caret-only-message-box: 
+RESULT PASS smooth-caret caret-off: 0 left
+DONE smooth-caret failures=0

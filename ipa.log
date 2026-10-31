@@ -1,0 +1,66 @@
+Collecting https://github.com/asdfzxcvbn/pyzule-rw/archive/740d3716dcd98c20c000f12cdb88f1f0b2a533a4.zip
+  Downloading 740d3716dcd98c20c000f12cdb88f1f0b2a533a4.zip
+     / 8.6 MB 9.0 MB/s 0:00:00
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting Pillow
+  Downloading pillow-13.0.0-cp312-cp312-macosx_11_0_arm64.whl.metadata (9.1 kB)
+Downloading pillow-13.0.0-cp312-cp312-macosx_11_0_arm64.whl (4.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.9/4.9 MB 87.1 MB/s  0:00:00
+Building wheels for collected packages: cyan
+  Building wheel for cyan (pyproject.toml): started
+  Building wheel for cyan (pyproject.toml): finished with status 'done'
+  Created wheel for cyan: filename=cyan-1.4.4-py3-none-any.whl size=8541476 sha256=f9f3588268bbe3c5d75a5dbfd77f4528f5f4ac2d768ee42854de29d5aee26d73
+  Stored in directory: /private/var/folders/y3/p6x0rn5562l5qyxy7x6jqrsc0000gn/T/pip-ephem-wheel-cache-owd6wj1y/wheels/b9/8f/d1/f7eea148cdbc08f1244d27ec1ae1db0ce3f531d98e0ea76b12
+Successfully built cyan
+Installing collected packages: Pillow, cyan
+
+Successfully installed Pillow-13.0.0 cyan-1.4.4
+Discord 344.1
+[*] extracting ipa..
+[*] extracted ipa
+[?] no encrypted plugins
+[*] extracted com.endcord.tweak_1.0.1_iphoneos-arm64.deb
+[*] injected Endcord.dylib
+[?] CydiaSubstrate.framework already existed, replacing
+[*] restored entitlements
+[*] changed name to "Endcord"
+[*] updated app icon
+[?] no UISupportedDevices
+[?] watch app not present
+[*] enabled documents support
+[*] fakesigned [96m13[0m item(s)
+[*] thinned [96m0[0m item(s)
+[*] generating ipa with compression level 6..
+[*] generated ipa at Endcord.ipa
+[*] deleting temporary directory..
+-rw-r--r--  1 runner  staff  107150437 Oct 31 00:43 Endcord.ipa
+added @rpath/Endcord.dylib (48 bytes; 42936 bytes still free)
+-rw-r--r--  1 runner  staff  107150830 Oct 31 00:43 Endcord.ipa
+All       14 JSI symbols the tweak uses are exported by Discord 344.1
+Discord's bundle is Hermes bytecode version 98
+{
+  "buildVersion": "110861",
+  "minOSVersion": "16.0",
+  "appPermissions": {
+    "entitlements": [],
+    "privacy": {
+      "NSBluetoothAlwaysUsageDescription": "To connect to your devices",
+      "NSBluetoothPeripheralUsageDescription": "To connect to your devices",
+      "NSCameraUsageDescription": "By allowing access to your camera, you can take pictures and others will be able to see you in voice and video calls.",
+      "NSContactsUsageDescription": "We can help you find people you know on Discord. Your contacts will be regularly sent to us so you can connect with friends. You can turn this off any time.",
+      "NSLocalNetworkUsageDescription": "Allow Discord access to your local network to find devices using the same internet connection.",
+      "NSLocationAlwaysAndWhenInUseUsageDescription": "To enable services that require location",
+      "NSLocationAlwaysUsageDescription": "To enable services that require location",
+      "NSLocationWhenInUseUsageDescription": "To enable services that require location",
+      "NSMicrophoneUsageDescription": "By allowing access to your microphone, you'll be able to talk in calls.",
+      "NSPhotoLibraryAddUsageDescription": "By allowing access to your library, you'll be able to download photos and videos.",
+      "NSPhotoLibraryUsageDescription": "By allowing us access to your photos, you will be able to upload images as an avatar, server icon, and more, and you can send photos and videos to your friends and communities.",
+      "NSUserTrackingUsageDescription": "Allowing tracking helps us show you Quests for games you play or are interested in. You can opt out anytime in your iOS settings."
+    }
+  }
+}
