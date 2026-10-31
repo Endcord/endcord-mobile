@@ -1,0 +1,5 @@
+      4 "GET /endcord-release.json HTTP/1.1" 200
+      4 "GET /endcord-release.sig HTTP/1.1" 200
+      1 "GET /endcord-xposed.apk HTTP/1.1" 200
+      1 "GET /endcord.min.js HTTP/1.1" 200
+      2 "GET /endcord.v98.hbc HTTP/1.1" 200

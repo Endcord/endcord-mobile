@@ -1,0 +1,19 @@
+{
+    "format": 1,
+    "sequence": 1793448280,
+    "commit": "377d65fc99eacec4d0f75f062e497145c54defcc",
+    "files": {
+        "endcord.min.js": {
+            "size": 1246303,
+            "sha256": "c39e748ec7eb7d98c0ddedbc4e0ff0a2b1e011789a2c610810173cfa13fd7453"
+        },
+        "endcord.v98.hbc": {
+            "size": 2521029,
+            "sha256": "b1716a580b7525eb93be246b3074c1c66100610d38bae23164261b0e7be25f5d"
+        },
+        "endcord.v99.hbc": {
+            "size": 2498678,
+            "sha256": "1146441de6e5f893c859b509b88b4130c77d53ccca9e0aab7fb08267df41eb85"
+        }
+    }
+}
