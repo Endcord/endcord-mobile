@@ -526,6 +526,35 @@ ${e.stack}` : String(e) });
         const after = overlayCount();
         return { before, whileOn, after, pass: whileOn === before + 1 && after === before };
     });
+
+    await check("every plugin runs at once", async () => {
+        const plugins = getEndcordPlugins();
+        const failed: string[] = [];
+        for (const plugin of plugins) {
+            try {
+                await Promise.race([
+                    startEndcordPlugin(plugin),
+                    wait(15_000).then(() => Promise.reject(new Error("timed out"))),
+                ]);
+            } catch (e) {
+                failed.push(`${plugin.id}: ${e}`);
+            }
+        }
+        // A while with all of them patched in, and something for them to react to
+        const channelId = "1111111111111111111";
+        FluxDispatcher.dispatch({ type: "CHANNEL_SELECT", channelId, guildId: null });
+        await wait(20_000);
+        const stopFailed: string[] = [];
+        for (const plugin of plugins) {
+            try {
+                stopEndcordPlugin(plugin);
+            } catch (e) {
+                stopFailed.push(`${plugin.id}: ${e}`);
+            }
+        }
+        await wait(1000);
+        return { plugins: plugins.length, failed: failed.slice(0, 10), stopFailed: stopFailed.slice(0, 10), pass: !failed.length && !stopFailed.length };
+    });
 }
 
 /** Shows Endcord's pages one at a time; the workflow takes a screenshot of each when it sees the "shot" line */
