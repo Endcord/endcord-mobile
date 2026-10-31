@@ -66,21 +66,27 @@ for _ in $(seq 1 30); do curl -fs "http://127.0.0.1:$PORT/__mode/normal" > /dev/
 SIMCTL_CHILD_ENDCORD_LOG_JS=1 SIMCTL_CHILD_OS_ACTIVITY_DT_MODE=1 xcrun simctl launch \
     --stdout="$RESULTS/discord.out" --stderr="$RESULTS/discord.err" "$UDID" "$APP_ID" 2>&1 | tee "$RESULTS/launch.log"
 
-shots=0
-for i in $(seq 1 90); do
-    sleep 10
-    if [ $((i % 3)) = 1 ] && [ $shots -lt 8 ]; then
-        xcrun simctl io "$UDID" screenshot "$RESULTS/discord-$i.png" > /dev/null 2>&1
-        shots=$((shots + 1))
-    fi
+# The self-test asks for a screenshot of each Endcord page it opens
+taken=" "
+for i in $(seq 1 900); do
+    sleep 1
+    for shot in $(grep -o '"kind":"shot","data":{"name":"[a-z-]*"' "$RESULTS/discord.err" 2> /dev/null | sed 's/.*"name":"//; s/"$//'); do
+        case "$taken" in *" $shot "*) ;; *)
+            xcrun simctl io "$UDID" screenshot "$RESULTS/page-$shot.png" > /dev/null 2>&1
+            taken="$taken$shot "
+            ;;
+        esac
+    done
+    [ $((i % 60)) = 1 ] && xcrun simctl io "$UDID" screenshot "$RESULTS/discord-$i.png" > /dev/null 2>&1
     grep -q '"kind":"done"' "$RESULTS/discord.err" 2> /dev/null && break
     grep -q '"kind":"fatal"' "$RESULTS/discord.err" 2> /dev/null && break
     # A simulator's apps are processes of the Mac
-    pgrep -x Discord > /dev/null || { echo "Discord isn't running after $((i * 10))s" | tee -a "$RESULTS/summary.txt"; break; }
+    pgrep -x Discord > /dev/null || { echo "Discord isn't running after ${i}s" | tee -a "$RESULTS/summary.txt"; break; }
 done
 xcrun simctl io "$UDID" screenshot "$RESULTS/discord-final.png" > /dev/null 2>&1
 
-grep -o 'ENDCORD_TEST .*' "$RESULTS/discord.err" | sed 's/^ENDCORD_TEST //' > "$RESULTS/selftest.jsonl"
+# Each console line comes twice, from the tweak's forwarding and from Discord's own
+grep -o 'ENDCORD_TEST .*' "$RESULTS/discord.err" | sed 's/^ENDCORD_TEST //' | awk '!seen[$0]++' > "$RESULTS/selftest.jsonl"
 xcrun simctl spawn "$UDID" log show --last 15m --style compact --predicate 'process == "Discord"' 2> /dev/null \
     | tail -n 3000 > "$RESULTS/system.log"
 find ~/Library/Logs/DiagnosticReports -name 'Discord*' -mmin -30 -exec cp {} "$RESULTS/" \; 2> /dev/null
