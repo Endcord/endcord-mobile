@@ -7799,6 +7799,12 @@
         "es": "Este enlace es un **{urlType, select, plugin {plugin} theme {tema} other {complemento}}**. ¿Quieres instalarlo?",
         "fr": "Ce lien est un **{urlType, select, plugin {plugin} theme {thème} other {module}}**. Voulez-vous l'installer ?"
     },
+    "This needs iOS 17 or newer.": {
+        "tr": "Bunun için iOS 17 veya üstü gerekiyor.",
+        "ru": "Для этого нужна iOS 17 или новее.",
+        "es": "Esto necesita iOS 17 o posterior.",
+        "fr": "Cela nécessite iOS 17 ou une version ultérieure."
+    },
     "This needs a newer Endcord. Install the latest Endcord IPA.": {
         "tr": "Bunun için daha yeni bir Endcord gerekiyor. En son Endcord IPA'sını kur.",
         "ru": "Для этого нужна более новая версия Endcord. Установите последний IPA Endcord.",

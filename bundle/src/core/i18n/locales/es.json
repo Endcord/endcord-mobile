@@ -1751,6 +1751,7 @@
     "This link is a **{urlType, select, plugin {Plugin} theme {Theme} other {Add-on}}**, would you like to install it?": "Este enlace es un **{urlType, select, plugin {plugin} theme {tema} other {complemento}}**. ¿Quieres instalarlo?",
     "This needs a newer Endcord. Install it again with Endcord Installer.": "Esto necesita un Endcord más reciente. Vuelve a instalarlo con Endcord Installer.",
     "This needs a newer Endcord. Install the latest Endcord IPA.": "Esto necesita un Endcord más reciente. Instala el IPA de Endcord más reciente.",
+    "This needs iOS 17 or newer.": "Esto necesita iOS 17 o posterior.",
     "This only works in DMs and group DMs.": "Esto solo funciona en MD y MD grupales.",
     "This only works in a server.": "Esto solo funciona en un servidor.",
     "This pack overrides the following: {fonts}": "Este paquete sustituye lo siguiente: {fonts}",

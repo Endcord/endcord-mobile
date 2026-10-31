@@ -1751,6 +1751,7 @@
     "This link is a **{urlType, select, plugin {Plugin} theme {Theme} other {Add-on}}**, would you like to install it?": "Bu bağlantı bir **{urlType, select, plugin {eklenti} theme {tema} other {eklenti}}**. Yüklemek ister misin?",
     "This needs a newer Endcord. Install it again with Endcord Installer.": "Bunun için daha yeni bir Endcord gerekiyor. Endcord Installer ile yeniden kur.",
     "This needs a newer Endcord. Install the latest Endcord IPA.": "Bunun için daha yeni bir Endcord gerekiyor. En son Endcord IPA'sını kur.",
+    "This needs iOS 17 or newer.": "Bunun için iOS 17 veya üstü gerekiyor.",
     "This only works in DMs and group DMs.": "Bu yalnızca DM'lerde ve grup DM'lerinde çalışır.",
     "This only works in a server.": "Bu yalnızca bir sunucuda çalışır.",
     "This pack overrides the following: {fonts}": "Bu paket şunları değiştirir: {fonts}",

@@ -80,6 +80,9 @@ const plugin = definePlugin({
     },
     SettingsComponent: CaretColor,
     async start({ store, cleanup, logger }) {
+        // The tweak replaces the cursor view UIKit has had since iOS 17
+        if (Platform.OS === "ios" && parseInt(String(Platform.Version), 10) < 17) throw new Error(t("This needs iOS 17 or newer."));
+
         // Discord's message box is a native view, so the loader draws the caret; see SmoothCaret.kt and the iOS
         // tweak's SmoothCaret.x
         const args = (enabled: boolean) => ["endcord.smoothType.configure", enabled, caretColorOf(store), store.transitionDelay, store.animationType] as const;
