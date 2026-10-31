@@ -1,0 +1,3 @@
+Plugins: 606 started, 606 stopped, 0 failed, self-test finished
+
+PASS: Endcord ran inside the real Discord
