@@ -75,7 +75,8 @@ for i in $(seq 1 90); do
     fi
     grep -q '"kind":"done"' "$RESULTS/discord.err" 2> /dev/null && break
     grep -q '"kind":"fatal"' "$RESULTS/discord.err" 2> /dev/null && break
-    xcrun simctl spawn "$UDID" launchctl list 2> /dev/null | grep -q "$APP_ID" || { echo "Discord isn't running after $((i * 10))s"; break; }
+    # A simulator's apps are processes of the Mac
+    pgrep -x Discord > /dev/null || { echo "Discord isn't running after $((i * 10))s" | tee -a "$RESULTS/summary.txt"; break; }
 done
 xcrun simctl io "$UDID" screenshot "$RESULTS/discord-final.png" > /dev/null 2>&1
 
