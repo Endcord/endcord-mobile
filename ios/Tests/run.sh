@@ -97,7 +97,7 @@ EOF
 SDK=$(xcrun --sdk iphonesimulator --show-sdk-path)
 xcrun --sdk iphonesimulator clang++ -target arm64-apple-ios15.0-simulator -isysroot "$SDK" -std=c++17 -fobjc-arc \
     -I "$WORK/hermes/destroot/include" -F "$(dirname "$FRAMEWORK")" -framework "$(basename "$FRAMEWORK" .framework)" \
-    -framework UIKit -framework Foundation -framework ReplayKit -Wl,-rpath,@executable_path/Frameworks \
+    -framework UIKit -framework Foundation -framework CoreGraphics -framework QuartzCore -framework ReplayKit -Wl,-rpath,@executable_path/Frameworks \
     -Wl,-sectcreate,__TEXT,__entitlements,"$WORK/host.entitlements" \
     -o "$APP/Host" "$HERE/Host.mm" 2>&1 | tee "$RESULTS/host-build.log"
 if [ ! -x "$APP/Host" ]; then
