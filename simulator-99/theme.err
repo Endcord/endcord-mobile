@@ -1,0 +1,20 @@
+2026-10-31 23:38:52.646912+0000 Host[23214:69988] [Endcord] Using the default loader config
+2026-10-31 23:38:52.748486+0000 Host[23214:69988] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-10-31 23:38:52.872125+0000 Host[23214:70032] [Endcord] Using the default loader config
+2026-10-31 23:38:52.873558+0000 Host[23214:70032] [Endcord] Initializing theme (4 semantic colors, 6 raw colors)
+2026-10-31 23:38:52.874252+0000 Host[23214:70032] [Endcord] Processing 6 raw color methods
+2026-10-31 23:38:52.877398+0000 Host[23214:70032] [Endcord] Skipping raw color new: it isn't a color name
+2026-10-31 23:38:52.877546+0000 Host[23214:70032] [Endcord] Skipping raw color colorWithRed:green:blue:alpha:: it isn't a color name
+2026-10-31 23:38:52.877801+0000 Host[23214:70032] [Endcord] Skipping raw color alloc: it isn't a color name
+2026-10-31 23:38:52.877937+0000 Host[23214:70032] [Endcord] Skipping raw color blackColor: it isn't a color name
+2026-10-31 23:38:52.882820+0000 Host[23214:70032] [Endcord] Using the default loader config
+2026-10-31 23:38:52.886595+0000 Host[23214:70032] [Endcord] Discord's bundle has bytecode version 99
+2026-10-31 23:38:52.887703+0000 Host[23214:70032] [Endcord] Using the default loader config
+2026-10-31 23:38:52.888641+0000 Host[23214:70032] [Endcord] Applied theme color: backgroundPrimary
+2026-10-31 23:38:52.889254+0000 Host[23214:70032] [Endcord] Applied theme color: headerPrimary
+2026-10-31 23:38:52.889503+0000 Host[23214:70032] [Endcord] Applied raw color: PRIMARY_500
+2026-10-31 23:38:52.890586+0000 Host[23214:70027] [Endcord] Using the default loader config
+2026-10-31 23:38:52.891318+0000 Host[23214:70027] [Endcord] Using the default loader config
+2026-10-31 23:38:52.959495+0000 Host[23214:70027] [Endcord] Using the default loader config
+2026-10-31 23:38:53.029743+0000 Host[23214:70027] [Endcord] Using the default loader config
+2026-10-31 23:38:53.046064+0000 Host[23214:70027] [Endcord] The bundle at http://127.0.0.1:4040/endcord.v99.hbc hasn't changed

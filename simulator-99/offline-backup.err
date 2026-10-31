@@ -1,0 +1,12 @@
+2026-10-31 23:37:48.263255+0000 Host[19656:61337] [Endcord] Using the default loader config
+2026-10-31 23:37:48.357599+0000 Host[19656:61337] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-10-31 23:37:48.434907+0000 Host[19656:61357] [Endcord] Using the default loader config
+2026-10-31 23:37:48.460381+0000 Host[19656:61352] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+2026-10-31 23:37:48.490848+0000 Host[19656:61357] [Endcord] Using the default loader config
+2026-10-31 23:37:48.507073+0000 Host[19656:61352] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+2026-10-31 23:37:48.753441+0000 Host[19656:61357] [Endcord] Using the default loader config
+2026-10-31 23:37:48.754256+0000 Host[19656:61357] [Endcord] Discord's bundle has bytecode version 99
+2026-10-31 23:37:48.757748+0000 Host[19656:61357] [Endcord] Couldn't download the bundle from http://127.0.0.1:4040/endcord.v99.hbc: HTTP 503
+2026-10-31 23:37:48.762186+0000 Host[19656:61357] [Endcord] Couldn't download the bundle from http://127.0.0.1:4040/endcord.min.js: HTTP 503
+2026-10-31 23:37:48.763336+0000 Host[19656:61357] [Endcord] Successfully restored bundle from backup
+2026-10-31 23:37:48.764333+0000 Host[19656:61357] [Endcord] Using the default loader config

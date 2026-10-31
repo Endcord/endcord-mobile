@@ -1,0 +1,5 @@
+RESULT PASS real-bundle real-bundle-ran: the published bytecode ran its top level
+RESULT PASS real-bundle real-bundle-waits-for-discord: it set up the hook for Discord's modules
+RESULT PASS real-bundle no-alert: 
+SCREENSHOT real-bundle
+DONE real-bundle failures=0

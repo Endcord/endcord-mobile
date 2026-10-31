@@ -1,0 +1,4 @@
+RESULT PASS signed-start bundle: ran hbc2, saved from http://127.0.0.1:4040/endcord.v98.hbc | "1c59da00e08cd18b160577a7a70ce706556870ab"
+RESULT PASS signed-start no-alert: 
+SCREENSHOT signed-start
+DONE signed-start failures=0

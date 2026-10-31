@@ -1,0 +1,6 @@
+2026-10-31 23:38:08.358868+0000 Host[21055:64740] [Endcord] Loader config loaded - Custom URL enabled: http://127.0.0.1:4040/custom.js
+2026-10-31 23:38:08.414671+0000 Host[21055:64740] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-10-31 23:38:08.469145+0000 Host[21055:64783] [Endcord] Loader config loaded - Custom URL enabled: http://127.0.0.1:4040/custom.js
+2026-10-31 23:38:08.475922+0000 Host[21055:64783] [Endcord] Loader config loaded - Custom URL enabled: http://127.0.0.1:4040/custom.js
+2026-10-31 23:38:08.476796+0000 Host[21055:64783] [Endcord] Loader config loaded - Custom URL enabled: http://127.0.0.1:4040/custom.js
+2026-10-31 23:38:08.566104+0000 Host[21055:64783] [Endcord] Downloaded the bundle from http://127.0.0.1:4040/custom.js (39 bytes)
