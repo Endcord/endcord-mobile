@@ -115,6 +115,38 @@ if [ -d discord ]; then
 fi
 endstep
 
+step "Signed releases: what the loader refuses"
+# Starts Endcord with the server serving something it shouldn't, and looks for the loader's refusal in the log
+expect_refusal() {
+    local name=$1 message=$2
+    adb shell am force-stop $ENDCORD_PKG
+    adb logcat -c
+    adb shell monkey -p $ENDCORD_PKG -c android.intent.category.LAUNCHER 1 > /dev/null 2>&1
+    local found=""
+    for _ in $(seq 1 30); do
+        sleep 2
+        adb logcat -d > "results/refused-$name-logcat.txt"
+        if grep -q "$message" "results/refused-$name-logcat.txt"; then found=1; break; fi
+    done
+    [ -n "$found" ] && pass "refused: $name" || fail "not refused: $name"
+    adb shell pidof $ENDCORD_PKG > /dev/null && pass "$name: Endcord still running" || fail "$name: Endcord stopped"
+}
+if adb shell pm list packages | grep -q "$ENDCORD_PKG"; then
+    cp serve/endcord-release.json results/release-good.json
+    # A release changed after it was signed
+    printf ' ' >> serve/endcord-release.json
+    expect_refusal forged-release "signature isn't valid"
+    cp results/release-good.json serve/endcord-release.json
+    # A properly signed release, older than the one accepted
+    cp serve/endcord-release.sig results/release-good.sig
+    ENDCORD_RELEASE_KEY="$(cat release-test.pem)" ENDCORD_RELEASE_PUBLIC_KEY_FILE=release-test.pub ENDCORD_RELEASE_SEQUENCE=1 \
+        node bundle/scripts/sign-release.mjs serve
+    expect_refusal rollback "older than one already accepted"
+    cp results/release-good.json serve/endcord-release.json
+    cp results/release-good.sig serve/endcord-release.sig
+fi
+endstep
+
 # The loader asks for the bundle precompiled for this Discord's bytecode version first, and the plain one without it
 grep -oE '"GET /endcord[^ ]* HTTP/1\.[01]" [0-9]+' results/http.log | sort | uniq -c > results/bundle-requests.txt
 if grep -qE '"GET /endcord\.v[0-9]+\.hbc HTTP/1\.[01]" 200' results/http.log; then
