@@ -127,6 +127,16 @@ static CAMediaTimingFunction *timingNamed(NSString *name)
 - (void)follow
 {
     CGRect target = self.frame;
+    _glyph.alpha  = self.alpha;
+    // Discord's message box gives an empty rect while its cursor shouldn't show (shouldShowCursor); it comes back
+    // where it is
+    if (CGRectIsEmpty(target))
+    {
+        _glyph.hidden = YES;
+        _placed       = NO;
+        return;
+    }
+    _glyph.hidden = NO;
     if (_placed && CGRectEqualToRect(target, _target)) return;
 
     // From where it is on screen, mid-glide too

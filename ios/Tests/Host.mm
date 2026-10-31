@@ -244,8 +244,18 @@ static void checkBroadcast(void)
     finish();
 }
 
-// What Discord has around its message box: DCDChatInputComponentView, the native component, holds the text view
-@interface DCDChatInputComponentView : UIView
+// Discord's message box: a text view, and its native component a subclass of it. It gives no caret rect while its
+// cursor shouldn't show.
+@interface DCDChatInput : UITextView
+@property (nonatomic, assign) BOOL shouldShowCursor;
+@end
+@implementation DCDChatInput
+- (CGRect)caretRectForPosition:(UITextPosition *)position
+{
+    return self.shouldShowCursor ? [super caretRectForPosition:position] : CGRectZero;
+}
+@end
+@interface DCDChatInputComponentView : DCDChatInput
 @end
 @implementation DCDChatInputComponentView
 @end
@@ -272,12 +282,11 @@ static void checkSmoothCaret(UIViewController *root)
     check(@"caret-configure", configure != NULL, @"");
     if (!configure) return finish();
 
-    DCDChatInputComponentView *box = [[DCDChatInputComponentView alloc] initWithFrame:CGRectMake(16, 120, 340, 120)];
-    UITextView *input = [[UITextView alloc] initWithFrame:box.bounds];
+    DCDChatInputComponentView *input = [[DCDChatInputComponentView alloc] initWithFrame:CGRectMake(16, 120, 340, 120)];
+    input.shouldShowCursor = YES;
     input.font = [UIFont systemFontOfSize:22];
     input.text = @"Hello";
-    [box addSubview:input];
-    [root.view addSubview:box];
+    [root.view addSubview:input];
     UITextView *other = [[UITextView alloc] initWithFrame:CGRectMake(16, 300, 340, 120)];
     other.font = [UIFont systemFontOfSize:22];
     other.text = @"Not the message box";
