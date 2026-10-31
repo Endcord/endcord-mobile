@@ -67,13 +67,21 @@ function soundManager() {
     return manager;
 }
 
+const soundPatches = new Map<string, number>();
+
 export function patchSoundManager(key: string, patch: (manager: any) => () => unknown) {
     const manager = soundManager();
     const original = manager[key];
     const unpatch = patch(manager);
-    if (manager[key] === original) {
+    const patched = soundPatches.get(key) ?? 0;
+    // Another plugin's patch stays the function here, with this one added to it, so only a first patch can tell
+    if (!patched && manager[key] === original) {
         unpatch();
         throw new Error("Discord's sound player can't be changed on this device");
     }
-    return unpatch;
+    soundPatches.set(key, patched + 1);
+    return () => {
+        soundPatches.set(key, (soundPatches.get(key) ?? 1) - 1);
+        return unpatch();
+    };
 }
