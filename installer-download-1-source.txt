@@ -1,0 +1,20 @@
+Which Endcord?
+Endcord Classic
+Endcord
+On the current Discord app, with 300+ Endcord plugins
+Endcord
+Latest: 351.11 - Stable
+Install
+rootpoi
+•
+c9141ca
+10/31/26
+iOS: the CI IPA's screen share extension loads the tweak too and is named Endcord
+rootpoi
+•
+8619147
+10/31/26
+iOS test: link the host with CoreGraphics and QuartzCore
+Endcord Installer
+Reload
+Open about
