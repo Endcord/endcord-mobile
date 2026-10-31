@@ -150,6 +150,22 @@ jobs:
           mkdir "$RUNNER_TEMP/endcord" && unzip -q Endcord.ipa -d "$RUNNER_TEMP/endcord"
           app=$(echo "$RUNNER_TEMP"/endcord/Payload/*.app)
 
+          # The screen share extension loads the tweak too, for the app group it shares with the app (Sideloading.x),
+          # and is listed as Endcord beside the App Store Discord's. cyan injects the main app only.
+          extension="$app/PlugIns/BroadcastUpload.appex"
+          if [ -f "$extension/BroadcastUpload" ]; then
+            tools=$(python -c 'from cyan import tbhutils; print(tbhutils.get_tools_dir()[1])')
+            node ios/scripts/insert-dylib.cjs "$extension/BroadcastUpload" "$extension/BroadcastUpload" "@rpath/Endcord.dylib"
+            plutil -replace CFBundleDisplayName -string Endcord "$extension/Info.plist"
+            # cyan's -s, again for this binary, for TrollStore; other installers sign it themselves
+            "$tools/ldid" -S -M "$extension/BroadcastUpload" || echo "::warning::The extension isn't fakesigned"
+            rm Endcord.ipa
+            (cd "$RUNNER_TEMP/endcord" && zip -qry "$GITHUB_WORKSPACE/Endcord.ipa" Payload)
+            ls -l Endcord.ipa
+          else
+            echo "::warning::No decrypted BroadcastUpload extension: screen share won't work in this IPA"
+          fi
+
           # What can be checked without a device. The tweak takes JSI from Discord's Hermes at run time (linked with
           # -undefined dynamic_lookup), so a symbol this Discord doesn't export would crash it on launch
           for binary in "$app/$(plutil -extract CFBundleExecutable raw "$app/Info.plist")" "$app"/Frameworks/*.framework/* "$app"/Frameworks/*.dylib; do
