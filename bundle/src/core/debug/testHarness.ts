@@ -106,7 +106,7 @@ const PROPS: string[][] = [
     ["CustomStatusSetting"],
     ["getUserAvatarURL", "getUserAvatarSource"],
     ["getUserBannerURL"],
-    ["resolveProfileBadgeId", "toProfileBadgeLegacyId"],
+    ["resolveProfileBadgeId"],
     ["Permissions", "ChannelTypes"],
     ["selectVoiceChannel"],
     ["createFriendInvite", "getAllFriendInvites"],

@@ -77,8 +77,9 @@ function patch() {
         if (runtime) unpatches.push(before("jsx", runtime, check), before("jsxs", runtime, check));
     }
 
-    // Discord maps badge ids to its own; plugin badges keep theirs
-    const ids = findByProps("resolveProfileBadgeId", "toProfileBadgeLegacyId");
+    // Discord maps badge ids to its own; plugin badges keep theirs. toProfileBadgeLegacyId isn't in every Discord
+    // (iOS 344 doesn't have it)
+    const ids = findByProps("resolveProfileBadgeId");
     for (const key of ["resolveProfileBadgeId", "toProfileBadgeLegacyId"]) {
         if (typeof ids?.[key] === "function") {
             unpatches.push(instead(key, ids, function (this: any, args, original) {
