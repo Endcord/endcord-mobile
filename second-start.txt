@@ -1,0 +1,17 @@
+2026-10-31 21:26:16.157654+0000 Discord[60378:157950] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 21:27:39.072424+0000 Discord[60378:171400] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 21:27:39.073660+0000 Discord[60378:171400] [Endcord] Initializing theme (5 semantic colors, 0 raw colors)
+2026-10-31 21:27:39.093835+0000 Discord[60378:171400] [Endcord] Processing 0 raw color methods
+2026-10-31 21:27:39.100680+0000 Discord[60378:171400] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 21:27:39.101669+0000 Discord[60378:171400] [Endcord] Discord's bundle has bytecode version 98
+2026-10-31 21:27:39.102031+0000 Discord[60378:171400] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 21:27:39.119046+0000 Discord[60378:171254] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 21:27:39.120071+0000 Discord[60378:171254] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 21:27:39.146866+0000 Discord[60378:171254] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 21:27:39.271720+0000 Discord[60378:171254] [Endcord] The saved bundle is the latest release
+2026-10-31 21:27:54.698663+0000 Discord[60378:157950] [Endcord] SmoothType: caret on, 0 message boxes seen
+2026-10-31 21:27:54.698784+0000 Discord[60378:157950] [Endcord] SmoothType: caret off, 0 message boxes seen
+2026-10-31 21:27:54.976046+0000 Discord[60378:157950] [Endcord] SmoothType: caret off, 0 message boxes seen
+2026-10-31 21:27:54.976209+0000 Discord[60378:157950] [Endcord] SmoothType: caret off, 0 message boxes seen
+2026-10-31 21:27:57.245476+0000 Discord[60378:157950] [Endcord] SmoothType: caret on, 0 message boxes seen
+2026-10-31 21:28:17.341643+0000 Discord[60378:157950] [Endcord] SmoothType: caret off, 0 message boxes seen
