@@ -233,12 +233,14 @@ mode normal
 
 # Signed releases, with the key only the test build trusts: <sequence> <the bundle the release lists>
 sign_release() {
-    python3 - "$SERVE/endcord-release.json" "$1" "$2" "endcord.v$VERSION.hbc" <<'EOF'
+    python3 - "$SERVE/endcord-release.json" "$1" "$2" "endcord.v$VERSION.hbc" "${3:-}" <<'EOF'
 import hashlib, json, sys
-out, sequence, bundle, name = sys.argv[1:]
+out, sequence, bundle, name, url = sys.argv[1:]
 data = open(bundle, "rb").read()
-manifest = {"format": 1, "sequence": int(sequence), "files": {name: {"size": len(data), "sha256": hashlib.sha256(data).hexdigest()}}}
-open(out, "w").write(json.dumps(manifest))
+file = {"size": len(data), "sha256": hashlib.sha256(data).hexdigest()}
+if url:
+    file["url"] = url
+open(out, "w").write(json.dumps({"format": 1, "sequence": int(sequence), "files": {name: file}}))
 EOF
     openssl dgst -sha256 -sign "$HERE/release-test-key.pem" -out "$SERVE/endcord-release.sig" "$SERVE/endcord-release.json"
 }
@@ -271,6 +273,18 @@ sign_release 150 "$WORK/hbc.hbc"
 launch signed-rollback
 clean_caches
 launch signed-rollback-empty
+# Right after a deploy the CDN still has the old bundle at the branch's address, and the release's own address has the new one
+PINNED="http://127.0.0.1:$PORT/pinned/endcord.v$VERSION.hbc"
+cp "$WORK/hbc.hbc" "$SERVED"
+cp "$WORK/hbc2.hbc" "$SERVE/pinned-endcord.v$VERSION.hbc"
+sign_release 250 "$WORK/hbc2.hbc" "$PINNED"
+clean_caches
+launch signed-pinned
+# And when the release's own address is gone, the branch's is used, under the same check
+rm "$SERVE/pinned-endcord.v$VERSION.hbc"
+cp "$WORK/hbc2.hbc" "$SERVED"
+clean_caches
+launch signed-pinned-gone
 # Taking the signature away: a strict build refuses that, and takes a signed release
 cp "$WORK/hbc2.hbc" "$SERVED"
 rm "$SERVE/endcord-release.json" "$SERVE/endcord-release.sig"

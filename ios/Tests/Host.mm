@@ -435,6 +435,8 @@ static void runScenario(jsi::Runtime &rt)
         @"signed-newer" : @"hbc2",
         @"signed-rollback" : @"hbc2",
         @"signed-rollback-empty" : @"none",
+        @"signed-pinned" : @"hbc2",
+        @"signed-pinned-gone" : @"hbc2",
         @"signed-required-missing" : @"none",
         @"signed-required" : @"hbc2",
         @"signed-required-unsigned-cache" : @"hbc2",

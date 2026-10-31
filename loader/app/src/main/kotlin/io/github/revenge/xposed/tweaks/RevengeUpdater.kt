@@ -198,12 +198,16 @@ object RevengeUpdater {
             for ((index, url) in urls.withIndex()) {
                 log.i("Fetching bundle from: $url")
                 val result = try {
-                    httpClient.getWithETag(
-                        url = url,
-                        // A release says for itself whether the saved bundle is current
-                        etag = saved?.takeIf { signed == null && it.first == url }?.second,
-                        timeoutMillis = timeout,
-                    )
+                    // A release's own address first, which the CDN can't answer with an older build; the branch's is
+                    // what's left when that one's gone, and the release still decides what's taken from it
+                    signed?.release?.pinnedUrlOf(url.substringAfterLast('/'))?.let { fetchOptional(it, timeout) }
+                        ?.let { ETagFetchResult.Fetched(it, null) }
+                        ?: httpClient.getWithETag(
+                            url = url,
+                            // A release says for itself whether the saved bundle is current
+                            etag = saved?.takeIf { signed == null && it.first == url }?.second,
+                            timeoutMillis = timeout,
+                        )
                 } catch (e: ResponseException) {
                     // No precompiled bundle for this Discord: the plain one is next
                     if (e.response.status == HttpStatusCode.NotFound && index < urls.lastIndex) continue

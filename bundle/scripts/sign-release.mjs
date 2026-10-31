@@ -3,6 +3,10 @@
 // the public key they're built with (release-key.pub), so whoever can change the files on the server still can't make
 // a loader run them, or an older signed bundle again.
 //
+// With ENDCORD_RELEASE_BASE_URL, each bundle also gets the address it has at that base. The branch's own addresses are
+// cached for minutes, each file on its own, so right after a deploy a new manifest can meet an old bundle; an address
+// of the commit itself never changes, so a manifest and the bundles it lists always come from the same build.
+//
 //   ENDCORD_RELEASE_KEY=<PEM private key> node scripts/sign-release.mjs <folder>
 
 import { createHash, createPrivateKey, createPublicKey, sign, verify } from "node:crypto";
@@ -14,11 +18,16 @@ const pem = process.env.ENDCORD_RELEASE_KEY;
 if (!folder || !pem) throw new Error("Usage: ENDCORD_RELEASE_KEY=<PEM> node scripts/sign-release.mjs <folder>");
 
 const key = createPrivateKey(pem);
-/** @type {Record<string, { size: number; sha256: string; }>} */
+const baseUrl = process.env.ENDCORD_RELEASE_BASE_URL;
+/** @type {Record<string, { size: number; sha256: string; url?: string; }>} */
 const files = {};
 for (const name of readdirSync(folder).filter(n => /^endcord(\.v\d+\.hbc|\.min\.js)$/.test(n)).sort()) {
     const file = path.join(folder, name);
-    files[name] = { size: statSync(file).size, sha256: createHash("sha256").update(readFileSync(file)).digest("hex") };
+    files[name] = {
+        size: statSync(file).size,
+        sha256: createHash("sha256").update(readFileSync(file)).digest("hex"),
+        ...baseUrl ? { url: new URL(name, baseUrl).href } : {},
+    };
 }
 if (!files["endcord.min.js"]) throw new Error(`No endcord.min.js in ${folder}`);
 

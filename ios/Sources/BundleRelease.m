@@ -32,6 +32,7 @@ static NSString *sha256Hex(NSData *data)
 @implementation BundleRelease
 {
     NSSet<NSString *> *_bundles;
+    NSDictionary<NSString *, NSURL *> *_pinnedURLs;
 }
 
 + (instancetype)releaseWithManifest:(NSData *)manifest signature:(NSData *)signature
@@ -52,22 +53,32 @@ static NSString *sha256Hex(NSData *data)
     if (![json[@"sequence"] isKindOfClass:NSNumber.class] || ![json[@"files"] isKindOfClass:NSDictionary.class]) return nil;
 
     NSMutableSet<NSString *> *bundles = [NSMutableSet set];
-    for (NSDictionary *file in [json[@"files"] allValues])
+    NSMutableDictionary<NSString *, NSURL *> *pinnedURLs = [NSMutableDictionary dictionary];
+    for (NSString *name in json[@"files"])
     {
+        NSDictionary *file = json[@"files"][name];
         if (![file isKindOfClass:NSDictionary.class]) return nil;
         if (![file[@"sha256"] isKindOfClass:NSString.class] || ![file[@"size"] isKindOfClass:NSNumber.class]) return nil;
         [bundles addObject:[NSString stringWithFormat:@"%@:%@", file[@"size"], [file[@"sha256"] lowercaseString]]];
+        NSURL *pinned = [file[@"url"] isKindOfClass:NSString.class] ? [NSURL URLWithString:file[@"url"]] : nil;
+        if (pinned) pinnedURLs[name] = pinned;
     }
 
     BundleRelease *release = [BundleRelease new];
     release->_sequence = [json[@"sequence"] unsignedLongLongValue];
     release->_bundles  = bundles;
+    release->_pinnedURLs = pinnedURLs;
     return release;
 }
 
 - (BOOL)contains:(NSData *)bundle
 {
     return [_bundles containsObject:[NSString stringWithFormat:@"%lu:%@", (unsigned long) bundle.length, sha256Hex(bundle)]];
+}
+
+- (NSURL *)pinnedURLOf:(NSString *)name
+{
+    return _pinnedURLs[name];
 }
 
 @end

@@ -74,6 +74,11 @@ jobs:
             export KEYSTORE_FILE="$RUNNER_TEMP/loader.jks"
             ./gradlew --no-daemon :app:assembleRelease -Pendcord.requireSigned=$REQUIRE_SIGNED
             cp app/build/outputs/apk/release/app-release.apk endcord-xposed.apk
+            # This message is compiled out unless the loader refuses unsigned bundles
+            if [ "$REQUIRE_SIGNED" = true ] && ! unzip -p endcord-xposed.apk 'classes*.dex' | grep -aq 'No signed release'; then
+              echo "::error::The signing key is set, but this loader isn't strict"
+              exit 1
+            fi
           else
             echo "::warning::No LOADER_KEYSTORE secret: publishing the debug-signed module instead"
             ./gradlew --no-daemon :app:assembleDebug -Pendcord.requireSigned=$REQUIRE_SIGNED
@@ -191,16 +196,6 @@ jobs:
         run: |
           cp "$RUNNER_TEMP"/installer/*.apk "$RUNNER_TEMP"/out/endcord-installer.apk
           cp "$RUNNER_TEMP"/classic-installer/*.apk "$RUNNER_TEMP"/out/endcord-classic-installer.apk
-      - name: Sign the bundle
-        # The loaders check what the server serves against this signature; the key is never on the server
-        env:
-          ENDCORD_RELEASE_KEY: ${{ secrets.ENDCORD_RELEASE_KEY }}
-        run: |
-          if [ -n "$ENDCORD_RELEASE_KEY" ]; then
-            node bundle/scripts/sign-release.mjs "$RUNNER_TEMP/out"
-          else
-            echo "::warning::No ENDCORD_RELEASE_KEY secret: this bundle isn't signed"
-          fi
       - name: Write build info
         run: |
           cat > "$RUNNER_TEMP"/out/data.json <<EOF
@@ -219,8 +214,14 @@ jobs:
           cat "$RUNNER_TEMP"/out/data.json
       - name: Push
         # builds-next only serves the latest files, so every build replaces it with a single commit. Keeping old builds
-        # in its history would grow the repository by the size of the APKs on every push.
+        # in its history would grow the repository by the size of the APKs on every push. The signed release goes in a
+        # second commit, as it names the first: the loaders fetch the bundles from that commit's addresses, which the CDN
+        # can't answer with an older build. The key is never on the server, so what's there can't be re-signed.
+        env:
+          ENDCORD_RELEASE_KEY: ${{ secrets.ENDCORD_RELEASE_KEY }}
         run: |
+          mkdir "$RUNNER_TEMP/signing"
+          cp bundle/scripts/sign-release.mjs bundle/release-key.pub "$RUNNER_TEMP/signing/"
           git config http.postBuffer 524288000
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -229,4 +230,13 @@ jobs:
           cp "$RUNNER_TEMP"/out/* .
           git add -A
           git commit -m "Build ${{ github.sha }}"
+          if [ -n "$ENDCORD_RELEASE_KEY" ]; then
+            ENDCORD_RELEASE_BASE_URL="https://raw.githubusercontent.com/$GITHUB_REPOSITORY/$(git rev-parse HEAD)/" \
+              ENDCORD_RELEASE_PUBLIC_KEY_FILE="$RUNNER_TEMP/signing/release-key.pub" \
+              node "$RUNNER_TEMP/signing/sign-release.mjs" .
+            git add -A
+            git commit -m "Sign build ${{ github.sha }}"
+          else
+            echo "::warning::No ENDCORD_RELEASE_KEY secret: this bundle isn't signed"
+          fi
           git push --force origin builds-next

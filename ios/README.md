@@ -42,9 +42,10 @@ pages. Nothing from it is published.
 CI signs every published bundle (`bundle/scripts/sign-release.mjs`, the `ENDCORD_RELEASE_KEY` secret), and the tweak
 and the Android loader are built with its public key, `bundle/release-key.pub`. They take a bundle only when its size
 and SHA-256 are in a release with a valid signature, refuse a release older than one they've accepted, and check the
-saved bundle again on each start. The key isn't on the server, so changing the files there isn't enough to run code
-in anyone's Discord. Builds are strict, refusing unsigned bundles too, once the secret is set. A custom URL is the
-user's own choice and isn't checked.
+saved bundle again on each start. The release names the commit's own address of each bundle, which the CDN can't answer
+with an older build, so a manifest and its bundles always match right after a deploy. The key isn't on the server, so
+changing the files there isn't enough to run code in anyone's Discord. Builds are strict, refusing unsigned bundles too,
+once the secret is set. A custom URL is the user's own choice and isn't checked.
 
 ## What sideloading can't do
 

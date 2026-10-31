@@ -49,6 +49,11 @@ jobs:
           make package ENDCORD_REQUIRE_SIGNED=${{ secrets.ENDCORD_RELEASE_KEY != '' && '1' || '' }} 2>&1 | tee out/build.log
           cp packages/*.deb out/
           cp "$(find .theos/_ -name Endcord.dylib | head -n 1)" out/Endcord.dylib
+          # This message is compiled out unless the tweak refuses unsigned bundles
+          if [ "${{ secrets.ENDCORD_RELEASE_KEY != '' }}" = true ] && ! grep -aq 'No signed release' out/Endcord.dylib; then
+            echo "::error::The signing key is set, but this tweak isn't strict"
+            exit 1
+          fi
           echo "version=$(sed -n 's/^Version: //p' control)" >> "$GITHUB_OUTPUT"
           ls -l out
       - uses: actions/upload-artifact@v6

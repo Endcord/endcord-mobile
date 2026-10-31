@@ -193,6 +193,35 @@ static NSData *fetchData(NSURLSession *session, NSURL *url, NSTimeInterval timeo
 }
 
 /**
+ * Downloads a URL, ignoring every cache on the way but the server's own, whose answer is in the response; asks to be told
+ * if it's unchanged from the ETag, when there's one
+ */
+static NSData *fetchBundleFrom(NSURLSession *session, NSURL *url, NSTimeInterval timeout, NSString *etag,
+                               NSHTTPURLResponse *__autoreleasing *responseOut, NSError *__autoreleasing *errorOut)
+{
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+                                                       timeoutInterval:timeout];
+    if (etag.length) [request setValue:etag forHTTPHeaderField:@"If-None-Match"];
+
+    __block NSData *data;
+    __block NSHTTPURLResponse *response;
+    __block NSError *error;
+    dispatch_semaphore_t done = dispatch_semaphore_create(0);
+    [[session dataTaskWithRequest:request completionHandler:^(NSData *d, NSURLResponse *r, NSError *e) {
+        data     = d;
+        response = [r isKindOfClass:NSHTTPURLResponse.class] ? (NSHTTPURLResponse *) r : nil;
+        error    = e;
+        dispatch_semaphore_signal(done);
+    }] resume];
+    dispatch_semaphore_wait(done, DISPATCH_TIME_FOREVER);
+
+    *responseOut = response;
+    *errorOut    = error;
+    return data;
+}
+
+/**
  * Downloads the bundle and saves it, trying each of bundleURLs() until one has it. Returns the bundle to run: the
  * new one, the saved one when the server says it's unchanged, or nil when none could be fetched.
  */
@@ -249,27 +278,19 @@ static NSData *fetchBundle(NSTimeInterval timeout)
 
     for (NSURL *url in bundleURLs())
     {
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
-                                                               cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
-                                                           timeoutInterval:timeout];
-        // A release says for itself whether the saved bundle is current
-        if (!release && etag[1].length && [etag[0] isEqualToString:url.absoluteString])
+        // A release's own address first, which the CDN can't answer with an older build; the branch's is what's left
+        // when that one's gone, and the release still decides what's taken from it
+        NSData *data = nil;
+        NSHTTPURLResponse *response = nil;
+        NSError *error = nil;
+        NSURL *pinned = [release pinnedURLOf:url.lastPathComponent];
+        if (pinned) data = fetchBundleFrom(session, pinned, timeout, nil, &response, &error);
+        if (response.statusCode != 200)
         {
-            [request setValue:etag[1] forHTTPHeaderField:@"If-None-Match"];
+            // A release says for itself whether the saved bundle is current
+            BOOL sameSource = !release && etag[1].length && [etag[0] isEqualToString:url.absoluteString];
+            data = fetchBundleFrom(session, url, timeout, sameSource ? etag[1] : nil, &response, &error);
         }
-
-        __block NSData *data;
-        __block NSHTTPURLResponse *response;
-        __block NSError *error;
-        dispatch_semaphore_t done = dispatch_semaphore_create(0);
-        [[session dataTaskWithRequest:request
-                    completionHandler:^(NSData *d, NSURLResponse *r, NSError *e) {
-            data = d;
-            response = [r isKindOfClass:NSHTTPURLResponse.class] ? (NSHTTPURLResponse *)r : nil;
-            error = e;
-            dispatch_semaphore_signal(done);
-        }] resume];
-        dispatch_semaphore_wait(done, DISPATCH_TIME_FOREVER);
 
         if (response.statusCode == 304 && saved)
         {

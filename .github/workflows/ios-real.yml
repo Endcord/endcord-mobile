@@ -49,7 +49,8 @@ jobs:
         run: |
           # Signed with the test key, and required: Discord starts the way a release build does
           ENDCORD_RELEASE_KEY="$(cat ios/Tests/release-test-key.pem)" ENDCORD_RELEASE_PUBLIC_KEY_FILE=ios/Tests/release-test-key.pub \
-            node bundle/scripts/sign-release.mjs serve
+            ENDCORD_RELEASE_BASE_URL=http://127.0.0.1:4040/pinned/ node bundle/scripts/sign-release.mjs serve
+          for file in serve/endcord.min.js serve/endcord.v*.hbc; do cp "$file" "serve/pinned-$(basename "$file")"; done
           curl -fsSL --retry 3 -o discord.ipa "$IPA_URL"
           bash ios/Tests/real-discord.sh discord.ipa Endcord-simulator.dylib serve results
       - name: Save the results

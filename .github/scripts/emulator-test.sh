@@ -148,9 +148,9 @@ fi
 endstep
 
 # The loader asks for the bundle precompiled for this Discord's bytecode version first, and the plain one without it
-grep -oE '"GET /endcord[^ ]* HTTP/1\.[01]" [0-9]+' results/http.log | sort | uniq -c > results/bundle-requests.txt
-if grep -qE '"GET /endcord\.v[0-9]+\.hbc HTTP/1\.[01]" 200' results/http.log; then
-    pass "the bytecode bundle was loaded"
+grep -oE '"GET /(pinned/)?endcord[^ ]* HTTP/1\.[01]" [0-9]+' results/http.log | sort | uniq -c > results/bundle-requests.txt
+if grep -qE '"GET /pinned/endcord\.v[0-9]+\.hbc HTTP/1\.[01]" 200' results/http.log; then
+    pass "the bytecode bundle was loaded, from the signed release's own address"
 else
     fail "no bytecode bundle for this Discord: it ran the plain one"
 fi

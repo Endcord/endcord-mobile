@@ -43,7 +43,8 @@ jobs:
           openssl ecparam -name prime256v1 -genkey -noout | openssl pkcs8 -topk8 -nocrypt -out ../release-test.pem
           openssl pkey -in ../release-test.pem -pubout -outform DER | base64 -w0 > ../release-test.pub
           ENDCORD_RELEASE_KEY="$(cat ../release-test.pem)" ENDCORD_RELEASE_PUBLIC_KEY_FILE=../release-test.pub \
-            node scripts/sign-release.mjs ../serve
+            ENDCORD_RELEASE_BASE_URL=http://10.0.2.2:4040/pinned/ node scripts/sign-release.mjs ../serve
+          mkdir ../serve/pinned && cp ../serve/endcord.min.js ../serve/endcord.v*.hbc ../serve/pinned/
 
       - uses: actions/setup-java@v5
         with:

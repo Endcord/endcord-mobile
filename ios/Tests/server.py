@@ -55,6 +55,9 @@ class Handler(BaseHTTPRequestHandler):
             return self.answer(503)
 
         name = resolve(os.path.basename(self.path))
+        # A release's own address, which isn't the branch's: a CDN can serve an older build at that one
+        if self.path.startswith("/pinned/"):
+            name = "pinned-" + os.path.basename(self.path)
         path = os.path.join(ROOT, name) if name else None
         if not path or not os.path.isfile(path):
             return self.answer(404)
