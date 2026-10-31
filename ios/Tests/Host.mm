@@ -275,6 +275,20 @@ static NSString *describeInteractions(UIView *view, NSInteger depth)
     return [NSString stringWithFormat:@"%@[%@]", NSStringFromClass(view.class), [parts componentsJoinedByString:@" "]];
 }
 
+/** Calls back a moment after a view's layer has moved: a busy Mac can take a while to lay the text out */
+static void whenMoved(UIView *view, CGPoint from, int tries, void (^then)(void))
+{
+    BOOL moved = !CGPointEqualToPoint(view.layer.position, from);
+    if (moved || tries <= 0)
+    {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), then);
+        return;
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.02 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        whenMoved(view, from, tries - 1, then);
+    });
+}
+
 /** SmoothType's caret, on a message box and not on another text view */
 static void checkSmoothCaret(UIViewController *root)
 {
@@ -322,7 +336,7 @@ static void checkSmoothCaret(UIViewController *root)
         CGPoint before = glyph.layer.position;
         [input insertText:@" world, and more"];
         [input layoutIfNeeded];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        whenMoved(glyph, before, 150, ^{
             CALayer *shown = glyph.layer.presentationLayer;
             CGPoint target = glyph.layer.position;
             BOOL moved = !CGPointEqualToPoint(before, target);
