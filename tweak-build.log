@@ -1,0 +1,24 @@
+[1;31m> [1;3;39mMaking all for tweak Endcord…[m
+[0;31m==> [1;39mPreprocessing Sources/SmoothCaret.x…[m
+[0;31m==> [1;39mPreprocessing Sources/Fonts.x…[m
+[0;31m==> [1;39mPreprocessing Sources/Sideloading.x…[m
+[0;31m==> [1;39mPreprocessing Sources/Themes.x…[m
+[0;31m==> [1;39mPreprocessing Sources/Tweak.xm…[m
+[0;32m==> [1;39mCompiling Sources/BundleRelease.m (arm64)…[m
+[0;32m==> [1;39mCompiling Sources/Logger.m (arm64)…[m
+[0;32m==> [1;39mCompiling Sources/LoaderConfig.m (arm64)…[m
+[0;32m==> [1;39mCompiling Sources/Settings.m (arm64)…[m
+[0;32m==> [1;39mCompiling Sources/Utils.m (arm64)…[m
+[0;32m==> [1;39mCompiling Sources/Fonts.x (arm64)…[m
+[0;32m==> [1;39mCompiling Sources/SmoothCaret.x (arm64)…[m
+[0;32m==> [1;39mCompiling Sources/Themes.x (arm64)…[m
+[0;32m==> [1;39mCompiling Sources/Sideloading.x (arm64)…[m
+[0;32m==> [1;39mCompiling Sources/JSI.mm (arm64)…[m
+[0;32m==> [1;39mCompiling Sources/Tweak.xm (arm64)…[m
+[0;33m==> [1;39mLinking tweak Endcord (arm64)…[m
+ld: warning: -undefined dynamic_lookup is deprecated on iOS-simulator
+ld: warning: -multiply_defined is obsolete
+[0;34m==> [1;39mGenerating debug symbols for Endcord…[m
+[0;34m==> [1;39mStripping Endcord (arm64)…[m
+[0;34m==> [1;39mSigning Endcord…[m
+/Users/runner/work/endcord-mobile/endcord-mobile/ios/.theos/obj/iphone_simulator/Endcord.dylib.ebfd0915.unsigned: replacing existing signature

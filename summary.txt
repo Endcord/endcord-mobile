@@ -1,0 +1,4 @@
+Plugins: 303 started, 303 stopped, 0 failed, self-test finished
+
+PASS: Endcord ran inside the real Discord
+PASS: the second start ran the saved bundle after checking it against the signed release
