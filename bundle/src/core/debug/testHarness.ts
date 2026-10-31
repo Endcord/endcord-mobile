@@ -284,6 +284,25 @@ ${e.stack}` : String(e) });
         }
     };
 
+    await check("plugin buttons reach the message box", async () => {
+        const { afterRender } = require("@plugins/common");
+        const forms: Record<string, string> = {};
+        let pass = true;
+        for (const name of ["ChatInputActions", "ChatInputRightActions"]) {
+            const module = findByFilePath(`modules/chat_input/native/action_buttons/${name}.tsx`) as any;
+            const component = module?.default;
+            forms[name] = typeof component === "function" ? "function"
+                : typeof component?.type === "function" ? "memo"
+                    : typeof component?.type?.render === "function" ? "memo of forwardRef"
+                        : typeof component?.render === "function" ? "forwardRef" : "unknown";
+            const unpatch = module && afterRender(module, "default", () => { });
+            if (unpatch) unpatch();
+            else pass = false;
+        }
+        const button = findByFilePath("modules/chat_input/native/action_buttons/ChatInputActionButton.tsx") as any;
+        return { forms, button: !!button?.default, pass: pass && !!button?.default };
+    });
+
     await check("message-logger keeps a deleted message", async () => {
         const MessageStore = findByStoreName("MessageStore");
         const channelId = "1111111111111111111";

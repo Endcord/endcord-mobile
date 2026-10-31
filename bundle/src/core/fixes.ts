@@ -13,7 +13,7 @@ import { ButtonModule } from "@metro/common/components";
 import { patchWhenLoaded } from "@metro/lazy";
 import moment from "moment";
 import { cloneElement, isValidElement, ReactNode } from "react";
-import { StyleSheet, Text } from "react-native";
+import { Platform, StyleSheet, Text } from "react-native";
 
 function onDispatch({ locale }: { locale: string; }) {
     // Timestamps
@@ -52,6 +52,9 @@ function withRoomAboveLabel(node: ReactNode, depth = 0): ReactNode {
 
 export default () => {
     FluxDispatcher.subscribe("I18N_LOAD_SUCCESS", onDispatch);
+
+    // includeFontPadding is Android's; iOS has nothing to fix, and its Button isn't a plain function
+    if (Platform.OS !== "android") return;
 
     // Patched as Discord's button module loads, so the modules that hand its button on take the fixed one
     return patchWhenLoaded(ButtonModule, module => after("Button", module, (_, ret) => withRoomAboveLabel(ret)));
