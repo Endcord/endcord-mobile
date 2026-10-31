@@ -1,0 +1,17 @@
+2026-10-31 03:40:36.806126+0000 Discord[37573:101592] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 03:41:46.082318+0000 Discord[37573:111294] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 03:41:46.084062+0000 Discord[37573:111294] [Endcord] Initializing theme (5 semantic colors, 0 raw colors)
+2026-10-31 03:41:46.103559+0000 Discord[37573:111294] [Endcord] Processing 0 raw color methods
+2026-10-31 03:41:46.108349+0000 Discord[37573:111294] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 03:41:46.111231+0000 Discord[37573:111294] [Endcord] Discord's bundle has bytecode version 98
+2026-10-31 03:41:46.156579+0000 Discord[37573:101715] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 03:41:46.157908+0000 Discord[37573:101715] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 03:41:46.240630+0000 Discord[37573:101715] [Endcord] The bundle at http://127.0.0.1:4040/endcord.v98.hbc hasn't changed
+2026-10-31 03:41:46.849257+0000 Discord[37573:111294] [Endcord JS] '[Endcord] A patch of get failed, so it was skipped', [TypeError: Cannot read property '_state' of undefined]
+2026-10-31 03:41:46.849394+0000 Discord[37573:111294] [javascript] '[Endcord] A patch of get failed, so it was skipped', [TypeError: Cannot read property '_state' of undefined]
+2026-10-31 03:41:46.853073+0000 Discord[37573:111294] [Endcord JS] '[Endcord] A patch of get failed, so it was skipped', [TypeError: Cannot read property '_state' of undefined]
+2026-10-31 03:41:46.853211+0000 Discord[37573:111294] [javascript] '[Endcord] A patch of get failed, so it was skipped', [TypeError: Cannot read property '_state' of undefined]
+2026-10-31 03:42:01.829756+0000 Discord[37573:101592] [Endcord] SmoothType: caret on, 0 message boxes seen
+2026-10-31 03:42:01.829879+0000 Discord[37573:101592] [Endcord] SmoothType: caret off, 0 message boxes seen
+2026-10-31 03:42:02.096286+0000 Discord[37573:101592] [Endcord] SmoothType: caret off, 0 message boxes seen
+2026-10-31 03:42:02.096345+0000 Discord[37573:101592] [Endcord] SmoothType: caret off, 0 message boxes seen
