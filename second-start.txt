@@ -1,0 +1,15 @@
+2026-10-31 05:15:38.644971+0000 Discord[53485:144454] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 05:16:24.750102+0000 Discord[53485:152103] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 05:16:24.751048+0000 Discord[53485:152103] [Endcord] Initializing theme (5 semantic colors, 0 raw colors)
+2026-10-31 05:16:24.778973+0000 Discord[53485:152103] [Endcord] Processing 0 raw color methods
+2026-10-31 05:16:24.783623+0000 Discord[53485:152103] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 05:16:24.784934+0000 Discord[53485:152103] [Endcord] Discord's bundle has bytecode version 98
+2026-10-31 05:16:24.841791+0000 Discord[53485:151436] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 05:16:24.845182+0000 Discord[53485:151436] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-10-31 05:16:25.104503+0000 Discord[53485:151436] [Endcord] The bundle at http://127.0.0.1:4040/endcord.v98.hbc hasn't changed
+2026-10-31 05:16:40.364583+0000 Discord[53485:144454] [Endcord] SmoothType: caret on, 0 message boxes seen
+2026-10-31 05:16:40.364669+0000 Discord[53485:144454] [Endcord] SmoothType: caret off, 0 message boxes seen
+2026-10-31 05:16:40.558412+0000 Discord[53485:144454] [Endcord] SmoothType: caret off, 0 message boxes seen
+2026-10-31 05:16:40.558476+0000 Discord[53485:144454] [Endcord] SmoothType: caret off, 0 message boxes seen
+2026-10-31 05:16:42.075251+0000 Discord[53485:144454] [Endcord] SmoothType: caret on, 0 message boxes seen
+2026-10-31 05:17:02.165910+0000 Discord[53485:144454] [Endcord] SmoothType: caret off, 0 message boxes seen
