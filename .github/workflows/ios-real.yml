@@ -19,20 +19,26 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
       - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
       - name: Build the test bundle
         working-directory: bundle
         shell: bash
         run: |
+          mkdir -p ../results
+          exec > >(tee ../results/bundle-build.log) 2>&1
           bun install --frozen-lockfile
           bun run build --build-minify --test
+          node scripts/hermes.mjs
           mkdir -p ../serve && cp dist/endcord.min.js dist/endcord.v*.hbc ../serve/
       - uses: Randomblock1/theos-action@v1
       - name: Build the tweak for the simulator
         working-directory: ios
         shell: bash
         run: |
-          mkdir -p ../results
           export PATH="$(brew --prefix make)/libexec/gnubin:$PATH"
           make TARGET=simulator:clang:latest:15.0 ARCHS=arm64 Endcord_USE_SUBSTRATE=0 TARGET_CODESIGN_FLAGS="-f -s -" \
             ENDCORD_BUNDLE_URL=http://127.0.0.1:4040/endcord.min.js 2>&1 | tee ../results/tweak-build.log
@@ -47,6 +53,7 @@ jobs:
         shell: bash
         run: |
           rm -f discord.ipa
+          mkdir -p results
           branch="test-results/$GITHUB_REF_NAME"
           cd results
           git init -q
