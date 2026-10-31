@@ -1,0 +1,20 @@
+Which Endcord?
+Endcord Classic
+Endcord
+On the current Discord app, with 300+ Endcord plugins
+Endcord
+Latest: 351.11 - Stable
+Install
+rootpoi
+•
+2ba6a85
+10/31/26
+Self-test: lint
+rootpoi
+•
+47880f6
+10/31/26
+Themes: nothing stored yet isn't an error, and the self-test asks the resolver by theme key
+Endcord Installer
+Reload
+Open about
