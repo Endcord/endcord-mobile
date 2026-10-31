@@ -1049,6 +1049,12 @@
         "es": "Comprueba si el propio Discord tiene problemas con /discordstatus",
         "fr": "Vérifiez si Discord lui-même a des problèmes avec /discordstatus"
     },
+    "Remove Message History": {
+        "tr": "Mesaj geçmişini kaldır",
+        "ru": "Удалить историю сообщения",
+        "es": "Eliminar historial del mensaje",
+        "fr": "Supprimer l'historique du message"
+    },
     "Choose a date": {
         "tr": "Bir tarih seç",
         "ru": "Выбрать дату",

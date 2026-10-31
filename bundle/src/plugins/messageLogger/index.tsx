@@ -18,6 +18,7 @@ import { processColor } from "react-native";
 
 import { definePlugin } from "../api";
 import { currentUserId, dispatchSoon, getStore, onAction } from "../common";
+import { addMessageAction } from "../hooks";
 
 interface MessageRecord {
     id: string;
@@ -115,6 +116,14 @@ const plugin = definePlugin({
                     if (log.edits.length > MAX_EDITS) log.edits.shift();
                 }
             }),
+            addMessageAction({
+                key: "message-logger-remove-history",
+                icon: "TrashIcon",
+                danger: true,
+                label: () => t("Remove Message History"),
+                visible: message => logs.has(message.id),
+                onPress: message => removeHistory(message.id),
+            }),
             instead("generate", RowManager.prototype, function (this: any, args: any[], original: Function) {
                 const row = original.apply(this, args);
                 try {
@@ -207,16 +216,21 @@ function alertGhostPing(record: MessageRecord) {
 
 const redraw = (channelId: string, id: string, guildId?: string) => ({ type: "MESSAGE_UPDATE", guildId, message: { id, channel_id: channelId } });
 
+/** Forgets a message's log: a deleted message goes from the chat, an edited one loses its earlier versions */
+export function removeHistory(id: string) {
+    const log = logs.get(id);
+    if (!log) return;
+    logs.delete(id);
+    changed.add(id);
+    bypassed.add(id);
+    dispatchSoon(log.deleted
+        ? { type: "MESSAGE_DELETE", id, channelId: log.channelId, guildId: log.guildId }
+        : redraw(log.channelId, id, log.guildId));
+    setTimeout(() => bypassed.delete(id), 50);
+}
+
 export function clearLogs() {
-    for (const [id, log] of [...logs.entries()]) {
-        logs.delete(id);
-        changed.add(id);
-        bypassed.add(id);
-        dispatchSoon(log.deleted
-            ? { type: "MESSAGE_DELETE", id, channelId: log.channelId, guildId: log.guildId }
-            : redraw(log.channelId, id, log.guildId));
-        setTimeout(() => bypassed.delete(id), 50);
-    }
+    for (const id of [...logs.keys()]) removeHistory(id);
 }
 
 let criticalColor: number | undefined;

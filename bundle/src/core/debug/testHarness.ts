@@ -351,6 +351,39 @@ ${e.stack}` : String(e) });
         return { loaded, keptWhileOn, removedWhenOff, pass: loaded && keptWhileOn && removedWhenOff };
     });
 
+    await check("message-logger removes one message's history", async () => {
+        const MessageStore = findByStoreName("MessageStore");
+        const { removeHistory } = require("@plugins/messageLogger");
+        const channelId = "1111111111111111111";
+        const message = (id: string) => ({
+            id, channel_id: channelId, content: "Endcord test message", type: 0, flags: 0,
+            author: { id: "3333333333333333333", username: "endcord-test", discriminator: "0", avatar: null, bot: false },
+            timestamp: new Date().toISOString(), edited_timestamp: null, attachments: [], embeds: [], mentions: [],
+            mention_roles: [], pinned: false, mention_everyone: false, tts: false, components: [], reactions: [],
+        });
+        const deleted = "2222222222222222224", other = "2222222222222222225", edited = "2222222222222222226";
+        FluxDispatcher.dispatch({
+            type: "LOAD_MESSAGES_SUCCESS", channelId, messages: [message(deleted), message(other), message(edited)],
+            isBefore: false, isAfter: false, hasMoreBefore: false, hasMoreAfter: false, limit: 50, jump: undefined, truncate: false,
+        });
+        const plugin = byId("endcord.message-logger");
+        await startEndcordPlugin(plugin);
+        FluxDispatcher.dispatch({ type: "MESSAGE_DELETE", id: deleted, channelId });
+        FluxDispatcher.dispatch({ type: "MESSAGE_DELETE", id: other, channelId });
+        FluxDispatcher.dispatch({ type: "MESSAGE_UPDATE", message: { ...message(edited), content: "Edited" } });
+        await wait(200);
+        const kept = !!MessageStore.getMessage(channelId, deleted);
+        removeHistory(deleted);
+        removeHistory(edited);
+        await wait(300);
+        const removed = !MessageStore.getMessage(channelId, deleted);
+        const othersKept = !!MessageStore.getMessage(channelId, other);
+        const editKept = MessageStore.getMessage(channelId, edited)?.content === "Edited";
+        stopEndcordPlugin(plugin);
+        await wait(200);
+        return { kept, removed, othersKept, editKept, pass: kept && removed && othersKept && editKept };
+    });
+
     await check("silent-typing blocks the typing action", async () => {
         let seen = 0;
         const listener = () => seen++;
