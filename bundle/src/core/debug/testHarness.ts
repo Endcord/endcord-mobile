@@ -600,7 +600,9 @@ async function screens() {
         }
     } finally {
         settings.language = previous;
-        // Discord's own pickers, as CustomProfile opens them
+        // Discord's own pickers, as CustomProfile opens them, with the overlay of the pages out of their way
+        showTestScreen(null);
+        await wait(1000);
         const { COLOR_PICKER_SHEET, DATE_PICKER_SHEET, pickColor, pickDate } = require("@plugins/ui/dialogs");
         const { hideSheet } = require("@lib/ui/sheets");
         const sheets: Array<[string, string, () => void]> = [
