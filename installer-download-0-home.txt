@@ -1,0 +1,20 @@
+Which Endcord?
+Endcord Classic
+Endcord
+On the current Discord app, with 300+ Endcord plugins
+Endcord
+Latest: 351.11 - Stable
+Install
+rootpoi
+•
+45d5f4c
+10/31/26
+iOS test: look for the real Discord's process on the Mac
+rootpoi
+•
+9732d79
+10/31/26
+iOS test: build the real Discord run's bundle as the emulator job does
+Endcord Installer
+Reload
+Open about
