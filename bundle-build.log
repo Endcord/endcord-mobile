@@ -1,0 +1,49 @@
+bun install v1.4.4 (38afee6c8)
+
++ @saithodev/semantic-release-backmerge@4.0.1
++ @semantic-release/changelog@6.0.3
++ @semantic-release/exec@6.0.3
++ @semantic-release/git@10.0.1
++ @swc/core@1.15.43
++ @swc/helpers@0.5.23
++ @types/node@20.19.43
++ @types/yargs-parser@21.0.3
++ @typescript-eslint/eslint-plugin@7.18.0
++ @typescript-eslint/parser@7.18.0
++ @typescript-eslint/typescript-estree@7.18.0
++ chalk@5.6.2
++ esbuild@0.20.2
++ esbuild-plugin-globals@0.2.0
++ eslint@8.57.1
++ eslint-plugin-import-alias@1.2.0
++ eslint-plugin-react@7.37.5
++ eslint-plugin-simple-import-sort@12.1.1
++ eslint-plugin-unused-imports@3.2.0
++ semantic-release@24.2.9
++ typescript@5.9.3
++ yargs-parser@21.1.1
++ @gullerya/object-observer@6.1.4
++ @revenge-mod/devtools-client@1.4.0
++ @revenge-mod/devtools-shared@1.3.0
++ @shopify/react-native-skia@1.12.4
++ @types/chroma-js@2.4.5
++ @types/lodash@4.17.24
++ @types/react@18.2.60
++ @types/react-native@0.72.3
++ es-toolkit@1.49.0
++ fuzzysort@3.1.0
++ hermes-compiler@0.17.0
++ intl-messageformat@10.7.18
++ moment@2.22.2
++ react-native@0.81.4
++ react-native-reanimated@3.19.5
++ react-native-webview@13.17.0
++ spitroast@1.4.4
++ type-fest@4.41.0
+
+857 packages installed [8.11s]
+$ node scripts/build.mjs --build-minify --test
+✔ Built bundle (23feddf) (local) in 1316.879ms
+✔ Built bundle (minified) (8470796) (local) in 942.199ms
+✔ dist/endcord.v98.hbc (bytecode 98, hermes-compiler 250829098.0.15)
+✔ dist/endcord.v99.hbc (bytecode 99, hermes-compiler 260318099.0.5)
