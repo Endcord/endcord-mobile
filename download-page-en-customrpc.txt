@@ -1,0 +1,21 @@
+CustomRPC
+Add a fully customisable Rich Presence (Game status) to your Discord profile
+Activity type
+Playing, 
+Playing
+Listening to, 
+Listening to
+Watching, 
+Watching
+Competing in, 
+Competing in
+Name
+Endcord
+The game or app name people see
+Details
+WELCOME TO DISCORD
+Hang out, play games, or just talk. Tap below to get started!
+Register
+Register
+Log In
+Log In

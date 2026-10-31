@@ -1,0 +1,24 @@
+Which Endcord?
+Endcord Classic
+Endcord
+On the current Discord app, with 300+ Endcord plugins
+Endcord
+Latest: 351.11 - Stable
+Install
+rootpoi
+•
+742e777
+10/31/26
+Signing script: give the file list a type
+rootpoi
+•
+377d65f
+10/31/26
+Emulator test: the Android loader refuses forged and rolled back releases
+rootpoi
+•
+656dfc1
+10/31/26
+Endcord Installer
+Reload
+Open about
