@@ -1,0 +1,24 @@
+Which Endcord?
+Endcord Classic
+Endcord
+On the current Discord app, with 300+ Endcord plugins
+Endcord
+Latest: 351.11 - Stable
+Install
+rootpoi
+•
+afccfe7
+10/31/26
+CustomSounds and NotificationVolume work together
+rootpoi
+•
+920ed9f
+10/31/26
+Self-test: every plugin running at once
+rootpoi
+•
+2ba6a85
+10/31/26
+Endcord Installer
+Reload
+Open about
