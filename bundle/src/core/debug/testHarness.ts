@@ -316,7 +316,7 @@ ${e.stack}` : String(e) });
         await selectTheme(theme);
         await wait(500);
         // Logged out, Discord's ThemeStore doesn't take the new theme, so its key is asked for by name
-        const key = _colorRef.key;
+        const { key } = _colorRef;
         const during = resolveSemanticColor(token, key);
         await selectTheme(null);
         await wait(500);
