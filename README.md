@@ -7,7 +7,7 @@
 **Plugins, themes and privacy for the Discord app on your Android phone, iPhone and iPad.**
 
 [![Download for Android](https://img.shields.io/badge/Download-Android%20APK-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/Endcord/endcord-mobile/releases/download/next-installer-v1.0.0/endcord-installer-v1.0.0.apk)
-[![Download for iOS](https://img.shields.io/badge/Download-iOS%20IPA-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/Endcord/endcord-mobile/releases/download/ios-v1.0.3/Endcord.ipa)
+[![Download for iOS](https://img.shields.io/badge/Download-iOS%20IPA-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/Endcord/endcord-mobile/releases/download/ios-v1.0.5/Endcord.ipa)
 [![Join the Discord](https://img.shields.io/badge/Discord-Join%20us-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/endcord)
 
 ![Plugins](https://img.shields.io/badge/plugins-303-5865F2)
@@ -86,7 +86,7 @@ Nothing is reinstalled: the Play Store Discord runs Endcord.
 
 No jailbreak needed. iOS 16 or newer.
 
-1. Download **[Endcord.ipa](https://github.com/Endcord/endcord-mobile/releases/download/ios-v1.0.3/Endcord.ipa)**.
+1. Download **[Endcord.ipa](https://github.com/Endcord/endcord-mobile/releases/download/ios-v1.0.5/Endcord.ipa)**.
 2. Install it with one of these:
    - **[Sideloadly](https://sideloadly.io)** on a computer, with your own Apple ID. Change the bundle ID in its advanced
      options if you want to keep the App Store Discord too.
@@ -103,7 +103,7 @@ any time, and everything signed with one then stops opening until it's signed wi
 
 <br>
 
-The [iOS release](https://github.com/Endcord/endcord-mobile/releases/tag/ios-v1.0.3) also has a rootless `.deb` and
+The [iOS release](https://github.com/Endcord/endcord-mobile/releases/tag/ios-v1.0.5) also has a rootless `.deb` and
 `Endcord.dylib`, to inject into your own decrypted Discord IPA (Discord 332 or newer) with Substrate or ElleKit included.
 
 </details>
