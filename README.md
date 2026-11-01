@@ -4,7 +4,7 @@
 
 # Endcord Mobile
 
-**Plugins, themes and privacy for the Discord app on your Android phone, iPhone and iPad.**
+**Plugins, themes and privacy for the Discord app on your Android phone, iPhone and iPad**
 
 [![Download for Android](https://img.shields.io/badge/Download-Android%20APK-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/Endcord/endcord-mobile/releases/download/next-installer-v1.0.0/endcord-installer-v1.0.0.apk)
 [![Download for iOS](https://img.shields.io/badge/Download-iOS%20IPA-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/Endcord/endcord-mobile/releases/download/ios-v1.0.6/Endcord.ipa)
