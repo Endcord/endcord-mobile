@@ -1,7 +1,8 @@
-// Signs a published bundle: writes endcord-release.json, the SHA-256 and size of each bundle in a folder with a sequence
-// number that only goes up, and endcord-release.sig, its ECDSA P-256 / SHA-256 signature. The loaders check both with
-// the public key they're built with (release-key.pub), so whoever can change the files on the server still can't make
-// a loader run them, or an older signed bundle again.
+// Signs a published build: writes endcord-release.json, the SHA-256 and size of each bundle and APK in a folder with a
+// sequence number that only goes up, and endcord-release.sig, its ECDSA P-256 / SHA-256 signature. The loaders check
+// their bundle against both with the public key they're built with (release-key.pub), and the installer checks the
+// loader and the installers it downloads the same way, so whoever can change the files on the server still can't make
+// a loader run them or the installer patch them in, or an older signed build again.
 //
 // With ENDCORD_RELEASE_BASE_URL, each bundle also gets the address it has at that base. The branch's own addresses are
 // cached for minutes, each file on its own, so right after a deploy a new manifest can meet an old bundle; an address
@@ -21,7 +22,8 @@ const key = createPrivateKey(pem);
 const baseUrl = process.env.ENDCORD_RELEASE_BASE_URL;
 /** @type {Record<string, { size: number; sha256: string; url?: string; }>} */
 const files = {};
-for (const name of readdirSync(folder).filter(n => /^endcord(\.v\d+\.hbc|\.min\.js)$/.test(n)).sort()) {
+const PUBLISHED = /^(endcord(\.v\d+\.hbc|\.min\.js)|endcord-(xposed|installer|classic-installer)\.apk)$/;
+for (const name of readdirSync(folder).filter(n => PUBLISHED.test(n)).sort()) {
     const file = path.join(folder, name);
     files[name] = {
         size: statSync(file).size,

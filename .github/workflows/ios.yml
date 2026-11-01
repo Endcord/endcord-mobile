@@ -36,7 +36,7 @@ jobs:
       version: ${{ steps.build.outputs.version }}
     steps:
       - uses: actions/checkout@v5
-      - uses: Randomblock1/theos-action@v1
+      - uses: Randomblock1/theos-action@4e23d15886bca77b5f7c462a82567e0de33ebe0b # v1.5
       - name: Build
         id: build
         working-directory: ios
@@ -75,7 +75,7 @@ jobs:
         bytecode: [98, 99]
     steps:
       - uses: actions/checkout@v5
-      - uses: Randomblock1/theos-action@v1
+      - uses: Randomblock1/theos-action@4e23d15886bca77b5f7c462a82567e0de33ebe0b # v1.5
       - name: Build the tweak for the simulator
         working-directory: ios
         shell: bash

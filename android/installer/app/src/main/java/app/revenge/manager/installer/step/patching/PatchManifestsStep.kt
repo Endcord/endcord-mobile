@@ -2,6 +2,7 @@ package app.revenge.manager.installer.step.patching
 
 import com.github.diamondminer88.zip.ZipReader
 import com.github.diamondminer88.zip.ZipWriter
+import app.revenge.manager.BuildConfig
 import app.revenge.manager.R
 import app.revenge.manager.domain.manager.PreferenceManager
 import app.revenge.manager.installer.step.Step
@@ -37,6 +38,9 @@ class PatchManifestsStep : Step() {
                         packageName = preferences.packageName,
                         appName = preferences.appName,
                         debuggable = preferences.debuggable,
+                        // Plain http only for development: a bundle from the developer's machine, or an installer
+                        // built to take its files from there
+                        cleartextTraffic = preferences.debuggable || BuildConfig.DEV_BUILD,
                     )
                 } else {
                     runner.logger.i("Changing package name in ${apk.name}")

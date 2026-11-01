@@ -2,7 +2,7 @@ package app.revenge.manager.installer.step.download
 
 import androidx.compose.runtime.Stable
 import app.revenge.manager.R
-import app.revenge.manager.installer.step.download.base.DownloadStep
+import app.revenge.manager.installer.step.download.base.DiscordDownloadStep
 import java.io.File
 
 /**
@@ -13,7 +13,7 @@ class DownloadLangStep(
     dir: File,
     workingDir: File,
     version: String
-): DownloadStep() {
+): DiscordDownloadStep() {
 
     override val nameRes = R.string.step_dl_lang
 

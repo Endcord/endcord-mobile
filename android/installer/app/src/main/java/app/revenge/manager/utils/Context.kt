@@ -3,7 +3,15 @@ package app.revenge.manager.utils
 import android.content.Context
 import android.util.TypedValue
 import androidx.annotation.AnyRes
+import java.io.File
 import java.io.InputStream
+
+/**
+ * Where downloads and the APKs being patched are kept: the app's own cache, which no other app can reach. The shared
+ * storage of older versions could be written by any app with the storage permission on Android 9 and 10.
+ */
+val Context.installerCacheDir: File
+    get() = cacheDir.resolve("installer").also { it.mkdirs() }
 
 /**
  * Get the raw bytes for a resource.

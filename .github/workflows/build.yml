@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: oven-sh/setup-bun@v2
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
         with:
           bun-version: latest
       - name: Install dependencies
@@ -64,7 +64,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 25
-      - uses: gradle/actions/setup-gradle@v5
+      - uses: gradle/actions/setup-gradle@0723195856401067f7a2779048b490ace7a47d7c # v5.0.2
       - name: Build
         working-directory: android/loader
         run: |
@@ -105,7 +105,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-      - uses: gradle/actions/setup-gradle@v5
+      - uses: gradle/actions/setup-gradle@0723195856401067f7a2779048b490ace7a47d7c # v5.0.2
       - name: Build
         working-directory: android/installer
         run: |
@@ -143,8 +143,8 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
-      - uses: gradle/actions/setup-gradle@v5
-      - uses: android-actions/setup-android@v4
+      - uses: gradle/actions/setup-gradle@0723195856401067f7a2779048b490ace7a47d7c # v5.0.2
+      - uses: android-actions/setup-android@be39fa834029ff78f1a44aa3bb0819b8fc2bd8fd # v4.0.4
         with:
           packages: platform-tools
       - name: Build
@@ -215,8 +215,9 @@ jobs:
       - name: Push
         # builds-next only serves the latest files, so every build replaces it with a single commit. Keeping old builds
         # in its history would grow the repository by the size of the APKs on every push. The signed release goes in a
-        # second commit, as it names the first: the loaders fetch the bundles from that commit's addresses, which the CDN
-        # can't answer with an older build. The key is never on the server, so what's there can't be re-signed.
+        # second commit, as it names the first: the loaders fetch the bundles, and the installer the loader and the
+        # installers, from that commit's addresses, which the CDN can't answer with an older build. The key is never on
+        # the server, so what's there can't be re-signed.
         env:
           ENDCORD_RELEASE_KEY: ${{ secrets.ENDCORD_RELEASE_KEY }}
         run: |
@@ -237,6 +238,6 @@ jobs:
             git add -A
             git commit -m "Sign build ${{ github.sha }}"
           else
-            echo "::warning::No ENDCORD_RELEASE_KEY secret: this bundle isn't signed"
+            echo "::warning::No ENDCORD_RELEASE_KEY secret: this build isn't signed, and the installer refuses an unsigned loader"
           fi
           git push --force origin builds-next

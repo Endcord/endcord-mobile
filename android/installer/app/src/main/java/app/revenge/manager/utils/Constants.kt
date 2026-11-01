@@ -1,6 +1,7 @@
 package app.revenge.manager.utils
 
 import app.revenge.manager.BuildConfig
+import app.revenge.manager.domain.manager.PreferenceManager
 
 object Constants {
     val TEAM_MEMBERS = listOf(
@@ -26,6 +27,8 @@ object Intents {
 
     object Extras {
         const val VERSION = "${BuildConfig.APPLICATION_ID}.intents.extras.VERSION"
+        /** What the app's own update notification carries ([PreferenceManager.pendingInstallToken]) */
+        const val TOKEN = "${BuildConfig.APPLICATION_ID}.intents.extras.TOKEN"
     }
 
 }

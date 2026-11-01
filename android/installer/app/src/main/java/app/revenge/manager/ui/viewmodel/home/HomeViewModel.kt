@@ -3,7 +3,6 @@ package app.revenge.manager.ui.viewmodel.home
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Environment
 import android.provider.Settings
 import android.util.Log
 import androidx.compose.runtime.getValue
@@ -24,15 +23,18 @@ import app.revenge.manager.installer.Installer
 import app.revenge.manager.installer.session.SessionInstaller
 import app.revenge.manager.installer.shizuku.ShizukuInstaller
 import app.revenge.manager.installer.shizuku.ShizukuPermissions
+import app.revenge.manager.installer.util.SignedRelease
 import app.revenge.manager.network.dto.Release
 import app.revenge.manager.network.utils.CommitsPagingSource
 import app.revenge.manager.network.utils.dataOrNull
 import app.revenge.manager.utils.DiscordVersion
 import app.revenge.manager.utils.InstalledDiscord
+import app.revenge.manager.utils.installerCacheDir
 import app.revenge.manager.utils.isMiui
 import app.revenge.manager.utils.showToast
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
+import io.ktor.client.HttpClient
 import kotlinx.coroutines.launch
 import java.io.File
 
@@ -41,13 +43,11 @@ class HomeViewModel(
     val context: Context,
     val prefs: PreferenceManager,
     val installManager: InstallManager,
-    private val downloadManager: DownloadManager
+    private val downloadManager: DownloadManager,
+    private val http: HttpClient,
 ) : ScreenModel {
 
-    private val cacheDir = context.externalCacheDir ?: File(
-        Environment.getExternalStorageDirectory(),
-        Environment.DIRECTORY_DOWNLOADS
-    ).resolve(BuildConfig.MANAGER_NAME).also { it.mkdirs() }
+    private val cacheDir = context.installerCacheDir
 
     var discordVersions by mutableStateOf<Map<DiscordVersion.Type, DiscordVersion?>?>(null)
         private set
@@ -112,8 +112,7 @@ class HomeViewModel(
         } ?: return
 
         if (latestVersion > currentVersion) {
-            for (file in (context.externalCacheDir ?: context.cacheDir).listFiles()
-                ?: emptyArray()) {
+            for (file in cacheDir.listFiles() ?: emptyArray()) {
                 if (file.isDirectory) file.deleteRecursively()
             }
         }
@@ -167,14 +166,32 @@ class HomeViewModel(
         screenModelScope.launch {
             isGettingClassic = true
             classicProgress = null
-            downloadAndInstall(BuildConfig.CLASSIC_INSTALLER_URL, "classic-installer.apk") { classicProgress = it }
+            try {
+                // A new app on the phone, so only the build the signed release lists, from the release's own address
+                val release = SignedRelease.fetch(http, BuildConfig.CLASSIC_INSTALLER_URL, prefs.releaseSequence.toLongOrNull() ?: 0)
+                val url = release.pinnedUrlOf(CLASSIC_INSTALLER_FILE) ?: BuildConfig.CLASSIC_INSTALLER_URL
+                downloadAndInstall(url, "classic-installer.apk", verify = { release.require(CLASSIC_INSTALLER_FILE, it) }) {
+                    classicProgress = it
+                }
+            } catch (e: Exception) {
+                Log.e("HomeViewModel", "Couldn't get the Classic installer", e)
+                context.showToast(R.string.msg_download_verify_failed)
+            }
             isGettingClassic = false
             refreshClassic()
         }
     }
 
-    /** Downloads an APK into the cache and installs it with the chosen install method */
-    private suspend fun downloadAndInstall(url: String, fileName: String, onProgressUpdate: (Float?) -> Unit) {
+    /**
+     * Downloads an APK into the cache and installs it with the chosen install method. [verify] throws when the download
+     * isn't what was expected; Android itself only lets an update of this app through with this app's signature.
+     */
+    private suspend fun downloadAndInstall(
+        url: String,
+        fileName: String,
+        verify: (File) -> Unit = {},
+        onProgressUpdate: (Float?) -> Unit,
+    ) {
         val apk = File(cacheDir, fileName)
         if (apk.exists()) apk.delete()
         val downloadResult = downloadManager.downloadUpdate(url, apk, onProgressUpdate)
@@ -184,6 +201,14 @@ class HomeViewModel(
                 Log.e("HomeViewModel", "Download failed: ${downloadResult.debugReason}")
                 context.showToast(R.string.msg_download_failed)
             }
+            return
+        }
+        try {
+            verify(apk)
+        } catch (e: Exception) {
+            apk.delete()
+            Log.e("HomeViewModel", "The download isn't the published build", e)
+            context.showToast(R.string.msg_download_verify_failed)
             return
         }
 
@@ -205,5 +230,6 @@ class HomeViewModel(
 
     private companion object {
         const val RELEASE_TAG_PREFIX = "next-installer-v"
+        const val CLASSIC_INSTALLER_FILE = "endcord-classic-installer.apk"
     }
 }

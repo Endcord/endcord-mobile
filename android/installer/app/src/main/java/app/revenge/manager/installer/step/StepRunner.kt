@@ -2,7 +2,6 @@ package app.revenge.manager.installer.step
 
 import android.content.Context
 import android.os.Build
-import android.os.Environment
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -23,6 +22,7 @@ import app.revenge.manager.installer.step.patching.ReplaceIconStep
 import app.revenge.manager.installer.util.LogEntry
 import app.revenge.manager.installer.util.Logger
 import app.revenge.manager.utils.DiscordVersion
+import app.revenge.manager.utils.installerCacheDir
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.delay
@@ -71,11 +71,7 @@ class StepRunner(
     /**
      * Root directory for all downloaded files
      */
-    private val cacheDir =
-        context.externalCacheDir
-        ?: File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_DOWNLOADS)
-            .resolve(BuildConfig.MANAGER_NAME)
-            .also { it.mkdirs() }
+    private val cacheDir = context.installerCacheDir
 
     /**
      * Where version specific downloads are persisted

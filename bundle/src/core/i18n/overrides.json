@@ -9640,5 +9640,17 @@
         "ru": "…и ещё {count}",
         "es": "…y {count} más",
         "fr": "…et {count} de plus"
+    },
+    "Addons can only be installed from an https:// link": {
+        "tr": "Eklentiler yalnızca https:// bağlantısından kurulabilir",
+        "ru": "Дополнения можно устанавливать только по ссылке https://",
+        "es": "Los complementos solo se pueden instalar desde un enlace https://",
+        "fr": "Les extensions ne peuvent être installées que depuis un lien https://"
+    },
+    "Themes can only be installed from an https:// link.": {
+        "tr": "Temalar yalnızca https:// bağlantısından kurulabilir.",
+        "ru": "Темы можно устанавливать только по ссылке https://.",
+        "es": "Los temas solo se pueden instalar desde un enlace https://.",
+        "fr": "Les thèmes ne peuvent être installés que depuis un lien https://."
     }
 }
