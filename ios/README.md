@@ -29,8 +29,8 @@ The workflow's simulator job (`Tests/run.sh`) builds the tweak for the iOS simul
 a stand-in for Discord with the Hermes runtime Discord ships (bytecode 98 and 99), which downloads its bundle from
 `Tests/server.py`. Each scenario is one launch: the first start, the cache and its ETag, updates, the plain bundle
 when there's no bytecode one, bytecode for another Hermes, offline starts, custom URLs, broken files, themes, fonts,
-a bundle that throws, the published bundle, the recovery menu, safe mode, SmoothType's caret, the screen share picker
-and the app group. The release is only published when it passes.
+a bundle that throws, the published bundle, the recovery menu, safe mode, SmoothType's caret and the app group. The
+release is only published when it passes.
 
 Pushing to an `ios-real/` branch runs the real iOS Discord on the simulator (`Tests/real-discord.sh`, the `iOS real
 Discord` workflow): a decrypted device build runs on an Apple silicon simulator once its binaries are retagged for it,
@@ -54,5 +54,3 @@ These hold for every modded Discord installed with a sideloading app:
 - Notifications don't arrive while Discord is closed or in the background
 - Passkeys and sharing to Discord from other apps don't work
 - Changing the app icon only works when the bundle ID matches the provisioning profile's App ID
-- Screen share uses the app group the app and its extension share. Without one, which depends on the signing app and
-  account, they meet on a loopback port and prove themselves with a key from the extension's signature files
