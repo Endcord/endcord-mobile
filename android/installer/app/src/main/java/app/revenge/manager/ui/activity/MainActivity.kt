@@ -35,8 +35,16 @@ class MainActivity : ComponentActivity() {
             )
         }
 
+        // Straight into an install only from the app's own update notification: any app can send this activity an
+        // install intent, and only the notification carries the token the app wrote for it
+        val prefs = get<PreferenceManager>()
+        val askedByNotification = intent.action == Intents.Actions.INSTALL &&
+            prefs.pendingInstallToken.isNotEmpty() &&
+            intent.getStringExtra(Intents.Extras.TOKEN) == prefs.pendingInstallToken
+        if (askedByNotification) prefs.pendingInstallToken = ""
+
         val target = version?.let { DiscordVersion.fromVersionCode(it) }
-        val screen = if (intent.action == Intents.Actions.INSTALL && target != null) {
+        val screen = if (askedByNotification && target != null) {
             InstallerScreen(target, useInstalled = fromInstalled(target))
         } else {
             HomeScreen()

@@ -17,12 +17,12 @@
 ![Languages](https://img.shields.io/badge/languages-5-F59E0B)
 ![License](https://img.shields.io/badge/license-GPL--3.0-blue)
 
-[Website](https://endcord.com) · [Endcord PC](https://github.com/rootpoii/endcord) · [Endcord Classic](https://github.com/Endcord/endcord-mobile/tree/main) · [Plugin list](docs/PLUGINS.md)
+[Website](https://endcord.com) · [Endcord PC](https://github.com/Endcord/Endcord) · [Endcord Classic](https://github.com/Endcord/endcord-mobile/tree/main) · [Plugin list](docs/PLUGINS.md)
 
 </div>
 
 Endcord is on every platform: this repository is the mobile app for **Android** and **iOS / iPadOS**, and
-[Endcord PC](https://github.com/rootpoii/endcord) covers **Windows, macOS, Linux and the web**.
+[Endcord PC](https://github.com/Endcord/Endcord) covers **Windows, macOS, Linux and the web**.
 
 | | Android | iOS and iPadOS |
 | --- | --- | --- |

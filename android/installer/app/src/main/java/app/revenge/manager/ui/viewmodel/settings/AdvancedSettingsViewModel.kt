@@ -1,29 +1,26 @@
 package app.revenge.manager.ui.viewmodel.settings
 
 import android.content.Context
-import android.os.Environment
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
-import app.revenge.manager.BuildConfig
 import app.revenge.manager.R
 import app.revenge.manager.domain.manager.InstallMethod
 import app.revenge.manager.domain.manager.PreferenceManager
 import app.revenge.manager.domain.manager.UpdateCheckerDuration
 import app.revenge.manager.installer.shizuku.ShizukuPermissions
 import app.revenge.manager.updatechecker.worker.UpdateWorker
+import app.revenge.manager.utils.installerCacheDir
 import app.revenge.manager.utils.showToast
 import kotlinx.coroutines.launch
-import java.io.File
 
 class AdvancedSettingsViewModel(
     private val context: Context,
     private val prefs: PreferenceManager,
 ) : ScreenModel {
-    private val cacheDir = context.externalCacheDir ?: File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_DOWNLOADS).resolve(
-        BuildConfig.MANAGER_NAME).also { it.mkdirs() }
+    private val cacheDir = context.installerCacheDir
 
     fun clearCache() {
         cacheDir.deleteRecursively()

@@ -3,6 +3,7 @@ import { awaitStorage, createFileBackend, createMMKVBackend, createStorage, wrap
 import { writeFile } from "@lib/api/native/fs";
 import { getStoredTheme, getThemeFilePath, isPyonLoader, isThemeSupported } from "@lib/api/native/loader";
 import { awaitStorage as newAwaitStorage } from "@lib/api/storage";
+import { isAddonUrl } from "@lib/utils/addonUrl";
 import { Platform } from "react-native";
 
 import initColors from "./colors";
@@ -93,6 +94,7 @@ async function fetchOnce(url: string, timeout: number) {
 /** Downloads a theme and checks it is one, with a reason people can act on when it isn't */
 export async function downloadTheme(url: string): Promise<VendettaThemeManifest> {
     const source = rawFileUrl(url);
+    if (!isAddonUrl(source)) throw new ThemeDownloadError("invalid", t("Themes can only be installed from an https:// link."));
     let res: Response;
     try {
         res = await fetchOnce(source, 20000);

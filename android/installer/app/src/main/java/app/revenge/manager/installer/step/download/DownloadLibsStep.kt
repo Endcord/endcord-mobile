@@ -3,7 +3,7 @@ package app.revenge.manager.installer.step.download
 import android.os.Build
 import androidx.compose.runtime.Stable
 import app.revenge.manager.R
-import app.revenge.manager.installer.step.download.base.DownloadStep
+import app.revenge.manager.installer.step.download.base.DiscordDownloadStep
 import java.io.File
 
 /**
@@ -14,7 +14,7 @@ class DownloadLibsStep(
     dir: File,
     workingDir: File,
     version: String
-): DownloadStep() {
+): DiscordDownloadStep() {
 
     /**
      * Supported CPU architecture for this device, used to download the correct library split

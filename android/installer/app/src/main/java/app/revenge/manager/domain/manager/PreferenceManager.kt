@@ -8,15 +8,20 @@ import app.revenge.manager.BuildConfig
 import app.revenge.manager.R
 import app.revenge.manager.domain.manager.base.BasePreferenceManager
 import app.revenge.manager.utils.DiscordVersion
+import app.revenge.manager.utils.installerCacheDir
 import java.io.File
 import java.util.concurrent.TimeUnit
 
 class PreferenceManager(context: Context) :
     BasePreferenceManager(context.getSharedPreferences("prefs", Context.MODE_PRIVATE)) {
 
-    val DEFAULT_MODULE_LOCATION =
-        (context.externalCacheDir ?: File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_DOWNLOADS).resolve(
-            BuildConfig.MANAGER_NAME).also { it.mkdirs() }).resolve("xposed.apk")
+    val DEFAULT_MODULE_LOCATION = context.installerCacheDir.resolve("xposed.apk")
+
+    /** Where the module was kept until 2026-11: the shared cache, which other apps could write to */
+    private val legacyModuleLocations = listOfNotNull(
+        context.externalCacheDir,
+        File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_DOWNLOADS).resolve(BuildConfig.MANAGER_NAME),
+    ).map { it.resolve("xposed.apk") }
 
     var packageName by stringPreference("package_name", BuildConfig.MODDED_APP_PACKAGE_NAME)
 
@@ -24,7 +29,11 @@ class PreferenceManager(context: Context) :
 
     var discordVersion by stringPreference("discord_version", "")
 
-    var moduleVersion by stringPreference("module_version", "")
+    /** The newest signed release (its `sequence`) the module was taken from; an older one isn't taken again */
+    var releaseSequence by stringPreference("release_sequence", "")
+
+    /** What the app's own update notification carries, so only it can open the app straight into an install */
+    var pendingInstallToken by stringPreference("pending_install_token", "")
 
     var patchIcon by booleanPreference("patch_icon", true)
 
@@ -65,6 +74,10 @@ class PreferenceManager(context: Context) :
     init {
         if (mirror !in Mirror.entries) {
             mirror = Mirror.DEFAULT
+        }
+        // A module location reset to the old default is the default still, not a module of the user's own
+        if (moduleLocation in legacyModuleLocations) {
+            moduleLocation = DEFAULT_MODULE_LOCATION
         }
     }
 }

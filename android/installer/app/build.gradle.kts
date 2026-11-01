@@ -23,14 +23,15 @@ android {
 
         buildConfigField("String", "MOD_NAME", "\"Endcord\"")
         buildConfigField("String", "MANAGER_NAME", "\"EndcordInstaller\"")
-        buildConfigField("String", "REPO", "\"rootpoii/endcord-mobile\"")
-        buildConfigField("String", "ORG_LINK", "\"https://github.com/rootpoii/endcord-mobile/tree/next\"")
+        buildConfigField("String", "REPO", "\"Endcord/endcord-mobile\"")
+        buildConfigField("String", "ORG_LINK", "\"https://github.com/Endcord/endcord-mobile/tree/next\"")
         buildConfigField("String", "INVITE_LINK", "\"https://discord.gg/endcord\"")
         buildConfigField("String", "MODDED_APP_PACKAGE_NAME", "\"com.endcord.next\"")
         // Where the Build workflow publishes the loader. Pass -Pendcord.loaderUrl=http://10.0.2.2:4040/endcord-xposed.apk
-        // to install a loader you serve yourself while developing.
+        // to install a loader you serve yourself while developing; the signed release has to be served next to it
+        // (bundle/scripts/sign-release.mjs), as the emulator test does.
         val loaderUrl = providers.gradleProperty("endcord.loaderUrl")
-            .orElse("https://raw.githubusercontent.com/rootpoii/endcord-mobile/builds-next/endcord-xposed.apk")
+            .orElse("https://raw.githubusercontent.com/Endcord/endcord-mobile/builds-next/endcord-xposed.apk")
             .get()
         buildConfigField("String", "LOADER_URL", "\"$loaderUrl\"")
         // Endcord Classic (on Aliucord's older Discord) is installed by its own installer, which is published next to
@@ -42,7 +43,17 @@ android {
         buildConfigField("String", "CLASSIC_INSTALLER_PACKAGE", "\"com.endcord.installer\"")
         // A tracker mirror to try before the public ones, e.g. -Pendcord.mirrorUrl=http://10.0.2.2:4040 for a copy of
         // the Discord APKs served from the developer's machine. Empty in normal builds.
-        buildConfigField("String", "DEV_MIRROR_URL", "\"${providers.gradleProperty("endcord.mirrorUrl").orElse("").get()}\"")
+        val mirrorUrl = providers.gradleProperty("endcord.mirrorUrl").orElse("").get()
+        buildConfigField("String", "DEV_MIRROR_URL", "\"$mirrorUrl\"")
+        // A build that takes its files from the developer's machine over plain http: the Discord it builds is let use
+        // plain http too, for a bundle served the same way
+        buildConfigField("boolean", "DEV_BUILD", (loaderUrl.startsWith("http://") || mirrorUrl.startsWith("http://")).toString())
+        // The key the signed release next to the loader is checked with (bundle/scripts/sign-release.mjs), as the
+        // loaders check the bundle; -Pendcord.releaseKey=<base64 SPKI> for a test build signed with another
+        val releaseKey = providers.gradleProperty("endcord.releaseKey")
+            .orElse(providers.fileContents(rootProject.layout.projectDirectory.file("../../bundle/release-key.pub")).asText)
+            .get().trim()
+        buildConfigField("String", "RELEASE_KEY", "\"$releaseKey\"")
         buildConfigField("int", "MODDED_APP_ICON", "0xFF10182A") // Endcord night blue
         buildConfigField("int", "MODDED_APP_ICON_ALPHA", "0xFF3D74E0") // cobalt (beta)
         buildConfigField("int", "MODDED_APP_ICON_OTHER", "0xFF9CCBFF") // ice (alpha)

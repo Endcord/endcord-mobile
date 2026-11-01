@@ -84,6 +84,12 @@ val fonts by tweak {
             fontDef.main.entries.map { (name, url) ->
                 async {
                     try {
+                        // A font file goes to the system's font parser: only from where nobody on the way can change
+                        // it, as the bundle requires too (lib/addons/fonts)
+                        if (!url.startsWith("https://")) {
+                            log.w("Not downloading $name from $url: fonts are only downloaded over https")
+                            return@async
+                        }
                         log.i("Downloading $name from $url")
                         val ext = FontsState.FILE_EXTENSIONS.firstOrNull { url.endsWith(it) } ?: ".ttf"
                         val file = File(setDir, "$name$ext").apply { ensureFile() }

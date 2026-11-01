@@ -1,6 +1,5 @@
 package app.revenge.manager.installer.util
 
-import android.Manifest
 import pxb.android.axml.AxmlReader
 import pxb.android.axml.AxmlVisitor
 import pxb.android.axml.AxmlWriter
@@ -19,11 +18,16 @@ object ManifestPatcher {
     private const val DRNE_PERMISSION = "DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
     private const val DISCORD_DRNE_PERMISSION = "com.discord.$DRNE_PERMISSION"
 
+    /**
+     * @param cleartextTraffic Whether the app may use plain http, which a bundle served from a developer's machine
+     * needs; otherwise nothing in it, plugins included, can talk to a server without TLS
+     */
     fun patchManifest(
         manifestBytes: ByteArray,
         packageName: String,
         appName: String,
-        debuggable: Boolean
+        debuggable: Boolean,
+        cleartextTraffic: Boolean,
     ): ByteArray {
         val reader = AxmlReader(manifestBytes)
         val writer = AxmlWriter()
@@ -38,24 +42,8 @@ object ManifestPatcher {
                         COMPILE_SDK_VERSION_CODENAME to "6.0-2438415"
                     )
                 ) {
-                    private var addExternalStoragePerm = false
-
                     override fun child(ns: String?, name: String): NodeVisitor {
                         val nv = super.child(ns, name)
-
-                        // Add MANAGE_EXTERNAL_STORAGE when necessary
-                        if (addExternalStoragePerm) {
-                            super
-                                .child(null, "uses-permission")
-                                .attr(
-                                    ANDROID_NAMESPACE,
-                                    "name",
-                                    android.R.attr.name,
-                                    TYPE_STRING,
-                                    Manifest.permission.MANAGE_EXTERNAL_STORAGE
-                                )
-                            addExternalStoragePerm = false
-                        }
 
                         return when (name) {
                             "permission" -> object : NodeVisitor(nv) {
@@ -89,11 +77,6 @@ object ManifestPatcher {
                                     if (name != "maxSdkVersion") {
                                         super.attr(ns, name, resourceId, type, value)
                                     }
-
-                                    // Set the add external storage permission to be added after WRITE_EXTERNAL_STORAGE (which is after read)
-                                    if (name == "name" && value == Manifest.permission.READ_EXTERNAL_STORAGE) {
-                                        addExternalStoragePerm = true
-                                    }
                                 }
                             }
 
@@ -102,13 +85,13 @@ object ManifestPatcher {
                                 mapOf(
                                     LABEL to appName,
                                     DEBUGGABLE to debuggable,
-                                    USES_CLEARTEXT_TRAFFIC to true,
+                                    USES_CLEARTEXT_TRAFFIC to cleartextTraffic,
                                     REQUEST_LEGACY_EXTERNAL_STORAGE to true
                                 )
                             ) {
                                 private var addDebuggable = debuggable
                                 private var addLegacyStorage = true
-                                private var addUseClearTextTraffic = true
+                                private var addUseClearTextTraffic = cleartextTraffic
 
                                 override fun attr(
                                     ns: String?,
