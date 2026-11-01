@@ -1,6 +1,7 @@
 #import <CommonCrypto/CommonHMAC.h>
 #import <Foundation/Foundation.h>
 #import <arpa/inet.h>
+#import <errno.h>
 #import <fcntl.h>
 #import <netinet/in.h>
 #import <netinet/tcp.h>
@@ -21,6 +22,9 @@
 #define LINK_PORT_RANGE 16000
 #define LINK_PORTS      8
 #define LINK_TIMEOUT    2
+// The app may still be setting its voice engine up when the extension starts
+#define LINK_ATTEMPTS    6
+#define LINK_RETRY_DELAY 500000
 
 @protocol DCDBroadcastSocketServerDelegate
 - (void)broadcastSocketServer:(id)server newConnection:(id)connection;
@@ -32,6 +36,10 @@
 
 @interface DCDBroadcastSocketServer : NSObject
 @property (nonatomic, weak) id<DCDBroadcastSocketServerDelegate> delegate;
+@end
+
+@interface DCDSampleHandler : NSObject
+- (void)finishBroadcastWithError:(NSError *)error;
 @end
 
 static NSData *linkKey(void)
@@ -111,25 +119,48 @@ static BOOL receiveProof(int fd, NSData *proof)
         && timingsafe_bcmp(received, proof.bytes, sizeof(received)) == 0;
 }
 
+/** Why the extension has no link: ReplayKit shows it, as the extension has nowhere else to say so */
+static NSString *linkFailure;
+
 /** The extension's end of the link, or -1 */
 static int connectToApp(void)
 {
     NSData *ours = linkProof("client"), *theirs = linkProof("server");
-    if (!ours) return -1;
-
-    for (int i = 0; i < LINK_PORTS; i++)
+    if (!ours)
     {
-        int fd = socket(AF_INET, SOCK_STREAM, 0);
-        if (fd < 0) return -1;
-        prepareSocket(fd);
-        struct sockaddr_in address = loopbackAddress(linkPort() + i);
-        if (connect(fd, (struct sockaddr *)&address, sizeof(address)) == 0 && sendProof(fd, ours)
-            && receiveProof(fd, theirs))
+        linkFailure = @"no signature files to derive the link from";
+        return -1;
+    }
+
+    for (int attempt = 0; attempt < LINK_ATTEMPTS; attempt++)
+    {
+        if (attempt) usleep(LINK_RETRY_DELAY);
+        for (int i = 0; i < LINK_PORTS; i++)
         {
-            setTimeout(fd, 0);
-            return fd;
+            int fd = socket(AF_INET, SOCK_STREAM, 0);
+            if (fd < 0)
+            {
+                linkFailure = [NSString stringWithFormat:@"socket: %s", strerror(errno)];
+                return -1;
+            }
+            prepareSocket(fd);
+            struct sockaddr_in address = loopbackAddress(linkPort() + i);
+            if (connect(fd, (struct sockaddr *)&address, sizeof(address)) != 0)
+            {
+                linkFailure = [NSString stringWithFormat:@"port %d: %s", linkPort() + i, strerror(errno)];
+            }
+            else if (!sendProof(fd, ours) || !receiveProof(fd, theirs))
+            {
+                linkFailure = [NSString stringWithFormat:@"port %d answered without the proof: %s", linkPort() + i, strerror(errno)];
+            }
+            else
+            {
+                setTimeout(fd, 0);
+                linkFailure = nil;
+                return fd;
+            }
+            close(fd);
         }
-        close(fd);
     }
     return -1;
 }
@@ -258,7 +289,25 @@ static BOOL startLoopback(DCDBroadcastSocketServer *server)
 
 %end
 
+// Discord gives up on a failed connection in its init, where ReplayKit doesn't listen: the phone would go on sharing
+%group BroadcastFailure
+
+%hook DCDSampleHandler
+- (void)broadcastStartedWithSetupInfo:(NSDictionary *)setupInfo
+{
+    %orig;
+    if (!linkFailure) return;
+
+    NSString *reason = [NSString stringWithFormat:@"Endcord couldn't reach the app (%@)", linkFailure];
+    [self finishBroadcastWithError:[NSError errorWithDomain:@"com.endcord.broadcast" code:1
+                                                   userInfo:@{NSLocalizedDescriptionKey : reason}]];
+}
+%end
+
+%end
+
 void initBroadcastLink(void)
 {
     if (objc_getClass("DCDBroadcastSocketServer") && objc_getClass("DCDBroadcastSocketConnection")) %init(BroadcastLink);
+    if (objc_getClass("DCDSampleHandler")) %init(BroadcastFailure);
 }
