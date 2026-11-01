@@ -136,7 +136,7 @@ contributors, licensed under the Open Software License 3.0. Built-in plugins are
 
 ## License
 
-Endcord for Android is licensed under the [Open Software License 3.0](LICENSE), like Aliucord. The original
+Endcord Classic is licensed under the [Open Software License 3.0](LICENSE), like Aliucord. The original
 Aliucord copyright notices are kept in the source files.
 
 Endcord is not affiliated with, endorsed by or connected to Discord Inc. or the Aliucord project.
