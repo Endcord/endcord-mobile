@@ -1,0 +1,7 @@
+2026-11-01 11:13:32.033252+0000 Host[24526:69893] [Endcord] Using the default loader config
+2026-11-01 11:13:32.096890+0000 Host[24526:69893] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-11-01 11:13:32.146343+0000 Host[24526:69927] [Endcord] Using the default loader config
+2026-11-01 11:13:32.163396+0000 Host[24526:69927] [Endcord] Using the default loader config
+2026-11-01 11:13:32.237365+0000 Host[24526:69927] [Endcord] No signed release could be fetched, so no bundle is taken
+2026-11-01 11:13:32.237816+0000 Host[24526:69927] [Endcord] No backup bundle found to restore
+2026-11-01 11:13:32.237877+0000 Host[24526:69927] [Endcord] Endcord couldn't load: Endcord couldn't be downloaded. Check your connection and open Discord again.

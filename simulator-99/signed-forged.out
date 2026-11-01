@@ -1,0 +1,4 @@
+RESULT PASS signed-forged bundle: ran none, saved from 
+RESULT PASS signed-forged alert: The download didn't pass Endcord's security check, so it wasn't run.
+SCREENSHOT signed-forged
+DONE signed-forged failures=0

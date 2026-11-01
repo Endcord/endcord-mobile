@@ -1,0 +1,4 @@
+RESULT PASS signed-pinned bundle: ran hbc2, saved from http://127.0.0.1:4040/endcord.v99.hbc | "a6dff1a202c0285ec4e10751ace0c94373ee2618"
+RESULT PASS signed-pinned no-alert: 
+SCREENSHOT signed-pinned
+DONE signed-pinned failures=0

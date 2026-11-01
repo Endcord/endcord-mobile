@@ -1,0 +1,10 @@
+2026-11-01 11:09:44.701689+0000 Host[12563:40618] [Endcord] Using the default loader config
+2026-11-01 11:09:44.767410+0000 Host[12563:40618] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-11-01 11:09:44.891070+0000 Host[12563:40679] [Endcord] Using the default loader config
+2026-11-01 11:09:44.924469+0000 Host[12563:40679] [Endcord] Using the default loader config
+2026-11-01 11:09:45.004313+0000 Host[12563:40679] [Endcord] Using the default loader config
+2026-11-01 11:09:45.005157+0000 Host[12563:40679] [Endcord] Discord's bundle has bytecode version 99
+2026-11-01 11:09:45.010241+0000 Host[12563:40679] [Endcord] Couldn't download the bundle from http://127.0.0.1:4040/endcord.v99.hbc: HTTP 503
+2026-11-01 11:09:45.017843+0000 Host[12563:40679] [Endcord] Couldn't download the bundle from http://127.0.0.1:4040/endcord.min.js: HTTP 503
+2026-11-01 11:09:45.019273+0000 Host[12563:40679] [Endcord] No backup bundle found to restore
+2026-11-01 11:09:45.019586+0000 Host[12563:40679] [Endcord] Endcord couldn't load: Endcord couldn't be downloaded. Check your connection and open Discord again.
