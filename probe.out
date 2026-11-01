@@ -1,0 +1,7 @@
+PROBE PASS classes
+PROBE PASS server-starts
+PROBE PASS client-connects
+PROBE PASS server-accepts
+PROBE PASS message-to-app
+PROBE PASS message-to-extension
+PROBE DONE

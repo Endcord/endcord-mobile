@@ -1,0 +1,19 @@
+2026-11-01 13:32:36.825716+0000 Discord[38670:103982] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-11-01 13:34:44.889979+0000 Discord[38670:124081] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-11-01 13:34:44.891697+0000 Discord[38670:124081] [Endcord] Initializing theme (5 semantic colors, 0 raw colors)
+2026-11-01 13:34:44.919957+0000 Discord[38670:124081] [Endcord] Processing 0 raw color methods
+2026-11-01 13:34:44.926185+0000 Discord[38670:124081] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-11-01 13:34:44.928114+0000 Discord[38670:124081] [Endcord] Discord's bundle has bytecode version 98
+2026-11-01 13:34:44.929261+0000 Discord[38670:124081] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-11-01 13:34:44.936356+0000 Discord[38670:121771] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-11-01 13:34:44.938135+0000 Discord[38670:121771] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-11-01 13:34:44.944341+0000 Discord[38670:121771] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-11-01 13:34:45.147641+0000 Discord[38670:121771] [Endcord] The saved bundle is the latest release
+2026-11-01 13:34:45.461788+0000 Discord[38670:103982] [Endcord] Screen share link key: none
+2026-11-01 13:34:45.462049+0000 Discord[38670:103982] [Endcord] The screen share link has no port
+2026-11-01 13:35:00.527931+0000 Discord[38670:103982] [Endcord] SmoothType: caret on, 0 message boxes seen
+2026-11-01 13:35:00.528011+0000 Discord[38670:103982] [Endcord] SmoothType: caret off, 0 message boxes seen
+2026-11-01 13:35:00.760346+0000 Discord[38670:103982] [Endcord] SmoothType: caret off, 0 message boxes seen
+2026-11-01 13:35:00.760437+0000 Discord[38670:103982] [Endcord] SmoothType: caret off, 0 message boxes seen
+2026-11-01 13:35:02.990693+0000 Discord[38670:103982] [Endcord] SmoothType: caret on, 0 message boxes seen
+2026-11-01 13:35:23.071190+0000 Discord[38670:103982] [Endcord] SmoothType: caret off, 0 message boxes seen
