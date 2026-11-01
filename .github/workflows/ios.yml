@@ -153,15 +153,10 @@ jobs:
           echo "Discord $version"
           echo "discord-version=$version" >> "$GITHUB_OUTPUT"
 
-          # The Android launcher icon: its foreground's visible middle (72 of 108 dp) over the brand background
-          python - "$RUNNER_TEMP/icon.png" <<'EOF'
-          import sys
-          from PIL import Image
-          foreground = Image.open("android/installer/app/src/main/res/drawable-xxxhdpi/ic_launcher_foreground.png").convert("RGBA")
-          icon = Image.new("RGBA", (1024, 1024), (0x10, 0x18, 0x2A, 255))
-          icon.alpha_composite(foreground.resize((1536, 1536), Image.LANCZOS), (-256, -256))
-          icon.convert("RGB").save(sys.argv[1])
-          EOF
+          # Discord's icon, given to cyan so it's read from plain files: a decrypted IPA is thinned for the device it came
+          # from, and iOS draws a blank icon when the asset catalog has no size for its screen
+          unzip -p "$RUNNER_TEMP/discord.ipa" 'Payload/Discord.app/AppIcon76x76@2x~ipad.png' > "$RUNNER_TEMP/discord-icon.png"
+          node ios/scripts/cgbi-to-png.cjs "$RUNNER_TEMP/discord-icon.png" "$RUNNER_TEMP/icon.png"
 
           # -u: any device, -w: no watch app, -s: fakesigned for TrollStore, -g: without encrypted extensions, -q: arm64 only,
           # -d: Endcord's files in the Files app, which the recovery menu's Open App Folder opens
@@ -172,6 +167,10 @@ jobs:
           mkdir "$RUNNER_TEMP/endcord" && unzip -q Endcord.ipa -d "$RUNNER_TEMP/endcord"
           app=$(echo "$RUNNER_TEMP"/endcord/Payload/*.app)
 
+          # cyan stops at @2x, which a 3x iPhone would blur
+          icon=$(plutil -extract CFBundleIcons.CFBundlePrimaryIcon.CFBundleIconFiles.0 raw "$app/Info.plist")
+          sips -z 180 180 "$RUNNER_TEMP/icon.png" --out "$app/$icon@3x.png"
+
           # The screen share extension loads the tweak too, for the app group it shares with the app (Sideloading.x),
           # and is listed as Endcord beside the App Store Discord's. cyan injects the main app only.
           extension="$app/PlugIns/BroadcastUpload.appex"
@@ -181,12 +180,12 @@ jobs:
             plutil -replace CFBundleDisplayName -string Endcord "$extension/Info.plist"
             # cyan's -s, again for this binary, for TrollStore; other installers sign it themselves
             "$tools/ldid" -S -M "$extension/BroadcastUpload" || echo "::warning::The extension isn't fakesigned"
-            rm Endcord.ipa
-            (cd "$RUNNER_TEMP/endcord" && zip -qry "$GITHUB_WORKSPACE/Endcord.ipa" Payload)
-            ls -l Endcord.ipa
           else
             echo "::warning::No decrypted BroadcastUpload extension: screen share won't work in this IPA"
           fi
+          rm Endcord.ipa
+          (cd "$RUNNER_TEMP/endcord" && zip -qry "$GITHUB_WORKSPACE/Endcord.ipa" Payload)
+          ls -l Endcord.ipa
 
           if [ -e "$app/Frameworks/RainTweak.dylib" ] || otool -L "$app/Discord" | grep -q RainTweak; then
             echo "::error::The IPA still has RainTweak in it"
