@@ -55,4 +55,5 @@ These hold for every modded Discord installed with a sideloading app:
 - Passkeys and sharing to Discord from other apps don't work
 - Changing the app icon only works when the bundle ID matches the provisioning profile's App ID
 - Screen share uses the app group the app and its extension share. Without one, which depends on the signing app and
-  account, they meet on a loopback port and prove themselves with a key from the extension's signature files
+  account, they meet on a loopback port and prove themselves with a key from the extension's signature files. It hasn't
+  worked on a sideloaded iPhone yet: the phone can show it's sharing while nothing reaches Discord

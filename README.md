@@ -114,8 +114,9 @@ The [iOS release](https://github.com/Endcord/endcord-mobile/releases/tag/ios-v1.
 <br>
 
 Apple limits sideloaded apps, whichever mod you use: notifications don't arrive while the app is closed or in the
-background, and passkeys and sharing to Discord from other apps don't work. Screen share depends on the certificate:
-it needs an app group, which free Apple IDs may not get. SmoothType needs iOS 17 or newer.
+background, and passkeys and sharing to Discord from other apps don't work. SmoothType needs iOS 17 or newer.
+
+Screen share hasn't worked on a sideloaded iPhone yet: the phone can show it's sharing while nothing reaches Discord.
 
 </details>
 
