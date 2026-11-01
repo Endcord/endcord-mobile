@@ -1,0 +1,50 @@
+name: Fetch Contributors
+
+# Publishes the contributors of this repository to the `builds` branch, where the About screen of
+# Endcord Installer reads them from.
+
+on:
+  schedule:
+    - cron: '0 0 1 * *' # At 00:00 on day-of-month 1
+  workflow_dispatch:
+
+jobs:
+  fetch-contributors:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout builds
+        uses: actions/checkout@v6
+        with:
+          ref: builds
+
+      - name: Fetch contributors
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -sL --fail-with-body \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/contributors?per_page=100" \
+          | jq --compact-output --arg repo "$GITHUB_REPOSITORY" '
+              [ .[]
+                | select(.type == "User" and .login != "actions-user")
+                | {
+                    username: .login,
+                    avatarUrl: .avatar_url,
+                    commits: .contributions,
+                    repositories: [{ name: $repo, commits: .contributions }]
+                  }
+              ] | sort_by(-.commits, .username)' > contributors.json
+
+      - name: Deploy
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add contributors.json
+          if [[ `git status --porcelain` ]]; then
+            git commit -m "Update contributors"
+            git push
+          fi

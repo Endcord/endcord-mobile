@@ -1,0 +1,24 @@
+name: Build Installer
+
+# Endcord Classic's installer, built from main. GitHub only offers a manual run of workflows on the default branch, so
+# this file is here for the button: pick main under "Use workflow from".
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        required: true
+        description: Version of this release, for example 1.0.1 (must be higher than the last release)
+      title:
+        required: false
+        description: Title of the release
+      notes:
+        required: false
+        description: Release notes (markdown)
+
+jobs:
+  classic:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "::error::Endcord Classic's installer is built from main: pick it under Use workflow from"
+          exit 1
