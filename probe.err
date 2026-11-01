@@ -1,0 +1,10 @@
+2026-11-01 00:11:03.221 Discord[69547:181628] [Endcord] Loader config loaded - Custom URL disabled: http://localhost:4040/revenge.js
+2026-11-01 00:11:04.084 Discord[69547:181628] [I] <MMKV.mm:160::initialize> version v1.2.16, page size 16384, arch arm64-v8a
+2026-11-01 00:11:04.084 Discord[69547:181628] [I] <MMKV.mm:203::initializeMMKV> root dir: /Users/runner/Library/Developer/CoreSimulator/Devices/B7CD7ED2-0DFF-42FE-A30F-21CD2E3D3D2C/data/Containers/Data/Application/A29D340A-8108-4873-84EF-3CD777383E15/Documents/mmkv
+2026-11-01 00:11:04.084 Discord[69547:181628] [I] <MMKV_OSX.mm:116::setIsInBackground> g_isInBackground:1
+2026-11-01 00:11:04.085 Discord[69547:181628] [I] <libMMKV.mm:114::+[MMKV initializeMMKV:logLevel:handler:]> appState:2
+2026-11-01 00:11:04.369 Discord[69547:181628] [I] <MMKV_OSX.mm:116::setIsInBackground> g_isInBackground:0
+2026-11-01 00:11:04.369 Discord[69547:181628] [I] <libMMKV.mm:288::+[MMKV didBecomeActive]> isInBackground:0
+2026-11-01 00:11:11.495 Discord[69547:181628] [Endcord] Screen share link key: found
+2026-11-01 00:11:11.495 Discord[69547:181628] Socket encountered error calling connect(): errno(2)
+2026-11-01 00:11:11.496 Discord[69547:181628] [Endcord] Screen share link: connected

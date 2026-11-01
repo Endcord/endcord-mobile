@@ -1,0 +1,12 @@
+Plugins: 303 started, 303 stopped, 0 failed, self-test finished
+
+PASS: Endcord ran inside the real Discord
+PASS: the second start ran the saved bundle after checking it against the signed release
+PROBE PASS classes
+PROBE PASS server-starts
+PROBE PASS client-connects
+PROBE PASS server-accepts
+PROBE PASS message-to-app
+PROBE PASS message-to-extension
+PROBE DONE
+PASS: Discord's socket classes work over the link
