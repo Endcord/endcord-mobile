@@ -1,0 +1,11 @@
+2026-11-01 23:44:04.873553+0000 Host[10371:35006] [Endcord] Using the default loader config
+2026-11-01 23:44:04.947733+0000 Host[10371:35006] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-11-01 23:44:05.009149+0000 Host[10371:35074] [Endcord] Using the default loader config
+2026-11-01 23:44:05.010340+0000 Host[10371:35074] [Endcord] Using the default loader config
+2026-11-01 23:44:05.011375+0000 Host[10371:35074] [Endcord] Discord's bundle has bytecode version 99
+2026-11-01 23:44:05.011551+0000 Host[10371:35074] [Endcord] The bundle from http://127.0.0.1:4040/endcord.v99.hbc is bytecode version 98, Discord's is 99
+2026-11-01 23:44:05.012156+0000 Host[10371:35074] [Endcord] Using the default loader config
+2026-11-01 23:44:05.012237+0000 Host[10371:35074] [Endcord] The bundle from http://127.0.0.1:4040/endcord.v99.hbc is bytecode version 98, Discord's is 99
+2026-11-01 23:44:05.019843+0000 Host[10371:35074] [Endcord] Using the default loader config
+2026-11-01 23:44:05.076039+0000 Host[10371:35074] [Endcord] Using the default loader config
+2026-11-01 23:44:05.119975+0000 Host[10371:35074] [Endcord] Downloaded the bundle from http://127.0.0.1:4040/endcord.v99.hbc (402 bytes)

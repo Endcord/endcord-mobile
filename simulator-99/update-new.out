@@ -1,0 +1,4 @@
+RESULT PASS update-new bundle: ran hbc2, saved from http://127.0.0.1:4040/endcord.v99.hbc | "f6df33a89bc8ecba68bb6551922b44bc348f71f3"
+RESULT PASS update-new no-alert: 
+SCREENSHOT update-new
+DONE update-new failures=0

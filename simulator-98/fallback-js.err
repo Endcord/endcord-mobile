@@ -1,0 +1,10 @@
+2026-11-01 23:44:59.365923+0000 Host[7626:28577] [Endcord] Using the default loader config
+2026-11-01 23:44:59.454450+0000 Host[7626:28577] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-11-01 23:44:59.548989+0000 Host[7626:28599] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+2026-11-01 23:44:59.600492+0000 Host[7626:28615] [Endcord] Using the default loader config
+2026-11-01 23:44:59.607121+0000 Host[7626:28599] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+2026-11-01 23:44:59.611502+0000 Host[7626:28615] [Endcord] Using the default loader config
+2026-11-01 23:45:00.180553+0000 Host[7626:28615] [Endcord] Using the default loader config
+2026-11-01 23:45:00.181147+0000 Host[7626:28615] [Endcord] Discord's bundle has bytecode version 98
+2026-11-01 23:45:00.187541+0000 Host[7626:28615] [Endcord] Couldn't download the bundle from http://127.0.0.1:4040/endcord.v98.hbc: HTTP 404
+2026-11-01 23:45:00.197875+0000 Host[7626:28615] [Endcord] Downloaded the bundle from http://127.0.0.1:4040/endcord.min.js (35 bytes)

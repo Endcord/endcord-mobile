@@ -1,0 +1,14 @@
+2026-11-01 23:45:08.851564+0000 Host[13556:43299] [Endcord] Applying fonts before hooks...
+2026-11-01 23:45:08.853295+0000 Host[13556:43299] [Endcord] Skipping font ggsans-Normal of Bad: its name or link can't be used
+2026-11-01 23:45:08.853479+0000 Host[13556:43299] [Endcord] Skipping font ../evil of Bad: its name or link can't be used
+2026-11-01 23:45:08.894990+0000 Host[13556:43299] [Endcord] Using the default loader config
+2026-11-01 23:45:08.982724+0000 Host[13556:43299] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-11-01 23:45:09.040418+0000 Host[13556:43333] [Endcord] Using the default loader config
+2026-11-01 23:45:09.046537+0000 Host[13556:43333] [Endcord] Using the default loader config
+2026-11-01 23:45:09.047235+0000 Host[13556:43333] [Endcord] Discord's bundle has bytecode version 99
+2026-11-01 23:45:09.047959+0000 Host[13556:43333] [Endcord] Using the default loader config
+2026-11-01 23:45:09.052323+0000 Host[13556:43317] [Endcord] Using the default loader config
+2026-11-01 23:45:09.055179+0000 Host[13556:43317] [Endcord] Using the default loader config
+2026-11-01 23:45:09.127591+0000 Host[13556:43317] [Endcord] Using the default loader config
+2026-11-01 23:45:09.200636+0000 Host[13556:43317] [Endcord] Using the default loader config
+2026-11-01 23:45:09.220153+0000 Host[13556:43317] [Endcord] The bundle at http://127.0.0.1:4040/endcord.v99.hbc hasn't changed

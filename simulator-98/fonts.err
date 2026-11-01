@@ -1,0 +1,13 @@
+2026-11-01 23:47:31.762380+0000 Host[14436:47604] [Endcord] Applying fonts before hooks...
+2026-11-01 23:47:31.809206+0000 Host[14436:47604] [Endcord] Registered font ggsans-Normal as Herculanum
+2026-11-01 23:47:31.890629+0000 Host[14436:47604] [Endcord] Using the default loader config
+2026-11-01 23:47:31.963014+0000 Host[14436:47604] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-11-01 23:47:32.018783+0000 Host[14436:47660] [Endcord] Using the default loader config
+2026-11-01 23:47:32.023615+0000 Host[14436:47660] [Endcord] Using the default loader config
+2026-11-01 23:47:32.024605+0000 Host[14436:47660] [Endcord] Discord's bundle has bytecode version 98
+2026-11-01 23:47:32.025858+0000 Host[14436:47660] [Endcord] Using the default loader config
+2026-11-01 23:47:32.093761+0000 Host[14436:47649] [Endcord] Using the default loader config
+2026-11-01 23:47:32.148670+0000 Host[14436:47649] [Endcord] Using the default loader config
+2026-11-01 23:47:32.155630+0000 Host[14436:47649] [Endcord] Using the default loader config
+2026-11-01 23:47:32.402909+0000 Host[14436:47649] [Endcord] Using the default loader config
+2026-11-01 23:47:32.435438+0000 Host[14436:47649] [Endcord] The bundle at http://127.0.0.1:4040/endcord.v98.hbc hasn't changed

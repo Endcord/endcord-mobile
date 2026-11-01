@@ -1,0 +1,4 @@
+RESULT PASS signed-newer bundle: ran hbc2, saved from http://127.0.0.1:4040/endcord.v98.hbc | "514c66cf27877eb95750afb85a50833c0cf168ba"
+RESULT PASS signed-newer no-alert: 
+SCREENSHOT signed-newer
+DONE signed-newer failures=0
