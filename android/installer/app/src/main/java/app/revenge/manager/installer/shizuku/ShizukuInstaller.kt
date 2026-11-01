@@ -28,15 +28,12 @@ class ShizukuInstaller(private val context: Context) : Installer, KoinComponent 
         val tempDir = File("/data/local/tmp")
         val movedApks = mutableListOf<File>()
 
-        // Copy each split to tmp
+        // Copy each split to tmp. The shell can't read the app's own cache, where the APKs are, so each one is sent
+        // through the command's input rather than copied by path.
         apks.forEach {
-            val moveCommand = "cp ${it.absolutePath} ${tempDir.absolutePath}"
-            val moveResult = executeShellCommand(moveCommand)
-
-            if(moveResult.isBlank())
-                movedApks.add(File(tempDir.absolutePath, it.name))
-            else
-                throw RuntimeException("Failed to move ${it.absolutePath} to temp dir")
+            val target = File(tempDir, it.name)
+            executeShellCommand("cat > '${target.absolutePath}'", input = it)
+            movedApks.add(target)
         }
 
         val installCommand = "pm install ${movedApks.joinToString(" ") { it.absolutePath }}"
@@ -44,13 +41,15 @@ class ShizukuInstaller(private val context: Context) : Installer, KoinComponent 
 
         installManager.getInstalled()
         movedApks.forEach {
-            it.delete()
+            executeShellCommand("rm -f '${it.absolutePath}'")
         }
     }
 
-    private fun executeShellCommand(command: String): String {
+    private fun executeShellCommand(command: String, input: File? = null): String {
         @Suppress("DEPRECATION")
         val process = Shizuku.newProcess(arrayOf("sh", "-c", command), null, null)
+
+        process.outputStream.use { stdin -> input?.inputStream()?.use { it.copyTo(stdin) } }
 
         val errorStr = process.errorStream.bufferedReader().use { it.readText().trim() }
         if(errorStr.isNotBlank()) throw RuntimeException("Failed to execute $command:\n\n$errorStr")

@@ -2,6 +2,7 @@ import { awaitStorage, createMMKVBackend, createStorage, purgeStorage, wrapSync 
 import { Author } from "@lib/addons/types";
 import { settings } from "@lib/api/settings";
 import { safeFetch } from "@lib/utils";
+import { requireAddonUrl } from "@lib/utils/addonUrl";
 import { BUNNY_PROXY_PREFIX, VD_PROXY_PREFIX } from "@lib/utils/constants";
 import { logger, LoggerClass } from "@lib/utils/logger";
 
@@ -44,7 +45,9 @@ export const VdPluginManager = {
                 .replace(VD_PROXY_PREFIX, BUNNY_PROXY_PREFIX);
         }
 
-        return await safeFetch(url, { cache: "no-store" });
+        // The code a plugin's link serves runs in Discord, and is fetched again on every start: only over https (or from
+        // this machine). A plugin installed over plain http before stays as it is, without updates.
+        return await safeFetch(requireAddonUrl(url), { cache: "no-store" });
     },
 
     async fetchPlugin(id: string) {
@@ -80,8 +83,9 @@ export const VdPluginManager = {
     },
 
     async installPlugin(id: string, enabled = true) {
+        requireAddonUrl(id);
         if (!id.endsWith("/")) id += "/";
-        if (typeof id !== "string" || id in plugins) throw new Error("Plugin already installed");
+        if (id in plugins) throw new Error("Plugin already installed");
         await this.fetchPlugin(id);
         if (enabled) await this.startPlugin(id);
     },

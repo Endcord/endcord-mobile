@@ -152,8 +152,9 @@ void patchFonts(NSDictionary<NSString *, NSString *> *mainFonts, NSString *fontD
     {
         NSString *link = mainFonts[fontName];
         NSURL *url = [link isKindOfClass:NSString.class] ? [NSURL URLWithString:link] : nil;
-        NSString *scheme = url.scheme.lowercaseString;
-        if (!isSafeFileName(fontName) || !([scheme isEqualToString:@"https"] || [scheme isEqualToString:@"http"]))
+        // A font file goes to the system's font parser: only from where nobody on the way can change it, as the bundle
+        // requires too (lib/addons/fonts)
+        if (!isSafeFileName(fontName) || ![url.scheme.lowercaseString isEqualToString:@"https"])
         {
             BunnyLog(@"Skipping font %@ of %@: its name or link can't be used", fontName, fontDefName);
             continue;

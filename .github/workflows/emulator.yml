@@ -28,7 +28,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: oven-sh/setup-bun@v2
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
         with:
           bun-version: latest
       - name: Build the bundle with the self-test
@@ -39,18 +39,15 @@ jobs:
           # Precompiled like the published builds, so the emulator runs the bytecode users get
           node scripts/hermes.mjs
           mkdir -p ../serve && cp dist/endcord.min.js dist/endcord.v*.hbc ../serve/
-          # Signed with a key of this run's own, which the loader below requires, as a release build does
+          # A key of this run's own, which the loader and the installer below require, as a release build does
           openssl ecparam -name prime256v1 -genkey -noout | openssl pkcs8 -topk8 -nocrypt -out ../release-test.pem
           openssl pkey -in ../release-test.pem -pubout -outform DER | base64 -w0 > ../release-test.pub
-          ENDCORD_RELEASE_KEY="$(cat ../release-test.pem)" ENDCORD_RELEASE_PUBLIC_KEY_FILE=../release-test.pub \
-            ENDCORD_RELEASE_BASE_URL=http://10.0.2.2:4040/pinned/ node scripts/sign-release.mjs ../serve
-          mkdir ../serve/pinned && cp ../serve/endcord.min.js ../serve/endcord.v*.hbc ../serve/pinned/
 
       - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: 25
-      - uses: gradle/actions/setup-gradle@v5
+      - uses: gradle/actions/setup-gradle@0723195856401067f7a2779048b490ace7a47d7c # v5.0.2
       - name: Build the loader
         working-directory: android/loader
         run: |
@@ -58,6 +55,14 @@ jobs:
           ./gradlew --no-daemon :app:assembleDebug -Pendcord.bundleUrl=http://10.0.2.2:4040/endcord.min.js \
             -Pendcord.releaseKey="$(cat ../../release-test.pub)" -Pendcord.requireSigned=true
           cp app/build/outputs/apk/debug/app-debug.apk ../../serve/endcord-xposed.apk
+
+      - name: Sign the build
+        # The bundle and the loader together, as the Build workflow signs them: the installer only patches in a loader
+        # the signed release lists
+        run: |
+          ENDCORD_RELEASE_KEY="$(cat release-test.pem)" ENDCORD_RELEASE_PUBLIC_KEY_FILE=release-test.pub \
+            ENDCORD_RELEASE_BASE_URL=http://10.0.2.2:4040/pinned/ node bundle/scripts/sign-release.mjs serve
+          mkdir serve/pinned && cp serve/endcord.min.js serve/endcord.v*.hbc serve/endcord-xposed.apk serve/pinned/
 
       - uses: actions/setup-java@v5
         with:
@@ -67,7 +72,8 @@ jobs:
         working-directory: android/installer
         run: |
           chmod +x gradlew
-          ./gradlew --no-daemon :app:assembleDebug -Pendcord.loaderUrl=http://10.0.2.2:4040/endcord-xposed.apk
+          ./gradlew --no-daemon :app:assembleDebug -Pendcord.loaderUrl=http://10.0.2.2:4040/endcord-xposed.apk \
+            -Pendcord.releaseKey="$(cat ../../release-test.pub)"
           cp app/build/outputs/apk/debug/*.apk ../../installer.apk
 
       - name: Download the latest stable Discord (for the "already installed" scenario)
@@ -87,7 +93,7 @@ jobs:
           sudo udevadm trigger --name-match=kvm
 
       - name: Run on the emulator
-        uses: reactivecircus/android-emulator-runner@v2
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d # v2.38.0
         with:
           api-level: ${{ matrix.api }}
           target: google_apis

@@ -46,6 +46,11 @@ abstract class DownloadStep : Step() {
     open val downloadMirrorUrlPath: String? = null
 
     /**
+     * Where to download from when [downloadFullUrl] can't be
+     */
+    open val downloadFallbackUrl: String? = null
+
+    /**
      * Where to download the file to
      */
     abstract val destination: File
@@ -114,8 +119,15 @@ abstract class DownloadStep : Step() {
         val fileName = destination.name
         runner.logger.i("Checking if $fileName is cached")
         if (destination.exists()) {
-            runner.logger.i("Checking if $fileName isn't empty")
-            if (destination.length() > 0) {
+            // Checked like a download: a file that isn't what this step would have downloaded isn't taken
+            val usable = destination.length() > 0 && try {
+                verify()
+                true
+            } catch (t: Throwable) {
+                runner.logger.i("The cached $fileName can't be used: ${t.message}")
+                false
+            }
+            if (usable) {
                 runner.logger.i("$fileName is cached")
                 cached = true
 
@@ -126,7 +138,7 @@ abstract class DownloadStep : Step() {
                 return
             }
 
-            runner.logger.i("Deleting empty file: $fileName")
+            runner.logger.i("Deleting cached file: $fileName")
             destination.delete()
         }
 
@@ -145,6 +157,13 @@ abstract class DownloadStep : Step() {
         if (!successfulDownload && devMirror != null && downloadMirrorUrlPath != null) {
             downloadUrl = preferenceManager.mirror.baseUrl + downloadMirrorUrlPath
             successfulDownload = download(downloadUrl, destination, runner)
+        }
+
+        // An address of one build can be gone once a later build replaced it
+        val fallbackUrl = downloadFallbackUrl
+        if (!successfulDownload && fallbackUrl != null) {
+            downloadUrl = fallbackUrl
+            successfulDownload = download(fallbackUrl, destination, runner)
         }
 
         // If the current mirror fails, try other mirrors

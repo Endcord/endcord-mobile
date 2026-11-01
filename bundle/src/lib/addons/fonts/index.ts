@@ -1,6 +1,7 @@
 import { awaitStorage, createMMKVBackend, createStorage, wrapSync } from "@core/vendetta/storage";
 import { clearFolder, downloadFile, fileExists, removeFile, writeFile } from "@lib/api/native/fs";
 import { safeFetch } from "@lib/utils";
+import { isAddonUrl, requireAddonUrl } from "@lib/utils/addonUrl";
 
 type FontMap = Record<string, string>;
 
@@ -48,7 +49,8 @@ export function validateFont(font: FontDefinition) {
     if (typeof font.main !== "object" || Array.isArray(font.main)) throw new Error("A font's 'main' must map its fonts to their links");
     for (const [file, url] of Object.entries(font.main)) {
         if (!isSafeFileName(file)) throw new Error(`The font file name '${file}' can't contain slashes or start with a dot`);
-        if (typeof url !== "string" || !/^https?:\/\//i.test(url)) throw new Error(`The font file '${file}' needs an http(s) link`);
+        // Font files go to the system's font parser: only from where nobody on the way can change them
+        if (!isAddonUrl(url)) throw new Error(`The font file '${file}' needs an https:// link`);
     }
     if (font.name in fonts) throw new Error(`There is already a font named '${font.name}' installed`);
 }
@@ -57,6 +59,7 @@ export async function saveFont(data: string | FontDefinition, selected = false) 
     let fontDefJson: FontDefinition;
 
     if (typeof data === "string") {
+        requireAddonUrl(data);
         try {
             fontDefJson = await (await safeFetch(data)).json();
         } catch (e) {
@@ -82,6 +85,8 @@ async function downloadFontFiles(font: FontDefinition) {
         throw new Error(`The font '${font.name}' has names that can't be saved as files`);
     }
     const errors = await Promise.allSettled(Object.entries(font.main).map(async ([file, url]) => {
+        // Also for fonts saved before links were checked
+        requireAddonUrl(url);
         let ext = url.split(".").pop();
         if (ext !== "ttf" && ext !== "otf") ext = "ttf";
         const path = `downloads/fonts/${font.name}/${file}.${ext}`;
@@ -98,7 +103,7 @@ async function downloadFontFiles(font: FontDefinition) {
 export async function updateFont(fontDef: FontDefinition, previousName = fontDef.name) {
     let fontDefCopy = { ...fontDef };
     if (fontDefCopy.source) fontDefCopy = {
-        ...await fetch(fontDefCopy.source).then(it => it.json()),
+        ...await safeFetch(requireAddonUrl(fontDefCopy.source)).then(it => it.json()),
         // Can't change these properties
         name: fontDef.name,
         source: fontDef.source

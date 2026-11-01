@@ -100,14 +100,8 @@ function isSafe(value: unknown, depth = 0): boolean {
     return true;
 }
 
-const isHttps = (url: unknown): url is string => {
-    if (typeof url !== "string") return false;
-    try {
-        return new URL(url).protocol === "https:";
-    } catch {
-        return false;
-    }
-};
+// Not with URL, which React Native only partly implements
+const isHttps = (url: unknown): url is string => typeof url === "string" && /^https:\/\/\S+$/i.test(url);
 
 /** Endcord's settings as the text of a backup file */
 export async function createBackup(): Promise<string> {
