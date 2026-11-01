@@ -1,25 +1,42 @@
 
 <div align="center">
     <img src=".github/assets/endcord-banner.png" alt="Endcord" width="500" />
-    <h1>Endcord for Android</h1>
-    <p>Endcord's plugins, languages and updates on your phone, built on the classic Discord app.</p>
+    <h1>Endcord Mobile</h1>
+    <p>Plugins, themes and privacy for the Discord app on your Android phone, iPhone and iPad.</p>
+
+[![Download for Android](https://img.shields.io/badge/Download-Android%20APK-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/Endcord/endcord-mobile/releases/download/next-installer-v1.0.0/endcord-installer-v1.0.0.apk)
+[![Download for iOS](https://img.shields.io/badge/Download-iOS%20IPA-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/Endcord/endcord-mobile/releases/download/ios-v1.0.6/Endcord.ipa)
+[![Join the Discord](https://img.shields.io/badge/Discord-Join%20us-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/endcord)
+
+[Website](https://endcord.com) · [Endcord PC](https://github.com/rootpoii/endcord) · [Full README](../../tree/next#readme)
+
+</div>
+
+This repository holds Endcord for **Android** and **iOS / iPadOS**. Their source code is on the
+[`next` branch](../../tree/next):
+
+| | Source code | Download |
+| --- | --- | --- |
+| **Android** | [`android/`](../../tree/next/android) | [Endcord Installer](https://github.com/Endcord/endcord-mobile/releases/download/next-installer-v1.0.0/endcord-installer-v1.0.0.apk) |
+| **iOS and iPadOS** | [`ios/`](../../tree/next/ios) | [Endcord.ipa](https://github.com/Endcord/endcord-mobile/releases/download/ios-v1.0.6/Endcord.ipa) |
+| **Both**: plugins, themes and Endcord's pages | [`bundle/`](../../tree/next/bundle) | Comes with the app |
+| **Endcord Classic**, for the classic Discord app on Android | This branch | [Releases](../../releases/latest) |
+
+---
+
+# Endcord Classic
+
+Endcord's plugins, languages and updates on your phone, built on the classic Discord app. The rest of this page is about
+Endcord Classic.
 
 [![Build](https://github.com/rootpoii/endcord-mobile/actions/workflows/build.yml/badge.svg)](https://github.com/rootpoii/endcord-mobile/actions/workflows/build.yml)
 [![License: OSL-3.0](https://img.shields.io/badge/license-OSL--3.0-blue.svg)](LICENSE)
 [![Latest release](https://img.shields.io/github/v/release/rootpoii/endcord-mobile?label=installer)](https://github.com/rootpoii/endcord-mobile/releases/latest)
 
-[Website](https://endcord.com) · [Discord](https://discord.gg/endcord) · [Endcord PC](https://github.com/rootpoii/endcord)
-
-</div>
-
 > [!NOTE]
-> Endcord for Android is a **fork of [Aliucord](https://github.com/Aliucord/Aliucord)**, the Android Discord client
+> Endcord Classic is a **fork of [Aliucord](https://github.com/Aliucord/Aliucord)**, the Android Discord client
 > mod. It keeps Aliucord's core and plugin compatibility, and adds Endcord PC's plugins, languages, updater and
 > installer on top. It is not affiliated with the Aliucord team or with Discord.
->
-> Looking for Endcord on the **current** Discord app? That is a separate client on the
-> [`next` branch](../../tree/next) of this repository (a fork of Revenge), with its own README. This branch is the
-> classic-app client.
 
 ## Features
 
@@ -107,7 +124,7 @@ Bug reports, translations and plugin ports are welcome. Please read [CONTRIBUTIN
 
 ## Credits
 
-Endcord for Android is based on [Aliucord](https://github.com/Aliucord/Aliucord) and
+Endcord Classic is based on [Aliucord](https://github.com/Aliucord/Aliucord) and
 [Aliucord Manager](https://github.com/Aliucord/Manager) by Juby210, Vendicated, rushiiMachine and their
 contributors, licensed under the Open Software License 3.0. Built-in plugins are ports of
 [Endcord PC](https://github.com/rootpoii/endcord) plugins.
