@@ -1,0 +1,14 @@
+2026-11-01 13:27:01.053508+0000 Host[15173:46440] [Endcord] Applying fonts before hooks...
+2026-11-01 13:27:01.056668+0000 Host[15173:46440] [Endcord] Skipping font ../evil of Bad: its name or link can't be used
+2026-11-01 13:27:01.178561+0000 Host[15173:46440] [Endcord] Using the default loader config
+2026-11-01 13:27:01.294949+0000 Host[15173:46440] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-11-01 13:27:01.369797+0000 Host[15173:46473] [Endcord] Using the default loader config
+2026-11-01 13:27:01.401541+0000 Host[15173:46473] [Endcord] Using the default loader config
+2026-11-01 13:27:01.418529+0000 Host[15173:46473] [Endcord] Discord's bundle has bytecode version 98
+2026-11-01 13:27:01.419566+0000 Host[15173:46473] [Endcord] Using the default loader config
+2026-11-01 13:27:01.424071+0000 Host[15173:46455] [Endcord] Using the default loader config
+2026-11-01 13:27:01.429397+0000 Host[15173:46455] [Endcord] Using the default loader config
+2026-11-01 13:27:01.430887+0000 Host[15173:46455] [Endcord] Using the default loader config
+2026-11-01 13:27:01.521282+0000 Host[15173:46461] [Endcord] Couldn't download font http://127.0.0.1:4040/evil.ttf: 404
+2026-11-01 13:27:01.539881+0000 Host[15173:46455] [Endcord] Using the default loader config
+2026-11-01 13:27:01.551038+0000 Host[15173:46455] [Endcord] The bundle at http://127.0.0.1:4040/endcord.v98.hbc hasn't changed

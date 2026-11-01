@@ -1,0 +1,16 @@
+2026-11-01 13:27:58.008707+0000 Host[13759:44568] [Endcord] Applying fonts before hooks...
+2026-11-01 13:27:58.010467+0000 Host[13759:44568] [Endcord] fonts.json has no font Endcord can use
+2026-11-01 13:27:58.074110+0000 Host[13759:44568] [Endcord] Using the default loader config
+2026-11-01 13:27:58.161297+0000 Host[13759:44568] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-11-01 13:27:58.240764+0000 Host[13759:44602] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+2026-11-01 13:27:58.271500+0000 Host[13759:44609] [Endcord] Using the default loader config
+2026-11-01 13:27:58.277726+0000 Host[13759:44609] [Endcord] Using the default loader config
+2026-11-01 13:27:58.279001+0000 Host[13759:44609] [Endcord] Discord's bundle has bytecode version 99
+2026-11-01 13:27:58.280084+0000 Host[13759:44609] [Endcord] Using the default loader config
+2026-11-01 13:27:58.282908+0000 Host[13759:44568] [Endcord] SmoothType: caret off, 0 message boxes seen
+2026-11-01 13:27:58.287854+0000 Host[13759:44597] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+2026-11-01 13:27:58.338728+0000 Host[13759:44597] [Endcord] Using the default loader config
+2026-11-01 13:27:58.363010+0000 Host[13759:44597] [Endcord] Using the default loader config
+2026-11-01 13:27:58.383858+0000 Host[13759:44597] [Endcord] Using the default loader config
+2026-11-01 13:27:58.468405+0000 Host[13759:44597] [Endcord] Using the default loader config
+2026-11-01 13:27:58.478662+0000 Host[13759:44597] [Endcord] The bundle at http://127.0.0.1:4040/endcord.v99.hbc hasn't changed
