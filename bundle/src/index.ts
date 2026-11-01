@@ -1,5 +1,4 @@
 import patchErrorBoundary from "@core/debug/patches/patchErrorBoundary";
-import initScreenShareCheck from "@core/debug/screenShareCheck";
 import initFixes from "@core/fixes";
 import { initFetchI18nStrings } from "@core/i18n";
 import { initOverlayHost } from "@core/overlay";
@@ -35,7 +34,6 @@ export default async () => {
         step("i18n", initFetchI18nStrings),
         step("settingsPages", initSettings),
         step("fixes", initFixes),
-        step("screen share check", initScreenShareCheck),
         step("errorBoundary", patchErrorBoundary),
         step("plugins", updatePlugins),
     ]).then(
