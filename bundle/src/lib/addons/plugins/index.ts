@@ -2,6 +2,7 @@ import { getCorePlugins } from "@core/plugins";
 import { readFile, removeFile, writeFile } from "@lib/api/native/fs";
 import { awaitStorage, createStorage, getPreloadedStorage, preloadStorageIfExists, purgeStorage, updateStorage } from "@lib/api/storage";
 import { safeFetch } from "@lib/utils";
+import { isAddonUrl } from "@lib/utils/addonUrl";
 import { OFFICIAL_PLUGINS_REPO_URL } from "@lib/utils/constants";
 import { semver } from "@metro/common";
 
@@ -31,6 +32,19 @@ const fetchJSON = (repoUrl: string, path: string) => _fetch(repoUrl, path).then(
 
 function assert<T>(condition: T, id: string, attempt: string): asserts condition {
     if (!condition) throw new Error(`[${id}] Attempted to ${attempt}`);
+}
+
+/**
+ * Whether a plugin ID a repository uses can name the files the plugin is kept in (its manifest, script and storage).
+ * The repository's index is data from a server: an ID like "../../loader" would write its manifest over another
+ * file of Endcord's, before anything from the repository is even installed.
+ */
+export function isSafePluginId(id: unknown): id is string {
+    return typeof id === "string" && /^[a-z0-9][a-z0-9._-]{0,99}$/i.test(id) && !id.includes("..");
+}
+
+function requireSafePluginId(id: string) {
+    if (!isSafePluginId(id)) throw new Error(`The plugin ID '${id}' can't name a file`);
 }
 
 /**
@@ -78,6 +92,7 @@ export function isPluginEnabled(id: string) {
  * @returns The newly fetched plugin manifest
  */
 export async function updateAndWritePlugin(repoUrl: string, id: string, fetchScript: boolean) {
+    requireSafePluginId(id);
     const manifest: t.BunnyPluginManifestInternal = await fetchJSON(repoUrl, `builds/${id}/manifest.json`);
 
     // @ts-expect-error - Setting a readonly property
@@ -89,6 +104,10 @@ export async function updateAndWritePlugin(repoUrl: string, id: string, fetchScr
 
         const js: string = await fetchJS(repoUrl, `builds/${id}/index.js`);
         await writeFile(manifest.jsPath, js);
+    } else {
+        // Where the script is kept is Endcord's to say, not the manifest's: the file is read and run as the plugin
+        // @ts-expect-error - Clearing a readonly property
+        delete manifest.jsPath;
     }
 
     await updateStorage(`plugins/manifests/${id}.json`, manifest);
@@ -131,6 +150,8 @@ export async function refreshPlugin(id: string, repoUrl?: string) {
  * @returns Whether there was any changes made from the update
  */
 export async function updateRepository(repoUrl: string) {
+    // What a repository serves is code that runs in Discord: only over https (or from this machine)
+    if (!isAddonUrl(repoUrl)) throw new Error(`The repository ${repoUrl} isn't an https:// link`);
     const repo: t.PluginRepo = await fetchJSON(repoUrl, "repo.json");
     const storedRepo = pluginRepositories[repoUrl];
 
@@ -153,7 +174,12 @@ export async function updateRepository(repoUrl: string) {
         }
     }
 
-    const pluginIds = Object.keys(repo).filter(id => !id.startsWith("$"));
+    const pluginIds = Object.keys(repo).filter(id => !id.startsWith("$")).filter(id => {
+        if (isSafePluginId(id)) return true;
+        console.error(`[Endcord] The repository ${repoUrl} lists a plugin whose ID can't name a file: ${JSON.stringify(id)}`);
+        delete repo[id];
+        return false;
+    });
     await Promise.all(pluginIds.map(async pluginId => {
         if (!storedRepo || !storedRepo[pluginId] || repo[pluginId].alwaysFetch || isGreaterVersion(repo[pluginId].version, storedRepo[pluginId].version)) {
             updated = true;
@@ -364,7 +390,8 @@ export async function updateAllRepository() {
 /** The plugins already downloaded from repositories, registered from storage without asking the network */
 async function registerStoredPlugins() {
     for (const repoUrl of Object.keys(pluginRepositories)) {
-        const ids = Object.keys(pluginRepositories[repoUrl] ?? {}).filter(id => !id.startsWith("$"));
+        // Also for a repository saved before IDs were checked
+        const ids = Object.keys(pluginRepositories[repoUrl] ?? {}).filter(id => !id.startsWith("$") && isSafePluginId(id));
         await Promise.all(ids.map(id => preloadStorageIfExists(`plugins/manifests/${id}.json`)));
         for (const id of ids) {
             const manifest = getPreloadedStorage<t.BunnyPluginManifest>(`plugins/manifests/${id}.json`);

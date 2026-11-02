@@ -66,15 +66,27 @@ internal const val REPO_CHANNEL_LATEST = "latest"
 
 private val SHA256_HEX_REGEX = Regex("^[0-9a-f]{64}$")
 
-private fun isAbsoluteHttpUrl(url: String) = url.startsWith("https://") || url.startsWith("http://")
+/** Plain http from the developer's own machine only: localhost, and 10.0.2.2, the machine as the emulator sees it */
+private val OWN_MACHINE_HTTP = Regex("^http://(localhost|127\\.0\\.0\\.1|\\[::1]|10\\.0\\.2\\.2)(:\\d+)?(/|$)", RegexOption.IGNORE_CASE)
+
+/**
+ * Whether a repository, or a plugin artifact, may be fetched from [url]: over https, or over plain http from this
+ * machine, as the bundle requires of its addons (lib/utils/addonUrl.ts). An index names the artifacts and their
+ * digests, and an artifact is code that runs in Discord: whoever could change them on the way, like anyone on the same
+ * Wi-Fi with plain http, mustn't be able to.
+ */
+internal fun isRepoUrl(url: String): Boolean =
+    url.startsWith("https://", ignoreCase = true) || OWN_MACHINE_HTTP.containsMatchIn(url)
+
+internal const val REPO_URL_RULE = "must be an https:// link (plain http:// only from this machine)"
 
 /**
  * Parses and sanitizes a repository index document.
  *
  * Throws on unparseable JSON, an unsupported [RepoIndex.format], with these extra rules:
  * - Icons that aren't asset names or data URLs are stripped (see [validatedPluginIcon]).
- * - Structurally invalid versions (bad version format, non-absolute [RepoVersion.url], malformed [RepoVersion.sha256],
- *   non-positive size, invalid dependency IDs/ranges) are dropped with a warning.
+ * - Structurally invalid versions (bad version format, a [RepoVersion.url] that isn't https (see [isRepoUrl]),
+ *   malformed [RepoVersion.sha256], non-positive size, invalid dependency IDs/ranges) are dropped with a warning.
  * - Channel pointers naming a missing/dropped version are dropped with a warning.
  * - Plugins with an invalid ID or no remaining versions are dropped with a warning.
  */
@@ -137,7 +149,7 @@ private fun validateRepoVersion(versionKey: String, version: RepoVersion): Strin
     } catch (e: IllegalArgumentException) {
         return "invalid version string: ${e.message}"
     }
-    if (!isAbsoluteHttpUrl(version.url)) return "url must be absolute: '${version.url}'"
+    if (!isRepoUrl(version.url)) return "url $REPO_URL_RULE: '${version.url}'"
     if (!SHA256_HEX_REGEX.matches(version.sha256)) return "malformed sha256 digest"
     if (version.size <= 0) return "non-positive size"
     for ((depId, dep) in version.dependencies) {

@@ -10,6 +10,9 @@ on:
 env:
   IPA_URL: https://github.com/ra1ncord/RainTweak/releases/download/v1.2.0/RainTweak.ipa
 
+permissions:
+  contents: read
+
 jobs:
   real:
     name: Real Discord

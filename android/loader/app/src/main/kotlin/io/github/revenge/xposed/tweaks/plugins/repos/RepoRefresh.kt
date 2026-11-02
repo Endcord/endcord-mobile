@@ -24,6 +24,11 @@ internal suspend fun refreshRepo(url: String): RepoIndex {
         PluginErrorCodes.NOT_FOUND,
         "Unknown repository: '$url'"
     )
+    // Also for a repository saved before the rule: its index is what the installs below trust
+    if (!isRepoUrl(url)) throw PluginSystemError(
+        PluginErrorCodes.NOT_ALLOWED,
+        "Repository URL $REPO_URL_RULE: '$url'"
+    )
 
     val indexUrl = url.trimEnd('/') + "/" + INDEX_PATH
     val indexFile = RepoStore.cachedIndexFile(url)

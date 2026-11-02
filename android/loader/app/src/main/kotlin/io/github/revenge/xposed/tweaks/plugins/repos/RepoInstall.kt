@@ -65,10 +65,13 @@ internal fun parseRepoInstallAction(raw: Any?): RepoInstallAction {
 
     fun string(key: String) = map[key] as? String
         ?: throw PluginSystemError(PluginErrorCodes.INVALID_ARGUMENT, "Plan action is missing '$key'")
+    val url = string("url")
+    // The plan comes back from JS: an artifact is only fetched from where an index could have named it
+    if (!isRepoUrl(url)) throw PluginSystemError(PluginErrorCodes.INVALID_ARGUMENT, "Plan action url $REPO_URL_RULE: '$url'")
     return RepoInstallAction(
         id = string("id"),
         version = Version.parse(string("version")),
-        url = string("url"),
+        url = url,
         sha256 = string("sha256"),
         size = (map["size"] as? Number)?.toLong()
             ?: throw PluginSystemError(PluginErrorCodes.INVALID_ARGUMENT, "Plan action is missing 'size'"),

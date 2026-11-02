@@ -36,7 +36,7 @@ class ShizukuInstaller(private val context: Context) : Installer, KoinComponent 
             movedApks.add(target)
         }
 
-        val installCommand = "pm install ${movedApks.joinToString(" ") { it.absolutePath }}"
+        val installCommand = "pm install ${movedApks.joinToString(" ") { "'${it.absolutePath}'" }}"
         executeShellCommand(installCommand)
 
         installManager.getInstalled()

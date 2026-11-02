@@ -11,6 +11,9 @@ on:
   push:
     tags: ["next-installer-v*"]
 
+permissions:
+  contents: read
+
 jobs:
   release:
     name: Build and publish the installer

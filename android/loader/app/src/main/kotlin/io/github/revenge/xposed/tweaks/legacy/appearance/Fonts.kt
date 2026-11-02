@@ -61,7 +61,12 @@ val fonts by tweak {
             log.w("fonts.json malformed: ${e.message}")
             return@withAppContext
         }
+        // The names make paths under the fonts folder, and nothing outside it may be written or deleted
         val setName = fontDef.name ?: return@withAppContext
+        if (!isSafeFontName(setName)) {
+            log.w("fonts.json names a font that can't be saved as a folder; not applying it")
+            return@withAppContext
+        }
 
         val downloadsDir = File(dataDir, "${RevengeConstants.FILES_DIR}/downloads/fonts").apply { ensureDir() }
         val setDir = File(downloadsDir, setName).apply { ensureDir() }
@@ -84,6 +89,10 @@ val fonts by tweak {
             fontDef.main.entries.map { (name, url) ->
                 async {
                     try {
+                        if (!isSafeFontName(name)) {
+                            log.w("Not downloading a font of $setName: its name can't be saved as a file")
+                            return@async
+                        }
                         // A font file goes to the system's font parser: only from where nobody on the way can change
                         // it, as the bundle requires too (lib/addons/fonts)
                         if (!url.startsWith("https://")) {
@@ -122,6 +131,26 @@ private object FontsState {
     @Volatile
     var fontsAbsPath: String? = null
 
+    /**
+     * The downloaded file a `<font set>:<font>` family name refers to, or null when the name isn't one. The family
+     * name comes from whatever styles a view, so both parts have to be names that stay inside the fonts folder; the
+     * lookup must not touch anything on the way either.
+     */
+    private fun downloadedFontFile(fontFamilyName: String, fileExt: String): File? {
+        val split = fontFamilyName.split(":")
+        if (split.size != 2) return null
+        val (customName, refName) = split
+        if (!isSafeFontName(customName) || !isSafeFontName(refName)) return null
+        val downloads = fontsDownloadsDir ?: return null
+        return File(downloads, "$customName/$refName.$fileExt")
+    }
+
+    /** Where a family name is looked up by name: the selected font's folder only for a name that stays in it */
+    private fun fontRootPaths(fontFamilyName: String): List<String> = listOfNotNull(
+        fontsAbsPath?.takeIf { isSafeFontName(fontFamilyName) },
+        FONTS_ASSET_PATH,
+    )
+
     fun createAssetTypeface(
         rawName: String,
         style: Int,
@@ -142,18 +171,14 @@ private object FontsState {
 
         try {
             for (fileExt in FILE_EXTENSIONS) {
-                val split = fontFamilyName.split(":")
-                if (split.size != 2) break
-                val (customName, refName) = split
-                val downloads = fontsDownloadsDir ?: break
-                val file = File(downloads, "$customName/$refName.$fileExt").apply { ensureFile() }
-                if (!file.exists()) continue
+                val file = downloadedFontFile(fontFamilyName, fileExt) ?: break
+                if (!file.isFile) continue
                 return Typeface.createFromFile(file.absolutePath)
             }
         } catch (_: Throwable) {
         }
 
-        for (fontRootPath in arrayOf(fontsAbsPath, FONTS_ASSET_PATH).filterNotNull()) {
+        for (fontRootPath in fontRootPaths(fontFamilyName)) {
             for (fileExt in FILE_EXTENSIONS) {
                 val fileName = "$fontRootPath$fontFamilyName$extension$fileExt"
                 return try {
@@ -177,19 +202,15 @@ private object FontsState {
         for (fontFamilyName in fontFamilyNames) {
             try {
                 for (fileExt in FILE_EXTENSIONS) {
-                    val split = fontFamilyName.split(":")
-                    if (split.size != 2) break
-                    val (customName, refName) = split
-                    val downloads = fontsDownloadsDir ?: break
-                    val file = File(downloads, "$customName/$refName.$fileExt").apply { ensureFile() }
-                    if (!file.exists()) continue
+                    val file = downloadedFontFile(fontFamilyName, fileExt) ?: break
+                    if (!file.isFile) continue
                     val font = Font.Builder(file).build()
                     fontFamilies.add(FontFamily.Builder(font).build())
                 }
             } catch (_: Throwable) {
             }
 
-            for (fontRootPath in arrayOf(fontsAbsPath, FONTS_ASSET_PATH).filterNotNull()) {
+            for (fontRootPath in fontRootPaths(fontFamilyName)) {
                 for (fileExt in FILE_EXTENSIONS) {
                     val fileName = "$fontRootPath$fontFamilyName$fileExt"
                     try {

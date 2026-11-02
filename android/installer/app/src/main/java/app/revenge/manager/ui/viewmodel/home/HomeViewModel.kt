@@ -23,6 +23,7 @@ import app.revenge.manager.installer.Installer
 import app.revenge.manager.installer.session.SessionInstaller
 import app.revenge.manager.installer.shizuku.ShizukuInstaller
 import app.revenge.manager.installer.shizuku.ShizukuPermissions
+import app.revenge.manager.installer.util.ApkSignature
 import app.revenge.manager.installer.util.SignedRelease
 import app.revenge.manager.network.dto.Release
 import app.revenge.manager.network.utils.CommitsPagingSource
@@ -132,7 +133,13 @@ class HomeViewModel(
     fun downloadAndInstallUpdate(onProgressUpdate: (Float?) -> Unit) {
         screenModelScope.launch {
             isUpdating = true
-            downloadAndInstall(updateDownloadUrl!!, "update.apk", onProgressUpdate = onProgressUpdate)
+            // Only this app, signed with its key: the release's file is what GitHub serves, and Shizuku installs any APK
+            downloadAndInstall(
+                updateDownloadUrl!!,
+                "update.apk",
+                verify = { ApkSignature.requireUpdateOf(context, it) },
+                onProgressUpdate = onProgressUpdate,
+            )
             isUpdating = false
         }
     }
@@ -184,7 +191,7 @@ class HomeViewModel(
 
     /**
      * Downloads an APK into the cache and installs it with the chosen install method. [verify] throws when the download
-     * isn't what was expected; Android itself only lets an update of this app through with this app's signature.
+     * isn't what was expected, and nothing is installed then.
      */
     private suspend fun downloadAndInstall(
         url: String,

@@ -28,6 +28,10 @@ concurrency:
   group: ios-${{ github.ref }}
   cancel-in-progress: true
 
+# Read-only for every job; the ones that publish ask for more themselves
+permissions:
+  contents: read
+
 jobs:
   tweak:
     name: Tweak
@@ -295,15 +299,22 @@ jobs:
           path: results
       - name: Push
         # Only the tweak and a report: the IPA is Discord's app and never goes into this repository
+        env:
+          # Through the environment, not into the script: the versions are read from the tweak and the IPA
+          TWEAK_RESULT: ${{ needs.tweak.result }}
+          TWEAK_VERSION: ${{ needs.tweak.outputs.version }}
+          SIMULATOR_RESULT: ${{ needs.simulator.result }}
+          IPA_RESULT: ${{ needs.ipa.result }}
+          DISCORD_VERSION: ${{ needs.ipa.outputs.discord-version }}
         run: |
           cd results
           {
-            echo "run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            echo "commit: ${{ github.sha }}"
-            echo "tweak: ${{ needs.tweak.result }} ${{ needs.tweak.outputs.version }}"
-            echo "simulator: ${{ needs.simulator.result }}"
-            echo "ipa: ${{ needs.ipa.result }}"
-            echo "discord: ${{ needs.ipa.outputs.discord-version }}"
+            echo "run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+            echo "commit: $GITHUB_SHA"
+            echo "tweak: $TWEAK_RESULT $TWEAK_VERSION"
+            echo "simulator: $SIMULATOR_RESULT"
+            echo "ipa: $IPA_RESULT"
+            echo "discord: $DISCORD_VERSION"
           } > report.txt
           git init -q -b results
           git config user.name "github-actions[bot]"

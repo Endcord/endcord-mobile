@@ -11,6 +11,9 @@ concurrency:
   group: emulator-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   emulator:
     name: Emulator (API ${{ matrix.api }})

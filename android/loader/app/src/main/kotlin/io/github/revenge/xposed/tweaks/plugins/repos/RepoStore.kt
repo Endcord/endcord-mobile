@@ -18,7 +18,7 @@ internal const val INTERNAL_REPO_URL = "revenge://internal"
 
 @Serializable
 internal data class UserRepo(
-    /** Absolute HTTP(s) URL of the repository root, and the repository's identity. */
+    /** Absolute https URL of the repository root (see [isRepoUrl]), and the repository's identity. */
     val url: String,
     val enabled: Boolean = true,
 )
@@ -83,9 +83,9 @@ internal object RepoStore {
 
         val seen = mutableSetOf<String>()
         for ((url) in entries) {
-            if (!url.startsWith("https://") && !url.startsWith("http://")) throw PluginSystemError(
+            if (!isRepoUrl(url)) throw PluginSystemError(
                 PluginErrorCodes.INVALID_ARGUMENT,
-                "Repository URL must be absolute: '$url'",
+                "Repository URL $REPO_URL_RULE: '$url'",
             )
 
             if (url == INTERNAL_REPO_URL) throw PluginSystemError(

@@ -11,6 +11,10 @@ concurrency:
   group: build-${{ github.ref }}
   cancel-in-progress: true
 
+# Read-only for every job; the one that publishes asks for more itself
+permissions:
+  contents: read
+
 jobs:
   bundle:
     name: Bundle
@@ -65,10 +69,14 @@ jobs:
           distribution: temurin
           java-version: 25
       - uses: gradle/actions/setup-gradle@0723195856401067f7a2779048b490ace7a47d7c # v5.0.2
-      - name: Build
+      - name: Unit tests
         working-directory: android/loader
         run: |
           chmod +x gradlew
+          ./gradlew --no-daemon :app:testDebugUnitTest
+      - name: Build
+        working-directory: android/loader
+        run: |
           if [ -n "$LOADER_KEYSTORE" ]; then
             echo "$LOADER_KEYSTORE" | base64 -d > "$RUNNER_TEMP/loader.jks"
             export KEYSTORE_FILE="$RUNNER_TEMP/loader.jks"

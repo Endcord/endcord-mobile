@@ -407,6 +407,27 @@ ${e.stack}` : String(e) });
         return { out, pass: out === "https://example.com/a?id=5#top" };
     });
 
+    await check("addon links and plugin IDs are checked", async () => {
+        const { isAddonUrl } = require("@lib/utils/addonUrl");
+        const { isSafePluginId } = require("@lib/addons/plugins");
+        const links = {
+            https: isAddonUrl("https://example.com/plugin/"),
+            http: isAddonUrl("http://example.com/plugin/"),
+            local: isAddonUrl("http://localhost:4040/plugin/"),
+            lookalike: isAddonUrl("http://localhost.example.com/plugin/"),
+        };
+        const ids = {
+            plain: isSafePluginId("my-plugin.2"),
+            traversal: isSafePluginId("../../loader"),
+            slash: isSafePluginId("a/b"),
+            dot: isSafePluginId(".hidden"),
+        };
+        return {
+            links, ids,
+            pass: links.https && !links.http && links.local && !links.lookalike && ids.plain && !ids.traversal && !ids.slash && !ids.dot,
+        };
+    });
+
     const hooks = require("@plugins/hooks");
     const byName = (name: string) => getEndcordPlugins().find(p => p.name === name)!;
     const withPlugins = async <T>(names: string[], fn: () => Promise<T> | T): Promise<T> => {

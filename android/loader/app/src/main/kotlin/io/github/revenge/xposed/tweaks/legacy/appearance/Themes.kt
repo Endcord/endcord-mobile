@@ -61,8 +61,11 @@ val themes by tweak {
 
     val theme = loaded ?: return@tweak
 
+    // A theme is data from anyone (a link in a message): a color it gets wrong is skipped, not the whole theme
     val rawColorMap = mutableMapOf<String, Int>()
-    theme.data.rawColors?.forEach { (k, v) -> rawColorMap[k.lowercase()] = hexStringToColorInt(v) }
+    theme.data.rawColors?.forEach { (k, v) ->
+        parseThemeColor(v)?.let { rawColorMap[k.lowercase()] = it } ?: log.w("Skipping raw color $k: $v isn't a color")
+    }
 
     val themeManager = classLoader.loadClass("com.discord.theme.utils.ColorUtilsKt")
     val darkTheme = classLoader.loadClass("com.discord.theme.DarkerTheme")
@@ -77,11 +80,17 @@ val themes by tweak {
                 1 -> lightTheme
                 else -> null
             } ?: return@forEachIndexed
-            runCatching {
-                target.getDeclaredMethod(methodName).hook {
-                    before { result = hexStringToColorInt(v) }
-                }
-            }.onFailure { log.d("$methodName missing on ${target.name}") }
+            val color = parseThemeColor(v) ?: return@forEachIndexed
+            // Only a color getter: the key names the method, and another one made to return an int would break
+            // Discord, every time it starts
+            val getter = runCatching { target.getDeclaredMethod(methodName) }.getOrNull()
+            if (getter == null || getter.returnType != Int::class.javaPrimitiveType) {
+                log.d("$methodName isn't a color of ${target.name}")
+                return@forEachIndexed
+            }
+            getter.hook {
+                before { result = color }
+            }
         }
     }
 
@@ -114,11 +123,12 @@ val themes by tweak {
 private fun String.fromScreamingSnakeToCamelCase(): String =
     split("_").joinToString("") { it.lowercase().replaceFirstChar { c -> c.uppercase() } }
 
-/** Parse HEX color string to INT. Accepts `#RRGGBBAA` or `#RRGGBB`. */
-private fun hexStringToColorInt(hexString: String): Int =
+/** A theme's color (`#RRGGBBAA` or `#RRGGBB`, as the bundle normalizes them) as a color int, or null when it isn't one */
+private fun parseThemeColor(hexString: String): Int? = runCatching {
     if (hexString.length == 9) {
         // RRGGBBAA -> AARRGGBB so parseColor() is happy
         val alpha = hexString.substring(7, 9)
         val rrggbb = hexString.substring(1, 7)
         "#$alpha$rrggbb".toColorInt()
     } else hexString.toColorInt()
+}.getOrNull()
