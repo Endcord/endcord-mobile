@@ -1,0 +1,8 @@
+2026-11-02 18:54:59.227590+0000 Host[11771:39086] [Endcord] Loader config loaded - Custom URL enabled: http://127.0.0.1:4040/custom.js
+2026-11-02 18:54:59.400479+0000 Host[11771:39086] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-11-02 18:54:59.454136+0000 Host[11771:39112] [Endcord] Loader config loaded - Custom URL enabled: http://127.0.0.1:4040/custom.js
+2026-11-02 18:54:59.462337+0000 Host[11771:39112] [Endcord] Loader config loaded - Custom URL enabled: http://127.0.0.1:4040/custom.js
+2026-11-02 18:54:59.462559+0000 Host[11771:39112] [Endcord] Loader config loaded - Custom URL enabled: http://127.0.0.1:4040/custom.js
+2026-11-02 18:54:59.498633+0000 Host[11771:39112] [Endcord] Downloaded the bundle from http://127.0.0.1:4040/custom.js (39 bytes)
+2026-11-02 18:54:59.503289+0000 Host[11771:39105] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+2026-11-02 18:54:59.558754+0000 Host[11771:39107] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics

@@ -1,0 +1,7 @@
+2026-11-02 18:59:22.877556+0000 Host[24221:70010] [Endcord] Using the default loader config
+2026-11-02 18:59:22.916956+0000 Host[24221:70010] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-11-02 18:59:22.949492+0000 Host[24221:70010] [Endcord] Screen share link key: found
+2026-11-02 18:59:22.950640+0000 Host[24221:70010] [Endcord] Screen share link: connected
+2026-11-02 18:59:22.951029+0000 Host[24221:70026] [Endcord] Refused a screen share connection without the right proof
+2026-11-02 18:59:22.951463+0000 Host[24221:70022] [Endcord] Refused a screen share connection without the right proof
+2026-11-02 18:59:25.464619+0000 Host[24221:70010] [Endcord] Screen share link: the app didn't answer

@@ -1,0 +1,16 @@
+RESULT PASS broadcast-link link-starts-without-group: listening
+RESULT PASS broadcast-link link-connects-without-group: connected
+RESULT PASS broadcast-link link-is-loopback: 2
+RESULT PASS broadcast-link link-reaches-server: new connection
+RESULT PASS broadcast-link link-kept-by-server: 1
+RESULT PASS broadcast-link link-carries-data: 4
+RESULT PASS broadcast-link link-carries-data-back: 4
+RESULT PASS broadcast-link link-answers-a-nonce: 64
+RESULT PASS broadcast-link link-refuses-wrong-proof: 0
+RESULT PASS broadcast-link link-adds-no-stranger: 1
+RESULT PASS broadcast-link link-fresh-nonce-each-time: 64
+RESULT PASS broadcast-link link-refuses-replayed-proof: 0
+RESULT PASS broadcast-link link-adds-no-replayer: 1
+RESULT PASS broadcast-link link-prefers-group: 1
+RESULT PASS broadcast-link link-stops: closed
+DONE broadcast-link failures=0

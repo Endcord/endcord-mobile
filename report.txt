@@ -1,0 +1,6 @@
+run: https://github.com/Endcord/endcord-mobile/actions/runs/41503655231
+commit: cff137f9f2409393a63f1ff0a7f4d921b7dc097c
+tweak: success 1.0.7
+simulator: success
+ipa: success
+discord: 344.1

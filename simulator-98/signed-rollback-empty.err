@@ -1,0 +1,7 @@
+2026-11-02 18:55:46.460036+0000 Host[20652:59462] [Endcord] Using the default loader config
+2026-11-02 18:55:46.509896+0000 Host[20652:59462] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-11-02 18:55:46.567852+0000 Host[20652:59476] [Endcord] Using the default loader config
+2026-11-02 18:55:46.600615+0000 Host[20652:59476] [Endcord] Using the default loader config
+2026-11-02 18:55:46.656975+0000 Host[20652:59476] [Endcord] Refused a release: it's older than one already accepted
+2026-11-02 18:55:46.657328+0000 Host[20652:59476] [Endcord] No backup bundle found to restore
+2026-11-02 18:55:46.657393+0000 Host[20652:59476] [Endcord] Endcord couldn't load: The download didn't pass Endcord's security check, so it wasn't run.

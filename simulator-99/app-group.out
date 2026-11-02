@@ -1,0 +1,3 @@
+RESULT PASS app-group app-group-signed: /Users/runner/Library/Developer/CoreSimulator/Devices/B7CD7ED2-0DFF-42FE-A30F-21CD2E3D3D2C/data/Containers/Shared/AppGroup/ECA5877A-E250-4874-9ED9-DE314962E2A4
+RESULT PASS app-group app-group-moved: kept
+DONE app-group failures=0
