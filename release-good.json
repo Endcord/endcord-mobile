@@ -1,0 +1,27 @@
+{
+    "format": 1,
+    "sequence": 1793622604,
+    "commit": "d89e946769676b448a8214149dc00cb989a382b7",
+    "files": {
+        "endcord-xposed.apk": {
+            "size": 6995958,
+            "sha256": "c2f77752acb390cfaabdecce9932729dda5084541b8328564efb2dd90b7f528c",
+            "url": "http://10.0.2.2:4040/pinned/endcord-xposed.apk"
+        },
+        "endcord.min.js": {
+            "size": 1248323,
+            "sha256": "9c374971feb3f2e9295320cac2038356552f1304320fc5a351df7ebe6a24156c",
+            "url": "http://10.0.2.2:4040/pinned/endcord.min.js"
+        },
+        "endcord.v98.hbc": {
+            "size": 2526150,
+            "sha256": "39633b207dcf7a0c806f0e17064851b110f4cf093c3239d8b848323844a1f119",
+            "url": "http://10.0.2.2:4040/pinned/endcord.v98.hbc"
+        },
+        "endcord.v99.hbc": {
+            "size": 2503763,
+            "sha256": "694ab2c100cb7c59e0f65a3b8319acec375c5ad80e4dada36ad9073ed3742702",
+            "url": "http://10.0.2.2:4040/pinned/endcord.v99.hbc"
+        }
+    }
+}

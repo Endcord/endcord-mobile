@@ -1,0 +1,25 @@
+Which Endcord?
+Endcord Classic
+Endcord
+On the current Discord app, with 300+ Endcord plugins
+Endcord
+Latest: 351.11 - Stable
+Install
+rootpoi
+•
+99b6a0e
+11/2/26
+README: Endcord Installer 1.0.1
+rootpoi
+•
+fc9f95f
+11/2/26
+Security hardening: signed loader, Discord's signature, https-only addons
+rootpoii
+rootpoii
+•
+1ea98e7
+11/1/26
+Endcord Installer
+Reload
+Open about
