@@ -128,16 +128,25 @@ static NSData *randomNonce(void)
     return [NSData dataWithBytes:bytes length:sizeof(bytes)];
 }
 
-/** HMAC(key, role || first || second): a proof of the key that is bound to this connection's two nonces */
-static NSData *linkProofFor(const char *role, NSData *first, NSData *second)
+/** The port the app listens on, which its proofs name */
+static uint16_t listeningPort;
+
+/**
+ * HMAC(key, role || first || second || port): a proof of the key bound to this connection's two nonces and to the port
+ * it is on. The port keeps a process that took a lower port from passing the two sides' messages through: what the app
+ * proves for its own port, the extension checks against the one it dialled.
+ */
+static NSData *linkProofFor(const char *role, NSData *first, NSData *second, uint16_t port)
 {
     NSData *key = linkKey();
     if (!key || !first || !second) return nil;
+    uint8_t portBytes[2] = {(uint8_t)(port >> 8), (uint8_t)(port & 0xFF)};
     CCHmacContext context;
     CCHmacInit(&context, kCCHmacAlgSHA256, key.bytes, key.length);
     CCHmacUpdate(&context, role, strlen(role));
     CCHmacUpdate(&context, first.bytes, first.length);
     CCHmacUpdate(&context, second.bytes, second.length);
+    CCHmacUpdate(&context, portBytes, sizeof(portBytes));
     uint8_t proof[CC_SHA256_DIGEST_LENGTH];
     CCHmacFinal(&context, proof);
     return [NSData dataWithBytes:proof length:sizeof(proof)];
@@ -148,16 +157,16 @@ static NSData *linkProofFor(const char *role, NSData *first, NSData *second)
  * both; then the extension proves itself over both. A listener without the key fails at its answer, before the
  * extension has said anything another connection could use.
  */
-static BOOL clientHandshake(int fd)
+static BOOL clientHandshake(int fd, uint16_t port)
 {
     NSData *ours = randomNonce();
     if (!sendAll(fd, ours)) return NO;
     uint8_t answer[LINK_NONCE + CC_SHA256_DIGEST_LENGTH];
     if (!receiveExactly(fd, answer, sizeof(answer))) return NO;
     NSData *theirs = [NSData dataWithBytes:answer length:LINK_NONCE];
-    NSData *expected = linkProofFor("server", ours, theirs);
+    NSData *expected = linkProofFor("server", ours, theirs, port);
     if (!expected || timingsafe_bcmp(answer + LINK_NONCE, expected.bytes, CC_SHA256_DIGEST_LENGTH) != 0) return NO;
-    return sendAll(fd, linkProofFor("client", theirs, ours));
+    return sendAll(fd, linkProofFor("client", theirs, ours, port));
 }
 
 /** The app's side of the same handshake */
@@ -167,14 +176,14 @@ static BOOL serverHandshake(int fd)
     if (!receiveExactly(fd, received, sizeof(received))) return NO;
     NSData *theirs = [NSData dataWithBytes:received length:sizeof(received)];
     NSData *ours = randomNonce();
-    NSData *proof = linkProofFor("server", theirs, ours);
+    NSData *proof = linkProofFor("server", theirs, ours, listeningPort);
     if (!proof) return NO;
     NSMutableData *answer = [ours mutableCopy];
     [answer appendData:proof];
     if (!sendAll(fd, answer)) return NO;
     uint8_t theirProof[CC_SHA256_DIGEST_LENGTH];
     if (!receiveExactly(fd, theirProof, sizeof(theirProof))) return NO;
-    NSData *expected = linkProofFor("client", ours, theirs);
+    NSData *expected = linkProofFor("client", ours, theirs, listeningPort);
     return expected && timingsafe_bcmp(theirProof, expected.bytes, sizeof(theirProof)) == 0;
 }
 
@@ -207,7 +216,7 @@ static int connectToApp(void)
             {
                 linkFailure = [NSString stringWithFormat:@"port %d: %s", linkPort() + i, strerror(errno)];
             }
-            else if (!clientHandshake(fd))
+            else if (!clientHandshake(fd, linkPort() + i))
             {
                 linkFailure = [NSString stringWithFormat:@"port %d answered without the proof: %s", linkPort() + i, strerror(errno)];
             }
@@ -237,6 +246,7 @@ static int listenOnLoopback(void)
         if (bind(fd, (struct sockaddr *)&address, sizeof(address)) == 0 && listen(fd, 4) == 0
             && fcntl(fd, F_SETFL, O_NONBLOCK) == 0)
         {
+            listeningPort = linkPort() + i;
             return fd;
         }
         close(fd);

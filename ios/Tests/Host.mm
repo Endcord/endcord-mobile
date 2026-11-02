@@ -373,18 +373,38 @@ static void checkBroadcastLink(void)
         got = recv(client.fd, message, 4, MSG_WAITALL);
         check(@"link-carries-data-back", got == 4 && strcmp(message, "pong") == 0, @(got).stringValue);
 
-        // Another app that finds the port
+        // Another app that finds the port: it gets the app's nonce and proof for its own nonce, which is all it can
+        // get, and the connection ends at its proof, which it can't make
         int rogue = socket(AF_INET, SOCK_STREAM, 0);
         connect(rogue, (struct sockaddr *)&peer, sizeof(peer));
-        char wrong[32] = {1};
-        write(rogue, wrong, sizeof(wrong));
+        char nonce[32] = {1};
+        write(rogue, nonce, sizeof(nonce));
         struct timeval timeout = {.tv_sec = 4};
         setsockopt(rogue, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
-        char answer;
-        ssize_t refused = recv(rogue, &answer, 1, 0);
+        char answer[64];
+        ssize_t answered = recv(rogue, answer, sizeof(answer), MSG_WAITALL);
+        check(@"link-answers-a-nonce", answered == sizeof(answer), @(answered).stringValue);
+        char wrong[32] = {2};
+        write(rogue, wrong, sizeof(wrong));
+        char extra;
+        ssize_t refused = recv(rogue, &extra, 1, 0);
         check(@"link-refuses-wrong-proof", refused == 0, @(refused).stringValue);
         check(@"link-adds-no-stranger", [server connections].count == 1, @([server connections].count).stringValue);
         close(rogue);
+
+        // The app's answer to one connection is no good on another: a second rogue that plays it back isn't let in
+        int replay = socket(AF_INET, SOCK_STREAM, 0);
+        connect(replay, (struct sockaddr *)&peer, sizeof(peer));
+        setsockopt(replay, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
+        write(replay, nonce, sizeof(nonce));
+        char replayAnswer[64];
+        ssize_t replayed = recv(replay, replayAnswer, sizeof(replayAnswer), MSG_WAITALL);
+        check(@"link-fresh-nonce-each-time", replayed == sizeof(replayAnswer) && memcmp(answer, replayAnswer, sizeof(answer)) != 0, @(replayed).stringValue);
+        write(replay, answer + 32, 32);
+        refused = recv(replay, &extra, 1, 0);
+        check(@"link-refuses-replayed-proof", refused == 0, @(refused).stringValue);
+        check(@"link-adds-no-replayer", [server connections].count == 1, @([server connections].count).stringValue);
+        close(replay);
 
         // The Unix socket is what a shared group gives, and it stays first
         NSString *shared = @"/tmp/endcord-host-link.sock";
