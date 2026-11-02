@@ -19,7 +19,7 @@ interface AutoTranslation {
 export default definePlugin({
     id: "endcord.message-translate",
     name: "MessageTranslate",
-    description: tx("Auto translate messages to your language with caching, per-channel toggles, and more options."),
+    description: tx("Auto translate messages to your language with caching, per-channel toggles, and more options; the messages are sent to Google Translate"),
     icon: "LanguageIcon",
     tags: ["Chat"],
     settings: {

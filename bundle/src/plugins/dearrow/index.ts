@@ -16,7 +16,7 @@ const youtubeId = (url?: string) => url?.match(/(?:youtube\.com\/(?:watch\?v=|sh
 export default definePlugin({
     id: "endcord.dearrow",
     name: "Dearrow",
-    description: tx("Makes YouTube embed titles less sensationalist, powered by Dearrow"),
+    description: tx("Makes YouTube embed titles less sensationalist with Dearrow; the ID of every YouTube video you see is sent to sponsor.ajay.app"),
     icon: "VideoIcon",
     tags: ["Media"],
     start({ cleanup }) {

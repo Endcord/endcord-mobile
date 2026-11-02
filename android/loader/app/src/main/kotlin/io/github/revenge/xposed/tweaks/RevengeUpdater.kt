@@ -9,6 +9,8 @@ import io.github.revenge.reloadApp
 import io.github.revenge.xposed.*
 import io.github.revenge.xposed.tweaks.base.withAppActivity
 import io.github.revenge.xposed.tweaks.plugins.internal.showRecoveryAlert
+import io.github.revenge.xposed.tweaks.plugins.repos.REPO_URL_RULE
+import io.github.revenge.xposed.tweaks.plugins.repos.isRepoUrl
 import io.ktor.client.plugins.ResponseException
 import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.*
@@ -84,7 +86,16 @@ object RevengeUpdater {
             if (configFile.exists()) RevengeJson.decodeFromString<LoaderConfig>(configFile.readText())
             else LoaderConfig()
         }.getOrDefault(LoaderConfig())
+        if (config.customLoadUrl.enabled && customUrl() == null) {
+            log.w("The custom bundle URL $REPO_URL_RULE; loading the published bundle instead: '${config.customLoadUrl.url}'")
+        }
     }
+
+    /**
+     * The custom bundle URL, when it's on and allowed: the user's own choice of what runs, but only from where nobody on
+     * the way can change it, as for addons and plugin repositories. Anything else leaves the published, signed bundle.
+     */
+    private fun customUrl(): String? = config.customLoadUrl.takeIf { it.enabled }?.url?.takeIf { isRepoUrl(it) }
 
     fun resetLoaderConfig() {
         if (::configFile.isInitialized && configFile.exists()) configFile.delete()
@@ -111,7 +122,7 @@ object RevengeUpdater {
         return !loadsPublishedBundle() || savedBundleIsSigned()
     }
 
-    private fun loadsPublishedBundle() = !config.customLoadUrl.enabled
+    private fun loadsPublishedBundle() = customUrl() == null
 
     /**
      * Whether the saved bundle is one a signed release listed. The check on download doesn't cover a file that's changed
@@ -162,7 +173,7 @@ object RevengeUpdater {
      * Hermes bytecode version and then the plain JS one, for versions no precompiled bundle is published for.
      */
     private fun bundleUrls(): List<String> {
-        config.customLoadUrl.takeIf { it.enabled }?.url?.let { return listOf(it) }
+        customUrl()?.let { return listOf(it) }
         val bytecode = bytecodeVersion?.let { DEFAULT_BUNDLE_URL.substringBeforeLast('/') + "/endcord.v$it.hbc" }
         return listOfNotNull(bytecode, DEFAULT_BUNDLE_URL)
     }
@@ -247,7 +258,7 @@ object RevengeUpdater {
     }
 
     private suspend fun downloadManifest() {
-        val manifestUrl = config.customLoadUrl.takeIf { it.enabled }?.manifestUrl
+        val manifestUrl = config.customLoadUrl.takeIf { customUrl() != null }?.manifestUrl?.takeIf { isRepoUrl(it) }
             ?: return
 
         try {

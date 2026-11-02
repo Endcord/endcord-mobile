@@ -1,18 +1,22 @@
 import { Strings, t } from "@core/i18n";
 import { CheckState, useFileExists } from "@core/ui/hooks/useFS";
 import AssetBrowser from "@core/ui/settings/pages/Developer/AssetBrowser";
+import { showConfirmationAlert } from "@core/vendetta/alerts";
 import { useProxy } from "@core/vendetta/storage";
 import { findAssetId } from "@lib/api/assets";
-import { connectToDebugger, connectToReactDevTools } from "@lib/api/debug";
+import { connectToDebugger, connectToReactDevTools, isOwnMachineDebugger } from "@lib/api/debug";
 import { disconnectDt, useIsDtConnected } from "@lib/api/debug/devtools";
 import { disconnectRdt, useIsRdtConnected } from "@lib/api/debug/react";
+import { writeDocument } from "@lib/api/native/fs";
 import { getReactDevToolsVersion, isLoaderConfigSupported, isReactDevToolsPreloaded, isVendettaLoader } from "@lib/api/native/loader";
 import { loaderConfig, settings } from "@lib/api/settings";
 import { showToast } from "@lib/ui/toasts";
+import { isAddonUrl } from "@lib/utils/addonUrl";
 import { lazyDestructure } from "@lib/utils/lazy";
 import { NavigationNative } from "@metro/common";
 import { Button, LegacyFormText, Stack, TableRow, TableRowGroup, TableSwitchRow, TextInput } from "@metro/common/components";
 import { findByProps } from "@metro/wrappers";
+import { hex, sha256 } from "@plugins/crypto";
 import { DevToolsClient } from "@revenge-mod/devtools-client";
 import { semanticColors } from "@ui/color";
 import { ErrorBoundary } from "@ui/components";
@@ -24,7 +28,22 @@ const { showSimpleActionSheet } = lazyDestructure(() => findByProps("showSimpleA
 const { openAlert } = lazyDestructure(() => findByProps("openAlert", "dismissAlert"));
 const { AlertModal, AlertActionButton } = lazyDestructure(() => findByProps("AlertModal", "AlertActions"));
 
-const RDT_EMBED_LINK = "https://github.com/revenge-mod/react-devtools-core/releases/latest/download/index.bundle";
+// React DevTools goes into the preloads folder, where it runs in Discord on every start: only this exact release's
+// file is taken, by its SHA-256, not whatever "latest" serves
+const RDT_VERSION = "7.0.1";
+const RDT_EMBED_LINK = `https://github.com/revenge-mod/react-devtools-core/releases/download/${RDT_VERSION}/index.bundle`;
+const RDT_SHA256 = "63ed06bb1a1b6d023f9b98fe0897aa5817045bba0950bef20604918d82b7f18b";
+const RDT_PRELOAD = "preloads/reactDevtools.js";
+
+async function installReactDevTools() {
+    const response = await fetch(RDT_EMBED_LINK);
+    if (!response.ok) throw new Error(`${RDT_EMBED_LINK}: ${response.status}`);
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    if (hex(sha256(bytes)) !== RDT_SHA256) {
+        throw new Error(t("The React DevTools file didn't match its pinned checksum, so it wasn't installed."));
+    }
+    await writeDocument(`pyoncord/${RDT_PRELOAD}`, Buffer.from(bytes).toString("base64"), "base64");
+}
 
 const useStyles = createStyles({
     leadingText: {
@@ -35,7 +54,7 @@ const useStyles = createStyles({
 });
 
 export default function Developer() {
-    const [rdtFileExists, fs] = useFileExists("preloads/reactDevtools.js");
+    const [rdtFileExists, fs] = useFileExists(RDT_PRELOAD);
     const dtConnected = useIsDtConnected();
     const rdtConnected = useIsRdtConnected();
 
@@ -65,6 +84,10 @@ export default function Developer() {
                             value={!!settings.enableAutoDebugger}
                             onValueChange={(v: boolean) => {
                                 settings.enableAutoDebugger = v;
+                                // Whoever answers at the address runs code in Discord: on start, only this machine
+                                if (v && !isOwnMachineDebugger(settings.debuggerUrl ?? "")) {
+                                    showToast(t("DevTools connects on start only to this machine (localhost or 10.0.2.2). For another address, connect by hand each time."), findAssetId("WarningIcon"));
+                                }
                             }}
                         />
                         <TableRow
@@ -90,7 +113,25 @@ export default function Developer() {
                                 icon={<TableRow.Icon source={findAssetId("LinkIcon")} />}
                                 value={loaderConfig.customLoadUrl.enabled}
                                 onValueChange={(v: boolean) => {
-                                    loaderConfig.customLoadUrl.enabled = v;
+                                    if (!v) {
+                                        loaderConfig.customLoadUrl.enabled = false;
+                                        return;
+                                    }
+                                    // The loaders refuse other links anyway; said here, where it can be fixed
+                                    if (!isAddonUrl(loaderConfig.customLoadUrl.url)) {
+                                        showToast(t("Bundle links must be https:// (plain http:// only from this machine)."), findAssetId("CircleXIcon-primary"));
+                                        return;
+                                    }
+                                    showConfirmationAlert({
+                                        title: t("Load the bundle from your own link?"),
+                                        content: t("This turns off Endcord's signature check: whatever that link serves runs in Discord with everything your account can do. Only use a link you control."),
+                                        confirmText: t("Turn it on"),
+                                        confirmColor: "red",
+                                        cancelText: Strings.CANCEL,
+                                        onConfirm: () => {
+                                            loaderConfig.customLoadUrl.enabled = true;
+                                        },
+                                    });
                                 }}
                             />
                             {loaderConfig.customLoadUrl.enabled && <TableRow label={<TextInput
@@ -172,10 +213,13 @@ export default function Developer() {
                                     text={rdtFileExists === CheckState.TRUE ? Strings.UNINSTALL : Strings.INSTALL}
                                     onPress={async () => {
                                         if (rdtFileExists === CheckState.FALSE) {
-                                            fs.downloadFile(RDT_EMBED_LINK, "preloads/reactDevtools.js")
-                                                .then(() => showToast(t("Installed. Reload Discord to use it."), findAssetId("DownloadIcon")));
+                                            installReactDevTools()
+                                                .then(() => showToast(t("Installed. Reload Discord to use it."), findAssetId("DownloadIcon")))
+                                                .catch(e => showToast(e instanceof Error ? e.message : String(e), findAssetId("CircleXIcon-primary")))
+                                                // Through the hook's copy, so the button shows what is there now
+                                                .finally(() => fs.fileExists(RDT_PRELOAD));
                                         } else if (rdtFileExists === CheckState.TRUE) {
-                                            fs.removeFile("preloads/reactDevtools.js");
+                                            fs.removeFile(RDT_PRELOAD);
                                         }
                                     }}
                                     icon={findAssetId(rdtFileExists === CheckState.TRUE ? "TrashIcon" : "DownloadIcon")}

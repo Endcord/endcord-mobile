@@ -12,7 +12,7 @@ import { enc, only } from "../shared/utility";
 export default definePlugin({
     id: "endcord.qr-code",
     name: "QRCode",
-    description: tx("Send a QR code of any text or link with /qr"),
+    description: tx("Send a QR code of any text or link with /qr; the text is sent to api.qrserver.com, which draws it"),
     icon: "QrCodeIcon",
     tags: ["Utility"],
     start: only({

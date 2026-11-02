@@ -15,7 +15,7 @@ const OFFICE = new Set(["doc", "docx", "xls", "xlsx", "ppt", "pptx", "odt", "ods
 export default definePlugin({
     id: "endcord.file-viewer",
     name: "FileViewer",
-    description: tx("View Word, Excel and PowerPoint attachments without downloading them, from the message menu"),
+    description: tx("View Word, Excel and PowerPoint attachments from the message menu; the file is opened by Microsoft's online viewer, which downloads it"),
     icon: "FileIcon",
     tags: ["Media", "Utility"],
     start({ cleanup }) {

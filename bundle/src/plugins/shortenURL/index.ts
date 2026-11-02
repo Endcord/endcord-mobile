@@ -14,7 +14,7 @@ import { answer, enc, only } from "../shared/utility";
 export default definePlugin({
     id: "endcord.shorten-url",
     name: "ShortenURL",
-    description: tx("Shorten a link with /shorten; the short link goes in the message box"),
+    description: tx("Shorten a link with /shorten through is.gd; the short link goes in the message box"),
     icon: "LinkIcon",
     tags: ["Utility"],
     start: only({

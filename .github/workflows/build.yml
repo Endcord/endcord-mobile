@@ -20,7 +20,7 @@ jobs:
     name: Bundle
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
         with:
           bun-version: latest
@@ -45,7 +45,7 @@ jobs:
         # endcord.v<version>.hbc for the bytecode versions Discord ships; the loader picks the one matching the
         # Discord it runs in and falls back to endcord.min.js
         run: node scripts/hermes.mjs
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: bundle
           path: |
@@ -63,8 +63,8 @@ jobs:
       # Strict once releases are signed: until the key is there, a strict loader would refuse every bundle
       REQUIRE_SIGNED: ${{ secrets.ENDCORD_RELEASE_KEY != '' }}
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-java@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
         with:
           distribution: temurin
           java-version: 25
@@ -92,7 +92,7 @@ jobs:
             ./gradlew --no-daemon :app:assembleDebug -Pendcord.requireSigned=$REQUIRE_SIGNED
             cp app/build/outputs/apk/debug/app-debug.apk endcord-xposed.apk
           fi
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: loader
           path: android/loader/endcord-xposed.apk
@@ -106,10 +106,10 @@ jobs:
       KEYSTORE_ENTRY_ALIAS: ${{ secrets.INSTALLER_KEY_ALIAS }}
       KEYSTORE_ENTRY_PASSWORD: ${{ secrets.INSTALLER_KEY_PASSWORD }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           fetch-depth: 0
-      - uses: actions/setup-java@v5
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
         with:
           distribution: temurin
           java-version: 17
@@ -126,7 +126,7 @@ jobs:
             echo "::warning::No INSTALLER_KEYSTORE secret: publishing a debug-signed installer"
           fi
           ./gradlew --no-daemon :app:assembleRelease
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: installer
           path: android/installer/app/build/outputs/apk/release/*.apk
@@ -143,11 +143,11 @@ jobs:
       SIGNING_KEY_ALIAS: ${{ secrets.INSTALLER_KEY_ALIAS }}
       SIGNING_KEY_PASSWORD: ${{ secrets.INSTALLER_KEY_PASSWORD }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           ref: main
           fetch-depth: 0
-      - uses: actions/setup-java@v5
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
         with:
           distribution: temurin
           java-version: 21
@@ -166,7 +166,7 @@ jobs:
             echo "::warning::No INSTALLER_KEYSTORE secret: publishing a debug-signed Classic installer"
           fi
           ./gradlew --no-daemon :app:assembleRelease
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: classic-installer
           path: installer/app/build/outputs/apk/release/*.apk
@@ -177,25 +177,28 @@ jobs:
     # Also when run by hand on next, to rebuild it without a new commit (after the signing secrets change, say)
     if: github.ref == 'refs/heads/next' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
+    # The signing key is this environment's secret: give it required reviewers in the repository settings and every
+    # publish waits for one, so a push to next alone can't sign a build
+    environment: release
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
       # Downloaded outside the checkout: builds-next tracks files with the same names, and untracked copies of them in
       # the working tree make git refuse to switch branches
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
           name: bundle
           path: ${{ runner.temp }}/out
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
           name: loader
           path: ${{ runner.temp }}/out
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
           name: installer
           path: ${{ runner.temp }}/installer
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
           name: classic-installer
           path: ${{ runner.temp }}/classic-installer

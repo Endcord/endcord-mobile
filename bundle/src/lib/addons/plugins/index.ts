@@ -1,5 +1,6 @@
+import { stagePluginUpdate } from "@core/addonUpdates";
 import { getCorePlugins } from "@core/plugins";
-import { readFile, removeFile, writeFile } from "@lib/api/native/fs";
+import { fileExists, readFile, removeFile, writeFile } from "@lib/api/native/fs";
 import { awaitStorage, createStorage, getPreloadedStorage, preloadStorageIfExists, purgeStorage, updateStorage } from "@lib/api/storage";
 import { safeFetch } from "@lib/utils";
 import { isAddonUrl } from "@lib/utils/addonUrl";
@@ -47,6 +48,11 @@ function requireSafePluginId(id: string) {
     if (!isSafePluginId(id)) throw new Error(`The plugin ID '${id}' can't name a file`);
 }
 
+const hostOf = (url: string) => url.match(/^\w+:\/\/([^/?#]+)/)?.[1] ?? url;
+
+/** Plugins whose new code waits for the user's go-ahead (core/addonUpdates); their repository entry stays as it was */
+const stagedIds = new Set<string>();
+
 /**
  * Checks if a version is newer than the other. However, this comes with an additional logic,
  * where if the version are equal, one with prerelease "tag" will be considered "newer"
@@ -91,7 +97,13 @@ export function isPluginEnabled(id: string) {
  * @param id The ID of the plugin
  * @returns The newly fetched plugin manifest
  */
-export async function updateAndWritePlugin(repoUrl: string, id: string, fetchScript: boolean) {
+export async function updateAndWritePlugin(
+    repoUrl: string,
+    id: string,
+    fetchScript: boolean,
+    /** `stage`: new code for an installed plugin waits for the user; `onApplied` runs once it's in */
+    { stage = false, onApplied }: { stage?: boolean; onApplied?: () => void; } = {}
+) {
     requireSafePluginId(id);
     const manifest: t.BunnyPluginManifestInternal = await fetchJSON(repoUrl, `builds/${id}/manifest.json`);
 
@@ -99,11 +111,32 @@ export async function updateAndWritePlugin(repoUrl: string, id: string, fetchScr
     manifest.parentRepository = repoUrl;
 
     if (fetchScript) {
+        const jsPath = `plugins/scripts/${id}.js`;
         // @ts-expect-error - Setting a readonly property
-        manifest.jsPath = `plugins/scripts/${id}.js`;
+        manifest.jsPath = jsPath;
 
         const js: string = await fetchJS(repoUrl, `builds/${id}/index.js`);
-        await writeFile(manifest.jsPath, js);
+        const installed = isPluginInstalled(id) && await fileExists(jsPath);
+        if (stage && installed && await readFile(jsPath).catch(() => "") !== js) {
+            stagedIds.add(id);
+            stagePluginUpdate(id, {
+                name: manifest.display?.name ?? id,
+                source: hostOf(repoUrl),
+                apply: async () => {
+                    stagedIds.delete(id);
+                    await writeFile(jsPath, js);
+                    await updateStorage(`plugins/manifests/${id}.json`, manifest);
+                    registeredPlugins.set(id, manifest);
+                    onApplied?.();
+                    if (pluginInstances.has(id)) {
+                        stopPlugin(id);
+                        await startPlugin(id);
+                    }
+                },
+            });
+            return registeredPlugins.get(id) ?? manifest;
+        }
+        await writeFile(jsPath, js);
     } else {
         // Where the script is kept is Endcord's to say, not the manifest's: the file is read and run as the plugin
         // @ts-expect-error - Clearing a readonly property
@@ -183,8 +216,11 @@ export async function updateRepository(repoUrl: string) {
     await Promise.all(pluginIds.map(async pluginId => {
         if (!storedRepo || !storedRepo[pluginId] || repo[pluginId].alwaysFetch || isGreaterVersion(repo[pluginId].version, storedRepo[pluginId].version)) {
             updated = true;
-            pluginRepositories[repoUrl][pluginId] = repo[pluginId];
-            await updateAndWritePlugin(repoUrl, pluginId, Boolean(storedRepo && pluginSettings[pluginId]));
+            const entry = repo[pluginId];
+            const record = () => { pluginRepositories[repoUrl][pluginId] = entry; };
+            await updateAndWritePlugin(repoUrl, pluginId, Boolean(storedRepo && pluginSettings[pluginId]), { stage: true, onApplied: record });
+            // A staged update keeps the old entry, so it is offered again next time if it isn't applied
+            if (!stagedIds.has(pluginId)) record();
         } else {
             const manifest = await preloadStorageIfExists(`plugins/manifests/${pluginId}.json`);
             if (!manifest) { // File does not exist, so do refetch and stuff

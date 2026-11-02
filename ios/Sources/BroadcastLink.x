@@ -1,5 +1,6 @@
 #import <CommonCrypto/CommonHMAC.h>
 #import <Foundation/Foundation.h>
+#import <Security/Security.h>
 #import <arpa/inet.h>
 #import <errno.h>
 #import <fcntl.h>
@@ -15,13 +16,16 @@
 #import "Utils.h"
 
 // Discord's screen share extension streams on its own and takes its orders from the app, over a Unix socket in their
-// app group. Not every signer gives the two the same group, so they also meet on a loopback port. The port and the proof
-// each side gives come from the extension's signature files, which both can read and other apps can't.
+// app group. Not every signer gives the two the same group, so they also meet on a loopback port. The port and the
+// proofs each side gives come from the extension's signature files, which both can read and other apps can't. Each
+// proof is over nonces both sides just picked, so one seen on the wire can't be played back on another connection: a
+// process that listened on the port first learns nothing it could use to pass for the extension.
 
 #define LINK_FIRST_PORT 49152
 #define LINK_PORT_RANGE 16000
 #define LINK_PORTS      8
 #define LINK_TIMEOUT    2
+#define LINK_NONCE      32
 // The app may still be setting its voice engine up when the extension starts
 #define LINK_ATTEMPTS    6
 #define LINK_RETRY_DELAY 500000
@@ -107,16 +111,71 @@ static void prepareSocket(int fd)
     setTimeout(fd, LINK_TIMEOUT);
 }
 
-static BOOL sendProof(int fd, NSData *proof)
+static BOOL sendAll(int fd, NSData *data)
 {
-    return send(fd, proof.bytes, proof.length, 0) == (ssize_t)proof.length;
+    return data && send(fd, data.bytes, data.length, 0) == (ssize_t)data.length;
 }
 
-static BOOL receiveProof(int fd, NSData *proof)
+static BOOL receiveExactly(int fd, uint8_t *buffer, size_t length)
 {
-    uint8_t received[CC_SHA256_DIGEST_LENGTH];
-    return recv(fd, received, sizeof(received), MSG_WAITALL) == sizeof(received)
-        && timingsafe_bcmp(received, proof.bytes, sizeof(received)) == 0;
+    return recv(fd, buffer, length, MSG_WAITALL) == (ssize_t)length;
+}
+
+static NSData *randomNonce(void)
+{
+    uint8_t bytes[LINK_NONCE];
+    if (SecRandomCopyBytes(kSecRandomDefault, sizeof(bytes), bytes) != errSecSuccess) arc4random_buf(bytes, sizeof(bytes));
+    return [NSData dataWithBytes:bytes length:sizeof(bytes)];
+}
+
+/** HMAC(key, role || first || second): a proof of the key that is bound to this connection's two nonces */
+static NSData *linkProofFor(const char *role, NSData *first, NSData *second)
+{
+    NSData *key = linkKey();
+    if (!key || !first || !second) return nil;
+    CCHmacContext context;
+    CCHmacInit(&context, kCCHmacAlgSHA256, key.bytes, key.length);
+    CCHmacUpdate(&context, role, strlen(role));
+    CCHmacUpdate(&context, first.bytes, first.length);
+    CCHmacUpdate(&context, second.bytes, second.length);
+    uint8_t proof[CC_SHA256_DIGEST_LENGTH];
+    CCHmacFinal(&context, proof);
+    return [NSData dataWithBytes:proof length:sizeof(proof)];
+}
+
+/**
+ * The extension's side of the handshake: its nonce goes first; the app answers with its own nonce and a proof over
+ * both; then the extension proves itself over both. A listener without the key fails at its answer, before the
+ * extension has said anything another connection could use.
+ */
+static BOOL clientHandshake(int fd)
+{
+    NSData *ours = randomNonce();
+    if (!sendAll(fd, ours)) return NO;
+    uint8_t answer[LINK_NONCE + CC_SHA256_DIGEST_LENGTH];
+    if (!receiveExactly(fd, answer, sizeof(answer))) return NO;
+    NSData *theirs = [NSData dataWithBytes:answer length:LINK_NONCE];
+    NSData *expected = linkProofFor("server", ours, theirs);
+    if (!expected || timingsafe_bcmp(answer + LINK_NONCE, expected.bytes, CC_SHA256_DIGEST_LENGTH) != 0) return NO;
+    return sendAll(fd, linkProofFor("client", theirs, ours));
+}
+
+/** The app's side of the same handshake */
+static BOOL serverHandshake(int fd)
+{
+    uint8_t received[LINK_NONCE];
+    if (!receiveExactly(fd, received, sizeof(received))) return NO;
+    NSData *theirs = [NSData dataWithBytes:received length:sizeof(received)];
+    NSData *ours = randomNonce();
+    NSData *proof = linkProofFor("server", theirs, ours);
+    if (!proof) return NO;
+    NSMutableData *answer = [ours mutableCopy];
+    [answer appendData:proof];
+    if (!sendAll(fd, answer)) return NO;
+    uint8_t theirProof[CC_SHA256_DIGEST_LENGTH];
+    if (!receiveExactly(fd, theirProof, sizeof(theirProof))) return NO;
+    NSData *expected = linkProofFor("client", ours, theirs);
+    return expected && timingsafe_bcmp(theirProof, expected.bytes, sizeof(theirProof)) == 0;
 }
 
 /** Why the extension has no link: ReplayKit shows it, as the extension has nowhere else to say so */
@@ -125,8 +184,7 @@ static NSString *linkFailure;
 /** The extension's end of the link, or -1 */
 static int connectToApp(void)
 {
-    NSData *ours = linkProof("client"), *theirs = linkProof("server");
-    if (!ours)
+    if (!linkKey())
     {
         linkFailure = @"no signature files to derive the link from";
         return -1;
@@ -149,7 +207,7 @@ static int connectToApp(void)
             {
                 linkFailure = [NSString stringWithFormat:@"port %d: %s", linkPort() + i, strerror(errno)];
             }
-            else if (!sendProof(fd, ours) || !receiveProof(fd, theirs))
+            else if (!clientHandshake(fd))
             {
                 linkFailure = [NSString stringWithFormat:@"port %d answered without the proof: %s", linkPort() + i, strerror(errno)];
             }
@@ -202,7 +260,6 @@ static void addConnection(DCDBroadcastSocketServer *server, int fd)
 
 static void acceptOnLoopback(DCDBroadcastSocketServer *server, int listener, dispatch_source_t source)
 {
-    NSData *theirs = linkProof("client"), *ours = linkProof("server");
     dispatch_queue_t queue = ivarOf(server, "_queue");
 
     int fd;
@@ -212,7 +269,7 @@ static void acceptOnLoopback(DCDBroadcastSocketServer *server, int listener, dis
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
             fcntl(fd, F_SETFL, fcntl(fd, F_GETFL) & ~O_NONBLOCK);
             prepareSocket(fd);
-            if (!receiveProof(fd, theirs) || !sendProof(fd, ours))
+            if (!serverHandshake(fd))
             {
                 BunnyLog(@"Refused a screen share connection without the right proof");
                 close(fd);

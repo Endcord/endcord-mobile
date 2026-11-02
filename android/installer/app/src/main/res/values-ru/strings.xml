@@ -19,6 +19,7 @@
     <string name="msg_invalid_apk">APK повреждён, очистите кэш и переустановите</string>
     <string name="msg_download_cancelled">Загрузка отменена</string>
     <string name="msg_download_failed">Ошибка загрузки</string>
+    <string name="msg_unsigned_module">Используется ваш собственный файл модуля: он не сверяется с подписанным выпуском Endcord</string>
     <string name="msg_download_verify_failed">Не удалось проверить загруженный файл, подробности в журнале</string>
     <string name="msg_copied">Скопировано в буфер обмена</string>
 

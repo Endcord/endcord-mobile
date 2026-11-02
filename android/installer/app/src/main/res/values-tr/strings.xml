@@ -19,6 +19,7 @@
     <string name="msg_invalid_apk">APK bozulmuş, önbelleği temizleyip yeniden kurmayı dene</string>
     <string name="msg_download_cancelled">İndirme iptal edildi</string>
     <string name="msg_download_failed">İndirme başarısız</string>
+    <string name="msg_unsigned_module">Kendi modül dosyan kullanılıyor: Endcord\'un imzalı sürümüyle karşılaştırılmıyor</string>
     <string name="msg_download_verify_failed">İndirilen dosya doğrulanamadı, ayrıntılar için kayıtlara bakın</string>
     <string name="msg_copied">Panoya kopyalandı</string>
 

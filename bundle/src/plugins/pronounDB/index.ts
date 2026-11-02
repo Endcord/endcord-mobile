@@ -16,7 +16,7 @@ const PRONOUNS: Record<string, string> = { he: "he/him", she: "she/her", it: "it
 export default definePlugin({
     id: "endcord.pronoundb",
     name: "PronounDB",
-    description: tx("Shows people's pronouns from PronounDB next to their messages"),
+    description: tx("Shows people's pronouns from PronounDB next to their messages; the IDs of the people you see are sent to pronoundb.org"),
     icon: "IdIcon",
     tags: ["Chat", "Friends"],
     settings: {

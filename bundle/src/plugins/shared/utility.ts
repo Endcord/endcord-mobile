@@ -12,7 +12,6 @@
 
 import { safeFetch } from "@lib/utils";
 
-import { hex, sha256, utf8 } from "../crypto";
 import { botMessage, command, type CommandArgs } from "../hooks";
 
 type Run = (args: CommandArgs, ctx: any) => unknown;
@@ -53,16 +52,5 @@ export function findCountry(list: Country[], query: string): Country | undefined
         ?? list.find(c => names(c).some(n => n.includes(q)));
 }
 
-/** Random bytes; the secure source when the app has one */
-export function randomBytes(length: number): Uint8Array {
-    const bytes = new Uint8Array(length);
-    const cryptoApi = (globalThis as any).crypto;
-    if (typeof cryptoApi?.getRandomValues === "function") return cryptoApi.getRandomValues(bytes);
-    // Otherwise mixed through SHA-256 with the time, so it isn't Math.random alone
-    let pool = sha256(utf8(`${Date.now()}:${Math.random()}:${performance.now?.() ?? 0}`));
-    for (let i = 0; i < length; i++) {
-        if (i % 32 === 0 && i) pool = sha256(utf8(`${hex(pool)}:${Math.random()}`));
-        bytes[i] = pool[i % 32] ^ Math.floor(Math.random() * 256);
-    }
-    return bytes;
-}
+// Random bytes live with the rest of the cryptography; kept here for the plugins that import them from this file
+export { randomBytes } from "../crypto";

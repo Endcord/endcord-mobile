@@ -19,6 +19,7 @@
     <string name="msg_invalid_apk">El APK está dañado, borra la caché y vuelve a instalar</string>
     <string name="msg_download_cancelled">Descarga cancelada</string>
     <string name="msg_download_failed">Error de descarga</string>
+    <string name="msg_unsigned_module">Se usa tu propio archivo de módulo: no se comprueba contra la versión firmada de Endcord</string>
     <string name="msg_download_verify_failed">No se pudo verificar el archivo descargado, consulta los registros</string>
     <string name="msg_copied">Copiado al portapapeles</string>
 

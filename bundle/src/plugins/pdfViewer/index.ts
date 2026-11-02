@@ -13,7 +13,7 @@ import { extension, pick } from "../shared/media";
 export default definePlugin({
     id: "endcord.pdf-viewer",
     name: "PdfViewer",
-    description: tx("Preview PDF attachments without downloading them first, from the message menu"),
+    description: tx("Preview PDF attachments from the message menu; the file is opened by Google's online viewer, which downloads it"),
     icon: "FileIcon",
     tags: ["Media", "Utility"],
     start({ cleanup }) {

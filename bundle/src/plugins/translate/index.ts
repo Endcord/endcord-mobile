@@ -24,7 +24,7 @@ const channelOf = new Map<string, string>();
 export default definePlugin({
     id: "endcord.translate",
     name: "Translate",
-    description: tx("Translate messages from the message menu, translate what you send, or use /translate (Google Translate)"),
+    description: tx("Translate messages from the message menu, translate what you send, or use /translate; the text is sent to Google Translate"),
     icon: "LanguageIcon",
     tags: ["Chat", "Utility"],
     settings: {

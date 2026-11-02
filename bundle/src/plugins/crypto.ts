@@ -3,8 +3,8 @@
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * Small, dependency-free helpers for the plugins that hide or hash text: UTF-8, base64, SHA-256 and a SHA-256 based
- * stream cipher with a check value (so a wrong password is told apart from a right one).
+ * Small, dependency-free helpers for the plugins that hide or hash text: UTF-8, base64, SHA-256, HMAC, random bytes,
+ * and a password-based cipher (seal/open). Hermes has no WebCrypto, so it's all plain JavaScript.
  */
 
 export function utf8(text: string): Uint8Array {
@@ -115,6 +115,9 @@ export function sha256(data: Uint8Array): Uint8Array {
 
 export const hex = (bytes: Uint8Array) => [...bytes].map(b => b.toString(16).padStart(2, "0")).join("");
 
+/** The lowercase hex SHA-256 of a string's UTF-8 bytes, as build tools and manifests give it */
+export const sha256Hex = (text: string) => hex(sha256(utf8(text)));
+
 const concat = (...parts: Uint8Array[]) => {
     const out = new Uint8Array(parts.reduce((n, p) => n + p.length, 0));
     let i = 0;
@@ -125,6 +128,70 @@ const concat = (...parts: Uint8Array[]) => {
     return out;
 };
 
+/** HMAC-SHA256 */
+export function hmac(key: Uint8Array, data: Uint8Array): Uint8Array {
+    if (key.length > 64) key = sha256(key);
+    const inner = new Uint8Array(64), outer = new Uint8Array(64);
+    for (let i = 0; i < 64; i++) {
+        inner[i] = (key[i] ?? 0) ^ 0x36;
+        outer[i] = (key[i] ?? 0) ^ 0x5C;
+    }
+    return sha256(concat(outer, sha256(concat(inner, data))));
+}
+
+/** Whether two byte strings are the same, taking the same time whether or not they are */
+export function sameBytes(a: Uint8Array, b: Uint8Array): boolean {
+    if (a.length !== b.length) return false;
+    let diff = 0;
+    for (let i = 0; i < a.length; i++) diff |= a[i] ^ b[i];
+    return diff === 0;
+}
+
+/** Random bytes; the secure source when the app has one */
+export function randomBytes(length: number): Uint8Array {
+    const bytes = new Uint8Array(length);
+    const cryptoApi = (globalThis as any).crypto;
+    if (typeof cryptoApi?.getRandomValues === "function") return cryptoApi.getRandomValues(bytes);
+    // Otherwise mixed through SHA-256 with the time, so it isn't Math.random alone
+    let pool = sha256(utf8(`${Date.now()}:${Math.random()}:${performance.now?.() ?? 0}`));
+    for (let i = 0; i < length; i++) {
+        if (i % 32 === 0 && i) pool = sha256(utf8(`${hex(pool)}:${Math.random()}`));
+        bytes[i] = pool[i % 32] ^ Math.floor(Math.random() * 256);
+    }
+    return bytes;
+}
+
+// ---- seal / open --------------------------------------------------------------------------------------------------
+//
+// Format 2: [2][salt 16][tag 16][text XOR keystream]. The password goes through PBKDF2-HMAC-SHA256 once per session
+// (STRETCH rounds, so guessing passwords from a message is slow) into a master key; each message gets its own keys
+// from the master key and its salt, and a tag over everything before the text, so a changed message is refused.
+// Format 1 (the first release: 8 bytes of salt, 4 of check value, a key that was a single SHA-256 of the password) is
+// still opened, so old messages stay readable, but nothing is sealed that way any more.
+
+const VERSION = 2;
+const SALT_LENGTH = 16;
+const TAG_LENGTH = 16;
+const STRETCH = 20_000;
+const LABEL = utf8("endcord-seal-v2");
+
+const masterKeys = new Map<string, Uint8Array>();
+
+/** PBKDF2-HMAC-SHA256 with one block of output, kept for the session: the slow part happens once per password */
+function masterKey(password: string): Uint8Array {
+    const cached = masterKeys.get(password);
+    if (cached) return cached;
+    const key = utf8(password);
+    let block = hmac(key, concat(LABEL, Uint8Array.of(0, 0, 0, 1)));
+    const out = Uint8Array.from(block);
+    for (let round = 1; round < STRETCH; round++) {
+        block = hmac(key, block);
+        for (let i = 0; i < 32; i++) out[i] ^= block[i];
+    }
+    masterKeys.set(password, out);
+    return out;
+}
+
 function keystream(key: Uint8Array, salt: Uint8Array, length: number) {
     const out = new Uint8Array(length);
     for (let block = 0; block * 32 < length; block++) {
@@ -134,24 +201,43 @@ function keystream(key: Uint8Array, salt: Uint8Array, length: number) {
     return out;
 }
 
-/** Encrypts text with a password: 8 bytes of salt, 4 of check value, then the text */
+/** Encrypts text with a password */
 export function seal(text: string, password: string): Uint8Array {
-    const key = sha256(utf8(password));
-    const salt = Uint8Array.from({ length: 8 }, () => Math.floor(Math.random() * 256));
+    const salt = randomBytes(SALT_LENGTH);
+    const master = masterKey(password);
+    const encKey = hmac(master, concat(utf8("enc"), salt));
+    const macKey = hmac(master, concat(utf8("mac"), salt));
     const plain = utf8(text);
-    const check = sha256(concat(key, salt, plain)).subarray(0, 4);
-    const stream = keystream(key, salt, plain.length);
-    return concat(salt, check, plain.map((b, i) => b ^ stream[i]));
+    const stream = keystream(encKey, salt, plain.length);
+    const body = plain.map((b, i) => b ^ stream[i]);
+    const tag = hmac(macKey, concat(Uint8Array.of(VERSION), salt, body)).subarray(0, TAG_LENGTH);
+    return concat(Uint8Array.of(VERSION), salt, tag, body);
 }
 
-/** The text, or undefined when the password is wrong or the data isn't sealed */
+/** The text, or undefined when the password is wrong, the data was changed, or it isn't sealed */
 export function open(data: Uint8Array, password: string): string | undefined {
+    if (data.length >= 1 + SALT_LENGTH + TAG_LENGTH && data[0] === VERSION) {
+        const salt = data.subarray(1, 1 + SALT_LENGTH);
+        const tag = data.subarray(1 + SALT_LENGTH, 1 + SALT_LENGTH + TAG_LENGTH);
+        const body = data.subarray(1 + SALT_LENGTH + TAG_LENGTH);
+        const master = masterKey(password);
+        const macKey = hmac(master, concat(utf8("mac"), salt));
+        const expected = hmac(macKey, concat(Uint8Array.of(VERSION), salt, body)).subarray(0, TAG_LENGTH);
+        if (!sameBytes(expected, tag)) return;
+        const encKey = hmac(master, concat(utf8("enc"), salt));
+        const stream = keystream(encKey, salt, body.length);
+        return fromUtf8(body.map((b, i) => b ^ stream[i]));
+    }
+    return openLegacy(data, password);
+}
+
+function openLegacy(data: Uint8Array, password: string): string | undefined {
     if (data.length < 12) return;
     const key = sha256(utf8(password));
     const salt = data.subarray(0, 8), check = data.subarray(8, 12), body = data.subarray(12);
     const stream = keystream(key, salt, body.length);
     const plain = body.map((b, i) => b ^ stream[i]);
     const expected = sha256(concat(key, salt, plain)).subarray(0, 4);
-    if (expected.some((b, i) => b !== check[i])) return;
+    if (!sameBytes(expected, check)) return;
     return fromUtf8(plain);
 }

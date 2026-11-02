@@ -6,6 +6,9 @@ import app.revenge.manager.R
 import app.revenge.manager.installer.step.StepRunner
 import app.revenge.manager.installer.step.download.base.DownloadStep
 import app.revenge.manager.installer.util.SignedRelease
+import app.revenge.manager.utils.mainThread
+import app.revenge.manager.utils.showToast
+import android.content.Context
 import io.ktor.client.HttpClient
 import org.koin.core.component.inject
 import java.io.File
@@ -21,6 +24,7 @@ class DownloadModStep(
 ): DownloadStep() {
 
     private val http: HttpClient by inject()
+    private val context: Context by inject()
 
     override val nameRes = R.string.step_dl_mod
 
@@ -43,7 +47,9 @@ class DownloadModStep(
                 runner.logger.i("The published build is signed release ${it.sequence}")
             }
         } else {
-            runner.logger.i("Using the module at $destination as it is")
+            // Said every time, not only in the log: nothing checks this file against Endcord's signed release
+            runner.logger.i("Using the module at $destination as it is; it isn't checked against the signed release")
+            mainThread { context.showToast(R.string.msg_unsigned_module) }
         }
         super.run(runner)
     }

@@ -21,6 +21,7 @@
     <string name="msg_invalid_apk">APK was corrupted, try clearing cache then reinstalling</string>
     <string name="msg_download_cancelled">Download was aborted</string>
     <string name="msg_download_failed">Download failed</string>
+    <string name="msg_unsigned_module">Using your own module file: it isn\'t checked against Endcord\'s signed release</string>
     <string name="msg_download_verify_failed">Could not verify downloaded file, check logs for more details</string>
     <string name="msg_copied">Copied to clipboard</string>
 

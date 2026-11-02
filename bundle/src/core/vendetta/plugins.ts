@@ -1,3 +1,4 @@
+import { stagePluginUpdate } from "@core/addonUpdates";
 import { awaitStorage, createMMKVBackend, createStorage, purgeStorage, wrapSync } from "@core/vendetta/storage";
 import { Author } from "@lib/addons/types";
 import { settings } from "@lib/api/settings";
@@ -5,6 +6,10 @@ import { safeFetch } from "@lib/utils";
 import { requireAddonUrl } from "@lib/utils/addonUrl";
 import { BUNNY_PROXY_PREFIX, VD_PROXY_PREFIX } from "@lib/utils/constants";
 import { logger, LoggerClass } from "@lib/utils/logger";
+import { sha256Hex } from "@plugins/crypto";
+
+const SHA256_HEX = /^[0-9a-f]{64}$/i;
+const hostOf = (url: string) => url.match(/^\w+:\/\/([^/?#]+)/)?.[1] ?? url;
 
 type EvaledPlugin = {
     onLoad?(): void;
@@ -50,7 +55,11 @@ export const VdPluginManager = {
         return await safeFetch(requireAddonUrl(url), { cache: "no-store" });
     },
 
-    async fetchPlugin(id: string) {
+    /**
+     * Fetches a plugin's manifest and, when its code changed, the code. With `stage`, new code for a plugin that is
+     * running is kept aside until the user says to apply it (core/addonUpdates) instead of replacing it now.
+     */
+    async fetchPlugin(id: string, { stage = false } = {}) {
         if (!id.endsWith("/")) id += "/";
         const existingPlugin = plugins[id];
 
@@ -73,13 +82,34 @@ export const VdPluginManager = {
 
         if (!pluginJs && !existingPlugin) throw new Error(`Failed to fetch JS for ${id}`);
 
-        plugins[id] = {
+        // The manifest carries the SHA-256 of the code it was built with: code that doesn't match it isn't taken
+        const expectedHash = String(pluginManifest.hash ?? "").toLowerCase();
+        if (pluginJs && SHA256_HEX.test(expectedHash) && sha256Hex(pluginJs) !== expectedHash) {
+            throw new Error(`The code served for ${id} doesn't match its manifest`);
+        }
+
+        const next: VendettaPlugin = {
             id: id,
             manifest: pluginManifest,
             enabled: existingPlugin?.enabled ?? false,
             update: existingPlugin?.update ?? true,
             js: pluginJs ?? existingPlugin.js,
         };
+
+        if (stage && existingPlugin?.enabled && pluginJs && pluginJs !== existingPlugin.js) {
+            stagePluginUpdate(id, {
+                name: pluginManifest.name || existingPlugin.manifest.name || id,
+                source: hostOf(id),
+                apply: async () => {
+                    plugins[id] = next;
+                    if (pluginInstance[id]) this.stopPlugin(id, false);
+                    if (plugins[id].enabled) await this.startPlugin(id);
+                },
+            });
+            return;
+        }
+
+        plugins[id] = next;
     },
 
     async installPlugin(id: string, enabled = true) {
@@ -172,8 +202,8 @@ export const VdPluginManager = {
         const allIds = Object.keys(plugins);
 
         if (!settings.safeMode?.enabled) {
-            // Loop over any plugin that is enabled, update it if allowed, then start it.
-            await Promise.allSettled(allIds.filter(pl => plugins[pl].enabled).map(async pl => (plugins[pl].update && await this.fetchPlugin(pl).catch((e: Error) => logger.error(e.message)), await this.startPlugin(pl))));
+            // Loop over any plugin that is enabled, check for its update (new code waits for the user), then start it.
+            await Promise.allSettled(allIds.filter(pl => plugins[pl].enabled).map(async pl => (plugins[pl].update && await this.fetchPlugin(pl, { stage: true }).catch((e: Error) => logger.error(e.message)), await this.startPlugin(pl))));
             // Wait for the above to finish, then update all disabled plugins that are allowed to.
             allIds.filter(pl => !plugins[pl].enabled && plugins[pl].update).forEach(pl => this.fetchPlugin(pl));
         }

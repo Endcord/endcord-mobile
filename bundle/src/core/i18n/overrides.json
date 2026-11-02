@@ -1,4 +1,124 @@
 {
+    "Plugin updates": {
+        "tr": "Eklenti güncellemeleri",
+        "ru": "Обновления плагинов",
+        "es": "Actualizaciones de plugins",
+        "fr": "Mises à jour des plugins"
+    },
+    "New code was downloaded for these plugins. It runs in Discord with everything your account can do, so only apply updates you expect:\n\n{list}": {
+        "tr": "Bu eklentiler için yeni kod indirildi. Kod, Discord'da hesabının yapabildiği her şeyle çalışır; yalnızca beklediğin güncellemeleri uygula:\n\n{list}",
+        "ru": "Для этих плагинов загружен новый код. Он выполняется в Discord со всеми правами вашего аккаунта, поэтому применяйте только ожидаемые обновления:\n\n{list}",
+        "es": "Se descargó código nuevo para estos plugins. Se ejecuta en Discord con todo lo que puede hacer tu cuenta, así que aplica solo las actualizaciones que esperas:\n\n{list}",
+        "fr": "Du nouveau code a été téléchargé pour ces plugins. Il s'exécute dans Discord avec tout ce que votre compte peut faire : n'appliquez que les mises à jour attendues :\n\n{list}"
+    },
+    "Apply updates": {
+        "tr": "Güncellemeleri uygula",
+        "ru": "Применить обновления",
+        "es": "Aplicar actualizaciones",
+        "fr": "Appliquer les mises à jour"
+    },
+    "Not now": {
+        "tr": "Şimdi değil",
+        "ru": "Не сейчас",
+        "es": "Ahora no",
+        "fr": "Pas maintenant"
+    },
+    "Load the bundle from your own link?": {
+        "tr": "Bundle kendi linkinden yüklensin mi?",
+        "ru": "Загружать бандл по своей ссылке?",
+        "es": "¿Cargar el paquete desde tu propio enlace?",
+        "fr": "Charger le bundle depuis votre propre lien ?"
+    },
+    "This turns off Endcord's signature check: whatever that link serves runs in Discord with everything your account can do. Only use a link you control.": {
+        "tr": "Bu, Endcord'un imza kontrolünü kapatır: o linkin sunduğu her şey Discord'da hesabının yapabildiği her şeyle çalışır. Yalnızca senin kontrolündeki bir link kullan.",
+        "ru": "Это отключает проверку подписи Endcord: всё, что отдаёт эта ссылка, выполняется в Discord со всеми правами вашего аккаунта. Используйте только ссылку, которую контролируете.",
+        "es": "Esto desactiva la comprobación de firma de Endcord: todo lo que sirva ese enlace se ejecuta en Discord con todo lo que puede hacer tu cuenta. Usa solo un enlace que controles.",
+        "fr": "Cela désactive la vérification de signature d'Endcord : tout ce que sert ce lien s'exécute dans Discord avec tout ce que votre compte peut faire. N'utilisez qu'un lien que vous contrôlez."
+    },
+    "Turn it on": {
+        "tr": "Aç",
+        "ru": "Включить",
+        "es": "Activar",
+        "fr": "Activer"
+    },
+    "Bundle links must be https:// (plain http:// only from this machine).": {
+        "tr": "Bundle linki https:// olmalı (düz http:// yalnızca bu makineden).",
+        "ru": "Ссылка на бандл должна быть https:// (обычный http:// только с этого компьютера).",
+        "es": "El enlace del paquete debe ser https:// (http:// solo desde este equipo).",
+        "fr": "Le lien du bundle doit être en https:// (http:// uniquement depuis cette machine)."
+    },
+    "DevTools connects on start only to this machine (localhost or 10.0.2.2). For another address, connect by hand each time.": {
+        "tr": "DevTools açılışta yalnızca bu makineye bağlanır (localhost ya da 10.0.2.2). Başka bir adres için her seferinde elle bağlan.",
+        "ru": "DevTools при запуске подключается только к этому компьютеру (localhost или 10.0.2.2). К другому адресу подключайтесь вручную каждый раз.",
+        "es": "DevTools se conecta al inicio solo a este equipo (localhost o 10.0.2.2). Para otra dirección, conéctate a mano cada vez.",
+        "fr": "DevTools ne se connecte au démarrage qu'à cette machine (localhost ou 10.0.2.2). Pour une autre adresse, connectez-vous à la main à chaque fois."
+    },
+    "The React DevTools file didn't match its pinned checksum, so it wasn't installed.": {
+        "tr": "React DevTools dosyası sabitlenmiş sağlama değeriyle eşleşmedi, bu yüzden kurulmadı.",
+        "ru": "Файл React DevTools не совпал с закреплённой контрольной суммой, поэтому не был установлен.",
+        "es": "El archivo de React DevTools no coincidió con su suma de comprobación fijada, así que no se instaló.",
+        "fr": "Le fichier React DevTools ne correspondait pas à sa somme de contrôle épinglée : il n'a pas été installé."
+    },
+    "Makes YouTube embed titles less sensationalist with Dearrow; the ID of every YouTube video you see is sent to sponsor.ajay.app": {
+        "tr": "YouTube embed başlıklarını Dearrow ile daha az sansasyonel yapar; gördüğün her YouTube videosunun kimliği sponsor.ajay.app'e gönderilir",
+        "ru": "Делает заголовки встроенных видео YouTube менее кликбейтными с помощью Dearrow; ID каждого видео YouTube, которое вы видите, отправляется на sponsor.ajay.app",
+        "es": "Hace menos sensacionalistas los títulos de los vídeos de YouTube con Dearrow; el ID de cada vídeo de YouTube que ves se envía a sponsor.ajay.app",
+        "fr": "Rend les titres des vidéos YouTube intégrées moins racoleurs grâce à Dearrow ; l'identifiant de chaque vidéo YouTube que vous voyez est envoyé à sponsor.ajay.app"
+    },
+    "Shows people's pronouns from PronounDB next to their messages; the IDs of the people you see are sent to pronoundb.org": {
+        "tr": "İnsanların PronounDB'deki zamirlerini mesajlarının yanında gösterir; gördüğün kişilerin kimlikleri pronoundb.org'a gönderilir",
+        "ru": "Показывает местоимения людей из PronounDB рядом с их сообщениями; ID людей, которых вы видите, отправляются на pronoundb.org",
+        "es": "Muestra los pronombres de PronounDB junto a los mensajes; los ID de las personas que ves se envían a pronoundb.org",
+        "fr": "Affiche les pronoms des gens depuis PronounDB à côté de leurs messages ; les identifiants des personnes que vous voyez sont envoyés à pronoundb.org"
+    },
+    "View Word, Excel and PowerPoint attachments from the message menu; the file is opened by Microsoft's online viewer, which downloads it": {
+        "tr": "Word, Excel ve PowerPoint eklerini mesaj menüsünden görüntüle; dosya Microsoft'un çevrimiçi görüntüleyicisinde açılır, yani dosyayı Microsoft indirir",
+        "ru": "Просмотр вложений Word, Excel и PowerPoint из меню сообщения; файл открывается в онлайн-просмотрщике Microsoft, который его скачивает",
+        "es": "Ve adjuntos de Word, Excel y PowerPoint desde el menú del mensaje; el archivo se abre en el visor en línea de Microsoft, que lo descarga",
+        "fr": "Affichez les pièces jointes Word, Excel et PowerPoint depuis le menu du message ; le fichier est ouvert par la visionneuse en ligne de Microsoft, qui le télécharge"
+    },
+    "Preview PDF attachments from the message menu; the file is opened by Google's online viewer, which downloads it": {
+        "tr": "PDF eklerini mesaj menüsünden önizle; dosya Google'ın çevrimiçi görüntüleyicisinde açılır, yani dosyayı Google indirir",
+        "ru": "Предпросмотр PDF-вложений из меню сообщения; файл открывается в онлайн-просмотрщике Google, который его скачивает",
+        "es": "Previsualiza adjuntos PDF desde el menú del mensaje; el archivo se abre en el visor en línea de Google, que lo descarga",
+        "fr": "Prévisualisez les pièces jointes PDF depuis le menu du message ; le fichier est ouvert par la visionneuse en ligne de Google, qui le télécharge"
+    },
+    "Translate messages from the message menu, translate what you send, or use /translate; the text is sent to Google Translate": {
+        "tr": "Mesajları mesaj menüsünden çevir, gönderdiklerini çevir ya da /translate kullan; metin Google Çeviri'ye gönderilir",
+        "ru": "Переводите сообщения из меню сообщения, переводите то, что отправляете, или используйте /translate; текст отправляется в Google Переводчик",
+        "es": "Traduce mensajes desde el menú del mensaje, traduce lo que envías o usa /translate; el texto se envía a Google Translate",
+        "fr": "Traduisez les messages depuis le menu du message, traduisez ce que vous envoyez ou utilisez /translate ; le texte est envoyé à Google Traduction"
+    },
+    "Auto translate messages to your language with caching, per-channel toggles, and more options; the messages are sent to Google Translate": {
+        "tr": "Mesajları önbellekle, kanal başına aç/kapa ve daha fazla seçenekle kendi diline otomatik çevirir; mesajlar Google Çeviri'ye gönderilir",
+        "ru": "Автоматически переводит сообщения на ваш язык с кешированием, переключателями по каналам и другими настройками; сообщения отправляются в Google Переводчик",
+        "es": "Traduce automáticamente los mensajes a tu idioma con caché, activación por canal y más opciones; los mensajes se envían a Google Translate",
+        "fr": "Traduit automatiquement les messages dans votre langue avec cache, activation par salon et d'autres options ; les messages sont envoyés à Google Traduction"
+    },
+    "Translate a channel's name and topic with /translatechannel; they are sent to Google Translate": {
+        "tr": "Bir kanalın adını ve konusunu /translatechannel ile çevir; bunlar Google Çeviri'ye gönderilir",
+        "ru": "Переводите название и тему канала командой /translatechannel; они отправляются в Google Переводчик",
+        "es": "Traduce el nombre y el tema de un canal con /translatechannel; se envían a Google Translate",
+        "fr": "Traduisez le nom et le sujet d'un salon avec /translatechannel ; ils sont envoyés à Google Traduction"
+    },
+    "Send a QR code of any text or link with /qr; the text is sent to api.qrserver.com, which draws it": {
+        "tr": "/qr ile herhangi bir metnin ya da linkin QR kodunu gönder; metin, kodu çizen api.qrserver.com'a gönderilir",
+        "ru": "Отправляйте QR-код любого текста или ссылки командой /qr; текст отправляется на api.qrserver.com, который его рисует",
+        "es": "Envía un código QR de cualquier texto o enlace con /qr; el texto se envía a api.qrserver.com, que lo dibuja",
+        "fr": "Envoyez le code QR d'un texte ou d'un lien avec /qr ; le texte est envoyé à api.qrserver.com, qui le dessine"
+    },
+    "Shorten a link with /shorten through is.gd; the short link goes in the message box": {
+        "tr": "/shorten ile bir linki is.gd üzerinden kısalt; kısa link mesaj kutusuna gelir",
+        "ru": "Сокращайте ссылки командой /shorten через is.gd; короткая ссылка появляется в поле сообщения",
+        "es": "Acorta un enlace con /shorten a través de is.gd; el enlace corto va al cuadro del mensaje",
+        "fr": "Raccourcissez un lien avec /shorten via is.gd ; le lien court est placé dans la zone de message"
+    },
+    "Search for a message's image on Google Lens, Yandex, SauceNAO and more from the message menu; the image's link is sent to the search engine you pick": {
+        "tr": "Bir mesajın görselini mesaj menüsünden Google Lens, Yandex, SauceNAO ve diğerlerinde ara; görselin linki seçtiğin arama motoruna gönderilir",
+        "ru": "Ищите изображение из сообщения в Google Lens, Yandex, SauceNAO и других из меню сообщения; ссылка на изображение отправляется выбранному поисковику",
+        "es": "Busca la imagen de un mensaje en Google Lens, Yandex, SauceNAO y más desde el menú del mensaje; el enlace de la imagen se envía al buscador que elijas",
+        "fr": "Recherchez l'image d'un message sur Google Lens, Yandex, SauceNAO et d'autres depuis le menu du message ; le lien de l'image est envoyé au moteur de recherche choisi"
+    },
     "**{query}** is ambiguous — try being more specific.": {
         "tr": "**{query}** belirsiz — daha net yazmayı dene.",
         "ru": "**{query}** — неоднозначный запрос, попробуйте уточнить.",
@@ -4001,12 +4121,6 @@
         "es": "Pon tu texto en negrita Unicode",
         "fr": "Mettre votre texte en gras Unicode"
     },
-    "Makes YouTube embed titles less sensationalist, powered by Dearrow": {
-        "tr": "YouTube yerleştirmelerinin başlıklarını DeArrow ile daha az abartılı yapar",
-        "ru": "Делает заголовки встраиваемых видео YouTube менее кликбейтными с помощью DeArrow",
-        "es": "Hace los títulos de los vídeos de YouTube incrustados menos sensacionalistas, gracias a DeArrow",
-        "fr": "Rend les titres des vidéos YouTube intégrées moins racoleurs, grâce à DeArrow"
-    },
     "Manufacturer": {
         "tr": "Üretici",
         "ru": "Производитель",
@@ -5237,12 +5351,6 @@
         "es": "Nombre del preajuste",
         "fr": "Nom du préréglage"
     },
-    "Preview PDF attachments without downloading them first, from the message menu": {
-        "tr": "PDF eklerini önce indirmeden, mesaj menüsünden önizle",
-        "ru": "Просматривайте PDF-вложения без скачивания из меню сообщения",
-        "es": "Previsualiza adjuntos PDF sin descargarlos primero, desde el menú del mensaje",
-        "fr": "Prévisualisez les PDF joints sans les télécharger, depuis le menu du message"
-    },
     "Primary color, like #ff66aa": {
         "tr": "Ana renk, örneğin #ff66aa",
         "ru": "Основной цвет, например #ff66aa",
@@ -5885,12 +5993,6 @@
         "es": "Tiempo de pantalla",
         "fr": "Temps d'écran"
     },
-    "Search for a message's image on Google Lens, Yandex, SauceNAO and more from the message menu": {
-        "tr": "Bir mesajdaki görseli mesaj menüsünden Google Lens, Yandex, SauceNAO ve daha fazlasında ara",
-        "ru": "Ищите изображение из сообщения в Google Lens, Яндексе, SauceNAO и других из меню сообщения",
-        "es": "Busca la imagen de un mensaje en Google Lens, Yandex, SauceNAO y más desde el menú del mensaje",
-        "fr": "Recherchez l'image d'un message sur Google Lens, Yandex, SauceNAO et d'autres depuis le menu du message"
-    },
     "Search messages you have read by keyword and person with /vault, even after they scroll away. Indexed on your device only.": {
         "tr": "Okuduğun mesajları, kaybolup gitseler bile /vault ile kelimeye ve kişiye göre ara. Yalnızca cihazında dizinlenir.",
         "ru": "Ищите прочитанные сообщения по словам и людям с /vault, даже когда они ушли вверх. Индекс хранится только на устройстве.",
@@ -6154,12 +6256,6 @@
         "ru": "Отправить QR-код",
         "es": "Envía un código QR",
         "fr": "Envoyer un code QR"
-    },
-    "Send a QR code of any text or link with /qr": {
-        "tr": "/qr ile herhangi bir metnin ya da bağlantının QR kodunu gönder",
-        "ru": "Отправляйте QR-код любого текста или ссылки с /qr",
-        "es": "Envía un código QR de cualquier texto o enlace con /qr",
-        "fr": "Envoyez le code QR de n'importe quel texte ou lien avec /qr"
     },
     "Send a fact about cats": {
         "tr": "Kediler hakkında bir bilgi gönder",
@@ -6515,12 +6611,6 @@
         "es": "Corta",
         "fr": "Courte"
     },
-    "Shorten a link with /shorten; the short link goes in the message box": {
-        "tr": "/shorten ile bir bağlantıyı kısalt; kısa bağlantı mesaj kutusuna konur",
-        "ru": "Сокращайте ссылки с /shorten; короткая ссылка попадает в поле ввода",
-        "es": "Acorta un enlace con /shorten; el enlace corto va al cuadro de mensaje",
-        "fr": "Raccourcissez un lien avec /shorten ; le lien court va dans la zone de message"
-    },
     "Shortest message": {
         "tr": "En kısa mesaj",
         "ru": "Самое короткое сообщение",
@@ -6760,12 +6850,6 @@
         "ru": "Показывает или скрывает фоновое изображение темы в чате",
         "es": "Muestra u oculta la imagen de fondo del tema en el chat",
         "fr": "Affiche ou masque l'image d'arrière-plan du thème dans la discussion"
-    },
-    "Shows people's pronouns from PronounDB next to their messages": {
-        "tr": "İnsanların PronounDB'deki zamirlerini mesajlarının yanında gösterir",
-        "ru": "Показывает местоимения из PronounDB рядом с сообщениями",
-        "es": "Muestra los pronombres de PronounDB junto a los mensajes de cada persona",
-        "fr": "Affiche les pronoms PronounDB des gens à côté de leurs messages"
     },
     "Shows people's pronouns from their Discord profile next to their messages": {
         "tr": "İnsanların Discord profilindeki zamirleri mesajlarının yanında gösterir",
@@ -7985,18 +8069,6 @@
         "es": "Parte superior de la pantalla",
         "fr": "En haut de l'écran"
     },
-    "Translate a channel's name and topic with /translatechannel": {
-        "tr": "/translatechannel ile bir kanalın adını ve konusunu çevir",
-        "ru": "Переводите название и тему канала с /translatechannel",
-        "es": "Traduce el nombre y tema de un canal con /translatechannel",
-        "fr": "Traduisez le nom et le sujet d'un salon avec /translatechannel"
-    },
-    "Translate messages from the message menu, translate what you send, or use /translate (Google Translate)": {
-        "tr": "Mesajları mesaj menüsünden çevir, gönderdiklerini çevir ya da /translate kullan (Google Çeviri)",
-        "ru": "Переводите сообщения из меню сообщения, переводите то, что отправляете, или используйте /translate (Google Переводчик)",
-        "es": "Traduce mensajes desde el menú del mensaje, traduce lo que envías o usa /translate (Google Translate)",
-        "fr": "Traduisez les messages depuis le menu du message, traduisez ce que vous envoyez ou utilisez /translate (Google Traduction)"
-    },
     "Translate messages to": {
         "tr": "Mesajları şu dile çevir",
         "ru": "Переводить сообщения на",
@@ -8416,12 +8488,6 @@
         "ru": "Роли и права",
         "es": "Ver roles y permisos",
         "fr": "Voir les rôles et permissions"
-    },
-    "View Word, Excel and PowerPoint attachments without downloading them, from the message menu": {
-        "tr": "Word, Excel ve PowerPoint eklerini indirmeden, mesaj menüsünden görüntüle",
-        "ru": "Открывайте вложения Word, Excel и PowerPoint без скачивания из меню сообщения",
-        "es": "Ve adjuntos de Word, Excel y PowerPoint sin descargarlos, desde el menú del mensaje",
-        "fr": "Affichez les pièces jointes Word, Excel et PowerPoint sans les télécharger, depuis le menu du message"
     },
     "View ZIP Contents": {
         "tr": "ZIP İçeriğini Görüntüle",

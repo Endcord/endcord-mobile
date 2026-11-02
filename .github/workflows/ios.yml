@@ -39,7 +39,7 @@ jobs:
     outputs:
       version: ${{ steps.build.outputs.version }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
       - uses: Randomblock1/theos-action@4e23d15886bca77b5f7c462a82567e0de33ebe0b # v1.5
       - name: Build
         id: build
@@ -60,7 +60,7 @@ jobs:
           fi
           echo "version=$(sed -n 's/^Version: //p' control)" >> "$GITHUB_OUTPUT"
           ls -l out
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         # With the build log alone when the build fails
         if: always()
         with:
@@ -78,7 +78,7 @@ jobs:
       matrix:
         bytecode: [98, 99]
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
       - uses: Randomblock1/theos-action@4e23d15886bca77b5f7c462a82567e0de33ebe0b # v1.5
       - name: Build the tweak for the simulator
         working-directory: ios
@@ -95,7 +95,7 @@ jobs:
       - name: Test
         shell: bash
         run: bash ios/Tests/run.sh Endcord-simulator.dylib ${{ matrix.bytecode }} results
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: always()
         with:
           name: simulator-${{ matrix.bytecode }}
@@ -119,14 +119,14 @@ jobs:
             echo "::notice::No Discord IPA: set the DISCORD_IPA_URL secret, or run this workflow with a link to one"
             echo "skip=true" >> "$GITHUB_OUTPUT"
           fi
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         if: steps.source.outputs.skip != 'true'
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         if: steps.source.outputs.skip != 'true'
         with:
           name: tweak
           path: ${{ runner.temp }}/tweak
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         if: steps.source.outputs.skip != 'true'
         with:
           python-version: "3.12"
@@ -257,7 +257,7 @@ jobs:
               }, f, indent=2)
           EOF
           cat app.json
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: steps.source.outputs.skip != 'true'
         with:
           name: ipa
@@ -265,7 +265,7 @@ jobs:
             Endcord.ipa
             app.json
           compression-level: 0
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: always() && steps.source.outputs.skip != 'true'
         with:
           name: ipa-log
@@ -282,17 +282,17 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
           name: tweak
           path: results
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         # Only when there was a Discord IPA to build from
         continue-on-error: true
         with:
           name: ipa-log
           path: results
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         continue-on-error: true
         with:
           pattern: simulator-*
@@ -331,6 +331,8 @@ jobs:
       github.ref == 'refs/heads/next' &&
       (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.release))
     runs-on: ubuntu-latest
+    # Publishes with the release environment's approval, like the Build workflow's deploy job
+    environment: release
     permissions:
       contents: write
     env:
@@ -338,11 +340,11 @@ jobs:
       DISCORD_VERSION: ${{ needs.ipa.outputs.discord-version }}
       TWEAK_VERSION: ${{ needs.tweak.outputs.version }}
     steps:
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
           name: tweak
           path: ${{ runner.temp }}/out
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         if: needs.ipa.outputs.discord-version != ''
         with:
           name: ipa

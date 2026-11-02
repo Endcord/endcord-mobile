@@ -24,7 +24,7 @@ const ENGINES: Record<string, string> = {
 export default definePlugin({
     id: "endcord.reverse-image-search",
     name: "ReverseImageSearch",
-    description: tx("Search for a message's image on Google Lens, Yandex, SauceNAO and more from the message menu"),
+    description: tx("Search for a message's image on Google Lens, Yandex, SauceNAO and more from the message menu; the image's link is sent to the search engine you pick"),
     icon: "MagnifyingGlassIcon",
     tags: ["Media", "Utility"],
     start({ cleanup }) {

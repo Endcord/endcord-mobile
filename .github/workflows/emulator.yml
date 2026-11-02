@@ -27,7 +27,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           fetch-depth: 0
 
@@ -46,7 +46,7 @@ jobs:
           openssl ecparam -name prime256v1 -genkey -noout | openssl pkcs8 -topk8 -nocrypt -out ../release-test.pem
           openssl pkey -in ../release-test.pem -pubout -outform DER | base64 -w0 > ../release-test.pub
 
-      - uses: actions/setup-java@v5
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
         with:
           distribution: temurin
           java-version: 25
@@ -67,7 +67,7 @@ jobs:
             ENDCORD_RELEASE_BASE_URL=http://10.0.2.2:4040/pinned/ node bundle/scripts/sign-release.mjs serve
           mkdir serve/pinned && cp serve/endcord.min.js serve/endcord.v*.hbc serve/endcord-xposed.apk serve/pinned/
 
-      - uses: actions/setup-java@v5
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
         with:
           distribution: temurin
           java-version: 21

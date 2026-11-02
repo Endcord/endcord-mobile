@@ -14,7 +14,7 @@ import { translate } from "../shared/lookup";
 export default definePlugin({
     id: "endcord.surface-translate",
     name: "SurfaceTranslate",
-    description: tx("Translate a channel's name and topic with /translatechannel"),
+    description: tx("Translate a channel's name and topic with /translatechannel; they are sent to Google Translate"),
     icon: "LanguageIcon",
     tags: ["Servers", "Utility"],
     start({ cleanup }) {

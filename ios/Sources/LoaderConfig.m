@@ -8,6 +8,17 @@ static NSURL *loaderConfigURL(void) {
     return [getPyoncordDirectory() URLByAppendingPathComponent:@"loader.json"];
 }
 
+// A bundle is code that runs in Discord: the user's own choice of address, but only one nobody on the way can change,
+// as the Android loader and the bundle require of addons: https, or plain http from this machine
+static BOOL isAllowedBundleURL(NSURL *url) {
+    NSString *scheme = url.scheme.lowercaseString;
+    if ([scheme isEqualToString:@"https"]) return YES;
+    if (![scheme isEqualToString:@"http"]) return NO;
+    NSString *host = url.host.lowercaseString;
+    return [host isEqualToString:@"localhost"] || [host isEqualToString:@"127.0.0.1"] || [host isEqualToString:@"::1"]
+        || [host isEqualToString:@"10.0.2.2"];
+}
+
 @implementation LoaderConfig
 
 - (instancetype)init {
@@ -34,10 +45,10 @@ static NSURL *loaderConfigURL(void) {
         self.customLoadUrlEnabled = [enabled isKindOfClass:[NSNumber class]] && [enabled boolValue];
         id urlString              = customLoadUrl[@"url"];
         NSURL *url = [urlString isKindOfClass:[NSString class]] ? [NSURL URLWithString:urlString] : nil;
-        if (url.scheme && url.host) {
+        if (url.scheme && url.host && isAllowedBundleURL(url)) {
             self.customLoadUrl = url;
         } else if (self.customLoadUrlEnabled) {
-            BunnyLog(@"The custom bundle URL %@ isn't a link; loading the default bundle", urlString);
+            BunnyLog(@"The custom bundle URL %@ isn't an https:// link (or http:// from this machine); loading the default bundle", urlString);
             self.customLoadUrlEnabled = NO;
         }
     }

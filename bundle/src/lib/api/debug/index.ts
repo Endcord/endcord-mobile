@@ -44,6 +44,17 @@ export async function toggleSafeMode() {
     setTimeout(BundleUpdaterManager.reload, 400);
 }
 
+/** Addresses that are this machine: the only ones DevTools connects to without being asked each time */
+const OWN_MACHINE = /^(?:ws:\/\/)?(localhost|127\.0\.0\.1|\[::1\]|10\.0\.2\.2)(:\d+)?(\/|$)/i;
+
+/**
+ * Whether DevTools may connect to an address on start. Whoever answers at the address runs code in Discord: on this
+ * machine that's the developer; on another address it could be anyone on the same network.
+ */
+export function isOwnMachineDebugger(url: string) {
+    return OWN_MACHINE.test(url.trim());
+}
+
 export function connectToDebugger(url: string, quiet?: boolean) {
     if (dtConnected) return;
 
@@ -144,6 +155,10 @@ export async function initDebugger() {
     // The settings may still be loading this early at startup
     await awaitStorage(settings);
     if (!settings.enableAutoDebugger || !settings.debuggerUrl) return;
+    if (!isOwnMachineDebugger(settings.debuggerUrl)) {
+        logger.warn(`DevTools connects on start only to this machine; ${settings.debuggerUrl} needs connecting by hand`);
+        return;
+    }
 
     try {
         connectToDebugger(settings.debuggerUrl, true);
