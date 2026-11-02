@@ -1,0 +1,13 @@
+2026-11-02 20:52:21.434907+0000 Host[7789:28099] [Endcord] Using the default loader config
+2026-11-02 20:52:21.545885+0000 Host[7789:28099] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-11-02 20:52:21.611644+0000 Host[7789:28124] [Endcord] Using the default loader config
+2026-11-02 20:52:21.616510+0000 Host[7789:28124] [Endcord] Using the default loader config
+2026-11-02 20:52:21.617484+0000 Host[7789:28124] [Endcord] Discord's bundle has bytecode version 98
+2026-11-02 20:52:21.618474+0000 Host[7789:28124] [Endcord] Using the default loader config
+2026-11-02 20:52:21.650623+0000 Host[7789:28116] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+2026-11-02 20:52:21.695551+0000 Host[7789:28117] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+2026-11-02 20:52:21.754619+0000 Host[7789:28117] [Endcord] Using the default loader config
+2026-11-02 20:52:21.758399+0000 Host[7789:28117] [Endcord] Using the default loader config
+2026-11-02 20:52:21.765508+0000 Host[7789:28117] [Endcord] Using the default loader config
+2026-11-02 20:52:21.886636+0000 Host[7789:28117] [Endcord] Using the default loader config
+2026-11-02 20:52:21.897831+0000 Host[7789:28117] [Endcord] The bundle at http://127.0.0.1:4040/endcord.v98.hbc hasn't changed

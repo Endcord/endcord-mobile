@@ -1,0 +1,5 @@
+RESULT PASS signed-rollback bundle: ran hbc2, saved from http://127.0.0.1:4040/endcord.v98.hbc | "d9b55224361880b266692887f37c55c63514d86c"
+RESULT PASS signed-rollback no-alert: 
+RESULT PASS signed-rollback rollback-refused: the older release didn't replace the saved bundle
+SCREENSHOT signed-rollback
+DONE signed-rollback failures=0
