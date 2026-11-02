@@ -5,7 +5,7 @@
     <p>Plugins, themes and privacy for the Discord app on your Android phone, iPhone and iPad.</p>
 
 [![Download for Android](https://img.shields.io/badge/Download-Android%20APK-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/Endcord/endcord-mobile/releases/download/next-installer-v1.0.3/endcord-installer-v1.0.3.apk)
-[![Download for iOS](https://img.shields.io/badge/Download-iOS%20IPA-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/Endcord/endcord-mobile/releases/download/ios-v1.0.6/Endcord.ipa)
+[![Download for iOS](https://img.shields.io/badge/Download-iOS%20IPA-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/Endcord/endcord-mobile/releases/download/ios-v1.0.7/Endcord.ipa)
 [![Join the Discord](https://img.shields.io/badge/Discord-Join%20us-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/endcord)
 
 [Website](https://endcord.com) · [Endcord PC](https://github.com/rootpoii/endcord) · [Full README](../../tree/next#readme)
@@ -18,7 +18,7 @@ This repository holds Endcord for **Android** and **iOS / iPadOS**. Their source
 | | Source code | Download |
 | --- | --- | --- |
 | **Android** | [`android/`](../../tree/next/android) | [Endcord Installer](https://github.com/Endcord/endcord-mobile/releases/download/next-installer-v1.0.3/endcord-installer-v1.0.3.apk) |
-| **iOS and iPadOS** | [`ios/`](../../tree/next/ios) | [Endcord.ipa](https://github.com/Endcord/endcord-mobile/releases/download/ios-v1.0.6/Endcord.ipa) |
+| **iOS and iPadOS** | [`ios/`](../../tree/next/ios) | [Endcord.ipa](https://github.com/Endcord/endcord-mobile/releases/download/ios-v1.0.7/Endcord.ipa) |
 | **Both**: plugins, themes and Endcord's pages | [`bundle/`](../../tree/next/bundle) | Comes with the app |
 | **Endcord Classic**, for the classic Discord app on Android | This branch | [Releases](../../releases/latest) |
 
