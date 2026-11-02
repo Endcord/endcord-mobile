@@ -104,7 +104,9 @@ jobs:
   ipa:
     name: IPA
     needs: tweak
-    runs-on: macos-15
+    # Intel: this job only rewrites the IPA (cyan, plutil, otool), and GitHub's arm64 macOS runners are short of
+    # capacity, which dropped it before it started. macos-15-intel retires in 2027; then it's macos-15 again.
+    runs-on: macos-15-intel
     outputs:
       discord-version: ${{ steps.inject.outputs.discord-version }}
     env:
