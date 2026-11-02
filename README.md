@@ -6,7 +6,7 @@
 
 **Plugins, themes and privacy for the Discord app on your Android phone, iPhone and iPad**
 
-[![Download for Android](https://img.shields.io/badge/Download-Android%20APK-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/Endcord/endcord-mobile/releases/download/next-installer-v1.0.2/endcord-installer-v1.0.2.apk)
+[![Download for Android](https://img.shields.io/badge/Download-Android%20APK-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/Endcord/endcord-mobile/releases/download/next-installer-v1.0.3/endcord-installer-v1.0.3.apk)
 [![Download for iOS](https://img.shields.io/badge/Download-iOS%20IPA-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/Endcord/endcord-mobile/releases/download/ios-v1.0.6/Endcord.ipa)
 [![Join the Discord](https://img.shields.io/badge/Discord-Join%20us-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/endcord)
 
@@ -59,7 +59,7 @@ Both run the same Endcord, from [`bundle/`](bundle), so plugins and themes work 
 
 No root needed. Endcord installs next to Discord as a separate app, and your Discord stays exactly as it is.
 
-1. Download **[Endcord Installer](https://github.com/Endcord/endcord-mobile/releases/download/next-installer-v1.0.2/endcord-installer-v1.0.2.apk)**
+1. Download **[Endcord Installer](https://github.com/Endcord/endcord-mobile/releases/download/next-installer-v1.0.3/endcord-installer-v1.0.3.apk)**
    and open it. If Android asks, allow your browser to install apps.
 2. In **Endcord Installer**, tap **Install**. It uses the Discord on your phone, or downloads the latest one.
 3. Open **Endcord** and sign in. Endcord's settings are in Discord's settings, under **Endcord**.
