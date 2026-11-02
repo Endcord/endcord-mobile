@@ -1,0 +1,20 @@
+Which Endcord?
+Endcord Classic
+Endcord
+On the current Discord app, with 300+ Endcord plugins
+Endcord
+Latest: 351.11 - Stable
+Install
+rootpoi
+•
+272c029
+11/2/26
+README: Endcord Installer 1.0.2
+rootpoi
+•
+492e598
+11/2/26
+Installer 1.0.2: the version the builds branch's installer reports, as the release's
+Endcord Installer
+Reload
+Open about

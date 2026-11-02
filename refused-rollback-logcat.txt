@@ -1,0 +1,832 @@
+--------- beginning of main
+11-02 18:26:41.421  1746  1746 I A       : onApplyWindowInsets: systemWindowInsets=Insets{left=0, top=24, right=0, bottom=0}
+11-02 18:26:41.421  1746  1746 I A       : onApplyWindowInsets: systemWindowInsets=Insets{left=0, top=24, right=0, bottom=0}
+11-02 18:26:41.432  1620  2070 I AiAiEcho: Predicting[0]: 
+11-02 18:26:41.432  1620  2070 I AiAiEcho: EchoTargets: 
+11-02 18:26:41.432  1620  2070 I AiAiEcho: Filtered by AiAi flag check: 
+11-02 18:26:41.432  1620  2070 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-02 18:26:41.443  1620  2070 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+--------- beginning of kernel
+11-02 18:26:41.631     0     0 I init    : Untracked pid 10185 received signal 9
+11-02 18:26:41.632     0     0 I init    : Untracked pid 10185 did not have an associated service entry and will not be reaped
+--------- beginning of system
+11-02 18:26:41.464   521  2335 V ActivityManager: Got obituary of 9999:com.endcord.next
+11-02 18:26:41.464   337   337 I Zygote  : Process 9999 exited due to signal 9 (Killed)
+11-02 18:26:41.467   521  2585 I ImeTracker: com.endcord.next:cd0ed3f5: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_REMOVE_CLIENT
+11-02 18:26:41.467   521   775 D ConnectivityService: releasing NetworkRequest [ REQUEST id=154, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10195 RequestorUid: 10195 RequestorPkg: com.endcord.next UnderlyingNetworks: Null] ] (release request)
+11-02 18:26:41.468   521  2585 I ImeTracker: com.endcord.next:cd0ed3f5: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-02 18:26:41.479   521  1008 I WindowManager: WIN DEATH: Window{844b016 u0 com.endcord.next/com.discord.main.MainDefault}
+11-02 18:26:41.479   844   876 V WindowManagerShell: onTransitionReady android.os.BinderProxy@fd15d23: {id=19 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@e7d9895} m=CLOSE f=NONE leash=Surface(name=Task=14)/@0x8e857d9 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@8358daa} m=TO_FRONT f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x87b59e sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{null m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{73f593d token=android.os.Binder@275da94})/@0x952a87f sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+11-02 18:26:41.479   521  1008 W InputManager-JNI: Input channel object '844b016 com.endcord.next/com.discord.main.MainDefault (client)' was disposed without first being removed with the input manager!
+11-02 18:26:41.479   844   876 V WindowManagerShell: Playing animation for (#19)android.os.BinderProxy@fd15d23@0
+11-02 18:26:41.480   844   876 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultMixedHandler@4fe6e33
+11-02 18:26:41.480   844   876 V WindowManagerShell:  try handler com.android.wm.shell.keyguard.KeyguardTransitionHandler@45aa5f0
+11-02 18:26:41.480   844   876 V WindowManagerShell:  try handler com.android.wm.shell.activityembedding.ActivityEmbeddingController@c7f769
+11-02 18:26:41.480   844   876 V WindowManagerShell:  try handler com.android.wm.shell.recents.RecentsTransitionHandler@6bc85ee
+11-02 18:26:41.481   844   876 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+11-02 18:26:41.481   844   876 V WindowManagerShell:  try handler com.android.wm.shell.pip.PipTransition@327ba8f
+11-02 18:26:41.481   521   540 V WindowManager: Sent Transition #19 createdAt=11-02 18:26:41.380 via request=TransitionRequestInfo { type = CLOSE, triggerTask = TaskInfo{userId=0 taskId=14 displayId=0 isRunning=false baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.endcord.next/com.discord.main.MainDefault } baseActivity=null topActivity=null origActivity=ComponentInfo{com.endcord.next/com.discord.main.MainDefault} realActivity=ComponentInfo{com.endcord.next/com.discord.main.MainActivity} numActivities=0 lastActiveTime=846060 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{89fce8e Task{2bfa38e #14 type=standard A=10195:com.endcord.next}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=null launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+11-02 18:26:41.481   521   540 V WindowManager:     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+11-02 18:26:41.481   844   876 V WindowManagerShell:  try handler com.android.wm.shell.splitscreen.StageCoordinator@c5c311c
+11-02 18:26:41.481   844   876 V WindowManagerShell:  try handler com.android.wm.shell.transition.RemoteTransitionHandler@1dfa125
+11-02 18:26:41.481   521   540 V WindowManager:     info={id=19 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{RemoteToken{89fce8e Task{2bfa38e #14 type=standard A=10195:com.endcord.next}}} m=CLOSE f=NONE leash=Surface(name=Task=14)/@0x28ef042 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{RemoteToken{7d269e1 Task{a99465a #1 type=home}}} m=TO_FRONT f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0xc5b85c0 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{null m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{73f593d token=android.os.Binder@275da94})/@0xcd6847b sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+11-02 18:26:41.481   844   876 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=19 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@e7d9895} m=CLOSE f=NONE leash=Surface(name=Task=14)/@0x8e857d9 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@8358daa} m=TO_FRONT f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x87b59e sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{null m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{73f593d token=android.os.Binder@275da94})/@0x952a87f sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+11-02 18:26:41.482   844   876 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@3f27257, appThread = android.app.IApplicationThread$Stub$Proxy@35b6144, debugName = LauncherToDream }}
+11-02 18:26:41.482   844   876 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity}},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@423522d, appThread = android.app.IApplicationThread$Stub$Proxy@1e1e362, debugName = QuickstepLaunchHome }}
+11-02 18:26:41.482   844   876 V WindowManagerShell:  Delegate animation for #19 to null
+11-02 18:26:41.482   844   876 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultTransitionHandler@48b64c6
+11-02 18:26:41.482   844   876 V WindowManagerShell: start default transition animation, info = {id=19 t=CLOSE f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@e7d9895} m=CLOSE f=NONE leash=Surface(name=Task=14)/@0x8e857d9 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@8358daa} m=TO_FRONT f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x87b59e sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{null m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{73f593d token=android.os.Binder@275da94})/@0x952a87f sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+11-02 18:26:41.482   844   876 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@29f7538 animAttr=0x10 type=CLOSE isEntrance=true
+11-02 18:26:41.482   844   876 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@82f2877 animAttr=0x11 type=CLOSE isEntrance=false
+11-02 18:26:41.483   844   876 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@48b64c6
+11-02 18:26:41.491   844   876 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#19)android.os.BinderProxy@fd15d23@0
+11-02 18:26:41.492   521   540 V WindowManager: Finish Transition #19: created at 11-02 18:26:41.380 collect-started=0.021ms request-sent=0.085ms started=7.777ms ready=7.767ms sent=95.639ms finished=111.352ms
+11-02 18:26:41.492   521  3135 W WindowManager: Exception thrown during dispatchAppVisibility Window{844b016 u0 com.endcord.next/com.discord.main.MainDefault EXITING}
+11-02 18:26:41.492   521  3135 W WindowManager: android.os.DeadObjectException
+11-02 18:26:41.492   521  3135 W WindowManager: 	at android.os.BinderProxy.transactNative(Native Method)
+11-02 18:26:41.492   521  3135 W WindowManager: 	at android.os.BinderProxy.transact(BinderProxy.java:584)
+11-02 18:26:41.492   521  3135 W WindowManager: 	at android.view.IWindow$Stub$Proxy.dispatchAppVisibility(IWindow.java:546)
+11-02 18:26:41.492   521  3135 W WindowManager: 	at com.android.server.wm.WindowState.sendAppVisibilityToClients(WindowState.java:3271)
+11-02 18:26:41.492   521  3135 W WindowManager: 	at com.android.server.wm.WindowContainer.sendAppVisibilityToClients(WindowContainer.java:1221)
+11-02 18:26:41.492   521  3135 W WindowManager: 	at com.android.server.wm.WindowToken.setClientVisible(WindowToken.java:409)
+11-02 18:26:41.492   521  3135 W WindowManager: 	at com.android.server.wm.ActivityRecord.setClientVisible(ActivityRecord.java:6946)
+11-02 18:26:41.492   521  3135 W WindowManager: 	at com.android.server.wm.ActivityRecord.postApplyAnimation(ActivityRecord.java:5637)
+11-02 18:26:41.492   521  3135 W WindowManager: 	at com.android.server.wm.ActivityRecord.commitVisibility(ActivityRecord.java:5580)
+11-02 18:26:41.492   521  3135 W WindowManager: 	at com.android.server.wm.Transition.finishTransition(Transition.java:1151)
+11-02 18:26:41.492   521  3135 W WindowManager: 	at com.android.server.wm.TransitionController.finishTransition(TransitionController.java:868)
+11-02 18:26:41.492   521  3135 W WindowManager: 	at com.android.server.wm.WindowOrganizerController.finishTransition(WindowOrganizerController.java:396)
+11-02 18:26:41.492   521  3135 W WindowManager: 	at android.window.IWindowOrganizerController$Stub.onTransact(IWindowOrganizerController.java:286)
+11-02 18:26:41.492   521  3135 W WindowManager: 	at com.android.server.wm.WindowOrganizerController.onTransact(WindowOrganizerController.java:181)
+11-02 18:26:41.492   521  3135 W WindowManager: 	at android.os.Binder.execTransactInternal(Binder.java:1339)
+11-02 18:26:41.492   521  3135 W WindowManager: 	at android.os.Binder.execTransact(Binder.java:1275)
+11-02 18:26:41.492   521  3135 I Process : Sending signal. PID: 9999 SIG: 9
+11-02 18:26:41.496   521   543 W ActivityManager: setHasOverlayUi called on unknown pid: 9999
+11-02 18:26:41.498   844   876 V WindowManagerShell: Track 0 became idle
+11-02 18:26:41.498   844   876 V WindowManagerShell: All active transition animations finished
+11-02 18:26:41.500   521   919 I ImeTracker: com.google.android.apps.nexuslauncher:f1fbaedf: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_UNSPECIFIED_WINDOW
+11-02 18:26:41.500   521   919 I ImeTracker: com.google.android.apps.nexuslauncher:f1fbaedf: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-02 18:26:41.503  1519  1519 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3227 
+11-02 18:26:41.503  1519  1519 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2087 repeatCheckTimes = 0, unlocked = true
+11-02 18:26:41.503  1519  1519 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x0(NULL) imeOptions=0x0 privateImeOptions=null actionName=UNSPECIFIED actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=com.google.android.apps.nexuslauncher fieldId=0 fieldName=null extras=null}, false)
+11-02 18:26:41.503  1519  1519 I GoogleInputMethodService: GoogleInputMethodService.shouldHideHeaderOnInitialState():4008 ShouldHideHeaderOnInitialState = false
+11-02 18:26:41.504  1519  1519 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2087 repeatCheckTimes = 2, unlocked = true
+11-02 18:26:41.508  1746  2329 I A       : Using proto config with mendel
+11-02 18:26:41.510  1746  1746 I A       : Created gRPC endpoint to "search" for service class com.google.android.apps.search.googleapp.search.suggest.plugins.onesearch.server.OneSearchSuggestService
+11-02 18:26:41.520   400   400 E BpTransactionCompletedListener: Failed to transact (-32)
+11-02 18:26:41.521  1746  1746 I A       : onApplyWindowInsets: systemWindowInsets=Insets{left=0, top=24, right=0, bottom=0}
+11-02 18:26:41.521  1746  1746 I A       : onApplyWindowInsets: systemWindowInsets=Insets{left=0, top=24, right=0, bottom=0}
+11-02 18:26:41.533  1519  1528 I putmethod.latin: JIT allocated 106KB for compiled code of boolean drz.a(ikb, java.lang.Object[])
+11-02 18:26:41.534  1519  1528 I putmethod.latin: Compiler allocated 5216KB to compile boolean drz.a(ikb, java.lang.Object[])
+11-02 18:26:41.536  1746  2329 I A       : Using proto config with mendel
+11-02 18:26:41.553 10203 10203 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+11-02 18:26:41.562 10203 10203 I AndroidRuntime: Using default boot image
+11-02 18:26:41.562 10203 10203 I AndroidRuntime: Leaving lock profiling enabled
+11-02 18:26:41.564 10203 10203 I app_process: Core platform API reporting enabled, enforcing=false
+11-02 18:26:41.564  1106  1106 D SearchTargetUtil:  query= size=15
+11-02 18:26:41.564 10203 10203 I app_process: Using CollectorTypeCC GC.
+11-02 18:26:41.564  1106  1106 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=viliami moala leaves north carolina,group_id=web390163,response_id=927b56da-3d26-4107-95c6-5bd70299c231,support_query_builder=false,} searchAction=viliami moala leaves north carolina searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: 24f0642b-96ac-45aa-8016-d065445121dd
+11-02 18:26:41.564  1106  1106 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=catelynn baltierra weight loss,group_id=web390163,response_id=927b56da-3d26-4107-95c6-5bd70299c231,support_query_builder=false,} searchAction=catelynn baltierra weight loss searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: cd9cf30b-af00-4772-bc52-a07d0956a521
+11-02 18:26:41.565  1106  1106 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=netanyahu israel elections,group_id=web390163,response_id=927b56da-3d26-4107-95c6-5bd70299c231,support_query_builder=false,} searchAction=netanyahu israel elections searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: a91a20e2-ef95-4448-be12-aa1f81160ac4
+11-02 18:26:41.565  1106  1106 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=peanuts,group_id=web390163,response_id=927b56da-3d26-4107-95c6-5bd70299c231,support_query_builder=false,} searchAction=peanuts searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: a7aae99f-5a44-4bbb-9e2e-f5159d046c27
+11-02 18:26:41.565  1106  1106 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=early miocene ape fossil egypt,group_id=web390163,response_id=927b56da-3d26-4107-95c6-5bd70299c231,support_query_builder=false,} searchAction=early miocene ape fossil egypt searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: 4b5fb8f6-0e15-4f6d-849a-c23a95763a05
+11-02 18:26:41.565  1106  1106 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=halloween candy needles,group_id=web390163,response_id=927b56da-3d26-4107-95c6-5bd70299c231,support_query_builder=false,} searchAction=halloween candy needles searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: a002d7df-6c17-4cd4-b0ae-404c91e2bd0f
+11-02 18:26:41.565  1106  1106 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=apple iphone duo,group_id=web390163,response_id=927b56da-3d26-4107-95c6-5bd70299c231,support_query_builder=false,} searchAction=apple iphone duo searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: 8eec8814-f500-49a5-bbba-a399c2b75e11
+11-02 18:26:41.565  1106  1106 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=horus heresy battle group boxes,group_id=web390163,response_id=927b56da-3d26-4107-95c6-5bd70299c231,support_query_builder=false,} searchAction=horus heresy battle group boxes searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: 8b07b645-c6d9-4f79-aacf-a4e038e36a91
+11-02 18:26:41.565  1106  1106 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=best new android apps november,group_id=web390163,response_id=927b56da-3d26-4107-95c6-5bd70299c231,support_query_builder=false,} searchAction=best new android apps november searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: ff2d2004-37cd-4686-9ca7-e70af7e002a3
+11-02 18:26:41.565  1106  1106 D SearchTargetUtil: layoutType=extra_tall_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{bitmap_url=data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIADAAIAMBIgACEQEDEQH/xAAYAAADAQEAAAAAAAAAAAAAAAAEBQYHA//EACoQAAIBAwMEAQQCAwAAAAAAAAECAwQFEQASIQYTMUFRFDJxgSKSI0KR/8QAGQEAAgMBAAAAAAAAAAAAAAAAAwQBAgUA/8QAIREAAgIBAwUBAAAAAAAAAAAAAQIAEQMEIZESEzFR8EH/2gAMAwEAAhEDEQA/ANFuE3aqmhgloo4BDIWmllyUkXkAr8AAk8+vWNJ0r6/sB5FolmMjjtdxSVwQAOGP8ssqkfP5GqWW1WmqiaGRXkQvI/ZRiQrPu3kD0TvY/k6Ent9oVJc0dS3edg6b87zK67jgnHJVf66tbzh2R5ip7jVJBM6tRf41RsMQMLvPcyd3G2Mb/wB+/GmdErvU1EVX9MiiRUh2S5djtBIZfRGR+iP2RV2+3T7oK2iqiHLNhnzgsApwQfOFx/3512httolqI5V3d7vd4bnwTIP9vzjg48jjxkam3G8hhhbb9k11X1bSdKSywMJXqKntyqY3P8U8Hj19nj2T60goeuaeUfXGpqHejQSmFzgzA7cLz5K+CeeeRnzp11z08lbfLPequhR7ZTOkdaqAsxXcSpKDyoJ5xk8+MZ1OdVW/pO59Y2q02KNqSeaVqas+mi7USrtIxtJUdwEY8Y55BPGln6i5JmliTB2VABO1nn7mO+k73eb9Y2kNkqo/qZQFrKeRQsuMK2TuDLyPPwCM662wiK8TUskclNJFMCkc0m3LYI3H22cEjyODz8IOlOnOrbb1dUWWG5VlHbqNXkidleSnlDEbQQCoyRkkg8FTq86foaKrgSapaN7hb2kppmiaVD9xOHDsWPncMk/dkedGwHp2qJ6zGrG1I98wu/XS92un3UNtirjsPLSlDuyMcYOePxrIja78l4fqBKbt1wqfqFXGEVmfJGD69a3uWISLg+dDmgQoyFEw3nOhZEZjdw+n1IwoVC+RUhqq7dU1XRTyyGGK5moQRPTIRhVAfLAkjkjaccHOnVPbJKytp72sawGupkS4UxGQzADafyOVPyMfGqD6NEjWNY1wMnx866xRlF24wp1dbBu4BmUrVT//2Q==,suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=true,is_personal=false,suggest_raw_text=white christmas,group_id=web390163,response_id=927b56da-3d26-4107-95c6-5bd70299c231,support_query_builder=false,} searchAction=White Christmas searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: 7f4895f5-ce49-4f7a-902f-77f975e7a112
+11-02 18:26:41.566  1106  1106 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=warren buffett no water claim,group_id=web390163,response_id=927b56da-3d26-4107-95c6-5bd70299c231,support_query_builder=false,} searchAction=warren buffett no water claim searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: de3ef136-c259-43c5-9f45-6860a746834f
+11-02 18:26:41.566  1106  1106 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=crows gathering in trees meaning,group_id=web390163,response_id=927b56da-3d26-4107-95c6-5bd70299c231,support_query_builder=false,} searchAction=crows gathering in trees meaning searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: a1ce500c-64b8-4078-b50e-3869a6a5f882
+11-02 18:26:41.566  1106  1106 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=khazalite holds new miniature release,group_id=web390163,response_id=927b56da-3d26-4107-95c6-5bd70299c231,support_query_builder=false,} searchAction=khazalite holds new miniature release searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: 04d2c56b-7935-4d80-8bef-ec25f4e89bc3
+11-02 18:26:41.566  1106  1106 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=nyt strands hints,group_id=web390163,response_id=927b56da-3d26-4107-95c6-5bd70299c231,support_query_builder=false,} searchAction=nyt strands hints searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: 119954af-7162-41bc-b727-65a2cc36e1df
+11-02 18:26:41.566  1106  1106 D SearchTargetUtil: layoutType=short_icon_row resultType=131072 packageName=com.google.android.googlequicksearchbox extras=Bundle{suggestion_type=33,suggest_truncate_start=false,is_answer=false,is_entity=false,is_personal=false,suggest_raw_text=nikita kucherov trade request,group_id=web390163,response_id=927b56da-3d26-4107-95c6-5bd70299c231,support_query_builder=false,} searchAction=nikita kucherov trade request searchActionExtras=Bundle{learn_more_url=https://support.google.com/websearch/answer/106230?hl=106230,suggestion_action_text=Report this,should_start_for_result=true,allow_pinning=true,skip_logging_in_target_handler=false,suggestion_action_rpc=2,}ParentID: null targetID: ec42a095-c954-4cad-bb53-351cfc2dc8bf
+11-02 18:26:41.621 10203 10203 D nativeloader: InitDefaultPublicLibraries for_preload=1: libandroid.so:libaaudio.so:libamidi.so:libbinder_ndk.so:libc.so:libcamera2ndk.so:libdl.so:libEGL.so:libGLESv1_CM.so:libGLESv2.so:libGLESv3.so:libicu.so:libicui18n.so:libicuuc.so:libjnigraphics.so:liblog.so:libmediandk.so:libm.so:libnativehelper.so:libnativewindow.so:libOpenMAXAL.so:libOpenSLES.so:libRS.so:libstdc++.so:libsync.so:libvulkan.so:libwebviewchromium_plat_support.so:libz.so
+11-02 18:26:41.629 10203 10203 D app_process: Time zone APEX ICU file found: /apex/com.android.tzdata/etc/icu/icu_tzdata.dat
+11-02 18:26:41.629 10203 10203 D app_process: I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt72l.dat
+11-02 18:26:41.633 10203 10203 W app_process: Unexpected CPU variant for x86: x86_64.
+11-02 18:26:41.633 10203 10203 W app_process: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, tremont, kabylake, default
+11-02 18:26:41.646 10203 10203 W libc    : Access denied finding property "ro.product.name_for_attestation"
+11-02 18:26:41.646 10203 10203 W libc    : Access denied finding property "ro.product.brand_for_attestation"
+11-02 18:26:41.646 10203 10203 W libc    : Access denied finding property "ro.product.model_for_attestation"
+11-02 18:26:41.647 10203 10203 D AndroidRuntime: Calling main entry com.android.commands.monkey.Monkey
+11-02 18:26:41.648 10203 10203 W Monkey  : args: [-p, com.endcord.next, -c, android.intent.category.LAUNCHER, 1]
+11-02 18:26:41.648 10203 10203 W Monkey  :  arg: "-p"
+11-02 18:26:41.649 10203 10203 W Monkey  :  arg: "com.endcord.next"
+11-02 18:26:41.649 10203 10203 W Monkey  :  arg: "-c"
+11-02 18:26:41.649 10203 10203 W Monkey  :  arg: "android.intent.category.LAUNCHER"
+11-02 18:26:41.649 10203 10203 W Monkey  :  arg: "1"
+11-02 18:26:41.649 10203 10203 W Monkey  : data="com.endcord.next"
+11-02 18:26:41.649 10203 10203 W Monkey  : data="android.intent.category.LAUNCHER"
+11-02 18:26:41.643 10203 10203 W main    : type=1400 audit(0.0:371): avc:  denied  { read } for  name="u:object_r:build_attestation_prop:s0" dev="tmpfs" ino=86 scontext=u:r:shell:s0 tcontext=u:object_r:build_attestation_prop:s0 tclass=file permissive=0
+11-02 18:26:41.643 10203 10203 W main    : type=1400 audit(0.0:372): avc:  denied  { read } for  name="u:object_r:build_attestation_prop:s0" dev="tmpfs" ino=86 scontext=u:r:shell:s0 tcontext=u:object_r:build_attestation_prop:s0 tclass=file permissive=0
+11-02 18:26:41.643 10203 10203 W main    : type=1400 audit(0.0:373): avc:  denied  { read } for  name="u:object_r:build_attestation_prop:s0" dev="tmpfs" ino=86 scontext=u:r:shell:s0 tcontext=u:object_r:build_attestation_prop:s0 tclass=file permissive=0
+11-02 18:26:41.662   521   919 W ActivityManager: registerReceiverWithFeature: no app for null
+11-02 18:26:41.664 10203 10203 W System  : No Compatibility callbacks set! Querying change 263076149
+11-02 18:26:41.664 10203 10203 W System  : No Compatibility callbacks set! Querying change 263076149
+11-02 18:26:41.664 10203 10203 W System  : No Compatibility callbacks set! Querying change 263076149
+11-02 18:26:41.666   521   919 D CompatibilityChangeReporter: Compat change id reported: 161252188; UID 10195; state: DISABLED
+11-02 18:26:41.666   521   919 W ActivityTaskManager: callingPackage for (uid=2000, pid=10203) has no WPC
+11-02 18:26:41.675   844   902 D SplashScreenView: Build android.window.SplashScreenView{a01e949 V.E...... ......ID 0,0-0,0}
+11-02 18:26:41.675   844   902 D SplashScreenView: Icon: view: android.widget.ImageView{f5ac24e V.ED..... ......I. 0,0-0,0 #10204f0 android:id/splashscreen_icon_view} drawable: com.android.wm.shell.startingsurface.SplashscreenIconDrawableFactory$ImmobileIconDrawable@72caf6f size: 192
+11-02 18:26:41.675   844   902 D SplashScreenView: Branding: view: android.view.View{a54b47c G.ED..... ......I. 0,0-0,0 #10204ef android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+11-02 18:26:41.677   844   876 V WindowManagerShell: Transition requested: android.os.BinderProxy@8f6d105 TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=15 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.endcord.next/com.discord.main.MainDefault } baseActivity=ComponentInfo{com.endcord.next/com.discord.main.MainActivity} topActivity=ComponentInfo{com.endcord.next/com.discord.main.MainActivity} origActivity=ComponentInfo{com.endcord.next/com.discord.main.MainDefault} realActivity=ComponentInfo{com.endcord.next/com.discord.main.MainActivity} numActivities=1 lastActiveTime=848517 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@3a4b55a} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{9fed38b com.discord.main.MainDefault} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+11-02 18:26:41.677   521   919 I ActivityTaskManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.endcord.next/com.discord.main.MainDefault} with LAUNCH_SINGLE_TASK from uid 2000 (BAL_ALLOW_PERMISSION) result code=0
+11-02 18:26:41.678 10203 10203 I Monkey  : Events injected: 1
+11-02 18:26:41.679   521   543 D CompatibilityChangeReporter: Compat change id reported: 135634846; UID 10195; state: DISABLED
+11-02 18:26:41.680   521   552 D CompatibilityChangeReporter: Compat change id reported: 143937733; UID 10195; state: ENABLED
+11-02 18:26:41.683  1620  2554 I AiAiEcho: Settings changed for uri: content://settings/secure/device_state_rotation_lock
+11-02 18:26:41.683  1620  2070 I AiAiEcho: Predicting[0]: 
+11-02 18:26:41.683  1620  2070 I AiAiEcho: EchoTargets: 
+11-02 18:26:41.683  1620  2070 I AiAiEcho: Filtered by AiAi flag check: 
+11-02 18:26:41.683  1620  2070 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-02 18:26:41.684  1620  2070 I AiAiEcho: Predicting[0]: 
+11-02 18:26:41.684  1620  2070 I AiAiEcho: EchoTargets: 
+11-02 18:26:41.684  1620  2070 I AiAiEcho: Filtered by AiAi flag check: 
+11-02 18:26:41.684  1620  2070 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-02 18:26:41.684  1620  2070 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-02 18:26:41.684  1620  2070 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+11-02 18:26:41.684   844   844 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-02 18:26:41.687   400   400 I BpBinder: onLastStrongRef automatically unlinking death recipients: 
+11-02 18:26:41.694 10203 10203 I Monkey  : ## Network stats: elapsed time=21ms (0ms mobile, 0ms wifi, 21ms not connected)
+11-02 18:26:41.695   337   337 D Zygote  : Forked child process 10219
+11-02 18:26:41.696   521   552 I ActivityManager: Start proc 10219:com.endcord.next/u0a195 for next-top-activity {com.endcord.next/com.discord.main.MainDefault}
+11-02 18:26:41.697  1620  2678 I AiAiEcho: Settings changed for uri: content://settings/secure/device_state_rotation_lock
+11-02 18:26:41.697  1620  2070 I AiAiEcho: Predicting[0]: 
+11-02 18:26:41.697  1620  2070 I AiAiEcho: EchoTargets: 
+11-02 18:26:41.697  1620  2070 I AiAiEcho: Filtered by AiAi flag check: 
+11-02 18:26:41.697  1620  2070 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-02 18:26:41.698  1620  2070 I AiAiEcho: Predicting[0]: 
+11-02 18:26:41.698  1620  2070 I AiAiEcho: EchoTargets: 
+11-02 18:26:41.698  1620  2070 I AiAiEcho: Filtered by AiAi flag check: 
+11-02 18:26:41.698  1620  2070 I AiAiEcho: Ranked targets strategy: SORT, count: 0, ranking metadata: 
+11-02 18:26:41.698  1620  2070 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface lockscreen with targets# 0 (types=[])
+11-02 18:26:41.699  1620  2070 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+11-02 18:26:41.699   844   844 W PageIndicator: Total number of pages invalid: 0. Assuming 1 page.
+11-02 18:26:41.700   844   876 V WindowManagerShell: onTransitionReady android.os.BinderProxy@8f6d105: {id=20 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@41ab6b9} m=OPEN f=NONE leash=Surface(name=Task=15)/@0x40495b2 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@f225afe} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x53c2903 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+11-02 18:26:41.700   844   876 V WindowManagerShell: Playing animation for (#20)android.os.BinderProxy@8f6d105@0
+11-02 18:26:41.700   844   876 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultMixedHandler@4fe6e33
+11-02 18:26:41.700   844   876 V WindowManagerShell:  try handler com.android.wm.shell.keyguard.KeyguardTransitionHandler@45aa5f0
+11-02 18:26:41.700   844   876 V WindowManagerShell:  try handler com.android.wm.shell.activityembedding.ActivityEmbeddingController@c7f769
+11-02 18:26:41.700   844   876 V WindowManagerShell:  try handler com.android.wm.shell.recents.RecentsTransitionHandler@6bc85ee
+11-02 18:26:41.700   844   876 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+11-02 18:26:41.700   844   876 V WindowManagerShell:  try handler com.android.wm.shell.pip.PipTransition@327ba8f
+11-02 18:26:41.700   844   876 V WindowManagerShell:  try handler com.android.wm.shell.splitscreen.StageCoordinator@c5c311c
+11-02 18:26:41.700   844   876 V WindowManagerShell:  try handler com.android.wm.shell.transition.RemoteTransitionHandler@1dfa125
+11-02 18:26:41.701   844   876 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=20 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@41ab6b9} m=OPEN f=NONE leash=Surface(name=Task=15)/@0x40495b2 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@f225afe} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x53c2903 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+11-02 18:26:41.701   844   876 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@3f27257, appThread = android.app.IApplicationThread$Stub$Proxy@35b6144, debugName = LauncherToDream }}
+11-02 18:26:41.701   844   876 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity}},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@423522d, appThread = android.app.IApplicationThread$Stub$Proxy@1e1e362, debugName = QuickstepLaunchHome }}
+11-02 18:26:41.701   844   876 V WindowManagerShell:  Delegate animation for #20 to null
+11-02 18:26:41.701   844   876 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultTransitionHandler@48b64c6
+11-02 18:26:41.701   844   876 V WindowManagerShell: start default transition animation, info = {id=20 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@41ab6b9} m=OPEN f=NONE leash=Surface(name=Task=15)/@0x40495b2 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{android.window.IWindowContainerToken$Stub$Proxy@f225afe} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0x53c2903 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+11-02 18:26:41.701   844   876 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@46c34ac animAttr=0x13 type=OPEN isEntrance=false
+11-02 18:26:41.701   844   876 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@3bdef98 animAttr=0x12 type=OPEN isEntrance=true
+11-02 18:26:41.702   844   876 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@48b64c6
+11-02 18:26:41.702   521   540 V WindowManager: Sent Transition #20 createdAt=11-02 18:26:41.667 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=15 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.endcord.next/com.discord.main.MainDefault } baseActivity=ComponentInfo{com.endcord.next/com.discord.main.MainActivity} topActivity=ComponentInfo{com.endcord.next/com.discord.main.MainActivity} origActivity=ComponentInfo{com.endcord.next/com.discord.main.MainDefault} realActivity=ComponentInfo{com.endcord.next/com.discord.main.MainActivity} numActivities=1 lastActiveTime=848517 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{2744bc3 Task{6d9c7d3 #15 type=standard A=10195:com.endcord.next}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=null topActivityInfo=ActivityInfo{66bdc40 com.discord.main.MainDefault} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= false topActivityLetterboxed= false isFromDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 locusId=null displayAreaFeatureId=1 cameraCompatControlState=hidden}, remoteTransition = null, displayChange = null }
+11-02 18:26:41.703   521   540 V WindowManager:     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+11-02 18:26:41.703   521   540 V WindowManager:     info={id=20 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{RemoteToken{2744bc3 Task{6d9c7d3 #15 type=standard A=10195:com.endcord.next}}} m=OPEN f=NONE leash=Surface(name=Task=15)/@0x5dc9427 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0},{WCT{RemoteToken{7d269e1 Task{a99465a #1 type=home}}} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0xc5b85c0 sb=Rect(0, 0 - 320, 640) eb=Rect(0, 0 - 320, 640) d=0}]}
+11-02 18:26:41.705   844   876 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#20)android.os.BinderProxy@8f6d105@0
+11-02 18:26:41.705   521   540 V WindowManager: Finish Transition #20: created at 11-02 18:26:41.667 collect-started=0.085ms request-sent=8.819ms started=11.587ms ready=31.342ms sent=32.639ms finished=38.075ms
+11-02 18:26:41.706   844   876 V WindowManagerShell: Track 0 became idle
+11-02 18:26:41.706   844   876 V WindowManagerShell: All active transition animations finished
+11-02 18:26:41.710 10219 10219 I om.endcord.next: Using CollectorTypeCC GC.
+11-02 18:26:41.711 10219 10219 W om.endcord.next: Unexpected CPU variant for x86: x86_64.
+11-02 18:26:41.711 10219 10219 W om.endcord.next: Known variants: atom, sandybridge, silvermont, goldmont, goldmont-plus, tremont, kabylake, default
+11-02 18:26:41.711 10203 10203 I app_process: System.exit called, status: 0
+11-02 18:26:41.711 10203 10203 I AndroidRuntime: VM exiting with result code 0.
+11-02 18:26:41.713 10219 10219 E om.endcord.next: Not starting debugger since process cannot load the jdwp agent.
+11-02 18:26:41.732 10219 10219 D CompatibilityChangeReporter: Compat change id reported: 171979766; UID 10195; state: ENABLED
+11-02 18:26:41.732 10219 10219 D CompatibilityChangeReporter: Compat change id reported: 242716250; UID 10195; state: ENABLED
+11-02 18:26:41.734 10219 10219 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+11-02 18:26:41.734 10219 10219 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+11-02 18:26:41.734 10219 10219 W ziparchive: Unable to open '/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/base.dm': No such file or directory
+11-02 18:26:41.734 10219 10219 W ziparchive: Unable to open '/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/base.dm': No such file or directory
+11-02 18:26:41.736 10219 10219 W ziparchive: Unable to open '/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.en.dm': No such file or directory
+11-02 18:26:41.736 10219 10219 W ziparchive: Unable to open '/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.en.dm': No such file or directory
+11-02 18:26:41.736 10219 10219 W om.endcord.next: Entry not found
+11-02 18:26:41.737 10219 10219 W ziparchive: Unable to open '/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.x86_64.dm': No such file or directory
+11-02 18:26:41.738 10219 10219 W ziparchive: Unable to open '/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.x86_64.dm': No such file or directory
+11-02 18:26:41.738 10219 10219 W om.endcord.next: Entry not found
+11-02 18:26:41.738 10219 10219 W ziparchive: Unable to open '/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.xxhdpi.dm': No such file or directory
+11-02 18:26:41.738 10219 10219 W ziparchive: Unable to open '/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.xxhdpi.dm': No such file or directory
+11-02 18:26:41.740 10219 10219 W om.endcord.next: Entry not found
+11-02 18:26:41.742 10219 10219 D nativeloader: Configuring clns-6 for other apk /data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/base.apk:/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.en.apk:/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.x86_64.apk:/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.xxhdpi.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/lib/x86_64:/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/base.apk!/lib/x86_64:/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.en.apk!/lib/x86_64:/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.x86_64.apk!/lib/x86_64:/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.xxhdpi.apk!/lib/x86_64, permitted_p
+11-02 18:26:41.747 10219 10219 I LSPatch-MetaLoader: Bootstrap loader from embedment
+11-02 18:26:41.766 10219 10219 D LSPatch-MetaLoader: Resource path: file:/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/base.apk!/assets/lspatch/so/x86_64/liblspatch.so
+11-02 18:26:41.784 10219 10219 I LSPatch : Use manager: false
+11-02 18:26:41.784 10219 10219 I LSPatch : Signature bypass level: 0
+11-02 18:26:41.874 10219 10219 I LSPatch : hooked app initialized: android.app.LoadedApk@e429cf5
+11-02 18:26:41.876 10219 10219 D LSPatch : Initialize service client
+11-02 18:26:41.949 10219 10219 D LSPatch : Processing /data/misc/profiles/cur/0/com.endcord.next/config.xxhdpi.split.prof
+11-02 18:26:41.949 10219 10219 D LSPatch : Skip profile /data/misc/profiles/cur/0/com.endcord.next/config.xxhdpi.split.prof
+11-02 18:26:41.949 10219 10219 D LSPatch : Processing /data/misc/profiles/cur/0/com.endcord.next/config.x86_64.split.prof
+11-02 18:26:41.949 10219 10219 D LSPatch : Skip profile /data/misc/profiles/cur/0/com.endcord.next/config.x86_64.split.prof
+11-02 18:26:41.949 10219 10219 D LSPatch : Processing /data/misc/profiles/cur/0/com.endcord.next/config.en.split.prof
+11-02 18:26:41.949 10219 10219 D LSPatch : Skip profile /data/misc/profiles/cur/0/com.endcord.next/config.en.split.prof
+11-02 18:26:41.949 10219 10219 D LSPatch : Processing /data/misc/profiles/cur/0/com.endcord.next/primary.prof
+11-02 18:26:41.949 10219 10219 D LSPatch : Skip profile /data/misc/profiles/cur/0/com.endcord.next/primary.prof
+11-02 18:26:41.952 10219 10219 V VectorDeopter: Skipping deopt for android.app.Instrumentation#newApplication: android.app.Instrumentation.newApplication [class java.lang.ClassLoader, class android.content.Context]
+11-02 18:26:41.955 10219 10219 V VectorLegacyBridge: Loading legacy module com.endcord.xposed from /data/user/0/com.endcord.next/cache/lspatch/com.endcord.xposed/3040346243.apk
+11-02 18:26:42.008 10219 10219 W om.endcord.next: Unsupported class loader
+11-02 18:26:42.011 10219 10219 V VectorLegacyBridge:   Loading class io.github.revenge.xposed.Main
+11-02 18:26:42.046 10219 10219 I LSPatch : Load modules
+11-02 18:26:42.047 10219 10219 I LSPatch : Modules initialized
+11-02 18:26:42.047 10219 10219 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.extensions.jar
+11-02 18:26:42.047 10219 10219 D ApplicationLoaders: Returning zygote-cached class loader: /system_ext/framework/androidx.window.sidecar.jar
+11-02 18:26:42.135 10219 10219 W ziparchive: Unable to open '/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.en.dm': No such file or directory
+11-02 18:26:42.135 10219 10219 W ziparchive: Unable to open '/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.en.dm': No such file or directory
+11-02 18:26:42.135 10219 10219 W om.endcord.next: Entry not found
+11-02 18:26:42.135 10219 10219 W ziparchive: Unable to open '/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.x86_64.dm': No such file or directory
+11-02 18:26:42.135 10219 10219 W ziparchive: Unable to open '/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.x86_64.dm': No such file or directory
+11-02 18:26:42.135 10219 10219 W om.endcord.next: Entry not found
+11-02 18:26:42.135 10219 10219 W ziparchive: Unable to open '/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.xxhdpi.dm': No such file or directory
+11-02 18:26:42.135 10219 10219 W ziparchive: Unable to open '/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.xxhdpi.dm': No such file or directory
+11-02 18:26:42.136 10219 10219 W om.endcord.next: Entry not found
+11-02 18:26:42.137 10219 10219 D nativeloader: Configuring clns-7 for other apk /data/user/0/com.endcord.next/cache/lspatch/origin/849235176.apk:/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.en.apk:/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.x86_64.apk:/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.xxhdpi.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/lib/x86_64:/data/user/0/com.endcord.next/cache/lspatch/origin/849235176.apk!/lib/x86_64:/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.en.apk!/lib/x86_64:/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.x86_64.apk!/lib/x86_64:/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.xxhdpi.apk!/lib/x86_64, permitted_path=/data:/mnt/expand:/data/user/0/com.endcord
+11-02 18:26:42.160 10219 10219 I EndcordXposed: discordVersionRetriever - Discord loaded with version: 351.11
+11-02 18:26:42.177 10219 10219 I EndcordXposed: revengeBundleManifest - Using module bundle manifest...
+11-02 18:26:42.181 10219 10219 I EndcordXposed: recoveryCompanion - Crash count: 1
+11-02 18:26:42.182 10219 10219 I EndcordXposed: discordDevSupport - Enabled Discord developer support
+11-02 18:26:42.185 10219 10219 I EndcordXposed: pluginStates - Loaded plugin states for 0 plugins
+11-02 18:26:42.202 10219 10219 I EndcordXposed: plugins - Started plugin: revenge.api
+11-02 18:26:42.202 10219 10219 I EndcordXposed: plugins - Started plugin: discord
+11-02 18:26:42.203 10219 10219 I EndcordXposed: plugins - Started plugin: revenge.recovery
+11-02 18:26:42.205 10219 10219 I EndcordXposed: plugins - Started plugin: revenge.no-track
+11-02 18:26:42.205 10219 10219 I EndcordXposed: plugins - Skipping disabled plugin: revenge.discord.prevent-ota-updates
+11-02 18:26:42.205 10219 10219 I EndcordXposed: plugins - Skipping disabled plugin: revenge.api.hidden
+11-02 18:26:42.205 10219 10219 I EndcordXposed: plugins - Started plugin: revenge.api.themes
+11-02 18:26:42.205 10219 10219 I EndcordXposed: plugins - Started plugin: revenge.settings
+11-02 18:26:42.206 10219 10219 I EndcordXposed: plugins - Started plugin: revenge.settings.plugins
+11-02 18:26:42.206 10219 10219 I EndcordXposed: plugins - Started plugin: revenge.settings.themes
+11-02 18:26:42.206 10219 10219 I EndcordXposed: plugins - Started plugin: revenge.staff-settings
+11-02 18:26:42.206 10219 10219 I EndcordXposed: plugins - Started plugin: revenge.user-badges
+11-02 18:26:42.207 10219 10219 I EndcordXposed: plugins - Loaded 10 plugins with 0 errors
+11-02 18:26:42.209 10219 10219 I LSPatch : LSPatch bootstrap completed
+11-02 18:26:42.212 10219 10219 V GraphicsEnvironment: Currently set values for:
+11-02 18:26:42.212 10219 10219 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+11-02 18:26:42.213 10219 10219 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+11-02 18:26:42.213 10219 10219 V GraphicsEnvironment: ANGLE GameManagerService for com.endcord.next: false
+11-02 18:26:42.213 10219 10219 V GraphicsEnvironment: com.endcord.next is not listed in per-application setting
+11-02 18:26:42.213 10219 10219 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+11-02 18:26:42.216 10219 10219 I TTIFactory: Application: com.discord.MainApplication
+11-02 18:26:42.218 10219 10219 I EndcordXposed: lifecycleSupport - Hooking launcher activity com.discord.main.MainActivity (onCreate in com.discord.main.MainActivity)
+11-02 18:26:42.219 10219 10219 I EndcordXposed: lifecycleSupport - Got Context
+11-02 18:26:42.221 10219 10219 I EndcordXposed: recoveryCompanion - Last exit was not a crash (reason 10), resetting
+11-02 18:26:42.225 10219 10242 W SoLoader: Initializing SoLoader: 0
+11-02 18:26:42.226 10219 10242 W SoLoader: Recording new base apk path: /data/user/0/com.endcord.next/cache/lspatch/origin/849235176.apk
+11-02 18:26:42.226 10219 10242 W SoLoader: Previously recorded 0 base apk paths.
+11-02 18:26:42.227 10219 10242 I SoLoader: Preparing SO source: DirectorySoSource[root = /vendor/lib64 flags = 2]
+11-02 18:26:42.227 10219 10242 I SoLoader: Preparing SO source: DirectorySoSource[root = /system/lib64 flags = 2]
+11-02 18:26:42.227 10219 10242 I SoLoader: Preparing SO source: DirectApkSoSource[root = [/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.x86_64.apk!/lib/x86_64, /data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.xxhdpi.apk!/lib/x86_64, /data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.en.apk!/lib/x86_64, /data/user/0/com.endcord.next/cache/lspatch/origin/849235176.apk!/lib/x86_64]]
+11-02 18:26:42.231 10219 10219 D CompatibilityChangeReporter: Compat change id reported: 183155436; UID 10195; state: ENABLED
+11-02 18:26:42.240 10219 10219 I FirebaseApp: Device unlocked: initializing all Firebase APIs for app [DEFAULT]
+11-02 18:26:42.259 10219 10219 I FirebaseInitProvider: FirebaseApp initialization successful
+11-02 18:26:42.261 10219 10219 I EndcordXposed: plugin:revenge.no-track - Blocked SentryInitProvider initialization
+11-02 18:26:42.268 10219 10219 D WM-WrkMgrInitializer: Initializing WorkManager with default configuration.
+11-02 18:26:42.273 10219 10219 D WM-PackageManagerHelper: Skipping component enablement for androidx.work.impl.background.systemjob.SystemJobService
+11-02 18:26:42.273 10219 10219 D WM-Schedulers: Created SystemJobScheduler and enabled SystemJobService
+11-02 18:26:42.279   521  3135 I ActivityManager: Flag disabled. Ignoring finishAttachApplication from uid: 10195. pid: 10219
+11-02 18:26:42.283 10219 10252 I EndcordXposed: plugin:revenge.no-track - Blocked DeepLinks tracking initialization
+11-02 18:26:42.294 10219 10219 D AppCompatDelegate: Checking for metadata for AppLocalesMetadataHolderService : Service not found
+11-02 18:26:42.311 10219 10242 I SoLoader: Preparing SO source: ApplicationSoSource[DirectorySoSource[root = /data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/lib/x86_64 flags = 0]]
+11-02 18:26:42.311 10219 10242 I SoLoader: init finish: 4 SO sources prepared
+11-02 18:26:42.311 10219 10242 W SoLoader: SoLoader initialized: 8
+11-02 18:26:42.319 10219 10251 I EndcordXposed: discordVersionRetriever - Running on local commit
+11-02 18:26:42.319 10219 10251 I EndcordXposed: discordVersionRetriever - Running on local commit
+11-02 18:26:42.321 10219 10248 D CompatibilityChangeReporter: Compat change id reported: 160794467; UID 10195; state: ENABLED
+11-02 18:26:42.330 10219 10260 D libEGL  : loaded /vendor/lib64/egl/libEGL_emulation.so
+11-02 18:26:42.334 10219 10219 I JankStatsAggregator: Jank heuristic multiplier set to 1.0.
+11-02 18:26:42.335 10219 10219 I EndcordXposed: lifecycleSupport - Got Activity
+11-02 18:26:42.337 10219 10268 I JankSessionRecorder: Jank recording started after 17ms, 0 record(s) awaiting delivery.
+11-02 18:26:42.343 10219 10219 I JankStatsAggregator: Jank tracking enabled.
+11-02 18:26:42.349 10219 10219 I JSWatchdogManager: JS Watchdog enabled.
+11-02 18:26:42.352 10219 10219 D CompatibilityChangeReporter: Compat change id reported: 237531167; UID 10195; state: DISABLED
+11-02 18:26:42.353 10219 10219 W OpenGLRenderer: Unknown dataspace 0
+11-02 18:26:42.354 10219 10240 W System.err: SLF4J(W): No SLF4J providers were found.
+11-02 18:26:42.354 10219 10240 W System.err: SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+11-02 18:26:42.354 10219 10240 W System.err: SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+11-02 18:26:42.354 10219 10277 I EndcordXposed: plugin:revenge.no-track - Forced CrashReporting.isDisabled() to true
+11-02 18:26:42.358 10219 10266 I TelemetryRing: TelemetryRing initialized
+11-02 18:26:42.358   521  3135 D CoreBackPreview: Window{ceaf2a5 u0 com.endcord.next/com.discord.main.MainDefault}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@de3e288, mPriority=-1, mIsAnimationCallback=false}
+11-02 18:26:42.358   521  3135 D CoreBackPreview: Window{ceaf2a5 u0 com.endcord.next/com.discord.main.MainDefault}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@63d1421, mPriority=0, mIsAnimationCallback=true}
+11-02 18:26:42.361 10219 10251 I PlayCore: UID: [10195]  PID: [10219] AssetPackStateListenerRegistryV2 : registerListener
+11-02 18:26:42.362 10219 10251 I PlayCore: UID: [10195]  PID: [10219] AssetPackServiceListenerRegistry : registerListener
+11-02 18:26:42.366 10219 10284 I PlayCore: UID: [10195]  PID: [10219] AssetPackServiceImpl : syncPacks
+11-02 18:26:42.367 10219 10285 I PlayCore: UID: [10195]  PID: [10219] AssetPackServiceImpl : Initiate binding to the service.
+11-02 18:26:42.367   521  3135 W ActivityManager: Unable to start service Intent { act=com.google.android.play.core.assetmoduleservice.BIND_ASSET_MODULE_SERVICE pkg=com.android.vending } U=0: not found
+11-02 18:26:42.367 10219 10285 I PlayCore: UID: [10195]  PID: [10219] AssetPackServiceImpl : Failed to bind to the service.
+11-02 18:26:42.367 10219 10284 W PlayCore: UID: [10195]  PID: [10219] AssetPackManager : Could not sync active asset packs. a5.a: Failed to bind to the service.
+11-02 18:26:42.369 10219 10260 D libEGL  : loaded /vendor/lib64/egl/libGLESv1_CM_emulation.so
+11-02 18:26:42.373 10219 10286 I libdiscore: Initializing libdiscore
+11-02 18:26:42.373 10219 10286 I experiment_manager: Loaded experiments from cache
+11-02 18:26:42.374 10219 10260 D libEGL  : loaded /vendor/lib64/egl/libGLESv2_emulation.so
+11-02 18:26:42.375 10219 10271 I AppDatabase: speculative database open skipped: userId was empty.
+11-02 18:26:42.377 10219 10259 D jni_lib_merge: Entering merged library JNI_OnLoad.
+11-02 18:26:42.378 10219 10259 D jni_lib_merge: Preparing 13 pre-merged libs (including stub)
+11-02 18:26:42.378 10219 10259 D jni_lib_merge: Preparing to register libfabricjni_so.  onload_func: 0x712d9add39b0
+11-02 18:26:42.378 10219 10259 D jni_lib_merge: Preparing to register libreact_devsupportjni_so.  onload_func: 0x712d9aeb8950
+11-02 18:26:42.378 10219 10259 D jni_lib_merge: Preparing to register libreact_featureflagsjni_so.  onload_func: 0x712d9aecf020
+11-02 18:26:42.378 10219 10259 D jni_lib_merge: Preparing to register libreact_newarchdefaults_so.  onload_func: 0x712d9af0be10
+11-02 18:26:42.378 10219 10259 D jni_lib_merge: Preparing to register libreact_tracingjni_so.  onload_func: 0x712d9b017640
+11-02 18:26:42.378 10219 10259 D jni_lib_merge: Preparing to register libreactnativeblob_so.  onload_func: 0x712d9b01c970
+11-02 18:26:42.378 10219 10259 D jni_lib_merge: Preparing to register libreactnativejni_so.  onload_func: 0x712d9b028e20
+11-02 18:26:42.379 10219 10259 D jni_lib_merge: Preparing to register libreactnativejni_common_so.  onload_func: 0x712d9b02bc90
+11-02 18:26:42.379 10219 10259 D jni_lib_merge: Preparing to register librninstance_so.  onload_func: 0x712d9b053db0
+11-02 18:26:42.379 10219 10259 D jni_lib_merge: Preparing to register libturbomodulejsijni_so.  onload_func: 0x712d9b104930
+11-02 18:26:42.379 10219 10259 D jni_lib_merge: Preparing to register libuimanagerjni_so.  onload_func: 0x712d9b10b890
+11-02 18:26:42.379 10219 10259 D jni_lib_merge: Preparing to register libyoga_so.  onload_func: 0x712d9b112f90
+11-02 18:26:42.379 10219 10259 D jni_lib_merge: About to register 12 actual methods.
+11-02 18:26:42.382 10219 10259 D jni_lib_merge: Entering merged library JNI_OnLoad.
+11-02 18:26:42.382 10219 10259 D jni_lib_merge: Preparing 13 pre-merged libs (including stub)
+11-02 18:26:42.382 10219 10259 D jni_lib_merge: Preparing to register libfabricjni_so.  onload_func: 0x712d9add39b0
+11-02 18:26:42.382 10219 10259 D jni_lib_merge: Preparing to register libreact_devsupportjni_so.  onload_func: 0x712d9aeb8950
+11-02 18:26:42.382 10219 10259 D jni_lib_merge: Preparing to register libreact_featureflagsjni_so.  onload_func: 0x712d9aecf020
+11-02 18:26:42.382 10219 10259 D jni_lib_merge: Preparing to register libreact_newarchdefaults_so.  onload_func: 0x712d9af0be10
+11-02 18:26:42.382 10219 10259 D jni_lib_merge: Preparing to register libreact_tracingjni_so.  onload_func: 0x712d9b017640
+11-02 18:26:42.382 10219 10259 D jni_lib_merge: Preparing to register libreactnativeblob_so.  onload_func: 0x712d9b01c970
+11-02 18:26:42.382 10219 10259 D jni_lib_merge: Preparing to register libreactnativejni_so.  onload_func: 0x712d9b028e20
+11-02 18:26:42.382 10219 10259 D jni_lib_merge: Preparing to register libreactnativejni_common_so.  onload_func: 0x712d9b02bc90
+11-02 18:26:42.382 10219 10259 D jni_lib_merge: Preparing to register librninstance_so.  onload_func: 0x712d9b053db0
+11-02 18:26:42.382 10219 10259 D jni_lib_merge: Preparing to register libturbomodulejsijni_so.  onload_func: 0x712d9b104930
+11-02 18:26:42.382 10219 10259 D jni_lib_merge: Preparing to register libuimanagerjni_so.  onload_func: 0x712d9b10b890
+11-02 18:26:42.382 10219 10259 D jni_lib_merge: Preparing to register libyoga_so.  onload_func: 0x712d9b112f90
+11-02 18:26:42.382 10219 10259 D jni_lib_merge: About to register 12 actual methods.
+11-02 18:26:42.386 10219 10259 D jni_lib_merge: Entering merged library JNI_OnLoad.
+11-02 18:26:42.387 10219 10259 D jni_lib_merge: Preparing 13 pre-merged libs (including stub)
+11-02 18:26:42.387 10219 10259 D jni_lib_merge: Preparing to register libfabricjni_so.  onload_func: 0x712d9add39b0
+11-02 18:26:42.387 10219 10259 D jni_lib_merge: Preparing to register libreact_devsupportjni_so.  onload_func: 0x712d9aeb8950
+11-02 18:26:42.387 10219 10259 D jni_lib_merge: Preparing to register libreact_featureflagsjni_so.  onload_func: 0x712d9aecf020
+11-02 18:26:42.387 10219 10259 D jni_lib_merge: Preparing to register libreact_newarchdefaults_so.  onload_func: 0x712d9af0be10
+11-02 18:26:42.387 10219 10259 D jni_lib_merge: Preparing to register libreact_tracingjni_so.  onload_func: 0x712d9b017640
+11-02 18:26:42.387 10219 10259 D jni_lib_merge: Preparing to register libreactnativeblob_so.  onload_func: 0x712d9b01c970
+11-02 18:26:42.387 10219 10259 D jni_lib_merge: Preparing to register libreactnativejni_so.  onload_func: 0x712d9b028e20
+11-02 18:26:42.387 10219 10259 D jni_lib_merge: Preparing to register libreactnativejni_common_so.  onload_func: 0x712d9b02bc90
+11-02 18:26:42.387 10219 10259 D jni_lib_merge: Preparing to register librninstance_so.  onload_func: 0x712d9b053db0
+11-02 18:26:42.387 10219 10259 D jni_lib_merge: Preparing to register libturbomodulejsijni_so.  onload_func: 0x712d9b104930
+11-02 18:26:42.387 10219 10259 D jni_lib_merge: Preparing to register libuimanagerjni_so.  onload_func: 0x712d9b10b890
+11-02 18:26:42.388 10219 10259 D jni_lib_merge: Preparing to register libyoga_so.  onload_func: 0x712d9b112f90
+11-02 18:26:42.388 10219 10259 D jni_lib_merge: About to register 12 actual methods.
+11-02 18:26:42.391 10219 10259 D jni_lib_merge: Entering merged library JNI_OnLoad.
+11-02 18:26:42.391 10219 10259 D jni_lib_merge: Preparing 13 pre-merged libs (including stub)
+11-02 18:26:42.391 10219 10259 D jni_lib_merge: Preparing to register libfabricjni_so.  onload_func: 0x712d9add39b0
+11-02 18:26:42.391 10219 10259 D jni_lib_merge: Preparing to register libreact_devsupportjni_so.  onload_func: 0x712d9aeb8950
+11-02 18:26:42.391 10219 10259 D jni_lib_merge: Preparing to register libreact_featureflagsjni_so.  onload_func: 0x712d9aecf020
+11-02 18:26:42.391 10219 10259 D jni_lib_merge: Preparing to register libreact_newarchdefaults_so.  onload_func: 0x712d9af0be10
+11-02 18:26:42.391 10219 10259 D jni_lib_merge: Preparing to register libreact_tracingjni_so.  onload_func: 0x712d9b017640
+11-02 18:26:42.391 10219 10259 D jni_lib_merge: Preparing to register libreactnativeblob_so.  onload_func: 0x712d9b01c970
+11-02 18:26:42.391 10219 10259 D jni_lib_merge: Preparing to register libreactnativejni_so.  onload_func: 0x712d9b028e20
+11-02 18:26:42.391 10219 10259 D jni_lib_merge: Preparing to register libreactnativejni_common_so.  onload_func: 0x712d9b02bc90
+11-02 18:26:42.391 10219 10259 D jni_lib_merge: Preparing to register librninstance_so.  onload_func: 0x712d9b053db0
+11-02 18:26:42.391 10219 10259 D jni_lib_merge: Preparing to register libturbomodulejsijni_so.  onload_func: 0x712d9b104930
+11-02 18:26:42.391 10219 10259 D jni_lib_merge: Preparing to register libuimanagerjni_so.  onload_func: 0x712d9b10b890
+11-02 18:26:42.391 10219 10259 D jni_lib_merge: Preparing to register libyoga_so.  onload_func: 0x712d9b112f90
+11-02 18:26:42.391 10219 10259 D jni_lib_merge: About to register 12 actual methods.
+11-02 18:26:42.404 10219 10259 D jni_lib_merge: Entering merged library JNI_OnLoad.
+11-02 18:26:42.404 10219 10259 D jni_lib_merge: Preparing 4 pre-merged libs (including stub)
+11-02 18:26:42.404 10219 10259 D jni_lib_merge: Preparing to register libhermes_executor_so.  onload_func: 0x712da44dc210
+11-02 18:26:42.404 10219 10259 D jni_lib_merge: Preparing to register libhermesinstancejni_so.  onload_func: 0x712da44e3b60
+11-02 18:26:42.404 10219 10259 D jni_lib_merge: Preparing to register libjsijniprofiler_so.  onload_func: 0x712da44e43a0
+11-02 18:26:42.404 10219 10259 D jni_lib_merge: About to register 3 actual methods.
+11-02 18:26:42.406 10219 10279 I riveOnLoad: Loading rive C++ library...
+11-02 18:26:42.408 10219 10251 I EndcordXposed: plugin:revenge.no-track - Forced CrashReporting.isDisabled() to true
+11-02 18:26:42.408 10219 10251 I EndcordXposed: plugin:revenge.no-track - Forced CrashReporting.isDisabled() to true
+11-02 18:26:42.408 10219 10251 I EndcordXposed: plugin:revenge.no-track - Forced CrashReporting.isDisabled() to true
+11-02 18:26:42.408 10219 10251 I EndcordXposed: plugin:revenge.no-track - Forced CrashReporting.isDisabled() to true
+11-02 18:26:42.408 10219 10251 I EndcordXposed: plugin:revenge.no-track - Forced CrashReporting.isDisabled() to true
+11-02 18:26:42.411 10219 10279 I riveOnLoad: Successfully loaded rive C++ library!
+11-02 18:26:42.435 10219 10254 W OpenGLRenderer: Failed to initialize 101010-2 format, error = EGL_SUCCESS
+11-02 18:26:42.443 10219 10296 D TrafficStats: tagSocket(121) with statsTag=0xffffffff, statsUid=-1
+11-02 18:26:42.446   134   134 I hwservicemanager: getTransport: Cannot find entry android.hardware.graphics.mapper@4.0::IMapper/default in either framework or device VINTF manifest.
+11-02 18:26:42.446 10219 10254 I Gralloc4: mapper 4.x is not supported
+11-02 18:26:42.614     0     0 I servicemanager: Could not find android.hardware.graphics.allocator.IAllocator/default in the VINTF manifest.
+11-02 18:26:42.602   521   540 W ziparchive: Unable to open '/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/base.dm': No such file or directory
+11-02 18:26:42.613 10219 10219 W unknown:BridgelessReact: ReactHost{0}.startSurface(surfaceId = 0): Schedule
+11-02 18:26:42.613 10219 10219 W unknown:BridgelessReact: ReactHost{0}.attachSurface(surfaceId = 0)
+11-02 18:26:42.615 10219 10302 W unknown:BridgelessReact: ReactHost{0}.getOrCreateReactInstanceTask()
+11-02 18:26:42.615   521   540 I ActivityTaskManager: Displayed com.endcord.next/com.discord.main.MainDefault for user 0: +934ms
+11-02 18:26:42.626 10219 10302 W unknown:BridgelessReact: ReactHost{0}.getOrCreateReactInstanceTask(): Start
+11-02 18:26:42.626 10219 10302 W unknown:BridgelessReact: ReactHost{0}.getJSBundleLoader()
+11-02 18:26:42.628 10219 10219 W unknown:BridgelessReact: ReactHost{0}.onHostResume(activity)
+11-02 18:26:42.628  1106  1164 I ImeTracker: com.google.android.apps.nexuslauncher:13a6e743: onRequestHide at ORIGIN_CLIENT_HIDE_SOFT_INPUT reason HIDE_SOFT_INPUT
+11-02 18:26:42.628   521   919 I ImeTracker: com.google.android.apps.nexuslauncher:13a6e743: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-02 18:26:42.629 10219 10302 W unknown:BridgelessReact: ReactHost{0}.isMetroRunning()
+11-02 18:26:42.632 10219 10219 I ActivityDelegate: Initializing async dispatcher for ActivityDelegate, 0 queued tasks
+11-02 18:26:42.640 10219 10219 D SplashScreenView: Building from parcel drawable: android.graphics.drawable.BitmapDrawable@6a288c6
+11-02 18:26:42.641  1106  2252 D OneSearchSuggestProvider: Shut down the binder channel
+11-02 18:26:42.642 10219 10219 D SplashScreenView: Build android.window.SplashScreenView{c194bb4 V.E...... ......ID 0,0-0,0}
+11-02 18:26:42.642 10219 10219 D SplashScreenView: Icon: view: androidx.appcompat.widget.z{d0e43dd V.ED..... ......I. 0,0-0,0 #10204f0 android:id/splashscreen_icon_view} drawable: android.graphics.drawable.BitmapDrawable@6a288c6 size: 192
+11-02 18:26:42.642 10219 10219 D SplashScreenView: Branding: view: android.view.View{1ae6b52 G.ED..... ......I. 0,0-0,0 #10204ef android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+11-02 18:26:42.642  1106  5250 I IPCThreadState: oneway function results for code 2 on binder at 0x712eafe29090 will be dropped but finished with status UNKNOWN_TRANSACTION
+11-02 18:26:42.643 10219 10219 W unknown:BridgelessReact: ReactHost{0}.raiseSoftException(onWindowFocusChange(hasFocus = "true")): Tried to access onWindowFocusChange while context is not ready
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: Unhandled SoftException
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: com.facebook.react.bridge.ReactNoCrashSoftException: raiseSoftException(onWindowFocusChange(hasFocus = "true")): Tried to access onWindowFocusChange while context is not ready
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at com.facebook.react.runtime.ReactHostImpl.raiseSoftException(SourceFile:22)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at com.facebook.react.runtime.ReactHostImpl.raiseSoftException$default(SourceFile:6)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at com.facebook.react.runtime.ReactHostImpl.onWindowFocusChange(SourceFile:36)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at com.facebook.react.ReactDelegate.onWindowFocusChanged(SourceFile:13)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at com.facebook.react.ReactActivityDelegate.onWindowFocusChanged(SourceFile:6)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at com.discord.react_activities.ActivityDelegate.onWindowFocusChanged(SourceFile:5)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at com.facebook.react.ReactActivity.onWindowFocusChanged(SourceFile:6)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at m.j.onWindowFocusChanged(SourceFile:3)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at com.android.internal.policy.DecorView.onWindowFocusChanged(DecorView.java:1788)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at android.view.View.dispatchWindowFocusChanged(View.java:15933)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at android.view.ViewGroup.dispatchWindowFocusChanged(ViewGroup.java:1509)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at android.view.ViewRootImpl.dispatchFocusEvent(ViewRootImpl.java:4059)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at android.view.ViewRootImpl.handleWindowFocusChanged(ViewRootImpl.java:3963)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at android.view.ViewRootImpl.-$$Nest$mhandleWindowFocusChanged(Unknown Source:0)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at android.view.ViewRootImpl$ViewRootHandler.handleMessageImpl(ViewRootImpl.java:5954)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at android.view.ViewRootImpl$ViewRootHandler.handleMessage(ViewRootImpl.java:5862)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at android.os.Handler.dispatchMessage(Handler.java:106)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at android.os.Looper.loopOnce(Looper.java:205)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at android.os.Looper.loop(Looper.java:294)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at android.app.ActivityThread.main(ActivityThread.java:8177)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at java.lang.reflect.Method.invoke(Native Method)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:552)
+11-02 18:26:42.644 10219 10219 E unknown:ReactHost: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:971)
+11-02 18:26:42.652  1746  8565 I PBSessionCacheImpl: Deleted sessionId[7680782851584902] from persistence.
+11-02 18:26:42.656  1746  2329 W SearchServiceCore: Abort, client detached.
+11-02 18:26:42.661   521  1008 D CompatibilityChangeReporter: Compat change id reported: 214016041; UID 10195; state: ENABLED
+11-02 18:26:42.661   521  1008 I ImeTracker: com.endcord.next:5f48b99b: onRequestHide at ORIGIN_SERVER_HIDE_INPUT reason HIDE_UNSPECIFIED_WINDOW
+11-02 18:26:42.661   521  1008 I ImeTracker: com.endcord.next:5f48b99b: onCancelled at PHASE_SERVER_SHOULD_HIDE
+11-02 18:26:42.664  1519  1519 I GoogleInputMethodService: GoogleInputMethodService.onFinishInput():3227 
+11-02 18:26:42.667  1036  1294 D BtGatt.ScanManager: uid 10129 isForeground true scanMode -1
+11-02 18:26:42.669  1036  1294 D BtGatt.ScanManager: uid 10129 isForeground true scanMode -1
+11-02 18:26:42.669  1519  1519 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2087 repeatCheckTimes = 0, unlocked = true
+11-02 18:26:42.669  1519  1519 I GoogleInputMethodService: GoogleInputMethodService.onStartInput():1877 onStartInput(EditorInfo{inputType=0x0(NULL) imeOptions=0x0 privateImeOptions=null actionName=UNSPECIFIED actionLabel=null actionId=0 initialSelStart=-1 initialSelEnd=-1 initialCapsMode=0x0 hintText=null label=null packageName=com.endcord.next fieldId=0 fieldName=null extras=null}, false)
+11-02 18:26:42.669  1519  1519 I GoogleInputMethodService: GoogleInputMethodService.shouldHideHeaderOnInitialState():4008 ShouldHideHeaderOnInitialState = false
+11-02 18:26:42.670  1519  1519 I GoogleInputMethodService: GoogleInputMethodService.updateDeviceLockedStatus():2087 repeatCheckTimes = 2, unlocked = true
+11-02 18:26:42.670 10219 10219 D SplashScreenView: remove starting view
+11-02 18:26:42.678 10219 10309 D TrafficStats: tagSocket(134) with statsTag=0xffffffff, statsUid=-1
+11-02 18:26:42.686 10219 10309 W unknown:ReconnectingWebSocket: Couldn't connect to "ws://10.0.2.2:8081/message?device=sdk_gphone64_x86_64%20-%2014%20-%20API%2034&app=com.endcord.next&clientid=BridgelessDevSupportManager", will silently retry
+11-02 18:26:42.691   521  3135 W InputManager-JNI: Input channel object 'fc4640e Splash Screen com.endcord.next (client)' was disposed without first being removed with the input manager!
+11-02 18:26:42.692 10219 10310 D TrafficStats: tagSocket(134) with statsTag=0xffffffff, statsUid=-1
+11-02 18:26:42.693 10219 10311 D TrafficStats: tagSocket(135) with statsTag=0xffffffff, statsUid=-1
+11-02 18:26:42.693 10219 10310 W unknown:ReactNative: The packager does not seem to be running as we got an IOException requesting its status: Failed to connect to /10.0.2.2:8081
+11-02 18:26:42.693 10219 10310 W unknown:BridgelessReact: ReactHost{0}.isMetroRunning(): Async result = false
+11-02 18:26:42.694 10219 10302 W unknown:BridgelessReact: ReactHost{0}.getOrCreateReactInstanceTask(): Creating BridgelessReactContext
+11-02 18:26:42.694 10219 10311 W unknown:ReconnectingWebSocket: Couldn't connect to "ws://10.0.2.2:8081/message?device=sdk_gphone64_x86_64%20-%2014%20-%20API%2034&app=com.endcord.next&clientid=BridgelessDevSupportManager", will silently retry
+11-02 18:26:42.694 10219 10302 W unknown:BridgelessReact: ReactHost{0}.getOrCreateReactInstanceTask(): Creating ReactInstance
+11-02 18:26:42.700 10219 10311 D TrafficStats: tagSocket(147) with statsTag=0xffffffff, statsUid=-1
+11-02 18:26:42.718 10219 10302 I EndcordXposed: revengeBridgeSupport - Captured ReactInstance for RevengeBridge
+11-02 18:26:42.719 10219 10313 W unknown:b: Fresco has already been initialized! `Fresco.initialize(...)` should only be called 1 single time to avoid memory leaks!
+11-02 18:26:42.719 10219 10313 W unknown:c: ImagePipelineFactory has already been initialized! `ImagePipelineFactory.initialize(...)` should only be called once to avoid unexpected behavior.
+11-02 18:26:42.719 10219 10302 W unknown:BridgelessReact: ReactHost{0}.getOrCreateReactInstanceTask(): Loading JS Bundle
+11-02 18:26:42.721 10219 10302 D EndcordXposed: scriptLoader - Received call to loadScriptFromAssets: assets://index.android.bundle (sync: true)
+11-02 18:26:42.721 10219 10302 I EndcordXposed: scriptLoader - Running Endcord custom scripts...
+11-02 18:26:42.733 10219 10296 D TrafficStats: tagSocket(121) with statsTag=0xffffffff, statsUid=-1
+11-02 18:26:42.761 10219 10302 I EndcordXposed: scriptLoader - Loading downloaded bundle: /data/user/0/com.endcord.next/cache/revenge/bundle.js
+11-02 18:26:42.783 10219 10302 W unknown:BridgelessReact: ReactHost{0}.getOrCreateReactInstanceTask(): DevSupportManager.onNewReactContextCreated()
+11-02 18:26:42.786 10219 10219 W unknown:ReactNative: Packager connection already open, nooping.
+11-02 18:26:42.786 10219 10302 W unknown:BridgelessReact: ReactHost{0}.startSurface(surfaceId = 0): Execute
+11-02 18:26:42.786 10219 10219 W unknown:BridgelessReact: ReactHost{0}.ReactContext.onHostResume()
+11-02 18:26:42.790 10219 10219 W unknown:BridgelessReact: ReactHost{0}.getOrCreateReactInstanceTask(): Executing ReactInstanceEventListeners
+11-02 18:26:42.854  1036  1294 D BtGatt.ScanManager: uid 10129 isForeground true scanMode -1
+11-02 18:26:42.854  1036  1294 D BtGatt.ScanManager: uid 10129 isForeground true scanMode -1
+11-02 18:26:42.857  5631  5863 I FontLog : Received query Noto Color Emoji Compat, URI content://com.google.android.gms.fonts [CONTEXT service_id=132 ]
+11-02 18:26:42.858  5631  5863 I FontLog : Query [emojicompat-emoji-font] resolved to {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false} [CONTEXT service_id=132 ]
+11-02 18:26:42.860  5631  5863 I FontLog : Fetch {Noto Color Emoji Compat, wdth 100.0, wght 400, ital 0.0, bestEffort false} end status Status{statusCode=SUCCESS, resolution=null} [CONTEXT service_id=132 ]
+11-02 18:26:42.863  5631  5863 I FontLog : Pulling font file for id = 7, cache size = 5 [CONTEXT service_id=132 ]
+11-02 18:26:42.864  5631  5863 I FontLog : Pulling font file for id = 7, cache size = 5 [CONTEXT service_id=132 ]
+11-02 18:26:42.895 10219 10312 W unknown:AppStateModule: initial isAppForegroundedByMemoryState = true, reactContext.lifecycleState = RESUMED
+11-02 18:26:42.903 10219 10313 I WebViewFactory: Loading com.google.android.webview version 113.0.5672.136 (code 567263637)
+11-02 18:26:42.905 10219 10313 W ziparchive: Unable to open '/data/app/~~uz7cF-LouonxFTmXEsnZug==/com.google.android.trichromelibrary_567263637-smfKhhEVHLWxpxrre3Iq4Q==/TrichromeLibrary.dm': No such file or directory
+11-02 18:26:42.905 10219 10313 W ziparchive: Unable to open '/data/app/~~uz7cF-LouonxFTmXEsnZug==/com.google.android.trichromelibrary_567263637-smfKhhEVHLWxpxrre3Iq4Q==/TrichromeLibrary.dm': No such file or directory
+11-02 18:26:42.905 10219 10313 W om.endcord.next: Entry not found
+11-02 18:26:42.905 10219 10313 D nativeloader: Configuring clns-8 for other apk /data/app/~~uz7cF-LouonxFTmXEsnZug==/com.google.android.trichromelibrary_567263637-smfKhhEVHLWxpxrre3Iq4Q==/TrichromeLibrary.apk. target_sdk_version=34, uses_libraries=ALL, library_path=/data/app/~~8FF1g4jyCQCo70kyDsQlCw==/com.google.android.webview-RfUNvHQxXU17bXkdO9XkAg==/lib/x86_64:/data/app/~~8FF1g4jyCQCo70kyDsQlCw==/com.google.android.webview-RfUNvHQxXU17bXkdO9XkAg==/WebViewGoogle.apk!/lib/x86_64:/data/app/~~uz7cF-LouonxFTmXEsnZug==/com.google.android.trichromelibrary_567263637-smfKhhEVHLWxpxrre3Iq4Q==/TrichromeLibrary.apk!/lib/x86_64, permitted_path=/data:/mnt/expand
+11-02 18:26:42.910 10219 10313 D nativeloader: Configuring clns-9 for other apk /data/app/~~8FF1g4jyCQCo70kyDsQlCw==/com.google.android.webview-RfUNvHQxXU17bXkdO9XkAg==/WebViewGoogle.apk. target_sdk_version=34, uses_libraries=, library_path=/data/app/~~8FF1g4jyCQCo70kyDsQlCw==/com.google.android.webview-RfUNvHQxXU17bXkdO9XkAg==/lib/x86_64:/data/app/~~8FF1g4jyCQCo70kyDsQlCw==/com.google.android.webview-RfUNvHQxXU17bXkdO9XkAg==/WebViewGoogle.apk!/lib/x86_64:/data/app/~~uz7cF-LouonxFTmXEsnZug==/com.google.android.trichromelibrary_567263637-smfKhhEVHLWxpxrre3Iq4Q==/TrichromeLibrary.apk!/lib/x86_64, permitted_path=/data:/mnt/expand
+11-02 18:26:42.930 10219 10313 I cr_WVCFactoryProvider: Loaded version=113.0.5672.136 minSdkVersion=29 isBundle=false multiprocess=true packageId=2
+11-02 18:26:42.936 10219 10313 I cr_LibraryLoader: Successfully loaded native library
+11-02 18:26:42.936 10219 10313 I cr_CachingUmaRecorder: Flushed 8 samples from 8 histograms.
+11-02 18:26:42.938 10219 10328 I cr_VariationsUtils: Failed reading seed file "/data/user/0/com.endcord.next/app_webview/variations_seed_new"
+11-02 18:26:42.942   336 10331 I resolv  : GetAddrInfoHandler::run: {100 100 100 983140 10195 0}
+11-02 18:26:42.943 10219 10312 D CompatibilityChangeReporter: Compat change id reported: 210923482; UID 10195; state: ENABLED
+11-02 18:26:42.945   336 10333 I resolv  : res_nmkquery: (QUERY, IN, A)
+11-02 18:26:42.945   336 10333 I resolv  : resolv_cache_lookup: FOUND IN CACHE entry=0x76ea23f42270
+11-02 18:26:42.945   336 10333 I resolv  : doQuery: rcode=0, ancount=5, return value=116
+11-02 18:26:42.945   336 10332 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+11-02 18:26:42.945   336 10332 I resolv  : resolv_cache_lookup: FOUND IN CACHE entry=0x76ea23f42db0
+11-02 18:26:42.945   336 10332 I resolv  : doQuery: rcode=0, ancount=0, return value=98
+11-02 18:26:42.946 10219 10311 D TrafficStats: tagSocket(161) with statsTag=0xffffffff, statsUid=-1
+11-02 18:26:42.952 10219 10240 E EndcordXposed: revengeUpdater - Failed to download script
+11-02 18:26:42.952 10219 10240 E EndcordXposed: java.lang.SecurityException: The release is older than one already accepted
+11-02 18:26:42.952 10219 10240 E EndcordXposed: 	at io.github.revenge.xposed.tweaks.RevengeUpdater.fetchRelease(RevengeUpdater.kt:152)
+11-02 18:26:42.952 10219 10240 E EndcordXposed: 	at io.github.revenge.xposed.tweaks.RevengeUpdater.access$fetchRelease(RevengeUpdater.kt:40)
+11-02 18:26:42.952 10219 10240 E EndcordXposed: 	at io.github.revenge.xposed.tweaks.RevengeUpdater$fetchRelease$1.invokeSuspend(Unknown Source:15)
+11-02 18:26:42.952 10219 10240 E EndcordXposed: 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+11-02 18:26:42.952 10219 10240 E EndcordXposed: 	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+11-02 18:26:42.952 10219 10240 E EndcordXposed: 	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:124)
+11-02 18:26:42.952 10219 10240 E EndcordXposed: 	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:89)
+11-02 18:26:42.952 10219 10240 E EndcordXposed: 	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:586)
+11-02 18:26:42.952 10219 10240 E EndcordXposed: 	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:798)
+11-02 18:26:42.952 10219 10240 E EndcordXposed: 	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:717)
+11-02 18:26:42.952 10219 10240 E EndcordXposed: 	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:704)
+11-02 18:26:42.971 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.reanimatedview.ReanimatedViewManager
+11-02 18:26:42.973 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.uimanager.LayoutShadowNode
+11-02 18:26:42.973 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.reactnativekeyboardcontroller.OverKeyboardViewManager
+11-02 18:26:42.973 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class em.a
+11-02 18:26:42.973 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.reactnativekeyboardcontroller.KeyboardToolbarGroupViewManager
+11-02 18:26:42.974 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.sticker_picker.react.StickerPickerRowViewManager
+11-02 18:26:42.974 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.thumbhash.ImageWithThumbhashPlaceholderViewManager
+11-02 18:26:42.974 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.react_gesture_handler.accessibility_focus.AccessibilityFocusViewManager
+11-02 18:26:42.974 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.ScreenContainerViewManager
+11-02 18:26:42.974 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.reactnativecommunity.webview.RNCWebViewTargetManager
+11-02 18:26:42.974 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.react_gesture_handler.passthrough_touch.PassthroughTouchViewManager
+11-02 18:26:42.975 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.blur.BlurViewManager
+11-02 18:26:42.975 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.th3rdwave.safeareacontext.SafeAreaViewManager
+11-02 18:26:42.975 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class un.n
+11-02 18:26:42.975 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.view.ScreenViewManagerOverride
+11-02 18:26:42.975 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.mdjstack.plaintext.PlainTextViewManager
+11-02 18:26:42.976 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.gamma.stack.header.config.StackHeaderConfigViewManager
+11-02 18:26:42.976 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class io.sentry.react.RNSentryOnDrawReporterManager
+11-02 18:26:42.976 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.zoom_layout.ZoomLayoutViewManager
+11-02 18:26:42.976 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.th3rdwave.safeareacontext.SafeAreaProviderManager
+11-02 18:26:42.976 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.SearchBarManager
+11-02 18:26:42.977 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.avatar.react.APNGDecorationViewManager
+11-02 18:26:42.977 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.chat.messagemanager.MessageViewManagers$MessageViewManager
+11-02 18:26:42.977 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.gamma.tabs.host.TabsHostViewManager
+11-02 18:26:42.977 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.animated_png.react.APNGViewManager
+11-02 18:26:42.977 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.image.fast_image.react.FastImageViewManager
+11-02 18:26:42.978 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.rive.RiveViewManager
+11-02 18:26:42.978 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.ScreenStackHeaderConfigViewManager
+11-02 18:26:42.978 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.chat.presentation.message.view.botuikit.react.TextDisplayComponentViewManager
+11-02 18:26:42.978 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.gamma.stack.host.StackHostViewManager
+11-02 18:26:42.979 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.reactnativecommunity.webview.RNCWebViewManager
+11-02 18:26:42.979 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.ScreenStackHeaderSubviewManager
+11-02 18:26:42.979 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.clip.ClipViewManager
+11-02 18:26:42.979 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class io.sentry.react.replay.RNSentryReplayMaskManager
+11-02 18:26:42.980 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.gamma.modals.formsheet.FormSheetHostViewManager
+11-02 18:26:42.980 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.reactnativekeyboardcontroller.KeyboardBackgroundViewManager
+11-02 18:26:42.980 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.chat.presentation.message.view.botuikit.react.SelectActionComponentViewManager
+11-02 18:26:42.980 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.ScreenFooterManager
+11-02 18:26:42.980 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.emoji_picker.react.EmojiPickerViewManager
+11-02 18:26:42.980 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.reactnativecommunity.slider.ReactSliderManager
+11-02 18:26:42.981 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.chat.presentation.root.ChatViewManager
+11-02 18:26:42.981 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class io.sentry.react.replay.RNSentryReplayUnmaskManager
+11-02 18:26:42.981 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.ModalScreenViewManager
+11-02 18:26:42.982 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.core.LocalImageThumbnailViewManager
+11-02 18:26:42.982 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.reactnativekeyboardcontroller.KeyboardGestureAreaViewManager
+11-02 18:26:42.982 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.tti_measurement_view.TTIMeasurementViewManager
+11-02 18:26:42.982 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.portals.from_native.PortalFromNativeModule$ViewManager
+11-02 18:26:42.982 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.safearea.SafeAreaViewManager
+11-02 18:26:42.982 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.view.ReactViewManagerOverride
+11-02 18:26:42.982 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.portals.from_js.PortalFromJsViewManager
+11-02 18:26:42.983 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.view.ScreenStackViewManagerOverride
+11-02 18:26:42.983 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.airbnb.android.react.lottie.LottieAnimationViewManager
+11-02 18:26:42.983 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.react_gesture_handler.DiscordGestureHandlerRootViewManager
+11-02 18:26:42.983 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.blur.BlurViewTargetManager
+11-02 18:26:42.983 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class java.com.reactnativekeyboardcontroller.ClippingScrollViewDecoratorViewManager
+11-02 18:26:42.984 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.henninghall.date_picker.DatePickerManager
+11-02 18:26:42.984 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.gamma.stack.header.subview.StackHeaderSubviewViewManager
+11-02 18:26:42.984 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.chat.messagemanager.MessageViewManagers$SystemMessageViewManager
+11-02 18:26:42.984 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.emoji_picker.react.EmojiPickerRowViewManager
+11-02 18:26:42.984 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.reactnativekeyboardcontroller.KeyboardControllerViewManager
+11-02 18:26:42.984 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.rnlineargradient.LinearGradientManager
+11-02 18:26:42.985 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.gamma.scrollviewmarker.ScrollViewMarkerViewManager
+11-02 18:26:42.985 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class org.reactnative.maskedview.RNCMaskedViewManager
+11-02 18:26:42.985 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.qr.scanner.QRScannerViewManager
+11-02 18:26:42.985 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.gamma.modals.formsheet.FormSheetContentWrapperViewManager
+11-02 18:26:42.985 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.ScreenContentWrapperManager
+11-02 18:26:42.985 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.view.ReactScrollViewManagerOverride
+11-02 18:26:42.986 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.chat.presentation.list.ChatListViewManager
+11-02 18:26:42.986 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.media.engine.video.VideoStreamViewManager
+11-02 18:26:42.986 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.fastest_list.react.FastestListViewManager
+11-02 18:26:42.986 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.fastest_list.react.FastestListShadowNode
+11-02 18:26:42.987 10219 10312 D CompatibilityChangeReporter: Compat change id reported: 247079863; UID 10195; state: ENABLED
+11-02 18:26:42.987 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.brentvatne.exoplayer.ReactExoplayerViewManager
+11-02 18:26:42.988 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.chat.messagemanager.MessageViewManagers$AutoModerationSystemMessageViewManager
+11-02 18:26:42.988 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.sticker.react.StickerViewManagerAPNG
+11-02 18:26:42.988 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.gamma.stack.screen.StackScreenViewManager
+11-02 18:26:42.988 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.chat.input.ChatInputViewManager
+11-02 18:26:42.988 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.discord.sticker.react.StickerViewManagerLottie
+11-02 18:26:42.988 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.rnscreens.gamma.tabs.screen.TabsScreenViewManager
+11-02 18:26:42.989 10219 10312 W unknown:ReactNative: The ReactPackage called: `b` is returning null for getViewManagerNames(). This is violating the signature of the method. That method should be updated to return an empty collection.
+11-02 18:26:43.022 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.view.ReactViewManager
+11-02 18:26:43.027 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$DefsViewManager
+11-02 18:26:43.027 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.j2
+11-02 18:26:43.028 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.debuggingoverlay.DebuggingOverlayManager
+11-02 18:26:43.029 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$FeMergeManager
+11-02 18:26:43.030 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.safeareaview.ReactSafeAreaViewManager
+11-02 18:26:43.030 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.gesturehandler.react.RNGestureHandlerDetectorViewManager
+11-02 18:26:43.031 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$LinearGradientManager
+11-02 18:26:43.032 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$FeGaussianBlurManager
+11-02 18:26:43.033 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.progressbar.ReactProgressBarViewManager
+11-02 18:26:43.034 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.scroll.ReactHorizontalScrollViewManager
+11-02 18:26:43.035 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.text.ReactTextViewManager
+11-02 18:26:43.035 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$FeColorMatrixManager
+11-02 18:26:43.036 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.scroll.ReactHorizontalScrollContainerViewManager
+11-02 18:26:43.037 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$ClipPathViewManager
+11-02 18:26:43.038 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$SymbolManager
+11-02 18:26:43.039 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$PatternManager
+11-02 18:26:43.040 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$FeBlendManager
+11-02 18:26:43.041 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.SvgViewManager
+11-02 18:26:43.042 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.switchview.ReactSwitchManager
+11-02 18:26:43.043 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$UseViewManager
+11-02 18:26:43.043 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$CircleViewManager
+11-02 18:26:43.044 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$TSpanViewManager
+11-02 18:26:43.045 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$FilterManager
+11-02 18:26:43.046 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$MarkerManager
+11-02 18:26:43.047 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.gesturehandler.react.RNGestureHandlerButtonViewManager
+11-02 18:26:43.048 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.modal.ReactModalHostManager
+11-02 18:26:43.049 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$ForeignObjectManager
+11-02 18:26:43.050 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$EllipseViewManager
+11-02 18:26:43.051 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$LineViewManager
+11-02 18:26:43.052 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$FeFloodManager
+11-02 18:26:43.052 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$GroupViewManager
+11-02 18:26:43.053 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$TextViewManager
+11-02 18:26:43.054 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$ImageViewManager
+11-02 18:26:43.055 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$FeCompositeManager
+11-02 18:26:43.056 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.image.ReactImageManager
+11-02 18:26:43.057 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$RadialGradientManager
+11-02 18:26:43.057 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$MaskManager
+11-02 18:26:43.059 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.unimplementedview.ReactUnimplementedViewManager
+11-02 18:26:43.059 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$RectViewManager
+11-02 18:26:43.060 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$TextPathViewManager
+11-02 18:26:43.061 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$FeOffsetManager
+11-02 18:26:43.062 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.horcrux.svg.RenderableViewManager$PathViewManager
+11-02 18:26:43.063 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.drawer.ReactDrawerLayoutManager
+11-02 18:26:43.064 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.swiperefresh.SwipeRefreshLayoutManager
+11-02 18:26:43.066 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.textinput.ReactTextInputManager
+11-02 18:26:43.067 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.text.SelectableTextViewManager
+11-02 18:26:43.068 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.swmansion.gesturehandler.react.RNGestureHandlerRootViewManager
+11-02 18:26:43.069 10219 10312 W unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.views.virtual.view.ReactVirtualViewManager
+11-02 18:26:43.069 10219 10312 W unknown:ReactNative: The ReactPackage called: `b` is returning null for getViewManagerNames(). This is violating the signature of the method. That method should be updated to return an empty collection.
+11-02 18:26:43.072 10219 10312 D CompatibilityChangeReporter: Compat change id reported: 289878283; UID 10195; state: ENABLED
+11-02 18:26:43.077 10219 10312 W BridgelessReactContext: [WARNING] Bridgeless doesn't support CatalystInstance. Accessing an API that's not part of the new architecture is not encouraged usage.
+11-02 18:26:43.078 10219 10312 I libdiscore: Registering libdiscore JSI
+11-02 18:26:43.078 10219 10312 I libdiscore::flux_api: Pre-registered store: NoteStore (token: StoreToken(0))
+11-02 18:26:43.078 10219 10312 I libdiscore::flux_api: Pre-registered store: GuildStore (token: StoreToken(1))
+11-02 18:26:43.078 10219 10312 I libdiscore::flux_api: Pre-registered store: GuildRoleStore (token: StoreToken(2))
+11-02 18:26:43.078 10219 10312 I libdiscore::flux_api: Pre-registered store: RawGuildEmojiStore (token: StoreToken(3))
+11-02 18:26:43.079 10219 10312 I libdiscore::flux_api: Pre-registered store: GuildStickersStore (token: StoreToken(4))
+11-02 18:26:43.079 10219 10312 I TimerManager: SlowTimerMonitor: slow_execution_threshold=500ms, delayed_execution_threshold=5s
+11-02 18:26:43.129   336 10341 I resolv  : GetAddrInfoHandler::run: {100 100 100 983140 10195 0}
+11-02 18:26:43.129   336 10343 I resolv  : res_nmkquery: (QUERY, IN, A)
+11-02 18:26:43.130   336 10343 I resolv  : resolv_cache_lookup: FOUND IN CACHE entry=0x76ea23f42810
+11-02 18:26:43.130   336 10343 I resolv  : doQuery: rcode=0, ancount=4, return value=102
+11-02 18:26:43.130   336 10342 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+11-02 18:26:43.130   336 10342 I resolv  : resolv_cache_lookup: FOUND IN CACHE entry=0x76ea23f43d70
+11-02 18:26:43.130   336 10342 I resolv  : doQuery: rcode=0, ancount=4, return value=150
+11-02 18:26:43.131 10219 10340 D TrafficStats: tagSocket(164) with statsTag=0xffffffff, statsUid=-1
+11-02 18:26:43.136 10219 10312 I ReactNativeJS: Running "Discord"
+11-02 18:26:43.151 10219 10312 I Debug   : MediaEngine debug logging disabled.
+11-02 18:26:43.184   521  3135 D ConnectivityService: requestNetwork for uid/pid:10195/10219 activeRequest: null callbackRequest: 155 [NetworkRequest [ REQUEST id=156, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10195 RequestorUid: 10195 RequestorPkg: com.endcord.next UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647
+11-02 18:26:43.185   521   775 D ConnectivityService: NetReassign [156 : null → 100] [c 0] [a 0] [i 1]
+11-02 18:26:43.185   521   768 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=156, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10195 RequestorUid: 10195 RequestorPkg: com.endcord.next UnderlyingNetworks: Null] ]
+11-02 18:26:43.185   521   768 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=156, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10195 RequestorUid: 10195 RequestorPkg: com.endcord.next UnderlyingNetworks: Null] ]
+11-02 18:26:43.185   521   768 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=156, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10195 RequestorUid: 10195 RequestorPkg: com.endcord.next UnderlyingNetworks: Null] ]
+11-02 18:26:43.185   521   768 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=156, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED Uid: 10195 RequestorUid: 10195 RequestorPkg: com.endcord.next UnderlyingNetworks: Null] ]
+11-02 18:26:43.200 10219 10346 I DiscordJNI: loading ClassMapRN
+11-02 18:26:43.201 10219 10346 I om.endcord.next: Thread[71,tid=10346,Native,Thread*=0x712e7ff33170,peer=0x1572ae18,"AppSingleThread"] recursive attempt to load library "/data/app/~~xdWTygGCASju2KbhtBzeSw==/com.endcord.next-jmdvSWAp2tIm0EhvTb9uwA==/split_config.x86_64.apk!/lib/x86_64/libdiscord.so"
+11-02 18:26:43.202 10219 10346 I CameraManagerGlobal: Connecting to camera service
+11-02 18:26:43.203 10219 10346 I CameraEnumeratorProvider: Use Camera 2 API
+11-02 18:26:43.211   336 10352 I resolv  : GetAddrInfoHandler::run: {100 100 100 983140 10195 0}
+11-02 18:26:43.212   336 10353 I resolv  : res_nmkquery: (QUERY, IN, AAAA)
+11-02 18:26:43.212   336 10353 I resolv  : resolv_cache_lookup: FOUND IN CACHE entry=0x76ebb3f349b0
+11-02 18:26:43.212   336 10353 I resolv  : doQuery: rcode=0, ancount=0, return value=88
+11-02 18:26:43.215   336 10354 I resolv  : res_nmkquery: (QUERY, IN, A)
+11-02 18:26:43.216   336 10354 I resolv  : resolv_cache_lookup: FOUND IN CACHE entry=0x76ea23f44c10
+11-02 18:26:43.216   336 10354 I resolv  : doQuery: rcode=0, ancount=5, return value=109
+11-02 18:26:43.217 10219 10351 D TrafficStats: tagSocket(171) with statsTag=0xffffffff, statsUid=-1
+11-02 18:26:43.247 10219 10312 I discore : Multiplying 6 and 7
+11-02 18:26:43.255 10219 10312 W BridgelessReactContext: [WARNING] Bridgeless doesn't support CatalystInstance. Accessing an API that's not part of the new architecture is not encouraged usage.
+11-02 18:26:43.265 10219 10346 I org.webrtc.Logging: EglBase14Impl: Using OpenGL ES version 2
+11-02 18:26:43.266 10219 10346 I org.webrtc.Logging: EglBase14Impl: Creating EGLContext, liveContexts=0
+11-02 18:26:43.267 10219 10346 I org.webrtc.Logging: EglBase14Impl: Created EGLContext, liveContexts=1
+11-02 18:26:43.269 10219 10346 I MediaEngine: Initializing async dispatcher for MediaEngine, 11 queued tasks
+11-02 18:26:43.271 10219 10346 I MediaEngine: MediaEngine: queued tasks  took 2 ms
+11-02 18:26:43.272 10219 10390 I engine.cpp: [2026-11-02 18:26:43.272] [10390] (line 416): Created native engine, time: Mon Nov  2 18:26:43 2026 UTC, logDir: configured, logLevel: 2
+11-02 18:26:43.276 10219 10390 W input_volume_stats_reporter.cc: [2026-11-02 18:26:43.276] [10390] (line 98): Will not log any `WebRTC.Audio.Apm.AppliedInputVolume.*` histogram stats.
+11-02 18:26:43.276 10219 10390 W input_volume_stats_reporter.cc: [2026-11-02 18:26:43.276] [10390] (line 98): Will not log any `WebRTC.Audio.Apm.RecommendedInputVolume.*` histogram stats.
+11-02 18:26:43.276 10219 10390 I audio_processing_impl.cc: [2026-11-02 18:26:43.276] [10390] (line 484): Injected APM submodules:
+11-02 18:26:43.276 10219 10390 I audio_processing_impl.cc: Echo control factory: 0
+11-02 18:26:43.276 10219 10390 I audio_processing_impl.cc: Echo detector: 0
+11-02 18:26:43.276 10219 10390 I audio_processing_impl.cc: Capture analyzer: 0
+11-02 18:26:43.276 10219 10390 I audio_processing_impl.cc: Capture post processor: 1
+11-02 18:26:43.276 10219 10390 I audio_processing_impl.cc: Render pre processor: 0
+11-02 18:26:43.276 10219 10390 I audio_processing_impl.cc: Neural residual echo estimator 0
+11-02 18:26:43.276 10219 10390 I audio_processing_impl.cc: [1/2] [2026-11-02 18:26:43.276] [10390] (line 499): AudioProcessing: AudioProcessing::Config{ pipeline: { maximum_internal_processing_rate: 32000, multi_channel_render: 0, multi_channel_capture: 0 }, pre_amplifier: { enabled: 0, fixed_gain_factor: 1 },capture_level_adjustment: { enabled: 0, pre_gain_factor: 1, post_gain_factor: 1, analog_mic_gain_emulation: { enabled: 0, initial_level: 255 }}, high_pass_filter: { enabled: 0 }, echo_canceller: { enabled: 0, enforce_high_pass_filtering: 1 }, noise_suppression: { enabled: 0, level: Moderate }, transient_suppression: { enabled: 0 }, gain_controller1: { enabled: 0, mode: AdaptiveAnalog, target_level_dbfs: 3, compression_gain_db: 9, enable_limiter: 1, analog_gain_controller { enabled: 1, startup_min_volume: 0, clipped_level_min: 70, enable_digital_adaptive: 1, clipped_level_step: 15, clipped_ratio_threshold: 0.1, clipped_wait_frames: 300, clipping_predictor:  { enabled: 0, mode: 0, window_length: 5, reference_wi
+11-02 18:26:43.276 10219 10390 I audio_processing_impl.cc: [2/2] ndow_length: 5, reference_window_delay: 5, clipping_threshold: -1, crest_factor_margin: 3, use_predicted_step: 1 }}}, gain_controller2: { enabled: 0, fixed_digital: { gain_db: 0 }, adaptive_digital: { enabled: 0, headroom_db: 5, max_gain_db: 50, initial_gain_db: 15, max_gain_change_db_per_second: 6, max_output_noise_level_dbfs: -50 }, input_volume_control : { enabled 0}}
+11-02 18:26:43.276 10219 10390 I audio_processing_impl.cc: [1/2] [2026-11-02 18:26:43.276] [10390] (line 680): AudioProcessing::ApplyConfig: AudioProcessing::Config{ pipeline: { maximum_internal_processing_rate: 48000, multi_channel_render: 0, multi_channel_capture: 0 }, pre_amplifier: { enabled: 0, fixed_gain_factor: 1 },capture_level_adjustment: { enabled: 0, pre_gain_factor: 1, post_gain_factor: 1, analog_mic_gain_emulation: { enabled: 0, initial_level: 255 }}, high_pass_filter: { enabled: 1 }, echo_canceller: { enabled: 0, enforce_high_pass_filtering: 1 }, noise_suppression: { enabled: 0, level: Moderate }, transient_suppression: { enabled: 0 }, gain_controller1: { enabled: 0, mode: AdaptiveAnalog, target_level_dbfs: 3, compression_gain_db: 9, enable_limiter: 1, analog_gain_controller { enabled: 1, startup_min_volume: 0, clipped_level_min: 70, enable_digital_adaptive: 1, clipped_level_step: 15, clipped_ratio_threshold: 0.1, clipped_wait_frames: 300, clipping_predictor:  { enabled: 0, mode: 0, window_length: 5,
+11-02 18:26:43.276 10219 10390 I audio_processing_impl.cc: [2/2]  reference_window_length: 5, reference_window_delay: 5, clipping_threshold: -1, crest_factor_margin: 3, use_predicted_step: 1 }}}, gain_controller2: { enabled: 0, fixed_digital: { gain_db: 0 }, adaptive_digital: { enabled: 0, headroom_db: 5, max_gain_db: 50, initial_gain_db: 15, max_gain_change_db_per_second: 6, max_output_noise_level_dbfs: -50 }, input_volume_control : { enabled 0}}
+11-02 18:26:43.276 10219 10390 I adm_factory_default.cpp: [2026-11-02 18:26:43.276] [10390] (line 113): Creating ADM on dedicated controls thread
+11-02 18:26:43.280 10219 10393 I org.webrtc.Logging: WebRtcAudioManagerExternal: Running emulator, overriding sample rate to 8 kHz.
+11-02 18:26:43.280 10219 10393 I org.webrtc.Logging: WebRtcAudioManagerExternal: Running emulator, overriding sample rate to 8 kHz.
+11-02 18:26:43.292 10219 10393 D CompatibilityChangeReporter: Compat change id reported: 263076149; UID 10195; state: ENABLED
+11-02 18:26:43.293 10219 10393 I org.webrtc.Logging: WebRtcAudioEffectsExternal: ctor@[name=AdmHelper - 10393, id=174]
+11-02 18:26:43.293 10219 10393 I org.webrtc.Logging: WebRtcAudioRecordExternal: ctor@[name=AdmHelper - 10393, id=174]
+11-02 18:26:43.293 10219 10393 I audio_record_jni.cc: [2026-11-02 18:26:43.293] [10393] (line 83): ctor
+11-02 18:26:43.293 10219 10393 I org.webrtc.Logging: WebRtcAudioTrackExternal: ctor@[name=AdmHelper - 10393, id=174]
+11-02 18:26:43.293 10219 10393 I audio_track_jni.cc: [2026-11-02 18:26:43.293] [10393] (line 58): ctor
+11-02 18:26:43.294 10219 10390 W input_volume_stats_reporter.cc: [2026-11-02 18:26:43.294] [10390] (line 98): Will not log any `WebRTC.Audio.Apm.AppliedInputVolume.*` histogram stats.
+11-02 18:26:43.294 10219 10390 W input_volume_stats_reporter.cc: [2026-11-02 18:26:43.294] [10390] (line 98): Will not log any `WebRTC.Audio.Apm.RecommendedInputVolume.*` histogram stats.
+11-02 18:26:43.294 10219 10390 I audio_processing_impl.cc: [2026-11-02 18:26:43.294] [10390] (line 484): Injected APM submodules:
+11-02 18:26:43.294 10219 10390 I audio_processing_impl.cc: Echo control factory: 0
+11-02 18:26:43.294 10219 10390 I audio_processing_impl.cc: Echo detector: 0
+11-02 18:26:43.294 10219 10390 I audio_processing_impl.cc: Capture analyzer: 0
+11-02 18:26:43.294 10219 10390 I audio_processing_impl.cc: Capture post processor: 0
+11-02 18:26:43.294 10219 10390 I audio_processing_impl.cc: Render pre processor: 0
+11-02 18:26:43.294 10219 10390 I audio_processing_impl.cc: Neural residual echo estimator 0
+11-02 18:26:43.294 10219 10390 I audio_processing_impl.cc: [1/2] [2026-11-02 18:26:43.294] [10390] (line 499): AudioProcessing: AudioProcessing::Config{ pipeline: { maximum_internal_processing_rate: 32000, multi_channel_render: 0, multi_channel_capture: 0 }, pre_amplifier: { enabled: 0, fixed_gain_factor: 1 },capture_level_adjustment: { enabled: 0, pre_gain_factor: 1, post_gain_factor: 1, analog_mic_gain_emulation: { enabled: 0, initial_level: 255 }}, high_pass_filter: { enabled: 0 }, echo_canceller: { enabled: 0, enforce_high_pass_filtering: 1 }, noise_suppression: { enabled: 0, level: Moderate }, transient_suppression: { enabled: 0 }, gain_controller1: { enabled: 0, mode: AdaptiveAnalog, target_level_dbfs: 3, compression_gain_db: 9, enable_limiter: 1, analog_gain_controller { enabled: 1, startup_min_volume: 0, clipped_level_min: 70, enable_digital_adaptive: 1, clipped_level_step: 15, clipped_ratio_threshold: 0.1, clipped_wait_frames: 300, clipping_predictor:  { enabled: 0, mode: 0, window_length: 5, reference_wi
+11-02 18:26:43.294 10219 10390 I audio_processing_impl.cc: [2/2] ndow_length: 5, reference_window_delay: 5, clipping_threshold: -1, crest_factor_margin: 3, use_predicted_step: 1 }}}, gain_controller2: { enabled: 0, fixed_digital: { gain_db: 0 }, adaptive_digital: { enabled: 0, headroom_db: 5, max_gain_db: 50, initial_gain_db: 15, max_gain_change_db_per_second: 6, max_output_noise_level_dbfs: -50 }, input_volume_control : { enabled 0}}
+11-02 18:26:43.294 10219 10390 I audio_engine.cpp: [2026-11-02 18:26:43.294] [10390] (line 802): Creating audio engine: standard
+11-02 18:26:43.294 10219 10390 I audio_coding.cpp: [2026-11-02 18:26:43.294] [10390] (line 158): Using software Opus decoder
+11-02 18:26:43.295 10219 10390 I audio_coding.cpp: [2026-11-02 18:26:43.295] [10390] (line 175): Using software Opus encoder
+11-02 18:26:43.295 10219 10390 I audio_engine.cpp: [2026-11-02 18:26:43.295] [10390] (line 274): Setting audio input device: 'default'
+11-02 18:26:43.295 10219 10390 I audio_engine.cpp: [2026-11-02 18:26:43.295] [10390] (line 291): Setting audio output device: 'default'
+11-02 18:26:43.295 10219 10390 I audio_processing_impl.cc: [1/2] [2026-11-02 18:26:43.295] [10390] (line 680): AudioProcessing::ApplyConfig: AudioProcessing::Config{ pipeline: { maximum_internal_processing_rate: 48000, multi_channel_render: 0, multi_channel_capture: 0 }, pre_amplifier: { enabled: 0, fixed_gain_factor: 1 },capture_level_adjustment: { enabled: 0, pre_gain_factor: 1, post_gain_factor: 1, analog_mic_gain_emulation: { enabled: 0, initial_level: 255 }}, high_pass_filter: { enabled: 1 }, echo_canceller: { enabled: 1, enforce_high_pass_filtering: 1 }, noise_suppression: { enabled: 0, level: Moderate }, transient_suppression: { enabled: 0 }, gain_controller1: { enabled: 0, mode: AdaptiveAnalog, target_level_dbfs: 3, compression_gain_db: 9, enable_limiter: 1, analog_gain_controller { enabled: 1, startup_min_volume: 0, clipped_level_min: 70, enable_digital_adaptive: 1, clipped_level_step: 15, clipped_ratio_threshold: 0.1, clipped_wait_frames: 300, clipping_predictor:  { enabled: 0, mode: 0, window_length: 5,
+11-02 18:26:43.295 10219 10390 I audio_processing_impl.cc: [2/2]  reference_window_length: 5, reference_window_delay: 5, clipping_threshold: -1, crest_factor_margin: 3, use_predicted_step: 1 }}}, gain_controller2: { enabled: 0, fixed_digital: { gain_db: 0 }, adaptive_digital: { enabled: 0, headroom_db: 5, max_gain_db: 50, initial_gain_db: 15, max_gain_change_db_per_second: 6, max_output_noise_level_dbfs: -50 }, input_volume_control : { enabled 0}}
+11-02 18:26:43.298 10219 10390 I transparent_mode.cc: [2026-11-02 18:26:43.298] [10390] (line 248): AEC3 Transparent Mode: Legacy
+11-02 18:26:43.298 10219 10390 I echo_canceller3.cc: [2026-11-02 18:26:43.298] [10390] (line 820): AEC3 created with sample rate: 16000 Hz, num render channels: 1, num capture channels: 1
+11-02 18:26:43.298 10219 10390 I transparent_mode.cc: [2026-11-02 18:26:43.298] [10390] (line 248): AEC3 Transparent Mode: Legacy
+11-02 18:26:43.298 10219 10390 I echo_canceller3.cc: [2026-11-02 18:26:43.298] [10390] (line 820): AEC3 created with sample rate: 16000 Hz, num render channels: 1, num capture channels: 1
+11-02 18:26:43.298 10219 10390 I audio_processing_impl.cc: [1/2] [2026-11-02 18:26:43.298] [10390] (line 680): AudioProcessing::ApplyConfig: AudioProcessing::Config{ pipeline: { maximum_internal_processing_rate: 48000, multi_channel_render: 0, multi_channel_capture: 0 }, pre_amplifier: { enabled: 0, fixed_gain_factor: 1 },capture_level_adjustment: { enabled: 0, pre_gain_factor: 1, post_gain_factor: 1, analog_mic_gain_emulation: { enabled: 0, initial_level: 255 }}, high_pass_filter: { enabled: 1 }, echo_canceller: { enabled: 1, enforce_high_pass_filtering: 1 }, noise_suppression: { enabled: 0, level: Moderate }, transient_suppression: { enabled: 0 }, gain_controller1: { enabled: 1, mode: AdaptiveAnalog, target_level_dbfs: 3, compression_gain_db: 9, enable_limiter: 1, analog_gain_controller { enabled: 1, startup_min_volume: 0, clipped_level_min: 70, enable_digital_adaptive: 1, clipped_level_step: 15, clipped_ratio_threshold: 0.1, clipped_wait_frames: 300, clipping_predictor:  { enabled: 0, mode: 0, window_length: 5,
+11-02 18:26:43.298 10219 10390 I audio_processing_impl.cc: [2/2]  reference_window_length: 5, reference_window_delay: 5, clipping_threshold: -1, crest_factor_margin: 3, use_predicted_step: 1 }}}, gain_controller2: { enabled: 0, fixed_digital: { gain_db: 0 }, adaptive_digital: { enabled: 1, headroom_db: 5, max_gain_db: 50, initial_gain_db: 15, max_gain_change_db_per_second: 6, max_output_noise_level_dbfs: -50 }, input_volume_control : { enabled 0}}
+11-02 18:26:43.298 10219 10390 I clipping_predictor.cc: [2026-11-02 18:26:43.298] [10390] (line 367): [AGC2] Clipping prediction disabled.
+11-02 18:26:43.298 10219 10390 I agc_manager_direct.cc: [2026-11-02 18:26:43.298] [10390] (line 495): [agc] analog controller enabled: yes
+11-02 18:26:43.298 10219 10390 I agc_manager_direct.cc: [2026-11-02 18:26:43.298] [10390] (line 498): [agc] Min mic level: 12 (overridden: no)
+11-02 18:26:43.299 10219 10390 I transparent_mode.cc: [2026-11-02 18:26:43.299] [10390] (line 248): AEC3 Transparent Mode: Legacy
+11-02 18:26:43.299 10219 10390 I echo_canceller3.cc: [2026-11-02 18:26:43.299] [10390] (line 820): AEC3 created with sample rate: 16000 Hz, num render channels: 1, num capture channels: 1
+11-02 18:26:43.299 10219 10390 I captured_audio_processor.cpp: [2026-11-02 18:26:43.299] [10390] (line 248): SetNoiseCancellation: 0
+11-02 18:26:43.299 10219 10390 W noise_canceller.cpp: [2026-11-02 18:26:43.299] [10390] (line 97): Attempting to reset while uninitialized, state: 0
+11-02 18:26:43.299 10219 10390 I audio_processing_impl.cc: [1/2] [2026-11-02 18:26:43.299] [10390] (line 680): AudioProcessing::ApplyConfig: AudioProcessing::Config{ pipeline: { maximum_internal_processing_rate: 48000, multi_channel_render: 0, multi_channel_capture: 0 }, pre_amplifier: { enabled: 0, fixed_gain_factor: 1 },capture_level_adjustment: { enabled: 0, pre_gain_factor: 1, post_gain_factor: 1, analog_mic_gain_emulation: { enabled: 0, initial_level: 255 }}, high_pass_filter: { enabled: 1 }, echo_canceller: { enabled: 1, enforce_high_pass_filtering: 1 }, noise_suppression: { enabled: 1, level: High }, transient_suppression: { enabled: 0 }, gain_controller1: { enabled: 1, mode: AdaptiveAnalog, target_level_dbfs: 3, compression_gain_db: 9, enable_limiter: 1, analog_gain_controller { enabled: 1, startup_min_volume: 0, clipped_level_min: 70, enable_digital_adaptive: 1, clipped_level_step: 15, clipped_ratio_threshold: 0.1, clipped_wait_frames: 300, clipping_predictor:  { enabled: 0, mode: 0, window_length: 5, ref
+11-02 18:26:43.299 10219 10390 I audio_processing_impl.cc: [2/2] erence_window_length: 5, reference_window_delay: 5, clipping_threshold: -1, crest_factor_margin: 3, use_predicted_step: 1 }}}, gain_controller2: { enabled: 0, fixed_digital: { gain_db: 0 }, adaptive_digital: { enabled: 1, headroom_db: 5, max_gain_db: 50, initial_gain_db: 15, max_gain_change_db_per_second: 6, max_output_noise_level_dbfs: -50 }, input_volume_control : { enabled 0}}
+11-02 18:26:43.299 10219 10390 I transparent_mode.cc: [2026-11-02 18:26:43.299] [10390] (line 248): AEC3 Transparent Mode: Legacy
+11-02 18:26:43.299 10219 10390 I echo_canceller3.cc: [2026-11-02 18:26:43.299] [10390] (line 820): AEC3 created with sample rate: 16000 Hz, num render channels: 1, num capture channels: 1
+11-02 18:26:43.300 10219 10390 I engine.cpp: [2026-11-02 18:26:43.300] [10390] (line 139): *** OnDevicesChanged:
+11-02 18:26:43.300 10219 10390 I engine.cpp: [2026-11-02 18:26:43.300] [10390] (line 140): * audioInput:
+11-02 18:26:43.301 10219 10390 I engine.cpp: [2026-11-02 18:26:43.300] [10390] (line 143): - default (default)
+11-02 18:26:43.301 10219 10390 I engine.cpp: [2026-11-02 18:26:43.301] [10390] (line 145): * audioOutput:
+11-02 18:26:43.301 10219 10390 I engine.cpp: [2026-11-02 18:26:43.301] [10390] (line 148): - default (default)
+11-02 18:26:43.301 10219 10390 I engine.cpp: [2026-11-02 18:26:43.301] [10390] (line 153): * videoInput:
+11-02 18:26:43.301 10219 10390 I engine.cpp: [2026-11-02 18:26:43.301] [10390] (line 796): Setting audio input device id: 'default'
+11-02 18:26:43.301 10219 10390 I audio_engine.cpp: [2026-11-02 18:26:43.301] [10390] (line 274): Setting audio input device: 'default'
+11-02 18:26:43.301 10219 10390 I webrtc_adm_helper.cpp: [2026-11-02 18:26:43.301] [10390] (line 315): Deferring to work queue: EnsureRecordingStopped(1)
+11-02 18:26:43.301 10219 10390 I audio_engine.cpp: [2026-11-02 18:26:43.301] [10390] (line 291): Setting audio output device: 'default'
+11-02 18:26:43.301 10219 10390 I webrtc_adm_helper.cpp: [2026-11-02 18:26:43.301] [10390] (line 349): Deferring to work queue: EnsurePlayoutStopped(1)
+11-02 18:26:43.301 10219 10390 I engine_audio_transport.cpp: [2026-11-02 18:26:43.301] [10390] (line 889): EngineAudioTransport::SetSidechainCompression 1
+11-02 18:26:43.301 10219 10390 I engine.cpp: [2026-11-02 18:26:43.301] [10390] (line 796): Setting audio input device id: 'default'
+11-02 18:26:43.301 10219 10390 I audio_engine.cpp: [2026-11-02 18:26:43.301] [10390] (line 274): Setting audio input device: 'default'
+11-02 18:26:43.301 10219 10390 I webrtc_adm_helper.cpp: [2026-11-02 18:26:43.301] [10390] (line 315): Deferring to work queue: EnsureRecordingStopped(1)
+11-02 18:26:43.301 10219 10390 I audio_engine.cpp: [2026-11-02 18:26:43.301] [10390] (line 291): Setting audio output device: 'default'
+11-02 18:26:43.301 10219 10390 I webrtc_adm_helper.cpp: [2026-11-02 18:26:43.301] [10390] (line 349): Deferring to work queue: EnsurePlayoutStopped(1)
+11-02 18:26:43.302 10219 10393 I audio_device_buffer.cc: [2026-11-02 18:26:43.302] [10393] (line 74): AudioDeviceBuffer::ctor
+11-02 18:26:43.303 10219 10393 I audio_track_jni.cc: [2026-11-02 18:26:43.303] [10393] (line 231): AttachAudioBuffer
+11-02 18:26:43.303 10219 10393 I audio_track_jni.cc: [2026-11-02 18:26:43.303] [10393] (line 235): SetPlayoutSampleRate(8000)
+11-02 18:26:43.304 10219 10393 I audio_device_buffer.cc: [2026-11-02 18:26:43.303] [10393] (line 212): SetPlayoutSampleRate(8000)
+11-02 18:26:43.304 10219 10393 I audio_track_jni.cc: [2026-11-02 18:26:43.304] [10393] (line 238): SetPlayoutChannels(1)
+11-02 18:26:43.304 10219 10393 I audio_device_buffer.cc: [2026-11-02 18:26:43.304] [10393] (line 232): SetPlayoutChannels(1)
+11-02 18:26:43.304 10219 10393 I audio_record_jni.cc: [2026-11-02 18:26:43.304] [10393] (line 206): AttachAudioBuffer
+11-02 18:26:43.304 10219 10393 I audio_record_jni.cc: [2026-11-02 18:26:43.304] [10393] (line 210): SetRecordingSampleRate(8000)
+11-02 18:26:43.304 10219 10393 I audio_device_buffer.cc: [2026-11-02 18:26:43.304] [10393] (line 206): SetRecordingSampleRate(8000)
+11-02 18:26:43.304 10219 10393 I audio_record_jni.cc: [2026-11-02 18:26:43.304] [10393] (line 213): SetRecordingChannels(1)
+11-02 18:26:43.304 10219 10393 I audio_device_buffer.cc: [2026-11-02 18:26:43.304] [10393] (line 226): SetRecordingChannels(1)
+11-02 18:26:43.304 10219 10393 I audio_track_jni.cc: [2026-11-02 18:26:43.304] [10393] (line 75): Init
+11-02 18:26:43.304 10219 10393 I audio_record_jni.cc: [2026-11-02 18:26:43.304] [10393] (line 100): Init
+11-02 18:26:43.304 10219 10393 W audio_device_module.cc: [2026-11-02 18:26:43.304] [10393] (line 494): changing stereo recording not supported
+11-02 18:26:43.304 10219 10393 I webrtc_adm_helper.cpp: [2026-11-02 18:26:43.304] [10393] (line 321): Completed: EnsureRecordingStopped(1)
+11-02 18:26:43.304 10219 10393 W audio_device_module.cc: [2026-11-02 18:26:43.304] [10393] (line 494): changing stereo recording not supported
+11-02 18:26:43.304 10219 10393 I webrtc_adm_helper.cpp: [2026-11-02 18:26:43.304] [10393] (line 355): Completed: EnsurePlayoutStopped(1)
+11-02 18:26:43.304 10219 10393 I webrtc_adm_helper.cpp: [2026-11-02 18:26:43.304] [10393] (line 321): Completed: EnsureRecordingStopped(1)
+11-02 18:26:43.304 10219 10393 W audio_device_module.cc: [2026-11-02 18:26:43.304] [10393] (line 494): changing stereo recording not supported
+11-02 18:26:43.304 10219 10393 I webrtc_adm_helper.cpp: [2026-11-02 18:26:43.304] [10393] (line 355): Completed: EnsurePlayoutStopped(1)
+11-02 18:26:43.313   844   914 D EGL_emulation: app_time_stats: avg=607.31ms min=8.06ms max=1753.54ms count=4
+11-02 18:26:43.325   521  2612 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+11-02 18:26:43.328 10219 10312 W ReactNativeJS: Requested message 2F5EsD does not have a value in the requested locale en-US nor the default locale en-US
+11-02 18:26:43.328 10219 10312 W ReactNativeJS: Requested message PA8TUT does not have a value in the requested locale en-US nor the default locale en-US
+11-02 18:26:43.329 10219 10312 W ReactNativeJS: Requested message 0uDEd6 does not have a value in the requested locale en-US nor the default locale en-US
+11-02 18:26:43.329 10219 10312 W ReactNativeJS: Requested message y2oJvM does not have a value in the requested locale en-US nor the default locale en-US
+11-02 18:26:43.341 10219 10312 W ReactNativeJS: Requested message 2F5EsD does not have a value in the requested locale en-US nor the default locale en-US
+11-02 18:26:43.341 10219 10312 W ReactNativeJS: Requested message PA8TUT does not have a value in the requested locale en-US nor the default locale en-US
+11-02 18:26:43.342 10219 10313 I SentryBreadcrumb: Completed initNotificationGroupsAndChannels
+11-02 18:26:43.345 10219 10313 V Discord : [libdiscord_version]: 90.0.38-opensles_recorder
+11-02 18:26:43.351 10219 10312 W ReactNativeJS: Requested message 0uDEd6 does not have a value in the requested locale en-US nor the default locale en-US
+11-02 18:26:43.352 10219 10312 W ReactNativeJS: Requested message y2oJvM does not have a value in the requested locale en-US nor the default locale en-US
+11-02 18:26:43.521     0     0 I logd    : logdr: UID=10195 GID=10195 PID=10399 b tail=0 logMask=99 pid=0 start=0ns deadline=0ns
+11-02 18:26:43.359 10219 10390 I engine.cpp: [2026-11-02 18:26:43.359] [10390] (line 796): Setting audio input device id: 'default'
+11-02 18:26:43.359 10219 10390 I audio_engine.cpp: [2026-11-02 18:26:43.359] [10390] (line 274): Setting audio input device: 'default'
+11-02 18:26:43.359 10219 10390 I webrtc_adm_helper.cpp: [2026-11-02 18:26:43.359] [10390] (line 315): Deferring to work queue: EnsureRecordingStopped(1)
+11-02 18:26:43.359 10219 10393 I webrtc_adm_helper.cpp: [2026-11-02 18:26:43.359] [10393] (line 321): Completed: EnsureRecordingStopped(1)
+11-02 18:26:43.359 10219 10393 W audio_device_module.cc: [2026-11-02 18:26:43.359] [10393] (line 494): changing stereo recording not supported
+11-02 18:26:43.360 10219 10390 I audio_engine.cpp: [2026-11-02 18:26:43.360] [10390] (line 291): Setting audio output device: 'default'
+11-02 18:26:43.360 10219 10390 I webrtc_adm_helper.cpp: [2026-11-02 18:26:43.360] [10390] (line 349): Deferring to work queue: EnsurePlayoutStopped(1)
+11-02 18:26:43.360 10219 10393 I webrtc_adm_helper.cpp: [2026-11-02 18:26:43.360] [10393] (line 355): Completed: EnsurePlayoutStopped(1)
+11-02 18:26:43.376 10219 10312 W System.err: java.lang.NoSuchFieldException: No field mIsFinished in class Lcom/facebook/react/bridge/queue/MessageQueueThreadImpl; (declaration of 'com.facebook.react.bridge.queue.MessageQueueThreadImpl' appears in /data/user/0/com.endcord.next/cache/lspatch/origin/849235176.apk!classes3.dex)
+11-02 18:26:43.376 10219 10312 W System.err: 	at java.lang.Class.getDeclaredField(Native Method)
+11-02 18:26:43.376 10219 10312 W System.err: 	at com.swmansion.worklets.WorkletsMessageQueueThreadBase.quitSynchronous(SourceFile:9)
+11-02 18:26:43.376 10219 10312 W System.err: 	at com.swmansion.reanimated.NativeProxy.initHybrid(Native Method)
+11-02 18:26:43.376 10219 10312 W System.err: 	at com.swmansion.reanimated.NativeProxy.<init>(SourceFile:51)
+11-02 18:26:43.376 10219 10312 W System.err: 	at com.swmansion.reanimated.NodesManager.initWithContext(SourceFile:12)
+11-02 18:26:43.376 10219 10312 W System.err: 	at com.swmansion.reanimated.ReanimatedModule.installTurboModule(SourceFile:39)
+11-02 18:26:43.376 10219 10312 W System.err: 	at com.facebook.jni.NativeRunnable.run(Native Method)
+11-02 18:26:43.376 10219 10312 W System.err: 	at android.os.Handler.handleCallback(Handler.java:958)
+11-02 18:26:43.376 10219 10312 W System.err: 	at android.os.Handler.dispatchMessage(Handler.java:99)
+11-02 18:26:43.376 10219 10312 W System.err: 	at com.facebook.react.bridge.queue.MessageQueueThreadHandler.dispatchMessage(SourceFile:6)
+11-02 18:26:43.376 10219 10312 W System.err: 	at android.os.Looper.loopOnce(Looper.java:205)
+11-02 18:26:43.376 10219 10312 W System.err: 	at android.os.Looper.loop(Looper.java:294)
+11-02 18:26:43.376 10219 10312 W System.err: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.startNewBackgroundThread$lambda$0(SourceFile:15)
+11-02 18:26:43.376 10219 10312 W System.err: 	at com.facebook.react.bridge.queue.MessageQueueThreadImpl$Companion.a(SourceFile:1)
+11-02 18:26:43.376 10219 10312 W System.err: 	at androidx.lifecycle.c0.run(SourceFile:350)
+11-02 18:26:43.376 10219 10312 W System.err: 	at java.lang.Thread.run(Thread.java:1012)
+11-02 18:26:43.427 10219 10312 W ReactNativeJS: Timing native module is not available, can't set timers.
+11-02 18:26:43.505 10219 10312 I NitroModules: Loading NitroModules C++ library...
+11-02 18:26:43.506 10219 10312 I NitroModules: Successfully loaded NitroModules C++ library!
+11-02 18:26:43.744 10219 10312 W ReactNativeJS: InteractionManager has been deprecated and will be removed in a future release. Please refactor long tasks into smaller ones, and  use 'requestIdleCallback' instead.
+11-02 18:26:43.921     0     0 I logd    : logdr: UID=2000 GID=2000 PID=10403 n tail=0 logMask=99 pid=0 start=0ns deadline=0ns
