@@ -1,0 +1,24 @@
+MessageLogger
+Silinen mesajları sohbette tutar ve düzenlenen mesajların önceki hâllerini gösterir.
+Ayarlar
+Silinen mesajları kaydet, 
+Silinen mesajları kaydet
+Düzenlenen mesajları kaydet, 
+Düzenlenen mesajları kaydet
+Botları yok say, Botların mesajlarını kaydetme
+Botları yok say
+Botların mesajlarını kaydetme
+Kendini yok say, Kendi mesajlarını kaydetme
+Kendini yok say
+Kendi mesajlarını kaydetme
+Hayalet etiket uyarıları, Biri seni etiketlediği bir mesajı sildiğinde bildirim göster
+Hayalet etiket uyarıları
+Biri seni etiketlediği bir mesajı sildiğinde bildirim göster
+Yok sayılan kullanıcılar
+ör. 123456789012345678, 234567890123456789
+WELCOME TO DISCORD
+Hang out, play games, or just talk. Tap below to get started!
+Register
+Register
+Log In
+Log In
