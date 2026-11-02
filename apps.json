@@ -1,0 +1,47 @@
+{
+  "name": "Endcord",
+  "identifier": "com.endcord.source",
+  "subtitle": "Plugins, themes and privacy for Discord",
+  "iconURL": "https://raw.githubusercontent.com/Endcord/endcord-mobile/next/bundle/src/assets/icons/endcord.png",
+  "website": "https://endcord.com",
+  "apps": [
+    {
+      "name": "Endcord",
+      "bundleIdentifier": "com.hammerandchisel.discord",
+      "developerName": "Endcord",
+      "subtitle": "Plugins, themes and privacy for Discord",
+      "localizedDescription": "Discord with Endcord: 300+ plugins, themes and five languages.",
+      "iconURL": "https://raw.githubusercontent.com/Endcord/endcord-mobile/next/bundle/src/assets/icons/endcord.png",
+      "tintColor": "#7AB8F5",
+      "category": "social",
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {
+          "NSBluetoothAlwaysUsageDescription": "To connect to your devices",
+          "NSBluetoothPeripheralUsageDescription": "To connect to your devices",
+          "NSCameraUsageDescription": "By allowing access to your camera, you can take pictures and others will be able to see you in voice and video calls.",
+          "NSContactsUsageDescription": "We can help you find people you know on Discord. Your contacts will be regularly sent to us so you can connect with friends. You can turn this off any time.",
+          "NSLocalNetworkUsageDescription": "Allow Discord access to your local network to find devices using the same internet connection.",
+          "NSLocationAlwaysAndWhenInUseUsageDescription": "To enable services that require location",
+          "NSLocationAlwaysUsageDescription": "To enable services that require location",
+          "NSLocationWhenInUseUsageDescription": "To enable services that require location",
+          "NSMicrophoneUsageDescription": "By allowing access to your microphone, you'll be able to talk in calls.",
+          "NSPhotoLibraryAddUsageDescription": "By allowing access to your library, you'll be able to download photos and videos.",
+          "NSPhotoLibraryUsageDescription": "By allowing us access to your photos, you will be able to upload images as an avatar, server icon, and more, and you can send photos and videos to your friends and communities.",
+          "NSUserTrackingUsageDescription": "Allowing tracking helps us show you Quests for games you play or are interested in. You can opt out anytime in your iOS settings."
+        }
+      },
+      "versions": [
+        {
+          "version": "344.1",
+          "buildVersion": "110861",
+          "date": "2026-11-02T21:15:05.604Z",
+          "size": 107100098,
+          "downloadURL": "https://github.com/Endcord/endcord-mobile/releases/download/ios-v1.0.7/Endcord.ipa",
+          "minOSVersion": "16.0"
+        }
+      ]
+    }
+  ],
+  "news": []
+}
