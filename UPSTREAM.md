@@ -1,4 +1,4 @@
-# Upstream
+# Upstream.
 
 Endcord for Android (new) is built from the Revenge project, and Endcord for iOS loads the same bundle with a tweak
 built from RainTweak. Each part lives in its own directory and was imported from the upstream repository at the commit
