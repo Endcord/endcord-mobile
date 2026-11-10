@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -40,7 +40,7 @@ async function applyAll() {
         try {
             await update.apply();
         } catch (e) {
-            console.error(`[Endcord] Couldn't apply the update of ${id}`, e);
+            console.error(`[Medslol] Couldn't apply the update of ${id}`, e);
         }
     }
 }

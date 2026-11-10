@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * More of Endcord PC's message plugins: links to messages, spoilers, emojis, quotes, secret messages and archives.
+ * More of Medslol PC's message plugins: links to messages, spoilers, emojis, quotes, secret messages and archives.
  *
  * What more than one of these plugins uses.
  */

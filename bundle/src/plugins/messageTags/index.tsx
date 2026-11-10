@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -20,9 +20,9 @@ const taggedItems = () => Array.isArray(tagged.items) ? tagged.items : [];
 const TAGS = [tx("TODO"), tx("Important"), tx("Read later"), tx("Idea"), tx("Question")];
 
 // Choices that aren't tags
-const CUSTOM = "endcord:custom";
+const CUSTOM = "medslol:custom";
 
-const REMOVE = "endcord:remove";
+const REMOVE = "medslol:remove";
 
 function TagList() {
     useProxy(tagged);

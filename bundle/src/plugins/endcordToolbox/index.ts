@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -22,7 +22,7 @@ import { choose } from "../ui/dialogs";
 function toolbox() {
     // Other plugins' entries, such as CustomProfile's
     const extra = getToolboxActions();
-    choose(t("Endcord Toolbox"), [
+    choose(t("Medslol Toolbox"), [
         { label: t("Reload Discord"), value: "reload", icon: "RetryIcon" },
         { label: t("Turn Off a Plugin…"), value: "plugins", icon: "PuzzlePieceIcon" },
         { label: t("Copy Debug Info"), value: "debug", icon: "CopyIcon" },
@@ -38,7 +38,7 @@ function toolbox() {
             const info = getDebugInfo() as any;
             const enabled = manifest.filter(p => isPluginEnabled(p.id)).length;
             copy([
-                `Endcord ${info.bunny?.version ?? "?"}`,
+                `Medslol ${info.bunny?.version ?? "?"}`,
                 `Discord ${info.discord?.version ?? "?"} (${info.discord?.build ?? "?"})`,
                 `${info.os?.name ?? "Android"} ${info.os?.version ?? ""} · ${info.device?.manufacturer ?? ""} ${info.device?.model ?? ""}`.trim(),
                 `Hermes ${info.hermes?.version ?? "?"}`,
@@ -46,7 +46,7 @@ function toolbox() {
             ].join("\n"));
         } else {
             const on = manifest.filter(p => isPluginEnabled(p.id));
-            if (!on.length) return showToast(t("No Endcord plugins are on"), findAssetId("PuzzlePieceIcon"));
+            if (!on.length) return showToast(t("No Medslol plugins are on"), findAssetId("PuzzlePieceIcon"));
             choose(t("Turn Off a Plugin…"), on.map(p => ({ label: p.name, value: p.id })), id => {
                 disablePlugin(id);
                 showToast(t("{plugin} is off", { plugin: manifest.find(p => p.id === id)?.name ?? id }), findAssetId("PuzzlePieceIcon"));
@@ -57,8 +57,8 @@ function toolbox() {
 
 export default definePlugin({
     id: "endcord.endcord-toolbox",
-    name: "EndcordToolbox",
-    description: tx("Adds a button beside the message box with Endcord quick actions: reload, turn off plugins, debug info and safe mode"),
+    name: "MedslolToolbox",
+    description: tx("Adds a button beside the message box with Medslol quick actions: reload, turn off plugins, debug info and safe mode"),
     icon: "WrenchIcon",
     tags: ["Utility"],
     settings: {
@@ -66,8 +66,8 @@ export default definePlugin({
     },
     start({ store, cleanup }) {
         cleanup(
-            command({ name: "toolbox", description: tx("Open Endcord's quick actions"), run: toolbox }),
-            chatButton("endcord-toolbox", store, "WrenchIcon", () => t("Endcord Toolbox"), toolbox),
+            command({ name: "toolbox", description: tx("Open Medslol's quick actions"), run: toolbox }),
+            chatButton("endcord-toolbox", store, "WrenchIcon", () => t("Medslol Toolbox"), toolbox),
         );
     },
 });

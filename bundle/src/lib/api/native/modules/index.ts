@@ -40,7 +40,7 @@ const iosLoaderCall = (globalThis as any).__ENDCORD_LOADER_CALL__ as ((payload: 
 const iosLoaderCallAsync = (globalThis as any).__ENDCORD_LOADER_CALL_ASYNC__ as ((payload: unknown) => Promise<any>) | undefined;
 
 /**
- * Calls a method the Endcord loader registers on its native bridge. The Android loader answers synchronous calls
+ * Calls a method the Medslol loader registers on its native bridge. The Android loader answers synchronous calls
  * through react-native-svg's getBBox, which it hooks, and the iOS one through its own global function; a loader
  * without the method answers with an error, which is thrown.
  */

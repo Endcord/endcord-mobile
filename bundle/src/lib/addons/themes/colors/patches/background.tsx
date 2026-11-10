@@ -57,7 +57,7 @@ export default function patchChatBackground() {
         return <ThemeBackground>{ret}</ThemeBackground>;
     };
 
-    // Discord loads its chat when a chat first shows, so it's patched then rather than loaded with Endcord
+    // Discord loads its chat when a chat first shows, so it's patched then rather than loaded with Medslol
     return patchWhenLoaded(MessagesModule, module => {
         try {
             return typeof module.default === "function"

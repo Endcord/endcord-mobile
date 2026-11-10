@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -97,7 +97,7 @@ export const manifest: PluginInfo[] = [
     { id: "endcord.embedded-urls", name: "EmbeddedURLs", icon: "LinkIcon", tags: ["Chat", "Media"] },
     { id: "endcord.emojify", name: "Emojify", icon: "ReactionIcon", tags: ["Fun", "Chat"] },
     { id: "endcord.encrypted-message", name: "EncryptedMessage", icon: "LockIcon", tags: ["Privacy", "Chat"], hasSettings: true },
-    { id: "endcord.endcord-toolbox", name: "EndcordToolbox", icon: "WrenchIcon", tags: ["Utility"], hasSettings: true },
+    { id: "endcord.endcord-toolbox", name: "MedslolToolbox", icon: "WrenchIcon", tags: ["Utility"], hasSettings: true },
     { id: "endcord.event-logs", name: "EventLogs", icon: "BookCheckIcon", tags: ["Utility"], hasSettings: true },
     { id: "endcord.exit-sounds", name: "ExitSounds", icon: "SoundboardIcon", tags: ["Voice", "Fun"], hasSettings: true },
     { id: "endcord.experiments", name: "Experiments", icon: "BeakerIcon", tags: ["Utility"] },
@@ -133,7 +133,7 @@ export const manifest: PluginInfo[] = [
     { id: "endcord.greet-sticker-picker", name: "GreetStickerPicker", icon: "StickerIcon", tags: ["Fun", "Emotes"], hasSettings: true },
     { id: "endcord.guild-picker-dumper", name: "GuildPickerDumper", icon: "ReactionIcon", tags: ["Emotes", "Servers"] },
     { id: "endcord.hash", name: "Hash", icon: "LockIcon", tags: ["Utility"] },
-    { id: "endcord.hide-endcord", name: "HideEndcord", popular: 3, icon: "EyeSlashIcon", tags: ["Privacy", "Utility"], hasSettings: true },
+    { id: "endcord.hide-endcord", name: "HideMedslol", popular: 3, icon: "EyeSlashIcon", tags: ["Privacy", "Utility"], hasSettings: true },
     { id: "endcord.hide-media", name: "HideMedia", icon: "EyeSlashIcon", tags: ["Media", "Chat"] },
     { id: "endcord.hide-messages", name: "HideMessages", icon: "EyeSlashIcon", tags: ["Chat", "Privacy"] },
     { id: "endcord.hide-servers", name: "HideServers", icon: "EyeSlashIcon", tags: ["Servers"], hasSettings: true },

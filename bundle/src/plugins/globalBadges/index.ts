@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -43,7 +43,7 @@ export default definePlugin({
         });
         cleanup(list.clear, list.onLoad(redrawProfiles));
         cleanup(extendProfileBadges("global-badges", (userId, badges) => {
-            const extra = (list.get()?.[userId] || []).filter((b: GlobalBadge) => b?.badge && /^https:\/\//.test(b.badge) && b.mod?.toLowerCase() !== "endcord");
+            const extra = (list.get()?.[userId] || []).filter((b: GlobalBadge) => b?.badge && /^https:\/\//.test(b.badge) && b.mod?.toLowerCase() !== "medslol");
             if (!extra.length) return badges;
             return [...badges, ...extra.map((b: GlobalBadge) => {
                 const label = store.showModStyle === "prefix" ? `${b.mod} - ${b.tooltip}` : store.showModStyle === "suffix" ? `${b.tooltip} - ${b.mod}` : b.tooltip;

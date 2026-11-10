@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * Profile plugins: avatars, banners, badges and theme colors from the services Endcord PC uses.
+ * Profile plugins: avatars, banners, badges and theme colors from the services Medslol PC uses.
  *
  * What more than one of the UserPFP, USRBG and GlobalBadges plugins uses.
  */

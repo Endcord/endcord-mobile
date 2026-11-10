@@ -1,11 +1,11 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
  * Community plugins: the list of plugins for Discord on phones that the community keeps up to date (Purple-EyeZ's
- * Plugins-List, which other mods browse too), with whether each still works. A plugin Endcord has built in points to
- * Endcord's own, which is made for this Discord; the community's can still be installed from its menu.
+ * Plugins-List, which other mods browse too), with whether each still works. A plugin Medslol has built in points to
+ * Medslol's own, which is made for this Discord; the community's can still be installed from its menu.
  */
 
 import { t } from "@core/i18n";
@@ -48,7 +48,7 @@ interface CommunityPlugin {
     /** Also the ID it is installed under */
     installUrl: string;
     sourceUrl?: string;
-    /** Endcord's built-in plugin of the same name */
+    /** Medslol's built-in plugin of the same name */
     builtIn?: { id: string; name: string; };
     /** Its place in the list, which grows at the end */
     order: number;
@@ -134,13 +134,13 @@ function install(plugin: CommunityPlugin, setBusy: (id: string, busy: boolean) =
 function confirmInstall(plugin: CommunityPlugin, setBusy: (id: string, busy: boolean) => void) {
     const notes: string[] = [];
     if (!notices.communityPluginsAcknowledged) {
-        notes.push(t("Community plugins aren't checked by Endcord. They can read and do anything your Discord account can, so only install ones you trust."));
+        notes.push(t("Community plugins aren't checked by Medslol. They can read and do anything your Discord account can, so only install ones you trust."));
     }
     if (plugin.status === "broken") notes.push(t("This plugin is marked as broken on the current Discord."));
     else if (plugin.status === "warning") notes.push(t("This plugin is marked as having issues on the current Discord."));
     if (plugin.warning) notes.push(plugin.warning);
     if (plugin.builtIn) {
-        notes.push(t("Endcord has {name} built in. Running both at once can make them get in each other's way.", { name: plugin.builtIn.name }));
+        notes.push(t("Medslol has {name} built in. Running both at once can make them get in each other's way.", { name: plugin.builtIn.name }));
     }
     if (!notes.length) return install(plugin, setBusy);
 
@@ -257,7 +257,7 @@ const PluginCard = memo(function PluginCard({ plugin, installed, builtInOn, busy
             {action}
         </View>
         <Text variant="text-sm/semibold" color={status.color}>
-            {plugin.builtIn ? `${status.label()} · ${t("Built into Endcord as {name}", { name: plugin.builtIn.name })}` : status.label()}
+            {plugin.builtIn ? `${status.label()} · ${t("Built into Medslol as {name}", { name: plugin.builtIn.name })}` : status.label()}
         </Text>
         {!!plugin.description && <Text variant="text-md/medium">{plugin.description}</Text>}
         {!!plugin.warning && <Text variant="text-sm/medium" color="text-muted">{plugin.warning}</Text>}
@@ -300,7 +300,7 @@ export default function PluginBrowser() {
     const header = <View style={{ gap: 10, paddingBottom: 8 }}>
         <Card>
             <Text variant="text-sm/medium" color="text-muted">
-                {t("Plugins made by the community, not by Endcord, from a list its members keep up to date. They run with full access to your Discord account; only install ones you trust.")}
+                {t("Plugins made by the community, not by Medslol, from a list its members keep up to date. They run with full access to your Discord account; only install ones you trust.")}
             </Text>
         </Card>
         <View style={{ flexDirection: "row", gap: 8 }}>

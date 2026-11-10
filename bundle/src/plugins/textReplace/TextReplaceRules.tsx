@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -21,7 +21,7 @@ const rules = wrapSync(createStorage<Record<Kind, Rule[]>>(createMMKVBackend("EN
 
 const list = (kind: Kind): Rule[] => Array.isArray(rules[kind]) ? rules[kind] : [];
 
-/** "/pattern/flags" or a plain pattern, as on Endcord PC */
+/** "/pattern/flags" or a plain pattern, as on Medslol PC */
 function toRegex(text: string) {
     const match = text.match(/^\/(.+)\/([gimsuy]*)$/);
     return match ? new RegExp(match[1], match[2]) : new RegExp(text, "g");

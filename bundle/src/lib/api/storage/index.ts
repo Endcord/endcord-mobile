@@ -17,7 +17,7 @@ function createFileBackend<T extends object>(filePath: string) {
     let writing: Promise<void> = Promise.resolve();
     const write = debounce((data: T) => {
         writing = writeFile(filePath, JSON.stringify(data))
-            .catch(e => console.error(`[Endcord] Couldn't save ${filePath}`, e));
+            .catch(e => console.error(`[Medslol] Couldn't save ${filePath}`, e));
     }, 500);
     const flush = () => {
         write.flush();

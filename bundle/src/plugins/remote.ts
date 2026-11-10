@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -54,7 +54,7 @@ export function remoteJson<T>(url: string, options: { parse: (json: any) => T; r
                 try {
                     cb();
                 } catch (e) {
-                    console.error("[Endcord] a remote data listener failed", e);
+                    console.error("[Medslol] a remote data listener failed", e);
                 }
             }
         } finally {

@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * CustomProfile's editor: Endcord PC's Custom Profile window, as a page.
+ * CustomProfile's editor: Medslol PC's Custom Profile window, as a page.
  */
 
 import { t } from "@core/i18n";
@@ -398,12 +398,12 @@ const EffectTile = memo(function EffectTile({ effect, size, active, onPick }: { 
         style={[styles.tile, size, styles.effectTile, active && styles.pillOn]}
     >
         {effect.thumbnail && <Image source={{ uri: effect.thumbnail }} style={styles.effectImage} resizeMode="cover" resizeMethod="resize" />}
-        {/* Endcord PC names the effect when the pointer rests on it; a touch screen has no pointer */}
+        {/* Medslol PC names the effect when the pointer rests on it; a touch screen has no pointer */}
         <PlainText numberOfLines={2} style={styles.effectName}>{effect.name}</PlainText>
     </Pressable>;
 });
 
-// The shop has hundreds of effects: a list that only draws the rows on screen, in a box like Endcord PC's
+// The shop has hundreds of effects: a list that only draws the rows on screen, in a box like Medslol PC's
 const EffectPicker = memo(function EffectPicker({ selected, set }: { selected?: string; set: Setter; }) {
     const styles = useStyles();
     const shopEffects = useShopProfileEffects();
@@ -477,7 +477,7 @@ function useShopProfileEffects() {
             const item = product?.items?.length === 1 ? product.items[0] : null;
             if (item?.type !== COLLECTIBLE_PROFILE_EFFECT || seen.has(product.skuId)) continue;
             seen.add(product.skuId);
-            // The shop's preview, like Endcord PC, but shrunk to the tile: the originals are over a megabyte each, and
+            // The shop's preview, like Medslol PC, but shrunk to the tile: the originals are over a megabyte each, and
             // the list shows dozens at once
             const preview = item.thumbnailPreviewSrc ?? item.staticFrameSrc ?? item.reducedMotionSrc;
             list.push({ skuId: product.skuId, name: product.name, thumbnail: preview && shopThumbnail(preview, EFFECT_THUMB_WIDTH, EFFECT_THUMB_WIDTH * EFFECT_ASPECT) });
@@ -495,7 +495,7 @@ function useAccounts(): any[] {
             const users = getStore("MultiAccountStore")?.getUsers?.();
             if (Array.isArray(users) && users.length) return users;
         } catch (e) {
-            console.error("[Endcord] CustomProfile couldn't list the accounts", e);
+            console.error("[Medslol] CustomProfile couldn't list the accounts", e);
         }
         const me = getStore("UserStore")?.getCurrentUser?.();
         return me ? [me] : [];
@@ -563,7 +563,7 @@ export default function CustomProfileEditor({ onClose }: { onClose: () => void; 
         try {
             repair();
         } catch (e) {
-            console.error("[Endcord] CustomProfile repair failed", e);
+            console.error("[Medslol] CustomProfile repair failed", e);
         }
         onClose();
     };

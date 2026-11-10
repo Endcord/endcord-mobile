@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -86,7 +86,7 @@ function wrap(App: any, key: string) {
     </View>;
     Wrapped.displayName = `EndcordRoot(${App?.displayName ?? App?.name ?? key})`;
     Wrapped.__endcordRoot = true;
-    console.log(`[Endcord] overlay host attached to ${key}`);
+    console.log(`[Medslol] overlay host attached to ${key}`);
     return Wrapped;
 }
 
@@ -123,7 +123,7 @@ export function initOverlayHost() {
             (registry.setWrapperComponentProvider as (p: unknown) => void)(null);
         }
     } catch (e) {
-        console.error("[Endcord] overlay host couldn't be installed", e);
+        console.error("[Medslol] overlay host couldn't be installed", e);
     }
     return () => unpatches.forEach(u => u());
 }

@@ -12,16 +12,16 @@ export default function unifyBunnyPlugin(manifest: BunnyPluginManifest): Unified
     return {
         id: manifest.id,
         name: manifest.display.name,
-        // Endcord's plugins carry English text that is translated where it is shown
+        // Medslol's plugins carry English text that is translated where it is shown
         description: manifest.extras?.endcord ? t(manifest.display.description ?? "") : manifest.display.description,
         authors: manifest.display.authors,
         icon: manifest.extras?.icon,
-        endcord: !!manifest.extras?.endcord,
+        medslol: !!manifest.extras?.endcord,
         popular: manifest.extras?.popular,
         tags: manifest.extras?.tags,
 
         getBadges() {
-            // Endcord's own plugins don't need a badge saying where they come from
+            // Medslol's own plugins don't need a badge saying where they come from
             return manifest.extras?.endcord ? [] : [{ source: { uri: EndcordIcon } }];
         },
         isEnabled: () => isPluginEnabled(manifest.id),

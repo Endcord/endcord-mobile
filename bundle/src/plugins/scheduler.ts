@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -42,7 +42,7 @@ export function createScheduler<T extends ScheduledItem>(key: string, onDue: (it
             try {
                 onDue(item, now - item.at > 60_000);
             } catch (e) {
-                console.error(`[Endcord] ${key}: a scheduled item failed`, e);
+                console.error(`[Medslol] ${key}: a scheduled item failed`, e);
             }
         }
         arm();

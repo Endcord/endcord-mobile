@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * Only in bundles built with --test (the emulator workflow): checks Endcord against the Discord it runs in and
+ * Only in bundles built with --test (the emulator workflow): checks Medslol against the Discord it runs in and
  * reports to logcat as "ENDCORD_TEST <json>" lines, which .github/scripts/emulator-test.sh collects.
  */
 
@@ -76,7 +76,7 @@ const STORES = [
     "UserStore", "PresenceStore", "RelationshipStore", "GuildStore", "ChannelStore", "MessageStore", "SelectedChannelStore",
     "AuthenticationStore", "MediaEngineStore", "ThemeStore", "PermissionStore", "EmojiStore", "StickersStore",
     "GuildMemberStore", "UserProfileStore", "SessionsStore", "LocaleStore", "VoiceStateStore",
-    // Used by the plugins Endcord gained from Endcord PC
+    // Used by the plugins Medslol gained from Medslol PC
     "DraftStore", "MaskedLinkStore", "MessageRequestStore", "GuildMemberCountStore", "DeveloperExperimentStore",
     "SpotifyStore", "ReadStateStore", "GuildChannelStore", "ActiveJoinedThreadsStore", "GuildRoleStore", "PendingReplyStore",
     "MultiAccountStore", "CollectiblesCategoryStore", "BadgeDirectoryStore",
@@ -97,7 +97,7 @@ const PROPS: string[][] = [
     ["removeRelationship"],
     ["leaveGuild"],
     ["closePrivateChannel"],
-    // Used by the plugins Endcord gained from Endcord PC
+    // Used by the plugins Medslol gained from Medslol PC
     ["createPendingReply"],
     ["getBestActiveInputForChannelId"],
     ["CloudUpload"],
@@ -139,7 +139,7 @@ async function run() {
     const { settings } = require("@lib/api/settings");
     const { VdPluginManager } = require("@core/vendetta/plugins");
     const emitter = Symbol.for("vendetta.storage.emitter");
-    // Endcord must not load plugin code it doesn't need: on a fresh install every plugin is off
+    // Medslol must not load plugin code it doesn't need: on a fresh install every plugin is off
     report("lazy", { pluginsLoadedAtStartup: require("@plugins").loadedPluginCount(), timings: require("@core/timings").getTimings() });
     const { themes } = require("@lib/addons/themes");
     report("storages", { settings: !!settings[emitter], vendettaPlugins: !!VdPluginManager.plugins?.[emitter], themes: !!themes[emitter] });
@@ -223,12 +223,12 @@ async function run() {
     } catch (e) {
         patchable = String(e);
     }
-    // Discord renames its color tokens between versions; which of the names Endcord's screens use this one has
+    // Discord renames its color tokens between versions; which of the names Medslol's screens use this one has
     const { semanticColors } = require("@ui/color");
     const tokenNames = ["ICON_DEFAULT", "INTERACTIVE_ICON_DEFAULT", "INTERACTIVE_NORMAL", "TEXT_DEFAULT", "TEXT_NORMAL", "TEXT_MUTED", "LOGO_PRIMARY",
         "BACKGROUND_BASE_LOWER", "BG_BASE_SECONDARY", "BG_BASE_PRIMARY", "BACKGROUND_SECONDARY", "BACKGROUND_PRIMARY", "TEXT_FEEDBACK_CRITICAL", "TEXT_DANGER"];
     // The colors Discord draws in raw white: those on filled controls and those on its own surfaces are what themes for
-    // older Discord get wrong, so Endcord's legacy color map must name them as this Discord does
+    // older Discord get wrong, so Medslol's legacy color map must name them as this Discord does
     const definitions = findByProps("SemanticColor")?.SemanticColor ?? {};
     report("tokens", {
         present: tokenNames.filter(n => semanticColors?.[n]),
@@ -331,7 +331,7 @@ ${e.stack}` : String(e) });
         const MessageStore = findByStoreName("MessageStore");
         const channelId = "1111111111111111111";
         const message = {
-            id: "2222222222222222222", channel_id: channelId, content: "Endcord test message", type: 0, flags: 0,
+            id: "2222222222222222222", channel_id: channelId, content: "Medslol test message", type: 0, flags: 0,
             author: { id: "3333333333333333333", username: "endcord-test", discriminator: "0", avatar: null, bot: false },
             timestamp: new Date().toISOString(), edited_timestamp: null, attachments: [], embeds: [], mentions: [],
             mention_roles: [], pinned: false, mention_everyone: false, tts: false, components: [], reactions: [],
@@ -356,7 +356,7 @@ ${e.stack}` : String(e) });
         const { removeHistory } = require("@plugins/messageLogger");
         const channelId = "1111111111111111111";
         const message = (id: string) => ({
-            id, channel_id: channelId, content: "Endcord test message", type: 0, flags: 0,
+            id, channel_id: channelId, content: "Medslol test message", type: 0, flags: 0,
             author: { id: "3333333333333333333", username: "endcord-test", discriminator: "0", avatar: null, bot: false },
             timestamp: new Date().toISOString(), edited_timestamp: null, attachments: [], embeds: [], mentions: [],
             mention_roles: [], pinned: false, mention_everyone: false, tts: false, components: [], reactions: [],
@@ -516,7 +516,7 @@ ${e.stack}` : String(e) });
         return { type: row?.type, fields, pass: row?.type === 1 && /words?/.test(timestamp) && /\d{1,2}[:.]\d{2}[:.]\d{2}/.test(timestamp) };
     }));
 
-    // Endcord PC's popular plugins, each by what it does
+    // Medslol PC's popular plugins, each by what it does
     const { instead } = require("@lib/api/patcher");
 
     await check("fake-nitro sends emojis you can't use as links", async () => {
@@ -526,7 +526,7 @@ ${e.stack}` : String(e) });
         const unstub = instead("sendMessage", messages, (args: any[]) => void (sent = args[1]));
         try {
             return await withPlugins(["FakeNitro"], async () => {
-                await messages.sendMessage("1111111111111111111", { content: "hi <:endcord:123456789012345678>", invalidEmojis: [{ id: "123456789012345678", name: "endcord" }], validNonShortcutEmojis: [], tts: false });
+                await messages.sendMessage("1111111111111111111", { content: "hi <:medslol:123456789012345678>", invalidEmojis: [{ id: "123456789012345678", name: "medslol" }], validNonShortcutEmojis: [], tts: false });
                 const content = String(sent?.content ?? "");
                 return { content, pass: content.startsWith("hi https://cdn.discordapp.com/emojis/123456789012345678.webp") && sent.invalidEmojis?.length === 0 };
             });
@@ -535,9 +535,9 @@ ${e.stack}` : String(e) });
         }
     });
 
-    await check("hide-endcord hides Endcord's settings sections", async () => {
+    await check("hide-endcord hides Medslol's settings sections", async () => {
         const { getVisibleSections } = require("@ui/settings");
-        const plugin = byName("HideEndcord");
+        const plugin = byName("HideMedslol");
         await startEndcordPlugin(plugin);
         const store = plugin.store as any;
         const previous = store.hidden;
@@ -611,7 +611,7 @@ ${e.stack}` : String(e) });
     });
 }
 
-/** Shows Endcord's pages one at a time; the workflow takes a screenshot of each when it sees the "shot" line */
+/** Shows Medslol's pages one at a time; the workflow takes a screenshot of each when it sees the "shot" line */
 async function screens() {
     // The workflow takes launch screenshots for the first minute and only then watches for "shot" lines
     await wait(Math.max(0, 90_000 - (Date.now() - startedAt)));

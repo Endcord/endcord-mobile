@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -42,7 +42,7 @@ const plugin = definePlugin({
                     message.timestamp = `${message.timestamp}  ${icons}`;
                 }
             } catch (e) {
-                console.error("[Endcord] PlatformIndicators couldn't decorate a message", e);
+                console.error("[Medslol] PlatformIndicators couldn't decorate a message", e);
             }
         }));
 

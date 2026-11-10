@@ -164,7 +164,7 @@ function onModuleRequire(moduleExports: any, id: Metro.ModuleID) {
             try {
                 s();
             } catch (e) {
-                console.error(`[Endcord] A subscriber to module ${id} failed`, e);
+                console.error(`[Medslol] A subscriber to module ${id} failed`, e);
             }
         });
         moduleSubscriptions.delete(Number(id));
@@ -218,7 +218,7 @@ export function* getModules(uniq: string, all = false) {
     if (cache?.[`_${ModulesMapInternal.NOT_FOUND}`]) return;
 
     // The modules a search found before come first. The redesign polyfill used to come before them, so the first
-    // search of every start built it: that initializes Discord's whole design system, which was most of Endcord's
+    // search of every start built it: that initializes Discord's whole design system, which was most of Medslol's
     // startup. When the polyfill is what a search found, it is cached as -1 and still comes first.
     let polyfillYielded = false;
     for (const id in cache) {

@@ -40,7 +40,7 @@ export const registeredCommandCount = () => commands.length;
 /** The registered commands themselves, for the self-test to run each one */
 export const registeredCommands = (): readonly ApplicationCommand[] => commands;
 
-/** The Endcord command a message is, when it's just "/name" and the command needs nothing more */
+/** The Medslol command a message is, when it's just "/name" and the command needs nothing more */
 function typedCommand(content: unknown) {
     if (typeof content !== "string") return undefined;
     const name = /^\/([\w-]+)$/.exec(content.trim())?.[1]?.toLowerCase();
@@ -49,7 +49,7 @@ function typedCommand(content: unknown) {
 
 /**
  * A command typed out in full and sent without picking it from the suggestions reaches Discord as a plain message,
- * which would post "/hideendcord" in the chat for everyone to see. Endcord's own commands run instead.
+ * which would post "/hidemedslol" in the chat for everyone to see. Medslol's own commands run instead.
  */
 function patchTypedCommands() {
     return instead("sendMessage", messageUtil, function (this: any, args, orig) {

@@ -13,11 +13,11 @@ export interface UnifiedPluginModel {
     description?: string;
     authors?: Author[];
     icon?: string;
-    /** Endcord's own plugins, built into the app */
-    endcord?: boolean;
-    /** Position in Endcord PC's list of popular plugins */
+    /** Medslol's own plugins, built into the app */
+    medslol?: boolean;
+    /** Position in Medslol PC's list of popular plugins */
     popular?: number;
-    /** Endcord PC's tags */
+    /** Medslol PC's tags */
     tags?: string[];
     /** Arrived in the last two days */
     isNew?: boolean;

@@ -50,14 +50,14 @@ function Title() {
     </View>;
 }
 
-/** Endcord PC's add-on card badges */
+/** Medslol PC's add-on card badges */
 function Badge({ text, color }: { text: string; color: string; }) {
     return <View style={{ backgroundColor: color, borderRadius: 4, paddingHorizontal: 5, paddingVertical: 1 }}>
         <Text variant="text-xxs/bold" style={{ color: "#FFFFFF" }}>{text}</Text>
     </View>;
 }
 
-/** The NEW and POPULAR badges, and the authors of plugins that have them (Endcord's own don't list any) */
+/** The NEW and POPULAR badges, and the authors of plugins that have them (Medslol's own don't list any) */
 function Authors() {
     const { plugin, result } = useCardContext();
     const styles = usePluginCardStyles();

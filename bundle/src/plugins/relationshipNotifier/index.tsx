@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -29,7 +29,7 @@ interface Snapshot {
 
 interface Notice { text: string; at: number; }
 
-// What the account had the last time Endcord ran, to report removals that happened while it was closed
+// What the account had the last time Medslol ran, to report removals that happened while it was closed
 const snapshot = wrapSync(createStorage<Snapshot & { notices: Notice[]; }>(createMMKVBackend("ENDCORD_RELATIONSHIP_NOTIFIER", {
     guilds: {}, groups: {}, friends: [], requests: [], notices: []
 })));

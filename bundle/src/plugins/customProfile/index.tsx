@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * Endcord PC's CustomProfile: your username, display name, avatar, banner, bio, pronouns, profile colors, Nitro,
+ * Medslol PC's CustomProfile: your username, display name, avatar, banner, bio, pronouns, profile colors, Nitro,
  * badges, avatar decoration, profile effect, account creation date, email and phone, as only you see them. Profiles
  * are kept per account and can be saved as presets.
  */
@@ -41,7 +41,7 @@ const EditorPage = ({ close }: { close: () => void; }) => {
     return <CustomProfileEditor onClose={close} />;
 };
 
-/** Opens the editor: from the plugin's settings, as the next page there; from the chat or EndcordToolbox, as a window */
+/** Opens the editor: from the plugin's settings, as the next page there; from the chat or MedslolToolbox, as a window */
 const openEditor = (navigation?: any) => openPage(t("Custom Profile"), EditorPage, navigation);
 
 function OpenButton() {
@@ -427,7 +427,7 @@ const plugin = definePlugin({
         );
         if (migrate()) redraw();
 
-        // Where the editor opens from: a button beside the message box and EndcordToolbox, like Endcord PC's header
+        // Where the editor opens from: a button beside the message box and MedslolToolbox, like Medslol PC's header
         // bar button and toolbox entry
         optional("The chat bar button", () => cleanup(
             addChatButton({

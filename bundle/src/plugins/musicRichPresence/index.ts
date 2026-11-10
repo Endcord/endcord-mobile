@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -10,7 +10,7 @@ import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { externalAsset, LASTFM_APP, setActivity } from "../shared/presence";
 
-const LISTENBRAINZ = "endcord:listenbrainz";
+const LISTENBRAINZ = "medslol:listenbrainz";
 
 export default definePlugin({
     id: "endcord.music-rich-presence",

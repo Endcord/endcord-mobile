@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -22,7 +22,7 @@ type State =
     | { kind: "failed"; };
 
 /**
- * Endcord PC's updater, for the bundle: the loader downloads the newest Endcord whenever the app starts, so updating
+ * Medslol PC's updater, for the bundle: the loader downloads the newest Medslol whenever the app starts, so updating
  * means reloading once a newer build is published.
  */
 export default function Updates() {
@@ -46,7 +46,7 @@ export default function Updates() {
     };
 
     const status = {
-        idle: t("Endcord updates itself every time the app starts."),
+        idle: t("Medslol updates itself every time the app starts."),
         checking: t("Loading..."),
         current: t("Up to date"),
         available: t("There is 1 Update"),

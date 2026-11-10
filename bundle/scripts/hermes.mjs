@@ -15,7 +15,7 @@ import path from "node:path";
 
 /**
  * Bytecode version → the hermes-compiler release that emits it, named like Discord's Hermes ("<date>0<version>"), and
- * the npm integrity of its package: what is downloaded is checked against it, so a changed package never builds Endcord
+ * the npm integrity of its package: what is downloaded is checked against it, so a changed package never builds Medslol
  * @type {Record<string, { release: string; integrity: string; }>}
  */
 const COMPILERS = {

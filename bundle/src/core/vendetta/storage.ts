@@ -135,7 +135,7 @@ export function wrapSync<T extends Promise<any>>(store: T): Awaited<T> {
     store.then(settle, e => {
         // Whatever waits for this storage would otherwise wait forever. Changes stay in memory for this session, and
         // the stored data is left as it is rather than overwritten with an empty copy.
-        console.error("[Endcord] A storage failed to load", e);
+        console.error("[Medslol] A storage failed to load", e);
         settle({});
     });
 
