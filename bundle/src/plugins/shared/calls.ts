@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * More of Endcord PC's voice channel plugins: what's going on in your call, and acting on everyone in it.
+ * More of Medslol PC's voice channel plugins: what's going on in your call, and acting on everyone in it.
  *
  * What more than one of these plugins uses.
  */

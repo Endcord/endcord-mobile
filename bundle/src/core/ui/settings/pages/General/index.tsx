@@ -59,7 +59,7 @@ export default function General() {
                     {LANGUAGES.map(l => <TableRadioRow key={l.code} label={l.nativeName} value={l.code} />)}
                 </TableRadioGroup>
                 <Backup />
-                <TableRowGroup title={t("Support Endcord")}>
+                <TableRowGroup title={t("Support Medslol")}>
                     <TableRow
                         arrow={true}
                         label={t("Star on GitHub")}

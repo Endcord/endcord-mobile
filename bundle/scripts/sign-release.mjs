@@ -22,7 +22,7 @@ const key = createPrivateKey(pem);
 const baseUrl = process.env.ENDCORD_RELEASE_BASE_URL;
 /** @type {Record<string, { size: number; sha256: string; url?: string; }>} */
 const files = {};
-const PUBLISHED = /^(endcord(\.v\d+\.hbc|\.min\.js)|endcord-(xposed|installer|classic-installer)\.apk)$/;
+const PUBLISHED = /^(medslol(\.v\d+\.hbc|\.min\.js)|endcord-(xposed|installer|classic-installer)\.apk)$/;
 for (const name of readdirSync(folder).filter(n => PUBLISHED.test(n)).sort()) {
     const file = path.join(folder, name);
     files[name] = {

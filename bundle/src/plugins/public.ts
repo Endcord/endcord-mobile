@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * Endcord's built-in plugins as bunny.endcord, like Endcord PC's Endcord.Plugins: for DevTools and the self-test.
+ * Medslol's built-in plugins as bunny.endcord, like Medslol PC's Endcord.Plugins: for DevTools and the self-test.
  * Only the manifest is loaded with it; everything else is required when used, so it costs nothing at startup.
  */
 

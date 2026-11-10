@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * Endcord PC's plugins that change a message as you send it. They all run through onSend, in a fixed order: text
+ * Medslol PC's plugins that change a message as you send it. They all run through onSend, in a fixed order: text
  * rewrites first, then formatting, then the signature, so they combine the same way every time.
  *
  * What more than one of these plugins uses.

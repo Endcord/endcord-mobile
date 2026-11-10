@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * Endcord PC's file and media plugins: viewing documents and archives, keeping favourites, and better YouTube titles.
+ * Medslol PC's file and media plugins: viewing documents and archives, keeping favourites, and better YouTube titles.
  *
  * What more than one of the FileViewer, PdfViewer, ZipPreview, FixFileExtensions, FavoriteAnything and GifCollections plugins uses.
  */

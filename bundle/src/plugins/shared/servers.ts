@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * Server tools from Endcord PC: moderation, roles, invites, emojis and finding your way around servers.
+ * Server tools from Medslol PC: moderation, roles, invites, emojis and finding your way around servers.
  *
  * What more than one of the AutoDisconnectAndAutoMute, BetterBanReasons, BetterRoleContext, InviteDefaults and MoreUserTags plugins uses.
  */

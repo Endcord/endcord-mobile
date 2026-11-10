@@ -29,7 +29,7 @@ export const showToast = (content: string, asset?: number) => {
             icon: iconFor(asset),
         });
     } catch (e) {
-        console.error("[Endcord] couldn't show a toast", e);
+        console.error("[Medslol] couldn't show a toast", e);
     }
 };
 

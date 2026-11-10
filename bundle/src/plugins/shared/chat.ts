@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * Endcord PC's chat plugins: long messages, reactions, replies and mentions, an AI helper, and feeling a ping.
+ * Medslol PC's chat plugins: long messages, reactions, replies and mentions, an AI helper, and feeling a ping.
  *
  * Helpers of the SplitLargeMessages plugin, which other code uses too.
  */

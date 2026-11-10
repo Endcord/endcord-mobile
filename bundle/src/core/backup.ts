@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * Backs up Endcord's settings to a file the user keeps, and restores them, like Endcord PC's settings export.
+ * Backs up Medslol's settings to a file the user keeps, and restores them, like Medslol PC's settings export.
  *
  * A backup only carries what is safe to take from a file someone else made: the language, which plugins are on and
  * their settings, what the user made with plugins (profiles, notes, collections...) and the addresses of their
@@ -24,7 +24,7 @@ import { version } from "bunny-build-info";
 
 const FORMAT = "endcord-settings";
 const VERSION = 1;
-/** Larger than any backup Endcord makes; a bigger file isn't one */
+/** Larger than any backup Medslol makes; a bigger file isn't one */
 export const MAX_BACKUP_SIZE = 8 * 1024 * 1024;
 
 /** The general settings a backup carries */
@@ -56,13 +56,13 @@ type JsonObject = { [key: string]: Json; };
 export interface Backup {
     format: typeof FORMAT;
     version: number;
-    /** The Endcord version that made it */
-    endcord: string;
+    /** The Medslol version that made it */
+    medslol: string;
     createdAt: string;
     settings: Partial<Record<typeof SETTINGS_KEYS[number], Json>>;
     /** Built-in plugins by ID, and whether each is on */
     plugins: Record<string, boolean>;
-    /** Endcord plugins' settings by plugin ID */
+    /** Medslol plugins' settings by plugin ID */
     pluginSettings: Record<string, JsonObject>;
     /** What the user made with plugins, by storage */
     data: Record<string, JsonObject>;
@@ -89,7 +89,7 @@ function isPlainObject(value: unknown): value is JsonObject {
     return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-/** No key anywhere in it could change an object's prototype when copied, as Endcord PC checks */
+/** No key anywhere in it could change an object's prototype when copied, as Medslol PC checks */
 function isSafe(value: unknown, depth = 0): boolean {
     if (depth > 64) return false;
     if (typeof value !== "object" || value === null) return true;
@@ -103,7 +103,7 @@ function isSafe(value: unknown, depth = 0): boolean {
 // Not with URL, which React Native only partly implements
 const isHttps = (url: unknown): url is string => typeof url === "string" && /^https:\/\/\S+$/i.test(url);
 
-/** Endcord's settings as the text of a backup file */
+/** Medslol's settings as the text of a backup file */
 export async function createBackup(): Promise<string> {
     await awaitStorage(pluginSettings);
 
@@ -129,7 +129,7 @@ export async function createBackup(): Promise<string> {
     const backup: Backup = {
         format: FORMAT,
         version: VERSION,
-        endcord: version,
+        medslol: version,
         createdAt: new Date().toISOString(),
         settings: Object.fromEntries(SETTINGS_KEYS.filter(k => settings[k] !== undefined).map(k => [k, settings[k] as Json])),
         plugins,
@@ -147,18 +147,18 @@ export async function createBackup(): Promise<string> {
     return JSON.stringify(backup, null, 2);
 }
 
-/** The backup in a file's text, keeping only what Endcord takes from backups; throws, with a message to show, when it isn't one */
+/** The backup in a file's text, keeping only what Medslol takes from backups; throws, with a message to show, when it isn't one */
 export function parseBackup(text: string): Backup {
     let parsed: any;
     try {
         parsed = JSON.parse(text);
     } catch {
-        throw new Error(t("This file isn't an Endcord backup"));
+        throw new Error(t("This file isn't an Medslol backup"));
     }
     if (!isPlainObject(parsed) || parsed.format !== FORMAT || typeof parsed.version !== "number") {
-        throw new Error(t("This file isn't an Endcord backup"));
+        throw new Error(t("This file isn't an Medslol backup"));
     }
-    if (parsed.version > VERSION) throw new Error(t("This backup is from a newer Endcord. Update Endcord, then try again."));
+    if (parsed.version > VERSION) throw new Error(t("This backup is from a newer Medslol. Update Medslol, then try again."));
     if (!isSafe(parsed)) throw new Error(t("This backup is damaged and can't be restored"));
 
     const object = (value: unknown): JsonObject => isPlainObject(value) ? value : {};
@@ -184,7 +184,7 @@ export function parseBackup(text: string): Backup {
     return {
         format: FORMAT,
         version: parsed.version,
-        endcord: typeof parsed.endcord === "string" ? parsed.endcord : "?",
+        medslol: typeof parsed.endcord === "string" ? parsed.endcord : "?",
         createdAt: typeof parsed.createdAt === "string" ? parsed.createdAt : "",
         settings: backupSettings,
         plugins,
@@ -196,7 +196,7 @@ export function parseBackup(text: string): Backup {
 }
 
 /**
- * Replaces Endcord's settings with a backup's. Discord should reload right after: plugins that are running hold their
+ * Replaces Medslol's settings with a backup's. Discord should reload right after: plugins that are running hold their
  * settings in memory until then. Resolves to how many themes and fonts couldn't be installed again.
  */
 export async function restoreBackup(backup: Backup): Promise<number> {

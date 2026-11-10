@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -137,7 +137,7 @@ function open(url: string, event?: { pageX?: number; pageY?: number; }) {
                 originLayout: { width: 0, height: 0, x: event?.pageX ?? 0, y: event?.pageY ?? 0, resizeMode: "fill" },
             });
         } catch (e) {
-            console.error("[Endcord] ViewIcons couldn't open the image", e);
+            console.error("[Medslol] ViewIcons couldn't open the image", e);
             clipboard.setString(url);
             showToast(t("Couldn't open the image; its link was copied"), findAssetId("LinkIcon"));
         }

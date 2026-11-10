@@ -8,13 +8,13 @@
  * Every user-visible string is English text: the values of src/core/i18n/default.json, and every literal passed to
  * t() or tx() anywhere in src/. Each one is translated from, in order:
  *   1. src/core/i18n/overrides.json, for wording that is specific to mobile
- *   2. Endcord PC's translation tables (src/utils/i18n.ts in the Endcord repository), so both clients say the same
- *   3. Endcord PC's plugin description tables, matched through the plugin's English description
+ *   2. Medslol PC's translation tables (src/utils/i18n.ts in the Medslol repository), so both clients say the same
+ *   3. Medslol PC's plugin description tables, matched through the plugin's English description
  *
  *   node scripts/i18n-sync.mjs [--pc ../../endcord-pc] [--strict]
  *
  * --strict exits with an error when a string has no translation, which is how CI keeps the five languages complete.
- * Without --pc (or when the Endcord PC checkout isn't there), the translations already in locales/ are kept for strings
+ * Without --pc (or when the Medslol PC checkout isn't there), the translations already in locales/ are kept for strings
  * that overrides.json doesn't cover, so the script also works on a machine that only has this repository.
  */
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "fs";
@@ -58,10 +58,10 @@ for (const file of walk(path.join(root, "src"))) {
 }
 needed.delete(", ");
 
-// 2. Endcord PC's tables
+// 2. Medslol PC's tables
 function evalObjectAfter(source, marker) {
     const start = source.indexOf(marker);
-    if (start === -1) throw new Error(`Couldn't find '${marker}' in Endcord PC's i18n.ts`);
+    if (start === -1) throw new Error(`Couldn't find '${marker}' in Medslol PC's i18n.ts`);
     const open = source.indexOf("({", start);
     let depth = 0, inStr = null, i = open;
     for (; i < source.length; i++) {
@@ -87,7 +87,7 @@ if (existsSync(pcI18n)) {
     const dict = evalObjectAfter(source, "const buildDict");
     const pluginDesc = evalObjectAfter(source, "const buildPluginDescDict");
 
-    // English plugin descriptions, read from Endcord PC's plugin definitions
+    // English plugin descriptions, read from Medslol PC's plugin definitions
     const descByText = {};
     for (const file of walk(path.join(pcRoot, "src/plugins"))) {
         const code = readFileSync(file, "utf8");
@@ -96,9 +96,9 @@ if (existsSync(pcI18n)) {
         if (name && desc) descByText[unescape(desc)] = name;
     }
     pc = { dict, pluginDesc, descByText };
-    console.log(`Endcord PC tables: ${Object.keys(dict.tr).length} strings, ${Object.keys(pluginDesc.tr).length} plugin descriptions`);
+    console.log(`Medslol PC tables: ${Object.keys(dict.tr).length} strings, ${Object.keys(pluginDesc.tr).length} plugin descriptions`);
 } else {
-    console.log(`Endcord PC not found at ${pcRoot}; keeping the existing translations for strings it would provide`);
+    console.log(`Medslol PC not found at ${pcRoot}; keeping the existing translations for strings it would provide`);
 }
 
 // The hash the bundle looks translations up by; must match textHash in src/core/i18n/index.ts

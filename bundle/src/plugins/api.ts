@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -20,7 +20,7 @@ export type SettingDef =
 
 export type SettingsSchema = Record<string, SettingDef>;
 
-/** Endcord PC's plugin tags that apply on mobile */
+/** Medslol PC's plugin tags that apply on mobile */
 export const PLUGIN_TAGS = ["Appearance", "Chat", "Customisation", "Emotes", "Friends", "Fun", "Media", "Notifications", "Privacy", "Servers", "Utility", "Voice"] as const;
 export type PluginTag = typeof PLUGIN_TAGS[number];
 
@@ -40,19 +40,19 @@ export interface PluginContext<S extends SettingsSchema> {
 }
 
 export interface EndcordPluginDefinition<S extends SettingsSchema = SettingsSchema> {
-    /** Stable ID, used for its settings: endcord.<name> */
+    /** Stable ID, used for its settings: medslol.<name> */
     id: string;
-    /** The plugin's name, the same as on Endcord PC */
+    /** The plugin's name, the same as on Medslol PC */
     name: string;
     /** English, marked with tx() so it is translated where it is shown */
     description: string;
-    /** Position in Endcord PC's list of popular plugins, which are listed first */
+    /** Position in Medslol PC's list of popular plugins, which are listed first */
     popular?: number;
     /** Named asset shown next to the name */
     icon?: string;
-    /** Endcord PC's tags, for the plugin page's filters */
+    /** Medslol PC's tags, for the plugin page's filters */
     tags?: PluginTag[];
-    /** On until the user turns it off, also for those who had Endcord before the plugin was added */
+    /** On until the user turns it off, also for those who had Medslol before the plugin was added */
     enabledByDefault?: boolean;
     settings?: S;
     start(ctx: PluginContext<S>): void | Promise<void>;
@@ -86,7 +86,7 @@ export function onSettingChange(store: object, cb: (key: string) => void) {
         try {
             cb(data.path[0]);
         } catch (e) {
-            console.error("[Endcord] setting listener failed", e);
+            console.error("[Medslol] setting listener failed", e);
         }
     };
     emitter.on("SET", listener);
@@ -155,7 +155,7 @@ function runCleanup(id: string, fn: () => unknown) {
     try {
         fn();
     } catch (e) {
-        console.error(`[Endcord] ${id}: cleanup failed`, e);
+        console.error(`[Medslol] ${id}: cleanup failed`, e);
     }
 }
 
@@ -195,7 +195,7 @@ export async function startEndcordPlugin(plugin: EndcordPlugin) {
         recordPluginStart(plugin.id, Date.now() - started);
         plugin.error = undefined;
     } catch (e) {
-        console.error(`[Endcord] ${plugin.name} failed to start`, e);
+        console.error(`[Medslol] ${plugin.name} failed to start`, e);
         // Nothing to report for a plugin that was turned off meanwhile
         if (stopped()) return;
         plugin.error = e;
@@ -217,7 +217,7 @@ export function stopEndcordPlugin(plugin: EndcordPlugin) {
             cleanup: () => { }
         });
     } catch (e) {
-        console.error(`[Endcord] ${plugin.name}: stop failed`, e);
+        console.error(`[Medslol] ${plugin.name}: stop failed`, e);
     }
     runCleanups(plugin.id);
 }

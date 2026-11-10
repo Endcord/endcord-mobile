@@ -119,7 +119,7 @@ export async function downloadTheme(url: string): Promise<VendettaThemeManifest>
     } catch {
         throw new ThemeDownloadError("invalid", t("This link doesn't lead to a theme file."));
     }
-    if (!validateTheme(themeJSON)) throw new ThemeDownloadError("invalid", t("This file isn't a theme Endcord can use."));
+    if (!validateTheme(themeJSON)) throw new ThemeDownloadError("invalid", t("This file isn't a theme Medslol can use."));
     return themeJSON;
 }
 

@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * Helpers shared by Endcord's plugins. Everything that touches Discord's modules is resolved lazily and tolerates the
+ * Helpers shared by Medslol's plugins. Everything that touches Discord's modules is resolved lazily and tolerates the
  * module not being there, so a Discord update can turn a feature off but never crash the app.
  */
 
@@ -57,7 +57,7 @@ export function subscribe(type: string, cb: (payload: any) => void) {
         try {
             cb(payload);
         } catch (e) {
-            console.error(`[Endcord] ${type} listener failed`, e);
+            console.error(`[Medslol] ${type} listener failed`, e);
         }
     };
     FluxDispatcher.subscribe(type, listener);
@@ -70,7 +70,7 @@ export function dispatchSoon(action: Record<string, any>) {
         try {
             FluxDispatcher.dispatch(action);
         } catch (e) {
-            console.error(`[Endcord] dispatching ${action.type} failed`, e);
+            console.error(`[Medslol] dispatching ${action.type} failed`, e);
         }
     }, 0);
 }
@@ -115,7 +115,7 @@ function insertButtons(tree: ReactElement, side: "left" | "right") {
             else children.unshift(element);
         }
     } catch (e) {
-        console.error("[Endcord] adding chat input buttons failed", e);
+        console.error("[Medslol] adding chat input buttons failed", e);
     }
     return tree;
 }
@@ -128,7 +128,7 @@ function patchChatInput() {
         // A memo on Android, a memo of a forwardRef on iOS
         const unpatch = actions?.default && afterRender(actions, "default", (_, tree) => insertButtons(tree, side));
         if (unpatch) unpatches.push(unpatch);
-        else console.warn(`[Endcord] chat input ${side} actions not found; plugin buttons won't show there`);
+        else console.warn(`[Medslol] chat input ${side} actions not found; plugin buttons won't show there`);
     }
     unpatchChatInput = () => unpatches.forEach(u => u());
 }
@@ -169,14 +169,14 @@ export interface ToolboxAction {
 
 const toolboxActions = new Map<string, ToolboxAction>();
 
-/** Adds an entry to EndcordToolbox's menu while the plugin runs, like Endcord PC's toolboxActions */
+/** Adds an entry to MedslolToolbox's menu while the plugin runs, like Medslol PC's toolboxActions */
 export function addToolboxAction(key: string, action: ToolboxAction) {
     toolboxActions.set(key, action);
     return () => void toolboxActions.delete(key);
 }
 
 /**
- * Adds a page to Endcord's section of Discord's settings while the plugin runs, like the entries Endcord PC's
+ * Adds a page to Medslol's section of Discord's settings while the plugin runs, like the entries Medslol PC's
  * plugins add to its settings. It shows from the next time the settings open.
  */
 export function addSettingsPage(key: string, page: { title: () => string; icon: string; Page: ComponentType; after?: "BUNNY_PLUGINS" | "BUNNY_THEMES" | "BUNNY_FONTS"; }) {

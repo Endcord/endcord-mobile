@@ -12,13 +12,14 @@ const settingConstants = findByPropsLazy("SETTING_RENDERER_CONFIG");
 const createListModule = findByPropsLazy("createList");
 const SettingsOverviewScreen = findByNameLazy("SettingsOverviewScreen", false);
 
-/** Marks the sections Endcord adds, whose titles change with the language */
+/** Marks the sections Medslol adds, whose titles change with the language */
 const OURS = "__endcordSection";
 
-/** Takes Endcord's sections out of Discord's list of settings sections */
+/** Takes Medslol's sections out of Discord's list of settings sections */
 function removeOurSections(sections: any[]) {
     // And by title, in case Discord copied the sections without the mark
     const titles = new Set(Object.keys(registeredSections).map(name => sectionOf(name).label));
+    titles.add("Endcord");
     for (let i = sections.length - 1; i >= 0; i--) {
         if (sections[i]?.[OURS] || titles.has(sections[i]?.label)) sections.splice(i, 1);
     }
@@ -66,7 +67,7 @@ export function patchTabsUI(unpatches: (() => void | boolean)[]) {
             if (config?.sections && Array.isArray(config.sections)) {
                 const { sections } = config;
 
-                // Discord keeps the same list between visits, so sections added before are taken out first: HideEndcord
+                // Discord keeps the same list between visits, so sections added before are taken out first: HideMedslol
                 // can hide them, and a section that's gone isn't left behind
                 removeOurSections(sections);
 
@@ -101,7 +102,7 @@ export function patchTabsUI(unpatches: (() => void | boolean)[]) {
     }
 }
 
-/** Adds Endcord's pages and rows to the renderer config of `constants`, Discord's module of its settings screens */
+/** Adds Medslol's pages and rows to the renderer config of `constants`, Discord's module of its settings screens */
 function patchRendererConfig(constants: any, getRows: () => Record<string, unknown>) {
     let rendererConfigValue = constants.SETTING_RENDERER_CONFIG;
 

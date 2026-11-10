@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -11,7 +11,7 @@ import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { botMessage, command, copy } from "../hooks";
 
-// 3y3: text hidden in invisible tag characters, as Endcord PC's FakeProfileThemes writes it in bios
+// 3y3: text hidden in invisible tag characters, as Medslol PC's FakeProfileThemes writes it in bios
 const encode3y3 = (text: string) => [...text].map(c => String.fromCodePoint(c.codePointAt(0)! + 0xE0000)).join("");
 
 const decode3y3 = (text: string) => [...text].map(c => {

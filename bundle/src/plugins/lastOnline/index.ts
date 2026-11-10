@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -17,7 +17,7 @@ function lastSeenText(userId: string): string {
     const status = getStore("PresenceStore")?.getStatus?.(userId);
     if (status && status !== "offline") return t("Online now");
     const at = lastOnline.users?.[userId];
-    return at ? t("Last online {time}", { time: new Date(at).toLocaleString() }) : t("Not seen online since Endcord started watching");
+    return at ? t("Last online {time}", { time: new Date(at).toLocaleString() }) : t("Not seen online since Medslol started watching");
 }
 
 export default definePlugin({

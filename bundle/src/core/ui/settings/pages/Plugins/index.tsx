@@ -57,16 +57,16 @@ function AliucordNotice() {
     return <Card style={{ gap: 8 }}>
         <Text variant="text-md/semibold" color="text-strong">{t("Looking for Aliucord plugins?")}</Text>
         <Text variant="text-sm/medium" color="text-muted">
-            {t("Aliucord plugins only work on the older Discord that Aliucord is built on, so they can't run here. This Endcord has Endcord's own plugins for the latest Discord. For Aliucord plugins, use Endcord Classic, which runs both.")}
+            {t("Aliucord plugins only work on the older Discord that Aliucord is built on, so they can't run here. This Medslol has Medslol's own plugins for the latest Discord. For Aliucord plugins, use Medslol Classic, which runs both.")}
         </Text>
         <View style={{ flexDirection: "row", gap: 8 }}>
-            <Button size="sm" variant="secondary" text={t("Get Endcord Classic")} icon={findAssetId("LinkExternalSmallIcon")} onPress={() => Linking.openURL(CLASSIC_URL)} />
+            <Button size="sm" variant="secondary" text={t("Get Medslol Classic")} icon={findAssetId("LinkExternalSmallIcon")} onPress={() => Linking.openURL(CLASSIC_URL)} />
             <Button size="sm" variant="tertiary" text={t("Got it")} onPress={() => void (notices.aliucordDismissed = true)} />
         </View>
     </Card>;
 }
 
-/** Counters and filters, like Endcord PC's plugin manager */
+/** Counters and filters, like Medslol PC's plugin manager */
 function FiltersHeader() {
     const f = useContext(FiltersContext);
     const navigation = NavigationNative.useNavigation();
@@ -137,7 +137,7 @@ function PluginPage(props: PluginPageProps) {
     />;
 }
 
-/** Endcord's popular plugins first, in Endcord PC's order, then Endcord's others, then installed plugins, by name */
+/** Medslol's popular plugins first, in Medslol PC's order, then Medslol's others, then installed plugins, by name */
 function byPopularity(a: UnifiedPluginModel, b: UnifiedPluginModel) {
     const rank = (p: UnifiedPluginModel) => p.popular ?? (p.endcord ? 1000 : 2000);
     return rank(a) - rank(b) || compareNames(a.name, b.name);
@@ -152,7 +152,7 @@ export default function Plugins() {
     const [tag, setTag] = useState<string | null>(null);
 
     const vdPlugins = Object.values(VdPluginManager.plugins).map(unifyVdPlugin);
-    // Core plugins stay hidden, except Endcord's own, which users turn on and off
+    // Core plugins stay hidden, except Medslol's own, which users turn on and off
     const bnPlugins = [...registeredPlugins.values()]
         .filter(p => isPluginInstalled(p.id) && (!isCorePlugin(p.id) || p.extras?.endcord))
         .map(unifyBunnyPlugin);

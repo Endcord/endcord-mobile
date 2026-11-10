@@ -40,7 +40,7 @@ function guard(type: PatchType, func: string, callback: Function) {
                 return callback.call(this, args, tracked);
             } catch (e) {
                 if (called) throw e;
-                console.error(`[Endcord] A patch of ${func} failed, so it ran unpatched`, e);
+                console.error(`[Medslol] A patch of ${func} failed, so it ran unpatched`, e);
                 return original.apply(this, args);
             }
         };
@@ -51,7 +51,7 @@ function guard(type: PatchType, func: string, callback: Function) {
         try {
             return callback.call(this, args, result);
         } catch (e) {
-            console.error(`[Endcord] A patch of ${func} failed, so it was skipped`, e);
+            console.error(`[Medslol] A patch of ${func} failed, so it was skipped`, e);
             // Leaves the arguments (before) or the result (after) as they were
             return undefined;
         }

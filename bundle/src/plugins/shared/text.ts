@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * Endcord PC's text commands: each one turns what you type into something else and sends it.
+ * Medslol PC's text commands: each one turns what you type into something else and sends it.
  *
  * What more than one of these plugins uses.
  */

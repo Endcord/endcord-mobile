@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * Endcord PC's NoTrack: Discord's analytics, metrics and crash reports aren't collected or sent. The loader already
+ * Medslol PC's NoTrack: Discord's analytics, metrics and crash reports aren't collected or sent. The loader already
  * blocks the native crash reporters; this covers what Discord's own code reports.
  */
 

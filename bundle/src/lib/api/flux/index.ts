@@ -35,7 +35,7 @@ export function injectFluxInterceptor() {
                 res = entry.cb(payload);
             } catch (e) {
                 // One broken interceptor must not stop Discord from handling the action
-                console.error(`[Endcord] a Flux interceptor failed on ${payload?.type}`, e);
+                console.error(`[Medslol] a Flux interceptor failed on ${payload?.type}`, e);
                 continue;
             }
 

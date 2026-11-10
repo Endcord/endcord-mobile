@@ -90,7 +90,7 @@ export function patchWhenLoaded<T>(lazyModule: T, patch: (module: T) => (() => u
         try {
             undo = patch(module);
         } catch (e) {
-            console.error(`[Endcord] Couldn't patch ${context.filter.uniq}`, e);
+            console.error(`[Medslol] Couldn't patch ${context.filter.uniq}`, e);
         }
     });
     return () => {

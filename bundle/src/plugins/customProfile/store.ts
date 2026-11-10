@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * What CustomProfile saves, per account like on Endcord PC: each account's profile and whether it's on, its presets
+ * What CustomProfile saves, per account like on Medslol PC: each account's profile and whether it's on, its presets
  * and its badge layout.
  */
 

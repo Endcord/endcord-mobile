@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -99,8 +99,8 @@ const plugin = definePlugin({
                 logger.error("The loader can't draw the caret", syncError, e);
                 // The iOS tweak draws it since 1.0.1; reinstalling is the Android installer's
                 throw new Error(Platform.OS === "ios"
-                    ? t("This needs a newer Endcord. Install the latest Endcord IPA.")
-                    : t("This needs a newer Endcord. Install it again with Endcord Installer."));
+                    ? t("This needs a newer Medslol. Install the latest Medslol IPA.")
+                    : t("This needs a newer Medslol. Install it again with Medslol Installer."));
             }
         }
         cleanup(

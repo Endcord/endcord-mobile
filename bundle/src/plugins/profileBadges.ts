@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -52,7 +52,7 @@ function patch() {
             try {
                 result = extend(userId, result);
             } catch (e) {
-                console.error(`[Endcord] ${key} couldn't change the badges`, e);
+                console.error(`[Medslol] ${key} couldn't change the badges`, e);
             }
         }
         return result;

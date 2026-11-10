@@ -29,11 +29,11 @@
         "es": "¿Cargar el paquete desde tu propio enlace?",
         "fr": "Charger le bundle depuis votre propre lien ?"
     },
-    "This turns off Endcord's signature check: whatever that link serves runs in Discord with everything your account can do. Only use a link you control.": {
-        "tr": "Bu, Endcord'un imza kontrolünü kapatır: o linkin sunduğu her şey Discord'da hesabının yapabildiği her şeyle çalışır. Yalnızca senin kontrolündeki bir link kullan.",
-        "ru": "Это отключает проверку подписи Endcord: всё, что отдаёт эта ссылка, выполняется в Discord со всеми правами вашего аккаунта. Используйте только ссылку, которую контролируете.",
-        "es": "Esto desactiva la comprobación de firma de Endcord: todo lo que sirva ese enlace se ejecuta en Discord con todo lo que puede hacer tu cuenta. Usa solo un enlace que controles.",
-        "fr": "Cela désactive la vérification de signature d'Endcord : tout ce que sert ce lien s'exécute dans Discord avec tout ce que votre compte peut faire. N'utilisez qu'un lien que vous contrôlez."
+    "This turns off Medslol's signature check: whatever that link serves runs in Discord with everything your account can do. Only use a link you control.": {
+        "tr": "Bu, Medslol'un imza kontrolünü kapatır: o linkin sunduğu her şey Discord'da hesabının yapabildiği her şeyle çalışır. Yalnızca senin kontrolündeki bir link kullan.",
+        "ru": "Это отключает проверку подписи Medslol: всё, что отдаёт эта ссылка, выполняется в Discord со всеми правами вашего аккаунта. Используйте только ссылку, которую контролируете.",
+        "es": "Esto desactiva la comprobación de firma de Medslol: todo lo que sirva ese enlace se ejecuta en Discord con todo lo que puede hacer tu cuenta. Usa solo un enlace que controles.",
+        "fr": "Cela désactive la vérification de signature d'Medslol : tout ce que sert ce lien s'exécute dans Discord avec tout ce que votre compte peut faire. N'utilisez qu'un lien que vous contrôlez."
     },
     "Turn it on": {
         "tr": "Aç",
@@ -509,11 +509,11 @@
         "es": "Añade un botón junto al cuadro de mensaje y /gameactivity para mostrar u ocultar a qué juegas",
         "fr": "Ajoute un bouton à côté de la zone de message et /gameactivity pour afficher ou masquer ce à quoi vous jouez"
     },
-    "Adds a button beside the message box with Endcord quick actions: reload, turn off plugins, debug info and safe mode": {
-        "tr": "Mesaj kutusunun yanına Endcord hızlı işlemlerini içeren bir düğme ekler: yeniden yükle, eklenti kapat, hata ayıklama bilgisi ve güvenli mod",
-        "ru": "Добавляет кнопку рядом с полем ввода с быстрыми действиями Endcord: перезагрузка, отключение плагинов, отладочная информация и безопасный режим",
-        "es": "Añade un botón junto al cuadro de mensaje con acciones rápidas de Endcord: recargar, desactivar plugins, información de depuración y modo seguro",
-        "fr": "Ajoute un bouton à côté de la zone de message avec les actions rapides d'Endcord : recharger, désactiver des plugins, infos de débogage et mode sans échec"
+    "Adds a button beside the message box with Medslol quick actions: reload, turn off plugins, debug info and safe mode": {
+        "tr": "Mesaj kutusunun yanına Medslol hızlı işlemlerini içeren bir düğme ekler: yeniden yükle, eklenti kapat, hata ayıklama bilgisi ve güvenli mod",
+        "ru": "Добавляет кнопку рядом с полем ввода с быстрыми действиями Medslol: перезагрузка, отключение плагинов, отладочная информация и безопасный режим",
+        "es": "Añade un botón junto al cuadro de mensaje con acciones rápidas de Medslol: recargar, desactivar plugins, información de depuración y modo seguro",
+        "fr": "Ajoute un bouton à côté de la zone de message avec les actions rapides d'Medslol : recharger, désactiver des plugins, infos de débogage et mode sans échec"
     },
     "Adds your signature to the end of every message you send": {
         "tr": "Gönderdiğin her mesajın sonuna imzanı ekler",
@@ -557,11 +557,11 @@
         "es": "En emisión",
         "fr": "En cours"
     },
-    "Aliucord plugins only work on the older Discord that Aliucord is built on, so they can't run here. This Endcord has Endcord's own plugins for the latest Discord. For Aliucord plugins, use Endcord Classic, which runs both.": {
-        "tr": "Aliucord eklentileri yalnızca Aliucord'un dayandığı eski Discord sürümünde çalışır, bu yüzden burada çalışamaz. Bu Endcord, en yeni Discord için Endcord'un kendi eklentilerini içerir. Aliucord eklentileri için ikisini de çalıştıran Endcord Classic'i kullan.",
-        "ru": "Плагины Aliucord работают только на старой версии Discord, на которой основан Aliucord, поэтому здесь они не запустятся. В этом Endcord есть собственные плагины Endcord для последней версии Discord. Для плагинов Aliucord используйте Endcord Classic — он поддерживает и те, и другие.",
-        "es": "Los plugins de Aliucord solo funcionan en el Discord antiguo en el que se basa Aliucord, así que aquí no pueden ejecutarse. Este Endcord trae los plugins propios de Endcord para el Discord más reciente. Para plugins de Aliucord, usa Endcord Classic, que ejecuta ambos.",
-        "fr": "Les plugins Aliucord ne fonctionnent que sur l'ancien Discord sur lequel Aliucord est basé, ils ne peuvent donc pas tourner ici. Cet Endcord propose les plugins d'Endcord pour le Discord le plus récent. Pour les plugins Aliucord, utilisez Endcord Classic, qui gère les deux."
+    "Aliucord plugins only work on the older Discord that Aliucord is built on, so they can't run here. This Medslol has Medslol's own plugins for the latest Discord. For Aliucord plugins, use Medslol Classic, which runs both.": {
+        "tr": "Aliucord eklentileri yalnızca Aliucord'un dayandığı eski Discord sürümünde çalışır, bu yüzden burada çalışamaz. Bu Medslol, en yeni Discord için Medslol'un kendi eklentilerini içerir. Aliucord eklentileri için ikisini de çalıştıran Medslol Classic'i kullan.",
+        "ru": "Плагины Aliucord работают только на старой версии Discord, на которой основан Aliucord, поэтому здесь они не запустятся. В этом Medslol есть собственные плагины Medslol для последней версии Discord. Для плагинов Aliucord используйте Medslol Classic — он поддерживает и те, и другие.",
+        "es": "Los plugins de Aliucord solo funcionan en el Discord antiguo en el que se basa Aliucord, así que aquí no pueden ejecutarse. Este Medslol trae los plugins propios de Medslol para el Discord más reciente. Para plugins de Aliucord, usa Medslol Classic, que ejecuta ambos.",
+        "fr": "Les plugins Aliucord ne fonctionnent que sur l'ancien Discord sur lequel Aliucord est basé, ils ne peuvent donc pas tourner ici. Cet Medslol propose les plugins d'Medslol pour le Discord le plus récent. Pour les plugins Aliucord, utilisez Medslol Classic, qui gère les deux."
     },
     "All add-ons will be turned off until you leave safe mode.": {
         "tr": "Güvenli moddan çıkana kadar tüm eklentiler kapalı olacak.",
@@ -977,11 +977,11 @@
         "es": "Capullo",
         "fr": "Bourgeon"
     },
-    "Built into Endcord as {name}": {
-        "tr": "Endcord'da {name} olarak yerleşik",
-        "ru": "Встроен в Endcord как {name}",
-        "es": "Integrado en Endcord como {name}",
-        "fr": "Intégré à Endcord sous le nom {name}"
+    "Built into Medslol as {name}": {
+        "tr": "Medslol'da {name} olarak yerleşik",
+        "ru": "Встроен в Medslol как {name}",
+        "es": "Integrado en Medslol como {name}",
+        "fr": "Intégré à Medslol sous le nom {name}"
     },
     "Built-in is on": {
         "tr": "Yerleşik açık",
@@ -1236,10 +1236,10 @@
         "fr": "Effacer les données"
     },
     "Clear JS Bundle": {
-        "tr": "İndirilen Endcord'u Temizle",
-        "ru": "Очистить загруженный Endcord",
-        "es": "Borrar el Endcord descargado",
-        "fr": "Effacer l'Endcord téléchargé"
+        "tr": "İndirilen Medslol'u Temizle",
+        "ru": "Очистить загруженный Medslol",
+        "es": "Borrar el Medslol descargado",
+        "fr": "Effacer l'Medslol téléchargé"
     },
     "Clear logged messages": {
         "tr": "Kaydedilen mesajları temizle",
@@ -1337,11 +1337,11 @@
         "es": "Plugins de la comunidad",
         "fr": "Plugins de la communauté"
     },
-    "Community plugins aren't checked by Endcord. They can read and do anything your Discord account can, so only install ones you trust.": {
-        "tr": "Topluluk eklentileri Endcord tarafından denetlenmez. Discord hesabının yapabildiği her şeyi okuyup yapabilirler, bu yüzden yalnızca güvendiklerini kur.",
-        "ru": "Endcord не проверяет плагины сообщества. Они могут читать и делать всё, что может ваш аккаунт Discord, поэтому устанавливайте только те, которым доверяете.",
-        "es": "Endcord no revisa los plugins de la comunidad. Pueden leer y hacer todo lo que puede tu cuenta de Discord, así que instala solo los que sean de confianza.",
-        "fr": "Endcord ne vérifie pas les plugins de la communauté. Ils peuvent lire et faire tout ce que peut votre compte Discord : n'installez que ceux en qui vous avez confiance."
+    "Community plugins aren't checked by Medslol. They can read and do anything your Discord account can, so only install ones you trust.": {
+        "tr": "Topluluk eklentileri Medslol tarafından denetlenmez. Discord hesabının yapabildiği her şeyi okuyup yapabilirler, bu yüzden yalnızca güvendiklerini kur.",
+        "ru": "Medslol не проверяет плагины сообщества. Они могут читать и делать всё, что может ваш аккаунт Discord, поэтому устанавливайте только те, которым доверяете.",
+        "es": "Medslol no revisa los plugins de la comunidad. Pueden leer y hacer todo lo que puede tu cuenta de Discord, así que instala solo los que sean de confianza.",
+        "fr": "Medslol ne vérifie pas les plugins de la communauté. Ils peuvent lire et faire tout ce que peut votre compte Discord : n'installez que ceux en qui vous avez confiance."
     },
     "Compare two servers you're in and see which members are in both, with /mutualmembers": {
         "tr": "Üye olduğun iki sunucuyu karşılaştır ve ikisinde de olan üyeleri /mutualmembers ile gör",
@@ -1949,11 +1949,11 @@
         "es": "Se borraron {count} mensajes.",
         "fr": "{count} messages supprimés."
     },
-    "Deletes the downloaded Endcord, so the latest one is downloaded the next time the app starts.": {
-        "tr": "İndirilen Endcord'u siler; uygulama bir sonraki açılışta en yeni sürümü indirir.",
-        "ru": "Удаляет загруженный Endcord, чтобы при следующем запуске загрузилась последняя версия.",
-        "es": "Elimina el Endcord descargado para que la próxima vez que se abra la app se descargue el más reciente.",
-        "fr": "Supprime l'Endcord téléchargé : la dernière version sera téléchargée au prochain démarrage."
+    "Deletes the downloaded Medslol, so the latest one is downloaded the next time the app starts.": {
+        "tr": "İndirilen Medslol'u siler; uygulama bir sonraki açılışta en yeni sürümü indirir.",
+        "ru": "Удаляет загруженный Medslol, чтобы при следующем запуске загрузилась последняя версия.",
+        "es": "Elimina el Medslol descargado para que la próxima vez que se abra la app se descargue el más reciente.",
+        "fr": "Supprime l'Medslol téléchargé : la dernière version sera téléchargée au prochain démarrage."
     },
     "Deleting {count} of your messages…": {
         "tr": "{count} mesajın siliniyor…",
@@ -2225,47 +2225,47 @@
         "es": "Termina tus mensajes con un punto.",
         "fr": "Terminer vos messages par un point."
     },
-    "Endcord Toolbox": {
-        "tr": "Endcord Araç Kutusu",
-        "ru": "Инструменты Endcord",
-        "es": "Caja de herramientas de Endcord",
-        "fr": "Boîte à outils Endcord"
+    "Medslol Toolbox": {
+        "tr": "Medslol Araç Kutusu",
+        "ru": "Инструменты Medslol",
+        "es": "Caja de herramientas de Medslol",
+        "fr": "Boîte à outils Medslol"
     },
-    "Endcord URL": {
-        "tr": "Endcord adresi",
-        "ru": "Адрес Endcord",
-        "es": "URL de Endcord",
-        "fr": "URL d'Endcord"
+    "Medslol URL": {
+        "tr": "Medslol adresi",
+        "ru": "Адрес Medslol",
+        "es": "URL de Medslol",
+        "fr": "URL d'Medslol"
     },
-    "Endcord has {name} built in. Running both at once can make them get in each other's way.": {
-        "tr": "Endcord'da {name} zaten yerleşik. İkisi aynı anda çalışırsa birbirini bozabilir.",
-        "ru": "В Endcord уже есть встроенный {name}. Если запустить оба сразу, они могут мешать друг другу.",
-        "es": "Endcord ya incluye {name}. Si ambos funcionan a la vez, pueden estorbarse entre sí.",
-        "fr": "Endcord intègre déjà {name}. S'ils tournent tous les deux en même temps, ils peuvent se gêner."
+    "Medslol has {name} built in. Running both at once can make them get in each other's way.": {
+        "tr": "Medslol'da {name} zaten yerleşik. İkisi aynı anda çalışırsa birbirini bozabilir.",
+        "ru": "В Medslol уже есть встроенный {name}. Если запустить оба сразу, они могут мешать друг другу.",
+        "es": "Medslol ya incluye {name}. Si ambos funcionan a la vez, pueden estorbarse entre sí.",
+        "fr": "Medslol intègre déjà {name}. S'ils tournent tous les deux en même temps, ils peuvent se gêner."
     },
-    "Endcord is hidden from settings": {
-        "tr": "Endcord ayarlardan gizlendi",
-        "ru": "Endcord скрыт из настроек",
-        "es": "Endcord se ha ocultado de los ajustes",
-        "fr": "Endcord est masqué des paramètres"
+    "Medslol is hidden from settings": {
+        "tr": "Medslol ayarlardan gizlendi",
+        "ru": "Medslol скрыт из настроек",
+        "es": "Medslol se ha ocultado de los ajustes",
+        "fr": "Medslol est masqué des paramètres"
     },
-    "Endcord is shown in settings again": {
-        "tr": "Endcord ayarlarda yeniden gösteriliyor",
-        "ru": "Endcord снова показан в настройках",
-        "es": "Endcord vuelve a mostrarse en los ajustes",
-        "fr": "Endcord s'affiche à nouveau dans les paramètres"
+    "Medslol is shown in settings again": {
+        "tr": "Medslol ayarlarda yeniden gösteriliyor",
+        "ru": "Medslol снова показан в настройках",
+        "es": "Medslol vuelve a mostrarse en los ajustes",
+        "fr": "Medslol s'affiche à nouveau dans les paramètres"
     },
-    "Endcord updates itself every time the app starts.": {
-        "tr": "Endcord, uygulama her açıldığında kendini günceller.",
-        "ru": "Endcord обновляется при каждом запуске приложения.",
-        "es": "Endcord se actualiza cada vez que se abre la app.",
-        "fr": "Endcord se met à jour à chaque démarrage de l'application."
+    "Medslol updates itself every time the app starts.": {
+        "tr": "Medslol, uygulama her açıldığında kendini günceller.",
+        "ru": "Medslol обновляется при каждом запуске приложения.",
+        "es": "Medslol se actualiza cada vez que se abre la app.",
+        "fr": "Medslol se met à jour à chaque démarrage de l'application."
     },
-    "Endcord's own startup": {
-        "tr": "Endcord'un kendi açılışı",
-        "ru": "Запуск самого Endcord",
-        "es": "Arranque de Endcord",
-        "fr": "Démarrage d'Endcord"
+    "Medslol's own startup": {
+        "tr": "Medslol'un kendi açılışı",
+        "ru": "Запуск самого Medslol",
+        "es": "Arranque de Medslol",
+        "fr": "Démarrage d'Medslol"
     },
     "Enter a link that starts with https://": {
         "tr": "https:// ile başlayan bir bağlantı gir",
@@ -2801,11 +2801,11 @@
         "es": "Genera un número aleatorio entre dos valores",
         "fr": "Génère un nombre aléatoire entre deux valeurs"
     },
-    "Get Endcord Classic": {
-        "tr": "Endcord Classic'i İndir",
-        "ru": "Скачать Endcord Classic",
-        "es": "Obtener Endcord Classic",
-        "fr": "Obtenir Endcord Classic"
+    "Get Medslol Classic": {
+        "tr": "Medslol Classic'i İndir",
+        "ru": "Скачать Medslol Classic",
+        "es": "Obtener Medslol Classic",
+        "fr": "Obtenir Medslol Classic"
     },
     "Get a random cat or dog picture": {
         "tr": "Rastgele bir kedi veya köpek fotoğrafı al",
@@ -2981,11 +2981,11 @@
         "es": "Usuarios ocultos",
         "fr": "Utilisateurs masqués"
     },
-    "Hide Endcord now": {
-        "tr": "Endcord'u şimdi gizle",
-        "ru": "Скрыть Endcord сейчас",
-        "es": "Ocultar Endcord ahora",
-        "fr": "Masquer Endcord maintenant"
+    "Hide Medslol now": {
+        "tr": "Medslol'u şimdi gizle",
+        "ru": "Скрыть Medslol сейчас",
+        "es": "Ocultar Medslol ahora",
+        "fr": "Masquer Medslol maintenant"
     },
     "Hide Media": {
         "tr": "Medyayı Gizle",
@@ -3101,11 +3101,11 @@
         "es": "Ocultar mientras suena Spotify",
         "fr": "Masquer pendant la lecture Spotify"
     },
-    "Hides Endcord's entries in Discord's settings, for screenshots and screen sharing. Plugins keep working.": {
-        "tr": "Ekran görüntüleri ve ekran paylaşımı için Endcord'un Discord ayarlarındaki bölümlerini gizler. Eklentiler çalışmaya devam eder.",
-        "ru": "Скрывает разделы Endcord в настройках Discord для скриншотов и демонстрации экрана. Плагины продолжают работать.",
-        "es": "Oculta las entradas de Endcord en los ajustes de Discord, para capturas y pantalla compartida. Los plugins siguen funcionando.",
-        "fr": "Masque les entrées d'Endcord dans les paramètres de Discord, pour les captures et le partage d'écran. Les plugins continuent de fonctionner."
+    "Hides Medslol's entries in Discord's settings, for screenshots and screen sharing. Plugins keep working.": {
+        "tr": "Ekran görüntüleri ve ekran paylaşımı için Medslol'un Discord ayarlarındaki bölümlerini gizler. Eklentiler çalışmaya devam eder.",
+        "ru": "Скрывает разделы Medslol в настройках Discord для скриншотов и демонстрации экрана. Плагины продолжают работать.",
+        "es": "Oculta las entradas de Medslol en los ajustes de Discord, para capturas y pantalla compartida. Los plugins siguen funcionando.",
+        "fr": "Masque les entrées d'Medslol dans les paramètres de Discord, pour les captures et le partage d'écran. Les plugins continuent de fonctionner."
     },
     "Hides attachments in age-restricted channels behind a spoiler until you tap them": {
         "tr": "Yaş kısıtlamalı kanallardaki ekleri sen dokunana kadar spoiler arkasında gizler",
@@ -3869,11 +3869,11 @@
         "es": "Escuchando",
         "fr": "Écoute"
     },
-    "Load Endcord from another address, for testing development builds": {
-        "tr": "Geliştirme sürümlerini denemek için Endcord'u başka bir adresten yükle",
-        "ru": "Загружать Endcord с другого адреса, для тестирования сборок",
-        "es": "Cargar Endcord desde otra dirección, para probar versiones de desarrollo",
-        "fr": "Charger Endcord depuis une autre adresse, pour tester des versions de développement"
+    "Load Medslol from another address, for testing development builds": {
+        "tr": "Geliştirme sürümlerini denemek için Medslol'u başka bir adresten yükle",
+        "ru": "Загружать Medslol с другого адреса, для тестирования сборок",
+        "es": "Cargar Medslol desde otra dirección, para probar versiones de desarrollo",
+        "fr": "Charger Medslol depuis une autre adresse, pour tester des versions de développement"
     },
     "Load React DevTools": {
         "tr": "React DevTools'u yükle",
@@ -4457,11 +4457,11 @@
         "es": "No",
         "fr": "Non"
     },
-    "No Endcord plugins are on": {
-        "tr": "Açık Endcord eklentisi yok",
-        "ru": "Ни один плагин Endcord не включён",
-        "es": "No hay plugins de Endcord activados",
-        "fr": "Aucun plugin Endcord n'est activé"
+    "No Medslol plugins are on": {
+        "tr": "Açık Medslol eklentisi yok",
+        "ru": "Ни один плагин Medslol не включён",
+        "es": "No hay plugins de Medslol activados",
+        "fr": "Aucun plugin Medslol n'est activé"
     },
     "No Pokémon called {name} was found.": {
         "tr": "{name} adında bir Pokémon bulunamadı.",
@@ -4673,11 +4673,11 @@
         "es": "No en mis mensajes",
         "fr": "Pas sur mes messages"
     },
-    "Not seen online since Endcord started watching": {
-        "tr": "Endcord izlemeye başladığından beri çevrimiçi görülmedi",
-        "ru": "Не появлялся в сети с тех пор, как Endcord начал следить",
-        "es": "No se ha visto conectado desde que Endcord empezó a vigilar",
-        "fr": "Pas vu en ligne depuis qu'Endcord surveille"
+    "Not seen online since Medslol started watching": {
+        "tr": "Medslol izlemeye başladığından beri çevrimiçi görülmedi",
+        "ru": "Не появлялся в сети с тех пор, как Medslol начал следить",
+        "es": "No se ha visto conectado desde que Medslol empezó a vigilar",
+        "fr": "Pas vu en ligne depuis qu'Medslol surveille"
     },
     "Not working": {
         "tr": "Çalışmayanlar",
@@ -4979,11 +4979,11 @@
         "es": "Abrir banner",
         "fr": "Ouvrir la bannière"
     },
-    "Open Endcord's quick actions": {
-        "tr": "Endcord'un hızlı işlemlerini aç",
-        "ru": "Открыть быстрые действия Endcord",
-        "es": "Abre las acciones rápidas de Endcord",
-        "fr": "Ouvrir les actions rapides d'Endcord"
+    "Open Medslol's quick actions": {
+        "tr": "Medslol'un hızlı işlemlerini aç",
+        "ru": "Открыть быстрые действия Medslol",
+        "es": "Abre las acciones rápidas de Medslol",
+        "fr": "Ouvrir les actions rapides d'Medslol"
     },
     "Open Sticker Link": {
         "tr": "Çıkartma Bağlantısını Aç",
@@ -5087,11 +5087,11 @@
         "es": "Propietario",
         "fr": "Propriétaire"
     },
-    "Part of the screen crashed while drawing. A plugin, Endcord or Discord itself can cause this.": {
-        "tr": "Ekranın bir bölümü çizilirken çöktü. Buna bir eklenti, Endcord veya Discord'un kendisi neden olabilir.",
-        "ru": "Часть экрана завершилась сбоем при отрисовке. Причиной может быть плагин, Endcord или сам Discord.",
-        "es": "Una parte de la pantalla falló al dibujarse. Puede deberse a un plugin, a Endcord o al propio Discord.",
-        "fr": "Une partie de l'écran a planté pendant l'affichage. Un plugin, Endcord ou Discord lui-même peut en être la cause."
+    "Part of the screen crashed while drawing. A plugin, Medslol or Discord itself can cause this.": {
+        "tr": "Ekranın bir bölümü çizilirken çöktü. Buna bir eklenti, Medslol veya Discord'un kendisi neden olabilir.",
+        "ru": "Часть экрана завершилась сбоем при отрисовке. Причиной может быть плагин, Medslol или сам Discord.",
+        "es": "Una parte de la pantalla falló al dibujarse. Puede deberse a un plugin, a Medslol o al propio Discord.",
+        "fr": "Une partie de l'écran a planté pendant l'affichage. Un plugin, Medslol ou Discord lui-même peut en être la cause."
     },
     "Part of the server's name": {
         "tr": "Sunucu adının bir kısmı",
@@ -5291,11 +5291,11 @@
         "es": "Los plugins se cargan en segundo plano, así que uno lento no retrasa Discord. Solo se cargan los que activas.",
         "fr": "Les plugins se chargent en arrière-plan, un plugin lent ne retarde donc pas Discord. Seuls ceux que vous activez sont chargés."
     },
-    "Plugins made by the community, not by Endcord, from a list its members keep up to date. They run with full access to your Discord account; only install ones you trust.": {
-        "tr": "Endcord'un değil, topluluğun yaptığı eklentiler; listeyi topluluk üyeleri güncel tutuyor. Discord hesabına tam erişimle çalışırlar, yalnızca güvendiklerini kur.",
-        "ru": "Плагины, созданные сообществом, а не Endcord, из списка, который поддерживают его участники. Они работают с полным доступом к вашему аккаунту Discord — устанавливайте только те, которым доверяете.",
-        "es": "Plugins hechos por la comunidad, no por Endcord, de una lista que mantienen sus miembros. Funcionan con acceso total a tu cuenta de Discord; instala solo los que sean de confianza.",
-        "fr": "Des plugins créés par la communauté, pas par Endcord, issus d'une liste tenue à jour par ses membres. Ils ont un accès complet à votre compte Discord : n'installez que ceux en qui vous avez confiance."
+    "Plugins made by the community, not by Medslol, from a list its members keep up to date. They run with full access to your Discord account; only install ones you trust.": {
+        "tr": "Medslol'un değil, topluluğun yaptığı eklentiler; listeyi topluluk üyeleri güncel tutuyor. Discord hesabına tam erişimle çalışırlar, yalnızca güvendiklerini kur.",
+        "ru": "Плагины, созданные сообществом, а не Medslol, из списка, который поддерживают его участники. Они работают с полным доступом к вашему аккаунту Discord — устанавливайте только те, которым доверяете.",
+        "es": "Plugins hechos por la comunidad, no por Medslol, de una lista que mantienen sus miembros. Funcionan con acceso total a tu cuenta de Discord; instala solo los que sean de confianza.",
+        "fr": "Des plugins créés par la communauté, pas par Medslol, issus d'une liste tenue à jour par ses membres. Ils ont un accès complet à votre compte Discord : n'installez que ceux en qui vous avez confiance."
     },
     "Plugins on": {
         "tr": "Açık eklentiler",
@@ -6725,11 +6725,11 @@
         "es": "No mostrar nada para las personas desconectadas o invisibles",
         "fr": "Ne rien afficher pour les personnes hors ligne ou invisibles"
     },
-    "Show or hide Endcord's entries in Discord's settings": {
-        "tr": "Endcord'un Discord ayarlarındaki bölümlerini göster veya gizle",
-        "ru": "Показать или скрыть разделы Endcord в настройках Discord",
-        "es": "Mostrar u ocultar las entradas de Endcord en los ajustes de Discord",
-        "fr": "Afficher ou masquer les entrées d'Endcord dans les paramètres de Discord"
+    "Show or hide Medslol's entries in Discord's settings": {
+        "tr": "Medslol'un Discord ayarlarındaki bölümlerini göster veya gizle",
+        "ru": "Показать или скрыть разделы Medslol в настройках Discord",
+        "es": "Mostrar u ocultar las entradas de Medslol en los ajustes de Discord",
+        "fr": "Afficher ou masquer les entrées d'Medslol dans les paramètres de Discord"
     },
     "Show or hide what you're playing on your profile": {
         "tr": "Profilinde ne oynadığını göster ya da gizle",
@@ -6821,11 +6821,11 @@
         "es": "Marca los mensajes de quienes están en un canal de voz y te deja unirte a ellos desde el menú del mensaje",
         "fr": "Marque les messages des personnes en salon vocal et vous permet de les rejoindre depuis le menu du message"
     },
-    "Shows how long Endcord and each of its plugins took to start, in the plugin's settings": {
-        "tr": "Endcord'un ve her eklentisinin açılmasının ne kadar sürdüğünü eklentinin ayarlarında gösterir",
-        "ru": "Показывает в настройках плагина, сколько запускались Endcord и каждый из его плагинов",
-        "es": "Muestra cuánto tardaron en iniciarse Endcord y cada uno de sus plugins, en los ajustes del plugin",
-        "fr": "Affiche le temps de démarrage d'Endcord et de chacun de ses plugins, dans les paramètres du plugin"
+    "Shows how long Medslol and each of its plugins took to start, in the plugin's settings": {
+        "tr": "Medslol'un ve her eklentisinin açılmasının ne kadar sürdüğünü eklentinin ayarlarında gösterir",
+        "ru": "Показывает в настройках плагина, сколько запускались Medslol и каждый из его плагинов",
+        "es": "Muestra cuánto tardaron en iniciarse Medslol y cada uno de sus plugins, en los ajustes del plugin",
+        "fr": "Affiche le temps de démarrage d'Medslol et de chacun de ses plugins, dans les paramètres du plugin"
     },
     "Shows how long you've spent in voice with each user": {
         "tr": "Her kullanıcıyla seste ne kadar zaman geçirdiğini gösterir",
@@ -7799,11 +7799,11 @@
         "es": "Tipo de tema",
         "fr": "Type de thème"
     },
-    "Themes from the community's theme marketplace and Catppuccin. Installed themes also appear in Endcord's Themes page.": {
-        "tr": "Topluluğun tema pazarından ve Catppuccin'den temalar. Yüklenen temalar Endcord'un Temalar sayfasında da görünür.",
-        "ru": "Темы из магазина тем сообщества и Catppuccin. Установленные темы также появляются на странице «Темы» Endcord.",
-        "es": "Temas del mercado de temas de la comunidad y de Catppuccin. Los temas instalados también aparecen en la página Temas de Endcord.",
-        "fr": "Des thèmes du marché de thèmes de la communauté et de Catppuccin. Les thèmes installés apparaissent aussi dans la page Thèmes d'Endcord."
+    "Themes from the community's theme marketplace and Catppuccin. Installed themes also appear in Medslol's Themes page.": {
+        "tr": "Topluluğun tema pazarından ve Catppuccin'den temalar. Yüklenen temalar Medslol'un Temalar sayfasında da görünür.",
+        "ru": "Темы из магазина тем сообщества и Catppuccin. Установленные темы также появляются на странице «Темы» Medslol.",
+        "es": "Temas del mercado de temas de la comunidad y de Catppuccin. Los temas instalados también aparecen en la página Temas de Medslol.",
+        "fr": "Des thèmes du marché de thèmes de la communauté et de Catppuccin. Les thèmes installés apparaissent aussi dans la page Thèmes d'Medslol."
     },
     "There's no voice channel to join.": {
         "tr": "Katılınacak ses kanalı yok.",
@@ -7829,17 +7829,17 @@
         "es": "Esta copia de seguridad está dañada y no se puede restaurar",
         "fr": "Cette sauvegarde est endommagée et ne peut pas être restaurée"
     },
-    "This backup is from a newer Endcord. Update Endcord, then try again.": {
-        "tr": "Bu yedek daha yeni bir Endcord'dan. Endcord'u güncelleyip tekrar dene.",
-        "ru": "Эта резервная копия из более новой версии Endcord. Обнови Endcord и попробуй снова.",
-        "es": "Esta copia de seguridad es de un Endcord más reciente. Actualiza Endcord y vuelve a intentarlo.",
-        "fr": "Cette sauvegarde vient d'un Endcord plus récent. Mets Endcord à jour, puis réessaie."
+    "This backup is from a newer Medslol. Update Medslol, then try again.": {
+        "tr": "Bu yedek daha yeni bir Medslol'dan. Medslol'u güncelleyip tekrar dene.",
+        "ru": "Эта резервная копия из более новой версии Medslol. Обнови Medslol и попробуй снова.",
+        "es": "Esta copia de seguridad es de un Medslol más reciente. Actualiza Medslol y vuelve a intentarlo.",
+        "fr": "Cette sauvegarde vient d'un Medslol plus récent. Mets Medslol à jour, puis réessaie."
     },
-    "This backup is from {date}, with {count} plugins on. It replaces your Endcord settings, which plugins are on and their settings, and what you made with plugins, then reloads Discord. Only restore a backup you made yourself: it can turn plugins on and change what they do.": {
-        "tr": "Bu yedek {date} tarihli ve {count} eklenti açık. Endcord ayarlarını, hangi eklentilerin açık olduğunu ve ayarlarını, eklentilerle oluşturduklarını değiştirir, sonra Discord'u yeniden başlatır. Yalnızca kendi oluşturduğun bir yedeği geri yükle: eklentileri açabilir ve ne yaptıklarını değiştirebilir.",
-        "ru": "Эта резервная копия от {date}, включено плагинов: {count}. Она заменит твои настройки Endcord, список включённых плагинов и их настройки, а также то, что ты создал с помощью плагинов, после чего Discord перезагрузится. Восстанавливай только резервную копию, которую сделал сам: она может включать плагины и менять их поведение.",
-        "es": "Esta copia de seguridad es del {date}, con {count} plugins activados. Reemplaza tus ajustes de Endcord, qué plugins están activados y sus ajustes, y lo que has creado con plugins, y luego recarga Discord. Restaura solo una copia de seguridad que hayas hecho tú: puede activar plugins y cambiar lo que hacen.",
-        "fr": "Cette sauvegarde date du {date}, avec {count} plugins activés. Elle remplace tes paramètres Endcord, les plugins activés et leurs paramètres, et ce que tu as créé avec des plugins, puis recharge Discord. Ne restaure qu'une sauvegarde que tu as faite toi-même : elle peut activer des plugins et changer ce qu'ils font."
+    "This backup is from {date}, with {count} plugins on. It replaces your Medslol settings, which plugins are on and their settings, and what you made with plugins, then reloads Discord. Only restore a backup you made yourself: it can turn plugins on and change what they do.": {
+        "tr": "Bu yedek {date} tarihli ve {count} eklenti açık. Medslol ayarlarını, hangi eklentilerin açık olduğunu ve ayarlarını, eklentilerle oluşturduklarını değiştirir, sonra Discord'u yeniden başlatır. Yalnızca kendi oluşturduğun bir yedeği geri yükle: eklentileri açabilir ve ne yaptıklarını değiştirebilir.",
+        "ru": "Эта резервная копия от {date}, включено плагинов: {count}. Она заменит твои настройки Medslol, список включённых плагинов и их настройки, а также то, что ты создал с помощью плагинов, после чего Discord перезагрузится. Восстанавливай только резервную копию, которую сделал сам: она может включать плагины и менять их поведение.",
+        "es": "Esta copia de seguridad es del {date}, con {count} plugins activados. Reemplaza tus ajustes de Medslol, qué plugins están activados y sus ajustes, y lo que has creado con plugins, y luego recarga Discord. Restaura solo una copia de seguridad que hayas hecho tú: puede activar plugins y cambiar lo que hacen.",
+        "fr": "Cette sauvegarde date du {date}, avec {count} plugins activés. Elle remplace tes paramètres Medslol, les plugins activés et leurs paramètres, et ce que tu as créé avec des plugins, puis recharge Discord. Ne restaure qu'une sauvegarde que tu as faite toi-même : elle peut activer des plugins et changer ce qu'ils font."
     },
     "This channel has no topic.": {
         "tr": "Bu kanalın konusu yok.",
@@ -7871,17 +7871,17 @@
         "es": "Este archivo es demasiado grande para mirar dentro",
         "fr": "Ce fichier est trop volumineux pour être exploré"
     },
-    "This file isn't a theme Endcord can use.": {
-        "tr": "Bu dosya Endcord'un kullanabileceği bir tema değil.",
-        "ru": "Этот файл не является темой, которую может использовать Endcord.",
-        "es": "Este archivo no es un tema que Endcord pueda usar.",
-        "fr": "Ce fichier n'est pas un thème utilisable par Endcord."
+    "This file isn't a theme Medslol can use.": {
+        "tr": "Bu dosya Medslol'un kullanabileceği bir tema değil.",
+        "ru": "Этот файл не является темой, которую может использовать Medslol.",
+        "es": "Este archivo no es un tema que Medslol pueda usar.",
+        "fr": "Ce fichier n'est pas un thème utilisable par Medslol."
     },
-    "This file isn't an Endcord backup": {
-        "tr": "Bu dosya bir Endcord yedeği değil",
-        "ru": "Этот файл не является резервной копией Endcord",
-        "es": "Este archivo no es una copia de seguridad de Endcord",
-        "fr": "Ce fichier n'est pas une sauvegarde Endcord"
+    "This file isn't an Medslol backup": {
+        "tr": "Bu dosya bir Medslol yedeği değil",
+        "ru": "Этот файл не является резервной копией Medslol",
+        "es": "Este archivo no es una copia de seguridad de Medslol",
+        "fr": "Ce fichier n'est pas une sauvegarde Medslol"
     },
     "This font pack is linked to an address. To edit its fonts yourself, detach it from that link first.": {
         "tr": "Bu yazı tipi paketi bir adrese bağlı. Yazı tiplerini kendin düzenlemek için önce onu bu bağlantıdan ayır.",
@@ -7919,17 +7919,17 @@
         "es": "Esto necesita iOS 17 o posterior.",
         "fr": "Cela nécessite iOS 17 ou une version ultérieure."
     },
-    "This needs a newer Endcord. Install the latest Endcord IPA.": {
-        "tr": "Bunun için daha yeni bir Endcord gerekiyor. En son Endcord IPA'sını kur.",
-        "ru": "Для этого нужна более новая версия Endcord. Установите последний IPA Endcord.",
-        "es": "Esto necesita un Endcord más reciente. Instala el IPA de Endcord más reciente.",
-        "fr": "Cela nécessite une version plus récente d'Endcord. Installez le dernier IPA d'Endcord."
+    "This needs a newer Medslol. Install the latest Medslol IPA.": {
+        "tr": "Bunun için daha yeni bir Medslol gerekiyor. En son Medslol IPA'sını kur.",
+        "ru": "Для этого нужна более новая версия Medslol. Установите последний IPA Medslol.",
+        "es": "Esto necesita un Medslol más reciente. Instala el IPA de Medslol más reciente.",
+        "fr": "Cela nécessite une version plus récente d'Medslol. Installez le dernier IPA d'Medslol."
     },
-    "This needs a newer Endcord. Install it again with Endcord Installer.": {
-        "tr": "Bunun için daha yeni bir Endcord gerekiyor. Endcord Installer ile yeniden kur.",
-        "ru": "Для этого нужен более новый Endcord. Установите его заново через Endcord Installer.",
-        "es": "Esto necesita un Endcord más reciente. Vuelve a instalarlo con Endcord Installer.",
-        "fr": "Cela nécessite un Endcord plus récent. Réinstallez-le avec Endcord Installer."
+    "This needs a newer Medslol. Install it again with Medslol Installer.": {
+        "tr": "Bunun için daha yeni bir Medslol gerekiyor. Medslol Installer ile yeniden kur.",
+        "ru": "Для этого нужен более новый Medslol. Установите его заново через Medslol Installer.",
+        "es": "Esto necesita un Medslol más reciente. Vuelve a instalarlo con Medslol Installer.",
+        "fr": "Cela nécessite un Medslol plus récent. Réinstallez-le avec Medslol Installer."
     },
     "This only works in DMs and group DMs.": {
         "tr": "Bu yalnızca DM'lerde ve grup DM'lerinde çalışır.",
@@ -8195,11 +8195,11 @@
         "es": "Código de país de dos letras, como TR o US",
         "fr": "Code pays à deux lettres, comme TR ou US"
     },
-    "Type /hideendcord in any chat to show Endcord's settings again": {
-        "tr": "Endcord ayarlarını yeniden göstermek için herhangi bir sohbette /hideendcord yaz",
-        "ru": "Введите /hideendcord в любом чате, чтобы снова показать настройки Endcord",
-        "es": "Escribe /hideendcord en cualquier chat para volver a mostrar los ajustes de Endcord",
-        "fr": "Tapez /hideendcord dans n'importe quelle discussion pour réafficher les paramètres d'Endcord"
+    "Type /hidemedslol in any chat to show Medslol's settings again": {
+        "tr": "Medslol ayarlarını yeniden göstermek için herhangi bir sohbette /hidemedslol yaz",
+        "ru": "Введите /hidemedslol в любом чате, чтобы снова показать настройки Medslol",
+        "es": "Escribe /hidemedslol en cualquier chat para volver a mostrar los ajustes de Medslol",
+        "fr": "Tapez /hidemedslol dans n'importe quelle discussion pour réafficher les paramètres d'Medslol"
     },
     "Type a message to preview it": {
         "tr": "Önizlemek için bir mesaj yaz",

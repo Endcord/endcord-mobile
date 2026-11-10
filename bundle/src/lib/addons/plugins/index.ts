@@ -38,7 +38,7 @@ function assert<T>(condition: T, id: string, attempt: string): asserts condition
 /**
  * Whether a plugin ID a repository uses can name the files the plugin is kept in (its manifest, script and storage).
  * The repository's index is data from a server: an ID like "../../loader" would write its manifest over another
- * file of Endcord's, before anything from the repository is even installed.
+ * file of Medslol's, before anything from the repository is even installed.
  */
 export function isSafePluginId(id: unknown): id is string {
     return typeof id === "string" && /^[a-z0-9][a-z0-9._-]{0,99}$/i.test(id) && !id.includes("..");
@@ -138,7 +138,7 @@ export async function updateAndWritePlugin(
         }
         await writeFile(jsPath, js);
     } else {
-        // Where the script is kept is Endcord's to say, not the manifest's: the file is read and run as the plugin
+        // Where the script is kept is Medslol's to say, not the manifest's: the file is read and run as the plugin
         // @ts-expect-error - Clearing a readonly property
         delete manifest.jsPath;
     }
@@ -209,7 +209,7 @@ export async function updateRepository(repoUrl: string) {
 
     const pluginIds = Object.keys(repo).filter(id => !id.startsWith("$")).filter(id => {
         if (isSafePluginId(id)) return true;
-        console.error(`[Endcord] The repository ${repoUrl} lists a plugin whose ID can't name a file: ${JSON.stringify(id)}`);
+        console.error(`[Medslol] The repository ${repoUrl} lists a plugin whose ID can't name a file: ${JSON.stringify(id)}`);
         delete repo[id];
         return false;
     });
@@ -472,7 +472,7 @@ export async function updatePlugins() {
     const registeredBefore = new Set(registeredPlugins.keys());
     updateAllRepository()
         .then(() => startNewlyRegistered(registeredBefore))
-        .catch(e => console.error("[Endcord] Couldn't update the plugin repositories", e));
+        .catch(e => console.error("[Medslol] Couldn't update the plugin repositories", e));
 }
 
 /**

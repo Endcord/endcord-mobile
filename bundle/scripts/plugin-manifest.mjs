@@ -1,7 +1,7 @@
 // @ts-nocheck
 /**
  * Writes src/plugins/manifest.ts: what the plugin list needs to know about every built-in plugin (name, description,
- * tags...) and how to load each one's code. Endcord starts with only this; a plugin's code is loaded the first time it
+ * tags...) and how to load each one's code. Medslol starts with only this; a plugin's code is loaded the first time it
  * starts or its settings open, so plugins that are off cost nothing on slower phones.
  *
  *   node scripts/plugin-manifest.mjs [--check]
@@ -51,7 +51,7 @@ function pluginsIn(file) {
     return found;
 }
 
-// One plugin per folder, like Endcord PC: plugins/<plugin>/index.ts(x). ui/ and shared/ hold what plugins share.
+// One plugin per folder, like Medslol PC: plugins/<plugin>/index.ts(x). ui/ and shared/ hold what plugins share.
 const all = [];
 for (const dir of readdirSync(root).sort()) {
     const full = path.join(root, dir);
@@ -79,7 +79,7 @@ const entry = p => `    { ${[
 ].filter(Boolean).join(", ")} },`;
 
 const code = `/*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *

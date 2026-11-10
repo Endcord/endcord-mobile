@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * The extension points most of Endcord's plugins are built on, each patched once and shared, like Endcord PC's
+ * The extension points most of Medslol's plugins are built on, each patched once and shared, like Medslol PC's
  * MessageEvents, Commands and context menu APIs:
  *  - onSend: change, or stop, a message before it is sent or edited
  *  - onMessageRow: change how a message is drawn in the chat
@@ -206,7 +206,7 @@ export function localDay(ms = Date.now()) {
 /** A snowflake for now, for messages that only exist in your client; exact, since it's too big for a number */
 export const localSnowflake = () => String(BigInt(Date.now() - 1420070400000) << 22n | BigInt(Math.floor(Math.random() * 4194304)));
 
-/** Puts a message into the chat that only you see, as if it was sent by someone (like Endcord PC's FakeMessage) */
+/** Puts a message into the chat that only you see, as if it was sent by someone (like Medslol PC's FakeMessage) */
 export function receiveLocalMessage(channelId: string, message: Record<string, any>) {
     (MessageActions()?.receiveMessage ?? messageUtil?.receiveMessage)?.(channelId, message);
 }
@@ -240,7 +240,7 @@ export async function runTransforms(channelId: string, message: any, editing: bo
             if (result === null) return false;
             if (typeof result === "string") message.content = result;
         } catch (e) {
-            console.error(`[Endcord] ${key} couldn't process a message`, e);
+            console.error(`[Medslol] ${key} couldn't process a message`, e);
         }
     }
     return true;
@@ -280,7 +280,7 @@ export function onSend(key: string, fn: SendTransform, order = 0) {
     };
 }
 
-/** Text inside code blocks and inline code is left alone by most text transforms, like on Endcord PC */
+/** Text inside code blocks and inline code is left alone by most text transforms, like on Medslol PC */
 export function outsideCode(content: string, fn: (text: string) => string): string {
     return content.split(/(```[\s\S]*?```|`[^`\n]*`)/g).map((part, i) => i % 2 ? part : fn(part)).join("");
 }
@@ -305,7 +305,7 @@ function filterMessage(message: any): any {
             if (result === null) return null;
             if (result && typeof result === "object") current = result;
         } catch (e) {
-            console.error(`[Endcord] ${key} couldn't check a message`, e);
+            console.error(`[Medslol] ${key} couldn't check a message`, e);
         }
     }
     return current;
@@ -421,7 +421,7 @@ export function onMessageRow(key: string, fn: RowDecorator, order: number = RowO
                 try {
                     decorate(message, args.message);
                 } catch (e) {
-                    console.error(`[Endcord] ${k} couldn't decorate a message`, e);
+                    console.error(`[Medslol] ${k} couldn't decorate a message`, e);
                 }
             }
         });
@@ -505,12 +505,12 @@ function EndcordActions({ message, channel }: { message: any; channel: any; }) {
                     try {
                         action.onPress(message, channel);
                     } catch (e) {
-                        console.error(`[Endcord] ${action.key} failed`, e);
+                        console.error(`[Medslol] ${action.key} failed`, e);
                     }
                 }}
             />);
         } catch (e) {
-            console.error(`[Endcord] ${action.key} couldn't be shown`, e);
+            console.error(`[Medslol] ${action.key} couldn't be shown`, e);
         }
     }
     if (!rows.length) return null;
@@ -534,7 +534,7 @@ export function addMessageAction(action: MessageAction) {
                     sheet.props.children = children;
                 }
             } catch (e) {
-                console.error("[Endcord] couldn't add to the message sheet", e);
+                console.error("[Medslol] couldn't add to the message sheet", e);
             }
             return tree;
         });

@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -17,7 +17,7 @@ import LogList from "../ui/LogList";
 
 const collections = wrapSync(createStorage<{ sets: Record<string, string[]>; }>(createMMKVBackend("ENDCORD_GIF_COLLECTIONS", { sets: {} })));
 
-const NEW_COLLECTION = "endcord:new";
+const NEW_COLLECTION = "medslol:new";
 
 const gifsIn = (m: any): string[] => [
     ...(m.attachments ?? []).filter((a: any) => extension(a.filename) === "gif").map((a: any) => a.url),
@@ -44,9 +44,9 @@ function CollectionsPage() {
             icon: "GifIcon",
             onPress: () => choose(name, [
                 ...gifs.map(url => ({ label: url.replace(/^https?:\/\/(www\.)?/, "").slice(0, 60), value: url })),
-                { label: t("Delete Collection"), value: "endcord:delete", danger: true },
+                { label: t("Delete Collection"), value: "medslol:delete", danger: true },
             ], value => {
-                if (value === "endcord:delete") {
+                if (value === "medslol:delete") {
                     const sets = { ...(collections.sets ?? {}) };
                     delete sets[name];
                     collections.sets = sets;

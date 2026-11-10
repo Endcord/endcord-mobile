@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * CustomProfile's catalog, the same as Endcord PC's: badges, Nitro and boost levels, tiered badges and decorations.
+ * CustomProfile's catalog, the same as Medslol PC's: badges, Nitro and boost levels, tiered badges and decorations.
  */
 
 import { tx } from "@core/i18n";
@@ -290,7 +290,7 @@ export interface ShownBadge {
     label: string;
 }
 
-/** The badges a profile shows, in Endcord PC's order */
+/** The badges a profile shows, in Medslol PC's order */
 export function buildBadges(data: CustomProfileData, translate: (s: string) => string): ShownBadge[] {
     const out: ShownBadge[] = [];
     const f = data.badgeFlags ?? 0;

@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * Lets CustomProfile's badges take part in Discord's "Customize your badges" panel, like on Endcord PC, so they can be
+ * Lets CustomProfile's badges take part in Discord's "Customize your badges" panel, like on Medslol PC, so they can be
  * reordered and hidden like real ones.
  *
  * Discord keys every badge by a numeric id from its badge-type enum and maps profile badge ids to it with
@@ -200,7 +200,7 @@ export function startBadgeManagement(options: { currentUser: () => string | unde
                     }
                 }
             } catch (e) {
-                console.error("[Endcord] CustomProfile couldn't filter the badge layout", e);
+                console.error("[Medslol] CustomProfile couldn't filter the badge layout", e);
             }
             return original.apply(this, args);
         }));

@@ -9,7 +9,7 @@ const IntlMessageFormat = findByNameLazy("MessageFormat") as typeof import("intl
 
 export type EndcordLanguage = "en" | "tr" | "ru" | "es" | "fr";
 
-/** The languages Endcord is translated into, the same five as Endcord PC */
+/** The languages Medslol is translated into, the same five as Medslol PC */
 export const LANGUAGES: { code: EndcordLanguage; nativeName: string; }[] = [
     { code: "en", nativeName: "English" },
     { code: "tr", nativeName: "Türkçe" },
@@ -20,7 +20,7 @@ export const LANGUAGES: { code: EndcordLanguage; nativeName: string; }[] = [
 
 type Translated = Exclude<EndcordLanguage, "en">;
 
-// Built from Endcord PC's translations by scripts/i18n-sync.mjs. Only the language in use is loaded: the others stay
+// Built from Medslol PC's translations by scripts/i18n-sync.mjs. Only the language in use is loaded: the others stay
 // unparsed in the bundle, which matters on slower phones.
 const loaders: Record<Translated, () => Record<string, string>> = {
     tr: () => require("./compiled/tr.json"),
@@ -84,7 +84,7 @@ export function normalizeLanguage(locale?: string | null): EndcordLanguage {
     return "en";
 }
 
-/** The language Endcord is shown in: the one picked in Endcord's settings, or Discord's own */
+/** The language Medslol is shown in: the one picked in Medslol's settings, or Discord's own */
 export function getLanguage(): EndcordLanguage {
     const picked = settings.language;
     return picked && picked !== "auto" ? picked : normalizeLanguage(discordLocale());

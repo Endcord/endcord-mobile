@@ -19,7 +19,7 @@ import { patchSettings } from "@ui/settings";
 import * as lib from "./lib";
 
 export default async () => {
-    // Before Discord registers its root component, which happens as soon as Endcord has loaded
+    // Before Discord registers its root component, which happens as soon as Medslol has loaded
     const unpatchOverlay = initOverlayHost();
     if (unpatchOverlay) lib.unload.push(unpatchOverlay);
 
@@ -61,5 +61,5 @@ export default async () => {
     if (__ENDCORD_TEST__) require("@core/debug/testHarness").initTestHarness();
 
     markReady();
-    logger.log("Endcord is ready!");
+    logger.log("Medslol is ready!");
 };

@@ -23,9 +23,9 @@ async function initializeRevenge() {
 
         console.log(stack ?? e?.toString?.() ?? e);
         alert([
-            "Failed to load Endcord!\n",
+            "Failed to load Medslol!\n",
             `Build Number: ${NativeClientInfoModule?.getConstants?.().Build}`,
-            `Endcord: ${version}`,
+            `Medslol: ${version}`,
             stack || e?.toString?.(),
         ].join("\n"));
     }

@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * Endcord PC's status, activity and sound plugins: statuses that follow what you're doing, what your profile shows,
+ * Medslol PC's status, activity and sound plugins: statuses that follow what you're doing, what your profile shows,
  * voice volumes, and Discord's own sounds.
  *
  * What more than one of these plugins uses.

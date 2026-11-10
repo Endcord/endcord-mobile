@@ -124,7 +124,7 @@ export default function Developer() {
                                     }
                                     showConfirmationAlert({
                                         title: t("Load the bundle from your own link?"),
-                                        content: t("This turns off Endcord's signature check: whatever that link serves runs in Discord with everything your account can do. Only use a link you control."),
+                                        content: t("This turns off Medslol's signature check: whatever that link serves runs in Discord with everything your account can do. Only use a link you control."),
                                         confirmText: t("Turn it on"),
                                         confirmColor: "red",
                                         cancelText: Strings.CANCEL,

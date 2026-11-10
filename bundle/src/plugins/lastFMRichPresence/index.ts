@@ -1,5 +1,5 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
@@ -12,7 +12,7 @@ import { externalAsset, LASTFM_APP, setActivity } from "../shared/presence";
 
 const LASTFM_KEY = "790c37d90400163a5a5fe00d6ca32ef0";
 
-const LASTFM = "endcord:lastfm";
+const LASTFM = "medslol:lastfm";
 
 export default definePlugin({
     id: "endcord.lastfm-rich-presence",

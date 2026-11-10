@@ -1,9 +1,9 @@
 /*
- * Endcord for Android
+ * Medslol for Android
  * Copyright (c) 2026 rootpoi and contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * Endcord's built-in plugins. Endcord starts with only their manifest (names, descriptions, tags); a plugin's code is
+ * Medslol's built-in plugins. Medslol starts with only their manifest (names, descriptions, tags); a plugin's code is
  * loaded the first time it starts or its settings open, so the plugins that are off cost nothing at startup.
  */
 
@@ -25,7 +25,7 @@ export function loadEndcordPlugin(id: string): EndcordPlugin<any> {
     const cached = loaded.get(id);
     if (cached) return cached;
     const load = loaders[id];
-    if (!load) throw new Error(`No Endcord plugin is called ${id}`);
+    if (!load) throw new Error(`No Medslol plugin is called ${id}`);
     const plugin = load().default;
     if (plugin?.id !== id) throw new Error(`The module of ${id} defines ${plugin?.id}; regenerate the plugin manifest`);
     loaded.set(id, plugin);
@@ -40,14 +40,14 @@ export function getEndcordPlugins(): EndcordPlugin<any>[] {
     return sorted().map(p => loadEndcordPlugin(p.id));
 }
 
-/** Endcord PC's popular plugins first, in its order, then the others by name */
+/** Medslol PC's popular plugins first, in its order, then the others by name */
 function sorted(): PluginInfo[] {
     const popular = manifest.filter(p => p.popular != null).sort((a, b) => a.popular! - b.popular!);
     const others = manifest.filter(p => p.popular == null).sort((a, b) => compareNames(a.name, b.name));
     return [...popular, ...others];
 }
 
-/** Endcord plugins as core plugins of the plugin manager, which handles enabling and settings storage */
+/** Medslol plugins as core plugins of the plugin manager, which handles enabling and settings storage */
 export function getEndcordCorePlugins(): Record<string, { default: PluginInstanceInternal; preenabled: boolean; }> {
     return Object.fromEntries(sorted().map(info => [info.id, {
         preenabled: info.enabledByDefault === true,
@@ -65,7 +65,7 @@ export function getEndcordCorePlugins(): Record<string, { default: PluginInstanc
                     },
                 },
                 extras: {
-                    endcord: true,
+                    medslol: true,
                     popular: info.popular,
                     icon: info.icon,
                     tags: info.tags,
