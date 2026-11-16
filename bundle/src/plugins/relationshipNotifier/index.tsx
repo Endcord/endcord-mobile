@@ -13,7 +13,7 @@ import { findByProps } from "@metro";
 import { Button, Stack, TableRow, TableRowGroup, Text } from "@metro/common/components";
 import { View } from "react-native";
 
-import { definePlugin } from "../api";
+import { definePlugin, isEndcordPluginRunning } from "../api";
 import { currentUserId, getStore, onAction, subscribe } from "../common";
 
 const enum RelationshipType { FRIEND = 1, BLOCKED = 2, INCOMING_REQUEST = 3, OUTGOING_REQUEST = 4 }
@@ -149,7 +149,11 @@ function current(): Snapshot | null {
 
     const relationshipStore = getStore("RelationshipStore");
     const all = relationshipStore?.getMutableRelationships?.();
-    const entries: Array<[string, number]> = all instanceof Map ? [...all.entries()] : Object.entries(all ?? {}) as any;
+    // FakeFriends' friends and requests exist only on this phone, until Discord restarts: kept out, or their going
+    // away at the next start would read as someone removing you
+    const fake = new Set<string>(isEndcordPluginRunning("endcord.fake-friends") ? require("../fakeFriends").fakeRelationshipIds() : []);
+    const entries: Array<[string, number]> = (all instanceof Map ? [...all.entries()] : Object.entries(all ?? {}) as any)
+        .filter(([id]: [string, number]) => !fake.has(id));
     const friends = entries.filter(([, type]) => type === RelationshipType.FRIEND).map(([id]) => id);
     const requests = entries.filter(([, type]) => type === RelationshipType.INCOMING_REQUEST).map(([id]) => id);
     return { userId: me, guilds, groups, friends, requests };

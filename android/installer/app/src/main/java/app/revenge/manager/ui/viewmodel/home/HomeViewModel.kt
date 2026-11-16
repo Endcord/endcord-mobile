@@ -32,10 +32,16 @@ import app.revenge.manager.utils.DiscordVersion
 import app.revenge.manager.utils.InstalledDiscord
 import app.revenge.manager.utils.installerCacheDir
 import app.revenge.manager.utils.isMiui
+import app.revenge.manager.updatechecker.installedLoader
+import app.revenge.manager.updatechecker.isOtherLoader
+import app.revenge.manager.updatechecker.publishedLoader
+import app.revenge.manager.updatechecker.usesPublishedLoader
+import app.revenge.manager.utils.isNewerVersion
 import app.revenge.manager.utils.showToast
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import io.ktor.client.HttpClient
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.launch
 import java.io.File
 
@@ -53,12 +59,34 @@ class HomeViewModel(
     var discordVersions by mutableStateOf<Map<DiscordVersion.Type, DiscordVersion?>?>(null)
         private set
 
+    /** Whether the latest versions couldn't be fetched: the screen says so and offers to try again, not "Loading…" for good */
+    var versionsFailed by mutableStateOf(false)
+        private set
+
     /** The version of the Discord installed on the phone, if it is */
     var installedDiscord by mutableStateOf(InstalledDiscord.version(context))
         private set
 
     var release by mutableStateOf<Release?>(null)
         private set
+
+    /** The loader of the newest signed release, once fetched ([checkEndcordUpdate]) */
+    private var publishedLoaderSha by mutableStateOf<String?>(null)
+
+    /** The loader Endcord has, for an install that didn't note it ([installedLoader]) */
+    private var installedLoaderFallback by mutableStateOf("")
+
+    private var usesPublishedLoader by mutableStateOf(false)
+
+    /**
+     * Whether a newer Endcord loader is published than the one Endcord here was built with. Endcord's JavaScript updates
+     * itself; its loader only comes with installing again, so the button offers to update rather than reinstall.
+     */
+    val endcordUpdate: Boolean
+        get() {
+            val installed = prefs.installedLoaderSha256.ifBlank { installedLoaderFallback }
+            return usesPublishedLoader && installManager.current != null && isOtherLoader(installed, publishedLoaderSha)
+        }
 
     private var updateDownloadUrl by mutableStateOf<String?>(null)
     var showUpdateDialog by mutableStateOf(false)
@@ -75,17 +103,35 @@ class HomeViewModel(
     fun getDiscordVersions() {
         installedDiscord = InstalledDiscord.version(context)
         installManager.getInstalled()
+        versionsFailed = false
         screenModelScope.launch {
-            discordVersions = repo.getLatestDiscordVersions().dataOrNull
+            // Ones fetched before stay when fetching them again fails
+            val fetched = repo.getLatestDiscordVersions().dataOrNull
+            if (fetched != null) discordVersions = fetched
+            versionsFailed = discordVersions == null
             if (prefs.autoClearCache) autoClearCache()
+        }
+        checkEndcordUpdate()
+    }
+
+    private fun checkEndcordUpdate() {
+        screenModelScope.launch {
+            usesPublishedLoader = prefs.usesPublishedLoader()
+            if (!usesPublishedLoader) return@launch
+            installedLoaderFallback = prefs.installedLoader()
+            // What was fetched before stays when it can't be fetched now (offline)
+            runCatching { publishedLoader(http, prefs) }
+                .onSuccess { publishedLoaderSha = it }
+                .onFailure { if (it is CancellationException) throw it }
         }
     }
 
     fun launchMod() {
         installManager.current?.let {
+            // None while the app is disabled
             val intent = context.packageManager.getLaunchIntentForPackage(it.packageName)?.apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            }
+            } ?: return
             context.startActivity(intent)
         }
     }
@@ -125,22 +171,27 @@ class HomeViewModel(
             release = repo.getReleases(BuildConfig.REPO).dataOrNull?.firstOrNull { it.tagName.startsWith(RELEASE_TAG_PREFIX) }
             release?.let {
                 updateDownloadUrl = it.assets.firstOrNull { asset -> asset.name.endsWith(".apk") }?.browserDownloadUrl
-                showUpdateDialog = it.tagName.removePrefix(RELEASE_TAG_PREFIX) != BuildConfig.VERSION_NAME
+                // Not before its APK is there: a release is published a moment before its files finish uploading
+                showUpdateDialog = updateDownloadUrl != null && isNewerVersion(it.tagName.removePrefix(RELEASE_TAG_PREFIX), BuildConfig.VERSION_NAME)
             }
         }
     }
 
     fun downloadAndInstallUpdate(onProgressUpdate: (Float?) -> Unit) {
+        val url = updateDownloadUrl ?: return
         screenModelScope.launch {
             isUpdating = true
-            // Only this app, signed with its key: the release's file is what GitHub serves, and Shizuku installs any APK
-            downloadAndInstall(
-                updateDownloadUrl!!,
-                "update.apk",
-                verify = { ApkSignature.requireUpdateOf(context, it) },
-                onProgressUpdate = onProgressUpdate,
-            )
-            isUpdating = false
+            try {
+                // Only this app, signed with its key: the release's file is what GitHub serves, and Shizuku installs any APK
+                downloadAndInstall(
+                    url,
+                    "update.apk",
+                    verify = { ApkSignature.requireUpdateOf(context, it) },
+                    onProgressUpdate = onProgressUpdate,
+                )
+            } finally {
+                isUpdating = false
+            }
         }
     }
 
@@ -232,7 +283,15 @@ class HomeViewModel(
             InstallMethod.SHIZUKU -> ShizukuInstaller(context)
         }
 
-        installer.installApks(silent = !isMiui, apk)
+        // A canceled or refused install was already shown by a toast from InstallService (or Shizuku's below)
+        try {
+            installer.installApks(silent = !isMiui, apk)
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: Exception) {
+            Log.e("HomeViewModel", "Couldn't install $fileName", e)
+            if (installer is ShizukuInstaller) context.showToast(R.string.install_fail_generic)
+        }
     }
 
     private companion object {

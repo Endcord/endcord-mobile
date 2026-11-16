@@ -25,11 +25,15 @@ private data class ReleaseFile(val size: Long, val sha256: String, val url: Stri
  */
 class BundleRelease private constructor(
     val sequence: Long,
-    private val bundles: Set<String>,
+    /** Size and SHA-256 of each file, by its name */
+    private val files: Map<String, String>,
     private val pinnedUrls: Map<String, String>,
 ) {
-    /** Whether a bundle is one this release lists, by size and SHA-256 */
-    operator fun contains(bundle: ByteArray) = "${bundle.size}:${sha256(bundle)}" in bundles
+    /**
+     * Whether [bytes] are the file this release lists as [name], by size and SHA-256. Only under that name: a release
+     * also lists the installers and the loader's own APK, which mustn't pass for the bundle when served in its place.
+     */
+    fun lists(name: String, bytes: ByteArray) = files[name] == "${bytes.size}:${sha256(bytes)}"
 
     /** The address of a bundle of this release that never changes, unlike the branch's, which the CDN caches */
     fun pinnedUrlOf(name: String) = pinnedUrls[name]
@@ -48,12 +52,16 @@ class BundleRelease private constructor(
                 verify(signature)
             }
             if (!valid) return null
+            ofVerifiedManifest(manifest)
+        }.getOrNull()
 
+        /** What a manifest whose signature [parse] checked says; on its own only for the tests, which have no key */
+        internal fun ofVerifiedManifest(manifest: ByteArray): BundleRelease? = runCatching {
             val parsed = RevengeJson.decodeFromString<ReleaseManifest>(manifest.decodeToString())
             if (parsed.format != FORMAT) return null
             BundleRelease(
                 parsed.sequence,
-                parsed.files.values.mapTo(HashSet()) { "${it.size}:${it.sha256.lowercase()}" },
+                parsed.files.mapValues { (_, file) -> "${file.size}:${file.sha256.lowercase()}" },
                 parsed.files.mapNotNull { (name, file) -> file.url?.let { name to it } }.toMap(),
             )
         }.getOrNull()

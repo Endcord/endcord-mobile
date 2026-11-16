@@ -18,7 +18,7 @@ export default definePlugin({
     tags: ["Fun", "Utility"],
     settings: {
         regex: { type: "string", label: tx("Pattern"), description: tx("Regex to trigger on"), default: "\\bhop on\\b" },
-        url: { type: "string", label: tx("Link"), description: tx("URL to open"), placeholder: "https://…", default: "" },
+        url: { type: "string", label: tx("Link"), description: tx("URL to open"), placeholder: "https://…", default: "", sensitive: true },
     },
     start({ store, cleanup }) {
         let lastOpened = 0;

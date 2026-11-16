@@ -31,9 +31,37 @@ export const NativeDeviceModule = getNativeModule(
 export const NativeThemeModule = getNativeModule(
     "NativeThemeModule", "RTNThemeManager", "DCDTheme"
 )!;
-export const BundleUpdaterManager = getNativeModule(
+const nativeBundleUpdater = getNativeModule(
     "BundleUpdaterManager"
 )!;
+
+/** What has to happen before a reload Endcord asks for: the boot guard telling it from a start that never came up */
+let beforeReload: () => Promise<unknown> | void = () => { };
+/** The most a reload waits for it */
+const BEFORE_RELOAD_WAIT = 1500;
+
+export function setBeforeReload(fn: () => Promise<unknown> | void) {
+    beforeReload = fn;
+}
+
+function reloadDiscord() {
+    let pending: Promise<unknown> | void = undefined;
+    try {
+        pending = beforeReload();
+    } catch (e) {
+        console.error("[Endcord] What runs before a reload failed", e);
+    }
+    if (!pending) return nativeBundleUpdater.reload();
+    Promise.race([pending, new Promise(resolve => setTimeout(resolve, BEFORE_RELOAD_WAIT))])
+        .catch(() => { })
+        .then(() => nativeBundleUpdater.reload());
+}
+
+/**
+ * Discord's bundle updater, of which Endcord only uses reload: it first lets the boot guard note that it was asked for.
+ * A plain object rather than a wrapper around the native module, which is a host object and not Endcord's to wrap
+ */
+export const BundleUpdaterManager = { reload: reloadDiscord };
 
 /** The iOS loader's bridge: functions it sets on the global object through JSI, before the bundle runs */
 const iosLoaderCall = (globalThis as any).__ENDCORD_LOADER_CALL__ as ((payload: unknown) => any) | undefined;

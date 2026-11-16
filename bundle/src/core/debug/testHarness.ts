@@ -621,7 +621,7 @@ async function screens() {
     const byId = (id: string) => getEndcordPlugins().find(p => p.id === id)!;
     const pluginPage = (id: string) => () => PluginSettings({ plugin: byId(id) });
 
-    const { Strings } = require("@core/i18n");
+    const { Strings, t } = require("@core/i18n");
     // Screenshot name, the title the app shows for the page, and the page
     const pages: Array<[string, () => string, any]> = [
         ["general", () => Strings.GENERAL, require("@core/ui/settings/pages/General").default],
@@ -632,7 +632,10 @@ async function screens() {
         ["textreplace", () => "TextReplace", pluginPage("endcord.text-replace")],
         ["customrpc", () => "CustomRPC", pluginPage("endcord.custom-rpc")],
         ["wellbeing", () => "Wellbeing", pluginPage("endcord.wellbeing")],
+        // Its buttons sit along the bottom of the screen, above the navigation bar
+        ["customprofile", () => "Custom Profile", () => require("@plugins/customProfile/Editor").default({ onClose: () => { } })],
         ["themes", () => Strings.THEMES, require("@core/ui/settings/pages/Themes").default],
+        ["security", () => t("Security"), require("@core/ui/settings/pages/Security").default],
     ];
 
     const previous = settings.language;
@@ -640,7 +643,7 @@ async function screens() {
         for (const language of ["en", "tr"] as const) {
             settings.language = language;
             for (const [name, title, render] of pages) {
-                if (language === "tr" && !["general", "plugins", "messagelogger"].includes(name)) continue;
+                if (language === "tr" && !["general", "plugins", "messagelogger", "security"].includes(name)) continue;
                 try {
                     showTestScreen({ title: title(), render });
                     await wait(5000);

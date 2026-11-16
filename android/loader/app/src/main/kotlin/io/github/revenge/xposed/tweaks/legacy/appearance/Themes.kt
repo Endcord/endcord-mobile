@@ -8,31 +8,44 @@ import androidx.core.graphics.toColorInt
 import io.github.revenge.Logger
 import io.github.revenge.xposed.*
 import io.github.revenge.xposed.tweaks.legacy.RevengePayloadBuilder
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.encodeToJsonElement
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonNull
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.put
 import java.io.File
 
-@Serializable
-data class ThemeAuthor(val name: String, val id: String? = null)
-
-@Serializable
-data class ThemeData(
-    val name: String,
-    val description: String? = null,
-    val authors: List<ThemeAuthor>? = null,
-    val spec: Int,
-    val semanticColors: Map<String, List<String>>? = null,
-    val rawColors: Map<String, String>? = null,
+/**
+ * The theme the bundle saved for the next start (`{ id, selected, data }`, lib/addons/themes in the bundle).
+ *
+ * [json] is handed back to the bundle as it was saved, every key of it, as the iOS loader does: the bundle compares it
+ * with its own copy to tell whether the colors Discord started with are already the theme's, and draws the background.
+ * The colors used here are read one by one: one this loader can't use (a theme may give `false` for "none", and the
+ * bundle saves a color it couldn't read that way) is skipped, never the whole theme, which would leave it unselected.
+ */
+class StoredTheme(
+    val json: JsonObject,
+    /** Per key, the dark and the light color; null where the theme has none */
+    val semanticColors: Map<String, List<String?>>,
+    val rawColors: Map<String, String>,
 )
 
-@Serializable
-data class Theme(
-    val id: String,
-    val selected: Boolean,
-    val data: ThemeData,
-)
+private fun JsonElement?.stringOrNull() = (this as? JsonPrimitive)?.takeIf { it.isString }?.content
+
+/** The stored theme, or null for none: no theme is saved as {} */
+fun readStoredTheme(text: String): StoredTheme? {
+    val root = runCatching { RevengeJson.parseToJsonElement(text) }.getOrNull() as? JsonObject ?: return null
+    if (root["id"].stringOrNull().isNullOrEmpty()) return null
+    val data = root["data"] as? JsonObject ?: return null
+    val semanticColors = (data["semanticColors"] as? JsonObject).orEmpty().mapNotNull { (key, values) ->
+        (values as? JsonArray)?.let { key to it.map { value -> value.stringOrNull() } }
+    }.toMap()
+    val rawColors = (data["rawColors"] as? JsonObject).orEmpty().mapNotNull { (key, value) ->
+        value.stringOrNull()?.let { key to it }
+    }.toMap()
+    return StoredTheme(root, semanticColors, rawColors)
+}
 
 /**
  * Patches Discord's [com.discord.theme.DarkerTheme] / [LightTheme] getters and
@@ -45,33 +58,35 @@ val themes by tweak {
         "${RevengeConstants.FILES_DIR}/current-theme.json",
     ).apply { ensureFile() }
 
-    val loaded: Theme? = if (themeFile.exists() && themeFile.readText().let {
-            it.isNotBlank() && it != "{}" && it != "null"
-        }) {
-        runCatching { RevengeJson.decodeFromString<Theme>(themeFile.readText()) }
-            .onFailure { log.w("current-theme.json malformed: ${it.message}") }
-            .getOrNull()
+    val text = runCatching { themeFile.readText() }.getOrDefault("")
+    val loaded: StoredTheme? = if (text.isNotBlank() && text != "{}" && text != "null") {
+        readStoredTheme(text).also { if (it == null) log.w("current-theme.json isn't a theme") }
     } else null
 
     RevengePayloadBuilder.contribute {
         put("hasThemeSupport", true)
-        if (loaded != null) put("storedTheme", RevengeJson.encodeToJsonElement<Theme>(loaded))
-        else put("storedTheme", null)
+        put("storedTheme", loaded?.json ?: JsonNull)
     }
 
     val theme = loaded ?: return@tweak
 
     // A theme is data from anyone (a link in a message): a color it gets wrong is skipped, not the whole theme
     val rawColorMap = mutableMapOf<String, Int>()
-    theme.data.rawColors?.forEach { (k, v) ->
+    theme.rawColors.forEach { (k, v) ->
         parseThemeColor(v)?.let { rawColorMap[k.lowercase()] = it } ?: log.w("Skipping raw color $k: $v isn't a color")
     }
 
-    val themeManager = classLoader.loadClass("com.discord.theme.utils.ColorUtilsKt")
-    val darkTheme = classLoader.loadClass("com.discord.theme.DarkerTheme")
-    val lightTheme = classLoader.loadClass("com.discord.theme.LightTheme")
+    // Discord's native color classes, which newer versions no longer have (353.11 draws every screen in React Native,
+    // where the bundle applies the theme): only what's there is themed here, and nothing missing is an error
+    val themeManager = classLoader.loadClassOrNull("com.discord.theme.utils.ColorUtilsKt")
+    val darkTheme = classLoader.loadClassOrNull("com.discord.theme.DarkerTheme")
+    val lightTheme = classLoader.loadClassOrNull("com.discord.theme.LightTheme")
+    if (themeManager == null && darkTheme == null && lightTheme == null) {
+        log.i("This Discord has no native color classes; the theme applies to its React Native screens")
+        return@tweak
+    }
 
-    theme.data.semanticColors?.forEach { (key, values) ->
+    theme.semanticColors.forEach { (key, values) ->
         // TEXT_NORMAL -> getTextNormal
         val methodName = "get${key.fromScreamingSnakeToCamelCase()}"
         values.forEachIndexed { index, v ->
@@ -80,7 +95,7 @@ val themes by tweak {
                 1 -> lightTheme
                 else -> null
             } ?: return@forEachIndexed
-            val color = parseThemeColor(v) ?: return@forEachIndexed
+            val color = v?.let(::parseThemeColor) ?: return@forEachIndexed
             // Only a color getter: the key names the method, and another one made to return an int would break
             // Discord, every time it starts
             val getter = runCatching { target.getDeclaredMethod(methodName) }.getOrNull()
@@ -94,7 +109,7 @@ val themes by tweak {
         }
     }
 
-    if (rawColorMap.isNotEmpty()) {
+    if (rawColorMap.isNotEmpty() && themeManager != null) {
         val getColorCompat = themeManager.method(
             "getColorCompat",
             Resources::class.java,

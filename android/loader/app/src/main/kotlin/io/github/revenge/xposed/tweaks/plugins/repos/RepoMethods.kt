@@ -65,6 +65,7 @@ val pluginRepos by tweak {
      * Replaces the whole user repository list. Array order is priority order.
      */
     pluginSystemAsyncMethod("revenge.plugins.repos.set") { args ->
+        InstalledPluginPolicy.require("Changing plugin repositories")
         val config = args.firstOrNull() as? List<*>
             ?: throw PluginSystemError(PluginErrorCodes.INVALID_ARGUMENT, "Expected a config array of { url, enabled }")
 
@@ -87,6 +88,7 @@ val pluginRepos by tweak {
      * Refreshes a repository's cached index. Failures won't modify existing cache and fails the bridge call.
      */
     pluginSystemAsyncMethod("revenge.plugins.repos.refresh") { args ->
+        InstalledPluginPolicy.require("Refreshing a plugin repository")
         val url = args.firstOrNull() as? String
             ?: throw PluginSystemError(PluginErrorCodes.INVALID_ARGUMENT, "Expected a repository URL")
         if (url == INTERNAL_REPO_URL) throw PluginSystemError(

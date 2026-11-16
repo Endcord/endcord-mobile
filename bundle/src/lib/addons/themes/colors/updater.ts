@@ -28,7 +28,7 @@ export const _colorRef: InternalColorRef = {
 };
 
 export function updateBunnyColor(colorManifest: ColorManifest | null, { update = true }) {
-    if (settings.safeMode?.enabled) return;
+    if (settings.safeMode?.enabled === true) return;
 
     const internalDef = colorManifest ? parseColorManifest(colorManifest) : null;
     const ref = Object.assign(_colorRef, {

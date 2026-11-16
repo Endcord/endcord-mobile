@@ -34,6 +34,7 @@ import app.revenge.manager.ui.components.settings.SettingsSwitch
 import app.revenge.manager.ui.viewmodel.settings.AdvancedSettingsViewModel
 import app.revenge.manager.utils.DimenUtils
 import org.koin.androidx.compose.get
+import app.revenge.manager.ui.components.readableWidth
 
 class AdvancedSettings: Screen {
 
@@ -54,6 +55,7 @@ class AdvancedSettings: Screen {
                 modifier = Modifier
                     .padding(pv)
                     .verticalScroll(rememberScrollState())
+                    .readableWidth()
                     .padding(bottom = DimenUtils.navBarPadding)
             ) {
                 SettingsItemChoice(

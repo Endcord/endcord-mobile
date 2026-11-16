@@ -14,12 +14,14 @@ object Patcher {
         logger: Logger,
         outputDir: File,
         apkPaths: List<String>,
-        embeddedModules: List<String>
+        embeddedModules: List<String>,
+        debuggable: Boolean,
     ) {
         withContext(Dispatchers.IO) {
             val spec = PatchSpec.builder()
                 .apks(apkPaths.map(::File))
                 .outputDir(outputDir)
+                .debuggable(debuggable)
                 // Signature bypass level 0: Endcord doesn't need Discord's original signature
                 .sigBypassLevel(0)
                 .verbose(true)

@@ -14,18 +14,22 @@ import { findByProps } from "@metro";
 import { FluxUtils } from "@metro/common";
 import { Button, Stack, TableRow, TableRowGroup, TableSwitchRow, Text, TextInput } from "@metro/common/components";
 import { semanticColorOf } from "@ui/color";
+import { bottomBarPadding, layoutWidth, useEdgeInsets } from "@ui/insets";
 import { createStyles, TextStyleSheet } from "@ui/styles";
 import { memo, type ReactNode, startTransition, useCallback, useEffect, useMemo, useState } from "react";
-import { ActivityIndicator, FlatList, Image, PixelRatio, Pressable, ScrollView, Text as PlainText, View } from "react-native";
+import { ActivityIndicator, FlatList, Image, PixelRatio, Pressable, ScrollView, Text as PlainText, useWindowDimensions, View } from "react-native";
 
 import { getStore } from "../common";
 import { toastError } from "../hooks";
 import { choose, pickColor, pickDate, prompt } from "../ui/dialogs";
 import {
-    AVATAR_DECORATIONS, BADGES, BOOST_ICONS, BOOST_LABELS, COLLECTIBLE_PROFILE_EFFECT, type CustomProfileData, getDecorationUrl,
+    AVATAR_DECORATIONS, BADGES, BOOST_ICONS, BOOST_LABELS, CollectibleType, type CustomProfileData, type DisplayNameStyles, getDecorationUrl,
     GIFT_IDS, GIFT_TIER_NAMES, NITRO_LEVELS, OLD_NAME_BADGE_ICON, type SavedPreset, shopThumbnail, SPECIAL_BADGES, TIERED_BADGES
 } from "./data";
-import { accountData, myId, presetsOf, repair, resetAccount, saveAccount, setPresets } from "./store";
+import { nameEffects, nameFonts } from "./discordTables";
+import JoinCard from "./JoinCard";
+import { shareMyProfile } from "./publish";
+import { accountData, currentSharable, myId, presetsOf, repair, resetAccount, saveAccount, setPresets } from "./store";
 
 const BRAND = "#5865f2";
 
@@ -98,18 +102,28 @@ const useStyles = createStyles({
         backgroundColor: "rgba(0, 0, 0, 0.55)",
         color: "#ffffff",
     },
+    namePreview: {
+        ...TextStyleSheet["text-lg/semibold"],
+        paddingHorizontal: 12,
+        paddingVertical: 10,
+        borderRadius: 8,
+        overflow: "hidden",
+        backgroundColor: "rgba(0, 0, 0, 0.25)",
+    },
     divider: {
         height: 1,
         backgroundColor: semanticColorOf("BORDER_SUBTLE", "BACKGROUND_MOD_NORMAL", "BACKGROUND_MOD_STRONG"),
     },
     footer: {
-        flexDirection: "row",
         gap: 8,
-        paddingHorizontal: 12,
-        paddingVertical: 10,
+        paddingTop: 10,
         borderTopWidth: 1,
         borderTopColor: semanticColorOf("BORDER_SUBTLE", "BACKGROUND_MOD_NORMAL", "BACKGROUND_MOD_STRONG"),
         backgroundColor: semanticColorOf("BACKGROUND_BASE_LOWER", "BACKGROUND_BASE_LOW"),
+    },
+    footerRow: {
+        flexDirection: "row",
+        gap: 8,
     },
 });
 
@@ -238,16 +252,16 @@ function ColorField({ label, value, placeholder, onChange }: { label: string; va
     </View>;
 }
 
-function DateField({ value, onChange }: { value: string; onChange: (v?: string) => void; }) {
+function DateField({ label, value, onChange }: { label: string; value: string; onChange: (v?: string) => void; }) {
     const pick = () => {
         try {
-            pickDate({ title: t("Account creation date"), value, min: "2000-01-01", onPick: onChange });
+            pickDate({ title: label, value, min: "2000-01-01", onPick: onChange });
         } catch (e) {
             toastError(e);
         }
     };
     return <Stack spacing={8}>
-        <SectionLabel>{t("Account creation date")}</SectionLabel>
+        <SectionLabel>{label}</SectionLabel>
         <View style={{ flexDirection: "row", gap: 8 }}>
             <Button size="md" variant="secondary" text={value || t("Choose a date")} icon={findAssetId("CalendarIcon")} onPress={pick} grow={true} />
             {value ? <Button size="md" variant="destructive" text={t("Delete")} icon={findAssetId("TrashIcon")} onPress={() => onChange(undefined)} /> : null}
@@ -363,95 +377,20 @@ const BadgePicker = memo(function BadgePicker({ set, ...data }: BadgeData & { se
     </Stack>;
 });
 
-const DecorationPicker = memo(function DecorationPicker({ selected, set }: { selected?: string; set: Setter; }) {
-    const styles = useStyles();
-    return <Stack spacing={10}>
-        <SectionLabel>{t("Avatar decoration")}</SectionLabel>
-        <View style={styles.wrap}>
-            <Pill label={t("None")} active={!selected} onPress={() => set("decorationAsset", undefined)} />
-            {AVATAR_DECORATIONS.map(dec => <Pressable
-                key={`${dec.id}-${dec.label}`}
-                accessibilityLabel={dec.label}
-                onPress={() => set("decorationAsset", selected === dec.id ? undefined : dec.id)}
-                style={[styles.tile, { width: 52, height: 52, borderRadius: 6 }, selected === dec.id && styles.pillOn]}
-            >
-                <Image source={{ uri: shopThumbnail(getDecorationUrl(dec.id), DECORATION_THUMB, DECORATION_THUMB) }} style={{ width: 46, height: 46 }} resizeMode="contain" resizeMethod="resize" />
-            </Pressable>)}
-        </View>
-    </Stack>;
-});
-
-const EFFECT_TILE = { width: 64, height: 86 };
-const EFFECT_GAP = 6;
-// Profile effects are drawn for a 450×880 profile; asking for that shape keeps the proxy from stretching them. The
-// tiles grow a little to fill the row, hence the room above their nominal width.
-const EFFECT_ASPECT = 880 / 450;
-const EFFECT_THUMB_WIDTH = PixelRatio.getPixelSizeForLayoutSize(EFFECT_TILE.width + EFFECT_GAP);
-const DECORATION_THUMB = PixelRatio.getPixelSizeForLayoutSize(46);
-
-const EffectTile = memo(function EffectTile({ effect, size, active, onPick }: { effect: ShopProfileEffect; size: { width: number; height: number; }; active: boolean; onPick: (skuId: string) => void; }) {
-    const styles = useStyles();
-    return <Pressable
-        accessibilityLabel={effect.name}
-        accessibilityState={{ selected: active }}
-        onPress={() => onPick(effect.skuId)}
-        style={[styles.tile, size, styles.effectTile, active && styles.pillOn]}
-    >
-        {effect.thumbnail && <Image source={{ uri: effect.thumbnail }} style={styles.effectImage} resizeMode="cover" resizeMethod="resize" />}
-        {/* Endcord PC names the effect when the pointer rests on it; a touch screen has no pointer */}
-        <PlainText numberOfLines={2} style={styles.effectName}>{effect.name}</PlainText>
-    </Pressable>;
-});
-
-// The shop has hundreds of effects: a list that only draws the rows on screen, in a box like Endcord PC's
-const EffectPicker = memo(function EffectPicker({ selected, set }: { selected?: string; set: Setter; }) {
-    const styles = useStyles();
-    const shopEffects = useShopProfileEffects();
-    const [width, setWidth] = useState(0);
-    const columns = Math.max(1, Math.floor((width + EFFECT_GAP) / (EFFECT_TILE.width + EFFECT_GAP)));
-    // The row's leftover width goes to the tiles, so the grid fills the box edge to edge
-    const tileWidth = (width - EFFECT_GAP * (columns - 1)) / columns;
-    const tile = useMemo(() => ({ width: tileWidth, height: tileWidth * EFFECT_TILE.height / EFFECT_TILE.width }), [tileWidth]);
-    const rowHeight = tile.height + EFFECT_GAP;
-    const pick = useCallback((skuId: string) => set("profileEffectId", selected === skuId ? undefined : skuId), [selected, set]);
-
-    return <Stack spacing={10}>
-        <SectionLabel>{t("Profile Effect")}</SectionLabel>
-        <View style={styles.wrap}>
-            <Pill label={t("None")} active={!selected} onPress={() => set("profileEffectId", undefined)} />
-        </View>
-        {shopEffects.effects.length > 0 && <View style={{ height: 300 }} onLayout={e => setWidth(e.nativeEvent.layout.width)}>
-            {width > 0 && <FlatList
-                key={columns}
-                data={shopEffects.effects}
-                extraData={selected}
-                numColumns={columns}
-                nestedScrollEnabled={true}
-                // With columns, the list counts rows: a box's worth to start with, then a couple at a time
-                initialNumToRender={Math.ceil(300 / rowHeight)}
-                maxToRenderPerBatch={2}
-                windowSize={3}
-                getItemLayout={(_, index) => ({ length: rowHeight, offset: rowHeight * index, index })}
-                keyExtractor={eff => eff.skuId}
-                columnWrapperStyle={columns > 1 ? { gap: EFFECT_GAP } : undefined}
-                contentContainerStyle={{ gap: EFFECT_GAP }}
-                renderItem={({ item }) => <EffectTile effect={item} size={tile} active={selected === item.skuId} onPick={pick} />}
-            />}
-        </View>}
-        {shopEffects.loading && <Text variant="text-xs/medium" color="text-muted">{t("Loading effects from the Discord shop…")}</Text>}
-        {shopEffects.failed && <Text variant="text-xs/medium" color="text-muted">{t("Couldn't load effects from the Discord shop. Close this window and try again.")}</Text>}
-    </Stack>;
-});
-
-interface ShopProfileEffect {
+/** One of the shop's products, as Endcord PC lists them */
+interface ShopCollectible {
     skuId: string;
     name: string;
-    thumbnail?: string;
+    item: any;
 }
 
-// Discord draws a profile effect only when its SKU is a shop product it can look up, so the choices come from its own
-// shop catalog: always current, in the user's language, with previews
-function useShopProfileEffects() {
+type ShopLists = Record<number, ShopCollectible[]>;
+const EMPTY_SHOP: ShopLists = { 0: [], 1: [], 2: [], 3: [] };
+
+// Discord draws a decoration, profile effect, frame or nameplate only when its skuId is a shop product it can look up,
+// so the choices come from its own shop catalog, as on Endcord PC: every one it sells, always current, in the user's
+// language, with previews
+function useShopCollectibles() {
     const store = getStore("CollectiblesCategoryStore");
     const fetchedAt = FluxUtils.useStateFromStores(store ? [store] : [], () => store?.lastSuccessfulFetch);
     const fetchError = FluxUtils.useStateFromStores(store ? [store] : [], () => store?.lastErrorTimestamp);
@@ -460,7 +399,7 @@ function useShopProfileEffects() {
 
     useEffect(() => {
         if (!store) return void setFailed(true);
-        // Not the products already there: a profile on screen makes Discord look up its effect alone, which isn't
+        // Not the products already there: a profile on screen makes Discord look up its own items alone, which isn't
         // the catalog
         if (store.lastSuccessfulFetch || store.isFetchingCategories) return;
         const fetchCategories = findByProps("fetchCollectiblesCategories")?.fetchCollectiblesCategories;
@@ -468,26 +407,229 @@ function useShopProfileEffects() {
         Promise.resolve().then(() => fetchCategories({})).catch(() => setFailed(true));
     }, []);
 
-    const effects = useMemo(() => {
+    const byType = useMemo(() => {
+        const lists: ShopLists = { 0: [], 1: [], 2: [], 3: [] };
         const seen = new Set<string>();
-        const list: ShopProfileEffect[] = [];
         const products = store?.products;
         const all: any[] = products instanceof Map ? [...products.values()] : Object.values(products ?? {});
         for (const product of all) {
+            // Bundles hold several items; each of those is also sold on its own
             const item = product?.items?.length === 1 ? product.items[0] : null;
-            if (item?.type !== COLLECTIBLE_PROFILE_EFFECT || seen.has(product.skuId)) continue;
+            if (!item || !Object.prototype.hasOwnProperty.call(lists, item.type) || typeof product.skuId !== "string" || seen.has(product.skuId)) continue;
             seen.add(product.skuId);
-            // The shop's preview, like Endcord PC, but shrunk to the tile: the originals are over a megabyte each, and
-            // the list shows dozens at once
-            const preview = item.thumbnailPreviewSrc ?? item.staticFrameSrc ?? item.reducedMotionSrc;
-            list.push({ skuId: product.skuId, name: product.name, thumbnail: preview && shopThumbnail(preview, EFFECT_THUMB_WIDTH, EFFECT_THUMB_WIDTH * EFFECT_ASPECT) });
+            lists[item.type].push({ skuId: product.skuId, name: typeof product.name === "string" ? product.name : product.skuId, item });
         }
-        return list;
+        return lists;
     }, [fetchedAt]);
 
     const gaveUp = failed || !fetchedAt && fetchError >= openedAt;
-    return { effects: fetchedAt || gaveUp ? effects : [], loading: !fetchedAt && !gaveUp, failed: gaveUp };
+    return { byType: fetchedAt || gaveUp ? byType : EMPTY_SHOP, loading: !fetchedAt && !gaveUp, failed: gaveUp };
 }
+
+interface GridItem {
+    id: string;
+    name: string;
+    thumbnail?: string;
+    /** Shown when the thumbnail doesn't load */
+    fallback?: string;
+}
+
+const GRID_GAP = 6;
+
+const GridTile = memo(function GridTile({ item, size, active, fit, named, onPick }: {
+    item: GridItem;
+    size: { width: number; height: number; };
+    active: boolean;
+    fit: "cover" | "contain";
+    named: boolean;
+    onPick: (id: string) => void;
+}) {
+    const styles = useStyles();
+    // The thumbnail, then the fallback, then the name alone, like Endcord PC's shop images
+    const [failed, setFailed] = useState(0);
+    const uri = failed === 0 ? item.thumbnail : failed === 1 ? item.fallback : undefined;
+    return <Pressable
+        accessibilityLabel={item.name}
+        accessibilityState={{ selected: active }}
+        onPress={() => onPick(item.id)}
+        style={[styles.tile, size, styles.effectTile, active && styles.pillOn]}
+    >
+        {uri ? <Image source={{ uri }} style={styles.effectImage} resizeMode={fit} resizeMethod="resize" onError={() => setFailed(f => f === 0 && item.fallback ? 1 : 2)} /> : null}
+        {/* Endcord PC names the item when the pointer rests on it; a touch screen has no pointer */}
+        {(named || !uri) && <PlainText numberOfLines={2} style={styles.effectName}>{item.name}</PlainText>}
+    </Pressable>;
+});
+
+// The shop has hundreds of items: a list that only draws the rows on screen, in a box like Endcord PC's
+const ShopGrid = memo(function ShopGrid({ items, tile, selected, fit, named, onPick }: {
+    items: GridItem[];
+    tile: { width: number; height: number; };
+    selected?: string;
+    fit: "cover" | "contain";
+    named: boolean;
+    onPick: (id: string) => void;
+}) {
+    const [width, setWidth] = useState(0);
+    const columns = Math.max(1, Math.floor((width + GRID_GAP) / (tile.width + GRID_GAP)));
+    // The row's leftover width goes to the tiles, so the grid fills the box edge to edge
+    const tileWidth = Math.max(1, (width - GRID_GAP * (columns - 1)) / columns);
+    const size = useMemo(() => ({ width: tileWidth, height: tileWidth * tile.height / tile.width }), [tileWidth, tile.width, tile.height]);
+    const rowHeight = size.height + GRID_GAP;
+    const rows = Math.ceil(items.length / columns);
+    // A short list takes only the room it needs
+    const height = Math.min(300, Math.max(rowHeight, rows * rowHeight - GRID_GAP));
+    if (!items.length) return null;
+
+    return <View style={{ height }} onLayout={e => setWidth(e.nativeEvent.layout.width)}>
+        {width > 0 && <FlatList
+            key={columns}
+            data={items}
+            extraData={selected}
+            numColumns={columns}
+            nestedScrollEnabled={true}
+            // With columns, the list counts rows: a box's worth to start with, then a couple at a time
+            initialNumToRender={Math.ceil(300 / rowHeight)}
+            maxToRenderPerBatch={2}
+            windowSize={3}
+            getItemLayout={(_, index) => ({ length: rowHeight, offset: rowHeight * index, index })}
+            keyExtractor={item => item.id}
+            columnWrapperStyle={columns > 1 ? { gap: GRID_GAP } : undefined}
+            contentContainerStyle={{ gap: GRID_GAP }}
+            renderItem={({ item }) => <GridTile item={item} size={size} active={selected === item.id} fit={fit} named={named} onPick={onPick} />}
+        />}
+    </View>;
+});
+
+const EFFECT_TILE = { width: 64, height: 86 };
+// Profile effects are drawn for a 450×880 profile; asking for that shape keeps the proxy from stretching them. The
+// tiles grow a little to fill the row, hence the room above their nominal width.
+const EFFECT_ASPECT = 880 / 450;
+const EFFECT_THUMB_WIDTH = PixelRatio.getPixelSizeForLayoutSize(EFFECT_TILE.width + GRID_GAP);
+const DECORATION_TILE = { width: 52, height: 52 };
+const DECORATION_THUMB = PixelRatio.getPixelSizeForLayoutSize(DECORATION_TILE.width + GRID_GAP);
+// Nameplates are wide, like the member list rows they sit behind
+const NAMEPLATE_TILE = { width: 150, height: 44 };
+const NAMEPLATE_THUMB = { width: PixelRatio.getPixelSizeForLayoutSize(NAMEPLATE_TILE.width * 1.3), height: PixelRatio.getPixelSizeForLayoutSize(NAMEPLATE_TILE.height * 1.3) };
+const FRAME_THUMB = { width: PixelRatio.getPixelSizeForLayoutSize(EFFECT_TILE.width + GRID_GAP), height: PixelRatio.getPixelSizeForLayoutSize((EFFECT_TILE.width + GRID_GAP) * EFFECT_TILE.height / EFFECT_TILE.width) };
+
+/** A picker of shop items, with None first, as on Endcord PC */
+function ShopSection({ label, items, tile, selected, fit, named, onPick, onNone }: {
+    label: string;
+    items: GridItem[];
+    tile: { width: number; height: number; };
+    selected?: string;
+    fit: "cover" | "contain";
+    named: boolean;
+    onPick: (id: string) => void;
+    onNone: () => void;
+}) {
+    const styles = useStyles();
+    return <Stack spacing={10}>
+        <SectionLabel>{label}</SectionLabel>
+        <View style={styles.wrap}>
+            <Pill label={t("None")} active={!selected} onPress={onNone} />
+        </View>
+        <ShopGrid items={items} tile={tile} selected={selected} fit={fit} named={named} onPick={onPick} />
+    </Stack>;
+}
+
+const DecorationPicker = memo(function DecorationPicker({ selected, shop, set }: { selected?: string; shop: ShopCollectible[]; set: Setter; }) {
+    // The shop's decorations, then the ones it no longer sells that Endcord still knows, as on Endcord PC
+    const items = useMemo(() => {
+        const seen = new Set<string>();
+        return [...shop.map(dec => ({ id: dec.skuId, label: dec.name })), ...AVATAR_DECORATIONS]
+            .filter(dec => !seen.has(dec.id) && !!seen.add(dec.id))
+            .map(dec => ({ id: dec.id, name: dec.label, thumbnail: shopThumbnail(getDecorationUrl(dec.id), DECORATION_THUMB, DECORATION_THUMB) }));
+    }, [shop]);
+    const pick = useCallback((id: string) => set("decorationAsset", selected === id ? undefined : id), [selected, set]);
+    return <ShopSection label={t("Avatar decoration")} items={items} tile={DECORATION_TILE} selected={selected} fit="contain" named={false}
+        onPick={pick} onNone={() => set("decorationAsset", undefined)} />;
+});
+
+const EffectPicker = memo(function EffectPicker({ selected, shop, set }: { selected?: string; shop: ShopCollectible[]; set: Setter; }) {
+    const items = useMemo(() => shop.map(({ skuId, name, item }) => {
+        // The shop's preview, like Endcord PC, but shrunk to the tile: the originals are over a megabyte each, and the
+        // list shows dozens at once
+        const preview = item.thumbnailPreviewSrc ?? item.staticFrameSrc ?? item.reducedMotionSrc;
+        return { id: skuId, name, thumbnail: typeof preview === "string" ? shopThumbnail(preview, EFFECT_THUMB_WIDTH, EFFECT_THUMB_WIDTH * EFFECT_ASPECT) : undefined };
+    }), [shop]);
+    const pick = useCallback((id: string) => set("profileEffectId", selected === id ? undefined : id), [selected, set]);
+    return <ShopSection label={t("Profile Effect")} items={items} tile={EFFECT_TILE} selected={selected} fit="cover" named={true}
+        onPick={pick} onNone={() => set("profileEffectId", undefined)} />;
+});
+
+// A profile frame has no single picture in the shop: Discord draws it from layers around the profile card, each its
+// own image. As on Endcord PC, the tile shows the one layer that says the most about the frame: the ornament on top,
+// else whatever comes first
+function frameThumbnail(frame: ShopCollectible): string | undefined {
+    const layers: any[] = Array.isArray(frame.item?.layers) ? frame.item.layers.filter((layer: any) => layer?.id) : [];
+    const placed = (anchor: string) => layers.find(layer => layer.type === "staple" && layer.anchor === anchor);
+    const layer = placed("top") ?? placed("bottom") ?? layers.find(l => l.type === "staple") ?? layers[0];
+    return layer ? `https://cdn.discordapp.com/media/v1/collectibles-shop/${frame.skuId}/${layer.id}/static` : undefined;
+}
+
+const FramePicker = memo(function FramePicker({ selected, shop, set }: { selected?: string; shop: ShopCollectible[]; set: Setter; }) {
+    const items = useMemo(() => shop.map(frame => {
+        const image = shopThumbnail(getDecorationUrl(frame.skuId), FRAME_THUMB.width, FRAME_THUMB.height);
+        const layer = frameThumbnail(frame);
+        return { id: frame.skuId, name: frame.name, thumbnail: layer ? shopThumbnail(layer, FRAME_THUMB.width, FRAME_THUMB.height) : image, fallback: layer ? image : undefined };
+    }), [shop]);
+    const pick = useCallback((id: string) => set("profileFrameId", selected === id ? undefined : id), [selected, set]);
+    return <ShopSection label={t("Profile frame")} items={items} tile={EFFECT_TILE} selected={selected} fit="contain" named={true}
+        onPick={pick} onNone={() => set("profileFrameId", undefined)} />;
+});
+
+const NameplatePicker = memo(function NameplatePicker({ selected, shop, set }: { selected?: string; shop: ShopCollectible[]; set: Setter; }) {
+    const items = useMemo(() => shop.map(plate => ({
+        id: plate.skuId,
+        name: plate.name,
+        thumbnail: shopThumbnail(getDecorationUrl(plate.skuId), NAMEPLATE_THUMB.width, NAMEPLATE_THUMB.height),
+    })), [shop]);
+    const pick = useCallback((id: string) => {
+        const plate = shop.find(p => p.skuId === id);
+        // What Discord keeps on a user for their nameplate, as Endcord PC saves it
+        set("nameplate", selected === id || !plate ? undefined : { skuId: plate.skuId, asset: plate.item.asset, label: plate.item.label, palette: plate.item.palette });
+    }, [selected, shop, set]);
+    return <ShopSection label={t("Nameplate")} items={items} tile={NAMEPLATE_TILE} selected={selected} fit="cover" named={true}
+        onPick={pick} onNone={() => set("nameplate", undefined)} />;
+});
+
+const NAME_COLOR = 0x9ccbff;
+
+const NameStylePicker = memo(function NameStylePicker({ value, previewName, set }: { value?: DisplayNameStyles; previewName: string; set: Setter; }) {
+    const styles = useStyles();
+    // Discord's own fonts and effects, read from its enums so new ones show up by themselves
+    const fonts = useMemo(nameFonts, []);
+    const effects = useMemo(nameEffects, []);
+    if (!fonts.length || !effects.length) return <Stack spacing={10}>
+        <SectionLabel>{t("Display name style")}</SectionLabel>
+        <Text variant="text-xs/medium" color="text-muted">{t("This version of Discord has no display name styles.")}</Text>
+    </Stack>;
+
+    const current: DisplayNameStyles = value ?? {
+        fontId: fonts.find(font => font.name === "Default")?.id ?? fonts[0].id,
+        effectId: effects.find(effect => effect.name === "Solid")?.id ?? effects[0].id,
+        colors: [NAME_COLOR],
+    };
+    const update = (patch: Partial<DisplayNameStyles>) => set("displayNameStyles", { ...current, ...patch });
+    const first = current.colors[0] ?? NAME_COLOR;
+    const second = current.colors[1];
+
+    return <Stack spacing={10}>
+        <SectionLabel>{t("Display name style")}</SectionLabel>
+        <PlainText style={[styles.namePreview, { color: toHex(first) }]} numberOfLines={1}>{previewName}</PlainText>
+        <View style={styles.wrap}>
+            <Pill label={t("None")} active={!value} onPress={() => set("displayNameStyles", undefined)} />
+            {fonts.map(font => <Pill key={font.id} label={font.name} active={value?.fontId === font.id} onPress={() => update({ fontId: font.id })} />)}
+        </View>
+        <View style={styles.wrap}>
+            {effects.map(effect => <Pill key={effect.id} label={effect.name} active={value?.effectId === effect.id} onPress={() => update({ effectId: effect.id })} />)}
+        </View>
+        <ColorField label={t("Color 1")} value={first} placeholder={toHex(NAME_COLOR)} onChange={v => v != null && update({ colors: [v, ...current.colors.slice(1)] })} />
+        <ColorField label={t("Color 2")} value={second} placeholder={`${toHex(first)} (${t("optional")})`} onChange={v => update({ colors: v != null ? [first, v] : [first] })} />
+        <Text variant="text-xs/medium" color="text-muted">{t("The second color is for Gradient, Glow and Prism.")}</Text>
+    </Stack>;
+});
 
 function useAccounts(): any[] {
     return useMemo(() => {
@@ -511,10 +653,9 @@ const avatarOf = (user: any): string | undefined => {
 };
 
 
-const LAST_STAGE = 4;
+const LAST_STAGE = 5;
 
 export default function CustomProfileEditor({ onClose }: { onClose: () => void; }) {
-    const styles = useStyles();
     const me = myId() ?? "";
     const accounts = useAccounts();
     const [accountId, setAccountId] = useState(me);
@@ -534,6 +675,8 @@ export default function CustomProfileEditor({ onClose }: { onClose: () => void; 
     const set: Setter = useCallback((key, val) => setData(d => ({ ...d, [key]: val })), []);
     const account = accounts.find(a => a?.id === accountId);
     const accountAvatar = useMemo(() => account && avatarOf(account), [account]);
+    const shop = useShopCollectibles();
+    const previewName = data.globalName || account?.globalName || account?.username || "Endcord";
 
     const save = () => {
         try {
@@ -542,6 +685,9 @@ export default function CustomProfileEditor({ onClose }: { onClose: () => void; 
             if (!id) throw new Error("No account is logged in");
             saveAccount(id, { ...data });
             showToast(t("Profile Saved"), findAssetId("CheckmarkLargeIcon"));
+            // Only the signed-in account can post its own profile; the others share theirs when they're signed in
+            const mine = currentSharable();
+            if (mine?.id === id) shareMyProfile(id, mine.data).catch(e => console.error("[Endcord] CustomProfile couldn't share the profile", e));
         } catch (e) {
             toastError(e);
         } finally {
@@ -551,8 +697,11 @@ export default function CustomProfileEditor({ onClose }: { onClose: () => void; 
     };
     const reset = () => {
         try {
-            resetAccount(accountId || me);
+            const id = accountId || me;
+            resetAccount(id);
             showToast(t("Profile Reset"), findAssetId("CheckmarkLargeIcon"));
+            // Taken back from other Endcord users too
+            if (id && id === myId()) shareMyProfile(id, null).catch(e => console.error("[Endcord] CustomProfile couldn't take the profile back", e));
         } catch (e) {
             toastError(e);
         } finally {
@@ -598,7 +747,7 @@ export default function CustomProfileEditor({ onClose }: { onClose: () => void; 
                         <ColorField label={t("Color 1")} value={data.accentColor} placeholder="#5865f2" onChange={v => set("accentColor", v)} />
                         <ColorField label={t("Color 2")} value={data.accentColor2} placeholder={`#eb459e (${t("optional")})`} onChange={v => set("accentColor2", v)} />
                     </Stack>
-                    <DateField value={data.createdAt ?? ""} onChange={v => set("createdAt", v)} />
+                    <DateField label={t("Account creation date")} value={data.createdAt ?? ""} onChange={v => set("createdAt", v)} />
                     <TextInput label={t("Email address (local display)")} value={data.email ?? ""} placeholder={t("exemple@mail.com")} keyboardType="email-address" autoCapitalize="none" onChange={(v: string) => set("email", v)} />
                     <TextInput label={t("Phone (local display)")} value={data.phone ?? ""} placeholder="+33 6 00 00 00 00" keyboardType="phone-pad" onChange={(v: string) => set("phone", v)} />
                     <Divider />
@@ -612,24 +761,75 @@ export default function CustomProfileEditor({ onClose }: { onClose: () => void; 
                     oldName={data.oldName}
                     set={set}
                 /> : <ActivityIndicator style={{ marginVertical: 24 }} />}
+                {stage >= 2 && (data.nitroLevel ?? -1) >= 0 && <DateField label={t("Nitro date")} value={data.nitroSince ?? ""} onChange={v => set("nitroSince", v || undefined)} />}
                 {stage >= 3 && <>
                     <Divider />
-                    <DecorationPicker selected={data.decorationAsset} set={set} />
+                    <DecorationPicker selected={data.decorationAsset} shop={shop.byType[CollectibleType.AVATAR_DECORATION]} set={set} />
+                </>}
+                {stage >= 4 && <>
+                    <Divider />
+                    <EffectPicker selected={data.profileEffectId} shop={shop.byType[CollectibleType.PROFILE_EFFECT]} set={set} />
                 </>}
                 {stage >= LAST_STAGE && <>
                     <Divider />
-                    <EffectPicker selected={data.profileEffectId} set={set} />
+                    <FramePicker selected={data.profileFrameId} shop={shop.byType[CollectibleType.PROFILE_FRAME]} set={set} />
+                    <Divider />
+                    <NameplatePicker selected={data.nameplate?.skuId} shop={shop.byType[CollectibleType.NAMEPLATE]} set={set} />
+                    {shop.loading && <Text variant="text-xs/medium" color="text-muted">{t("Loading the Discord shop…")}</Text>}
+                    {shop.failed && <Text variant="text-xs/medium" color="text-muted">{t("Couldn't load the Discord shop. Close this window and try again.")}</Text>}
+                    <Divider />
+                    <NameStylePicker value={data.displayNameStyles} previewName={previewName} set={set} />
                 </>}
 
                 <Text variant="text-xs/medium" color="text-muted">{t("Visual and local modifications only — persistent between restarts.")}</Text>
-                <Text variant="text-xs/medium" color="text-muted">{t("Only you see these changes. Clear them before you edit your real profile, so they don't end up in it.")}</Text>
+                <Text variant="text-xs/medium" color="text-muted">{t("Endcord users in the Endcord server see this profile too, without your email, phone and account creation date. Clear it before you edit your real profile, so it doesn't end up there.")}</Text>
+                <JoinCard />
             </Stack>
         </ScrollView>
-        <View style={styles.footer}>
-            <Button size="sm" variant="secondary" text={t("Cancel")} onPress={onClose} grow={true} />
-            <Button size="sm" variant="destructive" text={t("Reset")} icon={findAssetId("TrashIcon")} onPress={reset} grow={true} />
-            <Button size="sm" variant="secondary" text={t("Repair")} onPress={runRepair} grow={true} />
-            <Button size="sm" variant="primary" text={saving ? t("Saving...") : t("Save")} loading={saving} onPress={save} grow={true} />
-        </View>
+        <EditorFooter saving={saving} onCancel={onClose} onReset={reset} onRepair={runRepair} onSave={save} />
+    </View>;
+}
+
+/** Below this much room, in density-independent pixels at the user's text size, the four buttons take two rows */
+export const ONE_ROW_WIDTH = 560;
+
+interface FooterProps {
+    saving: boolean;
+    onCancel: () => void;
+    onReset: () => void;
+    onRepair: () => void;
+    onSave: () => void;
+}
+
+/**
+ * The editor's buttons, along the bottom of the screen and above the navigation bar or home indicator, which would
+ * otherwise cover them. On a phone Save gets a row of its own, as wide as the screen, so it's the easiest to reach and
+ * its label never gets cut off; on a tablet all four share one row.
+ */
+export function EditorFooter({ saving, onCancel, onReset, onRepair, onSave }: FooterProps) {
+    const styles = useStyles();
+    const insets = useEdgeInsets();
+    const { width, fontScale } = useWindowDimensions();
+    const oneRow = layoutWidth(width - insets.left - insets.right, fontScale) >= ONE_ROW_WIDTH;
+    const room = {
+        paddingBottom: bottomBarPadding(insets, 10),
+        paddingLeft: 12 + insets.left,
+        paddingRight: 12 + insets.right,
+    };
+
+    const others = <>
+        <Button size="md" variant="secondary" text={t("Cancel")} onPress={onCancel} grow={true} />
+        <Button size="md" variant="destructive" text={t("Reset")} icon={findAssetId("TrashIcon")} onPress={onReset} grow={true} />
+        <Button size="md" variant="secondary" text={t("Repair")} onPress={onRepair} grow={true} />
+    </>;
+    const saveButton = <Button size={oneRow ? "md" : "lg"} variant="primary" text={saving ? t("Saving...") : t("Save")} loading={saving} onPress={onSave} grow={true} />;
+
+    return <View style={[styles.footer, room]}>
+        {oneRow
+            ? <View style={styles.footerRow}>{others}{saveButton}</View>
+            : <>
+                <View style={styles.footerRow}>{others}</View>
+                <View style={styles.footerRow}>{saveButton}</View>
+            </>}
     </View>;
 }

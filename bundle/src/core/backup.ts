@@ -12,6 +12,7 @@
  */
 
 import { LANGUAGES, t } from "@core/i18n";
+import { filePathFixer } from "@core/vendetta/storage";
 import { fonts, installFont, selectFont } from "@lib/addons/fonts";
 import { corePluginInstances, pluginSettings } from "@lib/addons/plugins";
 import { fetchTheme, getCurrentTheme, selectTheme, themes } from "@lib/addons/themes";
@@ -19,6 +20,7 @@ import { writeDocument } from "@lib/api/native/fs";
 import { NativeFileModule } from "@lib/api/native/modules";
 import { settings } from "@lib/api/settings";
 import { awaitStorage, flushStorages } from "@lib/api/storage";
+import { isSafeObject } from "@lib/utils/safeJson";
 import { manifest } from "@plugins/manifest";
 import { version } from "bunny-build-info";
 
@@ -37,10 +39,13 @@ const SETTINGS_KEYS = ["language", "enableDiscordDeveloperSettings"] as const;
  */
 const PRIVATE_SETTING = /^(api_?key|password|token|secret|base_?url)$/i;
 
-const withoutPrivate = (store: JsonObject): JsonObject =>
-    Object.fromEntries(Object.entries(store).filter(([key]) => !PRIVATE_SETTING.test(key)));
-const onlyPrivate = (store: JsonObject | undefined): JsonObject =>
-    Object.fromEntries(Object.entries(store ?? {}).filter(([key]) => PRIVATE_SETTING.test(key)));
+/** Also those a plugin marks sensitive, as on Endcord PC */
+const isPrivate = (pluginId: string, key: string) => PRIVATE_SETTING.test(key) || !!manifest.find(p => p.id === pluginId)?.sensitive?.includes(key);
+
+const withoutPrivate = (pluginId: string, store: JsonObject): JsonObject =>
+    Object.fromEntries(Object.entries(store).filter(([key]) => !isPrivate(pluginId, key)));
+const onlyPrivate = (pluginId: string, store: JsonObject | undefined): JsonObject =>
+    Object.fromEntries(Object.entries(store ?? {}).filter(([key]) => isPrivate(pluginId, key)));
 
 /** Storages of what the user made with plugins; the logs and caches plugins keep for themselves aren't in backups */
 const DATA_STORES = [
@@ -83,28 +88,50 @@ async function readStore(name: string): Promise<JsonObject | undefined> {
     }
 }
 
-const writeStore = (name: string, data: JsonObject) => writeDocument(storePath(name), JSON.stringify(data));
+async function writeStore(name: string, data: JsonObject) {
+    const text = JSON.stringify(data);
+    // Where Endcord's storages write it, which on iOS isn't the same path as where they read it from
+    await writeDocument(filePathFixer(storePath(name)), text);
+    // And its last good copy, which would otherwise bring back what was there before the restore if the file got damaged
+    await writeDocument(filePathFixer(`${storePath(name)}.bak`), text).catch(() => { });
+}
 
 function isPlainObject(value: unknown): value is JsonObject {
     return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-/** No key anywhere in it could change an object's prototype when copied, as Endcord PC checks */
-function isSafe(value: unknown, depth = 0): boolean {
-    if (depth > 64) return false;
-    if (typeof value !== "object" || value === null) return true;
-    for (const key of Object.keys(value)) {
-        if (key === "__proto__" || key === "constructor" || key === "prototype") return false;
-        if (!isSafe((value as any)[key], depth + 1)) return false;
-    }
-    return true;
-}
 
 // Not with URL, which React Native only partly implements
 const isHttps = (url: unknown): url is string => typeof url === "string" && /^https:\/\/\S+$/i.test(url);
 
-/** Endcord's settings as the text of a backup file */
-export async function createBackup(): Promise<string> {
+/** A picture a profile may point at: one Discord serves, or one picked on this phone */
+const PROFILE_PICTURE = /^(?:data:image\/|https:\/\/(?:cdn\.discordapp\.com|media\.discordapp\.net)\/)/i;
+
+/**
+ * Drops the avatar and banner of a CustomProfile store that don't point at Discord or at a picture on this phone. A
+ * backup is someone else's file, and your own profile's avatar is loaded from wherever it names: a link to a stranger's
+ * server would tell them your address every time Discord drew your profile
+ */
+function cleanProfilePictures(store: JsonObject): JsonObject {
+    const clean = (profile: unknown): void => {
+        if (!isPlainObject(profile)) return;
+        for (const key of ["avatar", "banner"] as const) {
+            if (typeof profile[key] === "string" && !PROFILE_PICTURE.test(profile[key] as string)) delete profile[key];
+        }
+    };
+    const copy = JSON.parse(JSON.stringify(store)) as JsonObject;
+    for (const profile of Object.values(isPlainObject(copy.accounts) ? copy.accounts : {})) clean(profile);
+    for (const list of Object.values(isPlainObject(copy.presets) ? copy.presets : {})) {
+        for (const preset of Array.isArray(list) ? list : []) clean(isPlainObject(preset) ? preset.data : undefined);
+    }
+    return copy;
+}
+
+/**
+ * Endcord's settings as the text of a backup file. Without data, only the settings: what the snapshots on the phone
+ * keep, since what people made with plugins can be large and isn't what a bad setting breaks
+ */
+export async function createBackup({ withData = true }: { withData?: boolean; } = {}): Promise<string> {
     await awaitStorage(pluginSettings);
 
     const plugins: Record<string, boolean> = {};
@@ -113,12 +140,12 @@ export async function createBackup(): Promise<string> {
     const pluginStores: Record<string, JsonObject> = {};
     await Promise.all(manifest.filter(p => p.hasSettings).map(async p => {
         const store = await readStore(`ENDCORD_PLUGIN_${p.id}`);
-        const shared = store && withoutPrivate(store);
+        const shared = store && withoutPrivate(p.id, store);
         if (shared && Object.keys(shared).length) pluginStores[p.id] = shared;
     }));
 
     const data: Record<string, JsonObject> = {};
-    await Promise.all(DATA_STORES.map(async name => {
+    if (withData) await Promise.all(DATA_STORES.map(async name => {
         const store = await readStore(name);
         if (store && Object.keys(store).length) data[name] = store;
     }));
@@ -159,7 +186,7 @@ export function parseBackup(text: string): Backup {
         throw new Error(t("This file isn't an Endcord backup"));
     }
     if (parsed.version > VERSION) throw new Error(t("This backup is from a newer Endcord. Update Endcord, then try again."));
-    if (!isSafe(parsed)) throw new Error(t("This backup is damaged and can't be restored"));
+    if (!isSafeObject(parsed)) throw new Error(t("This backup is damaged and can't be restored"));
 
     const object = (value: unknown): JsonObject => isPlainObject(value) ? value : {};
     const raw = object(parsed.settings);
@@ -171,7 +198,7 @@ export function parseBackup(text: string): Backup {
         .filter(([id, on]) => corePluginInstances.has(id) && typeof on === "boolean")) as Record<string, boolean>;
     const pluginStores = Object.fromEntries(Object.entries(object(parsed.pluginSettings))
         .filter(([id, store]) => manifest.some(p => p.id === id) && isPlainObject(store))
-        .map(([id, store]) => [id, withoutPrivate(store as JsonObject)])) as Record<string, JsonObject>;
+        .map(([id, store]) => [id, withoutPrivate(id, store as JsonObject)])) as Record<string, JsonObject>;
     const data = Object.fromEntries(Object.entries(object(parsed.data))
         .filter(([name, store]) => DATA_STORES.includes(name) && isPlainObject(store))) as Record<string, JsonObject>;
 
@@ -212,10 +239,14 @@ export async function restoreBackup(backup: Backup): Promise<number> {
     await Promise.all([
         ...Object.entries(backup.pluginSettings).map(async ([id, store]) => {
             const name = `ENDCORD_PLUGIN_${id}`;
-            await writeStore(name, { ...store, ...onlyPrivate(await readStore(name)) });
+            await writeStore(name, { ...store, ...onlyPrivate(id, await readStore(name)) });
         }),
-        ...Object.entries(backup.data).map(([name, store]) => writeStore(name, store)),
+        ...Object.entries(backup.data).map(([name, store]) =>
+            writeStore(name, name === "ENDCORD_CUSTOM_PROFILE" ? cleanProfilePictures(store) : store)),
     ]);
+    // A profile that came with a backup is whoever made the file's: it isn't posted for everyone to see until it's
+    // saved again in the editor on this phone, which is what lets CustomProfile share it
+    if ("ENDCORD_CUSTOM_PROFILE" in backup.data) await writeStore("ENDCORD_CUSTOM_PROFILE_PUBLISHED", { accounts: {} });
 
     const installedFonts = Object.entries(fonts).filter(([name]) => name !== "__selected") as [string, any][];
     const installed = await Promise.allSettled([

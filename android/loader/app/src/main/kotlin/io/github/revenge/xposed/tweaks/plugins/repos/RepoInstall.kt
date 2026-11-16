@@ -2,6 +2,9 @@ package io.github.revenge.xposed.tweaks.plugins.repos
 
 import io.github.revenge.plugins.PluginManifest
 import io.github.revenge.plugins.Version
+import io.github.revenge.xposed.DownloadLimits
+import io.github.revenge.xposed.DownloadTooLargeException
+import io.github.revenge.xposed.bodyCapped
 import io.github.revenge.xposed.httpClient
 import io.github.revenge.xposed.tweaks.plugins.*
 import io.github.revenge.xposed.tweaks.plugins.external.StagedPlugin
@@ -66,8 +69,11 @@ internal fun parseRepoInstallAction(raw: Any?): RepoInstallAction {
     fun string(key: String) = map[key] as? String
         ?: throw PluginSystemError(PluginErrorCodes.INVALID_ARGUMENT, "Plan action is missing '$key'")
     val url = string("url")
-    // The plan comes back from JS: an artifact is only fetched from where an index could have named it
-    if (!isRepoUrl(url)) throw PluginSystemError(PluginErrorCodes.INVALID_ARGUMENT, "Plan action url $REPO_URL_RULE: '$url'")
+    val repo = string("repo")
+    // The plan comes back from JS: an artifact is only fetched from where its repository's index could have named it
+    if (!isRepoArtifactUrl(url, repo)) {
+        throw PluginSystemError(PluginErrorCodes.INVALID_ARGUMENT, "Plan action url $REPO_ARTIFACT_URL_RULE: '$url'")
+    }
     return RepoInstallAction(
         id = string("id"),
         version = Version.parse(string("version")),
@@ -75,7 +81,7 @@ internal fun parseRepoInstallAction(raw: Any?): RepoInstallAction {
         sha256 = string("sha256"),
         size = (map["size"] as? Number)?.toLong()
             ?: throw PluginSystemError(PluginErrorCodes.INVALID_ARGUMENT, "Plan action is missing 'size'"),
-        repo = string("repo"),
+        repo = repo,
         channel = (map["channel"] as? String) ?: REPO_CHANNEL_LATEST,
         hold = map["hold"] as? Boolean,
     )
@@ -199,20 +205,29 @@ private suspend fun downloadAndVerify(
     action: RepoInstallAction,
     onReceived: (Long) -> Unit,
 ): ByteArray {
-    val response = client.get(action.url) {
+    // Streamed, so no more than the plan's size (and the cap for artifacts) is ever read: a bigger one fails as it arrives
+    val bytes = client.prepareGet(action.url) {
         // expectSuccess true (our defaults) would throw on 3xx instead of following the redirect.
         expectSuccess = false
         timeout { requestTimeoutMillis = DOWNLOAD_TIMEOUT }
-        onDownload { received, _ -> onReceived(received) }
+    }.execute { response ->
+        if (response.status != HttpStatusCode.OK) {
+            throw PluginSystemError(
+                PluginErrorCodes.INSTALL_FAILED,
+                "Failed to download ${action.id}@${action.version}: ${response.status}",
+            )
+        }
+        onReceived(0L)
+        try {
+            response.bodyCapped(minOf(action.size, DownloadLimits.PLUGIN_ARTIFACT), action.url, onReceived)
+        } catch (e: DownloadTooLargeException) {
+            throw PluginSystemError(
+                PluginErrorCodes.INSTALL_VERIFY_FAILED,
+                "Artifact for ${action.id}@${action.version} is bigger than the plan says (${action.size} bytes) " +
+                    "or than the ${DownloadLimits.PLUGIN_ARTIFACT} bytes allowed",
+            )
+        }
     }
-    if (response.status != HttpStatusCode.OK) {
-        throw PluginSystemError(
-            PluginErrorCodes.INSTALL_FAILED,
-            "Failed to download ${action.id}@${action.version}: ${response.status}",
-        )
-    }
-
-    val bytes: ByteArray = response.body()
     if (bytes.size.toLong() != action.size) {
         throw PluginSystemError(
             PluginErrorCodes.INSTALL_VERIFY_FAILED,

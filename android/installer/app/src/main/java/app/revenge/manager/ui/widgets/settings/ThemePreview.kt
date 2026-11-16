@@ -19,6 +19,7 @@ import app.revenge.manager.R
 import app.revenge.manager.domain.manager.PreferenceManager
 import app.revenge.manager.utils.DiscordVersion
 import org.koin.androidx.compose.get
+import kotlin.math.abs
 
 @Composable
 fun ThemePreview(
@@ -97,7 +98,8 @@ fun ThemePreview(
         Icon(
             painter = painterResource(R.drawable.ts_icon),
             contentDescription = null,
-            tint = iconColor,
+            // The app's icon is night blue, the dark preview's background too: there it's drawn in the accent instead
+            tint = if (abs(iconColor.luminance() - colorScheme.background.luminance()) < 0.05f) colorScheme.primary else iconColor,
             modifier = layerModifier
         )
 

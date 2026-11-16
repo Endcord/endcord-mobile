@@ -17,6 +17,9 @@ class DownloadLangStep(
 
     override val nameRes = R.string.step_dl_lang
 
+    override val versionCode = version
+    override val split = "config.en"
+
     override val downloadMirrorUrlPath: String = "/tracker/download/$version/config.en"
     override val destination = dir.resolve("config.en-$version.apk")
     override val workingCopy = workingDir.resolve("config.en-$version.apk")

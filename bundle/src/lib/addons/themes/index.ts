@@ -3,9 +3,12 @@ import { awaitStorage, createFileBackend, createMMKVBackend, createStorage, wrap
 import { writeFile } from "@lib/api/native/fs";
 import { getStoredTheme, getThemeFilePath, isPyonLoader, isThemeSupported } from "@lib/api/native/loader";
 import { awaitStorage as newAwaitStorage } from "@lib/api/storage";
-import { isAddonUrl } from "@lib/utils/addonUrl";
+import { isAddonUrl, requireAddonResponse } from "@lib/utils/addonUrl";
+import { MAX_SIZES, readText } from "@lib/utils/safeFetch";
+import { isSafeObject } from "@lib/utils/safeJson";
 import { Platform } from "react-native";
 
+import { builtinTheme, isBuiltinTheme } from "./builtin";
 import initColors from "./colors";
 import { applyAndroidAlphaKeys, normalizeToHex } from "./colors/parser";
 import { colorsPref } from "./colors/preferences";
@@ -111,31 +114,67 @@ export async function downloadTheme(url: string): Promise<VendettaThemeManifest>
         throw new ThemeDownloadError("gone", t("The theme isn't at this link anymore ({status}). Its author may have moved or deleted it.", { status: res.status }));
     }
     if (!res.ok) throw new ThemeDownloadError("refused", t("{host} didn't send the theme ({status}).", { host: hostOf(source), status: res.status }));
+    // Not after a redirect to plain http, or into the phone or its network
+    try {
+        requireAddonResponse(res);
+    } catch {
+        throw new ThemeDownloadError("invalid", t("Themes can only be installed from an https:// link."));
+    }
 
+    let text: string;
+    try {
+        text = await readText(res, MAX_SIZES.theme);
+    } catch {
+        throw new ThemeDownloadError("invalid", t("This file isn't a theme Endcord can use."));
+    }
     let themeJSON: any;
     try {
         // trimStart also drops the byte order mark some Windows editors write, which JSON.parse doesn't accept
-        themeJSON = JSON.parse((await res.text()).trimStart());
+        themeJSON = JSON.parse(text.trimStart());
     } catch {
         throw new ThemeDownloadError("invalid", t("This link doesn't lead to a theme file."));
     }
-    if (!validateTheme(themeJSON)) throw new ThemeDownloadError("invalid", t("This file isn't a theme Endcord can use."));
+    // A theme is kept and merged into Discord's colors: no key in it may change an object's prototype
+    if (!isSafeObject(themeJSON) || !validateTheme(themeJSON)) throw new ThemeDownloadError("invalid", t("This file isn't a theme Endcord can use."));
     return themeJSON;
 }
 
 export async function fetchTheme(url: string, selected = false) {
-    const themeJSON = await downloadTheme(url);
+    // Endcord's own themes are made from its code, never downloaded
+    const themeJSON = isBuiltinTheme(url) ? builtinTheme(url)! : await downloadTheme(url);
+    const data = processData(themeJSON);
 
     themes[url] = {
         id: url,
         selected: selected,
-        data: processData(themeJSON),
+        data,
     };
 
-    if (selected) {
+    // As on most starts, the colors the app started with are these already: applying them again would only redraw
+    // every screen for nothing
+    if (selected && !isApplied(url, data)) {
         writeThemeToNative(themes[url]);
         updateBunnyColor(themes[url].data, { update: true });
     }
+}
+
+/** The same value with every object's keys in one order: the iOS loader hands the theme back through a dictionary */
+const sortedKeys = (value: unknown): unknown => Array.isArray(value) ? value.map(sortedKeys)
+    : value && typeof value === "object"
+        ? Object.fromEntries(Object.keys(value).sort().map(key => [key, sortedKeys((value as Record<string, unknown>)[key])]))
+        : value;
+const sameJson = (a: unknown, b: unknown) => JSON.stringify(sortedKeys(a ?? null)) === JSON.stringify(sortedKeys(b ?? null));
+
+/** Whether the theme the loader started the app with is this one, with these colors and this background */
+function isApplied(id: string, data: VendettaThemeManifest) {
+    const applied = getThemeFromLoader();
+    return applied?.id === id
+        && sameJson(applied.data?.semanticColors, data.semanticColors)
+        && sameJson(applied.data?.rawColors, data.rawColors)
+        // A spec 3 theme's colors. An older Android loader leaves this and the background out of what it hands over:
+        // then they're applied here
+        && sameJson((applied.data as any)?.main, (data as any).main)
+        && sameJson(applied.data?.background, data.background);
 }
 
 export async function installTheme(url: string) {
@@ -191,7 +230,8 @@ export async function initThemes() {
 
     try {
         if (isPyonLoader()) {
-            writeFile("../vendetta_theme.json", "null");
+            // The loader reads it from the documents directory itself, beside Endcord's own folder
+            writeFile("vendetta_theme.json", "null", { prefix: "" });
         }
 
         await newAwaitStorage(colorsPref);

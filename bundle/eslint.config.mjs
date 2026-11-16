@@ -24,6 +24,21 @@ export default [{
         "no-restricted-syntax": ["error", {
             selector: "AwaitExpression:not(:function *)",
             message: "Hermes does not support top-level await, and SWC cannot transform it.",
+        }, {
+            // As Endcord PC lints shell.openExternal: an intent:, file: or content: link could start any app
+            selector: "CallExpression[callee.object.name='Linking'][callee.property.name='openURL']",
+            message: "Open links with openSafeLink (@lib/utils/externalLinks) or openUrl (plugins/hooks), which check what kind of link it is.",
+        }, {
+            selector: "CallExpression[callee.property.name=/^(toSorted|toReversed|toSpliced)$/]",
+            message: "Hermes doesn't have the copying array methods: copy with spread, then sort or reverse.",
+        }, {
+            selector: "MemberExpression[object.name='AbortSignal'][property.name='timeout']",
+            message: "Hermes doesn't have AbortSignal.timeout: abort an AbortController from a setTimeout.",
+        }],
+        // Not in Hermes, so they throw in Discord though they work in tests
+        "no-restricted-globals": ["error", {
+            name: "structuredClone",
+            message: "Hermes doesn't have structuredClone: copy with spread, or JSON for plain data.",
         }],
 
         quotes: ["error", "double", {

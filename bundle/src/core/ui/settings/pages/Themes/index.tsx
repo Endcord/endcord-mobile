@@ -1,8 +1,10 @@
 import { formatString, Strings, t } from "@core/i18n";
 import AddonPage from "@core/ui/components/AddonPage";
+import BuiltinThemes from "@core/ui/settings/pages/Themes/BuiltinThemes";
 import ThemeCard from "@core/ui/settings/pages/Themes/ThemeCard";
 import { useProxy } from "@core/vendetta/storage";
 import { getCurrentTheme, installTheme, themes, VdThemeInfo } from "@lib/addons/themes";
+import { isBuiltinTheme } from "@lib/addons/themes/builtin";
 import { colorsPref } from "@lib/addons/themes/colors/preferences";
 import { updateBunnyColor } from "@lib/addons/themes/colors/updater";
 import { Author } from "@lib/addons/types";
@@ -33,7 +35,9 @@ export default function Themes() {
                 label: Strings.INSTALL_THEME,
                 fetchFn: installTheme
             }}
-            items={Object.values(themes)}
+            // Endcord's own themes are above the list, not in it
+            items={Object.values(themes).filter(theme => !isBuiltinTheme(theme.id))}
+            ListHeaderComponent={BuiltinThemes}
             safeModeHint={{
                 message: formatString("SAFE_MODE_NOTICE_THEMES", { enabled: Boolean(settings.safeMode?.currentThemeId) }),
                 footer: settings.safeMode?.currentThemeId && <Button

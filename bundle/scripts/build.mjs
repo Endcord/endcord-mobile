@@ -67,7 +67,9 @@ const config = {
     alias: {
         "!bunny-deps-shim!": "./shims/depsModule.ts",
         "spitroast": "./node_modules/spitroast",
-        "react/jsx-runtime": "./shims/jsxRuntime"
+        "react/jsx-runtime": "./shims/jsxRuntime",
+        // Terminal colors, for the DevTools server's side of a shared module: never used on the phone
+        "chalk": "./shims/chalk.ts"
     },
     plugins: [
         globalPlugin({

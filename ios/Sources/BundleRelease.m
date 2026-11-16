@@ -31,7 +31,7 @@ static NSString *sha256Hex(NSData *data)
 
 @implementation BundleRelease
 {
-    NSSet<NSString *> *_bundles;
+    NSDictionary<NSString *, NSString *> *_files;
     NSDictionary<NSString *, NSURL *> *_pinnedURLs;
 }
 
@@ -52,28 +52,30 @@ static NSString *sha256Hex(NSData *data)
     if (![json isKindOfClass:NSDictionary.class] || ![json[@"format"] isEqual:@1]) return nil;
     if (![json[@"sequence"] isKindOfClass:NSNumber.class] || ![json[@"files"] isKindOfClass:NSDictionary.class]) return nil;
 
-    NSMutableSet<NSString *> *bundles = [NSMutableSet set];
+    NSMutableDictionary<NSString *, NSString *> *files = [NSMutableDictionary dictionary];
     NSMutableDictionary<NSString *, NSURL *> *pinnedURLs = [NSMutableDictionary dictionary];
     for (NSString *name in json[@"files"])
     {
         NSDictionary *file = json[@"files"][name];
         if (![file isKindOfClass:NSDictionary.class]) return nil;
         if (![file[@"sha256"] isKindOfClass:NSString.class] || ![file[@"size"] isKindOfClass:NSNumber.class]) return nil;
-        [bundles addObject:[NSString stringWithFormat:@"%@:%@", file[@"size"], [file[@"sha256"] lowercaseString]]];
+        files[name] = [NSString stringWithFormat:@"%@:%@", file[@"size"], [file[@"sha256"] lowercaseString]];
         NSURL *pinned = [file[@"url"] isKindOfClass:NSString.class] ? [NSURL URLWithString:file[@"url"]] : nil;
         if (pinned) pinnedURLs[name] = pinned;
     }
 
     BundleRelease *release = [BundleRelease new];
     release->_sequence = [json[@"sequence"] unsignedLongLongValue];
-    release->_bundles  = bundles;
+    release->_files    = files;
     release->_pinnedURLs = pinnedURLs;
     return release;
 }
 
-- (BOOL)contains:(NSData *)bundle
+- (BOOL)lists:(NSString *)name bytes:(NSData *)bytes
 {
-    return [_bundles containsObject:[NSString stringWithFormat:@"%lu:%@", (unsigned long) bundle.length, sha256Hex(bundle)]];
+    NSString *entry = _files[name];
+    if (!entry) return NO;
+    return [entry isEqualToString:[NSString stringWithFormat:@"%lu:%@", (unsigned long) bytes.length, sha256Hex(bytes)]];
 }
 
 - (NSURL *)pinnedURLOf:(NSString *)name

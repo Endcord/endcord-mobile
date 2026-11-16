@@ -20,6 +20,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.put
 import java.io.File
 import java.io.IOException
+import java.lang.reflect.Method
 
 @Serializable
 data class FontDefinition(
@@ -35,20 +36,32 @@ data class FontDefinition(
 val fonts by tweak {
     val log: Logger = this.log
 
-    RevengePayloadBuilder.contribute { put("fontPatch", 2) }
+    // Without the lookup to hook, no font can be drawn: the bundle isn't told fonts work, so it doesn't offer them
+    val createAssetTypeface = findCreateAssetTypeface(classLoader)
+    if (createAssetTypeface == null) {
+        log.w("React Native's createAssetTypeface wasn't found; custom fonts are off")
+        return@tweak
+    }
 
-    // ReactFontManager hijack runs regardless of fonts.json presence  it falls back to the default Typeface chain if no custom font file is found.
-    val clazz = classLoader.loadClassOrNull($$"com.facebook.react.common.assets.ReactFontManager$Companion")
-        ?: classLoader.loadClassOrNull($$"com.facebook.react.views.text.ReactFontManager$Companion")
-    
-    clazz!!.method("createAssetTypeface", String::class.java, Int::class.java, AssetManager::class.java).hook {
+    FontsState.log = log
+    log.i("Custom fonts are drawn through ${createAssetTypeface.declaringClass.name}.${createAssetTypeface.name}")
+    createAssetTypeface.hook {
         before {
-            val fontFamilyName: String = args[0].toString()
-            val style: Int = args[1] as Int
-            val assetManager: AssetManager = args[2] as AssetManager
-            result = FontsState.createAssetTypeface(fontFamilyName, style, assetManager)
+            // Only a font the user picked is drawn here; every other family stays Discord's own
+            val fontFamilyName = args[0] as? String ?: return@before
+            val style = args[1] as? Int ?: return@before
+            val assetManager = args[2] as? AssetManager ?: return@before
+            val custom = FontsState.hasCustomFont(fontFamilyName, style)
+            FontsState.noteLookup(log, fontFamilyName, style, custom)
+            if (!custom) return@before
+            runCatching { FontsState.createAssetTypeface(fontFamilyName, style, assetManager) }
+                .onFailure { log.e("Unable to load the font $fontFamilyName", it) }
+                .getOrNull()
+                ?.let { result = it }
         }
     }
+
+    RevengePayloadBuilder.contribute { put("fontPatch", 2) }
 
     withAppContext { ctx ->
         val dataDir = ctx.dataDir.absolutePath
@@ -73,12 +86,14 @@ val fonts by tweak {
         FontsState.fontsDownloadsDir = downloadsDir
         FontsState.fontsAbsPath = setDir.absolutePath + "/"
 
-        // Prune stale font files for this set.
+        // Prune stale font files for this set, and downloads that never finished
         setDir.listFiles()?.forEach { file ->
             val fileName = file.name
-            if (!fileName.startsWith(".")) {
-                val fontName = fileName.split('.')[0]
-                if (fontDef.main.keys.none { it == fontName }) {
+            if (fileName.startsWith(".")) {
+                if (fileName.endsWith(".part")) file.delete()
+            } else {
+                // Saved as <font>.ttf or <font>.otf, by the bundle and below: a font's name may hold dots itself
+                if (fontDef.main.keys.none { name -> FONT_FILE_EXTENSIONS.any { fileName == "$name$it" } }) {
                     log.i("Deleting stale font file: $fileName")
                     file.delete()
                 }
@@ -99,13 +114,23 @@ val fonts by tweak {
                             log.w("Not downloading $name from $url: fonts are only downloaded over https")
                             return@async
                         }
-                        log.i("Downloading $name from $url")
-                        val ext = FontsState.FILE_EXTENSIONS.firstOrNull { url.endsWith(it) } ?: ".ttf"
+                        val ext = FONT_FILE_EXTENSIONS.firstOrNull { url.endsWith(it) } ?: ".ttf"
                         val file = File(setDir, "$name$ext").apply { ensureFile() }
-                        if (file.exists()) return@async
-                        val response: HttpResponse = httpClient.get(url)
-                        if (response.status == HttpStatusCode.OK) {
-                            file.writeBytes(response.body())
+                        // Usually there already: the bundle downloads a font's files when it's installed
+                        if (file.isFile && file.length() > 0) return@async
+                        log.i("Downloading $name from $url")
+                        // Read whole and within the cap, then put in place in one step, so a font cut off leaves no file
+                        val part = File(setDir, ".$name$ext.part")
+                        httpClient.prepareGet(url).execute { response ->
+                            if (response.status == HttpStatusCode.OK) {
+                                part.writeBytes(response.bodyCapped(DownloadLimits.FONT, url))
+                                if (!part.renameTo(file)) {
+                                    file.writeBytes(part.readBytes())
+                                    part.delete()
+                                }
+                            } else {
+                                log.w("Couldn't download $name: ${response.status}")
+                            }
                         }
                     } catch (e: Throwable) {
                         log.e("Failed to download font ($name from $url)", e)
@@ -117,12 +142,36 @@ val fonts by tweak {
 }
 
 /**
+ * React Native's `createAssetTypeface(String, int, AssetManager): Typeface`: by name where Discord keeps it, and by its
+ * signature and the font folder it reads where R8 renamed it (Discord 353.11 has it as `vf.a.a`)
+ */
+private fun findCreateAssetTypeface(classLoader: ClassLoader): Method? {
+    val named = sequenceOf(
+        $$"com.facebook.react.common.assets.ReactFontManager$Companion",
+        $$"com.facebook.react.views.text.ReactFontManager$Companion",
+    ).mapNotNull { classLoader.loadClassOrNull(it) }
+        .firstNotNullOfOrNull {
+            runCatching {
+                it.method("createAssetTypeface", String::class.java, Int::class.java, AssetManager::class.java)
+            }.getOrNull()
+        }
+    if (named != null) return named
+
+    return DexFinder.findMethod {
+        matcher {
+            paramTypes("java.lang.String", "int", "android.content.res.AssetManager")
+            returnType("android.graphics.Typeface")
+            usingEqStrings("fonts/")
+        }
+    }
+}
+
+/**
  * Holds the per-process font-state used by the `createAssetTypeface` hijack. Mirrors the static
  * fields of the old `FontsModule`.
  */
 private object FontsState {
-    val EXTENSIONS = arrayOf("", "_bold", "_italic", "_bold_italic")
-    val FILE_EXTENSIONS = arrayOf(".ttf", ".otf")
+    val FILE_EXTENSIONS = FONT_FILE_EXTENSIONS
     const val FONTS_ASSET_PATH = "fonts/"
 
     @Volatile
@@ -131,106 +180,61 @@ private object FontsState {
     @Volatile
     var fontsAbsPath: String? = null
 
-    /**
-     * The downloaded file a `<font set>:<font>` family name refers to, or null when the name isn't one. The family
-     * name comes from whatever styles a view, so both parts have to be names that stay inside the fonts folder; the
-     * lookup must not touch anything on the way either.
-     */
-    private fun downloadedFontFile(fontFamilyName: String, fileExt: String): File? {
-        val split = fontFamilyName.split(":")
-        if (split.size != 2) return null
-        val (customName, refName) = split
-        if (!isSafeFontName(customName) || !isSafeFontName(refName)) return null
-        val downloads = fontsDownloadsDir ?: return null
-        return File(downloads, "$customName/$refName.$fileExt")
+    /** Whether [rawName] names a font the user picked, which is drawn here rather than by Discord */
+    fun hasCustomFont(rawName: String, style: Int): Boolean =
+        namesCustomFont(rawName, style, fontsDownloadsDir, fontsAbsPath?.let(::File))
+
+    private val noted = java.util.concurrent.ConcurrentHashMap.newKeySet<String>()
+
+    @Volatile
+    var log: Logger? = null
+
+    /** The first lookups of each family and style, in the log: what a font that doesn't show is to be checked with */
+    fun noteLookup(log: Logger, rawName: String, style: Int, custom: Boolean) {
+        if (noted.size >= 24 || !noted.add("$rawName/$style")) return
+        log.i("Font $rawName ($style): ${if (custom) "the picked font" else "Discord's"}")
     }
 
-    /** Where a family name is looked up by name: the selected font's folder only for a name that stays in it */
-    private fun fontRootPaths(fontFamilyName: String): List<String> = listOfNotNull(
-        fontsAbsPath?.takeIf { isSafeFontName(fontFamilyName) },
-        FONTS_ASSET_PATH,
-    )
+    private fun customFile(name: String, style: Int) =
+        customFontFile(name, style, fontsDownloadsDir, fontsAbsPath?.let(::File))
 
-    fun createAssetTypeface(
-        rawName: String,
-        style: Int,
-        assetManager: AssetManager,
-    ): Typeface? {
-        val fontFamilyNames = rawName.split(",").map { it.trim() }.filter { it.isNotEmpty() }.toTypedArray()
-
-        var fontFamilyName = rawName
-        if (fontFamilyNames.size > 1) {
-            fontFamilyName = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                return createAssetTypefaceWithFallbacks(fontFamilyNames, style, assetManager)
-            } else {
-                fontFamilyNames[0]
-            }
-        }
-
-        val extension = EXTENSIONS.getOrElse(style) { "" }
-
-        try {
-            for (fileExt in FILE_EXTENSIONS) {
-                val file = downloadedFontFile(fontFamilyName, fileExt) ?: break
-                if (!file.isFile) continue
-                return Typeface.createFromFile(file.absolutePath)
-            }
-        } catch (_: Throwable) {
-        }
-
-        for (fontRootPath in fontRootPaths(fontFamilyName)) {
-            for (fileExt in FILE_EXTENSIONS) {
-                val fileName = "$fontRootPath$fontFamilyName$extension$fileExt"
-                return try {
-                    if (fileName[0] == '/') Typeface.createFromFile(fileName)
-                    else Typeface.createFromAsset(assetManager, fileName)
-                } catch (_: RuntimeException) {
-                    continue
-                }
-            }
-        }
-        return Typeface.create(fontFamilyName, style)
-    }
-
-    private fun createAssetTypefaceWithFallbacks(
-        fontFamilyNames: Array<String>,
-        style: Int,
-        assetManager: AssetManager,
-    ): Typeface? {
+    /** One of Discord's own font files, named as Discord names it for the style */
+    private fun assetFont(assetManager: AssetManager, name: String, style: Int): Font? {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) return null
-        val fontFamilies: MutableList<FontFamily> = ArrayList()
-        for (fontFamilyName in fontFamilyNames) {
+        val styled = discordStyledName(name, style)
+        for (ext in FILE_EXTENSIONS) {
             try {
-                for (fileExt in FILE_EXTENSIONS) {
-                    val file = downloadedFontFile(fontFamilyName, fileExt) ?: break
-                    if (!file.isFile) continue
-                    val font = Font.Builder(file).build()
-                    fontFamilies.add(FontFamily.Builder(font).build())
-                }
-            } catch (_: Throwable) {
-            }
-
-            for (fontRootPath in fontRootPaths(fontFamilyName)) {
-                for (fileExt in FILE_EXTENSIONS) {
-                    val fileName = "$fontRootPath$fontFamilyName$fileExt"
-                    try {
-                        val builder = if (fileName[0] == '/') Font.Builder(File(fileName))
-                        else Font.Builder(assetManager, fileName)
-                        val font = builder.build()
-                        fontFamilies.add(FontFamily.Builder(font).build())
-                    } catch (_: RuntimeException) {
-                        continue
-                    } catch (_: IOException) {
-                        continue
-                    }
-                }
+                return Font.Builder(assetManager, "$FONTS_ASSET_PATH$styled$ext").build()
+            } catch (_: IOException) {
+            } catch (_: RuntimeException) {
             }
         }
+        return null
+    }
 
-        if (fontFamilies.isEmpty()) return createAssetTypeface(fontFamilyNames[0], style, assetManager)
-
-        val fallbackBuilder = CustomFallbackBuilder(fontFamilies[0])
-        for (i in 1 until fontFamilies.size) fallbackBuilder.addCustomFallback(fontFamilies[i])
-        return fallbackBuilder.build()
+    /**
+     * The typeface for a family list with a picked font in it: each family in order, the picked font's file where it
+     * has one and Discord's own otherwise, as Discord's lookup chains them. Null leaves it to Discord's lookup.
+     */
+    fun createAssetTypeface(rawName: String, style: Int, assetManager: AssetManager): Typeface? {
+        val names = familyNames(rawName)
+        if (names.isEmpty()) return null
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            // Without chained fallbacks: the first family the picked font has a file for
+            for (name in names) customFile(name, style)?.let { return Typeface.createFromFile(it) }
+            return null
+        }
+        val families = names.mapNotNull { name ->
+            val font = customFile(name, style)?.let { file ->
+                runCatching { Font.Builder(file).build() }
+                    .onFailure { log?.w("The picked font's ${file.name} (${file.length()} bytes) couldn't be read: $it") }
+                    .getOrNull()
+            } ?: assetFont(assetManager, name, style)
+            font?.let { FontFamily.Builder(it).build() }
+        }
+        if (families.isEmpty()) return null
+        val builder = CustomFallbackBuilder(families[0])
+        for (i in 1 until families.size) builder.addCustomFallback(families[i])
+        return builder.build()
     }
 }

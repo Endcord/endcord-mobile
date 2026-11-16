@@ -6,13 +6,13 @@ import { findAssetId } from "@lib/api/assets";
 import { isThemeSupported } from "@lib/api/native/loader";
 import { after, instead } from "@lib/api/patcher";
 import { VD_PROXY_PREFIX, VD_THEMES_CHANNEL_ID } from "@lib/utils/constants";
+import { openSafeLink } from "@lib/utils/externalLinks";
 import { lazyDestructure } from "@lib/utils/lazy";
 import { channels } from "@metro/common";
 import { byMutableProp } from "@metro/filters";
 import { findExports } from "@metro/finders";
 import { findByProps, findByPropsLazy } from "@metro/wrappers";
 import { showToast } from "@ui/toasts";
-import { Linking } from "react-native";
 
 const showSimpleActionSheet = findExports(byMutableProp("showSimpleActionSheet"));
 const handleClick = findByPropsLazy("handleClick");
@@ -75,7 +75,8 @@ export default () => {
                 confirmText: Strings.INSTALL,
                 cancelText: Strings.CANCEL,
                 secondaryConfirmText: Strings.OPEN_IN_BROWSER,
-                onConfirmSecondary: () => Linking.openURL(url),
+                // The link came in a message: only a web link opens
+                onConfirmSecondary: () => void openSafeLink(url).catch(() => { }),
             });
         })
     );

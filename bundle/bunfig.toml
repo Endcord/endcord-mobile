@@ -1,0 +1,5 @@
+# Like Endcord PC's pnpm-workspace.yaml: a dependency version has to have been out for a week before an install takes
+# it, so one that's pulled for being malicious usually is before it reaches a build. bun install --frozen-lockfile,
+# which CI runs, installs what the lockfile names and isn't affected.
+[install]
+minimumReleaseAge = 604800

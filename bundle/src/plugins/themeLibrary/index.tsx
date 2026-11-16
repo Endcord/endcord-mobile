@@ -17,6 +17,7 @@ import { safeFetch } from "@lib/utils";
 import { AlertActionButton, AlertActions, AlertModal, Button, Card, Stack, Text } from "@metro/common/components";
 import { semanticColorOf } from "@ui/color";
 import { Search } from "@ui/components";
+import { useEdgeInsets } from "@ui/insets";
 import { createStyles } from "@ui/styles";
 import { memo, useEffect, useMemo, useState } from "react";
 import { ActivityIndicator, Image, ScrollView, View } from "react-native";
@@ -247,7 +248,8 @@ function Library() {
 }
 
 function LibraryPage() {
-    return <ScrollView contentContainerStyle={{ padding: 12, paddingBottom: 38 }} keyboardShouldPersistTaps="handled" keyboardDismissMode="on-drag">
+    const { bottom } = useEdgeInsets();
+    return <ScrollView contentContainerStyle={{ padding: 12, paddingBottom: 38 + bottom }} keyboardShouldPersistTaps="handled" keyboardDismissMode="on-drag">
         <Library />
     </ScrollView>;
 }

@@ -557,6 +557,73 @@ static void checkSmoothCaret(UIViewController *root)
     });
 }
 
+/** PrivacyCurtain: Discord is covered while it isn't the active app, and only while it's on */
+static void checkScreenPrivacy(UIViewController *root)
+{
+    NSString *(*set)(NSArray *) = (NSString * (*)(NSArray *)) dlsym(RTLD_DEFAULT, "setScreenPrivacy");
+    check(@"privacy-function", set != NULL, @"");
+    if (!set) return finish();
+
+    // What it takes, as the plugin and the Android loader name the modes; anything else is off
+    NSString *modes = [NSString stringWithFormat:@"%@ %@ %@ %@ %@", set(@[ @"recents" ]), set(@[ @"all" ]), set(@[ @" recents " ]),
+                                                 set(@[ @"nonsense" ]), set(@[])];
+    check(@"privacy-modes", [modes isEqualToString:@"recents all recents off off"], modes);
+
+    UIWindow *window = root.view.window;
+    NSNotificationCenter *center = NSNotificationCenter.defaultCenter;
+    UIApplication *app = UIApplication.sharedApplication;
+    // Each step a moment after the one before: the tweak handles these on the main queue
+    void (^after)(double, dispatch_block_t) = ^(double seconds, dispatch_block_t then) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), then);
+    };
+    NSUInteger (^countCovers)(void) = ^NSUInteger {
+        NSMutableArray *covers = [NSMutableArray array];
+        findViews(window, @"EndcordPrivacyCover", covers);
+        return covers.count;
+    };
+
+    set(@[ @"recents" ]);
+    after(0.3, ^{
+        [center postNotificationName:UIApplicationWillResignActiveNotification object:app];
+        after(0.3, ^{
+            NSMutableArray *covers = [NSMutableArray array];
+            findViews(window, @"EndcordPrivacyCover", covers);
+            UIView *cover = covers.firstObject;
+            check(@"privacy-covers-when-inactive",
+                  covers.count == 1 && cover.superview == window && CGRectEqualToRect(cover.frame, window.bounds) &&
+                      window.subviews.lastObject == cover,
+                  [NSString stringWithFormat:@"%lu covers, %@", (unsigned long)covers.count,
+                                             cover ? NSStringFromCGRect(cover.frame) : @"none"]);
+            // Leaving again before coming back doesn't stack them
+            [center postNotificationName:UIApplicationDidEnterBackgroundNotification object:app];
+            after(0.3, ^{
+                check(@"privacy-one-cover", countCovers() == 1, [NSString stringWithFormat:@"%lu", (unsigned long)countCovers()]);
+                printf("SCREENSHOT %s\n", scenario.UTF8String);
+                fflush(stdout);
+                // Long enough for run.sh's screenshot
+                after(3, ^{
+                    [center postNotificationName:UIApplicationDidBecomeActiveNotification object:app];
+                    after(0.3, ^{
+                        check(@"privacy-uncovers-when-active", countCovers() == 0,
+                              [NSString stringWithFormat:@"%lu left", (unsigned long)countCovers()]);
+                        // Turned off, nothing covers it
+                        set(@[ @"off" ]);
+                        after(0.3, ^{
+                            [center postNotificationName:UIApplicationWillResignActiveNotification object:app];
+                            after(0.3, ^{
+                                check(@"privacy-off", countCovers() == 0,
+                                      [NSString stringWithFormat:@"%lu covers", (unsigned long)countCovers()]);
+                                [center postNotificationName:UIApplicationDidBecomeActiveNotification object:app];
+                                finish();
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+}
+
 /** The app group: the signed one, with what the stand-in folder had moved into it */
 static void checkAppGroup(void)
 {
@@ -627,6 +694,7 @@ static void runScenario(jsi::Runtime &rt)
         @"signed-start" : @"hbc2",
         @"signed-tampered-cache" : @"hbc2",
         @"signed-tampered-download" : @"none",
+        @"signed-wrong-name" : @"none",
         @"signed-forged" : @"none",
         @"signed-newer" : @"hbc2",
         @"signed-rollback" : @"hbc2",
@@ -700,7 +768,7 @@ static void runScenario(jsi::Runtime &rt)
     // What happens a moment later: the background update, an alert
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         UIAlertController *alert = shownAlert();
-        NSArray *refused = @[ @"signed-tampered-download", @"signed-forged", @"signed-rollback-empty" ];
+        NSArray *refused = @[ @"signed-tampered-download", @"signed-wrong-name", @"signed-forged", @"signed-rollback-empty" ];
         if ([refused containsObject:scenario])
         {
             check(@"alert", [alert.message containsString:@"security check"], alert.message ?: @"no alert");
@@ -779,6 +847,11 @@ static void runScenario(jsi::Runtime &rt)
     if ([scenario isEqualToString:@"smooth-caret"])
     {
         checkSmoothCaret(root);
+        return YES;
+    }
+    if ([scenario isEqualToString:@"screen-privacy"])
+    {
+        checkScreenPrivacy(root);
         return YES;
     }
     if ([scenario isEqualToString:@"app-group"])

@@ -16,9 +16,9 @@ export default definePlugin({
     icon: "SparklesIcon",
     tags: ["Utility"],
     settings: {
-        apiKey: { type: "string", label: tx("API key"), description: tx("Your own key from platform.openai.com; it stays on this phone"), default: "", placeholder: "sk-…" },
+        apiKey: { type: "string", label: tx("API key"), description: tx("Your own key from platform.openai.com; it stays on this phone"), default: "", placeholder: "sk-…", sensitive: true },
         model: { type: "string", label: tx("Model"), default: "gpt-4o-mini" },
-        baseUrl: { type: "string", label: tx("API address"), description: tx("For OpenAI-compatible services; leave it as it is for OpenAI"), default: "https://api.openai.com/v1" },
+        baseUrl: { type: "string", label: tx("API address"), description: tx("For OpenAI-compatible services; leave it as it is for OpenAI"), default: "https://api.openai.com/v1", sensitive: true },
         system: { type: "string", label: tx("Instructions"), description: tx("How it should answer"), default: "Answer briefly. Discord markdown is supported.", multiline: true },
     },
     start({ store, cleanup }) {

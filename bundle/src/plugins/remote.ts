@@ -8,6 +8,8 @@
  * starts, refreshed at most every few hours, and only downloaded and parsed again when the server says it changed.
  */
 
+import { readJson } from "@lib/utils/safeFetch";
+
 const HOUR = 60 * 60 * 1000;
 
 export interface RemoteData<T> {
@@ -45,7 +47,8 @@ export function remoteJson<T>(url: string, options: { parse: (json: any) => T; r
             checkedAt = Date.now();
             if (res.status === 304) return;
             if (!res.ok) throw new Error(`${url} answered ${res.status}`);
-            const parsed = options.parse(await res.json());
+            // Within the size every downloaded list is held to: a host gone wrong can't fill the memory every refresh
+            const parsed = options.parse(await readJson(res));
             if (started !== generation) return;
             value = parsed;
             etag = res.headers.get("etag") ?? undefined;

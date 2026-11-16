@@ -9,12 +9,15 @@
  */
 
 import { t } from "@core/i18n";
+import { plainName } from "@core/pluginScan";
 import { showConfirmationAlert } from "@core/vendetta/alerts";
 
 export interface PendingPluginUpdate {
     name: string;
     /** Where the code came from, for the user to recognise */
     source: string;
+    /** What the new code does that the code before didn't (core/pluginScan), described for the user */
+    risks?: string[];
     apply: () => Promise<void> | void;
 }
 
@@ -47,7 +50,7 @@ async function applyAll() {
 
 function askToApply() {
     if (!pending.size) return;
-    const list = [...pending.values()].map(u => `• ${u.name} (${u.source})`).join("\n");
+    const list = [...pending.values()].map(u => [`• ${plainName(u.name)} (${plainName(u.source)})`, ...(u.risks ?? []).map(r => `   ⚠️ ${r}`)].join("\n")).join("\n");
     showConfirmationAlert({
         title: t("Plugin updates"),
         content: t("New code was downloaded for these plugins. It runs in Discord with everything your account can do, so only apply updates you expect:\n\n{list}", { list }),

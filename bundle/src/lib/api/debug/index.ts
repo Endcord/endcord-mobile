@@ -155,6 +155,12 @@ export async function initDebugger() {
     // The settings may still be loading this early at startup
     await awaitStorage(settings);
     if (!settings.enableAutoDebugger || !settings.debuggerUrl) return;
+    // Whoever answers at the address runs code in Discord: in safe mode nothing that isn't Endcord's own runs, this
+    // neither (it still connects by hand, from the Developer page)
+    if (settings.safeMode?.enabled === true) {
+        logger.warn("DevTools doesn't connect on start in safe mode");
+        return;
+    }
     if (!isOwnMachineDebugger(settings.debuggerUrl)) {
         logger.warn(`DevTools connects on start only to this machine; ${settings.debuggerUrl} needs connecting by hand`);
         return;

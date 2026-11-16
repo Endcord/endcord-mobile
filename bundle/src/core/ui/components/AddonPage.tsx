@@ -153,7 +153,8 @@ export default function AddonPage<T extends object>({ CardComponent, ...props }:
         }
     }, []);
 
-    if (results.length === 0 && !search && !props.filtered) {
+    // A page with something above its list (Endcord's own themes and fonts) keeps it when nothing is installed yet
+    if (results.length === 0 && !search && !props.filtered && !props.ListHeaderComponent) {
         return <View style={{ gap: 32, flexGrow: 1, justifyContent: "center", alignItems: "center" }}>
             <View style={{ gap: 8, alignItems: "center" }}>
                 <Image source={findAssetId("empty_quick_switcher")!} />
@@ -208,13 +209,26 @@ export default function AddonPage<T extends object>({ CardComponent, ...props }:
                 extraData={search}
                 estimatedItemSize={136}
                 ListHeaderComponent={headerElement}
-                ListEmptyComponent={() => <View style={{ gap: 12, padding: 12, alignItems: "center" }}>
-                    <Image source={findAssetId("devices_not_found")!} />
-                    <Text variant="text-lg/semibold">
-                        {t("No results")}
-                    </Text>
-                </View>}
-                contentContainerStyle={{ padding: 8, paddingHorizontal: 12, paddingBottom: 90 }}
+                ListEmptyComponent={() => search || props.filtered
+                    ? <View style={{ gap: 12, padding: 12, alignItems: "center" }}>
+                        <Image source={findAssetId("devices_not_found")!} />
+                        <Text variant="text-lg/semibold">
+                            {t("No results")}
+                        </Text>
+                    </View>
+                    : <View style={{ gap: 12, padding: 12, alignItems: "center" }}>
+                        <Text variant="text-md/semibold" color="text-muted">
+                            {t("Nothing here yet")}
+                        </Text>
+                        {props.installAction && <Button
+                            size="md"
+                            variant="secondary"
+                            icon={findAssetId("DownloadIcon")}
+                            text={props.installAction.label ?? Strings.INSTALL}
+                            onPress={onInstallPress}
+                        />}
+                    </View>}
+                contentContainerStyle={{ padding: 8, paddingHorizontal: 12, paddingBottom: 90 + bottomInset }}
                 // While searching, a tap on a card's switch or buttons acts at once instead of only closing the
                 // keyboard, and scrolling the results puts the keyboard away
                 keyboardShouldPersistTaps="handled"

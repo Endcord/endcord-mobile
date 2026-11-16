@@ -89,7 +89,7 @@ jobs:
           # Signed ad hoc: the simulator needs a signature, not a developer's
           make TARGET=simulator:clang:latest:15.0 ARCHS=arm64 Endcord_USE_SUBSTRATE=0 TARGET_CODESIGN_FLAGS="-f -s -" \
             ENDCORD_BUNDLE_URL=http://127.0.0.1:4040/endcord.min.js ENDCORD_RELEASE_KEY="$(cat Tests/release-test-key.pub)" \
-            2>&1 | tee ../results/tweak-build.log
+            ENDCORD_ALLOW_CUSTOM_BUNDLE=1 2>&1 | tee ../results/tweak-build.log
           find .theos/obj -name "*.dylib"
           cp "$(find .theos/obj -name Endcord.dylib | head -n 1)" ../Endcord-simulator.dylib
       - name: Test

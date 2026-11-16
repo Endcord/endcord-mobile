@@ -182,6 +182,10 @@
     <string name="source_installed_desc">Discord %1$s, уже установленная версия. Он останется установленным как есть.</string>
     <string name="source_download">Скачать Discord</string>
     <string name="source_download_desc">Discord %1$s, последняя версия</string>
+    <string name="source_download_failed">Не удалось загрузить версии. Проверьте подключение.</string>
+    <string name="title_endcord_update">Вышла новая версия Endcord</string>
+    <string name="action_tap_to_install_endcord_update">Нажмите, чтобы установить её на Discord %1$s</string>
+    <string name="msg_endcord_update">Вышла новая версия Endcord. Обновите, чтобы получить её.</string>
 
     <string name="edition_title">Какой Endcord?</string>
     <string name="edition_endcord">Endcord</string>
@@ -192,4 +196,10 @@
     <string name="classic_note">Он устанавливается и обновляется собственным приложением, Endcord Classic Installer. Не удаляйте его, чтобы получать обновления.</string>
     <string name="action_get_classic_installer">Скачать Endcord Classic Installer</string>
     <string name="action_open_classic_installer">Открыть Endcord Classic Installer</string>
+    <string name="home_recent_changes">Последние изменения</string>
+    <string name="installer_status_running">Установка…</string>
+    <string name="installer_status_failed">Установка не удалась</string>
+    <string name="installer_failed_hint">Поделитесь журналами, когда просите о помощи, или очистите кэш и попробуйте снова.</string>
+    <string name="installer_done_hint">Откройте его, чтобы начать пользоваться Endcord.</string>
+    <string name="installer_steps_progress">Шагов: %1$d из %2$d</string>
 </resources>

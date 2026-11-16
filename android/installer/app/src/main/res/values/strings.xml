@@ -184,6 +184,10 @@
     <string name="source_installed_desc">Discord %1$s, the version you already have. It stays installed as it is.</string>
     <string name="source_download">Download Discord</string>
     <string name="source_download_desc">Discord %1$s, the latest version</string>
+    <string name="source_download_failed">Couldn\'t load the versions. Check your connection.</string>
+    <string name="title_endcord_update">A new version of Endcord is out</string>
+    <string name="action_tap_to_install_endcord_update">Tap to install it on Discord %1$s</string>
+    <string name="msg_endcord_update">A new version of Endcord is out. Update to get it.</string>
 
     <string name="edition_title">Which Endcord?</string>
     <string name="edition_endcord">Endcord</string>
@@ -194,4 +198,10 @@
     <string name="classic_note">It is installed and updated by its own app, Endcord Classic Installer. Keep it on your phone for updates.</string>
     <string name="action_get_classic_installer">Get Endcord Classic Installer</string>
     <string name="action_open_classic_installer">Open Endcord Classic Installer</string>
+    <string name="home_recent_changes">Recent changes</string>
+    <string name="installer_status_running">Installing…</string>
+    <string name="installer_status_failed">Installation failed</string>
+    <string name="installer_failed_hint">Share the logs when you ask for help, or clear the cache and try again.</string>
+    <string name="installer_done_hint">Open it to start using Endcord.</string>
+    <string name="installer_steps_progress">%1$d of %2$d steps</string>
 </resources>

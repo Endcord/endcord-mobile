@@ -11,18 +11,21 @@ import { BundleUpdaterManager } from "@lib/api/native/modules";
 import { settings } from "@lib/api/settings";
 import { openAlert } from "@lib/ui/alerts";
 import { DISCORD_SERVER, GITHUB } from "@lib/utils/constants";
+import { openSafeLink } from "@lib/utils/externalLinks";
 import { NavigationNative } from "@metro/common";
 import { AlertActionButton, AlertActions, AlertModal, Stack, TableRadioGroup, TableRadioRow, TableRow, TableRowGroup, TableSwitchRow } from "@metro/common/components";
-import { Linking, ScrollView } from "react-native";
+import { useEdgeInsets } from "@ui/insets";
+import { ScrollView } from "react-native";
 
 export default function General() {
     useProxy(settings);
 
     const debugInfo = getDebugInfo();
     const navigation = NavigationNative.useNavigation();
+    const { bottom } = useEdgeInsets();
 
     return (
-        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 38 }}>
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 38 + bottom }}>
             <Stack style={{ paddingVertical: 24, paddingHorizontal: 12 }} spacing={24}>
                 <TableRowGroup title={Strings.INFO}>
                     <TableRow
@@ -65,7 +68,7 @@ export default function General() {
                         label={t("Star on GitHub")}
                         subLabel={t("Free and open source, always")}
                         icon={<TableRow.Icon source={findAssetId("StarIcon")!} />}
-                        onPress={() => Linking.openURL(GITHUB)}
+                        onPress={() => void openSafeLink(GITHUB)}
                     />
                 </TableRowGroup>
                 <TableRowGroup title={Strings.LINKS}>
@@ -73,13 +76,13 @@ export default function General() {
                         arrow={true}
                         label={Strings.DISCORD_SERVER}
                         icon={<TableRow.Icon source={findAssetId("ClydeIcon")!} />}
-                        onPress={() => Linking.openURL(DISCORD_SERVER)}
+                        onPress={() => void openSafeLink(DISCORD_SERVER)}
                     />
                     <TableRow
                         arrow={true}
                         label={Strings.GITHUB}
                         icon={<TableRow.Icon source={findAssetId("img_account_sync_github_white")!} />}
-                        onPress={() => Linking.openURL(GITHUB)}
+                        onPress={() => void openSafeLink(GITHUB)}
                     />
                 </TableRowGroup>
                 <TableRowGroup title={Strings.ACTIONS}>

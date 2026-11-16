@@ -1,12 +1,12 @@
 package io.github.revenge.xposed.tweaks.plugins.repos
 
-import android.util.AtomicFile
 import io.github.revenge.xposed.RevengeJson
+import io.github.revenge.xposed.restoreInterruptedAtomicFile
 import io.github.revenge.xposed.tweaks.plugins.PluginErrorCodes
 import io.github.revenge.xposed.tweaks.plugins.PluginSystemError
+import io.github.revenge.xposed.writeBytesAtomically
 import kotlinx.serialization.Serializable
 import java.io.File
-import java.io.FileOutputStream
 
 /**
  * Where an installed plugin came from, and how it should be updated.
@@ -110,20 +110,18 @@ internal object SourcesStore {
 
     private fun persist(updated: Map<String, PluginSource>) {
         val f = file ?: error("SourcesStore not loaded")
-        val atomic = AtomicFile(f)
-        var fos: FileOutputStream? = null
+        // Read back plainly (loadFromFileOrNull), so written whole or not at all
         try {
-            fos = atomic.startWrite()
-            fos.write(RevengeJson.encodeToString(SourcesConfig(sources = updated)).toByteArray())
-            atomic.finishWrite(fos)
+            f.writeBytesAtomically(RevengeJson.encodeToString(SourcesConfig(sources = updated)).toByteArray())
         } catch (t: Throwable) {
-            if (fos != null) atomic.failWrite(fos)
             throw PluginSystemError(PluginErrorCodes.STORAGE_FAILED, "Failed to save plugin sources", t)
         }
         sources = updated
     }
 
     private fun loadFromFileOrNull(f: File): Map<String, PluginSource>? {
+        // Saved with AtomicFile before, which leaves a write cut short to its own reader to undo
+        runCatching { f.restoreInterruptedAtomicFile() }
         if (!f.isFile || f.length() <= 0L) return null
         return try {
             val config = RevengeJson.decodeFromString<SourcesConfig>(f.readText())

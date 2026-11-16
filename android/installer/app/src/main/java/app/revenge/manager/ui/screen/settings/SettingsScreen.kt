@@ -34,6 +34,7 @@ import app.revenge.manager.ui.components.settings.SettingsCategory
 import app.revenge.manager.ui.screen.about.AboutScreen
 import app.revenge.manager.utils.DimenUtils
 import org.koin.androidx.compose.get
+import app.revenge.manager.ui.components.readableWidth
 
 class SettingsScreen : Screen {
 
@@ -52,6 +53,7 @@ class SettingsScreen : Screen {
                 modifier = Modifier
                     .padding(pv)
                     .verticalScroll(rememberScrollState())
+                    .readableWidth()
                     .padding(bottom = DimenUtils.navBarPadding)
             ) {
                 SettingsCategory(
@@ -90,8 +92,10 @@ class SettingsScreen : Screen {
                     subtext = buildString {
                         append(stringResource(R.string.app_name))
                         append(" v${BuildConfig.VERSION_NAME}")
-                        if (preferences.isDeveloper) {
-                            append(" (${BuildConfig.GIT_COMMIT}")
+                        // The commit only when the build had one: built outside a git checkout, it's "null"
+                        val commit = BuildConfig.GIT_COMMIT.takeIf { it.isNotBlank() && it != "null" }
+                        if (preferences.isDeveloper && commit != null) {
+                            append(" ($commit")
                             if (BuildConfig.GIT_LOCAL_CHANGES || BuildConfig.GIT_LOCAL_COMMITS) {
                                 append(" - Local")
                             }

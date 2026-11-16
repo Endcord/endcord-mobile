@@ -1,7 +1,8 @@
 import { awaitStorage, createMMKVBackend, createStorage, wrapSync } from "@core/vendetta/storage";
 import { clearFolder, downloadFile, fileExists, removeFile, writeFile } from "@lib/api/native/fs";
 import { safeFetch } from "@lib/utils";
-import { isAddonUrl, requireAddonUrl } from "@lib/utils/addonUrl";
+import { isAddonUrl, requireAddonResponse, requireAddonUrl } from "@lib/utils/addonUrl";
+import { readJson } from "@lib/utils/safeFetch";
 
 type FontMap = Record<string, string>;
 
@@ -61,7 +62,7 @@ export async function saveFont(data: string | FontDefinition, selected = false) 
     if (typeof data === "string") {
         requireAddonUrl(data);
         try {
-            fontDefJson = await (await safeFetch(data)).json();
+            fontDefJson = await readJson(requireAddonResponse(await safeFetch(data)));
         } catch (e) {
             throw new Error(`Failed to fetch fonts at ${data}`, { cause: e });
         }
@@ -90,7 +91,8 @@ async function downloadFontFiles(font: FontDefinition) {
         let ext = url.split(".").pop();
         if (ext !== "ttf" && ext !== "otf") ext = "ttf";
         const path = `downloads/fonts/${font.name}/${file}.${ext}`;
-        if (!await fileExists(path)) await downloadFile(url, path);
+        // Not after a redirect to plain http or into the phone's network: the file goes to the system's font parser
+        if (!await fileExists(path)) await downloadFile(url, path, { checkResponse: requireAddonResponse });
     })).then(it => it.map(it => it.status === "fulfilled" ? undefined : it.reason));
 
     if (errors.some(it => it)) throw errors;
@@ -103,7 +105,7 @@ async function downloadFontFiles(font: FontDefinition) {
 export async function updateFont(fontDef: FontDefinition, previousName = fontDef.name) {
     let fontDefCopy = { ...fontDef };
     if (fontDefCopy.source) fontDefCopy = {
-        ...await safeFetch(requireAddonUrl(fontDefCopy.source)).then(it => it.json()),
+        ...await safeFetch(requireAddonUrl(fontDefCopy.source)).then(it => readJson(requireAddonResponse(it))),
         // Can't change these properties
         name: fontDef.name,
         source: fontDef.source

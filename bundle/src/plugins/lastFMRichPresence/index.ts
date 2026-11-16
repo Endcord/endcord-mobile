@@ -22,21 +22,36 @@ export default definePlugin({
     tags: ["Media", "Customisation"],
     settings: {
         username: { type: "string", label: tx("Last.fm username"), description: tx("Last.fm username"), default: "" },
-        apiKey: { type: "string", label: tx("API key"), description: tx("Custom Last.fm API key. Not required but highly recommended to avoid rate limiting with our shared key"), default: "" },
+        apiKey: { type: "string", label: tx("API key"), description: tx("Custom Last.fm API key. Not required but highly recommended to avoid rate limiting with our shared key"), default: "", sensitive: true },
         useListeningStatus: { type: "boolean", label: tx("Listening to"), description: tx("Show \"Listening to\" status instead of \"Playing\""), default: true },
         hideWithSpotify: { type: "boolean", label: tx("Hide while Spotify plays"), description: tx("Hide Last.fm presence if spotify is running"), default: true },
         showLastFmLogo: { type: "boolean", label: tx("Last.fm logo"), description: tx("Show the Last.fm logo by the album cover"), default: true },
     },
     start({ store, cleanup, logger }) {
         let lastTrack = "";
+        // One check at a time: on a slow network a check outlasts the 16 seconds, and the next would pile up behind it
+        let checking = false;
         const poll = async () => {
+            if (checking) return;
+            checking = true;
+            try {
+                await check();
+            } finally {
+                checking = false;
+            }
+        };
+        const check = async () => {
             if (!store.username.trim()) return setActivity(LASTFM, null);
             const me = getStore("UserStore")?.getCurrentUser?.()?.id;
             const spotify = (me && getStore("PresenceStore")?.getActivities?.(me) || []).some((a: any) => a?.type === 2 && a.name === "Spotify");
             if (store.hideWithSpotify && spotify) return setActivity(LASTFM, null);
             try {
                 const query = `method=user.getrecenttracks&user=${encodeURIComponent(store.username.trim())}&api_key=${store.apiKey.trim() || LASTFM_KEY}&format=json&limit=1`;
-                const data = await fetch(`https://ws.audioscrobbler.com/2.0/?${query}`).then(r => r.json());
+                const abort = new AbortController();
+                const timeout = setTimeout(() => abort.abort(), 15_000);
+                const data = await fetch(`https://ws.audioscrobbler.com/2.0/?${query}`, { signal: abort.signal })
+                    .then(r => r.json())
+                    .finally(() => clearTimeout(timeout));
                 const track = data?.recenttracks?.track?.[0];
                 if (!track?.["@attr"]?.nowplaying) {
                     lastTrack = "";

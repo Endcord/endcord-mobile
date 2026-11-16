@@ -1,14 +1,14 @@
 package io.github.revenge.xposed.tweaks.plugins.repos
 
-import android.util.AtomicFile
 import io.github.revenge.Logger
 import io.github.revenge.logger
 import io.github.revenge.xposed.RevengeJson
+import io.github.revenge.xposed.restoreInterruptedAtomicFile
 import io.github.revenge.xposed.tweaks.plugins.PluginErrorCodes
 import io.github.revenge.xposed.tweaks.plugins.PluginSystemError
+import io.github.revenge.xposed.writeBytesAtomically
 import kotlinx.serialization.Serializable
 import java.io.File
-import java.io.FileOutputStream
 import java.security.MessageDigest
 
 /**
@@ -123,6 +123,7 @@ internal object RepoStore {
     /** The last successfully fetched index of [url], parsed + sanitized, or `null` if none/invalid. */
     fun cachedIndex(url: String): RepoIndex? {
         val file = cachedIndexFile(url)
+        runCatching { file.restoreInterruptedAtomicFile() }
         if (!file.isFile) return null
         return try {
             parseRepoIndex(file.readText(), url, log)
@@ -133,6 +134,8 @@ internal object RepoStore {
     }
 
     private fun loadFromFileOrNull(file: File): List<UserRepo>? {
+        // Saved with AtomicFile before, which leaves a write cut short to its own reader to undo
+        runCatching { file.restoreInterruptedAtomicFile() }
         if (!file.isFile || file.length() <= 0L) return null
         return try {
             val config = RevengeJson.decodeFromString<ReposConfig>(file.readText())
@@ -149,15 +152,11 @@ internal object RepoStore {
         }
     }
 
+    /** Read back plainly ([loadFromFileOrNull]), so written whole or not at all */
     private fun save(file: File, entries: List<UserRepo>) {
-        val atomic = AtomicFile(file)
-        var fos: FileOutputStream? = null
         try {
-            fos = atomic.startWrite()
-            fos.write(RevengeJson.encodeToString(ReposConfig(repos = entries)).toByteArray())
-            atomic.finishWrite(fos)
+            file.writeBytesAtomically(RevengeJson.encodeToString(ReposConfig(repos = entries)).toByteArray())
         } catch (t: Throwable) {
-            if (fos != null) atomic.failWrite(fos)
             throw PluginSystemError(PluginErrorCodes.STORAGE_FAILED, "Failed to save repos config", t)
         }
     }

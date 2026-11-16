@@ -20,8 +20,9 @@ import { hex, sha256 } from "@plugins/crypto";
 import { DevToolsClient } from "@revenge-mod/devtools-client";
 import { semanticColors } from "@ui/color";
 import { ErrorBoundary } from "@ui/components";
+import { useEdgeInsets } from "@ui/insets";
 import { createStyles, TextStyleSheet } from "@ui/styles";
-import { NativeModules, ScrollView } from "react-native";
+import { NativeModules, Platform, ScrollView } from "react-native";
 
 const { hideActionSheet } = lazyDestructure(() => findByProps("openLazy", "hideActionSheet"));
 const { showSimpleActionSheet } = lazyDestructure(() => findByProps("showSimpleActionSheet"));
@@ -63,10 +64,11 @@ export default function Developer() {
 
     useProxy(settings);
     useProxy(loaderConfig);
+    const { bottom } = useEdgeInsets();
 
     return (
         <ErrorBoundary>
-            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 38 }} keyboardShouldPersistTaps="handled">
+            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 38 + bottom }} keyboardShouldPersistTaps="handled">
                 <Stack style={{ paddingVertical: 24, paddingHorizontal: 12 }} spacing={24}>
                     <TextInput
                         label={Strings.DEBUGGER_URL}
@@ -109,7 +111,10 @@ export default function Developer() {
                         <TableRowGroup title={t("Loader settings")}>
                             <TableSwitchRow
                                 label={Strings.LOAD_FROM_CUSTOM_URL}
-                                subLabel={Strings.LOAD_FROM_CUSTOM_URL_DEC}
+                                // The iOS loader takes a custom link only in a developer build (ios/Sources/LoaderConfig.m)
+                                subLabel={Platform.OS === "ios"
+                                    ? `${Strings.LOAD_FROM_CUSTOM_URL_DEC} ${t("On iOS, only a developer build of Endcord loads it; a release build always loads the signed bundle.")}`
+                                    : Strings.LOAD_FROM_CUSTOM_URL_DEC}
                                 icon={<TableRow.Icon source={findAssetId("LinkIcon")} />}
                                 value={loaderConfig.customLoadUrl.enabled}
                                 onValueChange={(v: boolean) => {
@@ -134,13 +139,14 @@ export default function Developer() {
                                     });
                                 }}
                             />
-                            {loaderConfig.customLoadUrl.enabled && <TableRow label={<TextInput
+                            {/* Shown while off too: the switch only turns on for a valid link, so it has to be typed first */}
+                            <TableRow label={<TextInput
                                 defaultValue={loaderConfig.customLoadUrl.url}
                                 size="md"
                                 onChange={(v: string) => loaderConfig.customLoadUrl.url = v}
                                 placeholder="http://localhost:4040/endcord.js"
                                 label={Strings.BUNNY_URL}
-                            />} />}
+                            />} />
                             {isReactDevToolsPreloaded() && isVendettaLoader() && <TableSwitchRow
                                 label={Strings.LOAD_REACT_DEVTOOLS}
                                 subLabel={`${Strings.VERSION}: ${getReactDevToolsVersion()}`}

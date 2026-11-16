@@ -13,6 +13,7 @@ import kotlinx.coroutines.sync.withLock
 
 val pluginInstallMethods by tweak {
     pluginSystemMethod("revenge.plugins.installFile") {
+        InstalledPluginPolicy.require("Installing a plugin")
         SourcesStore.ensureLoaded(appInfo.dataDir)
         promptInstallPlugin(
             installedVersion = { id -> pluginRegistry.factories[id]?.manifest?.version },
@@ -58,6 +59,7 @@ val pluginInstallMethods by tweak {
      * `pending` for an update (applies after reload).
      */
     pluginSystemAsyncMethod("revenge.plugins.confirmInstallFile") { args ->
+        InstalledPluginPolicy.require("Installing a plugin")
         val token = args.getOrNull(0) as? String
             ?: throw PluginSystemError(PluginErrorCodes.INVALID_ARGUMENT, "Expected an install token")
         val accepted = args.getOrNull(1) as? Boolean ?: false
@@ -90,6 +92,7 @@ val pluginInstallMethods by tweak {
      * - `skipMissingOptionals` skips untargeted optional dependencies that aren't installed.
      */
     pluginSystemAsyncMethod("revenge.plugins.planInstall") { args ->
+        InstalledPluginPolicy.require("Installing a plugin")
         val id = args.getOrNull(0) as? String
             ?: throw PluginSystemError(PluginErrorCodes.INVALID_ARGUMENT, "Expected a plugin ID")
         val options = args.getOrNull(1)?.let {
@@ -167,6 +170,7 @@ val pluginInstallMethods by tweak {
      * Concurrent calls get queued and run one by one, re-checking after each.
      */
     pluginSystemAsyncMethod("revenge.plugins.install") { args ->
+        InstalledPluginPolicy.require("Installing a plugin")
         val planMap = args.firstOrNull() as? Map<*, *>
             ?: throw PluginSystemError(PluginErrorCodes.INVALID_ARGUMENT, "Expected an install plan")
         val actions = (planMap["actions"] as? List<*>).orEmpty().map(::parseRepoInstallAction)

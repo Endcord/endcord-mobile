@@ -13,11 +13,12 @@ import { answer, only, randomBytes } from "../shared/utility";
 export default definePlugin({
     id: "endcord.color-info",
     name: "ColorInfo",
-    description: tx("See a color's RGB and HSL values, or get a random one, with /color"),
+    description: tx("See a color's RGB and HSL values, or get a random one, with /colorinfo"),
     icon: "PaintPaletteIcon",
     tags: ["Utility"],
     start: only({
-        name: "color",
+        // /color is ColorText's, as on Endcord PC
+        name: "colorinfo",
         description: tx("A color's values; leave it out for a random color"),
         options: [{ name: "hex", description: tx("Such as #5865F2") }],
         run: ({ hex: input }, ctx) => {

@@ -12,6 +12,7 @@
         "serve": "node scripts/serve.mjs",
         "serve:adb": "bun run serve --adb",
         "lint": "eslint ./src",
+        "test": "node scripts/test.mjs",
         "i18n": "node scripts/i18n-sync.mjs"
     },
     "license": "BSD-3-Clause",
@@ -58,5 +59,11 @@
         "react-native-webview": "^13.16.0",
         "spitroast": "^1.4.4",
         "type-fest": "^4.41.0"
+    },
+    "trustedDependencies": [
+        "esbuild"
+    ],
+    "overrides": {
+        "devalue": "5.9.4"
     }
 }

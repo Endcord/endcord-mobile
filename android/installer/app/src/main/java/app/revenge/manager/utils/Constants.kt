@@ -29,6 +29,8 @@ object Intents {
         const val VERSION = "${BuildConfig.APPLICATION_ID}.intents.extras.VERSION"
         /** What the app's own update notification carries ([PreferenceManager.pendingInstallToken]) */
         const val TOKEN = "${BuildConfig.APPLICATION_ID}.intents.extras.TOKEN"
+        /** For the update checker's notification: a newer Endcord on the same Discord, not a newer Discord */
+        const val ENDCORD_UPDATE = "${BuildConfig.APPLICATION_ID}.intents.extras.ENDCORD_UPDATE"
     }
 
 }

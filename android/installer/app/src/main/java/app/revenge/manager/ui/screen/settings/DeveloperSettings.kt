@@ -36,6 +36,7 @@ import app.revenge.manager.utils.DimenUtils
 import app.revenge.manager.utils.DiscordVersion
 import org.koin.androidx.compose.get
 import java.io.File
+import app.revenge.manager.ui.components.readableWidth
 
 class DeveloperSettings: Screen {
 
@@ -72,6 +73,7 @@ class DeveloperSettings: Screen {
                 modifier = Modifier
                     .padding(pv)
                     .verticalScroll(rememberScrollState())
+                    .readableWidth()
                     .padding(bottom = DimenUtils.navBarPadding)
             ) {
                 SettingsTextField(
@@ -120,6 +122,8 @@ class DeveloperSettings: Screen {
                     label = stringResource(R.string.settings_module_location_reset),
                     onClick = {
                         prefs.moduleLocation = prefs.DEFAULT_MODULE_LOCATION
+                        // The field shows its own copy: without this it kept the old path, and typing in it saved that
+                        moduleLocation = prefs.DEFAULT_MODULE_LOCATION.absolutePath
                     }
                 )
 

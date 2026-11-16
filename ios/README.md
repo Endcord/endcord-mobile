@@ -29,8 +29,8 @@ The workflow's simulator job (`Tests/run.sh`) builds the tweak for the iOS simul
 a stand-in for Discord with the Hermes runtime Discord ships (bytecode 98 and 99), which downloads its bundle from
 `Tests/server.py`. Each scenario is one launch: the first start, the cache and its ETag, updates, the plain bundle
 when there's no bytecode one, bytecode for another Hermes, offline starts, custom URLs, broken files, themes, fonts,
-a bundle that throws, the published bundle, the recovery menu, safe mode, SmoothType's caret and the app group. The
-release is only published when it passes.
+a bundle that throws, the published bundle, the recovery menu, safe mode, SmoothType's caret, PrivacyCurtain's cover
+and the app group. The release is only published when it passes.
 
 Pushing to an `ios-real/` branch runs the real iOS Discord on the simulator (`Tests/real-discord.sh`, the `iOS real
 Discord` workflow): a decrypted device build runs on an Apple silicon simulator once its binaries are retagged for it,

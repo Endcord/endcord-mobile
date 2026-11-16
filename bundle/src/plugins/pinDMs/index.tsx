@@ -12,6 +12,7 @@ import { showToast } from "@lib/ui/toasts";
 import { definePlugin } from "../api";
 import { getStore } from "../common";
 import { botMessage, command } from "../hooks";
+import { bySection } from "../shared/lists";
 import { channelLabel, listOf, pinnedFirst, pins, rewriteResult, toggleIn } from "../shared/navigation";
 import { choose } from "../ui/dialogs";
 import LogList from "../ui/LogList";
@@ -46,14 +47,16 @@ export default definePlugin({
     async start({ cleanup }) {
         await awaitStorage(pins);
         const store = getStore("PrivateChannelSortStore");
-        const patches = ["getPrivateChannelIds", "getSortedPrivateChannels"]
-            .map(method => rewriteResult(store, method, list => pinnedFirst(list, listOf("dms"))))
+        // Discord 353's DM list is getSortedChannels, in sections; older ones had getSortedPrivateChannels
+        const patches = ["getPrivateChannelIds", "getSortedChannels", "getSortedPrivateChannels"]
+            .map(method => rewriteResult(store, method, list => bySection(list, section => pinnedFirst(section, listOf("dms")))))
             .filter(p => p !== undefined);
         if (!patches.length) throw new Error("Discord's DM list wasn't found");
         refresh = () => patches.forEach(p => p.refresh());
+        // Cleanups run last first: the list draws again once it's Discord's own, so the pins don't stay
         cleanup(
-            () => patches.forEach(p => p.unpatch()),
             () => store?.emitChange?.(),
+            () => patches.forEach(p => p.unpatch()),
             () => void (refresh = undefined),
             command({
                 name: "pindm",

@@ -14,6 +14,7 @@
 #import "RCTHost.h"
 #import "RCTInstance.h"
 #import "Fonts.h"
+#import "ScreenPrivacy.h"
 #import "Settings.h"
 #import "SmoothCaret.h"
 #import "Themes.h"
@@ -125,6 +126,13 @@ static NSURL *savedReleaseFile(NSString *name)
     return [[getBundleURL() URLByDeletingLastPathComponent] URLByAppendingPathComponent:name];
 }
 
+/** The name the saved bundle is listed under in a signed release: the precompiled file for this Discord, or the plain JS */
+static NSString *publishedName(NSData *bundle)
+{
+    uint32_t version = hermesBytecodeVersion(bundle);
+    return version ? [NSString stringWithFormat:@"endcord.v%u.hbc", version] : @"endcord.min.js";
+}
+
 static BOOL loadsPublishedBundle(void)
 {
     LoaderConfig *config = [LoaderConfig getLoaderConfig];
@@ -134,9 +142,25 @@ static BOOL loadsPublishedBundle(void)
 /** The highest release sequence this install has accepted: outside the caches, so clearing them doesn't reset it */
 static NSString *const kReleaseSequenceKey = @"EndcordReleaseSequence";
 
+/** The release sequence this install has accepted, read safely whatever NSUserDefaults holds */
+static unsigned long long acceptedSequence(void)
+{
+    id stored = [NSUserDefaults.standardUserDefaults objectForKey:kReleaseSequenceKey];
+    return [stored isKindOfClass:NSNumber.class] ? [stored unsignedLongLongValue] : 0;
+}
+
 /**
- * Whether a published bundle read from the disk is one a signed release listed. The check on download doesn't cover a
- * file that's changed afterwards.
+ * Whether an unsigned bundle may be taken: only before a signed release has ever been accepted, and only when this
+ * build doesn't require signing. Once a signed release is in, a missing manifest can't downgrade the install.
+ */
+static BOOL unsignedBundleAllowed(void)
+{
+    return !requiresSignedBundle() && acceptedSequence() == 0;
+}
+
+/**
+ * Whether a published bundle read from the disk is one a signed release listed, under the name it would be published as.
+ * The check on download doesn't cover a file that's changed afterwards.
  */
 static BOOL savedBundleIsSigned(NSData *bundle)
 {
@@ -145,9 +169,9 @@ static BOOL savedBundleIsSigned(NSData *bundle)
         manifest  = [NSData dataWithContentsOfURL:savedReleaseFile(@"endcord-release.json")];
         signature = [NSData dataWithContentsOfURL:savedReleaseFile(@"endcord-release.sig")];
     });
-    if (!manifest || !signature) return !requiresSignedBundle();
+    if (!manifest || !signature) return unsignedBundleAllowed();
     BundleRelease *release = [BundleRelease releaseWithManifest:manifest signature:signature];
-    return [release contains:bundle];
+    return [release lists:publishedName(bundle) bytes:bundle];
 }
 
 /**
@@ -241,7 +265,7 @@ static NSData *fetchBundle(NSTimeInterval timeout)
         manifest  = fetchData(session, [folder URLByAppendingPathComponent:@"endcord-release.json"], timeout);
         signature = fetchData(session, [folder URLByAppendingPathComponent:@"endcord-release.sig"], timeout);
 
-        unsigned long long accepted = [[NSUserDefaults.standardUserDefaults objectForKey:kReleaseSequenceKey] unsignedLongLongValue];
+        unsigned long long accepted = acceptedSequence();
         if (manifest && signature) release = [BundleRelease releaseWithManifest:manifest signature:signature];
         if ((manifest && signature && !release) || (release && release.sequence < accepted))
         {
@@ -250,7 +274,9 @@ static NSData *fetchBundle(NSTimeInterval timeout)
             [session finishTasksAndInvalidate];
             return saved;
         }
-        if (!release && requiresSignedBundle())
+        // No release could be fetched: a build that requires signing, or one where a signed release was already
+        // accepted, takes no unsigned bundle (so a 404 on the signature can't serve one its own code over a signed install)
+        if (!release && !unsignedBundleAllowed())
         {
             BunnyLog(@"No signed release could be fetched, so no bundle is taken");
             [session finishTasksAndInvalidate];
@@ -268,7 +294,7 @@ static NSData *fetchBundle(NSTimeInterval timeout)
         [NSUserDefaults.standardUserDefaults setObject:@(release.sequence) forKey:kReleaseSequenceKey];
     };
 
-    if (release && [release contains:saved ?: NSData.data])
+    if (release && saved && [release lists:publishedName(saved) bytes:saved])
     {
         BunnyLog(@"The saved bundle is the latest release");
         keepRelease();
@@ -301,7 +327,8 @@ static NSData *fetchBundle(NSTimeInterval timeout)
         // A custom URL can serve bytecode for another Hermes, which is as good as nothing
         if (response.statusCode == 200 && data.length > 0 && canRunBundle(data, url.absoluteString))
         {
-            if (release && ![release contains:data])
+            // Under the name it's served as, so a signed APK can't pass for the bundle at the bundle's address
+            if (release && ![release lists:url.lastPathComponent bytes:data])
             {
                 BunnyLog(@"Refused the bundle from %@: it isn't the signed release's", url);
                 releaseRefused = YES;
@@ -346,6 +373,10 @@ static NSDictionary<NSString *, BridgeHandler> *bridgeHandlers(void)
             @"endcord.smoothType.configure": ^id(NSArray *args) {
                 configureSmoothCaret(args);
                 return nil;
+            },
+            // PrivacyCurtain, as on the Android loader: the mode it took
+            @"endcord.screenPrivacy.set": ^id(NSArray *args) {
+                return setScreenPrivacy(args);
             },
         };
     });

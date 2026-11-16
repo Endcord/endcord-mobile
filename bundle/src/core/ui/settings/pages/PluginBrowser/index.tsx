@@ -10,6 +10,7 @@
 
 import { t } from "@core/i18n";
 import { notices } from "@core/ui/settings/notices";
+import { turnOnAfterBanRisk } from "@core/ui/settings/pages/Plugins/confirmBanRisk";
 import { VdPluginManager } from "@core/vendetta/plugins";
 import { useProxy } from "@core/vendetta/storage";
 import { enablePlugin, isPluginEnabled, pluginSettings } from "@lib/addons/plugins";
@@ -20,14 +21,16 @@ import { hideSheet, showSheet } from "@lib/ui/sheets";
 import { showToast } from "@lib/ui/toasts";
 import { safeFetch } from "@lib/utils";
 import compareNames from "@lib/utils/compareNames";
+import { openSafeLink } from "@lib/utils/externalLinks";
 import { lazyDestructure } from "@lib/utils/lazy";
 import { findByProps } from "@metro";
 import { clipboard } from "@metro/common";
 import { ActionSheet, AlertActionButton, AlertActions, AlertModal, Button, Card, FlashList, IconButton, TableRow, TableRowGroup, Text } from "@metro/common/components";
 import { manifest } from "@plugins/manifest";
 import { Search } from "@ui/components";
+import { useEdgeInsets } from "@ui/insets";
 import { memo, ReactElement, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ActivityIndicator, Linking, ScrollView, View } from "react-native";
+import { ActivityIndicator, ScrollView, View } from "react-native";
 
 const { showSimpleActionSheet, hideActionSheet } = lazyDestructure(() => findByProps("showSimpleActionSheet"));
 
@@ -198,7 +201,7 @@ function showMenu(plugin: CommunityPlugin, installed: boolean, setBusy: (id: str
                 icon={<TableRow.Icon source={findAssetId("LinkExternalSmallIcon")} />}
                 onPress={() => {
                     close();
-                    Linking.openURL(plugin.sourceUrl!);
+                    openSafeLink(plugin.sourceUrl).catch(() => { });
                 }}
             />}
         </TableRowGroup>
@@ -232,9 +235,9 @@ const PluginCard = memo(function PluginCard({ plugin, installed, builtInOn, busy
             variant="secondary"
             text={builtInOn ? t("Built-in is on") : t("Use built-in")}
             disabled={builtInOn}
-            onPress={() => enablePlugin(id, true)
+            onPress={() => turnOnAfterBanRisk(name, () => void enablePlugin(id, true)
                 .then(() => showToast(t("{name} is on", { name }), findAssetId("CheckmarkLargeIcon")))
-                .catch(e => showToast(t("Couldn't turn on {name}: {error}", { name, error: errorText(e) }), findAssetId("CircleXIcon-primary")))}
+                .catch(e => showToast(t("Couldn't turn on {name}: {error}", { name, error: errorText(e) }), findAssetId("CircleXIcon-primary"))))}
         />;
     } else {
         action = <Button size="sm" text={t("Install")} loading={busy} disabled={busy} onPress={() => confirmInstall(plugin, setBusy)} />;
@@ -270,6 +273,7 @@ export default function PluginBrowser() {
     const { list, failed, loading, reload } = useCommunityList();
     const installedPlugins = useProxy(VdPluginManager.plugins);
     useObservable([pluginSettings]);
+    const { bottom } = useEdgeInsets();
     const [query, setQuery] = useState("");
     const [filter, setFilter] = useState<Filter>("working");
     const [sort, setSort] = useState<Sort>("newest");
@@ -339,7 +343,7 @@ export default function PluginBrowser() {
         ItemSeparatorComponent={Separator}
         refreshing={loading && !!list}
         onRefresh={reload}
-        contentContainerStyle={{ padding: 12, paddingBottom: 38 }}
+        contentContainerStyle={{ padding: 12, paddingBottom: 38 + bottom }}
         keyboardShouldPersistTaps="handled"
         keyboardDismissMode="on-drag"
         renderItem={({ item }: { item: CommunityPlugin; }) => <PluginCard

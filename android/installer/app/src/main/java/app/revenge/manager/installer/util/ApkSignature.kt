@@ -2,6 +2,7 @@
 package app.revenge.manager.installer.util
 
 import android.content.Context
+import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
 import com.android.apksig.ApkVerifier
@@ -23,6 +24,17 @@ object ApkSignature {
         if (certificates.none { it in DISCORD_CERTIFICATES }) {
             throw SecurityException("${apk.name} isn't signed by Discord (signed by ${certificates.joinToString()})")
         }
+    }
+
+    /**
+     * Whether the installed app [info], read with [PackageManager.GET_SIGNING_CERTIFICATES], is signed by Discord.
+     * Any app can be installed as `com.discord` where Discord isn't; only Discord's own is built into Endcord.
+     */
+    @Suppress("DEPRECATION")
+    fun isSignedByDiscord(info: PackageInfo): Boolean {
+        val signing = info.signingInfo ?: return false
+        val signers = if (signing.hasMultipleSigners()) signing.apkContentsSigners else signing.signingCertificateHistory
+        return signers.orEmpty().any { sha256Hex(it.toByteArray()) in DISCORD_CERTIFICATES }
     }
 
     /**

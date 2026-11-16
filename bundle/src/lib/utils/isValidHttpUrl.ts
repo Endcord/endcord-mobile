@@ -1,12 +1,9 @@
-// https://stackoverflow.com/a/43467144/15031462
+import { isWebLink } from "@lib/utils/externalLinks";
+
+/**
+ * Whether text is an http or https link. Without URL, which React Native only partly implements: reading its protocol
+ * throws there, which drawing a dialog with this would have done.
+ */
 export default function isValidHttpUrl(input: string) {
-    let url: URL;
-
-    try {
-        url = new URL(input);
-    } catch {
-        return false;
-    }
-
-    return url.protocol === "http:" || url.protocol === "https:";
+    return isWebLink(input) && !/\s/.test(input.trim());
 }

@@ -17,6 +17,9 @@ class DownloadBaseStep(
 
     override val nameRes = R.string.step_dl_base
 
+    override val versionCode = version
+    override val split: String? = null
+
     override val downloadMirrorUrlPath: String = "/tracker/download/$version/base"
     override val destination = dir.resolve("base-$version.apk")
     override val workingCopy = workingDir.resolve("base-$version.apk")

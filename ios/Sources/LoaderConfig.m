@@ -53,6 +53,17 @@ static BOOL isAllowedBundleURL(NSURL *url) {
         }
     }
 
+#ifndef ENDCORD_ALLOW_CUSTOM_BUNDLE
+    // A release build loads the published, signed bundle only. loader.json is written from JS (Discord's file module), so
+    // any plugin could otherwise make every later start run its own code in place of Endcord's, unchecked and unasked,
+    // even after it's removed. As on Android, a custom bundle link is a developer's tool: builds made with
+    // ENDCORD_ALLOW_CUSTOM_BUNDLE=1 (the simulator test's) take it
+    if (self.customLoadUrlEnabled) {
+        BunnyLog(@"Ignoring the custom bundle URL: this build loads the published, signed bundle only");
+        self.customLoadUrlEnabled = NO;
+    }
+#endif
+
     BunnyLog(@"Loader config loaded - Custom URL %@: %@", self.customLoadUrlEnabled ? @"enabled" : @"disabled",
              self.customLoadUrl.absoluteString);
     return YES;

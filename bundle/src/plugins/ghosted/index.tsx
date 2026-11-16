@@ -40,6 +40,9 @@ function GhostedPage() {
     />;
 }
 
+/** The most conversations kept as waiting for an answer */
+const MAX_WAITING = 300;
+
 export default definePlugin({
     id: "endcord.ghosted",
     name: "Ghosted",
@@ -64,7 +67,12 @@ export default definePlugin({
                 const chats = { ...(waiting.chats ?? {}) };
                 if (mine) delete chats[channel.id];
                 // Waiting since their first unanswered message, showing the latest
-                else chats[channel.id] = { userId: message.author.id, at: chats[channel.id]?.at ?? Date.now(), preview: message.content || t("Sent an attachment") };
+                else chats[channel.id] = { userId: message.author.id, at: chats[channel.id]?.at ?? Date.now(), preview: preview(message.content || t("Sent an attachment"), 120) };
+                // Anyone can message you: the oldest waits are let go past a few hundred
+                const chatIds = Object.keys(chats);
+                if (chatIds.length > MAX_WAITING) {
+                    for (const id of chatIds.sort((a, b) => chats[a].at - chats[b].at).slice(0, chatIds.length - MAX_WAITING)) delete chats[id];
+                }
                 waiting.chats = chats;
             }),
             command({

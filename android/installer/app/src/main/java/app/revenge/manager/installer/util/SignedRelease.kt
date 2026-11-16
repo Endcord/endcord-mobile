@@ -4,12 +4,15 @@ package app.revenge.manager.installer.util
 import android.util.Base64
 import app.revenge.manager.BuildConfig
 import io.ktor.client.HttpClient
-import io.ktor.client.call.body
-import io.ktor.client.request.get
 import io.ktor.client.request.parameter
+import io.ktor.client.request.prepareGet
+import io.ktor.client.statement.bodyAsChannel
 import io.ktor.http.HttpStatusCode
+import io.ktor.http.contentLength
+import io.ktor.utils.io.readAvailable
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.security.KeyFactory
 import java.security.MessageDigest
@@ -38,6 +41,9 @@ class SignedRelease private constructor(
 ) {
     /** The address of a file of this release that never changes, unlike the branch's, which the CDN caches for a while */
     fun pinnedUrlOf(name: String): String? = files[name]?.url
+
+    /** The SHA-256 this release lists [name] with, in lowercase hex */
+    fun sha256Of(name: String): String? = files[name]?.sha256?.lowercase()
 
     /** Throws unless [file] is the one this release lists as [name], by size and SHA-256 */
     fun require(name: String, file: File) {
@@ -87,14 +93,32 @@ class SignedRelease private constructor(
             return release
         }
 
-        /** The body of a URL as the server has it now, or null when it answers with anything but 200 */
-        private suspend fun HttpClient.download(url: String): ByteArray? {
-            // The query defeats the CDN's cache, which could hold the manifest and the signature of two different builds
-            val response = get(url) { parameter("t", System.currentTimeMillis() / 60_000) }
-            return if (response.status == HttpStatusCode.OK) response.body<ByteArray>() else null
-        }
+        /** A release manifest or signature is some KiB; a bigger answer isn't one, and isn't read into memory */
+        private const val MAX_BYTES = 1L shl 20
 
-        private fun sha256Hex(file: File): String {
+        /** The body of a URL as the server has it now, or null when it answers with anything but 200 */
+        private suspend fun HttpClient.download(url: String): ByteArray? =
+            // The query defeats the CDN's cache, which could hold the manifest and the signature of two different builds
+            prepareGet(url) { parameter("t", System.currentTimeMillis() / 60_000) }.execute { response ->
+                if (response.status != HttpStatusCode.OK) return@execute null
+                val declared = response.contentLength()
+                if (declared != null && declared > MAX_BYTES) {
+                    throw SecurityException("$url is $declared bytes, too big for a signed release file")
+                }
+                // Streamed with a cap, as the length a server declares can be left out
+                val body = response.bodyAsChannel()
+                val out = ByteArrayOutputStream()
+                val buffer = ByteArray(8192)
+                while (!body.isClosedForRead) {
+                    val read = body.readAvailable(buffer)
+                    if (read < 0) break
+                    out.write(buffer, 0, read)
+                    if (out.size() > MAX_BYTES) throw SecurityException("$url is too big for a signed release file")
+                }
+                out.toByteArray()
+            }
+
+        fun sha256Hex(file: File): String {
             val digest = MessageDigest.getInstance("SHA-256")
             file.inputStream().use { input ->
                 val buffer = ByteArray(1 shl 16)

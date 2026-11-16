@@ -2,13 +2,13 @@
 package app.revenge.manager.installer.step.download
 
 import android.content.Context
-import android.content.pm.PackageManager
-import android.os.Build
 import androidx.compose.runtime.Stable
 import app.revenge.manager.R
 import app.revenge.manager.installer.step.Step
 import app.revenge.manager.installer.step.StepGroup
 import app.revenge.manager.installer.step.StepRunner
+import app.revenge.manager.installer.util.ApkSignature
+import app.revenge.manager.installer.util.DiscordApkManifest
 import app.revenge.manager.utils.InstalledDiscord
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -38,15 +38,9 @@ class CopyInstalledDiscordStep(
     val baseApk: File get() = apks.first()
 
     override suspend fun run(runner: StepRunner) = withContext(Dispatchers.IO) {
-        val info = try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                context.packageManager.getApplicationInfo(InstalledDiscord.PACKAGE, PackageManager.ApplicationInfoFlags.of(0L))
-            } else {
-                context.packageManager.getApplicationInfo(InstalledDiscord.PACKAGE, 0)
-            }
-        } catch (e: PackageManager.NameNotFoundException) {
-            throw IllegalStateException("Discord isn't installed anymore. Go back and choose to download it instead.")
-        }
+        // Only Discord's own: any app can be installed as com.discord where Discord isn't
+        val info = InstalledDiscord.packageInfo(context)?.applicationInfo
+            ?: throw IllegalStateException("Discord isn't installed anymore. Go back and choose to download it instead.")
 
         workingDir.mkdirs()
         val sources = listOf(File(info.sourceDir)) + (info.splitSourceDirs?.map(::File) ?: emptyList())
@@ -71,6 +65,12 @@ class CopyInstalledDiscordStep(
             }
             target
         }
-        runner.logger.i("Copied ${apks.size} APKs of Discord ${InstalledDiscord.versionName(context)}")
+
+        // The copies are checked, not the installed files: they are what's patched, and nothing outside this app can
+        // swap them between the check and the patching. Each must carry Discord's signature, and all be one Discord.
+        runner.logger.i("Verifying the copies")
+        apks.forEach { ApkSignature.requireDiscord(it) }
+        val versionCode = DiscordApkManifest.requireOneDiscord(apks)
+        runner.logger.i("Copied ${apks.size} APKs of Discord ${InstalledDiscord.versionName(context)} ($versionCode)")
     }
 }

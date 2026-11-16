@@ -36,7 +36,7 @@ export default definePlugin({
     icon: "EyeSlashIcon",
     tags: ["Privacy", "Fun"],
     settings: {
-        password: { type: "string", label: tx("Saved password"), description: tx("Hidden messages with it are shown under their message; leave empty to always ask"), default: "" },
+        password: { type: "string", label: tx("Saved password"), description: tx("Hidden messages with it are shown under their message; leave empty to always ask"), default: "", sensitive: true },
     },
     start({ store, cleanup }) {
         const reveal = (content: string, password: string) => {

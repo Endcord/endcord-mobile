@@ -1,3 +1,4 @@
+import { noteCrash } from "@core/debug/bootGuard";
 import ErrorBoundaryScreen from "@core/ui/reporter/components/ErrorBoundaryScreen";
 import { after } from "@lib/api/patcher";
 import { _lazyContextSymbol } from "@metro/lazy";
@@ -12,6 +13,8 @@ function getErrorBoundaryContext() {
 export default function patchErrorBoundary() {
     return after.await("render", getErrorBoundaryContext(), function (this: any) {
         if (!this.state.error) return;
+        // A crash: this start doesn't count as one that came up
+        noteCrash();
 
         return <ErrorBoundaryScreen
             error={this.state.error}

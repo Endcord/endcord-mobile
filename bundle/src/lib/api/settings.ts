@@ -9,6 +9,8 @@ export interface Settings {
     safeMode?: {
         enabled: boolean;
         currentThemeId?: string;
+        /** Turned on by the boot guard after failed starts, rather than by the person */
+        fromCrashes?: boolean;
     };
     enableEvalCommand?: boolean;
     /** "auto" (or unset) follows Discord's language */
@@ -29,7 +31,8 @@ export const loaderConfig = wrapSync(createStorage<LoaderConfig>(
     createFileBackend(getLoaderConfigPath(), {
         customLoadUrl: {
             enabled: false,
-            url: "http://localhost:4040/revenge.js"
+            // What `bun run serve` serves
+            url: "http://localhost:4040/endcord.js"
         }
     })
 ));

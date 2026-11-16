@@ -1,10 +1,10 @@
 package io.github.revenge.xposed.tweaks.plugins.repos
 
-import android.util.AtomicFile
-import androidx.core.util.writeBytes
+import io.github.revenge.xposed.DownloadLimits
 import io.github.revenge.xposed.ETagFetchResult
 import io.github.revenge.xposed.getWithETag
 import io.github.revenge.xposed.httpClient
+import io.github.revenge.xposed.writeBytesAtomically
 import io.github.revenge.xposed.tweaks.plugins.PluginErrorCodes
 import io.github.revenge.xposed.tweaks.plugins.PluginSystemError
 
@@ -38,6 +38,7 @@ internal suspend fun refreshRepo(url: String): RepoIndex {
         url = indexUrl,
         etag = if (etagFile.isFile && indexFile.isFile) etagFile.readText() else null,
         timeoutMillis = REFRESH_TIMEOUT,
+        maxBytes = DownloadLimits.REPO_INDEX,
     )
 
     return when (result) {
@@ -52,7 +53,8 @@ internal suspend fun refreshRepo(url: String): RepoIndex {
             val index = parseRepoIndex(result.bytes.decodeToString(), url, RepoStore.log)
 
             RepoStore.cacheDirFor(url).mkdirs()
-            AtomicFile(indexFile).writeBytes(result.bytes)
+            // Read back plainly (RepoStore.cachedIndex), so written whole or not at all
+            indexFile.writeBytesAtomically(result.bytes)
             result.etag?.let(etagFile::writeText) ?: etagFile.delete()
 
             index

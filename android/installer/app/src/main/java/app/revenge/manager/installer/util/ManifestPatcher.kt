@@ -16,6 +16,12 @@ object ManifestPatcher {
     private const val COMPILE_SDK_VERSION = "compileSdkVersion"
     private const val COMPILE_SDK_VERSION_CODENAME = "compileSdkVersionCodename"
     private const val DRNE_PERMISSION = "DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+
+    // android.R.attr ids of the attributes added to <application>
+    internal const val ATTR_DEBUGGABLE = 0x0101000f
+    internal const val ATTR_USES_CLEARTEXT_TRAFFIC = 0x010104ec
+    internal const val ATTR_REQUEST_LEGACY_EXTERNAL_STORAGE = 0x01010603
+    internal const val ATTR_NETWORK_SECURITY_CONFIG = 0x01010527
     private const val DISCORD_DRNE_PERMISSION = "com.discord.$DRNE_PERMISSION"
 
     /**
@@ -100,6 +106,10 @@ object ManifestPatcher {
                                     type: Int,
                                     value: Any?
                                 ) {
+                                    // Discord's network security config says cleartextTrafficPermitted=false, and a
+                                    // config overrides usesCleartextTraffic: plain http (a developer's own bundle) is
+                                    // only let through without it. Its base config holds nothing else
+                                    if (cleartextTraffic && (name == NETWORK_SECURITY_CONFIG || resourceId == ATTR_NETWORK_SECURITY_CONFIG)) return
                                     super.attr(ns, name, resourceId, type, value)
                                     if (name == REQUEST_LEGACY_EXTERNAL_STORAGE) addLegacyStorage =
                                         false
@@ -146,25 +156,27 @@ object ManifestPatcher {
                                     }
                                 }
 
+                                // Android reads the framework's attributes by their resource id, not their name:
+                                // added without one, they were in the file but Android never applied them
                                 override fun end() {
                                     if (addLegacyStorage) super.attr(
                                         ANDROID_NAMESPACE,
                                         REQUEST_LEGACY_EXTERNAL_STORAGE,
-                                        -1,
+                                        ATTR_REQUEST_LEGACY_EXTERNAL_STORAGE,
                                         TYPE_INT_BOOLEAN,
                                         1
                                     )
                                     if (addDebuggable) super.attr(
                                         ANDROID_NAMESPACE,
                                         DEBUGGABLE,
-                                        -1,
+                                        ATTR_DEBUGGABLE,
                                         TYPE_INT_BOOLEAN,
                                         1
                                     )
                                     if (addUseClearTextTraffic) super.attr(
                                         ANDROID_NAMESPACE,
                                         USES_CLEARTEXT_TRAFFIC,
-                                        -1,
+                                        ATTR_USES_CLEARTEXT_TRAFFIC,
                                         TYPE_INT_BOOLEAN,
                                         1
                                     )

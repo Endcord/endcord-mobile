@@ -99,7 +99,14 @@
             refetchBundle(self);
             break;
         case 2:
+#ifdef ENDCORD_ALLOW_CUSTOM_BUNDLE
             [self loadCustomBundle];
+#else
+            showErrorAlert(@"Not in this build",
+                           @"This build of Endcord only loads its published, signed bundle. Loading a custom bundle "
+                           @"needs a developer build.",
+                           nil);
+#endif
             break;
         case 3:
             resetCustomBundleURL(self);

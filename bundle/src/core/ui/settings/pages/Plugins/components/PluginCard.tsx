@@ -1,10 +1,12 @@
 import { t } from "@core/i18n";
 import { CardWrapper } from "@core/ui/components/AddonCard";
+import { turnOnAfterBanRisk } from "@core/ui/settings/pages/Plugins/confirmBanRisk";
 import { UnifiedPluginModel } from "@core/ui/settings/pages/Plugins/models";
 import { usePluginCardStyles } from "@core/ui/settings/pages/Plugins/usePluginCardStyles";
 import { findAssetId } from "@lib/api/assets";
 import { NavigationNative, tokens } from "@metro/common";
 import { Card, IconButton, Stack, TableSwitch, Text } from "@metro/common/components";
+import { BAN_RISK_LEAD, banRiskOf } from "@plugins/banRisk";
 import { showSheet } from "@ui/sheets";
 import chroma from "chroma-js";
 import { createContext, useContext, useMemo } from "react";
@@ -108,6 +110,16 @@ function Description() {
     </Text>;
 }
 
+/** Endcord PC's warning on a plugin whose work Discord can see and punish */
+function BanRisk({ reason }: { reason: string; }) {
+    return <View style={{ flexDirection: "row", gap: 8, alignItems: "flex-start" }}>
+        <Image source={findAssetId("WarningIcon")} style={{ width: 16, height: 16, marginTop: 2, tintColor: "#F0B232" }} />
+        <Text variant="text-sm/medium" color="text-feedback-warning" style={{ flexShrink: 1 }}>
+            {`${t(BAN_RISK_LEAD)} ${t(reason)}`}
+        </Text>
+    </View>;
+}
+
 const Actions = () => {
     const { plugin } = useCardContext();
     const navigation = NavigationNative.useNavigation();
@@ -141,6 +153,12 @@ export default function PluginCard({ result, item: plugin }: CardWrapper<Unified
 
     const [, forceUpdate] = React.useReducer(() => ({}), 0);
     const cardContextValue = useMemo(() => ({ plugin, result }), [plugin, result]);
+    const risk = banRiskOf(plugin);
+
+    const toggle = (v: boolean) => {
+        plugin.toggle(v);
+        forceUpdate();
+    };
 
     return (
         <CardContext.Provider value={cardContextValue}>
@@ -155,12 +173,14 @@ export default function PluginCard({ result, item: plugin }: CardWrapper<Unified
                         <TableSwitch
                             value={plugin.isEnabled()}
                             onValueChange={(v: boolean) => {
-                                plugin.toggle(v);
-                                forceUpdate();
+                                // Turned on only once it's clear the account is at stake
+                                if (v && risk) turnOnAfterBanRisk(plugin.name, () => toggle(true));
+                                else toggle(v);
                             }}
                         />
                     </View>
                     <Description />
+                    {risk && <BanRisk reason={risk} />}
                     <View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
                         <Actions />
                     </View>

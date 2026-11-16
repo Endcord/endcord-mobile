@@ -23,6 +23,10 @@ class PatchManifestsStep : Step() {
 
     override suspend fun run(runner: StepRunner) {
         val baseApk = runner.baseApk()
+        val packageName = preferences.modPackageName
+        if (packageName != preferences.packageName) {
+            runner.logger.i("\"${preferences.packageName}\" can't be a package name; installing as $packageName")
+        }
 
         runner.discordApks().forEach { apk ->
             runner.logger.i("Reading AndroidManifest.xml from ${apk.name}")
@@ -35,7 +39,7 @@ class PatchManifestsStep : Step() {
                 val patchedManifestBytes = if (apk == baseApk) {
                     ManifestPatcher.patchManifest(
                         manifestBytes = manifest,
-                        packageName = preferences.packageName,
+                        packageName = packageName,
                         appName = preferences.appName,
                         debuggable = preferences.debuggable,
                         // Plain http only for development: a bundle from the developer's machine, or an installer
@@ -44,7 +48,7 @@ class PatchManifestsStep : Step() {
                     )
                 } else {
                     runner.logger.i("Changing package name in ${apk.name}")
-                    ManifestPatcher.renamePackage(manifest, preferences.packageName)
+                    ManifestPatcher.renamePackage(manifest, packageName)
                 }
 
                 runner.logger.i("Deleting old AndroidManifest.xml in ${apk.name}")

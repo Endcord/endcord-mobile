@@ -188,27 +188,41 @@ class StepRunner(
      * Run all the [steps] in order
      */
     suspend fun runAll(): Throwable? {
-        for (step in steps) {
-            if (completed) return null // Failsafe in case runner is incorrectly marked as not completed too early
+        running = true
+        try {
+            for (step in steps) {
+                if (completed) return null // Failsafe in case runner is incorrectly marked as not completed too early
 
-            currentStep = step
-            val error = step.runCatching(this)
-            if (error != null) {
-                logger.e("Failed on ${step::class.simpleName}", error)
+                currentStep = step
+                val error = step.runCatching(this)
+                if (error != null) {
+                    logger.e("Failed on ${step::class.simpleName}", error)
 
-                completed = true
-                return error
+                    completed = true
+                    return error
+                }
+
+                // Add delay for human psychology and
+                // better group visibility in UI (the active group can change way too fast)
+                if (!preferenceManager.isDeveloper && step.durationMs < 1000) {
+                    delay(1000L - step.durationMs)
+                }
             }
 
-            // Add delay for human psychology and
-            // better group visibility in UI (the active group can change way too fast)
-            if (!preferenceManager.isDeveloper && step.durationMs < 1000) {
-                delay(1000L - step.durationMs)
-            }
+            // Which loader Endcord now has: the home screen and the update checker tell when a newer one is published
+            preferenceManager.installedLoaderSha256 = runCatching { getCompletedStep<DownloadModStep>().signedLoaderSha256 }.getOrNull() ?: ""
+            completed = true
+            return null
+        } finally {
+            running = false
         }
+    }
 
-        completed = true
-        return null
+    companion object {
+        /** Whether an install is running in this process, which starting the app over would stop */
+        @Volatile
+        var running = false
+            private set
     }
 
 }

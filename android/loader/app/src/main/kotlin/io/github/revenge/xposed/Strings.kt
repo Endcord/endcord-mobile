@@ -33,6 +33,10 @@ object Strings {
             "recovery_booted_message" to "Endcord crashed several times in a row, so it started in recovery mode with plugins and themes turned off.",
             "recovery_exit" to "Leave recovery mode",
             "recovery_hold" to "Keep holding for the recovery options…",
+            "custom_url_title" to "Endcord isn't loading its own code",
+            "custom_url_message" to "Endcord is set to load its code from this link instead of its signed releases:\n\n%s\n\nCode from there isn't checked and can do anything in Discord with your account. Only allow it if you set this up yourself in the developer settings.",
+            "custom_url_allow" to "Load from this link",
+            "custom_url_turn_off" to "Turn it off",
         ),
         "tr" to mapOf(
             "update_downloaded_title" to "Endcord güncellemesi indirildi",
@@ -58,6 +62,10 @@ object Strings {
             "recovery_booted_message" to "Endcord art arda birkaç kez çöktüğü için eklentiler ve temalar kapalı olarak kurtarma modunda açıldı.",
             "recovery_exit" to "Kurtarma modundan çık",
             "recovery_hold" to "Kurtarma seçenekleri için basılı tutmaya devam et…",
+            "custom_url_title" to "Endcord kendi kodunu yüklemiyor",
+            "custom_url_message" to "Endcord, imzalı sürümleri yerine kodunu şu bağlantıdan yükleyecek şekilde ayarlanmış:\n\n%s\n\nOradan gelen kod kontrol edilmez ve Discord'da hesabınla her şeyi yapabilir. Yalnızca bunu geliştirici ayarlarından kendin ayarladıysan izin ver.",
+            "custom_url_allow" to "Bu bağlantıdan yükle",
+            "custom_url_turn_off" to "Kapat",
         ),
         "ru" to mapOf(
             "update_downloaded_title" to "Обновление Endcord загружено",
@@ -83,6 +91,10 @@ object Strings {
             "recovery_booted_message" to "Endcord несколько раз подряд завершился сбоем, поэтому он запущен в режиме восстановления с отключёнными плагинами и темами.",
             "recovery_exit" to "Выйти из режима восстановления",
             "recovery_hold" to "Продолжайте удерживать для параметров восстановления…",
+            "custom_url_title" to "Endcord загружает не свой код",
+            "custom_url_message" to "Endcord настроен загружать свой код по этой ссылке вместо подписанных выпусков:\n\n%s\n\nКод оттуда не проверяется и может делать в Discord что угодно от имени вашей учётной записи. Разрешайте, только если вы сами настроили это в настройках разработчика.",
+            "custom_url_allow" to "Загрузить по этой ссылке",
+            "custom_url_turn_off" to "Отключить",
         ),
         "es" to mapOf(
             "update_downloaded_title" to "Actualización de Endcord descargada",
@@ -108,6 +120,10 @@ object Strings {
             "recovery_booted_message" to "Endcord falló varias veces seguidas, así que se inició en modo de recuperación con los plugins y temas desactivados.",
             "recovery_exit" to "Salir del modo de recuperación",
             "recovery_hold" to "Sigue manteniendo pulsado para ver las opciones de recuperación…",
+            "custom_url_title" to "Endcord no está cargando su propio código",
+            "custom_url_message" to "Endcord está configurado para cargar su código desde este enlace en lugar de sus versiones firmadas:\n\n%s\n\nEl código de ahí no se comprueba y puede hacer cualquier cosa en Discord con tu cuenta. Permítelo solo si lo configuraste tú en los ajustes de desarrollador.",
+            "custom_url_allow" to "Cargar desde este enlace",
+            "custom_url_turn_off" to "Desactivarlo",
         ),
         "fr" to mapOf(
             "update_downloaded_title" to "Mise à jour d'Endcord téléchargée",
@@ -133,6 +149,10 @@ object Strings {
             "recovery_booted_message" to "Endcord a planté plusieurs fois de suite, il a donc démarré en mode récupération avec les plugins et les thèmes désactivés.",
             "recovery_exit" to "Quitter le mode récupération",
             "recovery_hold" to "Maintenez appuyé pour les options de récupération…",
+            "custom_url_title" to "Endcord ne charge pas son propre code",
+            "custom_url_message" to "Endcord est configuré pour charger son code depuis ce lien au lieu de ses versions signées :\n\n%s\n\nLe code qui en vient n'est pas vérifié et peut tout faire dans Discord avec votre compte. Ne l'autorisez que si vous l'avez configuré vous-même dans les paramètres de développement.",
+            "custom_url_allow" to "Charger depuis ce lien",
+            "custom_url_turn_off" to "Le désactiver",
         ),
     )
 

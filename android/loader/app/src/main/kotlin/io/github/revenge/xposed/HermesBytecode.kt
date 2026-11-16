@@ -34,6 +34,9 @@ object HermesBytecode {
     /** The bytecode version of a file, or null when it is plain JS (or couldn't be read) */
     fun versionOf(file: File): Int? = runCatching { file.inputStream().use(::readVersion) }.getOrNull()
 
+    /** The bytecode version of a bundle's bytes, or null when it is plain JS */
+    fun versionOf(bytes: ByteArray): Int? = runCatching { bytes.inputStream().use(::readVersion) }.getOrNull()
+
     private fun readVersion(input: InputStream): Int? {
         val header = ByteArray(12)
         if (input.read(header) != header.size) return null

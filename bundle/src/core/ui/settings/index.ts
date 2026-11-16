@@ -1,5 +1,5 @@
 import EndcordIcon from "@assets/icons/endcord.png";
-import { Strings } from "@core/i18n";
+import { Strings, t } from "@core/i18n";
 import { useProxy } from "@core/vendetta/storage";
 import { findAssetId } from "@lib/api/assets";
 import { isFontSupported, isThemeSupported } from "@lib/api/native/loader";
@@ -40,6 +40,12 @@ export default function initSettings() {
                 icon: findAssetId("LettersIcon"),
                 render: () => import("@core/ui/settings/pages/Fonts"),
                 usePredicate: () => isFontSupported()
+            },
+            {
+                key: "ENDCORD_SECURITY",
+                title: () => t("Security"),
+                icon: findAssetId("ShieldIcon"),
+                render: () => import("@core/ui/settings/pages/Security")
             },
             {
                 key: "BUNNY_DEVELOPER",

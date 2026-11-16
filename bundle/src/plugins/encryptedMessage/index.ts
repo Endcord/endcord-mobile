@@ -20,7 +20,7 @@ export default definePlugin({
     icon: "LockIcon",
     tags: ["Privacy", "Chat"],
     settings: {
-        password: { type: "string", label: tx("Saved password"), description: tx("Messages encrypted with it are shown decrypted under them; leave empty to always ask"), default: "" },
+        password: { type: "string", label: tx("Saved password"), description: tx("Messages encrypted with it are shown decrypted under them; leave empty to always ask"), default: "", sensitive: true },
     },
     start({ store, cleanup }) {
         const decrypt = (content: string, password: string) => {

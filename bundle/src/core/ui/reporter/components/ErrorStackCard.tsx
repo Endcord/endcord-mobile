@@ -1,6 +1,7 @@
 import { t } from "@core/i18n";
 import parseErrorStack, { StackFrame } from "@core/ui/reporter/utils/parseErrorStack";
 import { findAssetId } from "@lib/api/assets";
+import { redactSecrets } from "@lib/utils/redact";
 import { clipboard, constants } from "@metro/common";
 import { Button, Card, Text } from "@metro/common/components";
 import { useState } from "react";
@@ -41,7 +42,7 @@ export default function ErrorStackCard(props: {
                     variant="secondary"
                     text={t("Copy")}
                     icon={findAssetId("CopyIcon")}
-                    onPress={() => clipboard.setString(props.error.stack)} />
+                    onPress={() => clipboard.setString(redactSecrets(props.error.stack))} />
             </View>
         </View>
     </Card>;

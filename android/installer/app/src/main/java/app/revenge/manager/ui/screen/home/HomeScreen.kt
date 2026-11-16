@@ -1,19 +1,26 @@
 package app.revenge.manager.ui.screen.home
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.basicMarquee
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
@@ -21,8 +28,13 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.OpenInNew
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.rounded.CloudDownload
+import androidx.compose.material.icons.rounded.Download
+import androidx.compose.material.icons.rounded.PhoneAndroid
+import androidx.compose.material.icons.rounded.Upgrade
 import androidx.compose.material3.Button
-import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -33,6 +45,7 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SegmentedButtonDefaults
 import androidx.compose.material3.SingleChoiceSegmentedButtonRow
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -44,8 +57,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
@@ -78,6 +95,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import org.koin.androidx.compose.get
 import androidx.compose.material3.SegmentedButton as ChoiceButton
+import app.revenge.manager.ui.components.readableWidth
 
 private val COMPACT_HEIGHT = 720.dp
 private val COMPACT_LIST_HEIGHT = 360.dp
@@ -156,10 +174,11 @@ class HomeScreen : Screen {
                 val compact = maxHeight < COMPACT_HEIGHT * LocalDensity.current.fontScale
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(14.dp),
                     modifier = Modifier
                         .then(if (compact) Modifier.verticalScroll(rememberScrollState()) else Modifier)
-                        .padding(16.dp)
+                        .readableWidth()
+                        .padding(horizontal = 16.dp, vertical = 8.dp)
                         .fillMaxWidth()
                 ) {
                     EditionPicker(
@@ -173,54 +192,24 @@ class HomeScreen : Screen {
                     if (edition == Edition.CLASSIC) {
                         ClassicPanel(viewModel)
                     } else {
-                        AppIcon(
-                            customIcon = prefs.patchIcon,
-                            releaseChannel = prefs.channel,
-                            modifier = Modifier.size(60.dp)
-                        )
-
-                        Text(
-                            text = prefs.appName,
-                            style = MaterialTheme.typography.titleLarge
-                        )
-
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            AnimatedVisibility(visible = currentVersion != null) {
-                                Text(
-                                    text = stringResource(
-                                        R.string.version_current,
-                                        currentVersion.toString()
-                                    ),
-                                    style = MaterialTheme.typography.labelLarge,
-                                    color = LocalContentColor.current.copy(alpha = 0.5f),
-                                    textAlign = TextAlign.Center
-                                )
-                            }
-
-                            val latestLabel = when {
-                                useInstalled -> R.string.version_on_phone
-                                prefs.discordVersion.isNotBlank() -> R.string.version_target
-                                else -> R.string.version_latest
-                            }
-
-                            AnimatedVisibility(visible = latestVersion != null) {
-                                Text(
-                                    text = stringResource(latestLabel, latestVersion.toString()),
-                                    style = MaterialTheme.typography.labelLarge,
-                                    color = LocalContentColor.current.copy(alpha = 0.5f),
-                                    textAlign = TextAlign.Center
-                                )
-                            }
+                        val latestLabel = when {
+                            useInstalled -> R.string.version_on_phone
+                            prefs.discordVersion.isNotBlank() -> R.string.version_target
+                            else -> R.string.version_latest
                         }
+
+                        Hero(
+                            prefs = prefs,
+                            current = currentVersion?.let { stringResource(R.string.version_current, it.toString()) },
+                            latest = latestVersion?.let { stringResource(latestLabel, it.toString()) },
+                        )
 
                         if (installedDiscord != null) {
                             SourcePicker(
                                 source = source,
                                 installed = installedDiscord,
                                 download = downloadVersion,
+                                downloadFailed = viewModel.versionsFailed,
                                 onChange = {
                                     source = it
                                     prefs.discordSource = it
@@ -228,35 +217,59 @@ class HomeScreen : Screen {
                             )
                         }
 
+                        // The versions couldn't be fetched: the button tries again rather than waiting for good
+                        val retry = latestVersion == null && !useInstalled && viewModel.versionsFailed
+                        val (label, icon) = when {
+                            retry -> R.string.action_try_again to Icons.Filled.Refresh
+                            latestVersion == null -> R.string.msg_loading to null
+                            currentVersion == null -> R.string.action_install to Icons.Rounded.Download
+                            // The same Discord, with a newer Endcord loader published: only installing again brings it
+                            currentVersion == latestVersion && viewModel.endcordUpdate -> R.string.action_update to Icons.Rounded.Upgrade
+                            currentVersion == latestVersion -> R.string.action_reinstall to Icons.Filled.Refresh
+                            latestVersion > currentVersion -> R.string.action_update to Icons.Rounded.Upgrade
+                            else -> (if (prefs.allowDowngrade) R.string.msg_downgrade else R.string.msg_downgrade_disallowed) to null
+                        }
+
                         Button(
                             onClick = {
-                                navigator.navigate(InstallerScreen(latestVersion!!, useInstalled))
+                                if (retry) viewModel.getDiscordVersions()
+                                else navigator.navigate(InstallerScreen(latestVersion!!, useInstalled))
                             },
-                            enabled = latestVersion != null && (prefs.allowDowngrade || latestVersion >= (currentVersion ?: Constants.DUMMY_VERSION)),
-                            modifier = Modifier.fillMaxWidth()
+                            enabled = retry || latestVersion != null && (prefs.allowDowngrade || latestVersion >= (currentVersion ?: Constants.DUMMY_VERSION)),
+                            contentPadding = PaddingValues(horizontal = 24.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(56.dp)
                         ) {
-                            val label = when {
-                                latestVersion == null -> R.string.msg_loading
-                                currentVersion == null -> R.string.action_install
-                                currentVersion == latestVersion -> R.string.action_reinstall
-                                latestVersion > currentVersion -> R.string.action_update
-                                else -> if (prefs.allowDowngrade) R.string.msg_downgrade else R.string.msg_downgrade_disallowed
+                            if (icon != null) {
+                                Icon(imageVector = icon, contentDescription = null, modifier = Modifier.size(20.dp))
+                                Spacer(modifier = Modifier.width(10.dp))
                             }
-
                             Text(
                                 text = stringResource(label),
+                                style = MaterialTheme.typography.titleMedium,
                                 textAlign = TextAlign.Center,
                                 maxLines = 1,
                                 modifier = Modifier
+                                    .weight(1f, fill = false)
                                     .basicMarquee()
-                                    .fillMaxWidth()
+                            )
+                        }
+
+                        if (currentVersion == latestVersion && viewModel.endcordUpdate) {
+                            Text(
+                                text = stringResource(R.string.msg_endcord_update),
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier.fillMaxWidth()
                             )
                         }
 
                         AnimatedVisibility(visible = viewModel.installManager.current != null) {
                             Row(
-                                horizontalArrangement = Arrangement.spacedBy(2.dp),
-                                modifier = Modifier.clip(RoundedCornerShape(16.dp))
+                                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                                modifier = Modifier.fillMaxWidth()
                             ) {
                                 SegmentedButton(
                                     icon = Icons.Filled.OpenInNew,
@@ -276,16 +289,84 @@ class HomeScreen : Screen {
                             }
                         }
 
-                        ElevatedCard(
-                            modifier = if (compact) Modifier.fillMaxWidth().height(COMPACT_LIST_HEIGHT) else Modifier.fillMaxSize()
+                        Column(
+                            modifier = Modifier
+                                .then(if (compact) Modifier.fillMaxWidth().height(COMPACT_LIST_HEIGHT) else Modifier.fillMaxSize())
+                                .clip(MaterialTheme.shapes.large)
+                                .background(MaterialTheme.colorScheme.surfaceContainerLow)
                         ) {
-                            CommitList(
-                                commits = viewModel.commits.collectAsLazyPagingItems()
+                            Text(
+                                text = stringResource(R.string.home_recent_changes),
+                                style = MaterialTheme.typography.titleSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.padding(start = 20.dp, end = 20.dp, top = 16.dp, bottom = 4.dp)
                             )
+                            Box(modifier = Modifier.weight(1f)) {
+                                CommitList(
+                                    commits = viewModel.commits.collectAsLazyPagingItems()
+                                )
+                            }
                         }
                     }
                 }
             }
+        }
+    }
+
+    /** The app's icon and name on a tinted card, with the versions installed and to be installed */
+    @Composable
+    private fun Hero(prefs: PreferenceManager, current: String?, latest: String?) {
+        val colors = MaterialTheme.colorScheme
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(MaterialTheme.shapes.large)
+                .background(Brush.linearGradient(listOf(colors.primaryContainer, colors.surfaceContainerHigh)))
+                .padding(20.dp)
+        ) {
+            AppIcon(
+                customIcon = prefs.patchIcon,
+                releaseChannel = prefs.channel,
+                modifier = Modifier.size(64.dp)
+            )
+
+            Column(
+                verticalArrangement = Arrangement.spacedBy(6.dp),
+                modifier = Modifier.weight(1f)
+            ) {
+                Text(
+                    text = prefs.appName,
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = colors.onPrimaryContainer,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                AnimatedVisibility(visible = current != null) {
+                    VersionChip(current.orEmpty())
+                }
+                AnimatedVisibility(visible = latest != null) {
+                    VersionChip(latest.orEmpty())
+                }
+            }
+        }
+    }
+
+    @Composable
+    private fun VersionChip(text: String) {
+        Surface(
+            shape = CircleShape,
+            color = MaterialTheme.colorScheme.surface.copy(alpha = 0.7f),
+        ) {
+            Text(
+                text = text,
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurface,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp)
+            )
         }
     }
 
@@ -331,14 +412,18 @@ class HomeScreen : Screen {
 
     @Composable
     private fun ClassicPanel(viewModel: HomeViewModel) {
-        ElevatedCard(modifier = Modifier.fillMaxWidth()) {
+        Card(
+            shape = MaterialTheme.shapes.large,
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainerLow),
+            modifier = Modifier.fillMaxWidth()
+        ) {
             Column(
                 verticalArrangement = Arrangement.spacedBy(12.dp),
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(20.dp)
             ) {
                 Text(
                     text = stringResource(R.string.edition_classic),
-                    style = MaterialTheme.typography.titleMedium
+                    style = MaterialTheme.typography.titleLarge
                 )
                 Text(
                     text = stringResource(R.string.classic_body),
@@ -360,7 +445,9 @@ class HomeScreen : Screen {
                 Button(
                     onClick = { viewModel.openOrGetClassicInstaller() },
                     enabled = !viewModel.isGettingClassic,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(52.dp)
                 ) {
                     Text(
                         text = stringResource(
@@ -383,45 +470,74 @@ class HomeScreen : Screen {
         source: DiscordSource,
         installed: DiscordVersion,
         download: DiscordVersion?,
+        downloadFailed: Boolean,
         onChange: (DiscordSource) -> Unit
     ) {
-        ElevatedCard(modifier = Modifier.fillMaxWidth()) {
-            Column(modifier = Modifier.padding(vertical = 8.dp)) {
-                SourceOption(
-                    selected = source == DiscordSource.INSTALLED,
-                    title = stringResource(R.string.source_installed),
-                    subtitle = stringResource(R.string.source_installed_desc, installed.toString()),
-                    onClick = { onChange(DiscordSource.INSTALLED) }
-                )
-                SourceOption(
-                    selected = source == DiscordSource.DOWNLOAD,
-                    title = stringResource(R.string.source_download),
-                    subtitle = download?.let { stringResource(R.string.source_download_desc, it.toString()) }
-                        ?: stringResource(R.string.msg_loading),
-                    onClick = { onChange(DiscordSource.DOWNLOAD) }
-                )
-            }
+        Column(
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            SourceOption(
+                selected = source == DiscordSource.INSTALLED,
+                icon = Icons.Rounded.PhoneAndroid,
+                title = stringResource(R.string.source_installed),
+                subtitle = stringResource(R.string.source_installed_desc, installed.toString()),
+                onClick = { onChange(DiscordSource.INSTALLED) }
+            )
+            SourceOption(
+                selected = source == DiscordSource.DOWNLOAD,
+                icon = Icons.Rounded.CloudDownload,
+                title = stringResource(R.string.source_download),
+                subtitle = download?.let { stringResource(R.string.source_download_desc, it.toString()) }
+                    ?: stringResource(if (downloadFailed) R.string.source_download_failed else R.string.msg_loading),
+                onClick = { onChange(DiscordSource.DOWNLOAD) }
+            )
         }
     }
 
+    /** A choice as a card: tinted and outlined when it's the chosen one */
     @Composable
-    private fun SourceOption(selected: Boolean, title: String, subtitle: String, onClick: () -> Unit) {
+    private fun SourceOption(
+        selected: Boolean,
+        icon: ImageVector,
+        title: String,
+        subtitle: String,
+        onClick: () -> Unit
+    ) {
+        val colors = MaterialTheme.colorScheme
+        val shape = MaterialTheme.shapes.medium
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
+                .clip(shape)
+                .background(if (selected) colors.secondaryContainer else colors.surfaceContainerLow)
+                .border(
+                    width = if (selected) 1.5.dp else 1.dp,
+                    color = if (selected) colors.primary else colors.outlineVariant.copy(alpha = 0.6f),
+                    shape = shape
+                )
                 .selectable(selected = selected, role = Role.RadioButton, onClick = onClick)
-                .padding(horizontal = 12.dp, vertical = 8.dp)
+                .padding(horizontal = 16.dp, vertical = 12.dp)
         ) {
-            RadioButton(selected = selected, onClick = null)
-            Column(modifier = Modifier.padding(start = 12.dp)) {
+            Icon(
+                imageVector = icon,
+                contentDescription = null,
+                tint = if (selected) colors.primary else colors.onSurfaceVariant
+            )
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(horizontal = 14.dp)
+            ) {
                 Text(text = title, style = MaterialTheme.typography.titleSmall)
                 Text(
                     text = subtitle,
                     style = MaterialTheme.typography.bodySmall,
-                    color = LocalContentColor.current.copy(alpha = 0.6f)
+                    color = LocalContentColor.current.copy(alpha = 0.65f)
                 )
             }
+            RadioButton(selected = selected, onClick = null)
         }
     }
 
@@ -429,7 +545,21 @@ class HomeScreen : Screen {
     @OptIn(ExperimentalMaterial3Api::class)
     private fun TitleBar() {
         TopAppBar(
-            title = { Text(stringResource(R.string.app_name)) },
+            title = {
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                    // Endcord's panda on night blue, as on the launcher. The launcher icon itself is an adaptive icon,
+                    // which Compose can't draw: its foreground picture is, on the icon's own color
+                    Image(
+                        painter = painterResource(R.drawable.ic_launcher_foreground),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(36.dp)
+                            .clip(MaterialTheme.shapes.small)
+                            .background(colorResource(R.color.ic_launcher_background))
+                    )
+                    Text(stringResource(R.string.app_name))
+                }
+            },
             actions = { Actions() }
         )
     }

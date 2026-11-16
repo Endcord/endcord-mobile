@@ -1,9 +1,12 @@
 # Plugins
 
-Endcord for Android comes with **303 built-in plugins**: 261 from Endcord PC and 42 made for phones (mostly lookup
+Endcord for Android comes with **362 built-in plugins**: 319 from Endcord PC and 43 made for phones (mostly lookup
 and fun commands). They all start off; turn them on in **Settings → Endcord → Plugins**. Endcord PC's popular plugins
 come first, in Endcord PC's order and with a **POPULAR** badge, and the page shows how many plugins there are and how
 many are on, with filters by status and tag, like Endcord PC's plugin manager.
+
+Plugins whose work Discord can see and punish (acting on the account by themselves, many requests in a row, or telling
+Discord's servers something that isn't true) carry Endcord PC's warning on their card, and turning one on asks first.
 
 > **Aliucord plugins don't work in this client.** They are Java and Kotlin code written for the older Discord that
 > Aliucord is built on (126.21), while the current Discord is React Native. The Plugins page says so and points people
@@ -14,7 +17,7 @@ many are on, with filters by status and tag, like Endcord PC's plugin manager.
 
 | # | Plugin | On your phone | Compared with Endcord PC |
 | --- | --- | --- | --- |
-| 1 | CustomProfile | Your own avatar, banner, display name, bio and pronouns, only visible to you | No badges or fake Nitro, which would only be good for fake screenshots; for now the display name changes in messages only |
+| 1 | CustomProfile | Your own username, display name, avatar, banner, bio, pronouns, colors, badges, Nitro and its date, decoration, profile effect, profile frame, nameplate and display name style, per account and with presets. Saved profiles are shared with the other Endcord users in the Endcord server, on PCs and phones alike, and theirs show to you; your email, phone and account creation date stay on your phone | The same profiles channel and message format as Endcord PC, so both see each other, with everything a PC profile has. The display name style picker shows each font and effect by name, without drawing it |
 | 2 | MessageLogger | Deleted messages stay in the chat in red with a "deleted" tag, and earlier versions of edited ones show above them; ghost ping alerts; ignored users, channels and servers | The log is cleared when the app closes (the default on PC too) |
 | 3 | HideEndcord | Hides Endcord's section of Discord's settings; `/hideendcord` brings it back | A command and a settings button instead of PC's F8 shortcut |
 | 4 | FakeNitro | Emojis and stickers you can't use are sent as links; asks first if you don't have the permission | No stream quality part on mobile |
@@ -60,10 +63,10 @@ Commands that look something up on Discord or the web; Translate also works from
 | PauseInvitesForever | Pause a server's invites with no time limit, which Discord no longer offers, with /pauseinvites |
 | ServerInfo | Allows you to view info about a server |
 | SpotifyShareCommands | Share your current Spotify track, album or artist via slash command (/track, /album, /artist) |
-| Translate | Translate messages from the message menu, translate what you send, or use /translate (Google Translate) |
+| Translate | Translate messages from the message menu, translate what you send, or use /translate, with Google Translate, DeepL or Kagi; the text is sent to the service you pick |
 | WikiLookup | /wiki pulls a short Wikipedia summary for anything (sent only to you). |
 
-### While sending (18)
+### While sending (19)
 Plugins that change a message right before it's sent (`onSend`). They run in a fixed order: text first, then formatting, the signature last.
 
 | Plugin | What it does |
@@ -78,6 +81,7 @@ Plugins that change a message right before it's sent (`onSend`). They run in a f
 | NoReplyMention | Disables reply pings by default |
 | NormalizeMessageLinks | Strip canary/ptb from message links |
 | PolishWording | Tweaks your messages to make them look nicer and have better grammar. See settings |
+| SecretGuard | Stops a message that looks like it has a token, key, password or card number in it. Send it again to send it anyway. |
 | SelfDestruct | Sends messages that are automatically deleted after a configurable delay. Red timer visible on each message. |
 | Signature | Adds your signature to the end of every message you send |
 | SilentMessageToggle | Adds a button to the chat bar to toggle sending a silent message. |
@@ -158,7 +162,7 @@ Kept on your phone, and still there after a restart.
 | RemindMe | /remindme reminds you of something later with a notice in the chat. Survives restarts. |
 | ScheduledMessages | Schedule messages to be sent at a specific time or after a delay. |
 
-### How messages look (16)
+### How messages look (17)
 Plugins that change the rows of Discord's native chat (`onMessageRow`): the text next to the time, names, colors.
 
 | Plugin | What it does |
@@ -175,6 +179,7 @@ Plugins that change the rows of Discord's native chat (`onMessageRow`): the text
 | ShowRolesInChat | Shows a user's highest role next to their name in chat messages |
 | ShowTimeoutDuration | Shows how much longer a user's timeout will last next to their messages |
 | SilentEdit | Hides the '(edited)' label on your own edited messages. The message stays — nothing is deleted or resent. |
+| SuspiciousLinks | Warns you under a message when a link in it only pretends to be a site like Discord or Steam: look-alike names, letters from other alphabets and links that hide where they go. Nothing is looked up online. |
 | Timezones | Shows the local time of the users you choose next to their messages |
 | ToneIndicators | Explains tone indicators like /srs and /gen next to them in messages |
 | UserMessagesPronouns | Shows people's pronouns from their Discord profile next to their messages |
@@ -232,8 +237,8 @@ Notes, jumps, replies waiting for you, tables and badges.
 | ShowBadgesInChat | Shows the message author's badges beside their name in chat. |
 | UserVoiceShow | Shows an indicator on messages from people in a voice channel, and lets you join them from the message menu |
 
-### Account and app (8)
-Server tags, focus mode, profile presets, startup times, logs.
+### Account and app (9)
+Server tags, focus mode, profile presets, startup times, logs, privacy.
 
 | Plugin | What it does |
 | --- | --- |
@@ -243,6 +248,7 @@ Server tags, focus mode, profile presets, startup times, logs.
 | EventLogs | Keeps a log of deleted and edited messages, friends added and removed, and servers you join and leave |
 | NoTrack | Stops Discord from collecting analytics, metrics and crash reports about how you use the app |
 | FocusMode | One switch for Do Not Disturb, for a while or until you turn it off, and back to your previous status when it ends |
+| PrivacyCurtain | Keeps your chats out of the recent apps screen, and if you like out of screenshots and screen recordings too. Android only for now |
 | ProfileSets | Allows you to save and load different profile presets. |
 | StartupTimings | Shows how long Endcord and each of its plugins took to start, in the plugin's settings |
 
@@ -317,7 +323,7 @@ Link previews, spoilers, quoting, sed, encrypted and invisible messages, a messa
 | MessageLinkEmbeds | Adds a preview to messages that link another message |
 | MessageLoggerEnhanced | Keeps deleted and edited messages after Discord restarts, with a list to browse them and /deleted |
 | MessageVault | Search messages you have read by keyword and person with /vault, even after they scroll away. Indexed on your device only. |
-| Quoter | Quote a message into your message box with its author, from the message menu |
+| Quoter | Quote a message into your message box, or make an inspirational quote picture of it to send, from the message menu |
 | RevealAllSpoilers | Reveal every spoiler in a message from the message menu |
 | SedEnhanced | Edit your last message with s/find/replace/, with regular expressions, flags and other separators like s\|a\|b\|g |
 | TenorGifFix | Saves Tenor GIFs as real GIFs instead of videos |
@@ -336,7 +342,7 @@ Viewing documents and ZIPs without downloading them, favorites, GIF collections 
 | GifCollections | Allows you to create collections of gifs. |
 | PdfViewer | Preview PDF attachments without downloading them first, from the message menu |
 | SaveFavoriteGIFs | Export favorited GIF urls |
-| ZipPreview | Previews ZIP contents inside file attachments. |
+| ZipPreview | Look inside ZIP files in chats, read and save the files in them, and zip files from your phone into one to send. |
 
 ### Friends and profiles (15)
 Blocked users, friend requests, tags, nicknames, connections, pronouns and streaks.
@@ -426,7 +432,7 @@ Dictionary, weather, currencies, country and holiday info, earthquakes, code pac
 | BoredActivity | Get an idea of something to do with /bored |
 | CatFacts | Send a random fact about cats with /catfact |
 | CharInfo | See the Unicode code points of every character in a text with /charinfo |
-| ColorInfo | See a color's RGB and HSL values, or get a random one, with /color |
+| ColorInfo | See a color's RGB and HSL values, or get a random one, with /colorinfo |
 | Countdown | See how long is left until a date with /countdown |
 | CountryInfo | Look up a country's capital, population, languages and currency with /country |
 | CryptoPrices | See a cryptocurrency's price and its change today with /crypto |
@@ -470,6 +476,68 @@ Plugins drawn on Endcord's screen overlay, and Wellbeing.
 | Moyai | Plays a 🗿 sound effect whenever a moyai emoji is sent or reacted in the chat you have open |
 | Snowfall | Let it snow on Discord |
 | Wellbeing | A gentle, private dashboard of how you use Discord: screen time, messages and break reminders. Everything stays on your phone. |
+
+### Added from Endcord PC in November 2026 (56)
+Plugins Endcord PC has that now work on phones too, rebuilt for Discord's phone app.
+
+| Plugin | What it does |
+| --- | --- |
+| AddAttachments | Allows you to add new attachments while editing messages |
+| Animalese | Plays animal crossing animalese for every message sent (they yap a lot) |
+| BannersEverywhere | Displays banners in the member list |
+| BetterCommands | Adds /refresh, which reloads the slash commands of a chat, its server or a bot when they don't show up |
+| BetterForwards | A forwarded message from another server says which server it came from, next to its time. |
+| BetterGifLoad | Change the quality of GIFs in the GIF picker. Improves performance and lowers internet usage. |
+| BypassStatus | Still get a pop-up from chosen people, channels and servers while you're on Do Not Disturb. Long-press a message to add its author, channel or server. Only while Discord is open: notifications when it's closed come from Discord's servers. |
+| CharacterCounter | Adds a character counter to the chat input |
+| ChatGPTWriting | Enhance your messages with kaomoji, emoji, and autocorrect |
+| ColorText | /color writes your message in color, using the colored code blocks Discord can show. |
+| CustomStatusTimeouts | Adds configurable timeout presets to the custom status' "Clear after" choices. |
+| Decor | Shows the custom avatar decorations people picked with Decor on Endcord PC and other clients |
+| DefaultStatusForever | Make statuses default to last forever |
+| DisableCameras | Disables cameras in a call by default |
+| DraftList | Lists every chat where you left a message unsent, so you can go back and finish it. Open it from Endcord Toolbox or this plugin's settings. |
+| FakeFriends | Locally simulates Discord friends and friend requests. Only you see them, and they're gone when Discord restarts. |
+| FakeNitroAge | Set how many months or years of Nitro your profile shows. Only you see this. |
+| FakeRequestCount | Shows as many friend and message requests as you like on Discord's badges. Only the numbers, only on your screen. |
+| FakeServer | Make any server look verified or partnered, with as many members as you like, with /fakeserver in that server. Only on your screen. |
+| FavoriteEmojiFirst | Puts your favorite emoji first in the emoji autocomplete. |
+| FileSplitter | Split large files into multiple parts to bypass size limits and share them easily. Only people with Endcord can join the parts back into the file: long-press a part to join and save it. |
+| FileUpload | Upload files to hosting services like Zipline, Nest, S3, and WebDAV |
+| FixImagesQuality | Improves quality of images by loading them at their original resolution. Uses more mobile data. |
+| GifProviderSwitcher | Allows you to use Tenor or Giphy GIF search instead of Klipy |
+| HideChatButtons | Able to hide the chat buttons |
+| ID Translater | Automatically translates Discord IDs to clickable @ mentions or # references |
+| LocalTimes | When a message has a time with a time zone in it, like "8pm EST" or "14:00 UTC", shows that time in your own time zone under it. |
+| MessageColors | Shows a colored square beside color codes like #FF0042 in messages: the closest of the colored square emoji, as the phone's chat can't draw other colors. |
+| MessageNotifier | Get a pop-up when chosen users send a message. Only while Discord is open: notifications when it's closed come from Discord's servers. |
+| MoreJumboEmoji | Unlock the maximum amount of jumbo emoji |
+| MoreStickers | Adds sticker packs from other social media platforms. (e.g. LINE) |
+| NoDMWhileStreaming | While you share your screen, hides DMs from your DM list, silences their in-app pop-ups and sounds, and marks them as read. Android's own notifications come from Discord's servers and still show. |
+| NoDraftLengthLimit | Removes the 4500 character saved draft message truncation |
+| NoNitroUpsell | Hides Discord's Nitro ads: the banners, cards and buttons that advertise Nitro around the app |
+| NoPushToTalk | Bypasses the push-to-talk requirement for voice activity in channels that enforce it. |
+| NoUnblockToJump | Allows you to jump to messages of blocked or ignored users and likely spammers without unblocking them |
+| OnePingPerDM | If unread messages are sent by a user in DMs multiple times, you'll only hear one ping while Discord is open. Read the messages to reset the limit. |
+| OverrideForumDefaults | Allows you to override default forum layout/sort order. you can still change it on a per-channel basis |
+| PermissionFreeWill | Lets you deny channel permissions and delete channels without Discord's onboarding check ("Making this change will make your server incompatible [...]"). |
+| Questify | Hides Discord's Quests and their promotions, and the Quest badges on profiles. Never completes Quests for you. |
+| ReactionTimestamps | Shows when each reaction was added, from the message menu. Only reactions added while the app is open are known. |
+| RemixRevived | Draw on a picture and send it, like Discord's old Remix: long-press a picture and choose Remix, or pick one from your phone. |
+| ReorderAttachments | Allows you to reorder attachments before sending them |
+| ReplyChain | Long-press a reply to see the whole conversation it answers, from the first message down, on one page. |
+| RichMagnetLinks | Shows magnet links in messages as a magnet and the file's name, and adds Copy Magnet Link to the message's long-press menu. |
+| RichPresence | Rich presence for what you play on AudioBookShelf, stats.fm, Jellyfin, Navidrome and Gensokyo Radio |
+| RoleColorEverywhere | Tints the text of chat messages with the author's top role color. |
+| SecretRingToneEnabler | Always play the secret version of the Discord ringtone (except during special ringtone events), for calls that ring while Discord is open |
+| ShowHiddenChannels | See the channels of a server you can't open, with a lock, and what's visible about each: its topic, settings and who can see it. Open the list with /hiddenchannels or from EndcordToolbox. |
+| SpotifyLyricsStatus | Shows the line of the Spotify song you're listening to as your custom status, in time with the song. Needs Spotify connected to Discord |
+| StickerPaste | Makes picking a sticker in the sticker picker add it to your next message instead of sending it at once. A sticker button beside the message box shows the stickers waiting. |
+| StopAutoUnread | Stops Discord from automatically bumping a channels notification setting to "All Messages" |
+| TriviaAI | A plugin that helps you answer trivia questions using AI. |
+| ValidReply | Fixes "Message could not be loaded" on replies: long-press the reply and choose Load Replied Message. |
+| ValidUser | Fix mentions for unknown users showing up as '@unknown-user' (long-press the message and choose Load Mentioned Users) |
+| VolumeBooster | Set a person's or a stream's volume above 200% with /volumebooster. Moving Discord's own volume slider for them ends the boost. |
 
 ## Writing a plugin
 

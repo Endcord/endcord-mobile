@@ -5,6 +5,7 @@ import { useProxy } from "@core/vendetta/storage";
 import { getDebugInfo } from "@lib/api/debug";
 import { settings } from "@lib/api/settings";
 import { Stack, TableRowGroup } from "@metro/common/components";
+import { useEdgeInsets } from "@ui/insets";
 import { Platform, ScrollView } from "react-native";
 
 export default function About() {
@@ -76,9 +77,10 @@ export default function About() {
             icon: "TagIcon"
         }
     ];
+    const { bottom } = useEdgeInsets();
 
     return (
-        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 38 }}>
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 38 + bottom }}>
             <Stack style={{ paddingVertical: 24, paddingHorizontal: 12 }} spacing={24}>
                 <TableRowGroup title={Strings.VERSIONS}>
                     {versions.map(v => <Version key={v.label} label={v.label} version={v.version} icon={v.icon} />)}

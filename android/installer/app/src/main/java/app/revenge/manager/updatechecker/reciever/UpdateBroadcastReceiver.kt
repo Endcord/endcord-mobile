@@ -24,8 +24,10 @@ class UpdateBroadcastReceiver : BroadcastReceiver(), KoinComponent {
         val nm = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val versionCode = intent.getStringExtra(Intents.Extras.VERSION) ?: return
         val version = DiscordVersion.fromVersionCode(versionCode) ?: return
+        // A newer Endcord on the same Discord (UpdateWorker), rather than a newer Discord
+        val endcordUpdate = intent.getBooleanExtra(Intents.Extras.ENDCORD_UPDATE, false)
 
-        val notificationId = versionCode.toInt()
+        val notificationId = if (endcordUpdate) ENDCORD_UPDATE_NOTIFICATION else versionCode.toInt()
 
         // Any app can send MainActivity an install intent; only this notification's carries the token the app keeps
         // for it, so only tapping the notification starts the install
@@ -41,19 +43,33 @@ class UpdateBroadcastReceiver : BroadcastReceiver(), KoinComponent {
                 putExtra(Intents.Extras.TOKEN, token)
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             },
-            PendingIntent.FLAG_IMMUTABLE
+            // UPDATE_CURRENT: a notification already posted for this version keeps its intent otherwise, with the token
+            // of an earlier run, which no longer matches the one just saved
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
         NotificationCompat.Builder(context, Channels.UPDATE).apply {
             setSmallIcon(R.drawable.ic_update)
-            setContentTitle(context.getString(R.string.title_update_available))
-            setContentText(context.getString(R.string.action_tap_to_install, version.toString()))
+            setContentTitle(context.getString(if (endcordUpdate) R.string.title_endcord_update else R.string.title_update_available))
+            setContentText(
+                context.getString(
+                    if (endcordUpdate) R.string.action_tap_to_install_endcord_update else R.string.action_tap_to_install,
+                    version.toString()
+                )
+            )
             setContentIntent(clickIntent)
             setAutoCancel(true)
+            // The check runs every few minutes and posts the same update again: it sounds once, not every time
+            setOnlyAlertOnce(true)
             priority = NotificationCompat.PRIORITY_DEFAULT
 
             nm.notify(notificationId, build())
         }
+    }
+
+    private companion object {
+        /** Discord's updates are posted under their version code; Endcord's, which keep the version, under this one */
+        const val ENDCORD_UPDATE_NOTIFICATION = 1
     }
 
 }

@@ -23,9 +23,17 @@ export default definePlugin({
         triggerWhenUnfocused: { type: "boolean", label: tx("Only in the open chat"), description: tx("Only play it for the chat you have open"), default: true },
     },
     start({ store, cleanup }) {
+        // Other people's messages and reactions play it: however many come in, at most ten booms in ten seconds
+        let played: number[] = [];
         const boom = (channelId: string, count = 1) => {
             if (store.triggerWhenUnfocused && channelId !== currentChannelId()) return;
-            for (let i = 0; i < Math.min(count, 10); i++) setTimeout(() => playSound(MOYAI_URL, store.volume / 100), i * 300);
+            const now = Date.now();
+            played = played.filter(at => now - at < 10_000);
+            const allowed = Math.min(count, 10 - played.length);
+            for (let i = 0; i < allowed; i++) {
+                played.push(now + i * 300);
+                setTimeout(() => playSound(MOYAI_URL, store.volume / 100), i * 300);
+            }
         };
         cleanup(
             subscribe("MESSAGE_CREATE", ({ message, optimistic }) => {

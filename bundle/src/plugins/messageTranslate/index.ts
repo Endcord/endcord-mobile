@@ -45,7 +45,8 @@ export default definePlugin({
                             cache.set(message.id, result);
                             redrawMessage(message.channel_id, message.id);
                         })
-                        .catch(() => cache.delete(message.id));
+                        // Not asked again at every redraw of the row: tried again after a minute
+                        .catch(() => setTimeout(() => cache.delete(message.id), 60_000));
                     return;
                 }
                 if (cached && Array.isArray(row.content)) row.content = [...row.content, textNode(`\n🌐 ${cached.text}`)];

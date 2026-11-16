@@ -36,6 +36,7 @@ class DownloadManager(
     suspend fun download(
         url: String,
         out: File,
+        maxBytes: Long = MAX_DOWNLOAD_BYTES,
         onProgressUpdate: (Float?) -> Unit
     ): DownloadResult {
         onProgressUpdate(null)
@@ -53,8 +54,10 @@ class DownloadManager(
                     throw IOException("HTTP Error: ${response.status}")
                 }
 
-                val body = response.bodyAsChannel()
                 totalBytes = response.contentLength() ?: 0L
+                // A mirror could send without end and fill the phone; nothing the installer downloads is that big
+                if (totalBytes > maxBytes) throw IOException("The file is $totalBytes bytes, over the $maxBytes allowed")
+                val body = response.bodyAsChannel()
 
                 tempOut.outputStream().use { output ->
                     val buffer = ByteArray(1024 * 256)
@@ -65,6 +68,7 @@ class DownloadManager(
                         if (bytesRead < 0) break
                         output.write(buffer, 0, bytesRead)
                         bytesCopied += bytesRead
+                        if (bytesCopied > maxBytes) throw IOException("The file is over the $maxBytes bytes allowed")
 
                         if (totalBytes > 0) {
                             val progress =
@@ -112,6 +116,9 @@ class DownloadManager(
         }
     }
 }
+
+/** Discord's largest APK is about 110 MB; nothing the installer downloads comes near this */
+const val MAX_DOWNLOAD_BYTES = 512L shl 20
 
 sealed interface DownloadResult {
     data object Success : DownloadResult

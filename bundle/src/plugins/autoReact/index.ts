@@ -11,6 +11,14 @@ import { currentUserId, subscribe } from "../common";
 import { parseEmoji, react } from "../hooks";
 import { ids } from "../shared/notify";
 
+/**
+ * At most this many reactions wait. A flood of matching messages (a raid, a spam bot) is mostly skipped, rather than
+ * reacted to from this account for minutes, still going after the messages are deleted
+ */
+const MAX_QUEUED = 20;
+/** Reactions to one message, however many rules match it */
+const MAX_PER_MESSAGE = 3;
+
 /** "keyword = emoji" lines */
 function parseRules(text: string) {
     return text.split("\n").flatMap(line => {
@@ -45,6 +53,7 @@ export default definePlugin({
         const queue: Array<() => void> = [];
         let timer: ReturnType<typeof setInterval> | undefined;
         const enqueue = (fn: () => void) => {
+            if (queue.length >= MAX_QUEUED) return false;
             queue.push(fn);
             timer ??= setInterval(() => {
                 queue.shift()?.();
@@ -53,6 +62,7 @@ export default definePlugin({
                     timer = undefined;
                 }
             }, 400);
+            return true;
         };
         // Every message arrives here, so the rules and channels are parsed once per change, not once per message
         let rulesText: string | undefined, rules: ReturnType<typeof parseRules> = [];
@@ -67,8 +77,12 @@ export default definePlugin({
             if (only.size && !only.has(message.channel_id)) return;
             if (rulesText !== store.rules) rules = parseRules(rulesText = store.rules);
             const content = message.content.toLowerCase();
+            let reactions = 0;
             for (const { keyword, emoji } of rules) {
-                if (content.includes(keyword)) enqueue(() => react(message.channel_id, message.id, emoji));
+                if (reactions >= MAX_PER_MESSAGE) break;
+                if (!content.includes(keyword)) continue;
+                if (!enqueue(() => react(message.channel_id, message.id, emoji))) break;
+                reactions++;
             }
         }));
     },

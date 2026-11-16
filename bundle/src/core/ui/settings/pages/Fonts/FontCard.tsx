@@ -62,7 +62,7 @@ function FontPreview({ font }: { font: FontDefinition; }) {
         />
         {!loaded && <View style={[styles.full, { justifyContent: "center", alignItems: "center" }]}>
             <Text color="text-muted" variant="heading-lg/semibold">
-                Loading...
+                {t("Loading...")}
             </Text>
         </View>}
     </View>;
@@ -109,7 +109,7 @@ export default function FontCard({ item: font }: CardWrapper<FontDefinition>) {
                                     await selectFont(selected ? null : font.name);
                                     showConfirmationAlert({
                                         title: Strings.HOLD_UP,
-                                        content: "Reload Discord to apply changes?",
+                                        content: t("Reload Discord to apply changes?"),
                                         confirmText: Strings.RELOAD,
                                         cancelText: Strings.CANCEL,
                                         confirmColor: "red",

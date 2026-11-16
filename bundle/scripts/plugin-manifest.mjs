@@ -21,6 +21,27 @@ const text = node => !node ? undefined : ts.isStringLiteral(node) || ts.isNoSubs
 // tx("...") or a plain string
 const message = node => node && (text(node) ?? (ts.isCallExpression(node) && node.expression.getText() === "tx" ? text(node.arguments[0]) : undefined));
 
+// Endcord PC's lint rule for setting names: one that holds a secret has to say so, or a backup would carry it
+const SECRET_NAME = /token|secret|passw(?:or)?d|api_?key|auth(?:orization|Key)?$|session_?key|cookie|credential|webhook/i;
+
+const property = (object, name) => object.properties.find(q => ts.isPropertyAssignment(q) && q.name.getText() === name)?.initializer;
+
+// The settings marked sensitive: true, which backups leave out (core/backup.ts)
+function sensitiveSettings(settings, where) {
+    if (!settings || !ts.isObjectLiteralExpression(settings)) return [];
+    const sensitive = [];
+    for (const p of settings.properties) {
+        if (!ts.isPropertyAssignment(p) || !ts.isObjectLiteralExpression(p.initializer)) continue;
+        const key = text(p.name) ?? p.name.getText();
+        const marked = property(p.initializer, "sensitive")?.kind === ts.SyntaxKind.TrueKeyword;
+        if (marked) sensitive.push(key);
+        else if (text(property(p.initializer, "type")) === "string" && SECRET_NAME.test(key)) {
+            throw new Error(`${where}: the setting '${key}' looks like it holds a secret; mark it sensitive: true so backups leave it out`);
+        }
+    }
+    return sensitive;
+}
+
 function pluginsIn(file) {
     const source = ts.createSourceFile(file, readFileSync(file, "utf8"), ts.ScriptTarget.Latest, true, file.endsWith("x") ? ts.ScriptKind.TSX : ts.ScriptKind.TS);
     const found = [];
@@ -39,6 +60,7 @@ function pluginsIn(file) {
                 tags: value("tags") && ts.isArrayLiteralExpression(value("tags")) ? value("tags").elements.map(text).filter(Boolean) : [],
                 enabledByDefault: value("enabledByDefault")?.kind === ts.SyntaxKind.TrueKeyword,
                 hasSettings: !!(props.settings || props.SettingsComponent),
+                sensitive: sensitiveSettings(value("settings"), path.relative(root, file)),
             };
             for (const key of ["id", "name", "description"]) {
                 if (!plugin[key]) throw new Error(`${path.relative(root, file)}: a plugin's ${key} must be written out as text`);
@@ -76,6 +98,7 @@ const entry = p => `    { ${[
     p.tags.length && `tags: [${p.tags.map(t => JSON.stringify(t)).join(", ")}]`,
     p.enabledByDefault && "enabledByDefault: true",
     p.hasSettings && "hasSettings: true",
+    p.sensitive.length && `sensitive: [${p.sensitive.map(k => JSON.stringify(k)).join(", ")}]`,
 ].filter(Boolean).join(", ")} },`;
 
 const code = `/*
@@ -96,6 +119,8 @@ export interface PluginInfo {
     tags?: PluginTag[];
     enabledByDefault?: boolean;
     hasSettings?: boolean;
+    /** Settings that never go in a backup */
+    sensitive?: string[];
 }
 
 /** Every built-in plugin, without its code; their descriptions are in descriptions.json, loaded for the plugin list */
@@ -111,14 +136,22 @@ ${all.map(p => `    ${JSON.stringify(p.id)}: () => require(${JSON.stringify(`./$
 
 const descriptions = JSON.stringify(Object.fromEntries(all.map(p => [p.id, p.description])), null, 4) + "\n";
 
+const same = (file, text) => {
+    try {
+        return readFileSync(file, "utf8").replace(/\r\n/g, "\n") === text;
+    } catch {
+        return false;
+    }
+};
+
 if (process.argv.includes("--check")) {
-    const same = (file, text) => readFileSync(file, "utf8").replace(/\r\n/g, "\n") === text;
     if (!same(out, code) || !same(descriptionsOut, descriptions)) {
         console.error("src/plugins/manifest.ts is out of date; run node scripts/plugin-manifest.mjs");
         process.exit(1);
     }
 } else {
-    writeFileSync(out, code);
-    writeFileSync(descriptionsOut, descriptions);
+    // Only when changed: every build runs this, and rewriting unchanged files made each one look like a source edit
+    if (!same(out, code)) writeFileSync(out, code);
+    if (!same(descriptionsOut, descriptions)) writeFileSync(descriptionsOut, descriptions);
 }
 console.log(`${all.length} plugins`);

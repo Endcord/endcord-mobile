@@ -9,14 +9,26 @@ import { recordPluginStart } from "@core/timings";
 import { awaitStorage, createMMKVBackend, createStorage, wrapSync } from "@core/vendetta/storage";
 import { findAssetId } from "@lib/api/assets";
 import { showToast } from "@lib/ui/toasts";
-import { Logger, LoggerClass } from "@lib/utils/logger";
+import { createLogger, Logger } from "@lib/utils/logger";
+import { redactSecrets } from "@lib/utils/redact";
 import type { ComponentType } from "react";
 
 export type SettingDef =
     | { type: "boolean"; label: string; description?: string; default: boolean; }
-    | { type: "select"; label: string; description?: string; default: string; options: { label: string; value: string; }[]; }
+    | {
+        type: "select"; label: string; description?: string; default: string; options: { label: string; value: string; }[];
+        /** Where what the plugin sends goes, like which upload service: as for a string, never in a backup */
+        sensitive?: boolean;
+    }
     | { type: "number"; label: string; description?: string; default: number; min: number; max: number; }
-    | { type: "string"; label: string; description?: string; default: string; placeholder?: string; multiline?: boolean; };
+    | {
+        type: "string"; label: string; description?: string; default: string; placeholder?: string; multiline?: boolean;
+        /**
+         * A key, a password, or an address what the plugin sends or opens goes to, as Endcord PC marks them: never in a
+         * backup, and left as it is when one is restored, since a backup someone else made could point it elsewhere
+         */
+        sensitive?: boolean;
+    };
 
 export type SettingsSchema = Record<string, SettingDef>;
 
@@ -118,17 +130,20 @@ const describeArg = (arg: unknown) => {
     }
 };
 
+/** What's kept of a log line: its arguments as text, without the secrets in them */
+export const describeLogLine = (args: unknown[]) => redactSecrets(args.map(describeArg).join(" ")).slice(0, 500);
+
 /**
  * Discord's logger, which also keeps the plugin's warnings and errors: Discord's own doesn't hand them back, and a
  * plugin that can't find what it patches says so with a warning
  */
 function pluginLogger(plugin: EndcordPlugin): Logger {
-    const base: Logger = new LoggerClass(`Endcord/${plugin.name}`);
+    const base: Logger = createLogger(`Endcord/${plugin.name}`);
     const keep = (level: PluginLogEntry["level"]) => (...args: unknown[]) => {
         base[level](...args);
         let list = pluginLogs.get(plugin.id);
         if (!list) pluginLogs.set(plugin.id, list = []);
-        list.push({ level, message: args.map(describeArg).join(" ").slice(0, 500), time: Date.now() });
+        list.push({ level, message: describeLogLine(args), time: Date.now() });
         if (list.length > MAX_LOG_ENTRIES) list.shift();
     };
     return {

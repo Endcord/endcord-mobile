@@ -32,6 +32,7 @@ import app.revenge.manager.ui.components.settings.SettingsSwitch
 import app.revenge.manager.ui.widgets.settings.ThemePicker
 import app.revenge.manager.utils.DimenUtils
 import org.koin.androidx.compose.get
+import app.revenge.manager.ui.components.readableWidth
 
 class AppearanceSettings: Screen {
 
@@ -50,6 +51,7 @@ class AppearanceSettings: Screen {
                 modifier = Modifier
                     .padding(pv)
                     .verticalScroll(rememberScrollState())
+                    .readableWidth()
                     .padding(bottom = DimenUtils.navBarPadding)
             ) {
                 ThemePicker(prefs = prefs)

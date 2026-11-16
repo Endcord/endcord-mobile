@@ -1,6 +1,7 @@
 package io.github.revenge.xposed
 
 import android.content.Context
+import android.content.pm.ApplicationInfo
 import android.os.Build
 import kotlinx.serialization.json.Json
 import java.io.File
@@ -47,6 +48,19 @@ inline fun InputStream.copyToCapped(
         copied += read
     }
 }
+
+/**
+ * Whether the app is a developer's own build (FLAG_DEBUGGABLE): the installer only sets it from a hidden developer
+ * option, and CI and `adb run-as` setups use it. What a plugin could plant runs there as it always has; elsewhere the
+ * loader asks or refuses (preloads, the custom bundle link).
+ */
+val ApplicationInfo.isDebuggable: Boolean
+    get() = (flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0
+
+/** Whether this runs on Android (ART), rather than in the JVM the unit tests run in */
+internal val runsOnAndroid: Boolean =
+    System.getProperty("java.vm.vendor").orEmpty().contains("Android", ignoreCase = true) ||
+        System.getProperty("java.vm.name") == "Dalvik"
 
 fun Context.versionName(): String {
     val pInfo = packageManager.getPackageInfo(packageName, 0)

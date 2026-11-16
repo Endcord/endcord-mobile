@@ -47,7 +47,7 @@ export default function PluginInfoActionSheet({ plugin, navigation }: PluginInfo
                         if (vdPlugin.enabled) VdPluginManager.stopPlugin(plugin.id, false);
 
                         try {
-                            await VdPluginManager.fetchPlugin(plugin.id);
+                            await VdPluginManager.fetchPlugin(plugin.id, { ask: true });
                             showToast(Strings.PLUGIN_REFETCH_SUCCESSFUL, findAssetId("DownloadIcon"));
                         } catch {
                             showToast(Strings.PLUGIN_REFETCH_FAILED, findAssetId("XSmallIcon"));
@@ -90,7 +90,7 @@ export default function PluginInfoActionSheet({ plugin, navigation }: PluginInfo
                             if (vdPlugin.enabled) VdPluginManager.stopPlugin(plugin.id, false);
 
                             try {
-                                await VdPluginManager.fetchPlugin(plugin.id);
+                                await VdPluginManager.fetchPlugin(plugin.id, { ask: true });
                                 showToast(Strings.PLUGIN_REFETCH_SUCCESSFUL, findAssetId("DownloadIcon"));
                             } catch {
                                 showToast(Strings.PLUGIN_REFETCH_FAILED, findAssetId("XSmallIcon"));

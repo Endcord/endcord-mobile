@@ -41,12 +41,23 @@ export default definePlugin({
                 setUserVolume(userId, store.volume);
             }
         };
+        // Setting a volume is an action of its own, and Flux doesn't allow one inside the handling of another: applied
+        // right after Discord has handled the voice update, once for all the updates of the same moment
+        let applyTimer: ReturnType<typeof setTimeout> | undefined;
+        const applySoon = (delay = 0) => {
+            if (applyTimer) clearTimeout(applyTimer);
+            applyTimer = setTimeout(() => {
+                applyTimer = undefined;
+                apply();
+            }, delay);
+        };
         cleanup(
-            subscribe("VOICE_STATE_UPDATES", apply),
+            subscribe("VOICE_STATE_UPDATES", () => applySoon()),
             subscribe("VOICE_CHANNEL_SELECT", () => {
                 done.clear();
-                setTimeout(apply, 500);
+                applySoon(500);
             }),
+            () => clearTimeout(applyTimer),
             command({
                 name: "universalvolume",
                 description: tx("Set everyone in your voice channel to one volume"),

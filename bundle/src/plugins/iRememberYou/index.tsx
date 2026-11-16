@@ -38,6 +38,9 @@ function PeopleList() {
     />;
 }
 
+/** The most people remembered */
+const MAX_REMEMBERED = 5000;
+
 export default definePlugin({
     id: "endcord.i-remember-you",
     name: "IRememberYou",
@@ -54,7 +57,13 @@ export default definePlugin({
             clearTimeout(timer);
             timer = undefined;
             if (!Object.keys(pending).length) return;
-            people.users = { ...(people.users ?? {}), ...pending };
+            const users: Record<string, Remembered> = { ...(people.users ?? {}), ...pending };
+            // Anyone can mention you: past a few thousand, those seen longest ago are forgotten
+            const userIds = Object.keys(users);
+            if (userIds.length > MAX_REMEMBERED) {
+                for (const id of userIds.sort((a, b) => (users[a].lastSeen ?? 0) - (users[b].lastSeen ?? 0)).slice(0, userIds.length - MAX_REMEMBERED)) delete users[id];
+            }
+            people.users = users;
             pending = {};
         };
         const remember = (user: any, channelId: string) => {

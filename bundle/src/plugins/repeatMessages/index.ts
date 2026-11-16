@@ -21,7 +21,8 @@ export default definePlugin({
             icon: "RetryIcon",
             label: () => t("Repeat Message"),
             visible: message => !!message.content?.trim(),
-            onPress: message => send(message.channel_id, message.content),
+            // Someone else's text, sent as yours: its @everyone, roles and people aren't pinged again
+            onPress: message => send(message.channel_id, message.content, { allowedMentions: { parse: [], replied_user: false } }),
         }));
     },
 });

@@ -30,6 +30,27 @@ export interface CustomProfileData {
     oldName?: string;
     decorationAsset?: string;
     profileEffectId?: string;
+    /** When the Nitro badge says they subscribed, as YYYY-MM-DD; without it, as long ago as the level takes */
+    nitroSince?: string;
+    /** A profile frame from Discord's shop, by its skuId */
+    profileFrameId?: string;
+    nameplate?: NameplateData;
+    displayNameStyles?: DisplayNameStyles;
+}
+
+/** What Discord keeps on a user for their nameplate, as Endcord PC saves it */
+export interface NameplateData {
+    skuId: string;
+    asset: string;
+    label?: string;
+    palette?: string;
+}
+
+/** A display name's font, effect and colors, by Discord's own ids */
+export interface DisplayNameStyles {
+    fontId: number;
+    effectId: number;
+    colors: number[];
 }
 
 export interface SavedPreset {
@@ -97,6 +118,18 @@ export const NITRO_LEVELS = [
     { label: tx("Opal (72 months)"), icon: "https://cdn.discordapp.com/badge-icons/5b154df19c53dce2af92c9b61e6be5e2.png" },
 ];
 export const NITRO_LEVEL_MONTHS = [0, 1, 3, 6, 12, 24, 36, 60, 72];
+
+/** When the Nitro badge says they subscribed: the date picked on Endcord PC, or as long ago as their level takes */
+export function nitroSinceDate(pd: CustomProfileData | null | undefined, now = new Date()) {
+    if (pd?.nitroSince && /^\d{4}-\d{2}-\d{2}$/.test(pd.nitroSince)) {
+        // Noon, so the day stays the same in every time zone
+        const picked = new Date(`${pd.nitroSince}T12:00:00`);
+        if (!Number.isNaN(picked.getTime())) return picked;
+    }
+    const since = new Date(now.getTime());
+    since.setMonth(since.getMonth() - (NITRO_LEVEL_MONTHS[pd?.nitroLevel ?? 0] ?? 0));
+    return since;
+}
 
 export const BOOST_LABELS = [
     tx("1 Month"), tx("2 Months"), tx("3 Months"), tx("6 Months"),
@@ -248,14 +281,20 @@ export function shopThumbnail(url: string, width: number, height: number): strin
     return `${url}${url.includes("?") ? "&" : "?"}width=${Math.round(width)}&height=${Math.round(height)}&format=webp`;
 }
 
-/** Discord's collectible item type for profile effects */
-export const COLLECTIBLE_PROFILE_EFFECT = 1;
+/** The item types of Discord's shop */
+export const CollectibleType = {
+    AVATAR_DECORATION: 0,
+    PROFILE_EFFECT: 1,
+    NAMEPLATE: 2,
+    PROFILE_FRAME: 3,
+} as const;
 
 export function wantsNitroLook(pd: CustomProfileData | null | undefined): boolean {
     if (!pd || pd.nitro === false) return false;
     if (pd.nitro) return true;
     if (pd.banner) return true;
     if (pd.profileEffectId) return true;
+    if (pd.profileFrameId) return true;
     if (pd.accentColor != null) return true;
     if (pd.nitroLevel != null && pd.nitroLevel >= 0) return true;
     if (pd.boostMonths != null && pd.boostMonths >= 0) return true;
@@ -265,7 +304,8 @@ export function wantsNitroLook(pd: CustomProfileData | null | undefined): boolea
 export function hasAnyCustomData(pd: CustomProfileData | null | undefined): boolean {
     if (!pd) return false;
     return !!(pd.username || pd.globalName || pd.avatar || pd.banner || pd.bio || pd.pronouns
-        || pd.accentColor != null || pd.accentColor2 != null || pd.profileEffectId || pd.decorationAsset
+        || pd.accentColor != null || pd.accentColor2 != null || pd.profileEffectId || pd.profileFrameId || pd.decorationAsset
+        || pd.nameplate || pd.displayNameStyles
         || pd.badgeFlags != null && pd.badgeFlags > 0
         || pd.customBadgeIds?.length
         || pd.tieredBadges && Object.keys(pd.tieredBadges).length
@@ -291,18 +331,25 @@ export interface ShownBadge {
 }
 
 /** The badges a profile shows, in Endcord PC's order */
-export function buildBadges(data: CustomProfileData, translate: (s: string) => string): ShownBadge[] {
+export function buildBadges(data: CustomProfileData, translate: (s: string, values?: Record<string, string>) => string): ShownBadge[] {
     const out: ShownBadge[] = [];
+    // Each badge once: badgeFlags and a customBadgeId naming the same flag would otherwise draw it twice, with one key
+    const keys = new Set<string>();
+    const push = (badge: ShownBadge) => {
+        if (keys.has(badge.key)) return;
+        keys.add(badge.key);
+        out.push(badge);
+    };
     const f = data.badgeFlags ?? 0;
     const pushFlag = (flag: number) => {
         const b = BADGES.find(x => x.flag === flag);
-        if (b && f & flag) out.push({ key: `flag_${flag}`, icon: b.icon, label: translate(b.label) });
+        if (b && f & flag) push({ key: `flag_${flag}`, icon: b.icon, label: translate(b.label) });
     };
 
     pushFlag(FLAG.STAFF);
     if (data.nitroLevel != null && data.nitroLevel >= 0 && NITRO_LEVELS[data.nitroLevel]) {
         const nl = NITRO_LEVELS[data.nitroLevel];
-        out.push({ key: "nitro", icon: nl.icon, label: translate(nl.label) });
+        push({ key: "nitro", icon: nl.icon, label: translate(nl.label) });
     }
     pushFlag(FLAG.PARTNER);
     pushFlag(FLAG.MOD_ALUMNI);
@@ -312,7 +359,7 @@ export function buildBadges(data: CustomProfileData, translate: (s: string) => s
     pushFlag(FLAG.BALANCE);
     pushFlag(FLAG.EARLY_SUPPORTER);
     if (data.boostMonths != null && data.boostMonths >= 0 && BOOST_ICONS[data.boostMonths]) {
-        out.push({ key: "boost", icon: BOOST_ICONS[data.boostMonths], label: `Server Boost - ${translate(BOOST_LABELS[data.boostMonths])}` });
+        push({ key: "boost", icon: BOOST_ICONS[data.boostMonths], label: `Server Boost - ${translate(BOOST_LABELS[data.boostMonths])}` });
     }
     pushFlag(FLAG.BUG_HUNTER_2);
     pushFlag(FLAG.BUG_HUNTER_1);
@@ -330,20 +377,21 @@ export function buildBadges(data: CustomProfileData, translate: (s: string) => s
             if (giftShown) continue;
             giftShown = true;
         }
-        const sb = SPECIAL_BADGES[id];
+        // Ids come from other people's shared profiles too: "constructor" names no badge
+        const sb = Object.prototype.hasOwnProperty.call(SPECIAL_BADGES, id) ? SPECIAL_BADGES[id] : undefined;
         if (sb) {
-            const label = id === "oldname" && data.oldName ? `${translate("Old username")}: ${data.oldName}` : translate(sb.label);
-            out.push({ key: `sp_${id}`, icon: sb.icon, label });
+            const label = id === "oldname" && data.oldName ? translate(tx("Originally known as {name}"), { name: data.oldName }) : translate(sb.label);
+            push({ key: `sp_${id}`, icon: sb.icon, label });
         } else {
             const found = BADGES.find(b => String(b.flag) === id);
-            if (found) out.push({ key: `flag_${found.flag}`, icon: found.icon, label: translate(found.label) });
+            if (found) push({ key: `flag_${found.flag}`, icon: found.icon, label: translate(found.label) });
         }
     }
 
     for (const type of TIERED_BADGES) {
         const tier = data.tieredBadges?.[type.key];
         if (tier != null && type.tiers[tier]) {
-            out.push({ key: `tier_${type.key}`, icon: type.tiers[tier].icon, label: `${translate(type.label)} - ${translate(type.tiers[tier].label)}` });
+            push({ key: `tier_${type.key}`, icon: type.tiers[tier].icon, label: `${translate(type.label)} - ${translate(type.tiers[tier].label)}` });
         }
     }
     return out;

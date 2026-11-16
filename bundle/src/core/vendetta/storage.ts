@@ -1,6 +1,7 @@
 import { Emitter, EmitterEvent, EmitterListener, EmitterListenerData } from "@core/vendetta/Emitter";
 import { writeDocument } from "@lib/api/native/fs";
 import { NativeCacheModule, NativeFileModule } from "@lib/api/native/modules";
+import { type DurableFile, readDurably, writeDurably } from "@lib/api/storage/durable";
 import { Platform } from "react-native";
 
 const emitterSymbol = Symbol.for("vendetta.storage.emitter");
@@ -166,7 +167,8 @@ export interface StorageBackend {
 
 const ILLEGAL_CHARS_REGEX = /[<>:"/\\|?*]/g;
 
-const filePathFixer = (file: string): string => Platform.select({
+/** Where a document is written: on iOS, Discord's older file module writes from the app's folder rather than Documents */
+export const filePathFixer = (file: string): string => Platform.select({
     default: file,
     ios: NativeFileModule.saveFileToGallery ? file : `Documents/${file}`,
 });
@@ -186,8 +188,11 @@ export const purgeStorage = async (store: string) => {
     }
 
     const mmkvPath = getMMKVPath(store);
-    if (await NativeFileModule.fileExists(`${NativeFileModule.getConstants().DocumentsDirPath}/${mmkvPath}`)) {
-        await NativeFileModule.removeFile?.("documents", mmkvPath);
+    // The storage and the copies kept beside it, so that nothing of it comes back
+    for (const path of [mmkvPath, `${mmkvPath}.bak`, `${mmkvPath}.damaged`]) {
+        if (await NativeFileModule.fileExists(`${NativeFileModule.getConstants().DocumentsDirPath}/${path}`)) {
+            await NativeFileModule.removeFile?.("documents", path);
+        }
     }
 };
 
@@ -227,27 +232,38 @@ export const createMMKVBackend = (store: string, defaultData = {}) => {
     })());
 };
 
+/** A storage's file in the documents directory, and the copies kept beside it */
+const documentExists = (file: string): Promise<boolean> => Promise.resolve()
+    .then(() => NativeFileModule.fileExists(`${NativeFileModule.getConstants().DocumentsDirPath}/${file}`))
+    .then(Boolean, () => false);
+
+const durableDocument = (file: string): DurableFile => ({
+    read: async suffix => {
+        const path = `${NativeFileModule.getConstants().DocumentsDirPath}/${file}${suffix}`;
+        return await NativeFileModule.fileExists(path) ? await NativeFileModule.readFile(path, "utf8") : undefined;
+    },
+    write: (suffix, text) => writeDocument(filePathFixer(file + suffix), text),
+});
+
 export const createFileBackend = (file: string, defaultData = {}, migratePromise?: Promise<void>): StorageBackend => {
     return {
         get: async () => {
             await migratePromise;
-            const path = `${NativeFileModule.getConstants().DocumentsDirPath}/${file}`;
+            // A damaged file comes back from its last good copy, and is kept aside, rather than replaced with an empty
+            // storage: that lost every setting in it
+            const doc = durableDocument(file);
+            const saved = await readDurably(doc, file);
+            // A storage is an object: a file that holds only a number or a string is as good as damaged
+            if (saved && saved.value !== null && typeof saved.value === "object" && !Array.isArray(saved.value)) return saved.value;
 
-            if (await NativeFileModule.fileExists(path)) {
-                const content = await NativeFileModule.readFile(path, "utf8");
-                try {
-                    return JSON.parse(content);
-                } catch {
-                    // Corrupted content, ignore
-                }
-            }
-
-            await writeDocument(filePathFixer(file), JSON.stringify(defaultData));
-            return JSON.parse(await NativeFileModule.readFile(path, "utf8"));
+            // Written only where there's no file: one that's there but couldn't be read stays as it is until something
+            // changes, and a damaged one is kept as .damaged
+            if (!await documentExists(file)) await writeDocument(filePathFixer(file), JSON.stringify(defaultData));
+            return JSON.parse(JSON.stringify(defaultData));
         },
         set: async data => {
             await migratePromise;
-            await writeDocument(filePathFixer(file), JSON.stringify(data));
+            await writeDurably(durableDocument(file), file, JSON.stringify(data));
         }
     };
 };

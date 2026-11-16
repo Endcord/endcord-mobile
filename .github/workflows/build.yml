@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
         with:
-          bun-version: latest
+          bun-version: "1.4.4"
       - name: Install dependencies
         working-directory: bundle
         run: bun install --frozen-lockfile
@@ -37,6 +37,10 @@ jobs:
         working-directory: bundle
         # Without Endcord PC checked out, the shipped translations are checked: every string in all five languages
         run: node scripts/i18n-sync.mjs --strict
+      - name: Test
+        working-directory: bundle
+        # Shared profiles, safe mode, backups, secrets, plugin checks and the phone simulation, each file on its own
+        run: node scripts/test.mjs
       - name: Build
         working-directory: bundle
         run: bun run build --release-branch ${{ github.ref_name }} --build-minify

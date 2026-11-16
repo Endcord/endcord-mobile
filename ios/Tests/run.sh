@@ -258,6 +258,18 @@ launch signed-tampered-cache
 cp "$WORK/hbc.hbc" "$SERVED"
 clean_caches
 launch signed-tampered-download
+# The release lists the served bytes, but under another file's name (the loader APK): name binding refuses it, so a
+# signed APK served at the bundle's address can't pass for the bundle
+cp "$WORK/hbc2.hbc" "$SERVED"
+python3 - "$SERVE/endcord-release.json" "$WORK/hbc2.hbc" <<'EOF'
+import hashlib, json, sys
+out, bundle = sys.argv[1:]
+data = open(bundle, "rb").read()
+open(out, "w").write(json.dumps({"format": 1, "sequence": 160, "files": {"endcord-xposed.apk": {"size": len(data), "sha256": hashlib.sha256(data).hexdigest()}}}))
+EOF
+openssl dgst -sha256 -sign "$HERE/release-test-key.pem" -out "$SERVE/endcord-release.sig" "$SERVE/endcord-release.json"
+clean_caches
+launch signed-wrong-name
 cp "$WORK/hbc2.hbc" "$SERVED"
 # A release changed after it was signed
 sign_release 150 "$WORK/hbc2.hbc"
@@ -302,6 +314,7 @@ launch menu
 
 clean_documents
 launch smooth-caret
+launch screen-privacy
 launch broadcast
 launch broadcast-link
 clean_documents

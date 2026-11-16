@@ -2,7 +2,9 @@
     "exclude": [
         "dist",
         // Tooling, whose plugins ship no types
-        "eslint.config.mjs"
+        "eslint.config.mjs",
+        // Run by bun (scripts/test.mjs), with bun's own test API and loose fakes
+        "test"
     ],
     "compilerOptions": {
         "strict": true,

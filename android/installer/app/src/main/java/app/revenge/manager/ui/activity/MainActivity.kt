@@ -1,6 +1,7 @@
 package app.revenge.manager.ui.activity
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,6 +11,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import app.revenge.manager.domain.manager.DiscordSource
 import app.revenge.manager.domain.manager.PreferenceManager
+import app.revenge.manager.installer.step.StepRunner
 import app.revenge.manager.ui.screen.home.HomeScreen
 import app.revenge.manager.ui.screen.installer.InstallerScreen
 import app.revenge.manager.ui.theme.RevengeManagerTheme
@@ -56,6 +58,22 @@ class MainActivity : ComponentActivity() {
                     SlideTransition(it)
                 }
             }
+        }
+    }
+
+    /**
+     * A tap on the update notification while the app is open: started over with it, to go straight to the install as
+     * onCreate does. Not while an install is running, which starting over would stop.
+     */
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        val prefs = get<PreferenceManager>()
+        val askedByNotification = intent.action == Intents.Actions.INSTALL &&
+            prefs.pendingInstallToken.isNotEmpty() &&
+            intent.getStringExtra(Intents.Extras.TOKEN) == prefs.pendingInstallToken
+        if (askedByNotification && !StepRunner.running) {
+            setIntent(intent)
+            recreate()
         }
     }
 

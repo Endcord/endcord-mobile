@@ -3,6 +3,8 @@ import { Observable, ObserverOptions } from "@gullerya/object-observer";
 import { fileExists, readFile, removeFile, writeFile } from "@lib/api/native/fs";
 import { debounce } from "es-toolkit";
 
+import { type DurableFile, readDurably, writeDurably } from "./durable";
+
 const storageInitErrorSymbol = Symbol.for("bunny.storage.initError");
 const storagePromiseSymbol = Symbol.for("bunny.storage.promise");
 
@@ -13,10 +15,16 @@ type Flush = () => Promise<void>;
 /** Finishes a storage's pending write, by path: the last backend that saved it holds it */
 const flushers = new Map<string, Flush>();
 
+/** A storage's file and the copies kept beside it, in Endcord's folder */
+const durableFile = (filePath: string): DurableFile => ({
+    read: async suffix => await fileExists(filePath + suffix) ? await readFile(filePath + suffix) : undefined,
+    write: (suffix, text) => writeFile(filePath + suffix, text),
+});
+
 function createFileBackend<T extends object>(filePath: string) {
     let writing: Promise<void> = Promise.resolve();
     const write = debounce((data: T) => {
-        writing = writeFile(filePath, JSON.stringify(data))
+        writing = writeDurably(durableFile(filePath), filePath, JSON.stringify(data))
             .catch(e => console.error(`[Endcord] Couldn't save ${filePath}`, e));
     }, 500);
     const flush = () => {
@@ -25,13 +33,11 @@ function createFileBackend<T extends object>(filePath: string) {
     };
 
     return {
-        get: async () => {
-            try {
-                return JSON.parse(await readFile(filePath)) as T;
-            } catch (e) {
-                throw new Error(`Failed to parse storage from '${filePath}'`, { cause: e });
-            }
-        },
+        /**
+         * The saved contents, or undefined when the file is damaged and has no good copy: a storage that can't be read
+         * starts over rather than leaving everything that waits for it waiting forever, Discord's start included
+         */
+        get: async () => (await readDurably<T>(durableFile(filePath), filePath))?.value,
         set: async (data: T) => {
             if (!data || typeof data !== "object") {
                 throw new Error("data needs to be an object");
@@ -116,18 +122,37 @@ export function createStorageAndCallback<T extends object = {}>(
     if (_loadedStorage[path]) {
         callback(_loadedStorage[path]);
     } else {
+        let called = false;
+        const empty = () => _loadedStorage[path] = nullIfEmpty ? null : dflt;
+        const done = (data: any) => {
+            if (called) return;
+            called = true;
+            try {
+                callback(data);
+            } catch (e) {
+                // Whatever waits for this storage would otherwise wait forever
+                console.error(`[Endcord] The storage ${path} couldn't be opened; it starts empty`, e);
+                callback(empty());
+            }
+        };
         backend.exists().then(async exists => {
             if (!exists) {
                 if (nullIfEmpty) {
-                    callback(_loadedStorage[path] = null);
+                    done(_loadedStorage[path] = null);
                 } else {
                     _loadedStorage[path] = dflt;
                     await backend.set(dflt);
-                    callback(dflt);
+                    done(dflt);
                 }
             } else {
-                callback(_loadedStorage[path] = await backend.get());
+                const saved: unknown = await backend.get();
+                // A storage is an object: a file that holds only a number or a string is as good as damaged
+                if (saved !== null && typeof saved === "object" && !Array.isArray(saved)) done(_loadedStorage[path] = saved);
+                else done(empty());
             }
+        }).catch(e => {
+            console.error(`[Endcord] The storage ${path} couldn't be opened; it starts empty`, e);
+            done(empty());
         });
     }
 }
@@ -180,7 +205,10 @@ export async function preloadStorageIfExists(path: string): Promise<boolean> {
 
     const backend = createFileBackend(path);
     if (await backend.exists()) {
-        _loadedStorage[path] = await backend.get();
+        const saved = await backend.get();
+        // Damaged beyond repair: as if it weren't there
+        if (saved === undefined) return false;
+        _loadedStorage[path] = saved;
         return true;
     }
 
@@ -189,6 +217,10 @@ export async function preloadStorageIfExists(path: string): Promise<boolean> {
 
 export async function purgeStorage(path: string) {
     await removeFile(path);
+    // Its copies too, so that nothing of a removed storage comes back
+    for (const suffix of [".bak", ".damaged"]) {
+        if (await fileExists(path + suffix).catch(() => false)) await removeFile(path + suffix).catch(() => { });
+    }
     delete _loadedStorage[path];
 }
 

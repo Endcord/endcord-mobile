@@ -18,7 +18,14 @@ android {
         minSdk = 28
         targetSdk = 34
         versionName = version.toString()
-        versionCode = versionName!!.removePrefix("v").split("-").first().replace(".", "").toInt()
+        // major.minor.patch as 1_000_000·major + 1000·minor + patch: joined digits put 1.1.0 (110) below 1.0.10 (1010),
+        // and Android refuses an update with a lower code. 1.0.3 is 1000003, above every code made the old way (103).
+        versionCode = versionName!!.removePrefix("v").substringBefore("-").split(".")
+            .map { it.toInt() }.plus(listOf(0, 0, 0)).take(3)
+            .let { (major, minor, patch) ->
+                require(minor < 1000 && patch < 1000) { "Version $versionName has a part over 999" }
+                major * 1_000_000 + minor * 1_000 + patch
+            }
 
 
         buildConfigField("String", "MOD_NAME", "\"Endcord\"")
@@ -176,6 +183,8 @@ dependencies {
             type = "aar"
         }
     }
+
+    testImplementation(libs.kotlin.test)
 }
 
 fun getCurrentBranch(): String? =

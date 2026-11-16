@@ -23,6 +23,12 @@ ifdef ENDCORD_REQUIRE_SIGNED
 Endcord_CFLAGS += -DENDCORD_REQUIRE_SIGNED=1
 endif
 
+# A custom bundle link (loader.json, the recovery menu) is taken only by builds made with this: a developer's, and the
+# simulator test's. A release build loads the published, signed bundle only
+ifdef ENDCORD_ALLOW_CUSTOM_BUNDLE
+Endcord_CFLAGS += -DENDCORD_ALLOW_CUSTOM_BUNDLE=1
+endif
+
 # The simulator test's build (Tests/run.sh) downloads the bundle from its own server
 ifdef ENDCORD_BUNDLE_URL
 Endcord_CFLAGS += -DENDCORD_BUNDLE_URL='@"$(ENDCORD_BUNDLE_URL)"'

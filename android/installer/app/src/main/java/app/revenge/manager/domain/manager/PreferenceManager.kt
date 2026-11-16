@@ -25,12 +25,28 @@ class PreferenceManager(context: Context) :
 
     var packageName by stringPreference("package_name", BuildConfig.MODDED_APP_PACKAGE_NAME)
 
+    /**
+     * The package Endcord is installed as: [packageName], unless it can't be one (blank, malformed, or Discord's own,
+     * which Android only lets Discord update), when Endcord's usual package is used instead
+     */
+    val modPackageName: String
+        get() = packageName.trim().takeIf { isUsablePackageName(it) } ?: BuildConfig.MODDED_APP_PACKAGE_NAME
+
     var appName by stringPreference("app_name", BuildConfig.MOD_NAME)
 
     var discordVersion by stringPreference("discord_version", "")
 
     /** The newest signed release (its `sequence`) the module was taken from; an older one isn't taken again */
     var releaseSequence by stringPreference("release_sequence", "")
+
+    /**
+     * The SHA-256 of the signed loader the last install put into Endcord; blank when that's not known (an install by an
+     * installer before this one) or a module the user picked themselves was used
+     */
+    var installedLoaderSha256 by stringPreference("installed_loader_sha256", "")
+
+    /** The published loader the update checker last told about, so it says so once, not every time it checks */
+    var notifiedLoaderSha256 by stringPreference("notified_loader_sha256", "")
 
     /** What the app's own update notification carries, so only it can open the app straight into an install */
     var pendingInstallToken by stringPreference("pending_install_token", "")
@@ -81,6 +97,12 @@ class PreferenceManager(context: Context) :
         }
     }
 }
+
+/** Whether [name] can be an Android package Endcord is installed as: two or more dot-separated Java-like names */
+internal fun isUsablePackageName(name: String): Boolean =
+    name.length <= 255 &&
+        Regex("""[A-Za-z][A-Za-z0-9_]*(\.[A-Za-z][A-Za-z0-9_]*)+""").matches(name) &&
+        name != "com.discord" && name != BuildConfig.APPLICATION_ID
 
 enum class Theme(@StringRes val labelRes: Int) {
     SYSTEM(R.string.theme_system),

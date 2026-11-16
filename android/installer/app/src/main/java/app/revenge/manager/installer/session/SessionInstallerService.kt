@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.pm.PackageInstaller
 import android.os.IBinder
 import app.revenge.manager.R
-import app.revenge.manager.ui.activity.MainActivity
 import app.revenge.manager.utils.showToast
 
 class InstallService : Service() {
@@ -21,7 +20,7 @@ class InstallService : Service() {
     )
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        val isInstall = intent.action == "revenge.actions.ACTION_INSTALL"
+        val isInstall = intent.action == ACTION_INSTALL
         when (val statusCode = intent.getIntExtra(PackageInstaller.EXTRA_STATUS, -999)) {
             PackageInstaller.STATUS_PENDING_USER_ACTION -> {
                 @Suppress("DEPRECATION") // No.
@@ -31,23 +30,20 @@ class InstallService : Service() {
                 startActivity(confirmationIntent)
             }
 
-            PackageInstaller.STATUS_SUCCESS -> if (isInstall) showToast(R.string.installer_success)
-
-            PackageInstaller.STATUS_FAILURE_ABORTED -> if (isInstall) showToast(R.string.installer_aborted)
-
-            else -> {
-                if (isInstall) {
-                    messages[statusCode]?.let(::showToast)
-
-                    // Send error messages back to the activity for debugging (to be received by InstallerScreen)
-                    startActivity(
-                        Intent("revenge.actions.ACTION_INSTALL_FINISHED").apply {
-                            setClass(this@InstallService, MainActivity::class.java)
-                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                            putExtra("revenge.extras.EXTRA_MESSAGE", intent.getStringExtra(PackageInstaller.EXTRA_STATUS_MESSAGE))
-                        }
-                    )
+            else -> if (isInstall) {
+                when (statusCode) {
+                    PackageInstaller.STATUS_SUCCESS -> showToast(R.string.installer_success)
+                    PackageInstaller.STATUS_FAILURE_ABORTED -> showToast(R.string.installer_aborted)
+                    else -> messages[statusCode]?.let(::showToast)
                 }
+
+                // The installer waiting on the session learns how it ended, with Android's reason for the logs. It's
+                // handed over in the process: an exported activity would take the same message from any app
+                InstallResults.complete(
+                    sessionId = intent.getIntExtra(PackageInstaller.EXTRA_SESSION_ID, -1),
+                    status = statusCode,
+                    message = intent.getStringExtra(PackageInstaller.EXTRA_STATUS_MESSAGE),
+                )
             }
         }
 
@@ -57,4 +53,7 @@ class InstallService : Service() {
 
     override fun onBind(intent: Intent): IBinder? = null
 
+    companion object {
+        const val ACTION_INSTALL = "revenge.actions.ACTION_INSTALL"
+    }
 }

@@ -9,6 +9,7 @@ import { NavigationNative } from "@metro/common";
 import { ActionSheet, BottomSheetTitleHeader, Button, IconButton, Stack, TableRow, TableRowGroup, Text, TextInput } from "@metro/common/components";
 import { findByProps, findByPropsLazy } from "@metro/wrappers";
 import { ErrorBoundary } from "@ui/components";
+import { useEdgeInsets } from "@ui/insets";
 import { useMemo, useRef, useState } from "react";
 import { ScrollView, View } from "react-native";
 
@@ -267,6 +268,7 @@ export default function FontEditor(props: {
     const [name, setName] = useState<string | undefined>(props.name);
     const [source, setSource] = useState<string | undefined>(props.name && fonts[props.name].source);
     const [importing, setIsImporting] = useState<boolean>(false);
+    const { bottom } = useEdgeInsets();
     const [errors, setErrors] = useState<Array<Error | undefined> | undefined>();
 
     const memoEntry = useMemo(() => {
@@ -279,7 +281,7 @@ export default function FontEditor(props: {
 
     const [, forceUpdate] = React.useReducer(() => ({}), 0);
 
-    return <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 38 }} keyboardShouldPersistTaps="handled">
+    return <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 38 + bottom }} keyboardShouldPersistTaps="handled">
         <Stack style={{ paddingVertical: 24, paddingHorizontal: 12 }} spacing={12}>
             {!props.name
                 ? <TableRowGroup title={t("Import")}>

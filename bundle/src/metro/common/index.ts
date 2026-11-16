@@ -11,7 +11,8 @@ export const constants = findByPropsLazy("Fonts", "Permissions");
 export const channels = findByPropsLazy("getVoiceChannelId");
 export const i18n = findByPropsLazy("Messages");
 
-// Polyfill LinkingUtils
+// Polyfill LinkingUtils: what Discord itself opens, as it would
+// eslint-disable-next-line no-restricted-syntax -- Discord's own links
 const openURL = (url: string) => Linking.openURL(url);
 export const url = nativeModuleProxy.NativeLinkingModule || nativeModuleProxy.DCDLinkingManager ? {
     openURL,

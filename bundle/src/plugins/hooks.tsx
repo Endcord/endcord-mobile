@@ -19,6 +19,7 @@ import { ApplicationCommandOptionType, Argument, CommandContext } from "@lib/api
 import { intercept } from "@lib/api/flux";
 import { after, instead } from "@lib/api/patcher";
 import { showToast } from "@lib/ui/toasts";
+import { isWebLink } from "@lib/utils/externalLinks";
 import { findByName, findByProps } from "@metro";
 import { clipboard, messageUtil } from "@metro/common";
 import { ActionSheet, ActionSheetRow } from "@metro/common/components";
@@ -84,11 +85,12 @@ export function copy(text: string, message?: string) {
  * messages and embeds, and another kind (intent:, file:...) could start any app or open the app's own files.
  */
 export function openUrl(url: string) {
-    if (!/^https?:\/\//i.test(url)) {
+    if (!isWebLink(url)) {
         showToast(t("This isn't a web link, so it wasn't opened"), findAssetId("CircleXIcon-primary"));
         return Promise.resolve();
     }
-    return Linking.openURL(url);
+    // eslint-disable-next-line no-restricted-syntax -- checked just above
+    return Linking.openURL(url.trim());
 }
 
 /**

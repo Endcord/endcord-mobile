@@ -48,11 +48,42 @@ export function syncFromStorage() {
 
 export const myId = (): string | undefined => getStore("AuthenticationStore")?.getId?.() ?? undefined;
 
-/** The custom profile shown for a user: one of your accounts that has one turned on */
+/** Another Endcord user's shared profile, while they're shown; set by CustomProfile when sharing starts */
+let sharedProfileOf: (userId: string) => CustomProfileData | null = () => null;
+
+export function setSharedProfiles(resolver: (userId: string) => CustomProfileData | null) {
+    sharedProfileOf = resolver;
+}
+
+/** Shared profiles came in or changed: cached fake users and profiles are rebuilt */
+export function bumpDataVersion() {
+    version++;
+}
+
+/**
+ * The custom profile shown for a user: one of your accounts that has one turned on comes first, as on Endcord PC; the
+ * account you're signed in to shows what's saved here, never what it shared from another device; anyone else, what
+ * they shared with Endcord users
+ */
 export function getProfileDataFor(userId: string | null | undefined): CustomProfileData | null {
-    if (!userId || !enabled[userId]) return null;
-    const data = accounts[userId];
-    return hasAnyCustomData(data) ? data : null;
+    if (!userId) return null;
+    if (enabled[userId]) {
+        const data = accounts[userId];
+        return hasAnyCustomData(data) ? data : null;
+    }
+    if (userId === myId()) return null;
+    // As on Endcord PC, whatever they shared: a profile that only turns Nitro off, or only sets a nameplate, is one too
+    return sharedProfileOf(userId);
+}
+
+/** Whether the profile shown for a user is one saved on this phone, rather than one they shared */
+export const isSavedHere = (userId: string | null | undefined) => !!userId && !!enabled[userId];
+
+/** The signed-in account and the profile it has on, to share with other Endcord users */
+export function currentSharable(): { id: string; data: CustomProfileData | null; } | null {
+    const id = myId();
+    if (!id) return null;
+    return { id, data: enabled[id] && hasAnyCustomData(accounts[id]) ? plain(accounts[id]) : null };
 }
 
 export const accountData = (id: string): CustomProfileData => plain(accounts[id] ?? {});

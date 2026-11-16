@@ -110,6 +110,9 @@ val pluginMethods by tweak {
         val factory = pluginRegistry.factories[pluginId]
         val entry = pluginRegistry.loaded[pluginId]
 
+        // Turning on one built into the loader is fine; one installed into the app runs native code at every start
+        if (enabled && internalPluginOf(pluginId) == null) InstalledPluginPolicy.require("Turning on an installed plugin")
+
         if (enabled) {
             // Required deps must be installed, satisfied and enabled first. JS must handle the resolution UX.
             val problems = factory?.dependencyProblemsToJSPayload(pluginRegistry.factories).orEmpty()

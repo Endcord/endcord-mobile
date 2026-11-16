@@ -12,12 +12,13 @@ import { useObservable } from "@lib/api/storage";
 import { showToast } from "@lib/ui/toasts";
 import compareNames from "@lib/utils/compareNames";
 import { BUNNY_PROXY_PREFIX, CLASSIC_URL, VD_PROXY_PREFIX } from "@lib/utils/constants";
+import { openSafeLink } from "@lib/utils/externalLinks";
 import { lazyDestructure } from "@lib/utils/lazy";
 import { findByProps } from "@metro";
 import { NavigationNative } from "@metro/common";
 import { Button, Card, FlashList, IconButton, Text } from "@metro/common/components";
 import { ComponentProps, createContext, useContext, useState } from "react";
-import { Linking, Platform, ScrollView, View } from "react-native";
+import { Platform, ScrollView, View } from "react-native";
 
 import { UnifiedPluginModel } from "./models";
 import unifyBunnyPlugin from "./models/bunny";
@@ -60,7 +61,7 @@ function AliucordNotice() {
             {t("Aliucord plugins only work on the older Discord that Aliucord is built on, so they can't run here. This Endcord has Endcord's own plugins for the latest Discord. For Aliucord plugins, use Endcord Classic, which runs both.")}
         </Text>
         <View style={{ flexDirection: "row", gap: 8 }}>
-            <Button size="sm" variant="secondary" text={t("Get Endcord Classic")} icon={findAssetId("LinkExternalSmallIcon")} onPress={() => Linking.openURL(CLASSIC_URL)} />
+            <Button size="sm" variant="secondary" text={t("Get Endcord Classic")} icon={findAssetId("LinkExternalSmallIcon")} onPress={() => void openSafeLink(CLASSIC_URL)} />
             <Button size="sm" variant="tertiary" text={t("Got it")} onPress={() => void (notices.aliucordDismissed = true)} />
         </View>
     </Card>;

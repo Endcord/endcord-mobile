@@ -8,6 +8,7 @@ import { t } from "@core/i18n";
 import { useProxy } from "@core/vendetta/storage";
 import { Stack, TableRadioGroup, TableRadioRow, TableRowGroup, TableSwitchRow, Text, TextInput } from "@metro/common/components";
 import { ErrorBoundary } from "@ui/components";
+import { useEdgeInsets } from "@ui/insets";
 import { useState } from "react";
 import { ScrollView, View } from "react-native";
 
@@ -71,6 +72,7 @@ function Setting({ id, def, store }: { id: string; def: SettingDef; store: any; 
 
 export default function PluginSettings({ plugin }: { plugin: EndcordPlugin<any>; }) {
     const store = useProxy(plugin.store);
+    const { bottom } = useEdgeInsets();
     // Drawn once the settings have loaded, so fields start with the saved values
     if (!(store as any)[Symbol.for("vendetta.storage.emitter")]) return null;
     const entries = Object.entries(plugin.settings ?? {}) as [string, SettingDef][];
@@ -84,7 +86,7 @@ export default function PluginSettings({ plugin }: { plugin: EndcordPlugin<any>;
     }
 
     return <ErrorBoundary>
-        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 38 }} keyboardShouldPersistTaps="handled">
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 38 + bottom }} keyboardShouldPersistTaps="handled">
             <Stack style={{ paddingVertical: 24, paddingHorizontal: 12 }} spacing={16}>
                 <Text variant="text-md/medium" color="text-muted">{t(plugin.description)}</Text>
                 {blocks.map(block => block[0][1].type === "boolean"

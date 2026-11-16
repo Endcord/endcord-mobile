@@ -1,10 +1,15 @@
 import { stagePluginUpdate } from "@core/addonUpdates";
+import { t as translate, tx } from "@core/i18n";
 import { getCorePlugins } from "@core/plugins";
+import { confirmRisks, describeRisk, newRisks, scanPluginCode } from "@core/pluginScan";
+import { awaitStorage as awaitSettings } from "@core/vendetta/storage";
 import { fileExists, readFile, removeFile, writeFile } from "@lib/api/native/fs";
+import { settings } from "@lib/api/settings";
 import { awaitStorage, createStorage, getPreloadedStorage, preloadStorageIfExists, purgeStorage, updateStorage } from "@lib/api/storage";
 import { safeFetch } from "@lib/utils";
-import { isAddonUrl } from "@lib/utils/addonUrl";
+import { isAddonUrl, requireAddonResponse, requireAddonUrl } from "@lib/utils/addonUrl";
 import { OFFICIAL_PLUGINS_REPO_URL } from "@lib/utils/constants";
+import { MAX_SIZES, readJson, readText } from "@lib/utils/safeFetch";
 import { semver } from "@metro/common";
 
 import { createBunnyPluginApi } from "./api";
@@ -27,9 +32,11 @@ export const apiObjects = new Map<string, ReturnType<typeof createBunnyPluginApi
 export const pluginRepositories = createStorage<t.PluginRepoStorage>("plugins/repositories.json");
 export const pluginSettings = createStorage<t.PluginSettingsStorage>("plugins/settings.json");
 
-const _fetch = (repoUrl: string, path: string) => safeFetch(new URL(path, repoUrl), { cache: "no-store" });
-const fetchJS = (repoUrl: string, path: string) => _fetch(repoUrl, path).then(r => r.text());
-const fetchJSON = (repoUrl: string, path: string) => _fetch(repoUrl, path).then(r => r.json());
+// A repository's files only from where its plugins may come from, also after a redirect, and only so large; its JSON
+// without keys that would change an object's prototype once merged
+const _fetch = async (repoUrl: string, path: string) => requireAddonResponse(await safeFetch(requireAddonUrl(String(new URL(path, repoUrl))), { cache: "no-store" }));
+const fetchJS = (repoUrl: string, path: string) => _fetch(repoUrl, path).then(r => readText(r, MAX_SIZES.code));
+const fetchJSON = (repoUrl: string, path: string) => _fetch(repoUrl, path).then(r => readJson(r));
 
 function assert<T>(condition: T, id: string, attempt: string): asserts condition {
     if (!condition) throw new Error(`[${id}] Attempted to ${attempt}`);
@@ -101,10 +108,15 @@ export async function updateAndWritePlugin(
     repoUrl: string,
     id: string,
     fetchScript: boolean,
-    /** `stage`: new code for an installed plugin waits for the user; `onApplied` runs once it's in */
-    { stage = false, onApplied }: { stage?: boolean; onApplied?: () => void; } = {}
+    /**
+     * `stage`: new code for an installed plugin waits for the user; `onApplied` runs once it's in. `install`: it's being
+     * installed, so its code is read for risks first (core/pluginScan)
+     */
+    { stage = false, onApplied, install = false }: { stage?: boolean; onApplied?: () => void; install?: boolean; } = {}
 ) {
     requireSafePluginId(id);
+    // A built-in plugin's ID would put the repository's code, unchecked, in that plugin's place
+    if (corePluginInstances.has(id)) throw new Error(`Plugins can't have the same ID as any of Bunny core plugin '${id}'`);
     const manifest: t.BunnyPluginManifestInternal = await fetchJSON(repoUrl, `builds/${id}/manifest.json`);
 
     // @ts-expect-error - Setting a readonly property
@@ -116,14 +128,23 @@ export async function updateAndWritePlugin(
         manifest.jsPath = jsPath;
 
         const js: string = await fetchJS(repoUrl, `builds/${id}/index.js`);
+        // Code that's here already was asked about when it came: only code that's new is asked about again
+        if (install && !(await fileExists(jsPath) && await readFile(jsPath).catch(() => null) === js)
+            && !await confirmRisks(manifest.display?.name ?? id, scanPluginCode(js))) {
+            throw new Error(translate(tx("The plugin wasn't installed")));
+        }
         const installed = isPluginInstalled(id) && await fileExists(jsPath);
-        if (stage && installed && await readFile(jsPath).catch(() => "") !== js) {
+        const current = stage && installed ? await readFile(jsPath).catch(() => "") : undefined;
+        if (current !== undefined && current !== js) {
             stagedIds.add(id);
             stagePluginUpdate(id, {
                 name: manifest.display?.name ?? id,
                 source: hostOf(repoUrl),
+                risks: newRisks(scanPluginCode(current), scanPluginCode(js)).map(describeRisk),
                 apply: async () => {
                     stagedIds.delete(id);
+                    // Removed since the update came: it isn't brought back
+                    if (!isPluginInstalled(id)) return;
                     await writeFile(jsPath, js);
                     await updateStorage(`plugins/manifests/${id}.json`, manifest);
                     registeredPlugins.set(id, manifest);
@@ -167,7 +188,15 @@ export async function refreshPlugin(id: string, repoUrl?: string) {
     stopPlugin(id);
 
     if (isExternalPlugin(manifest)) {
-        manifest = await updateAndWritePlugin(repoUrl ?? manifest.parentRepository, id, true);
+        try {
+            // Asked for, so the new code goes in now rather than waiting like an update found in the background; but it's
+            // read for what plugins rarely need first, like a plugin being installed
+            manifest = await updateAndWritePlugin(repoUrl ?? manifest.parentRepository, id, true, { install: true });
+        } catch (e) {
+            // Not fetched, or not wanted: the code that was there runs again
+            await startPlugin(id).catch(() => { });
+            throw e;
+        }
     }
 
     registeredPlugins.delete(id);
@@ -208,6 +237,12 @@ export async function updateRepository(repoUrl: string) {
     }
 
     const pluginIds = Object.keys(repo).filter(id => !id.startsWith("$")).filter(id => {
+        // A repository added before may list one later: its code would run as that built-in plugin
+        if (corePluginInstances.has(id)) {
+            console.error(`[Endcord] The repository ${repoUrl} lists a plugin with the ID of a built-in one, which is left out: ${id}`);
+            delete repo[id];
+            return false;
+        }
         if (isSafePluginId(id)) return true;
         console.error(`[Endcord] The repository ${repoUrl} lists a plugin whose ID can't name a file: ${JSON.stringify(id)}`);
         delete repo[id];
@@ -310,7 +345,7 @@ export async function installPlugin(id: string, start: boolean) {
     assert(isExternalPlugin(manifest), id, "install a core plugin");
 
     // We only need to fetch the JS, but this is fine
-    await updateAndWritePlugin(manifest.parentRepository, id, true);
+    await updateAndWritePlugin(manifest.parentRepository, id, true, { install: true });
 
     pluginSettings[id] = { enabled: true };
     if (start) startPlugin(id);
@@ -436,10 +471,23 @@ async function registerStoredPlugins() {
     }
 }
 
+/** Plugins safe mode keeps on: NoTrack, so Discord's analytics stay off while everything else is */
+export const SAFE_MODE_PLUGINS: ReadonlySet<string> = new Set(["endcord.no-track"]);
+
+/**
+ * Whether a plugin starts with Discord: when it's on, and in safe mode only if safe mode keeps it. Safe mode is how
+ * someone gets out of a plugin that breaks Discord, so it has to leave Endcord's own plugins and repositories' off too
+ */
+function startsWithDiscord(id: string) {
+    // === true, like isSafeMode(): a settings file edited by hand could hold "enabled": 1, which is truthy here but
+    // not safe mode to isSafeMode, so a plugin would start while the switch and the rest of the app say safe mode is on
+    return isPluginEnabled(id) && (settings.safeMode?.enabled !== true || SAFE_MODE_PLUGINS.has(id));
+}
+
 /** Starts the enabled plugins a repository update registered, the ones not among `before` */
 async function startNewlyRegistered(before: Set<string>) {
     await Promise.allSettled([...registeredPlugins.keys()].map(async id => {
-        if (!before.has(id) && isPluginEnabled(id) && !pluginInstances.has(id)) await startPlugin(id);
+        if (!before.has(id) && startsWithDiscord(id) && !pluginInstances.has(id)) await startPlugin(id);
     }));
 }
 
@@ -480,10 +528,11 @@ export async function updatePlugins() {
  */
 export async function initPlugins() {
     await awaitStorage(pluginRepositories, pluginSettings);
+    await awaitSettings(settings);
 
     // Now, start all enabled plugins...
     await Promise.allSettled([...registeredPlugins.keys()].map(async id => {
-        if (isPluginEnabled(id)) {
+        if (startsWithDiscord(id)) {
             await startPlugin(id);
         }
     }));

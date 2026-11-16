@@ -67,11 +67,6 @@ class InstallerViewModel(
     var expandedGroup by mutableStateOf<StepGroup?>(null)
         private set
 
-    fun logError(msg: String?) {
-        runner.logger.e("")
-        runner.logger.e(msg)
-    }
-
     fun clearCache() {
         runner.clearCache()
         context.showToast(R.string.msg_cleared_cache)
@@ -94,10 +89,13 @@ class InstallerViewModel(
     }
 
     fun launchMod() {
+        // What was just installed: the cached one may be from before the install
+        installManager.getInstalled()
         installManager.current?.let {
+            // None while the app is disabled
             val intent = context.packageManager.getLaunchIntentForPackage(it.packageName)?.apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            }
+            } ?: return
             context.startActivity(intent)
         }
     }

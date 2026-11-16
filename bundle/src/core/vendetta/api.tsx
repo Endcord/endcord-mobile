@@ -10,7 +10,7 @@ import patcher from "@lib/api/patcher";
 import { loaderConfig, settings } from "@lib/api/settings";
 import * as utils from "@lib/utils";
 import { cyrb64Hash } from "@lib/utils/cyrb64";
-import { LoggerClass } from "@lib/utils/logger";
+import { createLogger } from "@lib/utils/logger";
 import * as metro from "@metro";
 import * as common from "@metro/common";
 import { Forms } from "@metro/common/components";
@@ -34,7 +34,7 @@ export async function createVdPluginObject(plugin: VendettaPlugin) {
             // Wrapping this with wrapSync is NOT an option.
             storage: await createStorage<Record<string, any>>(storage.createMMKVBackend(plugin.id)),
         },
-        logger: new LoggerClass(`Endcord » ${plugin.manifest.name}`),
+        logger: createLogger(`Endcord » ${plugin.manifest.name}`),
     };
 }
 

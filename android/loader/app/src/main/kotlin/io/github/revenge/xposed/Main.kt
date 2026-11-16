@@ -56,6 +56,7 @@ class Main : IXposedHookLoadPackage, IXposedHookZygoteInit {
         additionalBridgeMethods,
         fonts,
         themes,
+        screenPrivacy,
         sysColors,
         smoothCaret,
         pluginLoader,

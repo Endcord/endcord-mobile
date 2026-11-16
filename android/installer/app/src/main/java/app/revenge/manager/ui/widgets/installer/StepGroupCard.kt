@@ -9,14 +9,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,7 +25,6 @@ import app.revenge.manager.R
 import app.revenge.manager.installer.step.Step
 import app.revenge.manager.installer.step.StepStatus
 import app.revenge.manager.installer.step.download.base.DownloadStep
-import app.revenge.manager.utils.thenIf
 
 /**
  * Collapsable card containing a group of steps
@@ -51,14 +48,13 @@ fun StepGroupCard(
         steps.any { it.status == StepStatus.UNSUCCESSFUL } -> StepStatus.UNSUCCESSFUL
         else -> StepStatus.ONGOING
     }
+    val colors = MaterialTheme.colorScheme
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
-            .thenIf(isCurrent) {
-                background(MaterialTheme.colorScheme.surfaceColorAtElevation(1.dp))
-            }
+            .clip(MaterialTheme.shapes.medium)
+            .background(if (isCurrent) colors.surfaceContainer else colors.surfaceContainerLow)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -66,18 +62,19 @@ fun StepGroupCard(
             modifier = Modifier
                 .clickable(onClick = onClick)
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(horizontal = 16.dp, vertical = 14.dp)
         ) {
             StepIcon(status, 24.dp, progress = null)
 
-            Text(text = name)
+            Text(text = name, style = MaterialTheme.typography.titleSmall)
 
             Spacer(modifier = Modifier.weight(1f))
 
             if (status != StepStatus.ONGOING && status != StepStatus.QUEUED) {
                 Text(
                     text = "%.2fs".format(steps.sumOf { it.durationMs } / 1000f), // Displays the duration rounded to the hundredths place. ex. 10.13s
-                    style = MaterialTheme.typography.labelMedium
+                    style = MaterialTheme.typography.labelMedium,
+                    color = colors.onSurfaceVariant
                 )
             }
 
@@ -88,18 +85,17 @@ fun StepGroupCard(
 
             Icon(
                 imageVector = arrow,
-                contentDescription = stringResource(cd)
+                contentDescription = stringResource(cd),
+                tint = colors.onSurfaceVariant
             )
         }
 
         AnimatedVisibility(visible = isCurrent) {
             Column(
-                verticalArrangement = Arrangement.spacedBy(16.dp),
+                verticalArrangement = Arrangement.spacedBy(14.dp),
                 modifier = Modifier
-                    .background(MaterialTheme.colorScheme.background.copy(0.6f))
                     .fillMaxWidth()
-                    .padding(16.dp)
-                    .padding(start = 4.dp)
+                    .padding(start = 20.dp, end = 16.dp, top = 2.dp, bottom = 16.dp)
             ) {
                 steps.forEach { step ->
                     StepRow(

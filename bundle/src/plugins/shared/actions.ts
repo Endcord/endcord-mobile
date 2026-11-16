@@ -77,39 +77,75 @@ export function decodeBase64(input: string): string | undefined {
     return out;
 }
 
-// UnitConverter: what each unit is in its counterpart system
+// UnitConverter: what each unit is in its counterpart system, as the text right after a number (sticky: tried only there)
 // Speeds first, so "km/h" isn't read as "km"
-const UNITS: Array<{ re: RegExp; convert: (n: number) => string; }> = [
-    { re: /(-?\d+(?:[.,]\d+)?)\s*(?:km\/h|kph)\b/gi, convert: n => `${round(n * 0.621371)} mph` },
-    { re: /(-?\d+(?:[.,]\d+)?)\s*mph\b/gi, convert: n => `${round(n * 1.609344)} km/h` },
-    { re: /(-?\d+(?:[.,]\d+)?)\s*(?:km|kilometers?|kilometres?)\b/gi, convert: n => `${round(n * 0.621371)} mi` },
-    { re: /(-?\d+(?:[.,]\d+)?)\s*(?:mi|miles?)\b/gi, convert: n => `${round(n * 1.609344)} km` },
-    { re: /(-?\d+(?:[.,]\d+)?)\s*(?:cm|centimeters?|centimetres?)\b/gi, convert: n => `${round(n / 2.54)} in` },
-    { re: /(-?\d+(?:[.,]\d+)?)\s*(?:in|inch(?:es)?|")(?=\s|$|[.,!?])/gi, convert: n => `${round(n * 2.54)} cm` },
-    { re: /(-?\d+(?:[.,]\d+)?)\s*(?:m|meters?|metres?)\b/gi, convert: n => `${round(n * 3.28084)} ft` },
-    { re: /(-?\d+(?:[.,]\d+)?)\s*(?:ft|feet|foot|')(?=\s|$|[.,!?])/gi, convert: n => `${round(n * 0.3048)} m` },
-    { re: /(-?\d+(?:[.,]\d+)?)\s*(?:kg|kilograms?|kilos?)\b/gi, convert: n => `${round(n * 2.20462)} lb` },
-    { re: /(-?\d+(?:[.,]\d+)?)\s*(?:lbs?|pounds?)\b/gi, convert: n => `${round(n * 0.453592)} kg` },
-    { re: /(-?\d+(?:[.,]\d+)?)\s*(?:g|grams?)\b/gi, convert: n => `${round(n / 28.3495)} oz` },
-    { re: /(-?\d+(?:[.,]\d+)?)\s*(?:oz|ounces?)\b/gi, convert: n => `${round(n * 28.3495)} g` },
-    { re: /(-?\d+(?:[.,]\d+)?)\s*(?:°\s*C|celsius)\b/gi, convert: n => `${round(n * 9 / 5 + 32)} °F` },
-    { re: /(-?\d+(?:[.,]\d+)?)\s*(?:°\s*F|fahrenheit)\b/gi, convert: n => `${round((n - 32) * 5 / 9)} °C` },
-    { re: /(-?\d+(?:[.,]\d+)?)\s*(?:l|liters?|litres?)\b/gi, convert: n => `${round(n * 0.264172)} gal` },
-    { re: /(-?\d+(?:[.,]\d+)?)\s*(?:gal|gallons?)\b/gi, convert: n => `${round(n * 3.78541)} L` },
+const UNITS: Array<{ unit: RegExp; convert: (n: number) => string; }> = [
+    { unit: /\s*(?:km\/h|kph)\b/iy, convert: n => `${round(n * 0.621371)} mph` },
+    { unit: /\s*mph\b/iy, convert: n => `${round(n * 1.609344)} km/h` },
+    { unit: /\s*(?:km|kilometers?|kilometres?)\b/iy, convert: n => `${round(n * 0.621371)} mi` },
+    { unit: /\s*(?:mi|miles?)\b/iy, convert: n => `${round(n * 1.609344)} km` },
+    { unit: /\s*(?:cm|centimeters?|centimetres?)\b/iy, convert: n => `${round(n / 2.54)} in` },
+    { unit: /\s*(?:in|inch(?:es)?|")(?=\s|$|[.,!?])/iy, convert: n => `${round(n * 2.54)} cm` },
+    { unit: /\s*(?:m|meters?|metres?)\b/iy, convert: n => `${round(n * 3.28084)} ft` },
+    { unit: /\s*(?:ft|feet|foot|')(?=\s|$|[.,!?])/iy, convert: n => `${round(n * 0.3048)} m` },
+    { unit: /\s*(?:kg|kilograms?|kilos?)\b/iy, convert: n => `${round(n * 2.20462)} lb` },
+    { unit: /\s*(?:lbs?|pounds?)\b/iy, convert: n => `${round(n * 0.453592)} kg` },
+    { unit: /\s*(?:g|grams?)\b/iy, convert: n => `${round(n / 28.3495)} oz` },
+    { unit: /\s*(?:oz|ounces?)\b/iy, convert: n => `${round(n * 28.3495)} g` },
+    { unit: /\s*(?:°\s*C|celsius)\b/iy, convert: n => `${round(n * 9 / 5 + 32)} °F` },
+    { unit: /\s*(?:°\s*F|fahrenheit)\b/iy, convert: n => `${round((n - 32) * 5 / 9)} °C` },
+    { unit: /\s*(?:l|liters?|litres?)\b/iy, convert: n => `${round(n * 0.264172)} gal` },
+    { unit: /\s*(?:gal|gallons?)\b/iy, convert: n => `${round(n * 3.78541)} L` },
 ];
 
 const round = (n: number) => Math.round(n * 100) / 100;
 
+const isDigit = (c: string | undefined) => c !== undefined && c >= "0" && c <= "9";
+
+/**
+ * Each match of /(-?\d+(?:[.,]\d+)?)<unit>/g in [text], as that regex finds them: leftmost first, a fraction taken when
+ * the unit follows it, none overlapping. The regex itself tries every digit of a long number again and again, as long
+ * as the number squared; here where each run of digits ends is worked out once, so each try is a step
+ */
+function* amounts(text: string, unit: RegExp, runEnd: Int32Array) {
+    let p = 0;
+    while (p < text.length) {
+        const digits = text[p] === "-" ? p + 1 : p;
+        if (isDigit(text[digits])) {
+            const whole = runEnd[digits];
+            const ends = text[whole] === "." || text[whole] === "," ? isDigit(text[whole + 1]) ? [runEnd[whole + 1], whole] : [whole] : [whole];
+            const end = ends.find(at => {
+                unit.lastIndex = at;
+                return unit.test(text);
+            });
+            if (end !== undefined) {
+                yield { start: p, numberEnd: end, end: unit.lastIndex };
+                p = unit.lastIndex;
+                continue;
+            }
+        }
+        p++;
+    }
+}
+
+/**
+ * The amounts with a unit in [text], each converted. Text from other people's messages, read on every long press: it
+ * takes as long as the text, never its square
+ */
 export function convertUnits(text: string): string[] {
+    // Where the run of digits at each position ends
+    const runEnd = new Int32Array(text.length + 1);
+    runEnd[text.length] = text.length;
+    for (let i = text.length - 1; i >= 0; i--) runEnd[i] = isDigit(text[i]) ? runEnd[i + 1] : i;
+
     const found: Array<{ index: number; line: string; }> = [];
     const taken: Array<[number, number]> = [];
-    for (const { re, convert } of UNITS) {
-        for (const match of text.matchAll(re)) {
-            const start = match.index ?? 0, end = start + match[0].length;
+    for (const { unit, convert } of UNITS) {
+        for (const { start, numberEnd, end } of amounts(text, unit, runEnd)) {
             // km/h is not also km, and "5 km" is not also "5 m"
             if (taken.some(([s, e]) => start < e && end > s)) continue;
             taken.push([start, end]);
-            found.push({ index: start, line: `${match[0].trim()} ≈ ${convert(Number(match[1].replace(",", ".")))}` });
+            found.push({ index: start, line: `${text.slice(start, end).trim()} ≈ ${convert(Number(text.slice(start, numberEnd).replace(",", ".")))}` });
         }
     }
     return found.sort((a, b) => a.index - b.index).map(f => f.line);

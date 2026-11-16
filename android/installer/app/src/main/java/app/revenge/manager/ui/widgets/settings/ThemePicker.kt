@@ -1,6 +1,7 @@
 package app.revenge.manager.ui.widgets.settings
 
 import android.annotation.SuppressLint
+import android.os.Build
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -25,10 +26,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -42,12 +41,14 @@ import androidx.compose.ui.unit.sp
 import app.revenge.manager.R
 import app.revenge.manager.domain.manager.PreferenceManager
 import app.revenge.manager.domain.manager.Theme
+import app.revenge.manager.ui.theme.EndcordDarkColors
+import app.revenge.manager.ui.theme.EndcordLightColors
 import app.revenge.manager.utils.contentDescription
 import app.revenge.manager.utils.thenIf
 import kotlinx.coroutines.launch
 
 @Composable
-@SuppressLint("NewApi") // Dynamic color option shouldn't ever be enabled on unsupported apis anyways
+@SuppressLint("NewApi") // Dynamic colors only with the version check below (dynamic)
 @OptIn(ExperimentalFoundationApi::class)
 fun ThemePicker(
     prefs: PreferenceManager
@@ -58,8 +59,11 @@ fun ThemePicker(
     }
     val scope = rememberCoroutineScope()
 
-    val lightScheme = remember(prefs.monet) { if(prefs.monet) dynamicLightColorScheme(context) else lightColorScheme() }
-    val darkScheme = remember(prefs.monet) { if(prefs.monet) dynamicDarkColorScheme(context) else darkColorScheme() }
+    // The colors the app really takes for each choice (RevengeManagerTheme): Endcord's own, or the wallpaper's with Monet
+    // Monet needs Android 12: a setting restored from a backup onto an older phone is Endcord's colors, as in Theme.kt
+    val dynamic = prefs.monet && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+    val lightScheme = remember(dynamic) { if (dynamic) dynamicLightColorScheme(context) else EndcordLightColors }
+    val darkScheme = remember(dynamic) { if (dynamic) dynamicDarkColorScheme(context) else EndcordDarkColors }
     val systemTheme = if(isSystemInDarkTheme()) darkScheme else lightScheme
 
     Column(

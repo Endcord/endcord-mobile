@@ -32,12 +32,11 @@ object Signer : KoinComponent {
     val keyStore: File by lazy {
         val ks = filesDir.resolve("ks.keystore")
         migrate(cacheDir, filesDir)
-        ks.also {
-            if (!it.exists()) {
-                it.createNewFile()
-                newKeystore(it)
-            }
-        }
+        // An empty file is a key that was never written (the app stopped while making it), so nothing was signed with
+        // it yet and a new one can take its place. Any other file is the key Endcord is signed with: replacing it would
+        // stop every update of the installed Endcord, so it is kept even when it can't be read.
+        if (ks.exists() && ks.length() == 0L) ks.delete()
+        if (!ks.exists()) newKeystore(ks)
         ks
     }
 
@@ -58,13 +57,22 @@ object Signer : KoinComponent {
         ).build()
     }
 
+    /** Writes a new key to [out] whole or not at all: written next to it, synced, then renamed into place */
     private fun newKeystore(out: File) {
         val key = createKey()
+        val temp = File(out.path + ".tmp")
 
         with(KeyStore.getInstance(KeyStore.getDefaultType())) {
             load(null, password)
             setKeyEntry("alias", key.privateKey, password, arrayOf<Certificate>(key.publicKey))
-            store(out.outputStream(), password)
+            temp.outputStream().use { stream ->
+                store(stream, password)
+                stream.fd.sync()
+            }
+        }
+        if (!temp.renameTo(out)) {
+            temp.delete()
+            error("Unable to save the signing key")
         }
     }
 
@@ -117,15 +125,12 @@ object Signer : KoinComponent {
         outputApk.renameTo(apkFile)
     }
 
+    /** Moves a key kept where older versions did into place, unless a key is there already: that one is in use */
     private fun migrate(oldDir: File, newDir: File) {
-        oldDir.resolve("ks.keystore").also {
-            if (it.exists()) {
-                Path(it.absolutePath)
-                    .moveTo(
-                        Path(newDir.resolve("ks.keystore").absolutePath),
-                        overwrite = true
-                    )
-            }
+        val old = oldDir.resolve("ks.keystore")
+        val current = newDir.resolve("ks.keystore")
+        if (old.exists() && old.length() > 0 && !(current.exists() && current.length() > 0)) {
+            Path(old.absolutePath).moveTo(Path(current.absolutePath), overwrite = true)
         }
     }
 
