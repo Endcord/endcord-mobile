@@ -1,0 +1,37 @@
+{
+    "format": 1,
+    "sequence": 1795632592,
+    "commit": "b7dfd7140bd12e620f8ef473c93bc740f3df05a9",
+    "files": {
+        "endcord-classic-installer.apk": {
+            "size": 8353932,
+            "sha256": "4e662c03ec57dbf2f6005048c5d0e0e8d24d319e28a638638a706de1b2700956",
+            "url": "https://raw.githubusercontent.com/Endcord/endcord-mobile/11c36b697dbdf33f1461ea213ef021a8ec691f47/endcord-classic-installer.apk"
+        },
+        "endcord-installer.apk": {
+            "size": 19661677,
+            "sha256": "fbe98f0807337b4068bda6f8e8889a8d3dd82b9ff7129c47d1ab42802434065e",
+            "url": "https://raw.githubusercontent.com/Endcord/endcord-mobile/11c36b697dbdf33f1461ea213ef021a8ec691f47/endcord-installer.apk"
+        },
+        "endcord-xposed.apk": {
+            "size": 5481748,
+            "sha256": "1def50068fe1a14d988636ae3f167961ae0cec806b5ef41cd32ae6cf8e77cccd",
+            "url": "https://raw.githubusercontent.com/Endcord/endcord-mobile/11c36b697dbdf33f1461ea213ef021a8ec691f47/endcord-xposed.apk"
+        },
+        "endcord.min.js": {
+            "size": 1816691,
+            "sha256": "550c38d3d95b94a6e178867391658c69c2cfb1e5cea69570c16793f8829d6009",
+            "url": "https://raw.githubusercontent.com/Endcord/endcord-mobile/11c36b697dbdf33f1461ea213ef021a8ec691f47/endcord.min.js"
+        },
+        "endcord.v98.hbc": {
+            "size": 3644237,
+            "sha256": "70e7fb045fbd6882e11fe80464c9fb9dce206a48a16177be4126eb486917ce6d",
+            "url": "https://raw.githubusercontent.com/Endcord/endcord-mobile/11c36b697dbdf33f1461ea213ef021a8ec691f47/endcord.v98.hbc"
+        },
+        "endcord.v99.hbc": {
+            "size": 3613596,
+            "sha256": "0d381cdb89cfc932522e0767f7b92b874678af6e81fd68a602e7a435d09c7693",
+            "url": "https://raw.githubusercontent.com/Endcord/endcord-mobile/11c36b697dbdf33f1461ea213ef021a8ec691f47/endcord.v99.hbc"
+        }
+    }
+}
