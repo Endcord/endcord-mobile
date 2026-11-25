@@ -21,7 +21,7 @@ import {
 
 export const PROFILES_GUILD_ID = "1543323763695820942";
 /** The profiles channel in the Endcord server, the same one Endcord PC reads and writes */
-export const PROFILES_CHANNEL_ID = "1568188531480993842";
+export const PROFILES_CHANNEL_ID = "1575191153672986694";
 export const PROFILES_INVITE_CODE = "endcord";
 export const PROFILES_INVITE = `https://discord.gg/${PROFILES_INVITE_CODE}`;
 
